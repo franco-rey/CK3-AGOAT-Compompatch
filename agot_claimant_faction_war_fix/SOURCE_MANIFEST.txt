@@ -1,0 +1,29 @@
+PATCH_NAME=AGOT - Claimant Faction War Fix
+PATCH_VERSION=1.0.0
+BUILD_DATE=2026-08-25
+CK3_VERSION=1.19.0.6
+AGOT_VERSION=0.5.1
+DECLARED_DEPENDENCIES=A Game of Thrones
+REQUIRED_LOAD_POSITION=Last, after all Workshop mods and existing local patches
+
+AGOT_WORKSHOP_ID=2962333032
+AGOT_SOURCE=common/scripted_effects/00_agot_mega_wars_effects.txt
+AGOT_SOURCE_SHA256=431AC3F21C85F00BFB0DA8C8DC1B8A85416422C7633127F36ECF0525D2CB464E
+AGOT_OVERRIDDEN_KEYS=agot_mw_faction_war_effect | agot_mw_faction_war_claimant_effect
+
+PATCH_SCRIPT=common/scripted_effects/zz_agot_claimant_faction_war_fix.txt
+PATCH_SCRIPT_SHA256=9D83235124269619499CC76B680B94F60373D1AF2792DDC8F4408872AAFB1101
+PATCH_DESCRIPTOR_SHA256=11B2EFC2D60CC855F51A75E00F50A70EBE20B600F3737A114CE874976C72EC7A
+PATCH_LAUNCHER_ENTRY_SHA256=9904FC8FBA2CE531F9ED7ECB399EBCCED3A27A17A17651A1986AF5F2A6586F40
+
+CHANGE_1=For unlanded claimants, the actual claimant-faction leader remains the war attacker, satisfying the AGOT claimant-faction CB requirement.
+CHANGE_2=The faction is destroyed only after the expected claimant war exists.
+CHANGE_3=If war creation fails, the faction is preserved and temporary mega-war handoff variables/lists are cleared.
+
+VALIDATION_ACTIVE_DEFINITION_SCAN=PASS: before this patch, only A Game of Thrones defined the two overridden scripted effects among enabled mods.
+VALIDATION_UNRELATED_BRANCH_PARITY=PASS: landed claimant, independence, liberty, and nation-fracturing paths remain upstream-equivalent.
+VALIDATION_PROSPECTIVE_ONLY=YES: no save repair, migration, or startup cleanup is included.
+WORKSHOP_FILES_MODIFIED=NO
+EXISTING_LOCAL_MODS_MODIFIED=NO
+SAVE_FILES_MODIFIED=NO
+UPDATE_WARNING=Disable and re-audit this keyed override if AGOT changes or the upstream source hash differs.

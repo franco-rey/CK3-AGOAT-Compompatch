@@ -1,0 +1,16 @@
+AGOT - Mega Wars Revolt Succession Fix 1.0.0
+================================================
+
+This local mod is already installed in the Crusader Kings III local mod folder.
+
+In the Paradox launcher:
+1. Add/enable "AGOT - Mega Wars Revolt Succession Fix" in the AGOT playset.
+2. Place it at the absolute bottom of the playset, after "MIV - AGOT CB Compatibility".
+
+Target versions:
+- Crusader Kings III 1.19.0.6
+- A Game of Thrones 0.5.1
+- More Interactive Vassals 4.0
+
+This is a preventive patch for future agot_revolt_war defeats. It does not repair old saves.
+Rebase the keyed CB override before using it with a later AGOT version.

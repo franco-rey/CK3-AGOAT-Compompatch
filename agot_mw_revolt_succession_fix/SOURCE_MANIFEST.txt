@@ -1,0 +1,30 @@
+PATCH_NAME=AGOT - Mega Wars Revolt Succession Fix
+PATCH_VERSION=1.0.0
+BUILD_DATE=2026-08-22
+CK3_VERSION=1.19.0.6
+AGOT_VERSION=0.5.1
+MIV_VERSION=4.0
+DECLARED_DEPENDENCIES=A Game of Thrones | More Interactive Vassals | MIV - AGOT CB Compatibility
+REQUIRED_LOAD_POSITION=Last, after MIV - AGOT CB Compatibility and all other AGOT submods
+
+AGOT_WORKSHOP_ID=2962333032
+AGOT_CB_SOURCE=common/casus_belli_types/00_agot_casus_belli_mega_wars.txt
+AGOT_CB_SOURCE_SHA256=E0928E9F38BB56D56DA3ACFF07F0F9EE8145621CB486FEBF655C053307BC7717
+AGOT_CB_ENTRY=agot_revolt_war (upstream lines 1096-1261)
+AGOT_EVENTS_REFERENCE=events/agot_events/agot_mega_wars_events.txt
+AGOT_EVENTS_REFERENCE_SHA256=E25377AD5DFAAB4E8C24EB2CB857D036B71D0C66C413D5796BABEBAFFFC0D3DD
+
+PATCH_CB_FILE=common/casus_belli_types/zz_agot_mw_revolt_succession_fix.txt
+PATCH_CB_SHA256=CFFEE685BC445E6743F63A609F79005D4C27F6CF4437D54D10922DDD6A13C662
+PATCH_EVENT_FILE=events/agot_mw_revolt_succession_fix_events.txt
+PATCH_EVENT_SHA256=5ED2E50132659CE637EBE4C53A49E9F259FC99A535C5018D4240D9439E7CC3CC
+
+CHANGE=Defers agot_revolt_war defender-victory punishment by one day so AGOT Mega Wars realm restoration completes before execution and succession.
+VALIDATION_SOURCE_PARITY=PASS: pre-defeat, defeat-prefix, and post-defeat portions match AGOT 0.5.1; only deferred punishment replaces the original immediate call.
+VALIDATION_BRACE_BALANCE=PASS
+VALIDATION_IDENTIFIER_COLLISION=PASS: no existing agot_mwrsf namespace or variables found.
+WORKSHOP_FILES_MODIFIED=NO
+EXISTING_LOCAL_MODS_MODIFIED=NO
+SAVE_FILES_MODIFIED=NO
+PROSPECTIVE_ONLY=YES: this patch does not repair already-orphaned realms.
+UPDATE_WARNING=Rebase this keyed CB override if AGOT changes or the upstream source hash differs.

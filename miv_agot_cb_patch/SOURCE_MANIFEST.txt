@@ -1,0 +1,28 @@
+MIV - AGOT CB Compatibility
+Patch version: 1.0.0
+Built: 2026-08-22
+
+Target versions
+- Crusader Kings III: 1.19.0.6 (Scribe)
+- A Game of Thrones: 0.5.1 (Steam Workshop 2962333032)
+- More Interactive Vassals: descriptor version 4.0 (Steam Workshop 2712590542)
+
+Upstream MIV source hashes (SHA-256)
+- common/decisions/interactive_decisions.txt
+  41DFCA17C0F0A7605B943128360E4E325F182D8E311A82F61C66BFD2B894EF15
+- common/on_action/interactive_on_actions.txt
+  4E6342659B59CD46C9AC1F77B802F81ED19CB9C9C30C90E30F4E1E06C314B2E2
+- common/character_interactions/interactive_call_ally.txt
+  C5ED6FE72DAC22E8D7D7E7BB1F83B54815CE8652157398B775B250F06469418D
+
+Patch scope
+- 16 substitutions across the three files above.
+- Each invalid MIV `using_cb` condition referencing an AGOT-disabled casus belli
+  is replaced by `always = no`, preserving its surrounding OR/NOR structure.
+- Disabled identifiers: populist_war, minor_religious_war, religious_war,
+  major_religious_war, undirected_great_holy_war, directed_great_holy_war.
+- No Workshop file, save, playset, or launcher database is modified by this mod.
+
+Update warning
+These are complete-file overrides. Disable this patch and re-audit it after any
+AGOT or More Interactive Vassals update so upstream changes are not masked.
