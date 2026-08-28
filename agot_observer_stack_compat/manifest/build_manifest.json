@@ -1,0 +1,227 @@
+{
+  "patch_version": "1.0.0",
+  "game_version": "1.19.0.6",
+  "agot_version": "0.5.1",
+  "built": "2026-08-28",
+  "files": [
+    {
+      "provider_workshop_id": "2950245430",
+      "virtual_path": "common/scripted_effects/asoiaf_canon_children_effects.txt",
+      "source_sha256": "080981232f0708671afd71203df3466158d5d90ae0085381ae8c36e5446b747d",
+      "transformations": [
+        "P01_REMOVE_DUAL_PLACEMENT",
+        "P01_ATTACH_NEWBORN_TO_COURT",
+        "P01_CANON_PARSE_REPAIRS"
+      ],
+      "replacement_counts": {
+        "P01_REMOVE_DUAL_PLACEMENT": 202,
+        "P01_ATTACH_NEWBORN_TO_COURT": 1,
+        "P01_TRAIT_ADD": 1,
+        "P01_DYNASTY_TRIGGER_ANY": 6,
+        "P01_SPOUSE_NOT_BLOCK": 1,
+        "P01_TOTAL_ADJACENT_PARSE_REPAIRS": 8
+      },
+      "built_sha256": "7cac5ae82378dbc7ed2e7405891471a8dc400eefeb8db9235ab7669fcc281da3"
+    },
+    {
+      "provider_workshop_id": "2950245430",
+      "virtual_path": "common/scripted_effects/asoiaf_setup_effects.txt",
+      "source_sha256": "60daa8eaa60ab1bf44c24a6065e31019fca5a621c7876e9a96634b20c6a7bbd7",
+      "transformations": [
+        "P02_UNDERAGED_SCOPE_PREFIX",
+        "P02_HAS_CLAIM_ON",
+        "P02_IS_DEAD_TRIGGER",
+        "P02_REMOVE_NOOP_EXISTS"
+      ],
+      "replacement_counts": {
+        "P02_UNDERAGED_SCOPE_PREFIX": 107,
+        "P02_HAS_CLAIM_ON": 15,
+        "P02_IS_DEAD_TRIGGER": 2,
+        "P02_REMOVE_NOOP_EXISTS": 9
+      },
+      "built_sha256": "70b969f8bbe1e513c51b0945a6b2cdbc61c527004576f3bfe58f5b1b600f132c"
+    },
+    {
+      "provider_workshop_id": "2950245430",
+      "virtual_path": "common/scripted_character_templates/asoiaf_invader_templates.txt",
+      "source_sha256": "67ed5a01e2b1226ad6eb5c496cfc00e71ef6536d699cfc547002ebe05889c0f2",
+      "transformations": [
+        "P02_INVADER_IS_DEAD"
+      ],
+      "replacement_counts": {
+        "P02_INVADER_IS_DEAD": 1
+      },
+      "built_sha256": "eb1125f3ea7c75aec17ddcc707cba87419bc026b64428f40843b277def9410c4"
+    },
+    {
+      "provider_workshop_id": "2950245430",
+      "virtual_path": "common/artifacts/templates/asoiaf_artifacts_templates.txt",
+      "source_sha256": "7819e8e963bc5929a3f43a39328f74c2ac6d543caf395263ec98d4e7b1e58450",
+      "transformations": [
+        "P02_KRAKENFALL_HOUSE_SCOPE"
+      ],
+      "replacement_counts": {
+        "P02_KRAKENFALL_HOUSE_SCOPE": 1
+      },
+      "built_sha256": "e8086a6ab44514937137097584ac5007bd0475181da0b601613e9f7d6977ca4c"
+    },
+    {
+      "provider_workshop_id": "2950245430",
+      "virtual_path": "common/modifiers/asoiaf_artifact_modifiers.txt",
+      "source_sha256": "b781c7358e4a93e7c980133728bff9de1f077595c0dc26420f2e65e4ea7a894d",
+      "transformations": [
+        "P02_WESTERMAN_OPINION"
+      ],
+      "replacement_counts": {
+        "P02_WESTERMAN_OPINION": 1
+      },
+      "built_sha256": "7f0a8d0c3db3cb3cdf862c4cad09b05c04dbeb82a01788149575bd9cece6fa74"
+    },
+    {
+      "provider_workshop_id": "2950245430",
+      "virtual_path": "common/on_action/agot_on_actions/test_title_on_actions.txt",
+      "source_sha256": "c5d8c4ed2a7e7d74c3ce69b813a59b79f2f9ba7a9051b986d8be9b8da6d3c909",
+      "transformations": [
+        "P02_CROWN_CREATOR_CALLS"
+      ],
+      "replacement_counts": {
+        "P02_CROWN_CREATOR_CALLS": 7,
+        "P02_CROWN_CREATOR_CALLS_REQUIRED_BY_MANUAL": 8
+      },
+      "built_sha256": "a25c438c11526ce180d25078a0cf62f6b5d5f4964177b95922cfa5ea9d62cc17"
+    },
+    {
+      "provider_workshop_id": "2950245430",
+      "virtual_path": "common/scripted_effects/asoiaf_scripted_effects_artifacts.txt",
+      "source_sha256": "42c5da841ddb36017f8418637fb4438f344c100807334cf7d889b329bb90a8a7",
+      "transformations": [
+        "P02_CROWN_CREATOR_CONTRACT"
+      ],
+      "replacement_counts": {
+        "P02_CROWN_CREATOR_DECLARATIONS": 3,
+        "P02_CROWN_CREATOR_FIELDS": 6
+      },
+      "built_sha256": "75dc08fe7731bdca2d3b90b5b733a200c91c589e8209fd4295cf10e5689c38b0"
+    },
+    {
+      "provider_workshop_id": "2995674648",
+      "virtual_path": "common/artifacts/templates/ntc_artifacts_templates.txt",
+      "source_sha256": "4a6a2270954c02502aad32c281d183edd45faee06d0ac478448ff1d8c5e482a6",
+      "transformations": [
+        "P03_CULTURE_MIGRATION"
+      ],
+      "replacement_counts": {
+        "culture:stormlander": 10,
+        "culture:riverlander": 3,
+        "culture:valeman": 3,
+        "culture:westerman": 1
+      },
+      "built_sha256": "f2f629dca7b1fbf7f5d4828c72422f1cce78d160a2a9aa820584133d0d63cb34"
+    },
+    {
+      "provider_workshop_id": "2995674648",
+      "virtual_path": "common/scripted_triggers/00_ntc_crown_commission_triggers.txt",
+      "source_sha256": "a32c297dc92b89478a5a2c8fab634c871ef58b0f203fd5fb630d52adc992c5a4",
+      "transformations": [
+        "P03_CULTURE_MIGRATION"
+      ],
+      "replacement_counts": {
+        "culture:stormlander": 2
+      },
+      "built_sha256": "1db29585b5ea62af29cf34fe1e2a7d8c6147e6d24ec86e49ed992b0a49e65d61"
+    },
+    {
+      "provider_workshop_id": "2995674648",
+      "virtual_path": "common/scripted_character_templates/ntc_scripted_character_template.txt",
+      "source_sha256": "2d5333009be4138a3e1c200a3eac012e8d72435423ce4ed5ffef03292a3a896c",
+      "transformations": [
+        "P03_CULTURE_MIGRATION"
+      ],
+      "replacement_counts": {
+        "culture:mountain_clansman": 1
+      },
+      "built_sha256": "ee2ae88d0ddbecb760cd41de5770c8e9141f2a1363a44b1ad72d81414a35b430"
+    },
+    {
+      "provider_workshop_id": "2995674648",
+      "virtual_path": "common/modifiers/ntc_artifact_modifiers.txt",
+      "source_sha256": "bef9756f993e237614ecedbd37773f71684c3628ed0706d7bdf03e9933c1fa4f",
+      "transformations": [
+        "P03_VALEMAN_OPINION"
+      ],
+      "replacement_counts": {
+        "valeman_opinion": 3
+      },
+      "built_sha256": "1673631ca8b4923aa23c72a13cd076d4d61db2ada4b639ac192ec9a5f6bba117"
+    },
+    {
+      "provider_workshop_id": "2962333032",
+      "virtual_path": "events/dlc/ep3/ep3_laamp_decision_events.txt",
+      "source_sha256": "412bd22f2b85bc7ef74514aa66f50f4e72bc45a9d60c177b3a25177cf3bd12d4",
+      "transformations": [
+        "P04_PROVINCE_SCOPE_LIMIT"
+      ],
+      "replacement_counts": {
+        "P04_PROVINCE_SCOPE_LIMIT": 1
+      },
+      "built_sha256": "6f626553c9ce2195b0ff40c7cccd9d5a32c0f1f15174c9d42db03a0f38c2be8a"
+    },
+    {
+      "provider_workshop_id": "2962333032",
+      "virtual_path": "common/character_interactions/06_ep3_interactions.txt",
+      "source_sha256": "7cb2344b17b8b7eb7b0bebb0ecd9262b5a4207dc4ce57984dc87071de533f736",
+      "transformations": [
+        "P05_LORATH_EXCLUSION"
+      ],
+      "replacement_counts": {
+        "P05_LORATH_EXCLUSION": 2
+      },
+      "built_sha256": "5620dedc529e73a223c108f90d04d7ac1419fde60a91dbcc4a5349d07c99f295"
+    },
+    {
+      "provider_workshop_id": "2971198450",
+      "virtual_path": "common/buildings/yy_agotcities_special_buildings_westeros.txt",
+      "source_sha256": "d0517274f260152db56300c364316a9070a166a6b765e0691b62754d014e0e78",
+      "transformations": [
+        "P06_RHOYNISH_OPINION",
+        "P06_HOLDING_CONTEXT"
+      ],
+      "replacement_counts": {
+        "P06_RHOYNISH_OPINION": 2,
+        "P06_HOLDING_CONTEXT": 1
+      },
+      "built_sha256": "283b57a70a142cad323d0678cf8bcaa01194e70b8d6eddda7c8f9e39481bc0c0"
+    },
+    {
+      "provider_workshop_id": "3316173814",
+      "virtual_path": "gui/window_county_view.gui",
+      "source_sha256": "b3958c445ac4ba1aee4798f4ee32cf9044a97ed8615490134250409de22cfe90",
+      "transformations": [
+        "P07_SCROLLAREA_IGNOREINVISIBLE"
+      ],
+      "replacement_counts": {
+        "P07_SCROLLAREA_IGNOREINVISIBLE": 1
+      },
+      "built_sha256": "e2b5a8da661a5d3d4e5695e52183cc5f400160c99c03ac85e06d54dd35864389"
+    },
+    {
+      "provider_workshop_id": "additive",
+      "virtual_path": "common/modifier_definition_formats/zz_observer_stack_culture_opinion_definitions.txt",
+      "source_sha256": null,
+      "transformations": [
+        "P03_VALEMAN_DEF_FORMAT"
+      ],
+      "replacement_counts": {
+        "created_file": 1
+      },
+      "built_sha256": "7f944979b7faaf4332b35db9ea1ec7d044e3cce218decef1404fa0f7ee628bc6"
+    }
+  ],
+  "p08_miv_agot_cb_patch": {
+    "old_hash": "e03f3400ec01f0f871e3d3259b6eea2de0266a5e04accadac728924ef722baf6",
+    "new_hash": "d402a25411f7d691ae682f8e99fc88aca1c4fc09ac089c3a47fdade14dd1ab8e",
+    "version": "1.0.1",
+    "staged_pointer": "version=\"1.0.1\"\ntags={\n\t\"Utilities\"\n}\nname=\"MIV - AGOT CB Compatibility\"\ndependencies={\n\t\"A Game of Thrones\"\n\t\"More Interactive Vassals\"\n}\nsupported_version=\"1.19.0.6\"\npath=\"/Users/franco/Documents/Paradox Interactive/Crusader Kings III/mod/miv_agot_cb_patch\"",
+    "disabled_using_cb_total": 16
+  }
+}

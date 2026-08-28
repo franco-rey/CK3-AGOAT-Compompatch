@@ -1,0 +1,18 @@
+# Pre-build §4 gate values (verified 2026-08-28; SHA-256)
+# format: <hash>  <provider-id>/<virtual-path>  # label
+412bd22f2b85bc7ef74514aa66f50f4e72bc45a9d60c177b3a25177cf3bd12d4  2962333032/events/dlc/ep3/ep3_laamp_decision_events.txt  # AGOT ep3 decision events (P04) [PASS]
+7cb2344b17b8b7eb7b0bebb0ecd9262b5a4207dc4ce57984dc87071de533f736  2962333032/common/character_interactions/06_ep3_interactions.txt  # AGOT EP3 interactions (P05) [PASS]
+080981232f0708671afd71203df3466158d5d90ae0085381ae8c36e5446b747d  2950245430/common/scripted_effects/asoiaf_canon_children_effects.txt  # AGOT+ canon children (P01) [PASS]
+7819e8e963bc5929a3f43a39328f74c2ac6d543caf395263ec98d4e7b1e58450  2950245430/common/artifacts/templates/asoiaf_artifacts_templates.txt  # AGOT+ artifact templates (P02.3) [PASS]
+60daa8eaa60ab1bf44c24a6065e31019fca5a621c7876e9a96634b20c6a7bbd7  2950245430/common/scripted_effects/asoiaf_setup_effects.txt  # AGOT+ setup effects (P02.1) [PASS]
+67ed5a01e2b1226ad6eb5c496cfc00e71ef6536d699cfc547002ebe05889c0f2  2950245430/common/scripted_character_templates/asoiaf_invader_templates.txt  # AGOT+ invader templates (P02.2) [PASS]
+b781c7358e4a93e7c980133728bff9de1f077595c0dc26420f2e65e4ea7a894d  2950245430/common/modifiers/asoiaf_artifact_modifiers.txt  # AGOT+ artifact modifiers (P02.4) [PASS]
+c5d8c4ed2a7e7d74c3ce69b813a59b79f2f9ba7a9051b986d8be9b8da6d3c909  2950245430/common/on_action/agot_on_actions/test_title_on_actions.txt  # AGOT+ test title on-actions (P02.5) [PASS]
+42c5da841ddb36017f8418637fb4438f344c100807334cf7d889b329bb90a8a7  2950245430/common/scripted_effects/asoiaf_scripted_effects_artifacts.txt  # AGOT+ scripted artifact effects (P02.5) [PASS]
+4a6a2270954c02502aad32c281d183edd45faee06d0ac478448ff1d8c5e482a6  2995674648/common/artifacts/templates/ntc_artifacts_templates.txt  # Crowns artifact templates (P03) [PASS]
+a32c297dc92b89478a5a2c8fab634c871ef58b0f203fd5fb630d52adc992c5a4  2995674648/common/scripted_triggers/00_ntc_crown_commission_triggers.txt  # Crowns crown-commission triggers (P03) [PASS]
+2d5333009be4138a3e1c200a3eac012e8d72435423ce4ed5ffef03292a3a896c  2995674648/common/scripted_character_templates/ntc_scripted_character_template.txt  # Crowns character template (P03) [PASS]
+bef9756f993e237614ecedbd37773f71684c3628ed0706d7bdf03e9933c1fa4f  2995674648/common/modifiers/ntc_artifact_modifiers.txt  # Crowns artifact modifiers (P03) [PASS]
+d0517274f260152db56300c364316a9070a166a6b765e0691b62754d014e0e78  2971198450/common/buildings/yy_agotcities_special_buildings_westeros.txt  # COW-AGOT special buildings (P06) [PASS]
+b3958c445ac4ba1aee4798f4ee32cf9044a97ed8615490134250409de22cfe90  3316173814/gui/window_county_view.gui  # Patch AGOT-MBS county GUI (P07) [PASS]
+e03f3400ec01f0f871e3d3259b6eea2de0266a5e04accadac728924ef722baf6  local/common/on_action/interactive_on_actions.txt  # Local MIV patch on-actions (P08) [PASS]

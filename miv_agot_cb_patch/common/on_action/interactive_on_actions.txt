@@ -111,8 +111,12 @@ interactive_map_generation = {
 				has_game_rule = diverse_world_miv_enabled
 				has_game_rule = shattered_world_miv_enabled				# requires shattered world or it crashes
 			}
-			game_rule_random_ruler_placement_effect = yes
-			game_rule_random_ruler_placement_effect = yes
+			# P08 (AGOT Observer Stack Compatibility): AGOT does not expose random-ruler
+			# placement (the vanilla game_rule_random_ruler_placement_effect was removed),
+			# so the two MIV random-ruler placement calls were deleted. The MIV
+			# diverse-world and shattered-world random-ruler modes are only partially
+			# supported under AGOT. The MIV county culture/faith synchronization below is
+			# preserved unchanged.
 			every_ruler = {
 				limit = {
 					is_landed = yes

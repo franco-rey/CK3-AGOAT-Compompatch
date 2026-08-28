@@ -1,0 +1,3 @@
+﻿valeman_main_opinion = {
+	decimals = 0
+}

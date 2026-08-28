@@ -1,6 +1,6 @@
 MIV - AGOT CB Compatibility
-Patch version: 1.0.0
-Built: 2026-08-22
+Patch version: 1.0.1
+Built: 2026-08-28
 
 Target versions
 - Crusader Kings III: 1.19.0.6 (Scribe)
@@ -26,3 +26,16 @@ Patch scope
 Update warning
 These are complete-file overrides. Disable this patch and re-audit it after any
 AGOT or More Interactive Vassals update so upstream changes are not masked.
+
+P08 update (2026-08-28) — AGOT Observer Stack Compatibility
+- Removed the two consecutive `game_rule_random_ruler_placement_effect = yes` calls in
+  common/on_action/interactive_on_actions.txt (branch guarded by diverse_world_miv_enabled
+  and shattered_world_miv_enabled). AGOT does not expose random-ruler placement; the MIV
+  diverse-world and shattered-world random-ruler modes are only partially supported under
+  AGOT. The MIV county culture/faith synchronization after the removed calls is preserved.
+- All 16 disabled incompatible `using_cb` conditions remain unchanged (5 in
+  common/on_action/interactive_on_actions.txt, 4 in common/decisions/interactive_decisions.txt,
+  7 in common/character_interactions/interactive_call_ally.txt).
+- common/on_action/interactive_on_actions.txt
+  previous installed patch hash: E03F3400EC01F0F871E3D3259B6EEA2DE0266A5E04ACCADAC728924EF722BAF6
+  new built hash: D402A25411F7D691AE682F8E99FC88ACA1C4FC09AC089C3A47FDADE14DD1AB8E
