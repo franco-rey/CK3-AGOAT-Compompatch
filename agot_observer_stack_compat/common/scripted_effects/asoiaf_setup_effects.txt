@@ -1,7 +1,10 @@
 ﻿#Setup
-#asoiaf_destroy_crownlands_title_effect = {
-#	destroy_title = title:e_the_crownlands
-#}
+# Restored: the definition was commented out upstream while its call site in
+# test_title_on_actions.txt (asoiaf_young_griff_victory) stayed live, so taking
+# the Iron Throne left the auto-created Crownlands empire title in place.
+asoiaf_destroy_crownlands_title_effect = {
+	destroy_title = title:e_the_crownlands
+}
 
 #asoiaf_test_coa_effect = {
 #	add_character_flag = dynn_Baratheon_flag

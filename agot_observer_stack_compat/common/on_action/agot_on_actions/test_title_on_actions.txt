@@ -229,9 +229,13 @@ asoiaf_on_title_inheritance_lannister_baratheon_coa = {
 				age < 16
 				root.mother = { is_courtier_of = root } #if she's not at court, she can't become a regent immediately after the succession
 			}
+			# 'start_diarchy' is not a CK3 effect and failed to parse, so the regency
+			# was never actually established. The engine effect is set_diarchy_type,
+			# applied after a diarch is installed (matches AGOT's own
+			# 00_diarch_interactions.txt usage).
 			designate_diarch = root.mother #Cersei
-			start_diarchy = regency
 			set_diarch = root.mother #Cersei
+			set_diarchy_type = regency
 		}
 		every_child = { #the inheritor's children
 			if = {
@@ -1027,7 +1031,6 @@ asoiaf_daemon_loses_stepstone_claims = { #clean up Daemon's claims after losing 
 				remove_claim = title:d_skull_tides
 				remove_claim = title:d_the_maidens
 				remove_claim = title:d_saans_stones
-				remove_claim = title:c_blood_point
 				remove_claim = title:c_bloodstone
 				remove_claim = title:c_dwarfstone
 				remove_claim = title:c_grey_gallows

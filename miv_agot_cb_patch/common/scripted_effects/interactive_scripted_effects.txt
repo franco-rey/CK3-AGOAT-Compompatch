@@ -1,0 +1,2746 @@
+# two MIV changes
+on_declared_war = {
+	on_declared_war_play_music = yes
+	miv_vassal_effect = yes	# MIV change: added
+
+	###############################
+	##### Effects
+	###############################
+
+	#There is no fighting in the admin room!
+	if = {
+		limit = {
+			scope:attacker = {
+				OR = {
+					government_has_flag = government_is_feudal
+					government_has_flag = government_is_clan
+					government_has_flag = government_is_tribal
+				}			
+				liege ?= {
+					government_has_flag = government_is_administrative
+				}
+			}
+			scope:defender = {
+				government_has_flag = government_is_administrative
+				liege ?= scope:attacker.liege
+			}
+		}
+		custom_description_no_bullet = {
+			text = on_declared_war_in_admin
+		}
+		scope:attacker.liege = {
+			add_opinion = {
+				target = scope:attacker
+				modifier = declared_war_in_admin
+			}
+		}
+	}
+
+	# Breaking Truce
+	if = {
+		limit = {
+			scope:attacker = {
+				has_truce = scope:defender
+				NOT = { has_character_flag = allowed_war_declaration_sans_truce_penalties }
+			}
+		}
+		scope:attacker = {
+			custom_description_no_bullet = {
+				text = attack_breaking_truce_text
+			}
+
+			# Remove the war target from the bought_truce_list if they're in it
+			if = {
+				limit = {
+					has_purchased_truce_with_char = { TARGET = scope:defender }
+				}
+				remove_list_variable = {
+					name = bought_truce_list
+					target = scope:defender
+				}
+			}
+
+			if = {
+				limit = {
+					NOT = { has_perk = flexible_truces_perk }
+				}
+				add_prestige = break_truce_prestige_loss
+				add_prestige_level = break_truce_prestige_level_loss
+			}
+
+			if = {
+				limit = { 
+					government_has_flag = government_is_mandala
+					scope:defender = { var:recent_mandala_suzerain ?= scope:attacker }
+				}
+				add_legitimacy = {
+					value = medium_legitimacy_loss
+					multiply = primary_title.tier
+				}
+				add_piety_experience = massive_piety_loss
+				add_character_modifier = {
+					modifier = mandala_broke_truce_modifier
+					years = 5
+				}
+			}
+			else = {
+				add_legitimacy = {
+					value = medium_legitimacy_loss
+					multiply = primary_title.tier
+				}
+			}
+			add_character_modifier = {
+				modifier = broke_truce
+				years = 3
+			}
+
+			# Struggle Catalysts.
+			if = {
+				limit = {
+					any_character_struggle = {
+						involvement = involved
+						activate_struggle_catalyst_secondary_character_involvement_involved_trigger = {
+							CATALYST = catalyst_broke_truce_against_important_character
+							CHAR = scope:defender
+						}
+					}
+				}
+				every_character_struggle = {
+					involvement = involved
+					limit = {
+						activate_struggle_catalyst_secondary_character_involvement_involved_trigger = {
+							CATALYST = catalyst_broke_truce_against_important_character
+							CHAR = scope:defender
+						}
+					}
+					activate_struggle_catalyst = {
+						catalyst = catalyst_broke_truce_against_important_character
+						character = scope:attacker
+					}
+				}
+			}
+		}
+	}
+	# Breaking Betrothals
+	if = {
+		limit = {
+			scope:attacker = {
+				is_allied_to = scope:defender
+				any_close_family_member = {
+					court_owner = scope:attacker
+					is_betrothed = yes
+					betrothed = {
+						court_owner = scope:defender
+						is_close_family_of = scope:defender
+					}
+				}
+			}
+		}
+		scope:attacker = {
+			custom_description_no_bullet = {
+				text = attack_breaking_betrothal_text
+			}
+			add_prestige = {
+				value = break_truce_prestige_loss
+				multiply = break_betrothal_prestige_cost
+			}
+			#Did you promise a grand wedding?
+			if = {
+				limit = {
+					has_variable = promised_grand_wedding_marriage_countdown
+					any_close_family_member = {
+						court_owner = scope:attacker
+						is_betrothed = yes
+						has_been_promised_grand_wedding = yes
+						betrothed = {
+							court_owner = scope:defender
+							is_close_family_of = scope:defender
+							has_been_promised_grand_wedding = yes
+						}
+					}
+				}
+				random_close_family_member = {
+					limit = {
+						court_owner = scope:attacker
+						is_betrothed = yes
+						has_been_promised_grand_wedding = yes
+						betrothed = {
+							court_owner = scope:defender
+							is_close_family_of = scope:defender
+							has_been_promised_grand_wedding = yes
+						}
+					}
+					save_scope_as = victim
+				}
+				#Start a house feud, if possible.
+				if = {
+					limit = {
+						has_dlc_feature = friends_and_foes
+						exists = scope:attacker.house.house_head
+						exists = scope:defender.house.house_head
+						scope:attacker.house != scope:defender.house
+					}
+					house_feud_start_effect = {
+						#Feuding House Head
+						ACTOR = scope:attacker.house.house_head
+						#Target House Head
+						TARGET = scope:defender.house.house_head
+						#Feud Reason
+						REASON = family_broke_gw_betrothal
+						#House Member attacker if relevant
+						ATTACKER = scope:attacker
+						#House Member victim if relevant
+						VICTIM = scope:victim
+					}
+				}
+				#Then remove promise
+				clean_grand_wedding_betrothal_variables = yes
+			}
+			every_close_family_member = {
+				limit = {
+					court_owner = scope:attacker
+					is_betrothed = yes
+					betrothed = {
+						court_owner = scope:defender
+						is_close_family_of = scope:defender
+					}
+				}
+				break_betrothal = betrothed
+			}
+		}
+	}
+	# Breaking Alliance
+	else_if = {
+		limit = {
+			scope:attacker = {
+				is_allied_to = scope:defender
+			}
+		}
+		scope:attacker = {
+			break_alliance_due_to_attack_effect = { TARGET = scope:defender }
+		}
+	}
+	# Breaking Tributary
+	if = {
+		limit = {
+			OR = {
+				scope:attacker = { is_tributary_of = scope:defender	}
+				scope:defender = { is_tributary_of = scope:attacker	}
+			}
+		}
+		scope:attacker = {
+			break_tributary_contract_due_to_attack_effect = { DEFENDER = scope:defender }
+		}
+	}
+	# BP2: Attacking Warden
+	if = {
+		limit = {
+			scope:attacker = {
+				any_home_court_hostage = { is_hostage_of = scope:defender }
+			}
+		}
+		scope:attacker = {
+			add_prestige = break_truce_prestige_loss
+			add_prestige_level = break_truce_prestige_level_loss
+			add_character_modifier = {
+				modifier = attacked_warden
+				years = 5
+			}
+			# Hostages they hold (yours)
+			every_home_court_hostage = {
+				save_scope_as = hostage
+				every_close_family_member = {
+					limit = {
+						this != scope:attacker
+					}
+					custom = attacked_warden_tt
+					add_opinion = {
+						modifier = attacked_warden
+						target = scope:attacker
+					}
+				}
+				if = {
+					limit = { is_hostage_of = scope:defender }
+					custom_description_no_bullet = {
+						text = attack_breaking_truce_hostage
+						subject = scope:defender
+						object = scope:hostage
+					}
+				}
+			}
+		}
+	}
+	# BP2: Attacking Home Court
+	if = {
+		limit = {
+			scope:attacker = {
+				any_warden_hostage = { is_hostage_from = scope:defender }
+			}
+		}
+		scope:attacker = {
+			# Hostages you hold (theirs)
+			every_warden_hostage = {
+				save_scope_as = hostage
+				if = {
+					limit = { is_hostage_from = scope:defender }
+					custom_description_no_bullet = {
+						text = attack_breaking_truce_hostage
+						subject = scope:attacker
+						object = scope:hostage
+					}
+				}
+			}
+			add_prestige = break_truce_prestige_loss
+			add_prestige_level = break_truce_prestige_level_loss
+			add_character_modifier = {
+				modifier = attacked_home_court
+				years = 5
+			}
+			# Hostages they hold (yours)
+			every_home_court_hostage = {
+				save_scope_as = hostage
+				every_close_family_member = {
+					limit = {
+						this != scope:attacker
+					}
+					custom = attacked_warden_tt
+					add_opinion = {
+						modifier = attacked_home_court
+						target = scope:attacker
+					}
+				}
+				if = {
+					limit = { is_hostage_of = scope:defender }
+					custom_description_no_bullet = {
+						text = attack_breaking_truce_hostage
+						subject = scope:defender
+						object = scope:hostage
+					}
+				}
+			}
+		}
+	}
+
+	hidden_effect = {
+		# Opinion
+		scope:defender = {
+			add_opinion = {
+				target = scope:attacker
+				modifier = declared_war
+			}
+		}
+		if = {
+			limit = {
+				NOT = {
+					scope:attacker = {
+						is_parent_of = scope:defender
+					}
+				}
+			}
+			if = {
+				limit = {
+					scope:defender = {
+						has_father = yes
+					}
+				}
+				scope:defender = {
+					father = {
+						add_opinion = {
+							target = scope:attacker
+							modifier = declared_war_on_son_daughter
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					scope:defender = {
+						has_mother = yes
+					}
+				}
+				scope:defender = {
+					mother = {
+						add_opinion = {
+							target = scope:attacker
+							modifier = declared_war_on_son_daughter
+						}
+					}
+				}
+			}
+		}
+		if = {
+			limit = {
+				scope:attacker.culture != scope:defender.culture
+				scope:attacker = { is_landed = yes }
+				scope:defender = { is_landed = yes }
+			}
+			scope:defender.culture = {
+				change_cultural_acceptance = {
+					target = scope:attacker.culture
+					value = declare_war_culture_acceptance_impact
+					desc = cultural_acceptance_loss_declared_war
+				}
+			}
+		}
+	}
+	if = {
+		limit = {
+			scope:defender = {
+				this = top_liege
+				government_has_flag = government_is_celestial
+				highest_held_title_tier >= tier_empire
+			}
+			scope:attacker = {
+				government_has_flag = government_is_celestial
+			}
+		}
+		scope:defender = {
+			add_opinion = {
+				target = scope:attacker
+				modifier = impugned_my_sovereignty
+			}
+		}
+	}
+	
+	scope:attacker = {
+		if = {
+			limit = {
+				any_vassal = {
+					vassal_stance = parochial
+				}
+				eighty_percent_of_current_military_strength <= scope:defender.current_military_strength
+			}
+			custom_tooltip = parochial_vassal_disapproves_war
+			hidden_effect = {
+				every_vassal = {
+					vassal_stance = parochial
+					add_opinion = {
+						target = scope:attacker
+						modifier = parochial_disapproves_strong_war_enemy_opinion
+					}
+				}
+			}
+		}
+	}
+	
+	# If we're a clan this interaction affects unity
+	add_clan_unity_interaction_effect = {
+		CHARACTER = scope:attacker
+		TARGET = scope:defender
+		VALUE = massive_unity_loss
+		DESC = clan_unity_declared_war.desc
+		REVERSE_NON_HOUSE_TARGET = no
+	}
+	
+	intrigue_duel_on_attack_effect = yes
+}
+
+miv_vassal_effect = {
+	if = {
+		limit = {
+			scope:attacker = {
+				is_ai = no
+			}
+			interactive_start_date = current_date
+			has_global_variable = miv_is_loaded
+		}
+		custom_tooltip = start_war_date_tooltip
+	}
+	if = {
+		limit = {
+			scope:attacker = {
+				is_ai = no
+			}
+			scope:attacker = {
+				is_vassal_or_below_of = scope:defender
+			}
+			NOT = {
+				interactive_start_date = current_date
+			}
+		}
+		custom_tooltip = civil_war_tooltip
+	}
+	if = {
+		limit = {
+			scope:attacker = {
+				is_ai = no
+			}
+			NOT = {
+				scope:attacker = {
+					is_vassal_or_below_of = scope:defender
+				}
+			}
+			NOT = {
+				interactive_start_date = current_date
+			}
+		}
+		# external wars
+		if = {
+			limit = {
+				NOT = {
+					has_game_rule = border_vassals_join_disabled
+				}
+				NOT = {
+					has_game_rule = bannermen_mode_enabled
+				}
+			}
+			scope:defender = {
+				every_vassal_or_below = {
+					if = {
+						limit = {
+							NOT = {
+								scope:defender = {
+									government_has_flag = government_has_influence
+								}
+							}
+							NOT = {
+								government_has_flag = government_has_influence
+							}
+							NOT = {
+								scope:defender = {
+									has_character_flag = dont_call_vassals
+								}
+							}
+							highest_held_title_tier > tier_barony
+							max_military_strength > 200
+							any_sub_realm_county = {
+								any_neighboring_county = {
+									holder = {
+										OR = {
+											is_vassal_or_below_of = scope:attacker
+											this = scope:attacker
+										}
+									}
+								}
+							}
+						}
+						if = {
+							limit = {
+								NOT = {
+									has_game_rule = defiant_vassals_disabled
+								}
+								OR = {
+									opinion = {
+										target = liege
+										value <= 5
+									}
+									is_at_war_with = scope:defender
+									is_at_war_with = liege
+									liege = {
+										is_at_war_with = scope:defender
+									}
+									AND = {
+										NOT = {
+											is_vassal_of = scope:defender
+										}
+										liege = {
+											OR = {
+												AND = {
+													is_at_war_with = scope:attacker
+													opinion = {
+														target = liege
+														value <= -5
+													}
+												}
+												AND = {
+													NOT = {
+														is_at_war_with = scope:attacker
+													}
+													opinion = {
+														target = liege
+														value <= 5
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+							add_to_list = interactive_defenders_refuses
+						}
+						else = {
+							add_to_list = interactive_defenders
+						}
+					}
+				}
+			}
+			scope:attacker = {
+				every_vassal_or_below = {
+					if = {
+						limit = {
+							NOT = {
+								scope:attacker = {
+									government_has_flag = government_has_influence
+								}
+							}
+							NOT = {
+								government_has_flag = government_has_influence
+							}
+							NOT = {
+								scope:attacker = {
+									has_character_flag = dont_call_vassals
+								}
+							}
+							highest_held_title_tier > tier_barony
+							max_military_strength > 200
+							any_sub_realm_county = {
+								any_neighboring_county = {
+									holder = {
+										OR = {
+											is_vassal_or_below_of = scope:defender
+											this = scope:defender
+										}
+									}
+								}
+							}
+						}
+						if = {
+							limit = {
+								NOT = {
+									has_game_rule = defiant_vassals_disabled
+								}
+								OR = {
+									opinion = {
+										target = liege
+										value <= 10
+									}
+									is_at_war_with = scope:attacker
+									is_at_war_with = liege
+									liege = {
+										is_at_war_with = scope:attacker
+									}
+									AND = {
+										NOT = {
+											is_vassal_of = scope:attacker
+										}
+										liege = {
+											OR = {
+												AND = {
+													is_at_war_with = scope:defender
+													opinion = {
+														target = liege
+														value <= -5
+													}
+												}
+												AND = {
+													NOT = {
+														is_at_war_with = scope:defender
+													}
+													opinion = {
+														target = liege
+														value <= 10
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+							add_to_list = interactive_attackers_refuses
+						}
+						else = {
+							add_to_list = interactive_attackers
+						}
+					}
+				}
+			}
+		}
+		# direct vassals
+		if = {
+			limit = {
+				always = no
+				# has_game_rule = tribal_assembly_enabled
+				NOT = {
+					has_game_rule = bannermen_mode_enabled
+				}
+			}
+			scope:defender = {
+				every_vassal = {
+					limit = {
+						NOT = {
+							scope:defender = {
+								has_character_flag = dont_call_vassals
+							}
+						}
+						OR = {
+							AND = {
+								scope:defender = {
+									highest_held_title_tier < tier_empire
+								}
+								NOT = {
+									scope:defender = {
+										any_held_title = {
+											count >= 2
+											tier = tier_kingdom
+										}
+									}
+								}
+								highest_held_title_tier > tier_barony
+							}
+							highest_held_title_tier > tier_county
+						}
+						is_landed = yes
+						max_military_strength > 200
+						NOT = {
+							any_sub_realm_county = {
+								any_neighboring_county = {
+									holder = {
+										OR = {
+											is_vassal_or_below_of = scope:attacker
+											this = scope:attacker
+										}
+									}
+								}
+							}
+						}
+					}
+					if = {
+						limit = {
+							OR = {
+								opinion = {
+									target = scope:defender
+									value <= 15
+								}
+								is_at_war_with = scope:defender
+							}
+						}
+						add_to_list = interactive_defenders_bannermen_refuses
+					}
+					else = {
+						add_to_list = interactive_defenders
+					}
+				}
+			}
+			scope:attacker = {
+				every_vassal = {
+					limit = {
+						NOT = {
+							scope:attacker = {
+								has_character_flag = dont_call_vassals
+							}
+						}
+						OR = {
+							AND = {
+								scope:attacker = {
+									highest_held_title_tier < tier_empire
+								}
+								NOT = {
+									scope:attacker = {
+										any_held_title = {
+											count >= 2
+											tier = tier_kingdom
+										}
+									}
+								}
+								highest_held_title_tier > tier_barony
+							}
+							highest_held_title_tier > tier_county
+						}
+						is_landed = yes
+						max_military_strength > 200
+						NOT = {
+							any_sub_realm_county = {
+								any_neighboring_county = {
+									holder = {
+										OR = {
+											is_vassal_or_below_of = scope:defender
+											this = scope:defender
+										}
+									}
+								}
+							}
+						}
+					}
+					if = {
+						limit = {
+							OR = {
+								opinion = {
+									target = scope:attacker
+									value <= 20
+								}
+								is_at_war_with = scope:attacker
+							}
+						}
+						add_to_list = interactive_attackers_bannermen_refuses
+					}
+					else = {
+						add_to_list = interactive_attackers
+					}
+				}
+			}
+		}
+		# vassal claimant
+		if = {
+			limit = {
+				NOT = {
+					scope:attacker = {
+						has_character_flag = dont_call_vassals
+					}
+				}
+				NOT = {
+					has_game_rule = vassals_join_claims_disabled
+				}
+				scope:attacker = {
+					is_ai = no
+				}
+				exists = scope:claimant
+				scope:claimant = {
+					is_vassal_or_below_of = scope:attacker
+				}
+				NOT = {
+					interactive_start_date = current_date
+				}
+			}
+			scope:claimant = {
+				remove_from_list = interactive_attackers
+				remove_from_list = interactive_attackers_refuses
+				if = {
+					limit = {
+						is_at_war_with = liege
+					}
+					add_to_list = interactive_attackers_refuses
+				}
+				else = {
+					add_to_list = interactive_attackers
+				}
+			}
+		}
+		# title holders
+		if = {
+			limit = {
+				NOT = {
+					scope:defender = {
+						has_character_flag = dont_call_vassals
+					}
+				}
+				NOT = {
+					has_game_rule = vassals_defend_titles_disabled
+				}
+				NOT = {
+					interactive_start_date = current_date
+				}
+				scope:attacker = {
+					is_ai = no
+				}
+			}
+			every_in_list = {
+				list = target_titles
+				if = {
+					limit = {
+						exists = holder
+						holder = {
+							is_vassal_or_below_of = scope:defender
+							highest_held_title_tier > tier_barony
+							# max_military_strength > 200 
+							is_landed = yes
+						}
+					}
+					holder = {
+						remove_from_list = interactive_defenders
+						remove_from_list = interactive_defenders_refuses
+						if = {
+							limit = {
+								is_at_war_with = liege
+							}
+							add_to_list = interactive_defenders_refuses
+						}
+						else = {
+							add_to_list = interactive_defenders
+						}
+					}
+				}
+			}
+		}
+		# war participants
+		if = {
+			limit = {
+				always = no
+				# has_game_rule = war_participants_miv_enabled
+			}
+			every_in_list = {
+				list = interactive_attackers
+				limit = {
+					is_vassal_of = scope:attacker
+				}
+				save_temporary_scope_as = participant
+				every_ally = {
+					limit = {
+						is_vassal_of = scope:participant
+						NOT = {
+							scope:participant = {
+								has_character_flag = dont_call_vassals
+							}
+						}
+						highest_held_title_tier > tier_barony
+						max_military_strength > 200
+						is_landed = yes
+						opinion = {
+							target = scope:participant
+							value >= 80
+						}
+					}
+					remove_from_list = interactive_attackers
+					remove_from_list = interactive_attackers_refuses
+					add_to_list = interactive_attackers
+				}
+			}
+			every_in_list = {
+				list = interactive_defenders
+				limit = {
+					is_vassal_of = scope:defender
+				}
+				save_temporary_scope_as = participant
+				every_ally = {
+					limit = {
+						is_vassal_of = scope:participant
+						NOT = {
+							scope:participant = {
+								has_character_flag = dont_call_vassals
+							}
+						}
+						highest_held_title_tier > tier_barony
+						max_military_strength > 200
+						is_landed = yes
+						opinion = {
+							target = scope:participant
+							value >= 80
+						}
+					}
+					remove_from_list = interactive_defenders
+					remove_from_list = interactive_defenders_refuses
+					add_to_list = interactive_defenders
+				}
+			}
+		}
+		# oathbreakers
+		if = {
+			limit = {
+				has_game_rule = miv_oathbreakers_enabled
+			}
+			# ally
+			scope:attacker = {
+				every_ally = {
+					limit = {
+						is_vassal_or_below_of = scope:defender
+						NOT = {
+							any_in_list = {
+								list = interactive_defenders
+								this = prev
+							}
+						}
+						NOT = {
+							any_in_list = {
+								list = interactive_attackers
+								this = prev
+							}
+						}
+					}
+					remove_from_list = interactive_defenders_refuses
+					add_to_list = interactive_oathbreakers_defenders
+				}
+			}
+			scope:defender = {
+				every_ally = {
+					limit = {
+						is_vassal_or_below_of = scope:attacker
+						NOT = {
+							any_in_list = {
+								list = interactive_defenders
+								this = prev
+							}
+						}
+						NOT = {
+							any_in_list = {
+								list = interactive_attackers
+								this = prev
+							}
+						}
+					}
+					remove_from_list = interactive_attackers_refuses
+					add_to_list = interactive_oathbreakers_attackers
+				}
+			}
+			# rival
+			scope:attacker = {
+				every_vassal_or_below = {
+					limit = {
+						is_ai = yes
+						is_capable_adult = yes
+						is_imprisoned = no
+						NOT = {
+							is_allied_to = scope:defender
+						}
+						NOT = {
+							is_allied_to = scope:attacker
+						}
+						OR = {
+							has_relation_rival = scope:attacker
+							has_relation_nemesis = scope:attacker
+						}
+						NOT = {
+							any_in_list = {
+								list = interactive_defenders
+								this = prev
+							}
+						}
+						NOT = {
+							any_in_list = {
+								list = interactive_attackers
+								this = prev
+							}
+						}
+						is_landed = yes
+						max_military_strength > 200
+						highest_held_title_tier > tier_barony
+						NOT = {
+							is_at_war_with = scope:attacker
+						}
+						NOT = {
+							is_at_war_with = scope:defender
+						}
+					}
+					remove_from_list = interactive_attackers_refuses
+					add_to_list = interactive_oathbreakers_attackers
+				}
+			}
+			scope:defender = {
+				every_vassal_or_below = {
+					limit = {
+						is_ai = yes
+						is_capable_adult = yes
+						is_imprisoned = no
+						NOT = {
+							is_allied_to = scope:defender
+						}
+						NOT = {
+							is_allied_to = scope:attacker
+						}
+						OR = {
+							has_relation_rival = scope:defender
+							has_relation_nemesis = scope:defender
+						}
+						NOT = {
+							any_in_list = {
+								list = interactive_defenders
+								this = prev
+							}
+						}
+						NOT = {
+							any_in_list = {
+								list = interactive_attackers
+								this = prev
+							}
+						}
+						is_landed = yes
+						max_military_strength > 200
+						highest_held_title_tier > tier_barony
+						NOT = {
+							is_at_war_with = scope:attacker
+						}
+						NOT = {
+							is_at_war_with = scope:defender
+						}
+					}
+					remove_from_list = interactive_defenders_refuses
+					add_to_list = interactive_oathbreakers_defenders
+				}
+			}
+		}
+		# list attacking vassals
+		custom_description_no_bullet = {
+			text = interactive_attackers_ui_tooltip_text
+			value = interactive_tooltip_attacking_strength
+		}
+		# player can disable call to arms via a decision
+		if = {
+			limit = {
+				scope:attacker = {
+					has_character_flag = dont_call_vassals
+				}
+			}
+			custom_tooltip = dont_call_vassals_tooltip
+		}
+		# accept
+		# claimant, king
+		every_in_list = {
+			list = interactive_attackers
+			save_temporary_scope_as = vassal
+			if = {
+				limit = {
+					highest_held_title_tier > tier_duchy
+				}
+				if = {
+					limit = {
+						exists = scope:claimant
+						scope:claimant = {
+							this = scope:vassal
+						}
+					}
+					custom_description_no_bullet = {
+						text = interactive_vassal_accepts_claimant_tooltip_text
+						object = scope:vassal
+						value = interactive_tooltip_vassal_strength
+					}
+				}
+			}
+		}
+		# claimant, duke
+		every_in_list = {
+			list = interactive_attackers
+			save_temporary_scope_as = vassal
+			if = {
+				limit = {
+					highest_held_title_tier = tier_duchy
+				}
+				if = {
+					limit = {
+						exists = scope:claimant
+						scope:claimant = {
+							this = scope:vassal
+						}
+					}
+					custom_description_no_bullet = {
+						text = interactive_vassal_accepts_claimant_tooltip_text
+						object = scope:vassal
+						value = interactive_tooltip_vassal_strength
+					}
+				}
+			}
+		}
+		# claimant, count
+		every_in_list = {
+			list = interactive_attackers
+			save_temporary_scope_as = vassal
+			if = {
+				limit = {
+					highest_held_title_tier < tier_duchy
+				}
+				if = {
+					limit = {
+						exists = scope:claimant
+						scope:claimant = {
+							this = scope:vassal
+						}
+					}
+					custom_description_no_bullet = {
+						text = interactive_vassal_accepts_claimant_tooltip_text
+						object = scope:vassal
+						value = interactive_tooltip_vassal_strength
+					}
+				}
+			}
+		}
+		# rest, king
+		every_in_list = {
+			list = interactive_attackers
+			save_temporary_scope_as = vassal
+			if = {
+				limit = {
+					highest_held_title_tier > tier_duchy
+				}
+				if = {
+					limit = {
+						exists = scope:claimant
+						scope:claimant = {
+							this = scope:vassal
+						}
+					}
+					# do nothing
+				}
+				else = {
+					custom_description_no_bullet = {
+						text = interactive_vassal_accepts_tooltip_text
+						object = scope:vassal
+						value = interactive_tooltip_vassal_strength
+					}
+				}
+			}
+		}
+		# rest, duke
+		every_in_list = {
+			list = interactive_attackers
+			save_temporary_scope_as = vassal
+			if = {
+				limit = {
+					highest_held_title_tier = tier_duchy
+				}
+				if = {
+					limit = {
+						exists = scope:claimant
+						scope:claimant = {
+							this = scope:vassal
+						}
+					}
+					# do nothing
+				}
+				else = {
+					custom_description_no_bullet = {
+						text = interactive_vassal_accepts_tooltip_text
+						object = scope:vassal
+						value = interactive_tooltip_vassal_strength
+					}
+				}
+			}
+		}
+		# rest, count
+		every_in_list = {
+			list = interactive_attackers
+			save_temporary_scope_as = vassal
+			if = {
+				limit = {
+					highest_held_title_tier < tier_duchy
+				}
+				if = {
+					limit = {
+						exists = scope:claimant
+						scope:claimant = {
+							this = scope:vassal
+						}
+					}
+					# do nothing
+				}
+				else = {
+					custom_description_no_bullet = {
+						text = interactive_vassal_accepts_tooltip_text
+						object = scope:vassal
+						value = interactive_tooltip_vassal_strength
+					}
+				}
+			}
+		}
+		# oathbreakers tooltip
+		if = {
+			limit = {
+				has_game_rule = miv_oathbreakers_enabled
+			}
+			every_in_list = {
+				list = interactive_oathbreakers_attackers
+				custom_description_no_bullet = {
+					text = interactive_oathbreaker_tooltip_text
+					object = this
+				}
+			}
+		}
+		# refuse attacker
+		# king, refuses primary
+		every_in_list = {
+			list = interactive_attackers_refuses
+			save_temporary_scope_as = vassal
+			if = {
+				limit = {
+					highest_held_title_tier > tier_duchy
+				}
+				if = {
+					limit = {
+						is_vassal_of = scope:attacker
+					}
+					custom_description_no_bullet = {
+						text = interactive_vassal_refuses_tooltip_text
+						object = scope:vassal
+					}
+				}
+			}
+		}
+		# duke, refuses primary
+		every_in_list = {
+			list = interactive_attackers_refuses
+			save_temporary_scope_as = vassal
+			if = {
+				limit = {
+					highest_held_title_tier = tier_duchy
+				}
+				if = {
+					limit = {
+						is_vassal_of = scope:attacker
+					}
+					custom_description_no_bullet = {
+						text = interactive_vassal_refuses_tooltip_text
+						object = scope:vassal
+					}
+				}
+			}
+		}
+		# count, refuses primary
+		every_in_list = {
+			list = interactive_attackers_refuses
+			save_temporary_scope_as = vassal
+			if = {
+				limit = {
+					highest_held_title_tier < tier_duchy
+				}
+				if = {
+					limit = {
+						is_vassal_of = scope:attacker
+					}
+					custom_description_no_bullet = {
+						text = interactive_vassal_refuses_tooltip_text
+						object = scope:vassal
+					}
+				}
+			}
+		}
+		# king, refuses liege
+		every_in_list = {
+			list = interactive_attackers_refuses
+			save_temporary_scope_as = vassal
+			if = {
+				limit = {
+					highest_held_title_tier > tier_duchy
+				}
+				if = {
+					limit = {
+						NOT = {
+							is_vassal_of = scope:attacker
+						}
+						OR = {
+							opinion = {
+								target = liege
+								value <= 10
+							}
+							is_at_war_with = liege
+						}
+					}
+					custom_description_no_bullet = {
+						text = interactive_vassal_refuses_liege_tooltip_text
+						object = scope:vassal
+					}
+				}
+			}
+		}
+		# duke, refuses liege
+		every_in_list = {
+			list = interactive_attackers_refuses
+			save_temporary_scope_as = vassal
+			if = {
+				limit = {
+					highest_held_title_tier = tier_duchy
+				}
+				if = {
+					limit = {
+						NOT = {
+							is_vassal_of = scope:attacker
+						}
+						OR = {
+							opinion = {
+								target = liege
+								value <= 10
+							}
+							is_at_war_with = liege
+						}
+					}
+					custom_description_no_bullet = {
+						text = interactive_vassal_refuses_liege_tooltip_text
+						object = scope:vassal
+					}
+				}
+			}
+		}
+		# count, refuses liege
+		every_in_list = {
+			list = interactive_attackers_refuses
+			save_temporary_scope_as = vassal
+			if = {
+				limit = {
+					highest_held_title_tier < tier_duchy
+				}
+				if = {
+					limit = {
+						NOT = {
+							is_vassal_of = scope:attacker
+						}
+						OR = {
+							opinion = {
+								target = liege
+								value <= 10
+							}
+							is_at_war_with = liege
+						}
+					}
+					custom_description_no_bullet = {
+						text = interactive_vassal_refuses_liege_tooltip_text
+						object = scope:vassal
+					}
+				}
+			}
+		}
+		# king, liege blocked
+		every_in_list = {
+			list = interactive_attackers_refuses
+			save_temporary_scope_as = vassal
+			if = {
+				limit = {
+					highest_held_title_tier > tier_duchy
+				}
+				if = {
+					limit = {
+						NOT = {
+							is_vassal_of = scope:attacker
+						}
+						opinion = {
+							target = liege
+							value > 10
+						}
+						liege = {
+							OR = {
+								opinion = {
+									target = liege
+									value <= 10
+								}
+								is_at_war_with = liege
+							}
+						}
+					}
+					custom_description_no_bullet = {
+						text = interactive_vassal_refuses_liege_blocked_tooltip_text
+						object = scope:vassal
+					}
+				}
+			}
+		}
+		# duke, liege blocked
+		every_in_list = {
+			list = interactive_attackers_refuses
+			save_temporary_scope_as = vassal
+			if = {
+				limit = {
+					highest_held_title_tier = tier_duchy
+				}
+				if = {
+					limit = {
+						NOT = {
+							is_vassal_of = scope:attacker
+						}
+						opinion = {
+							target = liege
+							value > 10
+						}
+						liege = {
+							OR = {
+								opinion = {
+									target = liege
+									value <= 10
+								}
+								is_at_war_with = liege
+							}
+						}
+					}
+					custom_description_no_bullet = {
+						text = interactive_vassal_refuses_liege_blocked_tooltip_text
+						object = scope:vassal
+					}
+				}
+			}
+		}
+		# count, liege blocked
+		every_in_list = {
+			list = interactive_attackers_refuses
+			save_temporary_scope_as = vassal
+			if = {
+				limit = {
+					highest_held_title_tier < tier_duchy
+				}
+				if = {
+					limit = {
+						NOT = {
+							is_vassal_of = scope:attacker
+						}
+						opinion = {
+							target = liege
+							value > 10
+						}
+						liege = {
+							OR = {
+								opinion = {
+									target = liege
+									value <= 10
+								}
+								is_at_war_with = liege
+							}
+						}
+					}
+					custom_description_no_bullet = {
+						text = interactive_vassal_refuses_liege_blocked_tooltip_text
+						object = scope:vassal
+					}
+				}
+			}
+		}
+		# generic catch all for non applicables
+		every_in_list = {
+			list = interactive_attackers_refuses
+			save_temporary_scope_as = vassal
+			if = {
+				limit = {
+					NOR = {
+						is_vassal_of = scope:attacker
+						AND = {
+							NOT = {
+								is_vassal_of = scope:attacker
+							}
+							OR = {
+								opinion = {
+									target = liege
+									value <= 10
+								}
+								is_at_war_with = liege
+							}
+						}
+						AND = {
+							NOT = {
+								is_vassal_of = scope:attacker
+							}
+							opinion = {
+								target = liege
+								value > 10
+							}
+							liege = {
+								OR = {
+									opinion = {
+										target = liege
+										value <= 10
+									}
+									is_at_war_with = liege
+								}
+							}
+						}
+					}
+				}
+				custom_description_no_bullet = {
+					text = interactive_vassal_refuses_tooltip_text
+					object = scope:vassal
+				}
+			}
+		}
+		# attacking bannermen tooltip
+		if = {
+			limit = {
+				always = no
+				# has_game_rule = tribal_assembly_enabled
+				interactive_tooltip_attacking_bannermen_count > 0
+			}
+			custom_description_no_bullet = {
+				text = interactive_bannermen_refuse_tooltip_text
+				value = interactive_tooltip_attacking_bannermen_count
+			}
+		}
+		# attacking bannermen mode tooltip
+		if = {
+			limit = {
+				has_game_rule = bannermen_mode_enabled
+				NOT = {
+					scope:attacker = {
+						has_character_flag = dont_call_vassals
+					}
+				}
+				interactive_tooltip_bannermen_mode_count > 0
+			}
+			custom_description_no_bullet = {
+				text = interactive_bannermen_mode_tooltip_text
+				value = interactive_tooltip_bannermen_mode_count
+			}
+		}
+		# attacking admin vassal tooltip
+		if = {
+			limit = {
+				NOT = {
+					has_game_rule = administrative_governors_disabled
+				}
+				scope:attacker = {
+					government_has_flag = government_has_influence
+				}
+				NOT = {
+					scope:attacker = {
+						has_character_flag = dont_call_vassals
+					}
+				}
+				interactive_tooltip_admin_vassal_attacker_count > 0
+				NOT = {
+					has_game_rule = bannermen_mode_enabled
+				}
+			}
+			custom_description_no_bullet = {
+				text = interactive_admin_vassal_tooltip_text
+				value = interactive_tooltip_admin_vassal_attacker_count
+			}
+		}
+		# list defending vassals
+		custom_description_no_bullet = {
+			text = interactive_defenders_ui_tooltip_text
+			value = interactive_tooltip_defending_strength
+		}
+		# player can disable call to arms via a decision
+		if = {
+			limit = {
+				scope:defender = {
+					has_character_flag = dont_call_vassals
+				}
+			}
+			custom_tooltip = they_dont_call_vassals_tooltip
+		}
+		# accept
+		# title holder, king
+		every_in_list = {
+			list = interactive_defenders
+			save_temporary_scope_as = vassal
+			if = {
+				limit = {
+					highest_held_title_tier > tier_duchy
+				}
+				if = {
+					limit = {
+						any_in_list = {
+							list = target_titles
+							exists = holder
+							holder = {
+								this = scope:vassal
+							}
+						}
+					}
+					custom_description_no_bullet = {
+						text = interactive_vassal_accepts_title_holder_tooltip_text
+						object = scope:vassal
+						value = interactive_tooltip_vassal_strength
+					}
+				}
+			}
+		}
+		# title holder, duke
+		every_in_list = {
+			list = interactive_defenders
+			save_temporary_scope_as = vassal
+			if = {
+				limit = {
+					highest_held_title_tier = tier_duchy
+				}
+				if = {
+					limit = {
+						any_in_list = {
+							list = target_titles
+							exists = holder
+							holder = {
+								this = scope:vassal
+							}
+						}
+					}
+					custom_description_no_bullet = {
+						text = interactive_vassal_accepts_title_holder_tooltip_text
+						object = scope:vassal
+						value = interactive_tooltip_vassal_strength
+					}
+				}
+			}
+		}
+		# title holder, count
+		every_in_list = {
+			list = interactive_defenders
+			save_temporary_scope_as = vassal
+			if = {
+				limit = {
+					highest_held_title_tier < tier_duchy
+				}
+				if = {
+					limit = {
+						any_in_list = {
+							list = target_titles
+							exists = holder
+							holder = {
+								this = scope:vassal
+							}
+						}
+					}
+					custom_description_no_bullet = {
+						text = interactive_vassal_accepts_title_holder_tooltip_text
+						object = scope:vassal
+						value = interactive_tooltip_vassal_strength
+					}
+				}
+			}
+		}
+		# rest, king
+		every_in_list = {
+			list = interactive_defenders
+			save_temporary_scope_as = vassal
+			if = {
+				limit = {
+					highest_held_title_tier > tier_duchy
+				}
+				if = {
+					limit = {
+						any_in_list = {
+							list = target_titles
+							exists = holder
+							holder = {
+								this = scope:vassal
+							}
+						}
+					}
+					# do nothing
+				}
+				else = {
+					custom_description_no_bullet = {
+						text = interactive_vassal_accepts_tooltip_text
+						object = scope:vassal
+						value = interactive_tooltip_vassal_strength
+					}
+				}
+			}
+		}
+		# rest, duke
+		every_in_list = {
+			list = interactive_defenders
+			save_temporary_scope_as = vassal
+			if = {
+				limit = {
+					highest_held_title_tier = tier_duchy
+				}
+				if = {
+					limit = {
+						any_in_list = {
+							list = target_titles
+							exists = holder
+							holder = {
+								this = scope:vassal
+							}
+						}
+					}
+					# do nothing
+				}
+				else = {
+					custom_description_no_bullet = {
+						text = interactive_vassal_accepts_tooltip_text
+						object = scope:vassal
+						value = interactive_tooltip_vassal_strength
+					}
+				}
+			}
+		}
+		# rest, count
+		every_in_list = {
+			list = interactive_defenders
+			save_temporary_scope_as = vassal
+			if = {
+				limit = {
+					highest_held_title_tier < tier_duchy
+				}
+				if = {
+					limit = {
+						any_in_list = {
+							list = target_titles
+							exists = holder
+							holder = {
+								this = scope:vassal
+							}
+						}
+					}
+					# do nothing
+				}
+				else = {
+					custom_description_no_bullet = {
+						text = interactive_vassal_accepts_tooltip_text
+						object = scope:vassal
+						value = interactive_tooltip_vassal_strength
+					}
+				}
+			}
+		}
+		# oathbreakers tooltip
+		if = {
+			limit = {
+				has_game_rule = miv_oathbreakers_enabled
+			}
+			every_in_list = {
+				list = interactive_oathbreakers_defenders
+				custom_description_no_bullet = {
+					text = interactive_oathbreaker_tooltip_text
+					object = this
+				}
+			}
+		}
+		# refuse defender
+		# king, refuses primary
+		every_in_list = {
+			list = interactive_defenders_refuses
+			save_temporary_scope_as = vassal
+			if = {
+				limit = {
+					highest_held_title_tier > tier_duchy
+				}
+				if = {
+					limit = {
+						is_vassal_of = scope:defender
+					}
+					custom_description_no_bullet = {
+						text = interactive_vassal_refuses_tooltip_text
+						object = scope:vassal
+					}
+				}
+			}
+		}
+		# duke, refuses primary
+		every_in_list = {
+			list = interactive_defenders_refuses
+			save_temporary_scope_as = vassal
+			if = {
+				limit = {
+					highest_held_title_tier = tier_duchy
+				}
+				if = {
+					limit = {
+						is_vassal_of = scope:defender
+					}
+					custom_description_no_bullet = {
+						text = interactive_vassal_refuses_tooltip_text
+						object = scope:vassal
+					}
+				}
+			}
+		}
+		# count, refuses primary
+		every_in_list = {
+			list = interactive_defenders_refuses
+			save_temporary_scope_as = vassal
+			if = {
+				limit = {
+					highest_held_title_tier < tier_duchy
+				}
+				if = {
+					limit = {
+						is_vassal_of = scope:defender
+					}
+					custom_description_no_bullet = {
+						text = interactive_vassal_refuses_tooltip_text
+						object = scope:vassal
+					}
+				}
+			}
+		}
+		# king, refuses liege
+		every_in_list = {
+			list = interactive_defenders_refuses
+			save_temporary_scope_as = vassal
+			if = {
+				limit = {
+					highest_held_title_tier > tier_duchy
+				}
+				if = {
+					limit = {
+						NOT = {
+							is_vassal_of = scope:defender
+						}
+						OR = {
+							opinion = {
+								target = liege
+								value <= 5
+							}
+							is_at_war_with = liege
+						}
+					}
+					custom_description_no_bullet = {
+						text = interactive_vassal_refuses_liege_tooltip_text
+						object = scope:vassal
+					}
+				}
+			}
+		}
+		# duke, refuses liege
+		every_in_list = {
+			list = interactive_defenders_refuses
+			save_temporary_scope_as = vassal
+			if = {
+				limit = {
+					highest_held_title_tier = tier_duchy
+				}
+				if = {
+					limit = {
+						NOT = {
+							is_vassal_of = scope:defender
+						}
+						OR = {
+							opinion = {
+								target = liege
+								value <= 5
+							}
+							is_at_war_with = liege
+						}
+					}
+					custom_description_no_bullet = {
+						text = interactive_vassal_refuses_liege_tooltip_text
+						object = scope:vassal
+					}
+				}
+			}
+		}
+		# count, refuses liege
+		every_in_list = {
+			list = interactive_defenders_refuses
+			save_temporary_scope_as = vassal
+			if = {
+				limit = {
+					highest_held_title_tier < tier_duchy
+				}
+				if = {
+					limit = {
+						NOT = {
+							is_vassal_of = scope:defender
+						}
+						OR = {
+							opinion = {
+								target = liege
+								value <= 5
+							}
+							is_at_war_with = liege
+						}
+					}
+					custom_description_no_bullet = {
+						text = interactive_vassal_refuses_liege_tooltip_text
+						object = scope:vassal
+					}
+				}
+			}
+		}
+		# king, liege blocked
+		every_in_list = {
+			list = interactive_defenders_refuses
+			save_temporary_scope_as = vassal
+			if = {
+				limit = {
+					highest_held_title_tier > tier_duchy
+				}
+				if = {
+					limit = {
+						NOT = {
+							is_vassal_of = scope:defender
+						}
+						opinion = {
+							target = liege
+							value > 5
+						}
+						liege = {
+							OR = {
+								opinion = {
+									target = liege
+									value <= 5
+								}
+								is_at_war_with = liege
+							}
+						}
+					}
+					custom_description_no_bullet = {
+						text = interactive_vassal_refuses_liege_blocked_tooltip_text
+						object = scope:vassal
+					}
+				}
+			}
+		}
+		# duke, liege blocked
+		every_in_list = {
+			list = interactive_defenders_refuses
+			save_temporary_scope_as = vassal
+			if = {
+				limit = {
+					highest_held_title_tier = tier_duchy
+				}
+				if = {
+					limit = {
+						NOT = {
+							is_vassal_of = scope:defender
+						}
+						opinion = {
+							target = liege
+							value > 5
+						}
+						liege = {
+							OR = {
+								opinion = {
+									target = liege
+									value <= 5
+								}
+								is_at_war_with = liege
+							}
+						}
+					}
+					custom_description_no_bullet = {
+						text = interactive_vassal_refuses_liege_blocked_tooltip_text
+						object = scope:vassal
+					}
+				}
+			}
+		}
+		# count, liege blocked
+		every_in_list = {
+			list = interactive_defenders_refuses
+			save_temporary_scope_as = vassal
+			if = {
+				limit = {
+					highest_held_title_tier < tier_duchy
+				}
+				if = {
+					limit = {
+						NOT = {
+							is_vassal_of = scope:defender
+						}
+						opinion = {
+							target = liege
+							value > 5
+						}
+						liege = {
+							OR = {
+								opinion = {
+									target = liege
+									value <= 5
+								}
+								is_at_war_with = liege
+							}
+						}
+					}
+					custom_description_no_bullet = {
+						text = interactive_vassal_refuses_liege_blocked_tooltip_text
+						object = scope:vassal
+					}
+				}
+			}
+		}
+		# generic catch all for non applicables
+		every_in_list = {
+			list = interactive_defenders_refuses
+			save_temporary_scope_as = vassal
+			if = {
+				limit = {
+					NOR = {
+						is_vassal_of = scope:defender
+						AND = {
+							NOT = {
+								is_vassal_of = scope:defender
+							}
+							OR = {
+								opinion = {
+									target = liege
+									value <= 5
+								}
+								is_at_war_with = liege
+							}
+						}
+						AND = {
+							NOT = {
+								is_vassal_of = scope:defender
+							}
+							opinion = {
+								target = liege
+								value > 5
+							}
+							liege = {
+								OR = {
+									opinion = {
+										target = liege
+										value <= 5
+									}
+									is_at_war_with = liege
+								}
+							}
+						}
+					}
+				}
+				custom_description_no_bullet = {
+					text = interactive_vassal_refuses_tooltip_text
+					object = scope:vassal
+				}
+			}
+		}
+		# defending bannermen tooltip
+		if = {
+			limit = {
+				always = no
+				# has_game_rule = tribal_assembly_enabled
+				interactive_tooltip_defending_bannermen_count > 0
+			}
+			custom_description_no_bullet = {
+				text = interactive_bannermen_refuse_tooltip_text
+				value = interactive_tooltip_defending_bannermen_count
+			}
+		}
+		# defending bannermen mode tooltip
+		if = {
+			limit = {
+				has_game_rule = bannermen_mode_enabled
+				NOT = {
+					scope:defender = {
+						has_character_flag = dont_call_vassals
+					}
+				}
+				interactive_tooltip_bannermen_defender_mode_count > 0
+			}
+			custom_description_no_bullet = {
+				text = interactive_bannermen_mode_tooltip_text
+				value = interactive_tooltip_bannermen_defender_mode_count
+			}
+		}
+		# defending admin vassal tooltip
+		if = {
+			limit = {
+				NOT = {
+					has_game_rule = administrative_governors_disabled
+				}
+				scope:defender = {
+					government_has_flag = government_has_influence
+				}
+				NOT = {
+					scope:defender = {
+						has_character_flag = dont_call_vassals
+					}
+				}
+				interactive_tooltip_admin_vassal_defender_count > 0
+				NOT = {
+					has_game_rule = bannermen_mode_enabled
+				}
+			}
+			custom_description_no_bullet = {
+				text = interactive_admin_vassal_tooltip_text
+				value = interactive_tooltip_admin_vassal_defender_count
+			}
+		}
+		# end tooltip
+		custom_description_no_bullet = {
+			text = interactive_other_effects_tooltip_text
+		}
+		# war exhaustion tooltip
+		if = {
+			limit = {
+				NOT = {
+					has_game_rule = war_exhaustion_miv_disabled
+				}
+				interactive_tooltip_attacking_count > 0
+			}
+			custom_description_no_bullet = {
+				text = interactive_war_exhaustion_tooltip_text
+				value = interactive_tooltip_attacking_count
+			}
+		}
+	}
+}
+
+war_for_imprison_effect = {
+	if = {
+		limit = {
+			OR = {
+				scope:actor = {
+					is_ai = no
+				}
+				scope:recipient = {
+					is_ai = no
+				}
+			}
+		}
+		scope:recipient = {
+			save_scope_value_as = {
+				name = war_for_imprisonment_flavour
+				value = yes
+			}
+			start_war = {
+				casus_belli = refused_liege_demand_war
+				target = scope:actor
+			}
+		}
+		scope:recipient = {
+			add_opinion = {
+				target = scope:actor
+				modifier = attempted_arrest_opinion
+			}
+		}
+	}
+}
+
+war_for_revoke_effect = {
+	if = {
+		limit = {
+			OR = {
+				$REBEL$ = {
+					is_ai = no
+				}
+				$LIEGE$ = {
+					is_ai = no
+				}
+			}
+		}
+		$REBEL$ = {
+			save_scope_value_as = {
+				name = war_for_revocation_flavour
+				value = yes
+			}
+			start_war = {
+				casus_belli = refused_liege_demand_war
+				target = $LIEGE$
+			}
+		}
+		$REBEL$ = {
+			add_opinion = {
+				target = $LIEGE$
+				modifier = attempted_arrest_opinion
+			}
+		}
+	}
+}
+
+war_for_retraction_effect = {
+	if = {
+		limit = {
+			OR = {
+				scope:actor = {
+					is_ai = no
+				}
+				scope:recipient = {
+					is_ai = no
+				}
+			}
+		}
+		scope:recipient = {
+			save_scope_value_as = {
+				name = war_for_retraction_flavour
+				value = yes
+			}
+			start_war = {
+				casus_belli = refused_liege_demand_war
+				target = scope:actor
+			}
+		}
+		scope:recipient = {
+			add_opinion = {
+				target = scope:actor
+				modifier = attempted_arrest_opinion
+			}
+		}
+	}
+}
+
+# miv: vanilla bugfix for this firing incorrectly
+laamp_as_mercenary_payout_effect = {
+	scope:war = {
+		if = {
+			limit = {
+				any_war_participant = {
+					# added is_landed = no
+					is_landed = no
+					has_character_flag = joined_as_mercenary
+					is_attacker_in_war = scope:war
+					NOT = {
+						is_leader_in_war = scope:war
+					}
+					OR = {
+						has_raised_armies = yes
+						scope:war = {
+							war_contribution = {
+								target = prev
+								value > 0
+							}
+						}
+					}
+				}
+			}
+			every_war_participant = {
+				limit = {
+					# added is_landed = no
+					is_landed = no
+					has_character_flag = joined_as_mercenary
+					is_attacker_in_war = scope:war
+					NOT = {
+						is_leader_in_war = scope:war
+					}
+					OR = {
+						has_raised_armies = yes
+						scope:war = {
+							war_contribution = {
+								target = prev
+								value > 0
+							}
+						}
+					}
+				}
+				add_to_list = laamp_mercenaries
+			}
+			primary_attacker = {
+				save_scope_as = employer
+				trigger_event = {
+					id = ep3_interactions_events.0121
+					days = {
+						3
+						7
+					}
+				}
+			}
+		}
+		if = {
+			limit = {
+				any_war_participant = {
+					# added is_landed = no
+					is_landed = no
+					has_character_flag = joined_as_mercenary
+					is_defender_in_war = scope:war
+					NOT = {
+						is_leader_in_war = scope:war
+					}
+					OR = {
+						has_raised_armies = yes
+						scope:war = {
+							war_contribution = {
+								target = prev
+								value > 0
+							}
+						}
+					}
+				}
+			}
+			every_war_participant = {
+				limit = {
+					# added is_landed = no
+					is_landed = no
+					has_character_flag = joined_as_mercenary
+					is_defender_in_war = scope:war
+					NOT = {
+						is_leader_in_war = scope:war
+					}
+					OR = {
+						has_raised_armies = yes
+						scope:war = {
+							war_contribution = {
+								target = prev
+								value > 0
+							}
+						}
+					}
+				}
+				add_to_list = laamp_mercenaries
+			}
+			primary_defender = {
+				save_scope_as = employer
+				trigger_event = {
+					id = ep3_interactions_events.0121
+					days = {
+						3
+						7
+					}
+				}
+			}
+		}
+	}
+}
+
+# miv removed white peace and 50 year truce since it conflicts with shattered world
+fp3_struggle_ending_concession_effects = {
+	# All involved rulers, independent or not, lose all their claims
+	custom_tooltip = {
+		text = fp3_concession_lose_claim_tt
+		struggle:persian_struggle = {
+			every_involved_ruler = {
+				save_scope_as = claim_loser
+				every_claim = {
+					scope:claim_loser = {
+						remove_claim = prev
+					}
+				}
+			}
+		}
+	}
+	custom_tooltip = {
+		text = fp3_concession_rebuilding_efforts_tt
+		struggle:persian_struggle = {
+			every_involved_ruler = {
+				limit = {
+					has_trait = fp3_struggle_supporter
+					is_house_head = yes
+					NOT = {
+						primary_title = {
+							is_mercenary_company = yes
+						}
+					}
+				}
+				house ?= {
+					add_house_modifier = {
+						modifier = fp3_house_modifier_rebuilding_efforts
+						# AGOT disables the FP3 layer; fp3_house_modifier_concession_ending_duration
+						# is commented out in its 00_dlc_fp3_script_values.txt (documented value: 100).
+						# Literal substituted so the named value resolves. Block is Persia-only and inert in AGOT.
+						years = 100
+					}
+				}
+			}
+		}
+	}
+	custom_tooltip = {
+		text = fp3_concession_frontier_ambitions_tt
+		struggle:persian_struggle = {
+			every_involved_ruler = {
+				limit = {
+					has_trait = fp3_struggle_detractor
+					is_house_head = yes
+					NOT = {
+						primary_title = {
+							is_mercenary_company = yes
+						}
+					}
+				}
+				house ?= {
+					add_house_modifier = {
+						modifier = fp3_house_modifier_frontier_ambitions
+						# AGOT disables the FP3 layer; fp3_house_modifier_concession_ending_duration
+						# is commented out in its 00_dlc_fp3_script_values.txt (documented value: 100).
+						# Literal substituted so the named value resolves. Block is Persia-only and inert in AGOT.
+						years = 100
+					}
+				}
+			}
+		}
+	}
+}
+
+# miv conqueror rebalance
+ai_chance_to_become_conqueror_effect = {
+	if = {
+		limit = {
+			NOT = {
+				has_game_rule = no_conquerors_frequency
+			}
+			ai_has_cautious_personality = no
+			is_independent_ruler = yes
+			is_tributary = no
+			is_landed = yes
+			is_adult = yes
+			NOT = {
+				is_incapable = yes
+			}
+			ai_boldness >= 0
+			ai_greed >= 0
+			highest_held_title_tier >= tier_duchy
+			is_ai = yes
+			NOR = {
+				any_ally = {
+					is_ai = no
+				}
+				has_character_flag = used_to_be_conqueror
+			}
+			OR = {
+				has_game_rule = miv_conqueror_limit_miv_enabled_unlimited
+				NOT = {
+					exists = global_var:active_conquerors
+				}
+				AND = {
+					exists = global_var:active_conquerors
+					global_var:active_conquerors < 12
+					has_game_rule = miv_conqueror_limit_miv_disabled					# default
+				}
+				AND = {
+					exists = global_var:active_conquerors
+					global_var:active_conquerors < 0
+					has_game_rule = miv_conqueror_limit_miv_enabled_0
+				}
+				AND = {
+					exists = global_var:active_conquerors
+					global_var:active_conquerors < 1
+					has_game_rule = miv_conqueror_limit_miv_enabled_1
+				}
+				AND = {
+					exists = global_var:active_conquerors
+					global_var:active_conquerors < 2
+					has_game_rule = miv_conqueror_limit_miv_enabled_2
+				}
+				AND = {
+					exists = global_var:active_conquerors
+					global_var:active_conquerors < 3
+					has_game_rule = miv_conqueror_limit_miv_enabled_3
+				}
+				AND = {
+					exists = global_var:active_conquerors
+					global_var:active_conquerors < 4
+					has_game_rule = miv_conqueror_limit_miv_enabled_4
+				}
+				AND = {
+					exists = global_var:active_conquerors
+					global_var:active_conquerors < 5
+					has_game_rule = miv_conqueror_limit_miv_enabled_5
+				}
+				AND = {
+					exists = global_var:active_conquerors
+					global_var:active_conquerors < 6
+					has_game_rule = miv_conqueror_limit_miv_enabled_6
+				}
+				AND = {
+					exists = global_var:active_conquerors
+					global_var:active_conquerors < 7
+					has_game_rule = miv_conqueror_limit_miv_enabled_7
+				}
+				AND = {
+					exists = global_var:active_conquerors
+					global_var:active_conquerors < 8
+					has_game_rule = miv_conqueror_limit_miv_enabled_8
+				}
+				AND = {
+					exists = global_var:active_conquerors
+					global_var:active_conquerors < 9
+					has_game_rule = miv_conqueror_limit_miv_enabled_9
+				}
+				AND = {
+					exists = global_var:active_conquerors
+					global_var:active_conquerors < 10
+					has_game_rule = miv_conqueror_limit_miv_enabled_10
+				}
+				AND = {
+					exists = global_var:active_conquerors
+					global_var:active_conquerors < 11
+					has_game_rule = miv_conqueror_limit_miv_enabled_11
+				}
+				AND = {
+					exists = global_var:active_conquerors
+					global_var:active_conquerors < 12
+					has_game_rule = miv_conqueror_limit_miv_enabled_12
+				}
+				AND = {
+					exists = global_var:active_conquerors
+					global_var:active_conquerors < 13
+					has_game_rule = miv_conqueror_limit_miv_enabled_13
+				}
+				AND = {
+					exists = global_var:active_conquerors
+					global_var:active_conquerors < 14
+					has_game_rule = miv_conqueror_limit_miv_enabled_14
+				}
+				AND = {
+					exists = global_var:active_conquerors
+					global_var:active_conquerors < 15
+					has_game_rule = miv_conqueror_limit_miv_enabled_15
+				}
+				AND = {
+					exists = global_var:active_conquerors
+					global_var:active_conquerors < 16
+					has_game_rule = miv_conqueror_limit_miv_enabled_16
+				}
+				AND = {
+					exists = global_var:active_conquerors
+					global_var:active_conquerors < 17
+					has_game_rule = miv_conqueror_limit_miv_enabled_17
+				}
+				AND = {
+					exists = global_var:active_conquerors
+					global_var:active_conquerors < 18
+					has_game_rule = miv_conqueror_limit_miv_enabled_18
+				}
+				AND = {
+					exists = global_var:active_conquerors
+					global_var:active_conquerors < 19
+					has_game_rule = miv_conqueror_limit_miv_enabled_19
+				}
+				AND = {
+					exists = global_var:active_conquerors
+					global_var:active_conquerors < 20
+					has_game_rule = miv_conqueror_limit_miv_enabled_20
+				}
+			}
+			NOT = {
+				has_government = theocracy_government
+			}
+			NOT = {
+				has_government = republic_government
+			}
+		}
+		random = {
+			chance = {
+				value = 0.5
+				if = {
+					limit = {
+						highest_held_title_tier >= tier_empire
+						NOT = {
+							government_has_flag = government_is_nomadic
+						}
+					}
+					add = -2
+				}
+				if = {
+					limit = {
+						government_has_flag = government_is_administrative
+					}
+					add = -2
+				}
+				if = {
+					limit = {
+						primary_title = {
+							has_title_law = princely_elective_succession_law
+						}
+					}
+					add = -2
+				}
+				if = {
+					limit = {
+						can_use_conquest_cbs_trigger = yes
+					}
+					add = 1
+				}
+				if = {
+					limit = {
+						ai_has_warlike_personality = yes
+					}
+					add = 1
+				}
+				if = {
+					limit = {
+						martial < 10
+					}
+					add = -2
+				}
+				if = {
+					limit = {
+						martial >= 15
+					}
+					add = 1
+				}
+				if = {
+					limit = {
+						martial >= 20
+					}
+					add = 2
+				}
+				if = {
+					limit = {
+						martial >= 25
+					}
+					add = 3
+				}
+				if = {
+					limit = {
+						martial >= 30
+					}
+					add = 4
+				}
+				if = {
+					limit = {
+						has_trait = ambitious
+					}
+					add = 1
+				}
+				if = {
+					limit = {
+						has_trait = brave
+					}
+					add = 1
+				}
+				if = {
+					limit = {
+						has_trait = education_martial_3
+					}
+					add = 1
+				}
+				if = {
+					limit = {
+						has_trait = education_martial_4
+					}
+					add = 2
+				}
+				if = {
+					limit = {
+						has_trait = education_martial_5
+					}
+					add = 3
+				}
+				if = {
+					limit = {
+						government_has_flag = government_is_clan
+						house ?= {
+							has_house_unity_stage = competitive
+						}
+					}
+					add = 1
+				}
+				if = {
+					limit = {
+						government_has_flag = government_is_clan
+						house ?= {
+							has_house_unity_stage = antagonistic
+						}
+					}
+					add = 2
+				}
+				if = {
+					limit = {
+						government_has_flag = government_is_nomadic
+						domicile.herd >= 5000
+					}
+					add = 1
+				}
+				if = {
+					limit = {
+						government_has_flag = government_is_nomadic
+						domicile.herd >= 10000
+					}
+					add = 1
+				}
+				if = {
+					limit = {
+						government_has_flag = government_is_nomadic
+						domicile.herd >= 15000
+					}
+					add = 1
+				}
+				if = {
+					limit = {
+						government_has_flag = government_is_nomadic
+						domicile.herd >= 20000
+					}
+					add = 1
+				}
+				if = {
+					limit = {
+						faith = {
+							has_doctrine = doctrine_temporal_head
+						}
+						OR = {
+							this = faith.religious_head
+							any_vassal_or_below = {
+								this = faith.religious_head
+							}
+						}
+						NOT = {
+							highest_held_title_tier >= tier_empire
+						}
+					}
+					add = 5
+				}
+				if = {
+					limit = {
+						OR = {
+							has_character_modifier = a_cultures_great_defender_modifier
+							has_character_modifier = inspired_defenders_modifier
+							has_character_modifier = uniter_and_conqueror_modifier
+							has_character_modifier = bp2_destined_modifier
+							has_character_modifier = bp2_tool_of_fate_modifier
+						}
+					}
+					add = 5
+				}
+				if = {
+					limit = {
+						OR = {
+							has_game_rule = very_few_conquerors_frequency
+							has_game_rule = strong_very_few_conquerors_frequency
+						}
+					}
+					multiply = 0.1
+				}
+				if = {
+					limit = {
+						OR = {
+							has_game_rule = few_conquerors_frequency
+							has_game_rule = strong_few_conquerors_frequency
+						}
+					}
+					multiply = 0.5
+				}
+				if = {
+					limit = {
+						OR = {
+							has_game_rule = many_conquerors_frequency
+							has_game_rule = strong_many_conquerors_frequency
+						}
+					}
+					multiply = 2
+				}
+			}
+			trigger_event = conqueror.0001
+		}
+	}
+}
