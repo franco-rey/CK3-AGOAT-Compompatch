@@ -1,0 +1,502 @@
+﻿on_game_start_after_lobby = {
+	on_actions = {
+		gpt_on_game_start_after_lobby_animal_archetypes
+	}
+}
+
+gpt_on_game_start_after_lobby_animal_archetypes = {
+	events = {
+		gpt_olympia_animal_archetype.1000		#Assign all starting characters with archetypes
+	}
+}
+
+on_join_court = {
+	on_actions = {
+		gpt_on_join_court_animal_archetypes
+	}
+}
+
+gpt_on_join_court_animal_archetypes = {			#Check when a character joins a court for a player only
+	trigger = {
+		is_human = yes
+		scope:new_employer = {
+			is_ai = no
+		}
+	}
+	
+	events = {
+		gpt_olympia_animal_archetype.1001
+	}
+}
+
+on_birthday = {
+	on_actions = {
+		gpt_on_birthday_animal_archetypes
+        gptev_coming_of_age_check
+	}
+}
+
+gpt_on_birthday_animal_archetypes = {
+	trigger = { age = 16 is_human = yes }
+	events = {
+		gpt_olympia_animal_archetype.1001
+	}
+}
+
+gptev_coming_of_age_check = {
+	trigger = { age = 12 is_human = yes }
+	events = {
+		gptev_coming_of_age.0001
+	}
+}
+
+#yearly_playable_pulse
+#three_year_playable_pulse
+#five_year_playable_pulse
+
+@yearscooldown = 5
+
+yearly_playable_pulse = {
+	on_actions = {
+        delay = { days = { 90 360 } }
+		gpt_personality_events
+    }
+}
+
+gpt_personality_events = {
+    trigger = {
+     #  years_from_game_start >= 5
+        NOT = { has_character_flag = gptev_cooldown }
+        age >= 21
+        health >= 1.5
+        is_imprisoned = no
+        is_incapable = no
+        is_travelling = no
+        is_in_army = no
+    }
+	effect = {
+        add_character_flag = { flag = gptev_cooldown years = @yearscooldown }
+        random_list = {
+            10 = {
+                trigger = { has_trait = brave }
+                trigger_event = {
+					id = gpt_personality_brave.0001
+				}
+            }
+            10 = {
+                trigger = { has_trait = craven }
+                trigger_event = {
+					id = gpt_personality_craven.0001
+				}
+            }
+            10 = {
+                trigger = { has_trait = wrathful }
+                trigger_event = {
+					id = gpt_personality_wrathful.0001
+				}
+            }
+            10 = {
+                trigger = { has_trait = calm }
+                trigger_event = {
+					id = gpt_personality_calm.0001
+				}
+            }
+            20 = {
+                trigger = { has_trait = lustful }
+                trigger_event = {
+					id = gpt_personality_lustful.0001
+				}
+            }
+            10 = {
+                trigger = { has_trait = chaste }
+                trigger_event = {
+					id = gpt_personality_chaste.0001
+				}
+            }
+            10 = {
+                trigger = { has_trait = content }
+                trigger_event = {
+					id = gpt_personality_content.0001
+				}
+            }
+            10 = {
+                trigger = { has_trait = ambitious }
+                trigger_event = {
+					id = gpt_personality_ambitious.0001
+				}
+            }
+            10 = {
+                trigger = { has_trait = diligent }
+                trigger_event = {
+					id = gpt_personality_diligent.0001
+				}
+            }
+            10 = {
+                trigger = { has_trait = lazy }
+                trigger_event = {
+					id = gpt_personality_lazy.0001
+				}
+            }
+            10 = {
+                trigger = { has_trait = forgiving }
+                trigger_event = {
+					id = gpt_personality_forgiving.0001
+				}
+            }
+            10 = {
+                trigger = { has_trait = vengeful }
+                trigger_event = {
+					id = gpt_personality_vengeful.0001
+				}
+            }
+            10 = {
+                trigger = { has_trait = generous }
+                trigger_event = {
+					id = gpt_personality_generous.0001
+				}
+            }
+            10 = {
+                trigger = { has_trait = greedy }
+                trigger_event = {
+					id = gpt_personality_greedy.0001
+				}
+            }
+            10 = {
+                trigger = { has_trait = gregarious }
+                trigger_event = {
+					id = gpt_personality_gregarious.0001
+				}
+            }
+            10 = {
+                trigger = { has_trait = shy }
+                trigger_event = {
+					id = gpt_personality_shy.0001
+				}
+            }
+            10 = {
+                trigger = { has_trait = honest }
+                trigger_event = {
+					id = gpt_personality_honest.0001
+				}
+            }
+            10 = {
+                trigger = { has_trait = deceitful }
+                trigger_event = {
+					id = gpt_personality_deceitful.0001
+				}
+            }
+            10 = {
+                trigger = { has_trait = humble }
+                trigger_event = {
+					id = gpt_personality_humble.0001
+				}
+            }
+            10 = {
+                trigger = { has_trait = arrogant }
+                trigger_event = {
+					id = gpt_personality_arrogant.0001
+				}
+            }
+            10 = {
+                trigger = { has_trait = just }
+                trigger_event = {
+					id = gpt_personality_just.0001
+				}
+            }
+            10 = {
+                trigger = { has_trait = arbitrary }
+                trigger_event = {
+					id = gpt_personality_arbitrary.0001
+				}
+            }
+            10 = {
+                trigger = { has_trait = patient }
+                trigger_event = {
+					id = gpt_personality_patient.0001
+				}
+            }
+            10 = {
+                trigger = { has_trait = impatient }
+                trigger_event = {
+					id = gpt_personality_impatient.0001
+				}
+            }
+            10 = {
+                trigger = { has_trait = temperate }
+                trigger_event = {
+					id = gpt_personality_temperate.0001
+				}
+            }
+            10 = {
+                trigger = { has_trait = gluttonous }
+                trigger_event = {
+					id = gpt_personality_gluttonous.0001
+				}
+            }
+            10 = {
+                trigger = { has_trait = trusting }
+                trigger_event = {
+					id = gpt_personality_trusting.0001
+				}
+            }
+            10 = {
+                trigger = { has_trait = paranoid }
+                trigger_event = {
+					id = gpt_personality_paranoid.0001
+				}
+            }
+            10 = {
+                trigger = { has_trait = zealous }
+                trigger_event = {
+					id = gpt_personality_zealous.0001
+				}
+            }
+            10 = {
+                trigger = { has_trait = cynical }
+                trigger_event = {
+					id = gpt_personality_cynical.0001
+				}
+            }
+            10 = {
+                trigger = { has_trait = compassionate }
+                trigger_event = {
+					id = gpt_personality_compassionate.0001
+				}
+            }
+            10 = {
+                trigger = { has_trait = callous }
+                trigger_event = {
+					id = gpt_personality_callous.0001
+				}
+            }
+            10 = {
+                trigger = { has_trait = sadistic }
+                trigger_event = {
+					id = gpt_personality_sadistic.0001
+				}
+            }
+            10 = {
+                trigger = { has_trait = fickle }
+                trigger_event = {
+					id = gpt_personality_fickle.0001
+				}
+            }
+            10 = {
+                trigger = { has_trait = stubborn }
+                trigger_event = {
+					id = gpt_personality_stubborn.0001
+				}
+            }
+            20 = {
+                trigger = { has_trait = eccentric }
+                trigger_event = {
+					id = gpt_personality_eccentric.0001
+				}
+            }
+            15 = {
+                trigger = { has_trait = gpt_badger }
+                trigger_event = {
+					id = gpt_personality_badger.0001
+				}
+            }
+            15 = {
+                trigger = { has_trait = gpt_bear }
+                trigger_event = {
+					id = gpt_personality_bear.0001
+				}
+            }
+            15 = {
+                trigger = { has_trait = gpt_bee }
+                trigger_event = {
+					id = gpt_personality_bee.0001
+				}
+            }
+            15 = {
+                trigger = { has_trait = gpt_blackswan }
+                trigger_event = {
+					id = gpt_personality_blackswan.0001
+				}
+            }
+            15 = {
+                trigger = { has_trait = gpt_bull }
+                trigger_event = {
+					id = gpt_personality_bull.0001
+				}
+            }
+            15 = {
+                trigger = { has_trait = gpt_butterfly }
+                trigger_event = {
+					id = gpt_personality_butterfly.0001
+				}
+            }
+            15 = {
+                trigger = { has_trait = gpt_cat }
+                trigger_event = {
+					id = gpt_personality_cat.0001
+				}
+            }
+            15 = {
+                trigger = { has_trait = gpt_crocodile }
+                trigger_event = {
+					id = gpt_personality_crocodile.0001
+				}
+            }
+            15 = {
+                trigger = { has_trait = gpt_dog }
+                trigger_event = {
+					id = gpt_personality_dog.0001
+				}
+            }
+            15 = {
+                trigger = { has_trait = gpt_dove }
+                trigger_event = {
+					id = gpt_personality_dove.0001
+				}
+            }
+            15 = {
+                trigger = { has_trait = gpt_dragon }
+                trigger_event = {
+					id = gpt_personality_dragon.0001
+				}
+            }
+            15 = {
+                trigger = { has_trait = gpt_eagle }
+                trigger_event = {
+					id = gpt_personality_eagle.0001
+				}
+            }
+            15 = {
+                trigger = { has_trait = gpt_elephant }
+                trigger_event = {
+					id = gpt_personality_elephant.0001
+				}
+            }
+            15 = {
+                trigger = { has_trait = gpt_fox }
+                trigger_event = {
+					id = gpt_personality_fox.0001
+				}
+            }
+            15 = {
+                trigger = { has_trait = gpt_hog }
+                trigger_event = {
+					id = gpt_personality_hog.0001
+				}
+            }
+            15 = {
+                trigger = { has_trait = gpt_lamb }
+                trigger_event = {
+					id = gpt_personality_lamb.0001
+				}
+            }
+            15 = {
+                trigger = { has_trait = gpt_leopard }
+                trigger_event = {
+					id = gpt_personality_leopard.0001
+				}
+            }
+            15 = {
+                trigger = { has_trait = gpt_lion }
+                trigger_event = {
+					id = gpt_personality_lion.0001
+				}
+            }
+            15 = {
+                trigger = { has_trait = gpt_owl }
+                trigger_event = {
+					id = gpt_personality_owl.0001
+				}
+            }
+            15 = {
+                trigger = { has_trait = gpt_peacock }
+                trigger_event = {
+					id = gpt_personality_peacock.0001
+				}
+            }
+            15 = {
+                trigger = { has_trait = gpt_bunny }
+                trigger_event = {
+					id = gpt_personality_bunny.0001
+				}
+            }
+            15 = {
+                trigger = { has_trait = gpt_rat }
+                trigger_event = {
+					id = gpt_personality_rat.0001
+				}
+            }
+            15 = {
+                trigger = { has_trait = gpt_goat }
+                trigger_event = {
+					id = gpt_personality_goat.0001
+				}
+            }
+            15 = {
+                trigger = { has_trait = gpt_scorpion }
+                trigger_event = {
+					id = gpt_personality_scorpion.0001
+				}
+            }
+            15 = {
+                trigger = { has_trait = gpt_snake }
+                trigger_event = {
+					id = gpt_personality_snake.0001
+				}
+            }
+            15 = {
+                trigger = { has_trait = gpt_stag }
+                trigger_event = {
+					id = gpt_personality_stag.0001
+				}
+            }
+            15 = {
+                trigger = { has_trait = gpt_stallion }
+                trigger_event = {
+					id = gpt_personality_stallion.0001
+				}
+            }
+            15 = {
+                trigger = { has_trait = gpt_swan }
+                trigger_event = {
+					id = gpt_personality_swan.0001
+				}
+            }
+            15 = {
+                trigger = { has_trait = gpt_tiger }
+                trigger_event = {
+					id = gpt_personality_tiger.0001
+				}
+            }
+            15 = {
+                trigger = { has_trait = gpt_vulture }
+                trigger_event = {
+					id = gpt_personality_vulture.0001
+				}
+            }
+            15 = {
+                trigger = { has_trait = gpt_wolf }
+                trigger_event = {
+					id = gpt_personality_wolf.0001
+				}
+            }
+            15 = {
+                trigger = { has_trait = gpt_crow }
+                trigger_event = {
+					id = gpt_personality_crow.0001
+				}
+            }
+            15 = {
+                trigger = { has_trait = gpt_weasel }
+                trigger_event = {
+					id = gpt_personality_weasel.0001
+				}
+            }
+            15 = {
+                trigger = { has_trait = gpt_stork }
+                trigger_event = {
+					id = gpt_personality_stork.0001
+				}
+            }
+        }
+	}
+}
