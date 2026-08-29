@@ -1,4 +1,4 @@
-namespace = agot_mwrsf
+﻿namespace = agot_mwrsf
 
 # Runs after the defender-victory Mega Wars on-actions. ROOT is the punished traitor,
 # matching the context expected by AGOT's punishment scripted effect.

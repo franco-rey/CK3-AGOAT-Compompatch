@@ -1,0 +1,8 @@
+﻿l_english:
+ agot_mwrsf.0100.depose_player:0 "Depose the defeated ruler — their heir will inherit"
+ agot_mwrsf.0100.depose_heir_tt:0 "Ordinary succession will install the defeated ruler's current primary heir. You will not take the crown through this option."
+ agot_mwrsf.0110.t:0 "Confirm the Succession"
+ agot_mwrsf.0110.desc.heir:0 "Deposing [war_loser.GetName] will not grant me [primary_target_title.GetName]. Under ordinary succession, [agot_mwrsf_depose_heir.GetName] will inherit instead.\n\nDo I truly intend this?"
+ agot_mwrsf.0110.desc.no_heir:0 "Deposing [war_loser.GetName] will not grant me [primary_target_title.GetName]. Ordinary succession will determine its next holder.\n\nDo I truly intend this?"
+ agot_mwrsf.0110.a:0 "Yes. Preserve the ordinary succession."
+ agot_mwrsf.0110.b:0 "No. Return to the crown decision."
