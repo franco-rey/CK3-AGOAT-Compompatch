@@ -122,13 +122,13 @@ Test from a **new/disposable save** only. Never test on a live save.
 
 ## 6. Encoding and line endings
 
-| File | BOM | CR count | NUL | Braces (final/min) | Quotes | UTF-8 | Result |
-|------|-----|----------|-----|--------------------|--------|-------|--------|
-| `common/on_action/zz_gptev_on_actions.txt` | efbbbf | 0 | 0 | 0 / 0 | EVEN | OK | PASS |
-| `events/zz_gptev_events.txt` | efbbbf | 0 | 0 | 0 / 0 | EVEN | OK | PASS |
-| `common/on_action/xx_gptc_on_action_replace.txt` | efbbbf | 0 | 0 | 0 / 0 | EVEN | OK | PASS |
+| File | CR count | NUL | Braces (final/min) | Quotes | UTF-8 | Result |
+|------|----------|-----|--------------------|--------|-------|--------|
+| `common/on_action/zz_gptev_on_actions.txt` | 0 | 0 | 0 / 0 | EVEN | OK | PASS |
+| `events/zz_gptev_events.txt` | 0 | 0 | 0 / 0 | EVEN | OK | PASS |
+| `common/on_action/xx_gptc_on_action_replace.txt` | 0 | 0 | 0 / 0 | EVEN | OK | PASS |
 
-All gameplay files: UTF-8 with BOM, LF, no NUL, balanced braces, closed quotes. JSON/Markdown/`.mod` metadata: UTF-8, LF, no BOM required.
+All gameplay files: UTF-8, LF, no NUL, balanced braces, closed quotes. JSON/Markdown/`.mod` metadata: UTF-8, LF.
 
 ## 7. Git / install integrity
 

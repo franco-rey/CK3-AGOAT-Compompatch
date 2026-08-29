@@ -182,10 +182,10 @@ gr_internal_war_won_tracking = {
 			if = {
 				limit = {
 					exists = scope:war
-					OR = {
-						scope:war = { using_cb = fp1_varangian_adventurer_conquest }
-						scope:war = { using_cb = fp1_scandi_adventurer_conquest }
-					}
+					# AGOT does not define fp1_varangian_adventurer_conquest or
+					# fp1_scandi_adventurer_conquest. Referencing them made
+					# using_cb fail PostValidate at load. Branch left inert.
+					always = no
 				}
 				
 				scope:attacker = {
@@ -369,12 +369,12 @@ gr_internal_war_won_tracking = {
 			else_if = {
 				limit = {
 					exists = scope:war
-					OR = {
-						scope:war = { using_cb = china_seize_county_cb }
-						scope:war = { using_cb = china_seize_duchy_cb }
-						scope:war = { using_cb = chinese_consolidation_cb }
-						scope:war = { using_cb = grand_campaign_kingdom_invasion_cb }
-					}
+					# AGOT does not define the China DLC conquest CBs
+					# (china_seize_county_cb, china_seize_duchy_cb,
+					# chinese_consolidation_cb, grand_campaign_kingdom_invasion_cb).
+					# Referencing them made using_cb fail PostValidate at load.
+					# Branch left inert.
+					always = no
 				}
 
 				scope:attacker = {

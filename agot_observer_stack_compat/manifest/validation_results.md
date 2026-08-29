@@ -38,7 +38,7 @@ The machine-readable exact operation counters are retained in `manifest/build_ma
 
 ## Static validation
 
-- PASS: all 28 changed/added gameplay files are UTF-8 with BOM and LF, have no NUL bytes, balanced braces with no negative dip, and closed quoted strings.
+- PASS: all 28 changed/added gameplay files are UTF-8 with LF, have no NUL bytes, balanced braces with no negative dip, and closed quoted strings.
 - PASS: portable descriptors and documentation use LF; JSON parses.
 - PASS: no temporary/staging path leaked into production files and no `replace_path` was added.
 - PASS: all exact forbidden-token checks in the implementation specification.

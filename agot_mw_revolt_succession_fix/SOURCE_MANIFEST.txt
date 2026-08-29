@@ -34,11 +34,11 @@ V1_0_CHANGE=Defers agot_revolt_war defender-victory punishment by one day so AGO
 V1_1_CHANGE=Routes agot_rebellion_war to synchronous local events agot_mwrsf.0100-.0102; presents Take the Crown first; requires explicit human confirmation in agot_mwrsf.0110 before ordinary heir succession; preserves AI effects and weights.
 V1_1_EVENT_ID_MAP=agot_mega_wars.0500-.0502 -> agot_mwrsf.0100-.0102
 
-VALIDATION_SOURCE_PARITY_V1_0=PASS: existing revolt-war behavior unchanged; only UTF-8 BOM added to its local CB/event files.
+VALIDATION_SOURCE_PARITY_V1_0=PASS: existing revolt-war behavior unchanged.
 VALIDATION_SOURCE_PARITY_V1_1_CB=PASS: complete rebellion CB matches AGOT 0.5.1 after normalizing the single synchronous event-ID substitution.
 VALIDATION_SOURCE_PARITY_V1_1_EVENTS=PASS: local 0100-0102 match AGOT 0500-0502 after normalizing documented ID remaps, option reorder, and human confirmation branch.
 VALIDATION_BRACE_BALANCE=PASS
-VALIDATION_ENCODING=PASS: gameplay/localization files are UTF-8 BOM, LF-only, and contain no NUL bytes.
+VALIDATION_ENCODING=PASS: gameplay/localization files are UTF-8, LF-only, and contain no NUL bytes.
 VALIDATION_LOCALIZATION=PASS: seven unique patch-owned English keys; ck3-tiger reports no missing or invalid localization.
 VALIDATION_IDENTIFIER_COLLISION=PASS: agot_mwrsf.0100, .0101, .0102, and .0110 are unique across the Workshop and local trees.
 VALIDATION_VIRTUAL_PATH_COLLISION=PASS: no target path overlaps Observer Stack or protected OPB.

@@ -1346,7 +1346,10 @@ call_ally_interaction = {
 			}
 			desc = HOSTAGE_ENEMY_CALL_TO_ARMS_REASON
 		}
-		fp3_struggle_resist_allied_wars_modifier = yes
+		# AGOT disables fp3_struggle_resist_allied_wars_modifier (commented out in
+		# its own 05_fp3_scripted_modifiers.txt), so calling it here raised
+		# "unknown command ... for MTTH" at load. Matches AGOT's own convention.
+		# fp3_struggle_resist_allied_wars_modifier = yes
 	}
 	# Score above 0 means the AI will call this ally. Note that DESIRED_WAR_SIDE_STRENGTH still applies and can prevent calling the ally
 	ai_will_do = {

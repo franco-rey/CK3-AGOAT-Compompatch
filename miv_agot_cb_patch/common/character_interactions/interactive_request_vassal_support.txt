@@ -1,0 +1,323 @@
+request_vassal_support = {
+	common_interaction = yes
+	interface_priority = 66
+	category = interaction_category_diplomacy
+	desc = request_vassal_support_desc
+	interface = call_ally
+	special_interaction = call_ally_interaction
+	icon = alliance
+	notification_text = CALL_ALLY_NOTIFICATION
+	ai_min_reply_days = 0
+	ai_max_reply_days = 0
+	greeting = positive
+	popup_on_receive = yes
+	pause_on_receive = yes
+	is_shown = {
+		NOT = {
+			has_game_rule = request_vassal_support_miv_disabled
+		}
+		NOT = {
+			AND = {
+				scope:actor = {
+					government_has_flag = government_has_influence
+				}
+				scope:recipient = {
+					government_has_flag = government_has_influence
+				}
+			}
+		}
+		scope:actor = {
+			is_at_war = yes
+			any_character_war = {
+				is_war_leader = prev
+				NOT = {
+					is_civil_war = yes
+				}
+			}
+			NOT = {
+				is_allied_to = scope:recipient
+			}
+		}
+		scope:recipient = {
+			max_military_strength > 200
+			is_vassal_of = scope:actor
+			NOT = {
+				is_at_war_with = scope:actor
+			}
+		}
+	}
+	has_valid_target = {
+		exists = scope:target
+	}
+	is_valid_showing_failures_only = {
+		scope:recipient = {
+			is_ruler = yes
+		}
+		# Has hook already
+		scope:recipient = {
+			custom_description = {
+				text = ASK_VASSAL_MILITARY_SUPPORT_NOT_VALID_TEXT
+				NOT = {
+					has_hook = scope:actor
+				}
+			}
+		}
+		# Only War Leaders can call allies
+		scope:actor = {
+			custom_description = {
+				text = must_be_war_leader
+				any_character_war = {
+					is_war_leader = scope:actor
+				}
+			}
+		}
+		scope:actor = {
+			custom_description = {
+				text = ASK_SUPPORT_CANNOT_AFFORD_PRESTIGE_TEXT
+				prestige > 0
+			}
+		}
+	}
+	can_be_picked = {
+		scope:target = {
+			# not a civil war
+			custom_description = {
+				text = ASK_VASSAL_MILITARY_SUPPORT_IS_CIVIL_WAR_TEXT
+				NOT = {
+					is_civil_war = yes
+				}
+			}
+			is_war_leader = scope:actor
+			# not already in target war
+			custom_description = {
+				text = join_war_interaction_already_in_target_war
+				NOR = {
+					any_war_attacker = {
+						this = scope:recipient
+					}
+					any_war_defender = {
+						this = scope:recipient
+					}
+				}
+			}
+		}
+	}
+	on_accept = {
+		scope:target ?= {
+			hidden_effect = {
+				set_called_to = scope:recipient
+			}
+			#scope:actor = {
+			#	trigger_event = interactive.0002
+			#}
+			scope:actor = {
+				add_prestige = interactive_request_vassal_support_military_strength_negative
+			}
+			scope:recipient = {
+				add_hook = {
+					target = scope:actor
+					type = obligation_hook
+				}
+			}
+			if = {
+				limit = {
+					is_attacker = scope:actor
+				}
+				add_attacker = scope:recipient
+				#if = {
+				#	limit = {
+				#		NOT = { has_game_rule = war_exhaustion_miv_disabled }
+				#	}
+				#	scope:recipient = {
+				#		add_opinion = {
+				#			target = scope:actor
+				#			modifier = war_exhaustion_vassal_opinion
+				#			opinion = -5
+				#		}
+				#	}
+				#}
+			}
+			else = {
+				add_defender = scope:recipient
+				#if = {
+				#	limit = {
+				#		NOT = { has_game_rule = war_exhaustion_miv_disabled }
+				#	}
+				#	scope:recipient = {
+				#		add_opinion = {
+				#			target = scope:actor
+				#			modifier = war_exhaustion_vassal_opinion
+				#			opinion = -5
+				#		}
+				#	}
+				#}
+			}
+		}
+	}
+	on_decline = {
+	}
+	auto_accept = no
+	ai_accept = {
+		base = -20
+		modifier = {
+			# Bannermen
+			add = 50
+			has_game_rule = bannermen_mode_enabled
+			desc = interactive_bannermen_obligations_tooltip
+		}
+		modifier = {
+			# Refuse call against Heir
+			add = -1000
+			exists = scope:recipient.player_heir
+			trigger_if = {
+				limit = {
+					scope:target.casus_belli.primary_defender = scope:actor
+				}
+				scope:target.casus_belli.primary_attacker = scope:recipient.player_heir
+			}
+			trigger_else = {
+				scope:target.casus_belli.primary_defender = scope:recipient.player_heir
+			}
+			desc = WONT_FIGHT_HEIR_REASON
+		}
+		modifier = {
+			# Refuse call against Spouse
+			add = -1000
+			scope:recipient = {
+				trigger_if = {
+					limit = {
+						scope:target.casus_belli.primary_defender = scope:actor
+					}
+					any_spouse = {
+						this = scope:target.casus_belli.primary_attacker
+					}
+				}
+				trigger_else = {
+					any_spouse = {
+						this = scope:target.casus_belli.primary_defender
+					}
+				}
+			}
+			desc = WONT_FIGHT_SPOUSE_REASON
+		}
+		opinion_modifier = {
+			# Opinion Factor
+			who = scope:recipient
+			opinion_target = scope:actor
+			multiplier = 1
+			desc = AI_OPINION_REASON
+		}
+		modifier = {
+			# Reluctant to attack another ally
+			add = -50
+			scope:target.casus_belli.primary_attacker = scope:actor
+			scope:recipient = {
+				is_allied_to = scope:target.casus_belli.primary_defender
+			}
+			desc = ATTACK_ON_ALLY_REASON
+		}
+		modifier = {
+			# Reluctant to defend against another ally
+			add = -50
+			scope:target.casus_belli.primary_defender = scope:actor
+			scope:recipient = {
+				is_allied_to = scope:target.casus_belli.primary_attacker
+			}
+			desc = WAR_WITH_ALLY_REASON
+		}
+		modifier = {
+			# Reluctant to join against Friends
+			add = -50
+			trigger_if = {
+				limit = {
+					scope:target.casus_belli.primary_defender = scope:actor
+				}
+				has_relation_friend = scope:target.casus_belli.primary_attacker
+			}
+			trigger_else = {
+				has_relation_friend = scope:target.casus_belli.primary_defender
+			}
+			desc = WONT_FIGHT_FRIEND
+		}
+		modifier = {
+			# Reluctant to join against Best Friends
+			add = -50
+			trigger_if = {
+				limit = {
+					scope:target.casus_belli.primary_defender = scope:actor
+				}
+				has_relation_best_friend = scope:target.casus_belli.primary_attacker
+			}
+			trigger_else = {
+				has_relation_best_friend = scope:target.casus_belli.primary_defender
+			}
+			desc = WONT_FIGHT_BEST_FRIEND
+		}
+		modifier = {
+			# Reluctant to join against Lovers
+			add = -50
+			trigger_if = {
+				limit = {
+					scope:target.casus_belli.primary_defender = scope:actor
+				}
+				has_relation_lover = scope:target.casus_belli.primary_attacker
+			}
+			trigger_else = {
+				has_relation_lover = scope:target.casus_belli.primary_defender
+			}
+			desc = WONT_FIGHT_LOVER
+		}
+		modifier = {
+			# Reluctant to join against Soulmate
+			add = -50
+			trigger_if = {
+				limit = {
+					scope:target.casus_belli.primary_defender = scope:actor
+				}
+				has_relation_soulmate = scope:target.casus_belli.primary_attacker
+			}
+			trigger_else = {
+				has_relation_soulmate = scope:target.casus_belli.primary_defender
+			}
+			desc = WONT_FIGHT_SOULMATE
+		}
+		modifier = {
+			# Refuse call for hostages' safety
+			any_home_court_hostage = {
+				warden = {
+					OR = {
+						is_at_war_with = scope:actor
+						any_ally = {
+							is_at_war_with = scope:actor
+						}
+					}
+				}
+			}
+			add = {
+				value = 0
+				every_home_court_hostage = {
+					limit = {
+						warden = {
+							OR = {
+								is_at_war_with = scope:actor
+								any_ally = {
+									is_at_war_with = scope:actor
+								}
+							}
+						}
+					}
+					subtract = call_to_arms_hostage_value
+				}
+				multiply = 0.25
+			}
+			desc = HOSTAGE_ENEMY_CALL_TO_ARMS_REASON
+		}
+		# AGOT disables fp3_struggle_resist_allied_wars_modifier (commented out in
+		# its own 05_fp3_scripted_modifiers.txt), so calling it here raised
+		# "unknown command ... for MTTH" at load. Matches AGOT's own convention.
+		# fp3_struggle_resist_allied_wars_modifier = yes
+	}
+	ai_will_do = {
+		base = 0
+	}
+}
