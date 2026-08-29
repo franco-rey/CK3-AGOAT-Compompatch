@@ -690,7 +690,7 @@ asoiaf_on_title_inheritance_robert_I_crown_creation = {
 	effect = {
 		this = { save_scope_as = asoiaf_Baratheon_2 }
 		scope:asoiaf_Baratheon_2 ?= {
-			agot_create_artifact_robertI_crown_effect = { OWNER = this }
+			agot_create_artifact_robertI_crown_effect = { OWNER = this CREATOR = this }
 			trigger_event = { id = asoiaf_equip_crown_events.9 days = 1 } #equip Robert I's crown with delay because of overlapping effects
 		}
 	}
@@ -717,7 +717,7 @@ asoiaf_on_title_inheritance_joffrey_I_crown_creation = {
 	effect = {
 		this = { save_scope_as = asoiaf_Baratheon_5 }
 		scope:asoiaf_Baratheon_5 ?= {
-			agot_create_artifact_joffreyI_crown_effect = { OWNER = this }
+			agot_create_artifact_joffreyI_crown_effect = { OWNER = this CREATOR = this }
 			trigger_event = { id = asoiaf_equip_crown_events.10 days = 1 } #equip Joffrey I's crown with delay because of overlapping effects
 		}
 	}
@@ -745,7 +745,7 @@ asoiaf_on_title_inheritance_renly_crown_creation = {
 	effect = {
 		this = { save_scope_as = asoiaf_Baratheon_4 }
 		scope:asoiaf_Baratheon_4 ?= {
-			agot_create_artifact_renly_crown_effect = { OWNER = this }
+			agot_create_artifact_renly_crown_effect = { OWNER = this CREATOR = this }
 			trigger_event = { id = asoiaf_equip_crown_events.11 days = 1 } #equip Renly's crown with delay because of overlapping effects
 		}
 	}

@@ -1,9 +1,318 @@
 {
-  "patch_version": "1.0.0",
+  "patch_version": "1.1.0",
   "game_version": "1.19.0.6",
   "agot_version": "0.5.1",
-  "built": "2026-08-28",
+  "built": "2026-08-29",
   "files": [
+    {
+      "provider_workshop_id": "2950245430",
+      "virtual_path": "common/artifacts/templates/asoiaf_artifacts_templates.txt",
+      "source_sha256": "7819e8e963bc5929a3f43a39328f74c2ac6d543caf395263ec98d4e7b1e58450",
+      "transformations": [
+        "P02_KRAKENFALL_HOUSE_SCOPE"
+      ],
+      "replacement_counts": {
+        "P02_KRAKENFALL_HOUSE_SCOPE": 1
+      },
+      "built_sha256": "e8086a6ab44514937137097584ac5007bd0475181da0b601613e9f7d6977ca4c"
+    },
+    {
+      "provider_workshop_id": "2995674648",
+      "virtual_path": "common/artifacts/templates/ntc_artifacts_templates.txt",
+      "source_sha256": "4a6a2270954c02502aad32c281d183edd45faee06d0ac478448ff1d8c5e482a6",
+      "transformations": [
+        "P03_CULTURE_MIGRATION"
+      ],
+      "replacement_counts": {
+        "culture:stormlander": 10,
+        "culture:riverlander": 3,
+        "culture:valeman": 3,
+        "culture:westerman": 1
+      },
+      "built_sha256": "f2f629dca7b1fbf7f5d4828c72422f1cce78d160a2a9aa820584133d0d63cb34"
+    },
+    {
+      "provider_workshop_id": "2971198450",
+      "virtual_path": "common/buildings/yy_agotcities_special_buildings_westeros.txt",
+      "source_sha256": "d0517274f260152db56300c364316a9070a166a6b765e0691b62754d014e0e78",
+      "transformations": [
+        "P06_RHOYNISH_OPINION",
+        "P06_HOLDING_CONTEXT",
+        "P13"
+      ],
+      "replacement_counts": {
+        "P06_RHOYNISH_OPINION": 2,
+        "P06_HOLDING_CONTEXT": 1,
+        "on_complete_blocks_removed": 3
+      },
+      "built_sha256": "ce75dc485d29b771774316b0b9df58efd0fe1ff53a6fc4874c20a56fe0b2ffac",
+      "previous_built_sha256": "283b57a70a142cad323d0678cf8bcaa01194e70b8d6eddda7c8f9e39481bc0c0",
+      "v1_1_input": {
+        "provider": "LOCAL-1.0.0",
+        "current_local_sha256": "283b57a70a142cad323d0678cf8bcaa01194e70b8d6eddda7c8f9e39481bc0c0",
+        "transformations": [
+          "P13"
+        ],
+        "replacement_counts": {
+          "on_complete_blocks_removed": 3
+        }
+      }
+    },
+    {
+      "provider_workshop_id": "3457401824",
+      "virtual_path": "common/casus_belli_types/oathbound_conquests.txt",
+      "source_sha256": "64c00507435bbbbb2f51a10f82aa2b3495761ce73060f774c58f6ec433a7a4ea",
+      "transformations": [
+        "P20.1"
+      ],
+      "replacement_counts": {
+        "cb_prerequisite_blocks_inserted": 3
+      },
+      "built_sha256": "6144736e0646da6be6ae269932299d36566e8ad8ecf932f00e22859b33e7cb74"
+    },
+    {
+      "provider_workshop_id": "2962333032",
+      "virtual_path": "common/character_interactions/06_ep3_interactions.txt",
+      "source_sha256": "7cb2344b17b8b7eb7b0bebb0ecd9262b5a4207dc4ce57984dc87071de533f736",
+      "transformations": [
+        "P05_LORATH_EXCLUSION",
+        "P11"
+      ],
+      "replacement_counts": {
+        "P05_LORATH_EXCLUSION": 2,
+        "head_of_faith_guards_inserted": 4
+      },
+      "built_sha256": "27a6bc7f49ffb6d929a441ad206f34bc34331d10d6b964ed9d0441eeed25787e",
+      "previous_built_sha256": "5620dedc529e73a223c108f90d04d7ac1419fde60a91dbcc4a5349d07c99f295",
+      "v1_1_input": {
+        "provider": "LOCAL-1.0.0",
+        "current_local_sha256": "5620dedc529e73a223c108f90d04d7ac1419fde60a91dbcc4a5349d07c99f295",
+        "transformations": [
+          "P11"
+        ],
+        "replacement_counts": {
+          "head_of_faith_guards_inserted": 4
+        }
+      }
+    },
+    {
+      "provider_workshop_id": "3457401824",
+      "virtual_path": "common/character_interactions/oathbound_ransom_interaction.txt",
+      "source_sha256": "98470232a23d52a08708a9e3fe3a16d366254b36c2ff656f896bbd4342cfaa46",
+      "transformations": [
+        "P20.6"
+      ],
+      "replacement_counts": {
+        "persia_catalyst_blocks_removed": 1
+      },
+      "built_sha256": "e655372afb7a6154a5a71a4a829408b205491ab1870dae7c54a135e442775f01"
+    },
+    {
+      "provider_workshop_id": "3457401824",
+      "virtual_path": "common/customizable_localization/oathbound_custom_loc.txt",
+      "source_sha256": "e37fafb0400ec38c60290c671584add546b0e4eb5b7362164dd5a706abf817db",
+      "transformations": [
+        "P20.2"
+      ],
+      "replacement_counts": {
+        "character_type_declarations_inserted": 5
+      },
+      "built_sha256": "9e560d5f9b03e3a0ce5201575c8f898e565b4e75c81a8e69ac4113a2f89a30e0"
+    },
+    {
+      "provider_workshop_id": "2962333032",
+      "virtual_path": "common/factions/00_factions.txt",
+      "source_sha256": "5913734738ba47f0fcc3a82de29e4abb9f3ba9f1ac273688b468d79b4a3d638e",
+      "transformations": [
+        "P18"
+      ],
+      "replacement_counts": {
+        "special_title_block_replaced": 1
+      },
+      "built_sha256": "89afd7d76158f4ebb60801b7732f7586b9595bb86f5b5d61c8d42d89d90ab23c"
+    },
+    {
+      "provider_workshop_id": "additive",
+      "virtual_path": "common/modifier_definition_formats/zz_observer_stack_culture_opinion_definitions.txt",
+      "source_sha256": null,
+      "transformations": [
+        "P03_VALEMAN_DEF_FORMAT"
+      ],
+      "replacement_counts": {
+        "created_file": 1
+      },
+      "built_sha256": "7f944979b7faaf4332b35db9ea1ec7d044e3cce218decef1404fa0f7ee628bc6"
+    },
+    {
+      "provider_workshop_id": "2950245430",
+      "virtual_path": "common/modifiers/asoiaf_artifact_modifiers.txt",
+      "source_sha256": "b781c7358e4a93e7c980133728bff9de1f077595c0dc26420f2e65e4ea7a894d",
+      "transformations": [
+        "P02_WESTERMAN_OPINION"
+      ],
+      "replacement_counts": {
+        "P02_WESTERMAN_OPINION": 1
+      },
+      "built_sha256": "7f0a8d0c3db3cb3cdf862c4cad09b05c04dbeb82a01788149575bd9cece6fa74"
+    },
+    {
+      "provider_workshop_id": "2995674648",
+      "virtual_path": "common/modifiers/ntc_artifact_modifiers.txt",
+      "source_sha256": "bef9756f993e237614ecedbd37773f71684c3628ed0706d7bdf03e9933c1fa4f",
+      "transformations": [
+        "P03_VALEMAN_OPINION"
+      ],
+      "replacement_counts": {
+        "valeman_opinion": 3
+      },
+      "built_sha256": "1673631ca8b4923aa23c72a13cd076d4d61db2ada4b639ac192ec9a5f6bba117"
+    },
+    {
+      "provider_workshop_id": "2950245430",
+      "virtual_path": "common/on_action/agot_on_actions/test_title_on_actions.txt",
+      "source_sha256": "c5d8c4ed2a7e7d74c3ce69b813a59b79f2f9ba7a9051b986d8be9b8da6d3c909",
+      "transformations": [
+        "P02_CROWN_CREATOR_CALLS",
+        "P12"
+      ],
+      "replacement_counts": {
+        "P02_CROWN_CREATOR_CALLS": 7,
+        "P02_CROWN_CREATOR_CALLS_REQUIRED_BY_MANUAL": 8,
+        "creator_arguments_added": 3
+      },
+      "built_sha256": "1707def3f76fbf5bd743b0bec68efb68a6a7753cd18462fb14fb0213dc8dd890",
+      "previous_built_sha256": "a25c438c11526ce180d25078a0cf62f6b5d5f4964177b95922cfa5ea9d62cc17",
+      "v1_1_input": {
+        "provider": "LOCAL-1.0.0",
+        "current_local_sha256": "a25c438c11526ce180d25078a0cf62f6b5d5f4964177b95922cfa5ea9d62cc17",
+        "transformations": [
+          "P12"
+        ],
+        "replacement_counts": {
+          "creator_arguments_added": 3
+        }
+      }
+    },
+    {
+      "provider_workshop_id": "2950245430",
+      "virtual_path": "common/on_action/asoiaf_yearly_on_actions.txt",
+      "source_sha256": "fb8c2952993e341fe23bf9e8bd0cc92c8c40e7f7e19540023db6c06cd9a031a9",
+      "transformations": [
+        "P14.3"
+      ],
+      "replacement_counts": {
+        "fixed_dragon_start_scheme_blocks_removed": 10
+      },
+      "built_sha256": "0e5c15d8f0f3ff8aef61e1f9d432cf10f7d398ab749a9446ac0726601a3641d7"
+    },
+    {
+      "provider_workshop_id": "3678529052",
+      "virtual_path": "common/on_action/gr_on_actions.txt",
+      "source_sha256": "73b6cc9c2dec76b121169d1a9724a4fc3b1caec8e58d9132467846747ac6aee1",
+      "transformations": [
+        "P21.3"
+      ],
+      "replacement_counts": {
+        "rice_revalidate_neutralized": 1,
+        "missing_trait_checks_removed": 4,
+        "physician_chain_lines_removed": 3,
+        "papacy_blocks_removed": 1,
+        "rice_sections_removed": 1,
+        "crossing_sections_removed": 1,
+        "born_in_purple_checks_removed": 1,
+        "elective_sections_removed": 1
+      },
+      "built_sha256": "756b2247d9bccdc38449290c9faee734b158507abd39d432069853b439a957d0"
+    },
+    {
+      "provider_workshop_id": "3457401824",
+      "virtual_path": "common/on_action/relations/oathbound_on_relation_deaths.txt",
+      "source_sha256": "8851e72f769f8c884ec157dcacac26d72308ec3f4f0da6dc67e0acb1a35e47e3",
+      "transformations": [
+        "P20.3"
+      ],
+      "replacement_counts": {
+        "forced_heir_prerequisite_sets": 1,
+        "heir_soft_scopes": 2,
+        "permanent_transfer_prerequisite_sets": 2,
+        "cleanup_variable_guards": 3,
+        "task_target_scope_corrections": 2
+      },
+      "built_sha256": "4383797b93e2f37c2976eff907ca6b943eda1d77dca68e9d402a5ea008180133"
+    },
+    {
+      "provider_workshop_id": "3678529052",
+      "virtual_path": "common/on_action/zz_gr_memory_tracking.txt",
+      "source_sha256": "091c10c430a6b9b061b470b83c779e5c395ec5afd1cdce46ce3a63a36b647193",
+      "transformations": [
+        "P21.1"
+      ],
+      "replacement_counts": {
+        "definitions_replaced": 1
+      },
+      "built_sha256": "6f18d59272f3a70cdc9030e4d2bb482fd46b1120ca0e7b31d6824753d4e21c4c"
+    },
+    {
+      "provider_workshop_id": "2950245430",
+      "virtual_path": "common/scripted_character_templates/asoiaf_invader_templates.txt",
+      "source_sha256": "67ed5a01e2b1226ad6eb5c496cfc00e71ef6536d699cfc547002ebe05889c0f2",
+      "transformations": [
+        "P02_INVADER_IS_DEAD"
+      ],
+      "replacement_counts": {
+        "P02_INVADER_IS_DEAD": 1
+      },
+      "built_sha256": "eb1125f3ea7c75aec17ddcc707cba87419bc026b64428f40843b277def9410c4"
+    },
+    {
+      "provider_workshop_id": "2995674648",
+      "virtual_path": "common/scripted_character_templates/ntc_scripted_character_template.txt",
+      "source_sha256": "2d5333009be4138a3e1c200a3eac012e8d72435423ce4ed5ffef03292a3a896c",
+      "transformations": [
+        "P03_CULTURE_MIGRATION"
+      ],
+      "replacement_counts": {
+        "culture:mountain_clansman": 1
+      },
+      "built_sha256": "ee2ae88d0ddbecb760cd41de5770c8e9141f2a1363a44b1ad72d81414a35b430"
+    },
+    {
+      "provider_workshop_id": "2967263410",
+      "virtual_path": "common/scripted_effects/00_agot_hf_effects.txt",
+      "source_sha256": "66628c384eef295d4966fb4057a4af92b69c3c39fc54d28df514e5451f93cce6",
+      "transformations": [
+        "P19"
+      ],
+      "replacement_counts": {
+        "prerequisite_blocks_inserted": 1,
+        "prerequisites_in_block": 6
+      },
+      "built_sha256": "5c81c79b6dfc9b3d1227cc4b805e6a758fa94bbb3fb48d8332b6b9a81ec3638f"
+    },
+    {
+      "provider_workshop_id": "2962333032",
+      "virtual_path": "common/scripted_effects/00_interaction_effects.txt",
+      "source_sha256": "dfde92191c93bf93a074dc475fe1a188d8d17f7f4515c22b4f903bb2d6cfff91",
+      "transformations": [
+        "P10"
+      ],
+      "replacement_counts": {
+        "actor_guarded_effects": 2
+      },
+      "built_sha256": "6535e5853ec09ab2572819ff9af1238cac19f93c0072db502fd218fc92664811"
+    },
+    {
+      "provider_workshop_id": "2962333032",
+      "virtual_path": "common/scripted_effects/20_health_effects.txt",
+      "source_sha256": "9f871971b349e0555503fbe1bb0c2f8692a82b2067354bcb8e04b1c608e230ec",
+      "transformations": [
+        "P16"
+      ],
+      "replacement_counts": {
+        "new_memory_soft_scope": 1
+      },
+      "built_sha256": "f1536a47e61fb622c8326a4742bf44ea1d134bd582705baba51da2c8987bbd09"
+    },
     {
       "provider_workshop_id": "2950245430",
       "virtual_path": "common/scripted_effects/asoiaf_canon_children_effects.txt",
@@ -11,7 +320,9 @@
       "transformations": [
         "P01_REMOVE_DUAL_PLACEMENT",
         "P01_ATTACH_NEWBORN_TO_COURT",
-        "P01_CANON_PARSE_REPAIRS"
+        "P01_CANON_PARSE_REPAIRS",
+        "P14.2",
+        "P14.3"
       ],
       "replacement_counts": {
         "P01_REMOVE_DUAL_PLACEMENT": 202,
@@ -19,9 +330,37 @@
         "P01_TRAIT_ADD": 1,
         "P01_DYNASTY_TRIGGER_ANY": 6,
         "P01_SPOUSE_NOT_BLOCK": 1,
-        "P01_TOTAL_ADJACENT_PARSE_REPAIRS": 8
+        "P01_TOTAL_ADJACENT_PARSE_REPAIRS": 8,
+        "nickname_keys_replaced": 1,
+        "fixed_dragon_start_scheme_blocks_removed": 24
       },
-      "built_sha256": "7cac5ae82378dbc7ed2e7405891471a8dc400eefeb8db9235ab7669fcc281da3"
+      "built_sha256": "ffcf1299dbf37c3ed21f1bddaadef492b3494b133adb7adc6805eaefb86c4775",
+      "previous_built_sha256": "7cac5ae82378dbc7ed2e7405891471a8dc400eefeb8db9235ab7669fcc281da3",
+      "v1_1_input": {
+        "provider": "LOCAL-1.0.0",
+        "current_local_sha256": "7cac5ae82378dbc7ed2e7405891471a8dc400eefeb8db9235ab7669fcc281da3",
+        "transformations": [
+          "P14.2",
+          "P14.3"
+        ],
+        "replacement_counts": {
+          "nickname_keys_replaced": 1,
+          "fixed_dragon_start_scheme_blocks_removed": 24
+        }
+      }
+    },
+    {
+      "provider_workshop_id": "2950245430",
+      "virtual_path": "common/scripted_effects/asoiaf_scripted_effects_artifacts.txt",
+      "source_sha256": "42c5da841ddb36017f8418637fb4438f344c100807334cf7d889b329bb90a8a7",
+      "transformations": [
+        "P02_CROWN_CREATOR_CONTRACT"
+      ],
+      "replacement_counts": {
+        "P02_CROWN_CREATOR_DECLARATIONS": 3,
+        "P02_CROWN_CREATOR_FIELDS": 6
+      },
+      "built_sha256": "75dc08fe7731bdca2d3b90b5b733a200c91c589e8209fd4295cf10e5689c38b0"
     },
     {
       "provider_workshop_id": "2950245430",
@@ -42,81 +381,56 @@
       "built_sha256": "70b969f8bbe1e513c51b0945a6b2cdbc61c527004576f3bfe58f5b1b600f132c"
     },
     {
-      "provider_workshop_id": "2950245430",
-      "virtual_path": "common/scripted_character_templates/asoiaf_invader_templates.txt",
-      "source_sha256": "67ed5a01e2b1226ad6eb5c496cfc00e71ef6536d699cfc547002ebe05889c0f2",
+      "provider_workshop_id": "additive",
+      "virtual_path": "common/scripted_effects/zz_observer_stack_canon_child_missing_effects.txt",
+      "source_sha256": null,
       "transformations": [
-        "P02_INVADER_IS_DEAD"
+        "P14.1_MISSING_EFFECT_SHIMS"
       ],
       "replacement_counts": {
-        "P02_INVADER_IS_DEAD": 1
+        "definitions_created": 7
       },
-      "built_sha256": "eb1125f3ea7c75aec17ddcc707cba87419bc026b64428f40843b277def9410c4"
+      "built_sha256": "656697f7804abcd76b361daedebee94ab42e21818144f2cbb1c26e47d7b29828"
     },
     {
-      "provider_workshop_id": "2950245430",
-      "virtual_path": "common/artifacts/templates/asoiaf_artifacts_templates.txt",
-      "source_sha256": "7819e8e963bc5929a3f43a39328f74c2ac6d543caf395263ec98d4e7b1e58450",
+      "provider_workshop_id": "2962333032",
+      "virtual_path": "common/scripted_modifiers/00_faction_modifiers.txt",
+      "source_sha256": "db445a723e4961cea6335cd4a70bfa3248825e559fce5e19c7561c18b65640f1",
       "transformations": [
-        "P02_KRAKENFALL_HOUSE_SCOPE"
+        "P18"
       ],
       "replacement_counts": {
-        "P02_KRAKENFALL_HOUSE_SCOPE": 1
+        "prerequisite_lines_inserted": 4,
+        "modifiers_guarded": 2
       },
-      "built_sha256": "e8086a6ab44514937137097584ac5007bd0475181da0b601613e9f7d6977ca4c"
+      "built_sha256": "694f20806130a5b9c6d71c4701091c6148f6bac410cf7ebb088ba25643241866"
     },
     {
-      "provider_workshop_id": "2950245430",
-      "virtual_path": "common/modifiers/asoiaf_artifact_modifiers.txt",
-      "source_sha256": "b781c7358e4a93e7c980133728bff9de1f077595c0dc26420f2e65e4ea7a894d",
+      "provider_workshop_id": "2962333032",
+      "virtual_path": "common/scripted_triggers/00_agot_triggers.txt",
+      "source_sha256": "3322d4d43d8ac93e8d999f9c24e840fe7e35be7526d17903d1e48543d14b68ea",
       "transformations": [
-        "P02_WESTERMAN_OPINION"
+        "P09"
       ],
       "replacement_counts": {
-        "P02_WESTERMAN_OPINION": 1
+        "dead_holder_branch": 1,
+        "living_realm_scope_softened": 1,
+        "living_guard_inserted": 1,
+        "lord_scope_softened": 1
       },
-      "built_sha256": "7f0a8d0c3db3cb3cdf862c4cad09b05c04dbeb82a01788149575bd9cece6fa74"
+      "built_sha256": "94ac2c04ab9f1744e189e3ffa3491103449314f94b15efc0b206fdafb77d08e9"
     },
     {
-      "provider_workshop_id": "2950245430",
-      "virtual_path": "common/on_action/agot_on_actions/test_title_on_actions.txt",
-      "source_sha256": "c5d8c4ed2a7e7d74c3ce69b813a59b79f2f9ba7a9051b986d8be9b8da6d3c909",
+      "provider_workshop_id": "2962333032",
+      "virtual_path": "common/scripted_triggers/00_courtier_guest_management_triggers.txt",
+      "source_sha256": "906ec0b763e2576c3606378cf575957c05cb2ea0b4c35d22eb1e67b7f931a2bb",
       "transformations": [
-        "P02_CROWN_CREATOR_CALLS"
+        "P10"
       ],
       "replacement_counts": {
-        "P02_CROWN_CREATOR_CALLS": 7,
-        "P02_CROWN_CREATOR_CALLS_REQUIRED_BY_MANUAL": 8
+        "ruler_guarded_triggers": 2
       },
-      "built_sha256": "a25c438c11526ce180d25078a0cf62f6b5d5f4964177b95922cfa5ea9d62cc17"
-    },
-    {
-      "provider_workshop_id": "2950245430",
-      "virtual_path": "common/scripted_effects/asoiaf_scripted_effects_artifacts.txt",
-      "source_sha256": "42c5da841ddb36017f8418637fb4438f344c100807334cf7d889b329bb90a8a7",
-      "transformations": [
-        "P02_CROWN_CREATOR_CONTRACT"
-      ],
-      "replacement_counts": {
-        "P02_CROWN_CREATOR_DECLARATIONS": 3,
-        "P02_CROWN_CREATOR_FIELDS": 6
-      },
-      "built_sha256": "75dc08fe7731bdca2d3b90b5b733a200c91c589e8209fd4295cf10e5689c38b0"
-    },
-    {
-      "provider_workshop_id": "2995674648",
-      "virtual_path": "common/artifacts/templates/ntc_artifacts_templates.txt",
-      "source_sha256": "4a6a2270954c02502aad32c281d183edd45faee06d0ac478448ff1d8c5e482a6",
-      "transformations": [
-        "P03_CULTURE_MIGRATION"
-      ],
-      "replacement_counts": {
-        "culture:stormlander": 10,
-        "culture:riverlander": 3,
-        "culture:valeman": 3,
-        "culture:westerman": 1
-      },
-      "built_sha256": "f2f629dca7b1fbf7f5d4828c72422f1cce78d160a2a9aa820584133d0d63cb34"
+      "built_sha256": "9b7af5257e72364b9267d9155fdad07025d71fbb420cd98383596f50e1286f44"
     },
     {
       "provider_workshop_id": "2995674648",
@@ -131,28 +445,70 @@
       "built_sha256": "1db29585b5ea62af29cf34fe1e2a7d8c6147e6d24ec86e49ed992b0a49e65d61"
     },
     {
-      "provider_workshop_id": "2995674648",
-      "virtual_path": "common/scripted_character_templates/ntc_scripted_character_template.txt",
-      "source_sha256": "2d5333009be4138a3e1c200a3eac012e8d72435423ce4ed5ffef03292a3a896c",
+      "provider_workshop_id": "2950245430",
+      "virtual_path": "common/scripted_triggers/asoiaf_clothing_triggers.txt",
+      "source_sha256": "5e039ba54bdc8b0b9e13e4da82c84b6730f2ba681dd0685dde75cd4b5ad538b9",
       "transformations": [
-        "P03_CULTURE_MIGRATION"
+        "P15"
       ],
       "replacement_counts": {
-        "culture:mountain_clansman": 1
+        "liege_exists_guards_inserted": 1
       },
-      "built_sha256": "ee2ae88d0ddbecb760cd41de5770c8e9141f2a1363a44b1ad72d81414a35b430"
+      "built_sha256": "7c668bd2df1947c8b21be753ef3d032d6d95863854a505e2097e3ea9836fb144"
     },
     {
-      "provider_workshop_id": "2995674648",
-      "virtual_path": "common/modifiers/ntc_artifact_modifiers.txt",
-      "source_sha256": "bef9756f993e237614ecedbd37773f71684c3628ed0706d7bdf03e9933c1fa4f",
+      "provider_workshop_id": "3084203091",
+      "virtual_path": "common/scripted_triggers/gen_acs_st_big_switch.txt",
+      "source_sha256": "1d96dfc4e69c57a735a38e703334f4b8eff6f84a27a5ef04860b4c04c9e597ce",
       "transformations": [
-        "P03_VALEMAN_OPINION"
+        "P22"
       ],
       "replacement_counts": {
-        "valeman_opinion": 3
+        "trait_cases_replaced": 24,
+        "confucian_cases_replaced": 14,
+        "religion_cases_replaced": 8,
+        "council_cases_replaced": 10,
+        "minister_cases_replaced": 18,
+        "mixed_invalid_key_lines_removed": 28,
+        "gunpowder_cases_replaced": 2
       },
-      "built_sha256": "1673631ca8b4923aa23c72a13cd076d4d61db2ada4b639ac192ec9a5f6bba117"
+      "built_sha256": "a2324c3e415559ca882d8ba72d8d6bdb08c229c08ba59062a8e5a137ecdcdc5e"
+    },
+    {
+      "provider_workshop_id": "additive",
+      "virtual_path": "common/scripted_triggers/zz_observer_stack_canon_child_missing_triggers.txt",
+      "source_sha256": null,
+      "transformations": [
+        "P14.1_MISSING_TRIGGER_SHIMS"
+      ],
+      "replacement_counts": {
+        "definitions_created": 4
+      },
+      "built_sha256": "f4859d089d7fa0b9bfe3a24a08c21845c29f0f195e623db1ed7589698876b192"
+    },
+    {
+      "provider_workshop_id": "3101422928",
+      "virtual_path": "events/decisions_events/rediscover_events.txt",
+      "source_sha256": "19ca2e563b805321ca9a63779edf6ec23ef98c0f85bcd5432a9e902cdc8056fa",
+      "transformations": [
+        "P12"
+      ],
+      "replacement_counts": {
+        "creator_arguments_added": 5
+      },
+      "built_sha256": "f38164d695316f2f61a3cc70c333e9f90166f35ba0b4ba9ca5845272490649c6"
+    },
+    {
+      "provider_workshop_id": "2962333032",
+      "virtual_path": "events/dlc/bp1/bp1_yearly.txt",
+      "source_sha256": "c772b8035b45f9e16672dcd2d8136540b6000d85722362766d3437d29e72444e",
+      "transformations": [
+        "P17"
+      ],
+      "replacement_counts": {
+        "option_variable_guard": 1
+      },
+      "built_sha256": "35a6af5485b02b08ef6ac887e7517d2d7787c6dd7d2de95c96dd88b976bb93ee"
     },
     {
       "provider_workshop_id": "2962333032",
@@ -167,30 +523,53 @@
       "built_sha256": "6f626553c9ce2195b0ff40c7cccd9d5a32c0f1f15174c9d42db03a0f38c2be8a"
     },
     {
-      "provider_workshop_id": "2962333032",
-      "virtual_path": "common/character_interactions/06_ep3_interactions.txt",
-      "source_sha256": "7cb2344b17b8b7eb7b0bebb0ecd9262b5a4207dc4ce57984dc87071de533f736",
+      "provider_workshop_id": "3683507542",
+      "virtual_path": "events/gr_obituary_events.txt",
+      "source_sha256": "63de24ed09e54c1e9b56fa4399d52cd74bb2937de6f976865d40e83c5c0e0d38",
       "transformations": [
-        "P05_LORATH_EXCLUSION"
+        "P21.2"
       ],
       "replacement_counts": {
-        "P05_LORATH_EXCLUSION": 2
+        "memory_triggers_replaced": 6
       },
-      "built_sha256": "5620dedc529e73a223c108f90d04d7ac1419fde60a91dbcc4a5349d07c99f295"
+      "built_sha256": "3526f157cd9d57f8c9cbf3e9c47d772e4d5821d240c4f31b55676588e756e978"
     },
     {
-      "provider_workshop_id": "2971198450",
-      "virtual_path": "common/buildings/yy_agotcities_special_buildings_westeros.txt",
-      "source_sha256": "d0517274f260152db56300c364316a9070a166a6b765e0691b62754d014e0e78",
+      "provider_workshop_id": "3683507542",
+      "virtual_path": "events/gr_obituary_replay_events.txt",
+      "source_sha256": "c7ed57cc3fb4ebf792537b54a95c8761cf0a7298fcef4a86962af1b6cb49b671",
       "transformations": [
-        "P06_RHOYNISH_OPINION",
-        "P06_HOLDING_CONTEXT"
+        "P21.2"
       ],
       "replacement_counts": {
-        "P06_RHOYNISH_OPINION": 2,
-        "P06_HOLDING_CONTEXT": 1
+        "memory_triggers_replaced": 6
       },
-      "built_sha256": "283b57a70a142cad323d0678cf8bcaa01194e70b8d6eddda7c8f9e39481bc0c0"
+      "built_sha256": "8133b62971aa58c8ecf212ca0f8a77d28ad565dd4ce8cd6570810f0cc24d8e60"
+    },
+    {
+      "provider_workshop_id": "3457401824",
+      "virtual_path": "events/oathbound_heir_events.txt",
+      "source_sha256": "da4feee8a031f770c021cbbf90e72880d44890d2b42ea67a50a3700e9a7b6aac",
+      "transformations": [
+        "P20.4"
+      ],
+      "replacement_counts": {
+        "event_variable_triggers_inserted": 2,
+        "variable_scope_switches_softened": 3
+      },
+      "built_sha256": "565244825e173d1e0544403d5b38fd39810c3c851fd3e946718c5870449b08f3"
+    },
+    {
+      "provider_workshop_id": "3457401824",
+      "virtual_path": "events/scheme_events/oathbound_sway_vassals_events.txt",
+      "source_sha256": "df16dca1d975080cb06c99de9069880a333bf93160bcc0cf7bfee88f70d4d959",
+      "transformations": [
+        "P20.5"
+      ],
+      "replacement_counts": {
+        "persia_branches_replaced": 1
+      },
+      "built_sha256": "038abd4c2e77cf649714dfad9e95a20794be48fcf2e2f16f6f00383200f4d5d8"
     },
     {
       "provider_workshop_id": "3316173814",
@@ -203,25 +582,126 @@
         "P07_SCROLLAREA_IGNOREINVISIBLE": 1
       },
       "built_sha256": "e2b5a8da661a5d3d4e5695e52183cc5f400160c99c03ac85e06d54dd35864389"
-    },
-    {
-      "provider_workshop_id": "additive",
-      "virtual_path": "common/modifier_definition_formats/zz_observer_stack_culture_opinion_definitions.txt",
-      "source_sha256": null,
-      "transformations": [
-        "P03_VALEMAN_DEF_FORMAT"
-      ],
-      "replacement_counts": {
-        "created_file": 1
-      },
-      "built_sha256": "7f944979b7faaf4332b35db9ea1ec7d044e3cce218decef1404fa0f7ee628bc6"
     }
   ],
   "p08_miv_agot_cb_patch": {
     "old_hash": "e03f3400ec01f0f871e3d3259b6eea2de0266a5e04accadac728924ef722baf6",
     "new_hash": "d402a25411f7d691ae682f8e99fc88aca1c4fc09ac089c3a47fdade14dd1ab8e",
     "version": "1.0.1",
-    "staged_pointer": "version=\"1.0.1\"\ntags={\n\t\"Utilities\"\n}\nname=\"MIV - AGOT CB Compatibility\"\ndependencies={\n\t\"A Game of Thrones\"\n\t\"More Interactive Vassals\"\n}\nsupported_version=\"1.19.0.6\"\npath=\"/Users/franco/Documents/Paradox Interactive/Crusader Kings III/mod/miv_agot_cb_patch\"",
-    "disabled_using_cb_total": 16
+    "disabled_using_cb_total": 16,
+    "gameplay_virtual_path": "common/on_action/interactive_on_actions.txt",
+    "gameplay_sha256": "d402a25411f7d691ae682f8e99fc88aca1c4fc09ac089c3a47fdade14dd1ab8e",
+    "metadata_only_change_in_v1_1": true
+  },
+  "previous_patch_version": "1.0.0",
+  "playset_target": "52-mod successor playset; P09-P22 evidence derived from the 49-mod Tybert run",
+  "protected_opb_patch": {
+    "version": "1.0.1",
+    "status": "unchanged pre/post",
+    "files": {
+      "descriptor.mod": "9b95165c8c2d00db46767811cdfb50b14c8e38c2977e6760d2ae4024b281464f",
+      "common/on_action/zz_gptev_on_actions.txt": "94548f0f048fe90cf568535edaaa9f15e13b5a2f6b7f2b3cbe02853be9a8ca63",
+      "events/zz_gptev_events.txt": "451f7aa31f248521fc4630ca365d2f16e6eb4fc24747a0231410b4f67a1c78d2",
+      "common/on_action/xx_gptc_on_action_replace.txt": "fd6274c02e1b053147a657ed935acaa2fa08b136844e0e99814ddbd5b7d50e6d"
+    }
+  },
+  "static_ownership_condition": "Observer Stack is the intended final provider only if the user loads it after all sources/patches it overrides; Immersive Personalities and Royal Court Event Pack then load as configured, and AGOT OPB Addon Compatibility loads final.",
+  "implementation_counts": {
+    "META_DEPENDENCY_AGOT - Claimant Faction War Fix": 1,
+    "META_DEPENDENCY_AGOT: House Founders": 1,
+    "META_DEPENDENCY_Advanced Character Search": 1,
+    "META_DEPENDENCY_Grand Remembrance": 1,
+    "META_DEPENDENCY_Grand Remembrance - AGOT Compatibility Submod": 1,
+    "META_DEPENDENCY_Legacy Of The Dragon": 1,
+    "META_DEPENDENCY_Oathbound": 1,
+    "META_MIV_VERSION": 1,
+    "META_OBSERVER_VERSION": 1,
+    "P09_DEAD_HOLDER_BRANCH": 1,
+    "P09_LIVING_REALM_GUARD": 1,
+    "P09_LORD_SOFT_SCOPE": 1,
+    "P10_CLAIM_RULER_GUARD": 1,
+    "P10_KICK_EFFECT_ACTOR_GUARDS": 2,
+    "P10_USEFUL_CLAIM_RULER_GUARD": 1,
+    "P11_AI_NO_PROMOTER_GUARD": 1,
+    "P11_AI_ONE_HOUSE_GUARD": 1,
+    "P11_PICKED_TITLE_GUARD": 1,
+    "P11_VALID_TARGET_GUARD": 1,
+    "P12_AEGON_III_CROWN_CREATOR": 1,
+    "P12_AENYS_CROWN_CREATOR": 1,
+    "P12_BAELORS_CROWN_CREATOR": 1,
+    "P12_JOFFREYI_CREATOR": 1,
+    "P12_MAEKARS_CROWN_CREATOR": 1,
+    "P12_RENLY_CREATOR": 1,
+    "P12_ROBERTI_CREATOR": 1,
+    "P12_VISENYA_CIRCLET_CREATOR": 1,
+    "P13_ORPHAN_CITY_HOOKS_REMOVED": 3,
+    "P14_CANON_DRAGON_SCHEMES_REMOVED": 24,
+    "P14_EFFECT_SHIMS_CREATED": 7,
+    "P14_TRIGGER_SHIMS_CREATED": 4,
+    "P14_TYRION_NICKNAME": 1,
+    "P14_YEARLY_DRAGON_SCHEMES_REMOVED": 10,
+    "P15_LIEGE_GUARD": 1,
+    "P16_MEMORY_SOFT_SCOPE": 1,
+    "P17_OPTION_VARIABLE_GUARD": 1,
+    "P18_AGOT_FACTON_REASON_CLAIMANT_IS_LEGITIMATE_HOUSE_PREREQUISITES": 1,
+    "P18_AGOT_FACTON_REASON_CLAIMANT_IS_NOT_LEGITIMATE_HOUSE_PREREQUISITES": 1,
+    "P18_SPECIAL_TITLE_GUARD": 1,
+    "P19_NEW_RULER_PREREQUISITES": 1,
+    "P20_CB_GUARD_oathbound_county_conquest_cb": 1,
+    "P20_CB_GUARD_oathbound_duchy_conquest_cb": 1,
+    "P20_CB_GUARD_oathbound_kingdom_claim_conquest_cb": 1,
+    "P20_CONTROL_TASK_VARIABLE_GUARD": 1,
+    "P20_CUSTOM_LOC_TYPE_GetOathholderControlTargetName": 1,
+    "P20_CUSTOM_LOC_TYPE_GetOathholderDuelTargetLocationName": 1,
+    "P20_CUSTOM_LOC_TYPE_GetOathholderDuelTargetName": 1,
+    "P20_CUSTOM_LOC_TYPE_GetOathholderName": 1,
+    "P20_CUSTOM_LOC_TYPE_GetOathkeeperName": 1,
+    "P20_FORCED_HEIR_PREREQUISITES": 1,
+    "P20_HEIR_EVENT_SOFT_SCOPES": 3,
+    "P20_HEIR_EVENT_TRIGGER": 1,
+    "P20_KILL_TASK_VARIABLE_GUARD": 1,
+    "P20_PERMANENT_HEIR_PREREQUISITES_the_permanent_oath_oathholder_perspective": 1,
+    "P20_PERMANENT_HEIR_PREREQUISITES_the_permanent_oath_oathholder_perspective_not_valid": 1,
+    "P20_RANSOM_PERSIA_BRANCH_REMOVED": 1,
+    "P20_ROOT_HEIR_SOFT_SCOPE": 1,
+    "P20_SWAY_PERSIA_BRANCH_REPLACED": 1,
+    "P20_SWAY_TASK_VARIABLE_GUARD": 1,
+    "P20_TASK_TARGET_SCOPE_CORRECTIONS": 2,
+    "P20_TARGET_HEIR_SOFT_SCOPE": 1,
+    "P21_BORN_PURPLE_REMOVED": 1,
+    "P21_CROSSINGS_SECTION_REMOVED": 1,
+    "P21_ELECTIVE_SECTION_REMOVED": 1,
+    "P21_FABRICATE_DEFINITION_REPLACED": 1,
+    "P21_GR_TRAIT_REMOVED_augustus": 1,
+    "P21_GR_TRAIT_REMOVED_confucian_education": 1,
+    "P21_GR_TRAIT_REMOVED_hajjaj": 1,
+    "P21_GR_TRAIT_REMOVED_varangian": 1,
+    "P21_MEMORY_TRIGGER_gr_obituary_events.txt": 6,
+    "P21_MEMORY_TRIGGER_gr_obituary_replay_events.txt": 6,
+    "P21_PAPACY_BLOCK_REMOVED": 1,
+    "P21_PAPACY_COMMENT_REMOVED": 1,
+    "P21_PHYSICIAN_CHAIN_REMOVED": 3,
+    "P21_RICE_REVALIDATE_NEUTRALIZED": 1,
+    "P21_RICE_TRAIT_SECTION_REMOVED": 1,
+    "P22_CONFUCIAN_CASES_REPLACED": 14,
+    "P22_COUNCIL_CASES_REPLACED": 10,
+    "P22_GUNPOWDER_CASES_REPLACED": 2,
+    "P22_MINISTER_CASES_REPLACED": 18,
+    "P22_MISSING_TRAIT_CASES_REPLACED": 24,
+    "P22_MIXED_KEY_REMOVED_innovation_legionnaires": 2,
+    "P22_MIXED_KEY_REMOVED_innovation_repeating_crossbow": 2,
+    "P22_MIXED_KEY_REMOVED_innovation_sarawit": 2,
+    "P22_MIXED_KEY_REMOVED_innovation_valets": 2,
+    "P22_MIXED_KEY_REMOVED_tradition_burman_royal_army": 2,
+    "P22_MIXED_KEY_REMOVED_tradition_caucasian_wolves": 2,
+    "P22_MIXED_KEY_REMOVED_tradition_druzhina": 2,
+    "P22_MIXED_KEY_REMOVED_tradition_futuwaa": 2,
+    "P22_MIXED_KEY_REMOVED_tradition_garuda_warriors": 2,
+    "P22_MIXED_KEY_REMOVED_tradition_himalayan_settlers": 2,
+    "P22_MIXED_KEY_REMOVED_tradition_khadga_puja": 2,
+    "P22_MIXED_KEY_REMOVED_tradition_mountaineer_ruralism": 2,
+    "P22_MIXED_KEY_REMOVED_tradition_mubarizuns": 2,
+    "P22_MIXED_KEY_REMOVED_tradition_roman_legacy": 2,
+    "P22_RELIGION_FAMILY_CASES_REPLACED": 8
   }
 }

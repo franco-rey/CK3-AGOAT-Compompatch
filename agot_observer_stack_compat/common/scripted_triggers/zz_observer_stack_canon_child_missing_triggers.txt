@@ -1,0 +1,4 @@
+﻿asoiaf_canon_children_Targaryen_101_trigger = { always = no }
+asoiaf_canon_children_Targaryen_102_trigger = { always = no }
+asoiaf_canon_children_Targaryen_103_trigger = { always = no }
+asoiaf_canon_children_Targaryen_104_trigger = { always = no }

@@ -2863,7 +2863,7 @@ asoiaf_canon_children_Lannister_8_birth_effect = { #Tyrion Lannister (son of Tyw
 			add_learning_skill = 10
 			add_trait = dwarf
 			add_trait = intellect_good_3
-			give_nickname = nick_the_imp
+			give_nickname = nick_agot_historical_the_imp
 			add_trait = curious
 
 			if = {
@@ -4318,10 +4318,6 @@ asoiaf_canon_children_Targaryen_30_birth_effect = { #Aenys I Targaryen
 						title = bond_dragon_notification
 						left_icon = scope:child
 						right_icon = character:dragon_quicksilver
-						start_scheme = {
-							type = bond_with_dragon_scheme
-							target = character:dragon_quicksilver
-						}
 					}
 				}
 			}
@@ -4412,10 +4408,6 @@ asoiaf_canon_children_Targaryen_31_birth_effect = { #Maegor I Targaryen
 						title = bond_dragon_notification
 						left_icon = scope:child
 						right_icon = character:dragon_balerion
-						start_scheme = {
-							type = bond_with_dragon_scheme
-							target = character:dragon_balerion
-						}
 					}
 				}
 			}
@@ -4564,10 +4556,6 @@ asoiaf_canon_children_Targaryen_33_birth_effect = { #Aegon Targaryen (son of Aen
 						title = bond_dragon_notification
 						left_icon = scope:child
 						right_icon = character:dragon_quicksilver
-						start_scheme = {
-							type = bond_with_dragon_scheme
-							target = character:dragon_quicksilver
-						}
 					}
 				}
 			}
@@ -4724,10 +4712,6 @@ asoiaf_canon_children_Targaryen_35_birth_effect = { #Jaehaerys I Targaryen
 						title = bond_dragon_notification
 						left_icon = scope:child
 						right_icon = character:dragon_vermithor
-						start_scheme = {
-							type = bond_with_dragon_scheme
-							target = character:dragon_vermithor
-						}
 					}
 				}
 			}
@@ -4814,10 +4798,6 @@ asoiaf_canon_children_Targaryen_36_birth_effect = { #Alysanne Targaryen (daughte
 						title = bond_dragon_notification
 						left_icon = scope:child
 						right_icon = character:dragon_silverwing
-						start_scheme = {
-							type = bond_with_dragon_scheme
-							target = character:dragon_silverwing
-						}
 					}
 				}
 			}
@@ -5109,10 +5089,6 @@ asoiaf_canon_children_Targaryen_41_and_42_birth_effect = { #Aerea & Rhaella Targ
 						title = bond_dragon_notification
 						left_icon = scope:child
 						right_icon = character:dragon_balerion
-						start_scheme = {
-							type = bond_with_dragon_scheme
-							target = character:dragon_balerion
-						}
 					}
 				}
 			}
@@ -5341,10 +5317,6 @@ asoiaf_canon_children_Targaryen_45_birth_effect = { #Aemon Targaryen (son of Jae
 						title = bond_dragon_notification
 						left_icon = scope:child
 						right_icon = character:dragon_caraxes
-						start_scheme = {
-							type = bond_with_dragon_scheme
-							target = character:dragon_caraxes
-						}
 					}
 				}
 			}
@@ -5473,10 +5445,6 @@ asoiaf_canon_children_Targaryen_47_birth_effect = { #Alyssa Targaryen (daughter 
 						title = bond_dragon_notification
 						left_icon = scope:child
 						right_icon = character:dragon_meleys
-						start_scheme = {
-							type = bond_with_dragon_scheme
-							target = character:dragon_meleys
-						}
 					}
 				}
 			}
@@ -6238,10 +6206,6 @@ asoiaf_canon_children_Targaryen_59_birth_effect = { #Rhaenys Targaryen (daughter
 						title = bond_dragon_notification
 						left_icon = scope:child
 						right_icon = character:dragon_meleys
-						start_scheme = {
-							type = bond_with_dragon_scheme
-							target = character:dragon_meleys
-						}
 					}
 				}
 			}
@@ -6345,10 +6309,6 @@ asoiaf_canon_children_Targaryen_60_birth_effect = { #Viserys I Targaryen
 						title = bond_dragon_notification
 						left_icon = scope:child
 						right_icon = character:dragon_balerion
-						start_scheme = {
-							type = bond_with_dragon_scheme
-							target = character:dragon_balerion
-						}
 					}
 				}
 			}
@@ -6447,10 +6407,6 @@ asoiaf_canon_children_Targaryen_61_birth_effect = { #Daemon Targaryen (son of Ba
 						title = bond_dragon_notification
 						left_icon = scope:child
 						right_icon = character:dragon_caraxes
-						start_scheme = {
-							type = bond_with_dragon_scheme
-							target = character:dragon_caraxes
-						}
 					}
 				}
 			}
@@ -6631,10 +6587,6 @@ asoiaf_canon_children_Targaryen_63_birth_effect = { #Rhaenyra Targaryen (daughte
 						title = bond_dragon_notification
 						left_icon = scope:child
 						right_icon = character:dragon_syrax
-						start_scheme = {
-							type = bond_with_dragon_scheme
-							target = character:dragon_syrax
-						}
 					}
 				}
 			}
@@ -6796,10 +6748,6 @@ asoiaf_canon_children_Targaryen_65_birth_effect = { #Aegon II Targaryen
 						title = bond_dragon_notification
 						left_icon = scope:child
 						right_icon = character:dragon_sunfyre
-						start_scheme = {
-							type = bond_with_dragon_scheme
-							target = character:dragon_sunfyre
-						}
 					}
 				}
 			}
@@ -6919,10 +6867,6 @@ asoiaf_canon_children_Targaryen_66_birth_effect = { #Helaena Targaryen (daughter
 						title = bond_dragon_notification
 						left_icon = scope:child
 						right_icon = character:dragon_dreamfyre
-						start_scheme = {
-							type = bond_with_dragon_scheme
-							target = character:dragon_dreamfyre
-						}
 					}
 				}
 			}
@@ -7029,10 +6973,6 @@ asoiaf_canon_children_Targaryen_67_birth_effect = { #Aemond Targaryen (son of Vi
 						title = bond_dragon_notification
 						left_icon = scope:child
 						right_icon = character:dragon_vhagar
-						start_scheme = {
-							type = bond_with_dragon_scheme
-							target = character:dragon_vhagar
-						}
 					}
 				}
 			}
@@ -7179,10 +7119,6 @@ asoiaf_canon_children_Targaryen_68_birth_effect = { #Daeron Targaryen (son of Vi
 						title = bond_dragon_notification
 						left_icon = scope:child
 						right_icon = character:dragon_tessarion
-						start_scheme = {
-							type = bond_with_dragon_scheme
-							target = character:dragon_tessarion
-						}
 					}
 				}
 			}
@@ -7321,10 +7257,6 @@ asoiaf_canon_children_Targaryen_69_birth_effect = { #Baela Targaryen (daughter o
 						title = bond_dragon_notification
 						left_icon = scope:child
 						right_icon = character:dragon_moondancer
-						start_scheme = {
-							type = bond_with_dragon_scheme
-							target = character:dragon_moondancer
-						}
 					}
 				}
 			}
@@ -7408,10 +7340,6 @@ asoiaf_canon_children_Targaryen_70_birth_effect = { #Rhaena Targaryen (daughter 
 						title = bond_dragon_notification
 						left_icon = scope:child
 						right_icon = character:dragon_morning
-						start_scheme = {
-							type = bond_with_dragon_scheme
-							target = character:dragon_morning
-						}
 					}
 				}
 			}
@@ -7730,10 +7658,6 @@ asoiaf_canon_children_Targaryen_75_birth_effect = { #Jacaerys Velaryon (son of R
 						title = bond_dragon_notification
 						left_icon = scope:child
 						right_icon = character:dragon_vermax
-						start_scheme = {
-							type = bond_with_dragon_scheme
-							target = character:dragon_vermax
-						}
 					}
 				}
 			}
@@ -7883,10 +7807,6 @@ asoiaf_canon_children_Targaryen_76_birth_effect = { #Lucerys Velaryon (son of Rh
 						title = bond_dragon_notification
 						left_icon = scope:child
 						right_icon = character:dragon_arrax
-						start_scheme = {
-							type = bond_with_dragon_scheme
-							target = character:dragon_arrax
-						}
 					}
 				}
 			}
@@ -8029,10 +7949,6 @@ asoiaf_canon_children_Targaryen_77_birth_effect = { #Joffrey Velaryon (son of Rh
 						title = bond_dragon_notification
 						left_icon = scope:child
 						right_icon = character:dragon_tyraxes
-						start_scheme = {
-							type = bond_with_dragon_scheme
-							target = character:dragon_tyraxes
-						}
 					}
 				}
 			}
@@ -8174,10 +8090,6 @@ asoiaf_canon_children_Targaryen_78_birth_effect = { #Aegon III Targaryen
 						title = bond_dragon_notification
 						left_icon = scope:child
 						right_icon = character:dragon_stormcloud
-						start_scheme = {
-							type = bond_with_dragon_scheme
-							target = character:dragon_stormcloud
-						}
 					}
 				}
 			}
@@ -11580,10 +11492,6 @@ asoiaf_canon_children_Velaryon_34_birth_effect = { #Laena Velaryon (daughter of 
 						title = bond_dragon_notification
 						left_icon = scope:child
 						right_icon = character:dragon_vhagar
-						start_scheme = {
-							type = bond_with_dragon_scheme
-							target = character:dragon_vhagar
-						}
 					}
 				}
 			}
@@ -11664,10 +11572,6 @@ asoiaf_canon_children_Velaryon_35_birth_effect = { #Laenor Velaryon (son of Corl
 						title = bond_dragon_notification
 						left_icon = scope:child
 						right_icon = character:dragon_seasmoke
-						start_scheme = {
-							type = bond_with_dragon_scheme
-							target = character:dragon_seasmoke
-						}
 					}
 				}
 			}

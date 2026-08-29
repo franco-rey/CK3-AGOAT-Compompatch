@@ -1,0 +1,43 @@
+﻿namespace = oathbound_sway_vassals_outcome
+
+oathbound_sway_vassals_outcome.0001 = {
+	hidden = yes
+
+	immediate = {
+		send_interface_message = {
+			type = sway_good_message
+			title = sway_sway_success_message
+			left_icon = scope:target
+			scope:target = {
+				if = {
+					limit = {
+						exists = scope:owner
+						scope:owner ?= { has_variable = val_oathholder }
+					}
+					add_opinion = {
+						target = scope:owner.var:val_oathholder
+						modifier = scheme_sway_opinion
+						opinion = sway_opinion_increase_per_success
+					}
+				}
+			}
+			sway_end_effect = yes
+		}
+	}
+}
+
+oathbound_sway_vassals_outcome.0002 = {
+	hidden = yes
+
+	immediate = {
+		send_interface_message = {
+			type = sway_bad_message
+			title = sway_sway_failed_message
+			left_icon = scope:target
+			stress_impact = {
+				gregarious = minor_stress_impact_gain
+			}
+			sway_end_effect = yes
+		}
+	}
+}

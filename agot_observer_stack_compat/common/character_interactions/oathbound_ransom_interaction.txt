@@ -1,0 +1,1072 @@
+﻿oathbound_pay_ransom_interaction = {
+	interface_priority = 50
+	common_interaction = no
+	use_diplomatic_range = no
+	category = interaction_category_prison
+	icon = icon_gold
+
+	redirect = {
+		scope:recipient = {
+			save_scope_as = secondary_recipient
+			if = {
+				limit = {
+					exists = imprisoner
+				}
+				imprisoner = { save_scope_as = recipient }
+			}
+		}
+	}
+
+	desc = oathbound_pay_ransom_interaction_desc
+
+	cost = {
+		influence = {
+			value = 0
+			if = {
+				limit = { scope:influence_send_option = yes }
+				add = scope:actor.medium_influence_value
+				desc = INFLUENCE_INTERACTION_ACCEPTANCE_SEND_OPTION
+			}
+		}
+	}
+
+	greeting = positive
+	notification_text = PAY_RANSOM_PROPOSAL
+
+	is_shown = {
+		exists = scope:recipient
+		scope:secondary_recipient = {
+			NOT = {
+				this = scope:actor
+			}
+			is_imprisoned_by = scope:recipient
+			OR = {
+				has_relation_oathbound = scope:actor
+				has_relation_oathholder = scope:actor
+			}
+		}
+		NOT = {
+			scope:actor = scope:recipient
+		}
+	}
+
+	is_valid_showing_failures_only = {
+		scope:recipient = { is_available = no } #Imprisoner
+		scope:secondary_recipient = { is_available = no } #Prisoner
+		scope:recipient = {
+			custom_description = {
+				text = "currently_being_tortured"
+				NOT = { has_character_flag = is_being_tortured }
+			}
+		}
+		cannot_release_former_regent_whilst_old_regent_holds_power_trigger = {
+			PRISONER = scope:recipient
+			REGENT = scope:recipient.var:imprisoned_by_diarch
+		}
+	}
+
+	on_accept = {
+		# Set up event scopes and trigger the exchange.
+		if = {
+			limit = { scope:secondary_recipient = { is_imprisoned_by = scope:recipient } }
+			scope:secondary_recipient = {
+				save_scope_as = prisoner
+			}
+			scope:recipient = {
+				save_scope_as = imprisoner
+				if = {
+					limit = {
+						employs_court_position = person_haggler_camp_officer
+						is_asking_for_gold_in_ransom_trigger = yes
+					}
+					random_court_position_holder = {
+						type = person_haggler_camp_officer
+						save_scope_as = haggler
+					}
+					custom_tooltip = has_person_haggler_increase_ransom_cost
+				}
+			}
+			scope:actor = {
+				save_scope_as = payer
+				if = {
+					limit = {
+						employs_court_position = person_haggler_camp_officer
+						is_asking_for_gold_in_ransom_trigger = yes
+					}
+					random_court_position_holder = {
+						type = person_haggler_camp_officer
+						save_scope_as = haggler
+
+					}
+					scope:prisoner = {
+						save_scope_value_as = {
+							name = new_ransom_value
+							value = haggler_ransom_cost_modifier
+						}
+					}
+					custom_tooltip = has_person_haggler_decrease_ransom_cost
+				}
+				# Stress impacts
+				if = {
+					limit = {
+						scope:prisoner = { # Stress impact for random courtiers
+							NOR = {
+								is_vassal_of = scope:actor
+								is_consort_of = scope:actor
+								is_close_family_of = scope:actor
+								dynasty ?= {
+									this ?= scope:actor.dynasty
+								}
+								any_spouse = {
+									OR = {
+										is_close_family_of = scope:actor
+										dynasty ?= {
+											this ?= scope:actor.dynasty
+										}
+									}
+								}
+								has_relation_lover = scope:actor
+								has_relation_friend = scope:actor
+							}
+						}
+					}
+					stress_impact = {
+						compassionate = minor_stress_impact_loss
+						generous = medium_stress_impact_loss
+					}
+				}
+				else_if = { # Stress impact for 'relevant' ransoms; in other words, everyone but random courtiers
+					limit = {
+						scope:prisoner = {
+							OR = {
+								is_vassal_of = scope:actor
+								is_consort_of = scope:actor
+								is_close_family_of = scope:actor
+								dynasty ?= {
+									this ?= scope:actor.dynasty
+								}
+								any_spouse = {
+									OR = {
+										is_close_family_of = scope:actor
+										dynasty ?= {
+											this ?= scope:actor.dynasty
+										}
+									}
+								}
+								has_relation_lover = scope:actor
+								has_relation_friend = scope:actor
+							}
+						}
+					}
+					stress_impact = {
+						compassionate = medium_stress_impact_loss
+						generous = minor_stress_impact_loss
+						just = minor_stress_impact_loss
+					}
+				}
+
+				if = { # Lustful characters want their lovers back
+					limit = {
+						scope:prisoner = {
+							has_relation_lover = scope:actor
+						}
+					}
+					stress_impact = {
+						lustful = major_stress_impact_loss
+					}
+				}
+
+				if = { # Loyal characters want to free their friends and lovers
+					limit = {
+						scope:prisoner = {
+							OR = {
+								has_relation_friend = scope:actor
+								has_relation_lover = scope:actor
+							}
+						}
+					}
+					stress_impact = {
+						loyal = major_stress_impact_loss
+					}
+				}
+
+				if = { # Family should be free!
+					limit = {
+						scope:prisoner = {
+							is_close_family_of = scope:payer
+						}
+					}
+					stress_impact = {
+						family_first = miniscule_stress_impact_loss
+					}
+				}
+
+				# If the payer doesn't have enough funds to pay the full amount and we're only requesting their current funds, save how much they've agreed to pay.
+				if = {
+					limit = {
+						OR = {
+							exists = scope:current_gold
+							exists = scope:extortionate_current_gold
+						}
+					}
+					save_scope_value_as = {
+						name = ransom_saved_gold_value
+						value = scope:payer.current_gold_value
+					}
+				}
+
+				# Must come after we save the payment value, or the payer won't know how much they need to pay.
+				trigger_event = char_interaction.0140
+			}
+			hidden_effect = {
+				scope:prisoner = {
+					send_interface_toast = {
+						type = event_toast_effect_good
+						title = ransomed_by_someone
+						left_icon = scope:payer
+						show_as_tooltip = {
+							scope:imprisoner = {
+								ransom_interaction_effect = yes
+							}
+						}
+					}
+				}
+				scope:prisoner = {
+					if = {
+						limit = {
+							liege ?= {
+								is_ai = no
+								NOR = {
+									this = scope:payer
+									this = scope:imprisoner
+								}
+								OR = {
+									is_close_or_extended_family_of = scope:prisoner
+									is_consort_of = scope:prisoner
+									has_relation_lover = scope:prisoner
+									has_relation_friend = scope:prisoner
+								}
+							}
+						}
+						liege = {
+							save_scope_as = prisoner_liege_scope
+							send_interface_toast = {
+								type = event_toast_effect_good
+								title = ransomed_by_someone_third_party
+								left_icon = scope:payer
+								right_icon = scope:prisoner
+								custom_tooltip = ransomed_by_someone_third_party_desc
+							}
+						}
+					}
+				}
+			}
+			scope:imprisoner = {
+				send_interface_message = {
+					type = event_prison_neutral
+					title = recipient_released_from_prison
+					right_icon = scope:prisoner
+					left_icon = scope:imprisoner
+					ransom_interaction_effect = yes
+				}
+
+				# Struggle Catalyst
+				if = {
+					limit = {
+						any_character_struggle = {
+							involvement = involved
+							activate_struggle_catalyst_secondary_character_involvement_involved_trigger = {
+								CATALYST = catalyst_ransom_important
+								CHAR = scope:prisoner
+							}
+						}
+					}
+					every_character_struggle = {
+						involvement = involved
+						limit = {
+							activate_struggle_catalyst_secondary_character_involvement_involved_trigger = {
+								CATALYST = catalyst_ransom_important
+								CHAR = scope:prisoner
+							}
+						}
+						activate_struggle_catalyst = {
+							catalyst = catalyst_ransom_important
+							character = scope:imprisoner
+						}
+					}
+				}
+			}
+			if = {
+				limit = { scope:hook = yes }
+				scope:actor = {
+					use_hook = scope:recipient
+				}
+			}
+		}
+
+		# If we're a clan this interaction affects unity
+		add_clan_unity_interaction_effect = {
+			CHARACTER = scope:actor
+			TARGET = scope:prisoner
+			VALUE = medium_unity_gain
+			DESC = clan_unity_ransom.desc
+			REVERSE_NON_HOUSE_TARGET = no
+		}
+	}
+
+	on_decline = {
+		# If a player declines this ransom offer, wait 10 years before sending another one (they presumably have reasons for keeping that character in prison).
+		if = {
+			limit = { scope:recipient = { is_ai = no } }
+			scope:secondary_recipient = {
+				add_character_flag = {
+					flag = character_ransom_refused_by_player
+					years = 10
+				}
+			}
+		}
+
+		# Trigger notification event
+		scope:actor = {
+			trigger_event = char_interaction.0141
+		}
+	}
+
+	send_option = {
+		is_shown = {
+			exists = scope:recipient
+			scope:recipient = {
+				exists = dynasty
+				dynasty = {
+					has_dynasty_perk = fp1_pillage_legacy_3
+				}
+			}
+		}
+		is_valid = {
+			exists = scope:recipient
+			scope:actor = {
+				gold >= scope:secondary_recipient.increased_ransom_cost_value
+			}
+		}
+		starts_enabled = {
+			exists = scope:recipient
+			scope:recipient = {
+				exists = dynasty
+				dynasty = {
+					has_dynasty_perk = fp1_pillage_legacy_3
+				}
+			}
+			scope:actor = {
+				gold >= scope:secondary_recipient.increased_ransom_cost_value
+			}
+		}
+		flag = extortionate_gold
+		localization = "RANSOM_EXTORTIONATE_GOLD_IMPRISONED_PERSPECTIVE_OPTION"
+	}
+
+	# If you don't have what they're worth, pay me what you have (extort version)!
+	send_option = {
+		is_shown = {
+			exists = scope:recipient
+			scope:recipient = {
+				exists = dynasty
+				dynasty = {
+					has_dynasty_perk = fp1_pillage_legacy_3
+				}
+			}
+			scope:actor = {
+				gold < scope:secondary_recipient.increased_ransom_cost_value
+				gold > 0
+			}
+		}
+		starts_enabled = {
+			exists = scope:recipient
+			scope:recipient = {
+				exists = dynasty
+				dynasty = {
+					has_dynasty_perk = fp1_pillage_legacy_3
+				}
+			}
+			scope:actor = {
+				gold < scope:secondary_recipient.increased_ransom_cost_value
+				gold > 0
+			}
+		}
+		flag = extortionate_current_gold
+		localization = "RANSOM_EXTORTIONATE_CURRENT_GOLD_IMPRISONED_PERSPECTIVE_OPTION"
+	}
+
+	send_option = {
+		is_shown = {
+			exists = scope:recipient
+			scope:recipient = {
+				OR = {
+					is_lowborn = yes
+					NOT = {
+						dynasty = {
+							has_dynasty_perk = fp1_pillage_legacy_3
+						}
+					}
+				}
+			}
+		}
+		is_valid = {
+			exists = scope:recipient
+			scope:actor = {
+				gold >= scope:secondary_recipient.ransom_cost_value
+			}
+		}
+		starts_enabled = {
+			exists = scope:recipient
+			scope:recipient = {
+				OR = {
+					is_lowborn = yes
+					NOT = {
+						dynasty = {
+							has_dynasty_perk = fp1_pillage_legacy_3
+						}
+					}
+				}
+			}
+			scope:actor = {
+				gold >= scope:secondary_recipient.ransom_cost_value
+			}
+		}
+		flag = gold
+		localization = "RANSOM_GOLD_PAY_OPTION"
+	}
+
+	# If you don't have what they're worth, pay me what you have!
+	send_option = {
+		is_shown = {
+			exists = scope:recipient
+			scope:recipient = {
+				OR = {
+					is_lowborn = yes
+					NOT = {
+						dynasty = {
+							has_dynasty_perk = fp1_pillage_legacy_3
+						}
+					}
+				}
+			}
+			scope:actor = {
+				gold < scope:secondary_recipient.ransom_cost_value
+				gold > 0
+			}
+		}
+		starts_enabled = {
+			exists = scope:recipient
+			scope:recipient = {
+				OR = {
+					is_lowborn = yes
+					NOT = {
+						dynasty = {
+							has_dynasty_perk = fp1_pillage_legacy_3
+						}
+					}
+				}
+			}
+			scope:actor = {
+				gold < scope:secondary_recipient.ransom_cost_value
+				gold > 0
+			}
+		}
+		flag = current_gold
+		localization = "RANSOM_CURRENT_PAY_GOLD_OPTION"
+	}
+
+	send_option = {
+		is_valid = {
+			exists = scope:recipient
+			scope:recipient = {
+				can_add_hook = { #To match the hook added through ransom_interaction_effect
+					target = scope:actor
+					type = favor_hook
+				}
+			}
+		}
+		flag = favor
+		localization = "RANSOM_OWE_FAVOR_OPTION"
+	}
+
+	send_option = { # EP3 Influence
+		is_shown = { # Actor must have a government that uses influence 
+			scope:actor = {
+				government_has_flag = government_has_influence
+			}
+		}
+		is_valid = {
+			# Actor has enough influence
+			scope:actor = { influence >= medium_influence_value }
+			# Both characters are within the same top realm
+			custom_tooltip = {
+				text = not_same_realm_tt
+				scope:recipient.top_liege = scope:actor.top_liege
+			}
+		}
+		flag = influence_send_option
+		localization = TRADE_INFLUENCE_FOR_BETTER_AI_ACCEPTANCE
+	}
+
+	#Use hook
+	send_option = {
+		is_valid = {
+			exists = scope:recipient
+			scope:actor = {
+				has_usable_hook = scope:recipient
+			}
+		}
+		flag = hook
+		localization = SCHEME_HOOK
+	}
+	should_use_extra_icon = {
+		scope:actor = { has_usable_hook = scope:recipient }
+	}
+	extra_icon = "gfx/interface/icons/character_interactions/hook_icon.dds"
+
+	send_options_exclusive = no
+
+	localization_values = {
+		EXTORTIONATE_RANSOM_COST = scope:secondary_recipient.increased_ransom_cost_value
+		RANSOM_COST = scope:secondary_recipient.ransom_cost_value
+		CURRENT_GOLD = scope:actor.gold
+	}
+
+	ai_accept = {
+		base = 0
+		modifier = {
+			add = 50
+			OR = {
+				scope:gold = yes
+				scope:extortionate_gold = yes
+			}
+			desc = "GOLD_POSITIVE_REASON"
+		}
+		modifier = { # Accept more than half the ransom (unless greedy)
+			add = 25
+			scope:current_gold = yes
+			AND = {
+				scope:actor = { gold >= scope:secondary_recipient.half_ransom_cost_value }
+				NOT = { scope:recipient.ai_greed >= medium_positive_ai_value }
+			}
+			desc = "GOLD_POSITIVE_REASON"
+		}
+		modifier = { # Accept more than half the ransom (unless greedy)
+			add = 25
+			scope:extortionate_current_gold = yes
+			AND = {
+				scope:actor = { gold >= scope:secondary_recipient.half_increased_ransom_cost_value }
+				NOT = { scope:recipient.ai_greed >= medium_positive_ai_value }
+			}
+			desc = "GOLD_POSITIVE_REASON"
+		}
+		modifier = {
+			add = 50
+			scope:favor = yes
+			scope:recipient.top_liege = scope:actor.top_liege
+			desc = "FAVOR_POSITIVE_REASON"
+		}
+		modifier = {
+			add = 0
+			scope:favor = yes
+			NOT = { scope:recipient.top_liege = scope:actor.top_liege }
+			desc = "NO_USE_FOR_A_FAVOR_REASON"
+		}
+		modifier = { # For clarification
+			add = 0
+			OR = {
+				scope:current_gold = yes
+				scope:extortionate_current_gold = yes
+			}
+			OR = {
+				scope:actor = { gold < scope:secondary_recipient.half_ransom_cost_value }
+				scope:recipient.ai_greed >= medium_positive_ai_value
+			}
+			desc = "WANTS_MORE_GOLD"
+		}
+		modifier = { # Say no to rivals
+			add = -55
+			scope:recipient = {
+				has_relation_rival = scope:secondary_recipient
+			}
+			desc = "RIVAL_TO_ME_REASON"
+		}
+		modifier = { # Say no to rivals
+			add = -300
+			scope:recipient = {
+				has_relation_nemesis = scope:secondary_recipient
+			}
+			desc = "NEMESIS_TO_ME_REASON"
+		}
+		modifier = { # At war
+			add = -300
+			scope:recipient = {
+				is_at_war_with = scope:actor
+			}
+			desc = "IS_AT_WAR_REASON"
+		}
+		modifier = { # At war
+			add = -300
+			scope:recipient = {
+				is_at_war = yes
+				any_primary_war_enemy = {
+					scope:secondary_recipient = {
+						liege ?= prev
+					}
+				}
+			}
+			desc = "IS_POW_REASON"
+		}
+		modifier = { # At war
+			add = -300
+			scope:recipient = {
+				is_at_war_with = scope:secondary_recipient
+			}
+			desc = "IS_AT_WAR_WITH_TARGET_REASON"
+		}
+		#opinion_modifier = { # A lot more likely if Recipient likes Actor
+		#	who = scope:recipient
+		#	opinion_target = scope:actor
+		#	multiplier = 1.0
+		#	desc = AI_OPINION_REASON
+		#}
+		#opinion_modifier = { # A lot more likely if Recipient likes secondary_recipient/prisoner
+		#	who = scope:recipient
+		#	opinion_target = scope:secondary_recipient
+		#	multiplier = 1.0
+		#	desc = AI_OPINION_REASON
+		#}
+		modifier = {
+			scope:hook = yes
+			add = 100
+			desc = SCHEME_WEAK_HOOK_USED
+		}
+		modifier = { # An Intimidated recipient is significantly more likely to accept an offer from the liege
+			add = 40
+			trigger = {
+				scope:recipient = {
+					target_is_liege_or_above = scope:actor
+					has_dread_level_towards = {
+						target = scope:actor
+						level = 1
+					}
+				}
+			}
+			desc = INTIMIDATED_REASON
+		}
+
+		modifier = { # An Cowed recipient is significantly more likely to accept an offer from the liege
+			add = 100
+			trigger = {
+				scope:recipient = {
+					target_is_liege_or_above = scope:actor
+					has_dread_level_towards = {
+						target = scope:actor
+						level = 2
+					}
+				}
+			}
+			desc = COWED_REASON
+		}
+
+		modifier = {
+			add = 25
+			scope:influence_send_option = yes
+			desc = INFLUENCE_INTERACTION_ACCEPTANCE_SEND_OPTION
+		}
+	}
+
+	auto_accept = {
+		custom_description = {
+			text = "spending_hook"
+			subject = scope:actor
+			object = scope:recipient
+			scope:hook = yes
+			scope:actor = { has_strong_hook = scope:recipient }
+		}
+	}
+
+
+	# AI
+	ai_targets = {
+		ai_recipients = family
+	}
+	ai_targets = {
+		ai_recipients = spouses
+	}
+	ai_targets = {
+		ai_recipients = scripted_relations
+	}
+	ai_targets = {
+		ai_recipients = liege
+	}
+	ai_targets = {
+		ai_recipients = neighboring_rulers
+		ai_recipients = peer_vassals
+		ai_recipients = top_realm_domicile_owners
+		max = 5
+	}
+	ai_frequency = 6
+
+	ai_potential = {
+		gold >= 25
+	}
+
+	ai_target_quick_trigger = {
+		prison = yes
+	}
+
+	ai_will_do = {
+		base = 0
+
+		modifier = {
+			add = -100000
+			NOT = {
+				OR = {
+					has_relation_oathbound = scope:actor
+					has_relation_oathholder = scope:actor
+				}
+			}
+		}
+
+		modifier = {
+			add = 100
+			OR = {
+				scope:gold = yes
+				scope:extortionate_gold = yes
+				AND = {
+					scope:actor = {
+						gold >= 25
+					}
+					scope:secondary_recipient = {
+						time_in_prison = { years > 1 }
+					}
+					OR = {
+						scope:current_gold = yes
+						scope:extortionate_current_gold = yes
+					}
+				}
+			}
+		}
+
+		modifier = {
+			add = -100
+			has_relation_rival = scope:secondary_recipient
+		}
+
+		modifier = {
+			add = -300
+			has_relation_nemesis = scope:secondary_recipient
+		}
+
+		modifier = {
+			add = 100
+			scope:favor = yes
+			scope:recipient = {
+				OR = {
+					is_vassal_of = scope:actor
+					AND = {
+						exists = liege
+						liege = scope:actor
+					}
+				}
+			}
+		}
+
+		modifier = { # Ransom your primary heir first
+			add = 10
+			OR = {
+				scope:gold = yes
+				scope:extortionate_gold = yes
+				AND = {
+					scope:actor = {
+						gold >= 25
+					}
+					scope:secondary_recipient = {
+						time_in_prison = { years > 1 }
+					}
+					OR = {
+						scope:current_gold = yes
+						scope:extortionate_current_gold = yes
+					}
+				}
+				AND = {
+					scope:favor = yes
+					scope:recipient = {
+						OR = {
+							is_vassal_of = scope:actor
+							AND = {
+								exists = liege
+								liege = scope:actor
+							}
+						}
+					}
+				}
+			}
+			scope:secondary_recipient = {
+				is_primary_heir_of = scope:actor
+			}
+		}
+
+		modifier = { # Only ransom people you care about... unless you're very compassionate
+			factor = 0
+			ai_compassion < high_positive_ai_value
+			scope:secondary_recipient = {
+				NOR = {
+					is_heir_of = scope:actor
+					is_child_of = scope:actor
+					is_grandchild_of = scope:actor
+					is_great_grandchild_of = scope:actor
+					is_consort_of = scope:actor
+					is_parent_of = scope:actor
+					is_grandparent_of = scope:actor
+					is_great_grandparent_of = scope:actor
+					has_relation_friend = scope:actor
+					has_relation_lover = scope:actor
+					has_secret_relation_lover = scope:actor
+					has_relation_oathbound = scope:actor
+					has_relation_oathholder = scope:actor
+					any_spouse = {
+						OR = {
+							is_heir_of = scope:actor
+							is_child_of = scope:actor
+							is_grandchild_of = scope:actor
+							is_great_grandchild_of = scope:actor
+							is_parent_of = scope:actor
+							is_grandparent_of = scope:actor
+							is_great_grandparent_of = scope:actor
+							has_relation_friend = scope:actor
+						}
+					}
+				}
+			}
+		}
+
+		modifier = { # If you're very compassionate, well, then you ransom most people you can!
+			factor = 0
+			ai_compassion >= high_positive_ai_value
+			scope:secondary_recipient = {
+				NOR = {
+					is_heir_of = scope:actor
+					is_close_or_extended_family_of = scope:actor
+					is_consort_of = scope:actor
+					has_relation_friend = scope:actor
+					has_relation_lover = scope:actor
+					has_secret_relation_lover = scope:actor
+					has_relation_oathbound = scope:actor
+					has_relation_oathholder = scope:actor
+					any_spouse = {
+						OR = {
+							is_heir_of = scope:actor
+							is_close_or_extended_family_of = scope:actor
+							has_relation_friend = scope:actor
+						}
+					}
+				}
+			}
+		}
+
+		modifier = { # If you're very greedy... then they're a little bit more restrictive!
+			factor = 0
+			ai_greed >= high_positive_ai_value
+			scope:secondary_recipient = {
+				NOR = { # Very Greedy rulers only ransom people in their own realm, or their heir
+					is_courtier_of = scope:actor
+					is_vassal_or_below_of = scope:actor
+					is_heir_of = scope:actor
+				}
+				NOR = {
+					is_heir_of = scope:actor
+					is_close_or_extended_family_of = scope:actor
+					is_consort_of = scope:actor
+					has_relation_friend = scope:actor
+					has_relation_lover = scope:actor
+					has_secret_relation_lover = scope:actor
+					any_spouse = {
+						OR = {
+							is_heir_of = scope:actor
+							is_close_or_extended_family_of = scope:actor
+							has_relation_friend = scope:actor
+						}
+					}
+				}
+			}
+		}
+
+		# Some exceptions!
+		modifier = { # Lustful characters want to ransom lovers
+			add = 100
+			has_trait = lustful
+			ai_greed <= 50
+			scope:secondary_recipient = {
+				has_relation_lover = scope:actor
+			}
+			OR = {
+				scope:gold = yes
+				scope:extortionate_gold = yes
+				AND = {
+					scope:actor = {
+						gold >= 25
+					}
+					scope:secondary_recipient = {
+						time_in_prison = { years > 1 }
+					}
+					OR = {
+						scope:current_gold = yes
+						scope:extortionate_current_gold = yes
+					}
+				}
+			}
+		}
+
+		modifier = { # Loyal characters want to ransom their relations
+			add = 100
+			has_trait = loyal
+			scope:secondary_recipient = {
+				OR = {
+					has_relation_lover = scope:actor
+					has_relation_friend = scope:actor
+					has_relation_oathbound = scope:actor
+					has_relation_oathholder = scope:actor
+				}
+			}
+			OR = {
+				scope:gold = yes
+				scope:extortionate_gold = yes
+				AND = {
+					scope:actor = {
+						gold >= 25
+					}
+					scope:secondary_recipient = {
+						time_in_prison = { years > 1 }
+					}
+					OR = {
+						scope:current_gold = yes
+						scope:extortionate_current_gold = yes
+					}
+				}
+			}
+		}
+
+		modifier = { # Certain characters will try to ransom their liege!
+			add = 100
+			ai_greed <= very_high_negative_ai_value
+			ai_compassion >= very_high_negative_ai_value
+			NOT = { exists = joined_faction }
+			is_at_war = no
+			OR = {
+				has_trait = loyal
+				ai_honor >= high_positive_ai_value
+			}
+			scope:secondary_recipient = {
+				is_liege_or_above_of = scope:actor
+			}
+			OR = {
+				scope:gold = yes
+				scope:extortionate_gold = yes
+				# They won't offer current gold, only full ransoms
+			}
+		}
+
+		modifier = { # Favors only relevant within the realm
+			add = -100
+			scope:favor = yes
+			scope:recipient = {
+				NOR = {
+					is_vassal_of = scope:actor
+					AND = {
+						exists = liege
+						liege = scope:actor
+					}
+				}
+			}
+		}
+
+		modifier = { # Don't spam the player with cheapskate offers
+			add = -100
+			scope:current_gold = yes
+			scope:recipient = {
+				is_ai = no
+			}
+			scope:secondary_recipient = {
+				highest_held_title_tier >= tier_duchy
+			}
+		}
+
+		# Struggle Agenda
+		modifier = {
+			scope:secondary_recipient = {
+				any_character_struggle = {
+					involvement = involved
+				}
+			}
+			scope:actor = {
+				any_character_struggle = {
+					involvement = involved
+				}
+			}
+			add = {
+				value = 0
+				if = {
+					limit = {
+						scope:actor = {
+							any_character_struggle = {
+								phase_has_catalyst = catalyst_ransom_important
+							}
+							has_character_flag = agenda_towards_escalation
+						}
+					}
+					add = -100
+				}
+				else_if = {
+					limit = {
+						scope:actor = {
+							any_character_struggle = {
+								phase_has_catalyst = catalyst_ransom_important
+							}
+						}
+					}
+					add = 200
+				}
+			}
+		}
+
+		evaluate_action_increasing_house_unity = {
+			VALUE = 100
+		}
+
+		modifier = { # Don't give away prisoners for free
+			factor = 0
+			NOR = {
+				scope:favor = yes
+				scope:extortionate_gold = yes
+				scope:extortionate_current_gold = yes
+				scope:gold = yes
+				AND = {
+					scope:actor = {
+						gold >= 25
+					}
+					scope:current_gold = yes
+				}
+			}
+		}
+
+		modifier = { # Don't annoy players
+			factor = 0
+			scope:recipient = { is_ai = no }
+			OR = {
+				scope:recipient = { is_at_war = yes }
+				scope:secondary_recipient = { has_character_flag = character_ransom_refused_by_player }
+			}
+		}
+
+		#don't ransom prisoners that are tied with a prison break contract, we don't want it invalidating all the time
+		modifier = {
+			factor = 0
+			scope:secondary_recipient = {
+				has_character_flag = being_prisonbroken_by_laamp
+			}
+		}
+	}
+}

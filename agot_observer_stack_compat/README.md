@@ -1,64 +1,47 @@
-# AGOT Observer Stack Compatibility
+# AGOT Observer Stack Compatibility v1.1.0
 
-Last-loaded local compatibility mod (load position 43) for the 43-mod AGOT playset
-recorded in `observer test.ck3`. Built per `CK3_observer_test_patch_implementation_manual.md`
-(§1–§13), CK3 1.19.0.6 / AGOT 0.5.1.
+This aggregate compatibility layer targets CK3 1.19.0.6 / AGOT 0.5.1 and the current 52-mod successor playset. P09–P22 are grounded in runtime evidence from the earlier 49-mod Tybert run; this implementation itself is statically verified only.
 
-## Contents (P01–P07 complete-file overrides, hash-gated)
+## Patch contents
 
-| Module | Repair |
-|---|---|
-| P01 | AGOT+ canon-child repair (202 dual `location`+`employer` removals, newborn court attach, 8 parse repairs) |
-| P02 | AGOT+ setup/artifact/crown API migration (5 files) |
-| P03 | Crowns of Westeros culture migration (20 references) + additive `valeman_main_opinion` definition |
-| P04 | EP3 local-settlement province-scope limit fix (1 call site) |
-| P05 | Lorath candidacy exclusion (2 guards in `support_candidacy_interaction`) |
-| P06 | COW-AGOT special-building syntax repair (2 opinion tokens + 1 holding limit) |
-| P07 | County-view scrollarea `ignoreinvisible` removal (1 line) |
+P01–P07 remain intact: AGOT+ canon-child creation and parser repair, AGOT+/artifact/crown API migration, Crowns culture migration, AGOT local-settlement scope repair, Lorath candidacy exclusion, COW-AGOT building repair, and the county-view GUI fix. P08 remains external in `miv_agot_cb_patch`; v1.1 only corrects its portable descriptor to 1.0.1 while preserving its gameplay hash.
 
-P08 is **not** part of this mod: it updates the existing local `miv_agot_cb_patch` (v1.0.0 → v1.0.1).
-
-## Source identity (SHA-256 gate, all verified at build time)
-
-| Provider | Virtual path | Hash (prefix) |
+| Module | Provider | v1.1 behavior |
 |---|---|---|
-| 2962333032 | `events/dlc/ep3/ep3_laamp_decision_events.txt` | `412bd22f2b85bc7e…` |
-| 2962333032 | `common/character_interactions/06_ep3_interactions.txt` | `7cb2344b17b8b7eb…` |
-| 2950245430 | `common/scripted_effects/asoiaf_canon_children_effects.txt` | `080981232f070867…` |
-| 2950245430 | `common/artifacts/templates/asoiaf_artifacts_templates.txt` | `7819e8e963bc5929…` |
-| 2950245430 | `common/scripted_effects/asoiaf_setup_effects.txt` | `60daa8eaa60ab1bf…` |
-| 2950245430 | `common/scripted_character_templates/asoiaf_invader_templates.txt` | `67ed5a01e2b1226a…` |
-| 2950245430 | `common/modifiers/asoiaf_artifact_modifiers.txt` | `b781c7358e4a93e7…` |
-| 2950245430 | `common/on_action/agot_on_actions/test_title_on_actions.txt` | `c5d8c4ed2a7e7d74…` |
-| 2950245430 | `common/scripted_effects/asoiaf_scripted_effects_artifacts.txt` | `42c5da841ddb3601…` |
-| 2995674648 | `common/artifacts/templates/ntc_artifacts_templates.txt` | `4a6a2270954c0250…` |
-| 2995674648 | `common/scripted_triggers/00_ntc_crown_commission_triggers.txt` | `a32c297dc92b8947…` |
-| 2995674648 | `common/scripted_character_templates/ntc_scripted_character_template.txt` | `2d5333009be4138a…` |
-| 2995674648 | `common/modifiers/ntc_artifact_modifiers.txt` | `bef9756f993e2376…` |
-| 2971198450 | `common/buildings/yy_agotcities_special_buildings_westeros.txt` | `d0517274f260152d…` |
-| 3316173814 | `gui/window_county_view.gui` | `b3958c445ac4ba1a…` |
-| local | `common/on_action/interactive_on_actions.txt` | `e03f3400ec01f0f8…` |
+| P09 | AGOT | Guards dead/weak title-flavor characters and requires a living character for realm traversal. |
+| P10 | AGOT | Rejects missing rulers/actors before courtier-claim and kick-from-court evaluation. |
+| P11 | LOCAL-1.0.0 / AGOT | Excludes head-of-faith titles from administrative candidacy scoring while retaining Lorath and legitimate appointment behavior. |
+| P12 | LOCAL-1.0.0 / Legacy Of The Dragon | Supplies `CREATOR` at all eight legacy crown call sites. |
+| P13 | LOCAL-1.0.0 / COW-AGOT | Removes three orphan `agot_cities.5000` completion hooks without altering the buildings. |
+| P14 | LOCAL-1.0.0 / AGOT+ | Adds conservative missing Targaryen shims, fixes Tyrion's nickname key, and removes 34 redundant fixed-dragon scheme starts while retaining forced bonds/toasts. |
+| P15 | AGOT+ | Guards the unlanded holy-order portrait branch against a missing liege. |
+| P16 | AGOT | Soft-scopes the disease memory used during tooltip evaluation. |
+| P17 | AGOT | Hides BP1 option A when the council-seat variable was not produced. |
+| P18 | AGOT | Guards claimant legitimate-house state and rejects a claimant faction without a special title. |
+| P19 | AGOT: House Founders | Defers forced house-head logic until the new ruler and house head have complete landed/title state. |
+| P20 | Oathbound | Guards oathholder/heir variables, types custom localization, removes Persia-only sway/ransom branches, and scopes task cleanup to the surviving oathbound variable owner. |
+| P21 | Grand Remembrance + AGOT submod | Uses the proven fabricate root, migrates 12 memory-count checks, and removes unsupported vanilla/RICE classifications. |
+| P22 | Advanced Character Search | Keeps UI IDs stable while neutralizing unsupported AGOT database filters and removing invalid mixed keys. |
 
-## Load order
+Intentional neutralizations are limited to missing Targaryen branches, redundant dragon scheme starts, orphan city event hooks, non-AGOT Grand Remembrance classifications, Persia-only Oathbound branches, and unsupported ACS filters.
 
-This mod must load **last** (position 43). Enabling it in the launcher appends it at the end of
-the mod list; keep it there. Dependencies are declared in `descriptor.mod` using the exact
-`name=` values of the six enabled descriptors on the build machine.
+## Load order (user-managed)
+
+The user must load Observer Stack after House Founders, Advanced Character Search, Oathbound, Grand Remembrance, its AGOT submod, Mass Vassal Directives, the claimant patch, and every other source it overrides. Then keep Immersive Personalities and Royal Court Event Pack after the AGOT/local-patch portion as configured, with **AGOT OPB Addon Compatibility final**. Observer Stack is not the final mod.
+
+This implementation did not edit or verify the launcher playset, `dlc_load.json`, launcher databases/caches, or machine-specific pointer `.mod` files.
+
+## Protected OPB post-layer
+
+`agot_opb_addon_compat` v1.0.1 is a separate unchanged final layer. It owns only:
+
+- `common/on_action/zz_gptev_on_actions.txt` — `94548f0f048fe90cf568535edaaa9f15e13b5a2f6b7f2b3cbe02853be9a8ca63`
+- `events/zz_gptev_events.txt` — `451f7aa31f248521fc4630ca365d2f16e6eb4fc24747a0231410b4f67a1c78d2`
+- `common/on_action/xx_gptc_on_action_replace.txt` — `fd6274c02e1b053147a657ed935acaa2fa08b136844e0e99814ddbd5b7d50e6d`
+- portable `descriptor.mod` — `9b95165c8c2d00db46767811cdfb50b14c8e38c2977e6760d2ae4024b281464f`
+
+The gameplay overlaps are intentional: the first two override Immersive Personalities, and the third overrides Royal Court Event Pack. Neither those mods nor OPB contains an Observer P01–P22 gameplay virtual path.
 
 ## Rebase warning
 
-Every override is hash-gated. After any AGOT / AGOT+ / Crowns / COW-AGOT / Patch AGOT–MBS
-update, the source hashes in `manifest/source_hashes.sha256` will no longer match: stop and
-rebase against the new sources rather than applying blind replacements.
-
-## Runtime validation (manual §14) — performed in-game, not at build time
-
-1. **Startup smoke test** (§14.1): archive `logs`, start the same bookmark/rules, stay unpaused
-   through setup, exit; every error family in the §14.1 table must be 0.
-2. **Targeted functional test** (§14.2): canon birth per mother state, one crown commission,
-   one historical crown, Krakenfall, one case per migrated culture, Visit Local Settlement,
-   valid administrative candidacy, Lorath succession, COW building completion, county GUI.
-3. **25-year observer regression** (§14.3) and **100-year observer regression** (§14.4):
-   `error.log` must not reach 100,000 entries; compare years 25/50/75/100 with the original run.
-
-See `manifest/validation_results.md` for the static build results and the runtime checklist.
+Every complete-file override is hash-gated. If a source mod updates and a recorded source hash changes, stop and rebase the transformation against the new file rather than copying blindly. See `manifest/source_hashes.sha256`, `manifest/build_manifest.json`, and `manifest/validation_results.md` for the complete ledger and static results.

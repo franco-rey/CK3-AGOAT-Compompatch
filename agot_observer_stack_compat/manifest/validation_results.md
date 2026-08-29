@@ -1,137 +1,155 @@
-# Validation results — AGOT Observer Stack Compatibility build (2026-08-28)
+# Validation results — AGOT Observer Stack Compatibility v1.1.0
 
-## §4 hash gate (pre-build)
+Implementation state: **implemented and statically verified**
 
-| Source | Expected | Actual | Result |
-|---|---|---|---|
-| AGOT ep3 decision events (P04) | `412bd22f2b85bc7e…` | `412bd22f2b85bc7e…` | PASS |
-| AGOT EP3 interactions (P05) | `7cb2344b17b8b7eb…` | `7cb2344b17b8b7eb…` | PASS |
-| AGOT+ canon children (P01) | `080981232f070867…` | `080981232f070867…` | PASS |
-| AGOT+ artifact templates (P02.3) | `7819e8e963bc5929…` | `7819e8e963bc5929…` | PASS |
-| AGOT+ setup effects (P02.1) | `60daa8eaa60ab1bf…` | `60daa8eaa60ab1bf…` | PASS |
-| AGOT+ invader templates (P02.2) | `67ed5a01e2b1226a…` | `67ed5a01e2b1226a…` | PASS |
-| AGOT+ artifact modifiers (P02.4) | `b781c7358e4a93e7…` | `b781c7358e4a93e7…` | PASS |
-| AGOT+ test title on-actions (P02.5) | `c5d8c4ed2a7e7d74…` | `c5d8c4ed2a7e7d74…` | PASS |
-| AGOT+ scripted artifact effects (P02.5) | `42c5da841ddb3601…` | `42c5da841ddb3601…` | PASS |
-| Crowns artifact templates (P03) | `4a6a2270954c0250…` | `4a6a2270954c0250…` | PASS |
-| Crowns crown-commission triggers (P03) | `a32c297dc92b8947…` | `a32c297dc92b8947…` | PASS |
-| Crowns character template (P03) | `2d5333009be4138a…` | `2d5333009be4138a…` | PASS |
-| Crowns artifact modifiers (P03) | `bef9756f993e2376…` | `bef9756f993e2376…` | PASS |
-| COW-AGOT special buildings (P06) | `d0517274f260152d…` | `d0517274f260152d…` | PASS |
-| Patch AGOT-MBS county GUI (P07) | `b3958c445ac4ba1a…` | `b3958c445ac4ba1a…` | PASS |
-| Local MIV patch on-actions (P08) | `e03f3400ec01f0f8…` | `e03f3400ec01f0f8…` | PASS |
+Date: 2026-08-29
 
-All 16/16 sources match the manual.
+Runtime status: **PENDING USER PLAYTEST / SAVE-LOG REVIEW**
 
-## Transform counts (required vs applied)
+## Repository and source preflight
 
-- `common/scripted_effects/asoiaf_canon_children_effects.txt`: {'P01_REMOVE_DUAL_PLACEMENT': 202, 'P01_ATTACH_NEWBORN_TO_COURT': 1, 'P01_TRAIT_ADD': 1, 'P01_DYNASTY_TRIGGER_ANY': 6, 'P01_SPOUSE_NOT_BLOCK': 1, 'P01_TOTAL_ADJACENT_PARSE_REPAIRS': 8}
-- `common/scripted_effects/asoiaf_setup_effects.txt`: {'P02_UNDERAGED_SCOPE_PREFIX': 107, 'P02_HAS_CLAIM_ON': 15, 'P02_IS_DEAD_TRIGGER': 2, 'P02_REMOVE_NOOP_EXISTS': 9}
-- `common/scripted_character_templates/asoiaf_invader_templates.txt`: {'P02_INVADER_IS_DEAD': 1}
-- `common/artifacts/templates/asoiaf_artifacts_templates.txt`: {'P02_KRAKENFALL_HOUSE_SCOPE': 1}
-- `common/modifiers/asoiaf_artifact_modifiers.txt`: {'P02_WESTERMAN_OPINION': 1}
-- `common/on_action/agot_on_actions/test_title_on_actions.txt`: {'P02_CROWN_CREATOR_CALLS': 7, 'P02_CROWN_CREATOR_CALLS_REQUIRED_BY_MANUAL': 8}
-- `common/scripted_effects/asoiaf_scripted_effects_artifacts.txt`: {'P02_CROWN_CREATOR_DECLARATIONS': 3, 'P02_CROWN_CREATOR_FIELDS': 6}
-- `common/artifacts/templates/ntc_artifacts_templates.txt`: {'culture:stormlander': 10, 'culture:riverlander': 3, 'culture:valeman': 3, 'culture:westerman': 1}
-- `common/scripted_triggers/00_ntc_crown_commission_triggers.txt`: {'culture:stormlander': 2}
-- `common/scripted_character_templates/ntc_scripted_character_template.txt`: {'culture:mountain_clansman': 1}
-- `common/modifiers/ntc_artifact_modifiers.txt`: {'valeman_opinion': 3}
-- `events/dlc/ep3/ep3_laamp_decision_events.txt`: {'P04_PROVINCE_SCOPE_LIMIT': 1}
-- `common/character_interactions/06_ep3_interactions.txt`: {'P05_LORATH_EXCLUSION': 2}
-- `common/buildings/yy_agotcities_special_buildings_westeros.txt`: {'P06_RHOYNISH_OPINION': 2, 'P06_HOLDING_CONTEXT': 1}
-- `gui/window_county_view.gui`: {'P07_SCROLLAREA_IGNOREINVISIBLE': 1}
+- Audit-start Git state: `main` tracking `origin/main` with the intended uncommitted v1.1 implementation delta already present (34 files total); no unrelated changes were identified.
+- Source roles resolved from the user-supplied mod repository and Workshop root; all Workshop inputs are outside the writable repository.
+- Retained v1 source gates: 15/15 available Workshop inputs rechecked PASS; the historical pre-P08 local hash remains in the manifest, while the installed P08 gameplay is verified at `d402a25411f7d691ae682f8e99fc88aca1c4fc09ac089c3a47fdade14dd1ab8e`.
+- v1.1 Workshop source gates: 22/22 PASS before staging and PASS after implementation.
+- current-local v1.0.0 gates: 4/4 PASS before transformation.
+- protected OPB gates: 4/4 PASS before and after; no OPB file changed.
+- No `REBASE REQUIRED` or `UNRELATED LOCAL PATCH CHANGED` condition occurred.
 
-## Deviations from manual (count-gate hits)
+## Applied transformation counts
 
-- **P02_CROWN_CREATOR_CALLS** in `common/on_action/agot_on_actions/test_title_on_actions.txt`: required 8, applied 7. Manual §6.5 lists 8 crown-effect calls incl. agot_create_artifact_visenya_circlet_effect; the hash-gated source contains 7. Raw-byte search of the file and the entire AGOT+ mod (2950245430) finds zero occurrences of 'visenya'/'circlet'. No call to that effect exists in this stack, so no missing-CREATOR error family exists for it. Count NOT adjusted; 7/8 applied.
+- P09: one dead-holder branch replacement, two soft scopes, and one living guard.
+- P10: two ruler-guarded triggers and two actor-guarded effects.
+- P11: four `is_head_of_faith = no` guards; two Lorath guards and all three score calls retained.
+- P12: eight `CREATOR = this` additions (3 local on-action + 5 Legacy Of The Dragon).
+- P13: three orphan `on_complete` blocks removed; `planky_town_special`, `agot_castamere_03`, and `agot_castamere_ruins_02` remain.
+- P14: 4 trigger shims + 7 effect shims created, 1 nickname key fixed, 24 canon-child and 10 yearly fixed-dragon scheme blocks removed; 24 + 10 forced bond branches retained.
+- P15: one `exists = liege` guard inserted.
+- P16: one memory scope softened.
+- P17: one option trigger inserted.
+- P18: four modifier prerequisite lines inserted and one hard special-title block replaced.
+- P19: one six-prerequisite new-ruler block inserted; no effect block removed.
+- P20: 3 CB guards, 5 localization type declarations, 2 heir soft scopes, 2 permanent-transfer prerequisite sets, 3 cleanup variable guards, 2 task-target scope corrections to the surviving oathbound variable owner, 2 event-variable requirements, 3 event soft scopes, 1 Persia sway replacement, and 1 Persia ransom block removal.
+- P21: 1 fabricate definition replaced, 12 memory-count calls migrated, 1 RICE revalidation neutralized, 4 missing-trait checks + 3 physician-chain lines + 1 Papacy block + the RICE/crossing/elective sections + 1 purple-trait check removed.
+- P22: 24 missing-trait cases, 14 Confucian cases, 8 religion-family cases, 10 council cases, 18 minister cases, and 2 gunpowder cases replaced; 28 invalid mixed-OR lines removed.
+- P23: one portable MIV descriptor version changed from 1.0.0 to 1.0.1; gameplay unchanged.
 
-## §5.4 record — dragon-scheme references (no fix applied, per manual)
+The machine-readable exact operation counters are retained in `manifest/build_manifest.json` under `implementation_counts`.
 
-Manual reports 22 `start_scheme` calls with unreadable fixed dragon targets in
-`asoiaf_canon_children_effects.txt`. Static scan of the hash-gated source finds **24**
-`target = character:dragon_*` scheme targets (lines listed below). The disposition
-depends on bookmark/game-rule branches per §5.4; correction is deferred until one is
-reproduced in a bookmark where the dragon should exist. No substitution was made.
+## Static validation
 
-| Line (source) | Target |
+- PASS: all 28 changed/added gameplay files are UTF-8 with BOM and LF, have no NUL bytes, balanced braces with no negative dip, and closed quoted strings.
+- PASS: portable descriptors and documentation use LF; JSON parses.
+- PASS: no temporary/staging path leaked into production files and no `replace_path` was added.
+- PASS: all exact forbidden-token checks in the implementation specification.
+- PASS: Oathbound sway/murder cleanup guards and comparisons use the surviving oathbound (`scope:target`), where those task variables are assigned, rather than the dead oathholder (`root`). This corrects an ambiguity/error in P20.3 of the specification.
+- PASS: exactly 4 canon trigger shims, 7 canon effect shims, 5 Oathbound `type = character` declarations, and 3 inserted CB availability guards.
+- PASS: zero owner-only calls to the eight affected crown effects in the final overriding files.
+- PASS: 34 fixed-dragon scheme calls removed while 34 forced relationship branches/toasts remain.
+- PASS: zero unsupported P22 database keys and no empty `OR`/`NOR` introduced by the named removals.
+- PASS: MIV gameplay hash remains `d402a25411f7d691ae682f8e99fc88aca1c4fc09ac089c3a47fdade14dd1ab8e`.
+- PASS: Observer portable descriptor is 1.1.0, retains `supported_version="1.19.0.6"`, and declares the seven required added dependencies.
+
+## Final hashes — P09–P22 changed/added gameplay files
+
+| Virtual path | Final SHA-256 |
 |---|---|
-| 4381 | `character:dragon_quicksilver` |
-| 4476 | `character:dragon_balerion` |
-| 4630 | `character:dragon_quicksilver` |
-| 4792 | `character:dragon_vermithor` |
-| 4883 | `character:dragon_silverwing` |
-| 5183 | `character:dragon_balerion` |
-| 5419 | `character:dragon_caraxes` |
-| 5553 | `character:dragon_meleys` |
-| 6333 | `character:dragon_meleys` |
-| 6441 | `character:dragon_balerion` |
-| 6544 | `character:dragon_caraxes` |
-| 6731 | `character:dragon_syrax` |
-| 6898 | `character:dragon_sunfyre` |
-| 7022 | `character:dragon_dreamfyre` |
-| 7133 | `character:dragon_vhagar` |
-| 7284 | `character:dragon_tessarion` |
-| 7427 | `character:dragon_moondancer` |
-| 7515 | `character:dragon_morning` |
-| 7842 | `character:dragon_vermax` |
-| 7996 | `character:dragon_arrax` |
-| 8143 | `character:dragon_tyraxes` |
-| 8285 | `character:dragon_stormcloud` |
-| 11746 | `character:dragon_vhagar` |
-| 11831 | `character:dragon_seasmoke` |
+| `common/buildings/yy_agotcities_special_buildings_westeros.txt` | `ce75dc485d29b771774316b0b9df58efd0fe1ff53a6fc4874c20a56fe0b2ffac` |
+| `common/casus_belli_types/oathbound_conquests.txt` | `6144736e0646da6be6ae269932299d36566e8ad8ecf932f00e22859b33e7cb74` |
+| `common/character_interactions/06_ep3_interactions.txt` | `27a6bc7f49ffb6d929a441ad206f34bc34331d10d6b964ed9d0441eeed25787e` |
+| `common/character_interactions/oathbound_ransom_interaction.txt` | `e655372afb7a6154a5a71a4a829408b205491ab1870dae7c54a135e442775f01` |
+| `common/customizable_localization/oathbound_custom_loc.txt` | `9e560d5f9b03e3a0ce5201575c8f898e565b4e75c81a8e69ac4113a2f89a30e0` |
+| `common/factions/00_factions.txt` | `89afd7d76158f4ebb60801b7732f7586b9595bb86f5b5d61c8d42d89d90ab23c` |
+| `common/on_action/agot_on_actions/test_title_on_actions.txt` | `1707def3f76fbf5bd743b0bec68efb68a6a7753cd18462fb14fb0213dc8dd890` |
+| `common/on_action/asoiaf_yearly_on_actions.txt` | `0e5c15d8f0f3ff8aef61e1f9d432cf10f7d398ab749a9446ac0726601a3641d7` |
+| `common/on_action/gr_on_actions.txt` | `756b2247d9bccdc38449290c9faee734b158507abd39d432069853b439a957d0` |
+| `common/on_action/relations/oathbound_on_relation_deaths.txt` | `4383797b93e2f37c2976eff907ca6b943eda1d77dca68e9d402a5ea008180133` |
+| `common/on_action/zz_gr_memory_tracking.txt` | `6f18d59272f3a70cdc9030e4d2bb482fd46b1120ca0e7b31d6824753d4e21c4c` |
+| `common/scripted_effects/00_agot_hf_effects.txt` | `5c81c79b6dfc9b3d1227cc4b805e6a758fa94bbb3fb48d8332b6b9a81ec3638f` |
+| `common/scripted_effects/00_interaction_effects.txt` | `6535e5853ec09ab2572819ff9af1238cac19f93c0072db502fd218fc92664811` |
+| `common/scripted_effects/20_health_effects.txt` | `f1536a47e61fb622c8326a4742bf44ea1d134bd582705baba51da2c8987bbd09` |
+| `common/scripted_effects/asoiaf_canon_children_effects.txt` | `ffcf1299dbf37c3ed21f1bddaadef492b3494b133adb7adc6805eaefb86c4775` |
+| `common/scripted_effects/zz_observer_stack_canon_child_missing_effects.txt` | `656697f7804abcd76b361daedebee94ab42e21818144f2cbb1c26e47d7b29828` |
+| `common/scripted_modifiers/00_faction_modifiers.txt` | `694f20806130a5b9c6d71c4701091c6148f6bac410cf7ebb088ba25643241866` |
+| `common/scripted_triggers/00_agot_triggers.txt` | `94ac2c04ab9f1744e189e3ffa3491103449314f94b15efc0b206fdafb77d08e9` |
+| `common/scripted_triggers/00_courtier_guest_management_triggers.txt` | `9b7af5257e72364b9267d9155fdad07025d71fbb420cd98383596f50e1286f44` |
+| `common/scripted_triggers/asoiaf_clothing_triggers.txt` | `7c668bd2df1947c8b21be753ef3d032d6d95863854a505e2097e3ea9836fb144` |
+| `common/scripted_triggers/gen_acs_st_big_switch.txt` | `a2324c3e415559ca882d8ba72d8d6bdb08c229c08ba59062a8e5a137ecdcdc5e` |
+| `common/scripted_triggers/zz_observer_stack_canon_child_missing_triggers.txt` | `f4859d089d7fa0b9bfe3a24a08c21845c29f0f195e623db1ed7589698876b192` |
+| `events/decisions_events/rediscover_events.txt` | `f38164d695316f2f61a3cc70c333e9f90166f35ba0b4ba9ca5845272490649c6` |
+| `events/dlc/bp1/bp1_yearly.txt` | `35a6af5485b02b08ef6ac887e7517d2d7787c6dd7d2de95c96dd88b976bb93ee` |
+| `events/gr_obituary_events.txt` | `3526f157cd9d57f8c9cbf3e9c47d772e4d5821d240c4f31b55676588e756e978` |
+| `events/gr_obituary_replay_events.txt` | `8133b62971aa58c8ecf212ca0f8a77d28ad565dd4ce8cd6570810f0cc24d8e60` |
+| `events/oathbound_heir_events.txt` | `565244825e173d1e0544403d5b38fd39810c3c851fd3e946718c5870449b08f3` |
+| `events/scheme_events/oathbound_sway_vassals_events.txt` | `038abd4c2e77cf649714dfad9e95a20794be48fcf2e2f16f6f00383200f4d5d8` |
 
-## Static acceptance results
+All 40 final Observer gameplay files, including unchanged P01–P07 outputs, are recorded with full hashes in `build_manifest.json` and `source_hashes.sha256`.
 
-- P01: create_character=202, employer lines=0, location lines=202, parentage calls=202, travel calls=202, trait->add_trait +1 (15->16), any_dynasty_member=6, every_dynasty_member=15 (effect-context pair preserved)
-- P02.1: unscoped asoiaf_underaged=0, scoped=107, has_claim_on=15, is_dead=0, 9 no-op exists removed, limit-context exists=character:Melisandre_1 preserved
-- P02.2: invader is_dead=0 / is_alive=no=1; P02.3: house:house_BaratheonKL=1; P02.4: westerman_main_opinion=1
-- P02.5: 7 crown calls now carry CREATOR=this; robertI/joffreyI/renly OWNER-only calls untouched (per manual); 3 defs gained $CREATOR$ + 6 creator fields
-- P03: obsolete culture keys=0 (stormlander_main=10, riverman_main=3, valeman_main 1->4, westerman_main 6->7, moon_clan template=1); valeman_main_opinion=5 x3; additive def file created
-- P04: province-scoped limit now `exists = county`; shared trigger definition untouched
-- P05: 2 d_lorath guards added; no other title/succession changes
-- P06: the_mother_religion_opinion x2; holding-limit collapsed to NOT={has_building=castle_05}; add_building preserved
-- P07: 19->18 ignoreinvisible; only the buildings_grid_wrapper scrollarea line removed; size 320x120 intact
-- All 16 gameplay files: UTF-8+BOM, LF, no NUL, brace depth 0 with no negative dips, strings closed
+## Intended definition ownership (static, load-order conditional)
 
-## Excluded from this build (diagnostic-only / not authorized)
+| Definition(s) | Source provider | Observer final virtual path |
+|---|---|---|
+| `agot_flavour_is_in_westeros_trigger`, `agot_flavour_is_living_in_westerosi_realm_trigger` | AGOT 2962333032 | `common/scripted_triggers/00_agot_triggers.txt` |
+| courtier/guest claim triggers | AGOT 2962333032 | `common/scripted_triggers/00_courtier_guest_management_triggers.txt` |
+| kick-from-court effects | AGOT 2962333032 | `common/scripted_effects/00_interaction_effects.txt` |
+| `support_candidacy_interaction` | AGOT 2962333032 | `common/character_interactions/06_ep3_interactions.txt` |
+| `claimant_faction`, `claimant_faction_modifiers` | AGOT 2962333032 | `common/factions/00_factions.txt`; `common/scripted_modifiers/00_faction_modifiers.txt` |
+| `agot_hf_force_house_head` | House Founders 2967263410 | `common/scripted_effects/00_agot_hf_effects.txt` |
+| all three Oathbound CBs | Oathbound 3457401824 | `common/casus_belli_types/oathbound_conquests.txt` |
+| `gr_internal_fabricate_tracking`, `gr_internal_obituary_processing` | Grand Remembrance 3678529052 | `common/on_action/zz_gr_memory_tracking.txt`; `common/on_action/gr_on_actions.txt` |
+| `acs_switch_filter` | ACS 3084203091 | `common/scripted_triggers/gen_acs_st_big_switch.txt` |
+| `portrait_wear_helmet_trigger` | AGOT + AGOT+ 2950245430 | `common/scripted_triggers/asoiaf_clothing_triggers.txt` |
 
-- D01 (§15): Council Experience isolation — not built; AGOT–Council Experience (3319167091) files untouched.
-- D02 (§16): war / Mega Wars scope telemetry — not built; no diagnostic mod created.
-- §17: MAA observer nulls, epidemics, schemes, weddings, dead-character perks,
-  portrait/DNA/vanity port, pruning — no production patch authorized; nothing shipped.
+Every listed definition exists at the intended Observer virtual path. The claimant patch's two scripted-effect definitions remain only in `agot_claimant_faction_war_fix/common/scripted_effects/zz_agot_claimant_faction_war_fix.txt`; Observer does not shadow that file.
 
-## Runtime matrix (manual §14) — to be completed in-game
+This is a static ownership result only. It assumes the user loads Observer after all of its providers, keeps Immersive Personalities and Royal Court Event Pack after the AGOT/local-patch portion as configured, and loads AGOT OPB Addon Compatibility final.
 
-### 14.1 Startup smoke (threshold 0 for every family)
+## OPB/new-mod collision audit
 
-- [ ] dual location+employer create-character validation: ____
-- [ ] P01 canon parser errors: ____
-- [ ] P02 obsolete setup trigger/effect syntax: ____
-- [ ] crown missing/unknown CREATOR arguments: ____
-- [ ] missing Crowns culture keys: ____
-- [ ] obsolete culture/religion opinion tokens: ____
-- [ ] COW unknown holding trigger: ____
-- [ ] MIV removed random-ruler effect: ____
-- [ ] county-view wrapper GUI errors after opening county view: ____
+- Observer has zero gameplay virtual-path collisions with Immersive Personalities 3596393244, Royal Court Event Pack 3360676953, or protected OPB.
+- Intentional OPB overlaps only: `common/on_action/zz_gptev_on_actions.txt` and `events/zz_gptev_events.txt` override Immersive Personalities; `common/on_action/xx_gptc_on_action_replace.txt` overrides Royal Court Event Pack.
+- Neither new Workshop mod nor OPB contains any intended-ownership definition listed above.
 
-### 14.2 Targeted functional (setup / expected / actual / log excerpt)
+## Final Git diff/status summary
 
-- [ ] canon birth per mother state (ruler/courtier/traveling landless/etc.)
-- [ ] one crown commission (owner+creator set, single artifact, visuals per game rule)
-- [ ] one historical crown creation
-- [ ] Krakenfall scoring/eligibility
-- [ ] one Crowns culture case per migrated culture
-- [ ] Visit Local Settlement (coastal/inland/island/landlocked)
-- [ ] valid administrative candidacy (2+ titles)
-- [ ] Lorath succession unchanged
-- [ ] affected COW building completion (with/without castle_05)
-- [ ] county GUI grid/scrollbar
+- Intended repository delta: 34 files total — 24 added and 10 modified.
+- Gameplay: 24 complete/additive files added and 4 existing Observer gameplay files revised.
+- Metadata/docs: Observer descriptor + README + 3 manifest files modified; MIV portable descriptor modified.
+- No temporary staging output is inside the repository.
+- No Workshop/source, launcher playset, launcher database/cache, `dlc_load.json`, machine-specific pointer `.mod`, OPB file, claimant scripted-effect file, branch, or Git history operation was changed.
 
-### 14.3 25-year observer regression
+## Runtime checklist — all pending
 
-- [ ] zero recurrence of P01–P08 target families; no new error family from compatibility files
+Every item below is **PENDING USER PLAYTEST / SAVE-LOG REVIEW**. CK3 was not launched.
 
-### 14.4 100-year observer regression
+### Startup smoke
 
-- [ ] error.log does NOT reach 100,000 entries; checkpoints at 25/50/75/100 vs original run
-- [ ] save → exit → CRC check → reload → advance 1 year → save
+- [ ] PENDING USER PLAYTEST / SAVE-LOG REVIEW — missing `CREATOR` for all eight crown effects.
+- [ ] PENDING USER PLAYTEST / SAVE-LOG REVIEW — unknown Targaryen 98–104 effects / 101–104 triggers.
+- [ ] PENDING USER PLAYTEST / SAVE-LOG REVIEW — unreadable fixed-dragon scheme targets and missing Tyrion nickname.
+- [ ] PENDING USER PLAYTEST / SAVE-LOG REVIEW — missing `agot_cities.5000`.
+- [ ] PENDING USER PLAYTEST / SAVE-LOG REVIEW — ACS and Grand Remembrance database/PostValidate families.
+- [ ] PENDING USER PLAYTEST / SAVE-LOG REVIEW — removed memory-count trigger and Oathbound localization/Persia families.
+
+### Targeted functional checks
+
+- [ ] PENDING USER PLAYTEST / SAVE-LOG REVIEW — courtier/guest claim and kick-from-court tooltips.
+- [ ] PENDING USER PLAYTEST / SAVE-LOG REVIEW — portrait cases including a liegeless order member.
+- [ ] PENDING USER PLAYTEST / SAVE-LOG REVIEW — valid administrative title vs Faceless Men candidacy.
+- [ ] PENDING USER PLAYTEST / SAVE-LOG REVIEW — commissioned and rediscovered crowns.
+- [ ] PENDING USER PLAYTEST / SAVE-LOG REVIEW — affected COW building completion.
+- [ ] PENDING USER PLAYTEST / SAVE-LOG REVIEW — disease tooltip and real epidemic memory.
+- [ ] PENDING USER PLAYTEST / SAVE-LOG REVIEW — BP1 8180 without a standard council seat.
+- [ ] PENDING USER PLAYTEST / SAVE-LOG REVIEW — claimant faction with/without legitimate-house state.
+- [ ] PENDING USER PLAYTEST / SAVE-LOG REVIEW — House Founders landed and incomplete transitions.
+- [ ] PENDING USER PLAYTEST / SAVE-LOG REVIEW — three Oathbound CBs with live/missing/dead oathholder.
+- [ ] PENDING USER PLAYTEST / SAVE-LOG REVIEW — Oathbound death/heir cleanup and sway task.
+- [ ] PENDING USER PLAYTEST / SAVE-LOG REVIEW — GR fabricate count and obituary 1/3/10 thresholds.
+- [ ] PENDING USER PLAYTEST / SAVE-LOG REVIEW — ACS supported and neutralized filter pairs.
+
+### Normal-play checkpoints
+
+- [ ] PENDING USER PLAYTEST / SAVE-LOG REVIEW — 5-year log archive.
+- [ ] PENDING USER PLAYTEST / SAVE-LOG REVIEW — 25-year save/exit/reload/month advance.
+- [ ] PENDING USER PLAYTEST / SAVE-LOG REVIEW — 50-year checkpoint.
+- [ ] PENDING USER PLAYTEST / SAVE-LOG REVIEW — 100-year checkpoint without the 100,000-record ceiling.

@@ -1822,12 +1822,6 @@ planky_town_special = {
         culture_likely_to_fortify_modifier = yes
     }
 
-    on_complete = {
-        barony.holder = {
-            trigger_event = agot_cities.5000
-        }
-    }
-
     type = special
 
     flag = travel_point_of_interest_economic
@@ -1986,12 +1980,6 @@ agot_castamere_03 = {
     ai_value = {
         base = 100
         culture_likely_to_fortify_modifier = yes
-    }
-
-    on_complete = {
-        barony.holder = {
-            trigger_event = agot_cities.5000
-        }
     }
 
     type = special
@@ -2288,12 +2276,6 @@ agot_castamere_ruins_02 = {
     ai_value = {
         base = 100
         culture_likely_to_fortify_modifier = yes
-    }
-
-    on_complete = {
-        barony.holder = {
-            trigger_event = agot_cities.5000
-        }
     }
 
     type = special
