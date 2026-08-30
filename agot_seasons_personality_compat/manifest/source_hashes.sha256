@@ -1,0 +1,18 @@
+# AGOT Seasons + Personality Compatibility v1.0.0 - source hash gates
+# Rebase warning: if any source hash below changes, re-derive the merge rather than copying.
+
+# common/on_action/child_birth_on_actions.txt  [P01_HF_BIRTH_HOOKS_X_SEASONS_NICKNAME]
+b3c78e09d7538f2b3b51087396c3b4563b2a6a0bc86b626bc7ab3bd7ef32d029  2967263410/common/on_action/child_birth_on_actions.txt  # BASE (AGOT: House Founders)
+54b36c1f4eb16a74d5e6947984a4bc249e13f38e7741ce8632803e91dbeb2107  3377641022/common/on_action/child_birth_on_actions.txt  # DONOR (AGOT : Seasons of Ice and Fire)
+14ec214b5575319a308dd9a9eb07717f08b5dcf0b8e7d58573b5a1ded63840f7  BUILT/common/on_action/child_birth_on_actions.txt
+
+# common/scripted_effects/07_dlc_ep3_scripted_effects.txt  [P02_HF_ADVENTURER_NAMING_X_SEASONS_WINTER_TIERS]
+a5171679cd2e3feb2429614146e665e997c20cbcbfe03fecf6e6ff2444de156d  2967263410/common/scripted_effects/07_dlc_ep3_scripted_effects.txt  # BASE (AGOT: House Founders)
+26aa808294a4f88a63a2c38c619727770edf0e7296ed6c9aa24b50c7368edfed  3377641022/common/scripted_effects/07_dlc_ep3_scripted_effects.txt  # DONOR (AGOT : Seasons of Ice and Fire)
+0dfa008fd1e0f5aa76d23f7d70022aee008dad0120cc8bd474d497107b5f5679  BUILT/common/scripted_effects/07_dlc_ep3_scripted_effects.txt
+
+# gui/window_character.gui  [P03_MPD_X_DIREWOLVES_X_AGOT_CHARACTER_WINDOW]
+62d426a1d3ab8dd39eda587fa96b8ae7e410eabff1ed8a3f8ade385bc19b9534  3717990443/gui/window_character.gui  # BASE (AGOT - More Personality Depth)
+aea0cea0b08c5b8e10f25250f79244424575b4e3119b46dd3b16c2b5a3e5dea5  3766320609/gui/window_character.gui  # DONOR (DireWolves)
+0f9b5d03ceacf4fa8fb07442263765c9840264034c0e5fd852ff5004c7678618  BUILT/gui/window_character.gui
+
