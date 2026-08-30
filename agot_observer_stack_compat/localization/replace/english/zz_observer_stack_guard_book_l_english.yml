@@ -1,0 +1,21 @@
+﻿l_english:
+  # ===================================================================
+  # Observer Stack P37 - AGOT: Royal Guards (3733779333)
+  # ===================================================================
+  # Every other agot_guard_order_book_page_join_* key renders its names
+  # with GetNameNoTooltip. This one used GetFullName, which emits
+  # ONCLICK:CHARACTER / TOOLTIP:CHARACTER link markup.
+  #
+  # The result is fed to set_title_name_dynamic, so that markup was
+  # written into a landed title's stored name and then handed back to
+  # the localization system as though it were a key, producing
+  #   Key is missing localization: ONCLICK:CHARACTER,30720 ... !!!
+  # Link markup has no meaning in a title name and cannot round-trip.
+  #
+  # Brought into line with its six siblings. The accumulating chronicle
+  # itself is deliberately left intact -- AGOT's own Kingsguard White
+  # Book uses the same [<page>.GetNameNoTierNoTooltip] chain, and the
+  # runaway growth is fixed at its real source in P35 instead.
+  # ===================================================================
+
+  agot_guard_order_book_page_join_swords_of_braavos:0 "[selected_guard.GetNameNoTooltip] entered the service of [guard_book_holder.GetNameNoTooltip] as one of the Swords of Braavos."

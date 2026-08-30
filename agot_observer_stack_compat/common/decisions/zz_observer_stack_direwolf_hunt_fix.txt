@@ -1,0 +1,83 @@
+﻿# Observer Stack P45 - DireWolves (3766320609) unguarded pack-leader dereference.
+#
+# dw_hunt_feral_pack_decision:effect picks the feral pack leader with
+# random_in_global_list. When no living flagged leader is in the chosen county
+# the scope is never set, which the author already anticipates twice:
+#
+#     scope:dw_hunt_pack_leader ?= { save_scope_value_as = ...ferocity... }
+#     save_scope_value_as = { name = dw_hunt_pack_size value = ...pack_size... }   <-- unguarded
+#     if = { limit = { exists = scope:dw_hunt_pack_leader } trigger_event = dw_direwolf.1100 }
+#
+# The middle line was left outside the guard. dw_direwolf_feral_pack_size_value
+# reads scope:dw_hunt_pack_leader on both its limit lines, so every evaluation
+# with no leader logged three entries:
+#     Undefined event target 'dw_hunt_pack_leader'
+#     Event target link 'scope' returned an unset scope
+#     Invalid right side during comparison 'scope'
+#   common/script_values/dw_direwolf_values.txt line: 230 and 231
+# 3,018 entries (1,006 x 3) across the 8296 Lucerys run, spread over the whole
+# session rather than a single burst, because ai_check_interval = 6 re-runs the
+# decision for every AI ruler that passes is_shown.
+#
+# The pack-size save is moved inside the author's own ?= guard, matching the
+# ferocity save immediately above it. dw_direwolf_feral_pack_size_value reads
+# only a global list and scope: references, so evaluating it in the leader's
+# scope rather than the actor's returns the identical count. dw_direwolf.1100
+# is the sole consumer of scope:dw_hunt_pack_size and already fires only when
+# the leader exists, so no path can now read the value while it is unset.
+#
+# This is a single-key database override, not a file override: the decision key
+# is redefined here and this filename sorts after dw_direwolf_decisions.txt, so
+# the rest of that file is untouched and no source hash gate is needed.
+dw_hunt_feral_pack_decision = {
+	picture = {
+		reference = "gfx/interface/illustrations/decisions/decision_beyond_the_wall.dds"
+	}
+
+	ai_check_interval = 6
+	sort_order = 94
+
+	desc = dw_hunt_feral_pack_decision_desc
+	selection_tooltip = dw_hunt_feral_pack_decision_tooltip
+	confirm_text = dw_hunt_feral_pack_decision_confirm
+
+	cooldown = { years = 2 }
+
+	is_shown = {
+		any_in_global_list = {
+			variable = dw_feral_wolves
+			is_alive = yes
+			has_character_flag = dw_feral_leader
+		}
+		any_realm_county = { has_county_modifier = dw_feral_pack_modifier }
+	}
+
+	is_valid = {
+		is_available_adult = yes
+		is_imprisoned = no
+	}
+
+	effect = {
+		random_realm_county = {
+			limit = { has_county_modifier = dw_feral_pack_modifier }
+			save_scope_as = dw_hunt_county
+		}
+		random_in_global_list = {
+			variable = dw_feral_wolves
+			limit = {
+				is_alive = yes
+				has_character_flag = dw_feral_leader
+				location.county ?= scope:dw_hunt_county
+			}
+			save_scope_as = dw_hunt_pack_leader
+		}
+		scope:dw_hunt_pack_leader ?= {
+			save_scope_value_as = { name = dw_hunt_pack_ferocity  value = dw_direwolf_ferocity_value }
+			save_scope_value_as = { name = dw_hunt_pack_size  value = dw_direwolf_feral_pack_size_value }
+		}
+		if = {
+			limit = { exists = scope:dw_hunt_pack_leader }
+			trigger_event = dw_direwolf.1100
+		}
+	}
+}

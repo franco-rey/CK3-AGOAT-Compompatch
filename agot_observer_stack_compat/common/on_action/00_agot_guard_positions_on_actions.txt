@@ -1,0 +1,1373 @@
+﻿on_title_gain = {
+	on_actions = {
+		agot_guard_positions_disband_custom_guards_on_iron_throne_gain
+		agot_guard_positions_review_inherited_kingsguard_on_iron_throne_gain
+		agot_guard_positions_cleanup_order_bound_guard_on_title_gain
+		agot_guard_positions_guard_inherits_title
+		agot_guard_positions_custom_guard_title_transition_dispatcher
+		agot_guard_positions_sync_guard_flags_from_titles
+		agot_guard_positions_stannis_kingsmen_replaces_other_guards
+	}
+}
+
+on_title_gain_inheritance = {
+	on_actions = {
+		agot_guard_positions_disband_custom_guards_on_iron_throne_gain
+		agot_guard_positions_review_inherited_kingsguard_on_iron_throne_gain
+		agot_guard_positions_cleanup_order_bound_guard_on_title_gain
+		agot_guard_positions_guard_inherits_title
+		agot_guard_positions_custom_guard_title_transition_dispatcher
+		agot_guard_positions_sync_guard_flags_from_titles
+		agot_guard_positions_stannis_kingsmen_replaces_other_guards
+	}
+}
+
+on_title_gain_usurpation = {
+	on_actions = {
+		agot_guard_positions_disband_custom_guards_on_iron_throne_gain
+		agot_guard_positions_review_inherited_kingsguard_on_iron_throne_gain
+		agot_guard_positions_cleanup_order_bound_guard_on_title_gain
+		agot_guard_positions_guard_inherits_title
+		agot_guard_positions_custom_guard_title_transition_dispatcher
+		agot_guard_positions_sync_guard_flags_from_titles
+		agot_guard_positions_stannis_kingsmen_replaces_other_guards
+	}
+}
+
+on_title_destroyed = {
+	on_actions = {
+		agot_guard_positions_custom_guard_title_destroyed_dispatcher
+	}
+}
+
+# Phase 4: one title-transition entry point for every transferable custom order.
+# Child on-actions are narrow order-policy adapters. Roster review, retention,
+# refusal, commander selection, and finalization remain in the shared core.
+agot_guard_positions_custom_guard_title_transition_dispatcher = {
+	trigger = {
+		scope:title = {
+			OR = {
+				this = title:e_the_north
+				this = title:e_the_stormlands
+				this = title:k_dragonstone
+				this = title:e_the_vale
+				this = title:k_braavos
+				this = title:d_highgarden
+			}
+		}
+	}
+	on_actions = {
+		agot_guard_positions_battleguard_guard_precedence
+		agot_guard_positions_battleguard_title_usurped
+		agot_guard_positions_battleguard_previous_holder_cleanup
+		agot_guard_positions_rainbow_guard_guard_precedence
+		agot_guard_positions_rainbow_guard_title_usurped
+		agot_guard_positions_rainbow_guard_previous_holder_cleanup
+		agot_guard_positions_kingsmen_guard_precedence
+		agot_guard_positions_kingsmen_title_usurped
+		agot_guard_positions_kingsmen_previous_holder_cleanup
+		agot_guard_positions_winged_knights_guard_precedence
+		agot_guard_positions_winged_knights_title_usurped
+		agot_guard_positions_winged_knights_previous_holder_cleanup
+		agot_guard_positions_swords_of_braavos_guard_precedence
+		agot_guard_positions_swords_of_braavos_title_usurped
+		agot_guard_positions_swords_of_braavos_previous_holder_cleanup
+		agot_guard_positions_greenhand_guard_precedence
+		agot_guard_positions_greenhand_title_transition
+		agot_guard_positions_greenhand_previous_holder_cleanup
+		agot_guard_positions_greenhand_title_sync
+	}
+}
+
+agot_guard_positions_custom_guard_title_destroyed_dispatcher = {
+	on_actions = {
+		agot_guard_positions_battleguard_owner_title_destroyed
+		agot_guard_positions_rainbow_guard_owner_title_destroyed
+		agot_guard_positions_kingsmen_owner_title_destroyed
+		agot_guard_positions_winged_knights_owner_title_destroyed
+		agot_guard_positions_swords_of_braavos_owner_title_destroyed
+		agot_guard_positions_greenhand_destroyed_title_cleanup
+	}
+}
+
+on_join_court = {
+	on_actions = {
+		agot_guard_positions_cleanup_order_bound_guard_on_join_court
+		agot_guard_positions_return_sworn_guard_to_owner
+	}
+}
+
+on_death = {
+	on_actions = {
+		agot_guard_positions_guard_artifacts_on_death
+		 agot_guard_positions_guard_member_death
+		agot_guard_positions_native_kingsguard_chronicle_death
+		agot_guard_positions_record_former_custom_guard_on_death
+		agot_guard_positions_clear_guard_membership_on_death
+	}
+}
+
+agot_guard_positions_native_kingsguard_chronicle_death = {
+	trigger = {
+		is_kingsguard_trigger = yes
+		exists = liege_or_court_owner
+		liege_or_court_owner = { ruler_primary_title_has_kingsguard_trigger = yes }
+	}
+	effect = { agot_guard_positions_record_death_effect = { HOLDER = liege_or_court_owner } }
+}
+
+agot_guard_positions_record_former_custom_guard_on_death = {
+	trigger = {
+		OR = {
+			has_character_modifier = agot_former_queensguard
+			has_character_modifier = agot_former_battleguard
+			has_character_modifier = agot_former_winged_knight
+			has_character_modifier = agot_former_rainbow_guard
+			has_character_modifier = agot_former_kingsman
+			has_character_modifier = agot_former_greenhand
+		}
+	}
+	effect = {
+		if = { limit = { has_character_modifier = agot_former_queensguard } add_trait = former_queensguard }
+		if = { limit = { has_character_modifier = agot_former_battleguard } add_trait = former_battleguard }
+		if = { limit = { has_character_modifier = agot_former_winged_knight } add_trait = former_winged_knight }
+		if = { limit = { has_character_modifier = agot_former_rainbow_guard } add_trait = former_rainbow_guard }
+		if = { limit = { has_character_modifier = agot_former_kingsman } add_trait = former_kingsman }
+		if = { limit = { has_character_modifier = agot_former_greenhand } add_trait = former_greenhand }
+		agot_make_unpruneable = yes
+	}
+}
+
+on_imprison = {
+	on_actions = { agot_guard_positions_imprisoned_ruler_rescue }
+}
+
+# Extends the shared combat on-action instead of replacing Commander+,
+# Battleground Commanders, or Grand Remembrance handlers. All can therefore
+# record the same battle independently when installed together.
+on_combat_end_winner = {
+	on_actions = { agot_guard_positions_guard_won_battle }
+}
+
+agot_guard_positions_guard_won_battle = {
+	trigger = {
+		side_commander ?= {
+			is_alive = yes
+			agot_guard_positions_is_any_guard_member_trigger = yes
+		}
+	}
+	effect = {
+		side_commander = {
+			agot_guard_positions_record_battle_victory_effect = yes
+		}
+	}
+}
+
+on_ward_depart_for_guardian = {
+	on_actions = { agot_guard_positions_offer_ward_escort }
+}
+
+agot_guard_positions_offer_ward_escort = {
+	trigger = {
+		exists = scope:ward_liege
+		scope:ward_liege = {
+			agot_guard_positions_has_active_guard_trigger = yes
+			any_councillor = { agot_guard_positions_guard_available_for_mission_trigger = { COURT_OWNER = scope:ward_liege } }
+		}
+	}
+	effect = {
+		save_scope_as = escorted_ward
+		scope:guardian ?= { location = { save_scope_as = ward_guardian_destination } }
+		scope:ward_liege = { trigger_event = agot_guard_missions.0300 }
+	}
+}
+
+agot_guard_positions_imprisoned_ruler_rescue = {
+	trigger = {
+		is_imprisoned = yes
+		agot_guard_positions_has_active_guard_trigger = yes
+		any_councillor = { agot_guard_positions_guard_available_for_mission_trigger = { COURT_OWNER = root } }
+	}
+	effect = {
+		random_councillor = {
+			limit = { agot_guard_positions_guard_available_for_mission_trigger = { COURT_OWNER = root } }
+			save_scope_as = rescue_guard
+		}
+		random_councillor = {
+			limit = {
+				agot_guard_positions_guard_available_for_mission_trigger = { COURT_OWNER = root }
+				NOT = { this = scope:rescue_guard }
+			}
+			save_scope_as = rescue_guard_2
+		}
+		random_councillor = {
+			limit = {
+				agot_guard_positions_guard_available_for_mission_trigger = { COURT_OWNER = root }
+				NOT = { this = scope:rescue_guard }
+				NOT = { this = scope:rescue_guard_2 }
+			}
+			save_scope_as = rescue_guard_3
+		}
+		scope:rescue_guard = { add_character_flag = { flag = agot_guard_positions_on_mission years = 1 } add_character_modifier = { modifier = agot_guard_positions_away_on_mission } }
+		scope:rescue_guard_2 ?= { add_character_flag = { flag = agot_guard_positions_on_mission years = 1 } add_character_modifier = { modifier = agot_guard_positions_away_on_mission } }
+		scope:rescue_guard_3 ?= { add_character_flag = { flag = agot_guard_positions_on_mission years = 1 } add_character_modifier = { modifier = agot_guard_positions_away_on_mission } }
+		trigger_event = { id = agot_guard_missions.0100 days = { 3 10 } }
+	}
+}
+
+on_birthday = {
+	on_actions = {
+		agot_guard_positions_training_squire_age_check
+		agot_guard_positions_training_age_out_to_instructor
+	}
+}
+
+agot_guard_positions_training_age_out_to_instructor = {
+	trigger = {
+		age >= 25
+		agot_guard_positions_has_any_training_ambition_trigger = yes
+		has_variable = agot_guard_positions_training_owner
+		NOT = { agot_guard_positions_is_academy_graduate_trigger = yes }
+	}
+	effect = { agot_guard_positions_become_academy_instructor_effect = yes }
+}
+
+# Canon candidates must enter their order on the birthday at which school age
+# begins. The former yearly-only maintenance could leave them untracked for
+# almost a full year and meant the fifth birthday itself appeared to do nothing.
+
+
+yearly_playable_pulse = {
+	on_actions = {
+		agot_guard_positions_training_maintenance
+	}
+	random_events = {
+		75 = agot_guard_positions.3001 # Child wants to train for a guard
+		100 = agot_guard_positions.3002 # Honorable guard gains Gallant
+		60 = agot_guard_positions.3003 # Guard caught in a scandal
+		60 = agot_guard_positions.3004 # Guard harms a courtier
+		150 = agot_guard_positions.3005 # Warrior asks to join
+		100 = agot_guard_positions.3006 # Two guards become friends
+		100 = agot_guard_positions.3007 # Guard improves prowess
+		100 = agot_guard_positions.3008 # Trained candidate asks to join
+		100 = agot_guard_positions.3010 # Guard trains hard
+		40 = agot_guard_positions.3011 # Challenger confronts an unworthy guard
+		60 = agot_guard_positions.3013 # Guard carouses too hard
+		100 = agot_guard_positions.3014 # Guard gains Blademaster
+		100 = agot_guard_positions.3015 # Guard gains Hunter
+		100 = agot_guard_positions.3016 # Guard gains Falconer
+		10 = agot_guard_positions.3017 # Guard dies in scandal
+	}
+}
+
+quarterly_playable_pulse = {
+	on_actions = {
+		agot_guard_positions_quarterly_maintenance_dispatcher
+	}
+}
+
+# One guarded recurring entry point. Subsystems retain narrow triggers because
+# their actionable state differs, but rulers without any guard institution no
+# longer evaluate seven independently registered maintenance on-actions.
+agot_guard_positions_quarterly_maintenance_dispatcher = {
+	trigger = {
+		OR = {
+			ruler_has_kingsguard_trigger = yes
+			has_character_flag = has_battleguard
+			has_character_flag = has_winged_knights
+			has_character_flag = has_swords_of_braavos
+			has_character_flag = has_rainbow_guard
+			has_character_flag = has_kingsmen
+			has_character_flag = has_queensguard
+			agot_guard_positions_has_greenhand_trigger = yes
+		}
+	}
+	on_actions = {
+		agot_guard_positions_ward_escort_maintenance
+		agot_guard_positions_ai_guard_maintenance
+		agot_guard_positions_incapacitated_guard_maintenance
+		agot_guard_positions_guard_loyalty_maintenance
+		agot_guard_positions_training_exclusivity_maintenance
+		agot_guard_positions_academy_oath_maintenance
+		agot_guard_positions_academy_application_cycle_maintenance
+	}
+}
+
+# A sworn protector who can no longer perform the office should not silently
+# occupy a slot forever. AI rulers retire such guards automatically; players
+# receive a formal choice and may retain them despite their infirmity.
+agot_guard_positions_incapacitated_guard_maintenance = {
+	trigger = {
+		agot_guard_positions_has_active_guard_trigger = yes
+		any_councillor = {
+			agot_guard_positions_is_active_guard_member_trigger = { COURT_OWNER = root }
+			OR = { has_trait = incapable has_trait = infirm }
+			NOT = { has_character_flag = agot_guard_positions_incapacity_reviewed }
+		}
+	}
+	effect = {
+		random_councillor = {
+			limit = {
+				agot_guard_positions_is_active_guard_member_trigger = { COURT_OWNER = root }
+				OR = { has_trait = incapable has_trait = infirm }
+				NOT = { has_character_flag = agot_guard_positions_incapacity_reviewed }
+			}
+			save_scope_as = incapacitated_guard
+			add_character_flag = agot_guard_positions_incapacity_reviewed
+		}
+		if = {
+			limit = { is_ai = yes }
+			scope:incapacitated_guard = { add_character_flag = agot_guard_positions_honorable_retirement }
+			agot_guard_positions_dismiss_custom_guard_member_effect = { GUARD = scope:incapacitated_guard }
+			scope:incapacitated_guard = { remove_character_flag = agot_guard_positions_honorable_retirement }
+			agot_guard_positions_repair_guard_assignments_effect = yes
+		}
+		else = { trigger_event = agot_guard_positions.3020 }
+	}
+}
+
+# The pulse only repairs/starts a missing scheduler. Application timing is
+# controlled by the scheduler event itself and is therefore not quarterly.
+agot_guard_positions_academy_application_cycle_maintenance = {
+	trigger = {
+		has_game_rule = agot_guard_academy_applications_normal
+		is_ai = no
+		is_alive = yes
+		OR = {
+			agot_guard_positions_has_active_guard_trigger = yes
+			ruler_has_kingsguard_trigger = yes
+		}
+		NOT = { has_character_flag = agot_guard_academy_application_cycle_active }
+	}
+	effect = {
+		add_character_flag = agot_guard_academy_application_cycle_active
+		trigger_event = { id = agot_guard_school_admission.0005 days = { 5 45 } }
+	}
+}
+
+# Keep native/history modifiers from stacking a second academy on an already
+# enrolled student. This is intentionally court-local and quarterly rather than
+# a world scan.
+agot_guard_positions_training_exclusivity_maintenance = {
+	trigger = {
+		OR = {
+			ruler_has_kingsguard_trigger = yes
+			has_character_flag = has_battleguard
+			has_character_flag = has_winged_knights
+			has_character_flag = has_swords_of_braavos
+			has_character_flag = has_rainbow_guard
+			has_character_flag = has_kingsmen
+			has_character_flag = has_queensguard
+			agot_guard_positions_has_greenhand_trigger = yes
+		}
+	}
+	effect = {
+		# Taking another binding oath or becoming otherwise unavailable ends
+		# academy enrollment even while the student's original order still exists.
+		every_in_list = {
+			variable = agot_guard_positions_trainee_list
+			limit = {
+				has_variable = agot_guard_positions_training_owner
+				var:agot_guard_positions_training_owner ?= root
+				OR = {
+					is_imprisoned = yes
+					is_ruler = yes
+					is_married = yes
+					has_trait = incapable
+					has_trait = dragon
+					has_trait = nightswatch
+					has_trait = maester
+					has_trait = devoted
+					has_trait = order_member
+					has_trait = septon
+					agot_guard_positions_is_any_guard_member_trigger = yes
+				}
+			}
+			agot_guard_positions_clear_training_ambition_effect = yes
+		}
+		every_in_list = {
+			variable = agot_guard_positions_trainee_list
+			limit = {
+				agot_guard_positions_has_any_training_ambition_trigger = yes
+				has_variable = agot_guard_positions_training_owner
+				var:agot_guard_positions_training_owner ?= root
+			}
+			agot_guard_positions_enforce_single_training_order_effect = { OWNER = root }
+		}
+	}
+}
+
+agot_guard_positions_academy_oath_maintenance = {
+	trigger = {
+		OR = {
+			ruler_has_kingsguard_trigger = yes
+			has_character_flag = has_battleguard
+			has_character_flag = has_winged_knights
+			has_character_flag = has_rainbow_guard
+			has_character_flag = has_kingsmen
+			has_character_flag = has_queensguard
+			agot_guard_positions_has_greenhand_trigger = yes
+		}
+	}
+	effect = { agot_guard_positions_enforce_academy_oaths_effect = yes }
+}
+
+agot_guard_positions_guard_loyalty_maintenance = {
+	trigger = { agot_guard_positions_has_active_guard_trigger = yes }
+	effect = { agot_guard_positions_update_realm_guard_loyalty_effect = yes }
+}
+
+agot_guard_positions_ward_escort_maintenance = {
+	trigger = {
+		OR = {
+			ruler_has_kingsguard_trigger = yes
+			has_character_flag = has_battleguard
+			has_character_flag = has_winged_knights
+			has_character_flag = has_rainbow_guard
+			has_character_flag = has_kingsmen
+			has_character_flag = has_queensguard
+			agot_guard_positions_has_greenhand_trigger = yes
+		}
+	}
+	effect = {
+		every_courtier = {
+			limit = { has_variable = agot_guard_positions_replacement_escort_ward }
+			if = {
+				limit = {
+					OR = {
+						NOT = { var:agot_guard_positions_replacement_escort_ward = { is_alive = yes is_adult = no } }
+						var:agot_guard_positions_replacement_escort_ward = { is_courtier_of = root }
+						var:agot_guard_positions_replacement_escort_ward = { num_of_relation_guardian = 0 }
+					}
+				}
+				remove_variable = agot_guard_positions_replacement_escort_ward
+				remove_character_modifier = agot_guard_positions_replacement_ward_escort
+				set_location_to_default = yes
+			}
+		}
+		every_councillor = {
+			limit = { has_variable = agot_guard_positions_temporary_escort_ward }
+			if = {
+				limit = {
+					OR = {
+						NOT = { var:agot_guard_positions_temporary_escort_ward = { is_alive = yes is_adult = no } }
+						var:agot_guard_positions_temporary_escort_ward = { is_courtier_of = root }
+						var:agot_guard_positions_temporary_escort_ward = { num_of_relation_guardian = 0 }
+					}
+				}
+				remove_variable = agot_guard_positions_temporary_escort_ward
+				remove_character_flag = agot_guard_positions_on_mission
+				remove_character_modifier = agot_guard_positions_away_on_mission
+				set_location_to_default = yes
+				add_character_modifier = { modifier = agot_guard_positions_mission_cooldown months = 3 }
+			}
+		}
+		every_councillor = {
+			limit = {
+				has_character_modifier = agot_guard_positions_away_on_mission
+				NOT = { has_character_flag = agot_guard_positions_on_mission }
+			}
+			remove_character_modifier = agot_guard_positions_away_on_mission
+			set_location_to_default = yes
+		}
+		every_councillor = {
+			limit = { has_variable = agot_guard_positions_escorted_ward }
+			if = {
+				limit = {
+					OR = {
+						NOT = { var:agot_guard_positions_escorted_ward = { is_alive = yes is_adult = no } }
+						var:agot_guard_positions_escorted_ward = { is_courtier_of = root }
+						var:agot_guard_positions_escorted_ward = { num_of_relation_guardian = 0 }
+					}
+				}
+				agot_guard_positions_record_ward_service_effect = yes
+				remove_variable = agot_guard_positions_escorted_ward
+				remove_character_flag = agot_guard_positions_on_mission
+				remove_character_modifier = agot_guard_positions_ward_escort
+				set_location_to_default = yes
+				add_character_modifier = { modifier = agot_guard_positions_mission_cooldown months = 3 }
+			}
+		}
+	}
+}
+
+agot_guard_positions_training_squire_age_check = {
+	trigger = {
+		age >= 5
+		age <= 15
+		agot_guard_positions_has_any_training_ambition_trigger = yes
+		has_variable = agot_guard_positions_training_owner
+	}
+	effect = {
+		var:agot_guard_positions_training_owner = {
+			agot_guard_positions_assign_trainee_to_serving_guard_effect = { TRAINEE = root }
+		}
+	}
+}
+
+agot_guard_positions_training_maintenance = {
+	trigger = {
+		OR = {
+			ruler_has_kingsguard_trigger = yes
+			has_character_flag = has_battleguard
+			has_character_flag = has_winged_knights
+			has_character_flag = has_rainbow_guard
+			has_character_flag = has_kingsmen
+			has_character_flag = has_queensguard
+			agot_guard_positions_has_greenhand_trigger = yes
+		}
+	}
+	effect = {
+		# Native AGOT history modifiers require a discovery pass, but this belongs
+		# to yearly academy maintenance rather than quarterly ward cleanup.
+		agot_guard_positions_adopt_native_kingsguard_trainees_effect = yes
+		agot_guard_positions_select_school_master_effect = yes
+		agot_guard_positions_enroll_canon_minor_guards_effect = yes
+		agot_guard_positions_seed_white_book_canon_trainees_effect = yes
+		every_councillor = {
+			limit = { has_variable = agot_guard_positions_training_owner agot_guard_positions_is_any_guard_member_trigger = yes }
+			agot_guard_positions_clear_training_ambition_effect = yes
+		}
+		# Academy students cannot complete knighthood or Thaneship before their
+		# academy graduation, even if an external ceremony makes them eligible.
+		# Iterates the maintained per-owner trainee list rather than every living
+		# character in the world; agot_guard_positions_trainee_list is kept in sync
+		# with var:agot_guard_positions_training_owner at every enrollment/release
+		# point (see agot_guard_positions_enroll_guard_trainee_effect and
+		# agot_guard_positions_clear_training_ambition_effect). The owner-variable
+		# check is kept as a defensive redundancy, not because it's load-bearing.
+		every_in_list = {
+			variable = agot_guard_positions_trainee_list
+			limit = {
+				agot_guard_positions_has_any_training_ambition_trigger = yes
+				var:agot_guard_positions_training_owner ?= root
+				OR = { is_agot_knight_trigger = yes has_trait = agot_thane }
+				NOT = { agot_guard_positions_is_academy_graduate_trigger = yes }
+			}
+			agot_guard_positions_remove_premature_student_knighthood_effect = yes
+		}
+		every_in_list = {
+			variable = agot_guard_positions_trainee_list
+			limit = {
+				agot_guard_positions_has_any_training_ambition_trigger = yes
+				var:agot_guard_positions_training_owner ?= root
+			}
+			save_scope_as = guard_trainee
+			agot_guard_positions_enforce_single_training_order_effect = { OWNER = root }
+			agot_guard_positions_assign_regional_academy_house_effect = yes
+			agot_guard_positions_update_training_rank_effect = yes
+			agot_guard_positions_sync_academy_squire_path_effect = yes
+			if = {
+				limit = { age >= 25 NOT = { agot_guard_positions_is_academy_graduate_trigger = yes } }
+				agot_guard_positions_become_academy_instructor_effect = yes
+			}
+			else_if = {
+				limit = { NOT = { agot_guard_positions_is_training_for_active_order_trigger = { OWNER = root } } }
+				agot_guard_positions_clear_training_ambition_effect = yes
+			}
+			else = {
+				root = { agot_guard_positions_assign_trainee_to_serving_guard_effect = { TRAINEE = scope:guard_trainee } }
+				random = {
+					chance = 60
+					random_list = {
+						20 = { trigger_event = agot_guard_positions.3500 }
+						15 = { trigger_event = agot_guard_positions.3501 }
+						15 = { trigger_event = agot_guard_positions.3502 }
+						10 = { trigger_event = agot_guard_positions.3504 }
+						10 = { trigger_event = agot_guard_positions.3505 }
+						10 = { trigger_event = agot_guard_positions.3506 }
+						10 = { trigger_event = agot_guard_positions.3507 }
+						10 = { trigger_event = agot_guard_positions.3508 }
+					}
+				}
+			}
+		}
+	}
+}
+
+on_game_start = {
+	on_actions = {
+		agot_guard_positions_build_guard_menu_trait_list
+		agot_guard_positions_cleanup_order_bound_guards_on_game_start
+		agot_guard_positions_game_start_setup
+		agot_guard_positions_init_historical_order_books
+		agot_guard_positions_migrate_academy_rank_traits
+		agot_guard_positions_migrate_former_guard_modifiers
+	}
+}
+
+on_game_start_after_lobby = {
+	on_actions = {
+		agot_guard_positions_build_guard_menu_trait_list
+		agot_guard_positions_cleanup_order_bound_guards_on_game_start
+		agot_guard_positions_game_start_setup
+		agot_guard_positions_init_historical_order_books
+		agot_guard_positions_migrate_academy_rank_traits
+		agot_guard_positions_migrate_former_guard_modifiers
+		agot_guard_positions_bootstrap_academy_application_cycles
+	}
+}
+
+# Wrapper required because on_game_start's on_actions list can only link to
+# on-action entries, not directly to scripted effects.
+agot_guard_positions_init_historical_order_books = {
+	effect = {
+		agot_guard_positions_init_historical_order_books_effect = yes
+	}
+}
+
+agot_guard_positions_bootstrap_academy_application_cycles = {
+	effect = {
+		if = {
+			limit = { NOT = { has_game_rule = agot_guard_academy_applications_normal } }
+			every_ruler = {
+				limit = { is_ai = no has_character_flag = agot_guard_academy_application_cycle_active }
+				remove_character_flag = agot_guard_academy_application_cycle_active
+			}
+		}
+		# Game-start on_actions are rootless, so start one independent chain for
+		# every human guard holder. This also supports multiplayer campaigns.
+		every_ruler = {
+			limit = {
+				has_game_rule = agot_guard_academy_applications_normal
+				is_ai = no
+				is_alive = yes
+				OR = {
+					agot_guard_positions_has_active_guard_trigger = yes
+					ruler_has_kingsguard_trigger = yes
+				}
+				NOT = { has_character_flag = agot_guard_academy_application_cycle_active }
+			}
+			add_character_flag = agot_guard_academy_application_cycle_active
+			trigger_event = { id = agot_guard_school_admission.0005 days = { 5 45 } }
+		}
+	}
+}
+
+agot_guard_positions_migrate_former_guard_modifiers = {
+	effect = {
+		every_living_character = {
+			limit = { OR = { has_character_modifier = agot_former_queensguard has_character_modifier = agot_former_battleguard has_character_modifier = agot_former_winged_knight has_character_modifier = agot_former_rainbow_guard has_character_modifier = agot_former_kingsman has_character_modifier = agot_former_greenhand } }
+			if = { limit = { has_character_modifier = agot_former_queensguard } remove_character_modifier = agot_former_queensguard add_trait = former_queensguard }
+			if = { limit = { has_character_modifier = agot_former_battleguard } remove_character_modifier = agot_former_battleguard add_trait = former_battleguard }
+			if = { limit = { has_character_modifier = agot_former_winged_knight } remove_character_modifier = agot_former_winged_knight add_trait = former_winged_knight }
+			if = { limit = { has_character_modifier = agot_former_rainbow_guard } remove_character_modifier = agot_former_rainbow_guard add_trait = former_rainbow_guard }
+			if = { limit = { has_character_modifier = agot_former_kingsman } remove_character_modifier = agot_former_kingsman add_trait = former_kingsman }
+			if = { limit = { has_character_modifier = agot_former_greenhand } remove_character_modifier = agot_former_greenhand add_trait = former_greenhand }
+		}
+	}
+}
+
+agot_guard_positions_migrate_academy_rank_traits = {
+	effect = {
+		# Game-start on_actions have no character root. Iterate rulers explicitly
+		# so the migration never evaluates guard-holder triggers in a null scope.
+		every_ruler = {
+			limit = {
+				OR = {
+					ruler_has_kingsguard_trigger = yes
+					has_character_flag = has_battleguard
+					has_character_flag = has_winged_knights
+					has_character_flag = has_rainbow_guard
+					has_character_flag = has_kingsmen
+					has_character_flag = has_queensguard
+					agot_guard_positions_has_greenhand_trigger = yes
+				}
+			}
+			every_courtier_or_guest = {
+				limit = {
+					agot_guard_positions_has_any_training_ambition_trigger = yes
+					var:agot_guard_positions_training_owner ?= prev
+				}
+				if = {
+					limit = {
+						OR = { is_agot_knight_trigger = yes has_trait = agot_thane has_trait = knight }
+						NOT = { agot_guard_positions_is_academy_graduate_trigger = yes }
+					}
+					agot_guard_positions_remove_premature_student_knighthood_effect = yes
+				}
+				agot_guard_positions_enforce_single_training_order_effect = { OWNER = prev }
+				if = {
+					limit = { agot_guard_positions_is_academy_student_trigger = yes }
+					if = { limit = { NOT = { has_variable = agot_guard_positions_training_merit } } set_variable = { name = agot_guard_positions_training_merit value = 0 } }
+					if = { limit = { NOT = { has_variable = agot_guard_positions_training_rank } } set_variable = { name = agot_guard_positions_training_rank value = 0 } }
+					agot_guard_positions_assign_regional_academy_house_effect = yes
+					agot_guard_positions_update_training_rank_effect = yes
+				}
+			}
+		}
+	}
+}
+
+agot_guard_positions_build_guard_menu_trait_list = {
+	effect = {
+		every_trait = {
+			limit = {
+				OR = {
+					this = trait:agot_rainbowguard
+					this = trait:agot_battleguard
+					this = trait:agot_kingsmen
+					this = trait:agot_queensguard
+					this = trait:squire
+					this = trait:agot_guard_academy_student
+					this = trait:agot_guard_academy_student_kingsguard
+					this = trait:agot_guard_academy_student_battleguard
+					this = trait:agot_guard_academy_student_winged_knights
+					this = trait:agot_guard_academy_student_rainbow_guard
+					this = trait:agot_guard_academy_student_kingsmen
+					this = trait:agot_guard_academy_student_queensguard
+					this = trait:agot_guard_academy_student_greenhand
+					this = trait:agot_guard_academy_house_kingsguard_dragon
+					this = trait:agot_guard_academy_house_kingsguard_crown
+					this = trait:agot_guard_academy_house_kingsguard_blackwater
+					this = trait:agot_guard_academy_house_kingsguard_white_tower
+					this = trait:agot_guard_academy_house_battleguard_direwolf
+					this = trait:agot_guard_academy_house_battleguard_weirwood
+					this = trait:agot_guard_academy_house_battleguard_trident
+					this = trait:agot_guard_academy_house_battleguard_winter_rose
+					this = trait:agot_guard_academy_house_winged_knights_falcon
+					this = trait:agot_guard_academy_house_winged_knights_moon
+					this = trait:agot_guard_academy_house_winged_knights_giants_lance
+					this = trait:agot_guard_academy_house_winged_knights_bloody_gate
+					this = trait:agot_guard_academy_house_rainbow_guard_rainbow
+					this = trait:agot_guard_academy_house_rainbow_guard_storm
+					this = trait:agot_guard_academy_house_rainbow_guard_stag
+					this = trait:agot_guard_academy_house_rainbow_guard_shipbreaker
+					this = trait:agot_guard_academy_house_kingsmen_dragonstone
+					this = trait:agot_guard_academy_house_kingsmen_fury
+					this = trait:agot_guard_academy_house_kingsmen_light
+					this = trait:agot_guard_academy_house_kingsmen_painted_table
+					this = trait:agot_guard_academy_house_queensguard_black_dragon
+					this = trait:agot_guard_academy_house_queensguard_syrax
+					this = trait:agot_guard_academy_house_queensguard_dragonstone
+					this = trait:agot_guard_academy_house_queensguard_black_crown
+					this = trait:agot_guard_academy_house_greenhand_green_hand
+					this = trait:agot_guard_academy_house_greenhand_golden_rose
+					this = trait:agot_guard_academy_house_greenhand_oak
+					this = trait:agot_guard_academy_house_greenhand_arbor
+					this = trait:agot_guard_academy_novice
+					this = trait:agot_guard_academy_squire
+					this = trait:agot_guard_academy_senior_cadet
+					this = trait:agot_guard_academy_graduate
+					this = trait:agot_guard_academy_instructor
+					this = trait:agot_guard_academy_thane_squire
+					this = trait:agot_guard_specialist_royal_protector
+					this = trait:agot_guard_specialist_master_at_arms
+					this = trait:agot_guard_specialist_pursuer
+					this = trait:agot_guard_specialist_investigator
+					this = trait:agot_guard_specialist_infiltrator
+					this = trait:agot_guard_specialist_ward_protector
+					this = trait:agot_guard_specialist_battlefield_champion
+					this = trait:agot_guard_specialist_academy_instructor
+					this = trait:dragonrider
+				}
+				NOT = {
+					is_target_in_global_variable_list = {
+						name = agot_guard_positions_guard_relevant_traits
+						target = this
+					}
+				}
+			}
+			add_to_global_variable_list = {
+				name = agot_guard_positions_guard_relevant_traits
+				target = this
+			}
+		}
+		every_trait = {
+			limit = {
+				OR = {
+					this = trait:education_martial_prowess_1
+					this = trait:education_martial_prowess_2
+					this = trait:education_martial_prowess_3
+					this = trait:education_martial_prowess_4
+					this = trait:education_martial_prowess_5
+				}
+				NOT = {
+					is_target_in_global_variable_list = {
+						name = agot_guard_positions_guard_relevant_traits
+						target = this
+					}
+				}
+			}
+			add_to_global_variable_list = {
+				name = agot_guard_positions_guard_relevant_traits
+				target = this
+			}
+		}
+		every_trait = {
+			limit = {
+				OR = {
+					this = trait:education_martial_1
+					this = trait:education_martial_2
+					this = trait:education_martial_3
+					this = trait:education_martial_4
+					this = trait:education_martial_5
+				}
+				NOT = {
+					is_target_in_global_variable_list = {
+						name = agot_guard_positions_guard_relevant_traits
+						target = this
+					}
+				}
+			}
+			add_to_global_variable_list = {
+				name = agot_guard_positions_guard_relevant_traits
+				target = this
+			}
+		}
+		every_trait = {
+			limit = {
+				this = { has_trait_category = lifestyle }
+				NOT = {
+					is_target_in_global_variable_list = {
+						name = agot_guard_positions_guard_relevant_traits
+						target = this
+					}
+				}
+			}
+			add_to_global_variable_list = {
+				name = agot_guard_positions_guard_relevant_traits
+				target = this
+			}
+		}
+		every_trait = {
+			limit = {
+				this = { has_trait_category = commander }
+				NOT = {
+					is_target_in_global_variable_list = {
+						name = agot_guard_positions_guard_relevant_traits
+						target = this
+					}
+				}
+			}
+			add_to_global_variable_list = {
+				name = agot_guard_positions_guard_relevant_traits
+				target = this
+			}
+		}
+		every_trait = {
+			limit = {
+				OR = {
+					this = trait:physique_good_1
+					this = trait:physique_good_2
+					this = trait:physique_good_3
+					this = trait:giant
+					this = trait:strong
+				}
+				NOT = {
+					is_target_in_global_variable_list = {
+						name = agot_guard_positions_guard_relevant_traits
+						target = this
+					}
+				}
+			}
+			add_to_global_variable_list = {
+				name = agot_guard_positions_guard_relevant_traits
+				target = this
+			}
+		}
+		every_trait = {
+			limit = {
+				this = trait:refusing_marriage
+				NOT = {
+					is_target_in_global_variable_list = {
+						name = agot_guard_positions_guard_relevant_traits
+						target = this
+					}
+				}
+			}
+			add_to_global_variable_list = {
+				name = agot_guard_positions_guard_relevant_traits
+				target = this
+			}
+		}
+	}
+}
+
+agot_guard_positions_cleanup_order_bound_guards_on_game_start = {
+	effect = {
+		every_living_character = {
+			limit = { agot_guard_positions_is_order_bound_guard_trigger = yes }
+			agot_guard_positions_remove_order_bound_guard_service_effect = yes
+		}
+	}
+}
+
+agot_guard_positions_game_start_setup = {
+	effect = {
+		# Seed future canonical white cloaks immediately for every real Kingsguard
+		# academy. The generated effect is idempotent because game start runs both
+		# before and after the lobby.
+		every_ruler = {
+			limit = { ruler_has_kingsguard_trigger = yes }
+			agot_guard_positions_seed_white_book_canon_trainees_effect = yes
+		}
+		# The Rogue Prince bookmark: Rhaenyra's household guard belongs to her
+		# personally while she remains Princess of Dragonstone.  The marker keeps
+		# this setup out of every other bookmark and away from later holders.
+		if = {
+			limit = {
+				game_start_date = 8106.4.18
+				NOT = { has_global_variable = agot_guard_positions_rhaenyra_106_queensguard_destroyed }
+				character:Targaryen_63 = {
+					is_alive = yes
+					has_title = title:k_dragonstone
+				}
+			}
+			character:Targaryen_63 = {
+				add_character_flag = agot_guard_positions_rhaenyra_106_queensguard
+				add_character_flag = has_queensguard
+				remove_character_flag = has_kingsmen
+				agot_guard_positions_assign_rhaenyra_106_canon_queensguard_effect = yes
+				trigger_event = { id = agot_guard_positions.1030 days = 2 }
+			}
+		}
+		if = {
+			limit = {
+				game_start_date = 8282.9.15
+				character:Stark_3 = {
+					is_alive = yes
+					has_title = title:e_the_north
+				}
+			}
+			character:Stark_3 = {
+				agot_guard_positions_setup_282_battleguard_effect = yes
+				trigger_event = { id = agot_guard_positions.1020 days = 1 }
+			}
+		}
+		if = {
+			limit = {
+				game_start_date = 8299.9.12
+				character:Stark_6 = {
+					is_alive = yes
+					has_title = title:e_the_north
+				}
+			}
+			character:Stark_6 = {
+				agot_guard_positions_bookmarked_setup_effect = yes
+				trigger_event = { id = agot_guard_positions.1020 days = 1 }
+			}
+		}
+		if = {
+			limit = {
+				game_start_date = 8299.9.12
+				character:Baratheon_3 = { is_alive = yes }
+			}
+			character:Baratheon_3 = {
+				agot_guard_positions_bookmarked_setup_effect = yes
+				trigger_event = { id = agot_guard_positions.1020 days = 1 }
+			}
+		}
+	}
+}
+
+agot_guard_positions_ai_guard_maintenance = {
+	trigger = {
+		is_ai = yes
+		agot_guard_positions_has_empty_active_guard_slot_trigger = yes
+		OR = {
+			has_character_flag = has_queensguard
+			has_character_flag = has_battleguard
+			has_character_flag = has_winged_knights
+			has_character_flag = has_rainbow_guard
+			has_character_flag = has_kingsmen
+			agot_guard_positions_has_greenhand_trigger = yes
+		}
+	}
+
+	effect = {
+		agot_guard_positions_repair_guard_assignments_effect = yes
+	}
+}
+
+
+
+
+
+
+
+agot_guard_positions_disband_custom_guards_on_iron_throne_gain = {
+	trigger = {
+		scope:title = { this = title:h_the_iron_throne }
+		OR = {
+			has_character_flag = has_queensguard
+			has_character_flag = has_battleguard
+			has_character_flag = has_winged_knights
+			has_character_flag = has_rainbow_guard
+			has_character_flag = has_kingsmen
+			agot_guard_positions_has_greenhand_trigger = yes
+		}
+	}
+
+	effect = {
+		agot_guard_positions_disband_custom_guards_for_iron_throne_effect = yes
+	}
+}
+
+agot_guard_positions_review_inherited_kingsguard_on_iron_throne_gain = {
+	trigger = {
+		scope:title = { this = title:h_the_iron_throne }
+		exists = scope:previous_holder
+		NOT = { scope:previous_holder = this }
+		is_ai = no
+		ruler_primary_title_has_kingsguard_trigger = yes
+		NOT = { has_character_flag = agot_guard_positions_kingsguard_inheritance_review_cooldown }
+		OR = {
+			exists = cp:kingsguard_lord_commander exists = cp:kingsguard_1 exists = cp:kingsguard_2
+			exists = cp:kingsguard_3 exists = cp:kingsguard_4 exists = cp:kingsguard_5 exists = cp:kingsguard_6
+		}
+	}
+	effect = {
+		add_character_flag = { flag = agot_guard_positions_kingsguard_inheritance_review_cooldown days = 30 }
+		agot_guard_positions_prepare_native_kingsguard_review_effect = yes
+	}
+}
+
+agot_guard_positions_sync_guard_flags_from_titles = {
+	trigger = {
+		OR = {
+			scope:title = { this = title:e_the_north }
+			scope:title = { this = title:e_the_stormlands }
+			scope:title = { this = title:k_dragonstone }
+			scope:title = { this = title:e_the_vale }
+		}
+	}
+
+	effect = {
+		agot_guard_positions_sync_guard_flags_from_titles_effect = yes
+		trigger_event = { id = agot_guard_positions.1004 days = 1 }
+	}
+}
+
+
+
+# If Dragonstone passes away from the bookmark Rhaenyra before she wins the
+# Iron Throne, her personal Queensguard does not pass to the new title holder.
+
+
+# This is Rhaenyra's one historical household institution, not a Dragonstone
+# order that can pass to an heir.  Her death permanently destroys it unless it
+# has already been converted into the royal Kingsguard.
+
+
+
+
+
+
+
+
+# ============================================================================
+# Observer Stack P39 - AGOT: Royal Guards (3733779333) pending-event flood
+#
+# This on_action is registered on on_title_gain, on_title_gain_inheritance and
+# on_title_gain_usurpation, and its trigger only asked "is this character a
+# guard member". Every firing queues agot_guard_positions.1006, which fans out
+# to SIX agot_guard_positions.1004 (days 1/3/7 on both employer and liege) plus
+# one agot_guard_positions.1007 -- with no de-duplication.
+#
+# In the 8183 run that produced:
+#     agot_guard_positions.1004   12,104 queued onto ONE character (85912)
+#     agot_guard_positions.1007   14,116 queued onto THREE characters
+# 26,220 events -- 72% of the entire pending-event queue -- with 12,696 of them
+# landing on a single day. The daily tick could not drain the queue, so the
+# clock stopped while the UI stayed responsive.
+#
+# The mod's author already designed the guard for this: agot_guard_positions.1004
+# tests NOT = { has_character_flag = agot_guard_positions_inheritance_review_pending }.
+# Nothing anywhere ever set that flag, so the check could never fire. It is set
+# here, at the one place the review cycle starts, and the same flag now gates
+# re-entry.
+#
+# Duration is 12 days: .1006 lands at day 1 and its own fan-out reaches day 11
+# (1 + 10 for .1007), so one full review cycle completes inside the window. A
+# guard can therefore have at most one review in flight instead of thousands.
+# The repair sweep itself is unchanged and remains idempotent.
+# ============================================================================
+agot_guard_positions_guard_inherits_title = {
+	trigger = {
+		NOT = { has_character_flag = agot_guard_positions_inheritance_review_pending }
+		OR = {
+			agot_guard_positions_is_queensguard_trigger = yes
+			agot_guard_positions_is_battleguard_trigger = yes
+			agot_guard_positions_is_winged_knight_trigger = yes
+			agot_guard_positions_is_rainbow_guard_trigger = yes
+			agot_guard_positions_is_kingsmen_trigger = yes
+			agot_guard_positions_is_greenhand_trigger = yes
+		}
+	}
+
+	effect = {
+		add_character_flag = blocked_from_leaving
+		add_character_flag = { flag = agot_guard_positions_inherited_title_as_guard days = 30 }
+		add_character_flag = { flag = agot_guard_positions_inheritance_review_pending days = 12 }
+		trigger_event = { id = agot_guard_positions.1006 days = 1 }
+	}
+}
+
+agot_guard_positions_cleanup_order_bound_guard_on_join_court = {
+	trigger = {
+		agot_guard_positions_is_order_bound_guard_trigger = yes
+		NOT = { agot_guard_positions_has_custom_guard_council_position_trigger = yes }
+	}
+
+	effect = {
+		agot_guard_positions_remove_order_bound_guard_service_effect = yes
+	}
+}
+
+agot_guard_positions_cleanup_order_bound_guard_on_title_gain = {
+	trigger = {
+		agot_guard_positions_is_order_bound_guard_trigger = yes
+		NOT = { agot_guard_positions_has_custom_guard_council_position_trigger = yes }
+	}
+
+	effect = {
+		agot_guard_positions_remove_order_bound_guard_service_effect = yes
+	}
+}
+
+agot_guard_positions_return_sworn_guard_to_owner = {
+	trigger = {
+		NOT = { agot_guard_positions_is_order_bound_guard_trigger = yes }
+		OR = {
+			AND = {
+				has_character_flag = blocked_from_leaving
+				OR = {
+					has_council_position = rainbow_guard_lord_commander
+					has_council_position = rainbow_guard_1
+					has_council_position = rainbow_guard_2
+					has_council_position = rainbow_guard_3
+					has_council_position = rainbow_guard_4
+					has_council_position = rainbow_guard_5
+					has_council_position = rainbow_guard_6
+					has_council_position = battleguard_lord_commander
+					has_council_position = winged_knight_lord_commander
+					has_council_position = battleguard_1
+					has_council_position = winged_knight_1
+					has_council_position = battleguard_2
+					has_council_position = winged_knight_2
+					has_council_position = battleguard_3
+					has_council_position = winged_knight_3
+					has_council_position = battleguard_4
+					has_council_position = winged_knight_4
+					has_council_position = battleguard_5
+					has_council_position = winged_knight_5
+					has_council_position = battleguard_6
+					has_council_position = winged_knight_6
+					has_council_position = kingsmen_lord_commander
+					has_council_position = kingsmen_1
+					has_council_position = kingsmen_2
+					has_council_position = kingsmen_3
+					has_council_position = kingsmen_4
+					has_council_position = kingsmen_5
+					has_council_position = kingsmen_6
+					has_council_position = queensguard_lord_commander
+					has_council_position = queensguard_1
+					has_council_position = queensguard_2
+					has_council_position = queensguard_3
+					has_council_position = queensguard_4
+					has_council_position = queensguard_5
+					has_council_position = queensguard_6
+					has_council_position = greenhand_lord_commander
+					has_council_position = greenhand_1
+					has_council_position = greenhand_2
+					has_council_position = greenhand_3
+					has_council_position = greenhand_4
+					has_council_position = greenhand_5
+					has_council_position = greenhand_6
+				}
+			}
+			agot_guard_positions_is_queensguard_trigger = yes
+			agot_guard_positions_is_battleguard_trigger = yes
+			agot_guard_positions_is_winged_knight_trigger = yes
+			agot_guard_positions_is_rainbow_guard_trigger = yes
+			agot_guard_positions_is_kingsmen_trigger = yes
+			agot_guard_positions_is_greenhand_trigger = yes
+		}
+		exists = scope:old_employer
+		scope:old_employer = {
+			OR = {
+				has_character_flag = has_rainbow_guard
+				has_character_flag = has_battleguard
+				has_character_flag = has_winged_knights
+				has_character_flag = has_kingsmen
+				has_character_flag = has_queensguard
+				agot_guard_positions_has_greenhand_trigger = yes
+			}
+		}
+		trigger_if = {
+			limit = { exists = scope:new_employer }
+			NOT = { scope:new_employer = scope:old_employer }
+		}
+	}
+
+	effect = {
+		add_character_flag = blocked_from_leaving
+		scope:old_employer = {
+			trigger_event = { id = agot_guard_positions.1004 days = 1 }
+		}
+		if = {
+			limit = { is_landed = no }
+			scope:old_employer = { add_courtier ?= root }
+		}
+	}
+}
+
+agot_guard_positions_guard_artifacts_on_death = {
+	trigger = {
+		any_character_artifact = {
+			has_variable = agot_guard_positions_guard_sword_artifact
+		}
+		house.house_head ?= {
+			is_alive = yes
+		}
+	}
+
+	effect = {
+		agot_guard_positions_transfer_guard_sword_to_house_head_effect = yes
+	}
+}
+
+agot_guard_positions_guard_member_death = {
+	trigger = {
+		OR = {
+			agot_guard_positions_is_queensguard_trigger = yes
+			agot_guard_positions_is_battleguard_trigger = yes
+			agot_guard_positions_is_winged_knight_trigger = yes
+			agot_guard_positions_is_rainbow_guard_trigger = yes
+			agot_guard_positions_is_kingsmen_trigger = yes
+			agot_guard_positions_is_greenhand_trigger = yes
+		}
+		OR = {
+			liege_or_court_owner = {
+				OR = {
+					has_character_flag = has_queensguard
+					has_character_flag = has_battleguard
+					has_character_flag = has_winged_knights
+					has_character_flag = has_rainbow_guard
+					has_character_flag = has_kingsmen
+					agot_guard_positions_has_greenhand_trigger = yes
+					has_title = title:e_the_north
+					has_title = title:e_the_stormlands
+					has_title = title:k_dragonstone
+				}
+			}
+			top_liege = {
+				OR = {
+					has_character_flag = has_queensguard
+					has_character_flag = has_battleguard
+					has_character_flag = has_winged_knights
+					has_character_flag = has_rainbow_guard
+					has_character_flag = has_kingsmen
+					agot_guard_positions_has_greenhand_trigger = yes
+					has_title = title:e_the_north
+					has_title = title:e_the_stormlands
+					has_title = title:k_dragonstone
+				}
+			}
+		}
+	}
+
+	effect = {
+		save_scope_as = dead_guard
+		save_scope_as = dead_kingsguard
+		house.house_head ?= { save_scope_as = dead_guard_family_representative }
+		if = { limit = { exists = liege_or_court_owner } agot_guard_positions_record_death_effect = { HOLDER = liege_or_court_owner } }
+		if = {
+			limit = { num_of_relation_agot_squire > 0 }
+			if = {
+				limit = { num_of_relation_agot_squire > 1 exists = liege_or_court_owner }
+				# Earlier rounds are abstracted; the two strongest surviving pupils
+				# contest the final with blunted weapons in the ruler's event.
+				ordered_relation = {
+					type = agot_squire
+					position = 0
+					order_by = prowess
+					save_scope_as = memorial_squire_1
+				}
+				ordered_relation = {
+					type = agot_squire
+					position = 1
+					order_by = prowess
+					save_scope_as = memorial_squire_2
+				}
+				liege_or_court_owner = { trigger_event = agot_guard_legacy.0001 }
+			}
+			else = {
+				random_relation = {
+					type = agot_squire
+					agot_guard_positions_create_squire_memorial_effect = { DEAD_GUARD = root }
+				}
+			}
+		}
+		if = {
+			limit = {
+				liege_or_court_owner = {
+					OR = {
+						has_character_flag = has_queensguard
+						has_character_flag = has_battleguard
+						has_character_flag = has_winged_knights
+						has_character_flag = has_rainbow_guard
+						has_character_flag = has_kingsmen
+						agot_guard_positions_has_greenhand_trigger = yes
+						has_title = title:e_the_north
+						has_title = title:e_the_stormlands
+						has_title = title:k_dragonstone
+					}
+				}
+			}
+			liege_or_court_owner = {
+				agot_guard_positions_sync_guard_flags_from_titles_effect = yes
+				save_scope_as = king
+				trigger_event = agot_guard_legacy.0010
+			}
+		}
+		else_if = {
+			limit = {
+				top_liege = {
+					OR = {
+						has_character_flag = has_queensguard
+						has_character_flag = has_battleguard
+						has_character_flag = has_winged_knights
+						has_character_flag = has_rainbow_guard
+						has_character_flag = has_kingsmen
+						agot_guard_positions_has_greenhand_trigger = yes
+						has_title = title:e_the_north
+						has_title = title:e_the_stormlands
+						has_title = title:k_dragonstone
+					}
+				}
+			}
+			top_liege = {
+				agot_guard_positions_sync_guard_flags_from_titles_effect = yes
+				save_scope_as = king
+				trigger_event = agot_guard_legacy.0010
+			}
+		}
+	}
+}
+
+# Kept separate from the vacancy event because that event has owner/court
+# requirements. Trait cleanup must still run if the dead guard was landed,
+# stranded, or serving a holder whose order state changed immediately on death.
+agot_guard_positions_clear_guard_membership_on_death = {
+	trigger = {
+		OR = {
+			has_trait = agot_queensguard
+			has_trait = agot_battleguard
+			has_trait = agot_winged_knight
+			has_trait = agot_rainbowguard
+			has_trait = agot_kingsmen
+			has_trait = agot_greenhand
+			has_character_flag = agot_guard_positions_queensguard_member
+			has_character_flag = agot_guard_positions_battleguard_member
+			has_character_flag = agot_guard_positions_winged_knight_member
+			has_character_flag = agot_guard_positions_rainbow_guard_member
+			has_character_flag = agot_guard_positions_kingsmen_member
+			has_character_flag = agot_guard_positions_greenhand_member
+		}
+	}
+	effect = {
+		agot_guard_positions_clear_deceased_guard_membership_effect = yes
+	}
+}

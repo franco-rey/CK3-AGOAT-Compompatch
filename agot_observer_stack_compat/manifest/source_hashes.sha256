@@ -127,3 +127,62 @@ f4859d089d7fa0b9bfe3a24a08c21845c29f0f195e623db1ed7589698876b192  LOCAL/common/s
 
 # P34 (2026-08-29): Duel Overlay compatibility.
 81cf5538a4f688e80187c539095ec8a5271144ffa1e57f923a101ddd06e1a442  2636170225/gui/event_windows/duel_event.gui  # PASS pre/post  [P34]
+
+# 2026-08-30 revision wave Workshop source gates (11/11 PASS pre/post)
+# Runtime evidence: the 8183 Gar Sagon run. P35/P37 verified the earlier title-name
+# runaway fixed (landed_titles 663 MB -> 5.7 MB, guard-book prose 7,918,803 -> 49 lines);
+# P39 addresses the pending-event flood that surfaced underneath it.
+e1854a917a1599c725c01862c258a7f82729cf577cb0d290d6f59de81e9a1ccd  3733779333/common/scripted_effects/08_agot_guard_order_book_effects.txt  # PASS pre/post  [P35]
+44aec66cc1b41593d8d8c50d833d5fe1237da0157a149d030d2b40ef72c99b3f  3733779333/gui/guard_academy_button_widget.gui  # PASS pre/post  [P36]
+256679008ea2a1be1441c623cbc3f7b9d82dc9162a3eae64c76b04ba1032c459  3768775292/common/domiciles/buildings/00_agot_pirate_ship_buildings_UE.txt  # PASS pre/post  [P38]
+b7ebbd544910aaf02c10943034a0560012d20c898968e4a07dbf98740c05b04f  3768775292/common/domiciles/buildings/00_agot_ranger_buildings_UE.txt  # PASS pre/post  [P38]
+8d77fa105f8793e928e10287ea3eced9e6a1391de78966cd72d1e336c2e751ea  3768775292/common/domiciles/buildings/00_camp_buildings_UC.txt  # PASS pre/post  [P38]
+df441ffed5c15357e9c4accdb87c665e5b5ecb4c82e53ea147461e6c87ee33fe  3768775292/common/domiciles/buildings/00_chinese_estate_buildings_UE.txt  # PASS pre/post  [P38]
+7e9bc1eef50f1891eaa8cb9d28ccd9cad6169d0ae91d610dadbbe4c0eefb3864  3768775292/common/domiciles/buildings/00_yurt_buildings_UY.txt  # PASS pre/post  [P38]
+52d3d18b51afd7d413ad1eada0ba0c61b4fec7abbd96654ecb7b15d243078b7f  3768775292/common/domiciles/buildings/01_camp_level_one_internal_slots_UE.txt  # PASS pre/post  [P38]
+267015befb42fd0f053f8395cf26ddb189076fc5e3a2029c6540b9ce0c73f2de  3733779333/common/on_action/00_agot_guard_positions_on_actions.txt  # PASS pre/post  [P39]
+db487fe565ee07abb705c7d5de21a3adedb01b557474d2a2ba095ea0ed794af4  3733779333/common/on_action/05_agot_queensguard_on_actions.txt  # PASS pre/post  [P40]
+d9db504b87fbabde917181b42bca693a040c791170458500a4a095d1dc8d7a1a  3733779333/localization/english/agot_swords_of_braavos_l_english.yml  # PASS pre/post  [P37 key origin]
+
+# 2026-08-30 revision wave final builds
+57feb5ba1f453fc3710ab3313abc222f5bd123b4f41bb40f10c35be9f2c637e8  BUILT/common/scripted_effects/08_agot_guard_order_book_effects.txt  [P35]
+b10b3497444a79c77657f1ef53b3fd0366cb8d055cad51c9dfb0e9466f8dabf6  BUILT/gui/guard_academy_button_widget.gui  [P36]
+5f51237e994665ad6e25693b381246472911af802a6e4d1394d9d87632811c0a  BUILT/localization/replace/english/zz_observer_stack_guard_book_l_english.yml  [P37]
+a59ba6ce8485f8457afc6a56db28e57c7caede9afdad4337247aca2c68f1bae9  BUILT/common/domiciles/buildings/00_agot_pirate_ship_buildings_UE.txt  [P38]
+7c021786992f2dfaee4811a79dd4ba62a7fff3c6c5233579851d7f9aa7599e11  BUILT/common/domiciles/buildings/00_agot_ranger_buildings_UE.txt  [P38]
+20dc9c7c2e437298e46837ac9f9045da25f058805594c3c8f037623acbd50779  BUILT/common/domiciles/buildings/00_camp_buildings_UC.txt  [P38]
+7ed3b107435295ef13e7ad4a341a7bbc831b26f5c9317d803cb40b4e567a9bb9  BUILT/common/domiciles/buildings/00_chinese_estate_buildings_UE.txt  [P38]
+be53a43f6e198d28cbe331eb0602ceee9ba9ec4f1c952d4f235da6077cdbabb4  BUILT/common/domiciles/buildings/00_yurt_buildings_UY.txt  [P38]
+ad6fb27a7060a5401e3f4c1a19356475cfe589701e42b85c0d88f691367f6f30  BUILT/common/domiciles/buildings/01_camp_level_one_internal_slots_UE.txt  [P38]
+e2b2fd212a03676d08eeea75ec3ffaa99a4cb1631ca3f30df06f81e46e528dd3  BUILT/common/on_action/00_agot_guard_positions_on_actions.txt  [P39]
+fdce46c0dafe659e6e9cc7adc5fd1ee889cac13a5e33f59b3a0a64555bc6afb6  BUILT/common/on_action/05_agot_queensguard_on_actions.txt  [P40]
+
+# 2026-08-30 revision wave sole-provider file authored by this patch (no upstream file at this path)
+# Overrides one key from the gated origin file above; localization/replace/ takes priority
+# over localization/english/ regardless of filename, so no path override is needed.
+# (none)  localization/replace/english/zz_observer_stack_guard_book_l_english.yml  [P37]
+
+# P41 (2026-08-30): Royal Guards queue flood, second pass. P39 gated the .1006
+# fan-out; agot_guard_positions.1007 turned out to have five trigger sites, four of
+# them in departure-cleanup effects whose existing guard flag is cleared on rejoin.
+202c52a56a3d7ac85629d2d87d935cfcb6f5595c80074f4076bceea603c956c3  3733779333/common/scripted_effects/00_agot_guard_positions_effects.txt  # PASS pre/post  [P41]
+24ae56a3ccfe1d0156be4236edcbe5254a2f9514924bfaf9ea134daa4d865deb  3733779333/common/scripted_effects/06_agot_swords_of_braavos_effects.txt  # PASS pre/post  [P41]
+07f3172e9b062fa71ed662850c088627e28146791dd52095d211ff6a130b30de  BUILT/common/scripted_effects/00_agot_guard_positions_effects.txt  [P41]
+40956cd94137797fec76bc476ac45e6759583de8e771098b2dac18c4489e0320  BUILT/common/scripted_effects/06_agot_swords_of_braavos_effects.txt  [P41]
+
+# P42-P43 (2026-08-30): from the 8183 Viserys run. P42 makes the training rank
+# comparisons tooltip-safe; P43 soft-scopes the vacant Kingsguard slot 6.
+202c52a56a3d7ac85629d2d87d935cfcb6f5595c80074f4076bceea603c956c3  3733779333/common/scripted_effects/00_agot_guard_positions_effects.txt  # PASS pre/post  [P42]
+a77bf99ffe80c315167fb6896c90cd8074701b3334af4f10a1e762182701e8fd  2962333032/common/council_positions/00_agot_council_kingsguard.txt  # PASS pre/post  [P43]
+5e77eac3d3cd6ab347d8c520f246ee99a8e23565688266268e5a080b9e64a92c  BUILT/common/scripted_effects/00_agot_guard_positions_effects.txt  [P42]
+1b1c9aba7b460e02fb8e74828b45deb4e6ae330fddac0cba2359f2534a2e5daa  BUILT/common/council_positions/00_agot_council_kingsguard.txt  [P43]
+
+# P44 (2026-08-30): AGOT temporary/permanent scope-name collision on 'actor'.
+f646af7405c24d17296bc8919d1b3f40173b1e05a0621bbba01767e48b160791  2962333032/common/scripted_triggers/00_agot_blood_triggers.txt  # PASS pre/post  [P44]
+e027557d1fef6161952fee7812d128960a5b6ef97883c42c1b7d9c758e196e1b  BUILT/common/scripted_triggers/00_agot_blood_triggers.txt  [P44]
+
+# P45 (2026-08-30): DireWolves unguarded pack-leader dereference.
+# Single-key database override (zz_ sorts after dw_), not a file override, so the
+# source gate below covers only the decision block this key was rebuilt from.
+02b3481a5f7abe10cacb2f143001f6087119c3cc62f581efacc58ec457553c59  3766320609/common/decisions/dw_direwolf_decisions.txt  # PASS pre/post  [P45]
+61e4dee34be9cb42488ee70eef3c97324cd309c5791c7df3ef11aa09761f26a8  BUILT/common/decisions/zz_observer_stack_direwolf_hunt_fix.txt  [P45]

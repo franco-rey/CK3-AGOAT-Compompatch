@@ -1,0 +1,105 @@
+﻿# Observer Stack P40 - AGOT: Royal Guards (3733779333)
+#
+# agot_guard_positions_fill_rhaenyra_designated_queensguard_vacancy runs from
+# on_death, i.e. for every death in the world. Its trigger performed a HARD
+# scope switch into character:Targaryen_63 (Rhaenyra). In any era or bookmark
+# where that historical character does not exist, the switch failed and logged
+#   Error: character:Targaryen_63 trigger [ Failed context switch ]
+# 936 times in a single session.
+#
+# All four hard switches are changed to the soft form ( ?= ), which yields
+# false instead of erroring when the character is absent. Behaviour is
+# unchanged whenever Rhaenyra does exist.
+on_title_gain = { on_actions = { agot_guard_positions_rhaenyra_queensguard_title_usurped } }
+on_title_gain_inheritance = { on_actions = { agot_guard_positions_rhaenyra_queensguard_title_usurped } }
+on_title_gain_usurpation = { on_actions = { agot_guard_positions_rhaenyra_queensguard_title_usurped } }
+on_title_destroyed = { on_actions = { agot_guard_positions_destroy_rhaenyra_queensguard_with_dragonstone } }
+on_death = { on_actions = { agot_guard_positions_destroy_rhaenyra_queensguard_on_death agot_guard_positions_fill_rhaenyra_designated_queensguard_vacancy } }
+on_birthday = { on_actions = { agot_guard_positions_rhaenyra_designated_squire_comes_of_age } }
+
+agot_guard_positions_rhaenyra_queensguard_title_usurped = {
+	trigger = {
+		scope:title = { this = title:k_dragonstone }
+		exists = scope:previous_holder
+		scope:previous_holder = {
+			has_character_flag = agot_guard_positions_rhaenyra_106_queensguard
+			has_character_flag = has_queensguard
+			NOT = { has_title = title:h_the_iron_throne }
+		}
+	}
+	effect = {
+		set_global_variable = agot_guard_positions_rhaenyra_106_queensguard_destroyed
+		scope:previous_holder = {
+			agot_guard_positions_dissolve_queensguard_effect = yes
+			remove_character_flag = agot_guard_positions_rhaenyra_106_queensguard
+		}
+	}
+}
+
+agot_guard_positions_destroy_rhaenyra_queensguard_on_death = {
+	trigger = {
+		this = character:Targaryen_63
+		has_character_flag = agot_guard_positions_rhaenyra_106_queensguard
+	}
+	effect = {
+		set_global_variable = agot_guard_positions_rhaenyra_106_queensguard_destroyed
+		if = {
+			limit = { has_character_flag = has_queensguard }
+			agot_guard_positions_dissolve_queensguard_effect = yes
+		}
+		remove_character_flag = agot_guard_positions_rhaenyra_106_queensguard
+	}
+}
+
+agot_guard_positions_destroy_rhaenyra_queensguard_with_dragonstone = {
+	trigger = {
+		scope:landed_title = { this = title:k_dragonstone }
+		this = character:Targaryen_63
+		has_character_flag = agot_guard_positions_rhaenyra_106_queensguard
+	}
+	effect = {
+		set_global_variable = agot_guard_positions_rhaenyra_106_queensguard_destroyed
+		if = {
+			limit = { has_character_flag = has_queensguard }
+			agot_guard_positions_dissolve_queensguard_effect = yes
+		}
+		remove_character_flag = agot_guard_positions_rhaenyra_106_queensguard
+	}
+}
+
+agot_guard_positions_rhaenyra_designated_squire_comes_of_age = {
+	trigger = {
+		age = 16
+		OR = {
+			this = character:Redfort_26
+			this = character:Darklyn_21
+			this = character:Lansdale_22
+			this = character:Bentley_1
+		}
+		character:Targaryen_63 ?= {
+			is_alive = yes
+			has_character_flag = agot_guard_positions_rhaenyra_106_queensguard
+			has_title = title:k_dragonstone
+			has_character_flag = has_queensguard
+			agot_guard_has_empty_queensguard_slot_trigger = yes
+		}
+	}
+	effect = {
+		character:Targaryen_63 ?= { agot_guard_positions_fill_designated_rhaenyra_queensguard_effect = yes }
+	}
+}
+
+agot_guard_positions_fill_rhaenyra_designated_queensguard_vacancy = {
+	trigger = {
+		character:Targaryen_63 ?= {
+			is_alive = yes
+			has_character_flag = agot_guard_positions_rhaenyra_106_queensguard
+			has_title = title:k_dragonstone
+			has_character_flag = has_queensguard
+			agot_guard_has_empty_queensguard_slot_trigger = yes
+		}
+	}
+	effect = {
+		character:Targaryen_63 ?= { agot_guard_positions_fill_designated_rhaenyra_queensguard_effect = yes }
+	}
+}

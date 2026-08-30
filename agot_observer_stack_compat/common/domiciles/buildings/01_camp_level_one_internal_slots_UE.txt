@@ -1,0 +1,1868 @@
+﻿# ============================================================================
+# Observer Stack P38 - Expanded Domiciles for AGOT (3768775292)
+#
+# CK3 @constants are FILE-SCOPED. Expanded Domiciles copied AGOT's and
+# vanilla's domicile building definitions into new _UE / _UY / _UC files but
+# left the @constant definitions behind in the originals, so every reference
+# below failed to resolve:
+#   Cannot read [@ranger_side_cost_1] as a script value
+#   Malformed token: @yurt_external_construction_time_tier_1
+#   Missing construction_time for 'agot_pirate_ship_main_01' defaults to 720 days
+#
+# Building gold/prestige costs and construction times were silently falling
+# back to engine defaults. The 5 constant(s) this file needs are restored
+# below at their original values; nothing else in the file is changed.
+# ============================================================================
+@camp_building_main_slot_construction_duration_t1 = 180   # from 2962333032/00_agot_settlement_buildings.txt
+@camp_building_main_slot_construction_duration_t2 = 210   # from 2962333032/00_agot_settlement_buildings.txt
+@camp_building_main_slot_construction_duration_t3 = 240   # from 2962333032/00_agot_settlement_buildings.txt
+@camp_building_main_slot_construction_duration_t4 = 300   # from 2962333032/00_agot_settlement_buildings.txt
+@camp_building_main_slot_construction_duration_t5 = 360   # from 2962333032/00_agot_settlement_buildings.txt
+
+# Ultimate AGOT compatibility override: all Adventurer Camp internal slots available from building level 1.
+
+baggage_train_01 = {
+	internal_slots = 13
+	construction_time = @camp_building_main_slot_construction_duration_t1
+	allowed_domicile_types = { camp }
+
+	cost = { gold = baggage_train_01_domicile_building_gold_cost_value }
+	refund = {
+		gold = {
+			value = baggage_train_01_domicile_building_gold_cost_value
+			multiply = camp_refund_mult_value
+			floor = yes
+		}
+	}
+
+	character_modifier = {
+		character_travel_speed_mult = 0.02
+		provisions_capacity_mult = 0.1
+		supply_capacity_mult = 0.2
+		skirmishers_max_size_add = 1
+	}
+
+	parameters = {
+		camp_better_scout_for_talent = yes
+		camp_unlocks_head_porter_officer = yes
+		receives_more_escort_contracts = yes
+	}
+
+	ai_value = { value = baggage_train_main_path_value }
+
+	asset = {
+		trigger = {
+			owner.culture = {
+				OR = {
+					has_graphical_chinese_culture_group_trigger = yes
+					has_graphical_japanese_culture_group_trigger = yes
+				}
+			}
+		}
+		icon = "gfx/interface/icons/domicile_building/domicile_building_bagage.dds"
+		texture = "gfx/interface/window_domiciles/laamp_building_baggage_train_asian.dds"
+		intersectionmask_texture = "gfx/interface/window_domiciles/laamp_building_baggage_train_asian_mask.png"
+		soundeffect = "event:/DLC/EP3/SFX/UI/camp_buildings/ep3_ui_domicile_buildings_baggage_train"
+	}
+
+	asset = {
+		icon = "gfx/interface/icons/domicile_building/domicile_building_bagage.dds"
+		texture = "gfx/interface/window_domiciles/laamp_building_baggage_train.dds"
+		intersectionmask_texture = "gfx/interface/window_domiciles/laamp_building_baggage_train_mask.png"
+		soundeffect = "event:/DLC/EP3/SFX/UI/camp_buildings/ep3_ui_domicile_buildings_baggage_train"
+	}
+}
+
+baggage_train_02 = {
+	construction_time = @camp_building_main_slot_construction_duration_t2
+	allowed_domicile_types = { camp }
+	previous_building = baggage_train_01
+	internal_slots = 13
+
+	cost = { gold = baggage_train_02_domicile_building_gold_cost_value }
+	refund = {
+		gold = {
+			value = baggage_train_02_domicile_building_gold_cost_value
+			add = baggage_train_01_domicile_building_gold_cost_value
+			multiply = camp_refund_mult_value
+			floor = yes
+		}
+	}
+
+	character_modifier = {
+		character_travel_speed_mult = 0.02
+		provisions_capacity_mult = 0.1
+		supply_capacity_mult = 0.2
+		archers_max_size_add = 1
+	}
+
+	parameters = {
+		camp_better_scout_for_talent = yes
+		camp_unlocks_head_porter_officer = yes
+		receives_more_escort_contracts = yes
+	}
+
+	ai_value = { value = baggage_train_main_path_value }
+
+	asset = {
+		trigger = {
+			owner.culture = {
+				OR = {
+					has_graphical_chinese_culture_group_trigger = yes
+					has_graphical_japanese_culture_group_trigger = yes
+				}
+			}
+		}
+		icon = "gfx/interface/icons/domicile_building/domicile_building_bagage.dds"
+		texture = "gfx/interface/window_domiciles/laamp_building_baggage_train_asian.dds"
+		intersectionmask_texture = "gfx/interface/window_domiciles/laamp_building_baggage_train_asian_mask.png"
+		soundeffect = "event:/DLC/EP3/SFX/UI/camp_buildings/ep3_ui_domicile_buildings_baggage_train"
+	}
+
+	asset = {
+		icon = "gfx/interface/icons/domicile_building/domicile_building_bagage.dds"
+		texture = "gfx/interface/window_domiciles/laamp_building_baggage_train.dds"
+		intersectionmask_texture = "gfx/interface/window_domiciles/laamp_building_baggage_train_mask.png"
+		soundeffect = "event:/DLC/EP3/SFX/UI/camp_buildings/ep3_ui_domicile_buildings_baggage_train"
+	}
+}
+
+baggage_train_03 = {
+	construction_time = @camp_building_main_slot_construction_duration_t3
+	allowed_domicile_types = { camp }
+	previous_building = baggage_train_02
+	internal_slots = 13
+
+	cost = { gold = baggage_train_03_domicile_building_gold_cost_value }
+	refund = {
+		gold = {
+			value = baggage_train_03_domicile_building_gold_cost_value
+			add = baggage_train_02_domicile_building_gold_cost_value
+			add = baggage_train_01_domicile_building_gold_cost_value
+			multiply = camp_refund_mult_value
+			floor = yes
+		}
+	}
+
+	character_modifier = {
+		character_travel_speed_mult = 0.02
+		provisions_capacity_mult = 0.1
+		supply_capacity_mult = 0.2
+		heavy_infantry_max_size_add = 1
+	}
+
+	parameters = {
+		camp_better_scout_for_talent = yes
+		camp_unlocks_head_porter_officer = yes
+		receives_more_escort_contracts = yes
+	}
+
+	ai_value = { value = baggage_train_main_path_value }
+
+	asset = {
+		trigger = {
+			owner.culture = {
+				OR = {
+					has_graphical_chinese_culture_group_trigger = yes
+					has_graphical_japanese_culture_group_trigger = yes
+				}
+			}
+		}
+		icon = "gfx/interface/icons/domicile_building/domicile_building_bagage.dds"
+		texture = "gfx/interface/window_domiciles/laamp_building_baggage_train_asian.dds"
+		intersectionmask_texture = "gfx/interface/window_domiciles/laamp_building_baggage_train_asian_mask.png"
+		soundeffect = "event:/DLC/EP3/SFX/UI/camp_buildings/ep3_ui_domicile_buildings_baggage_train"
+	}
+
+	asset = {
+		icon = "gfx/interface/icons/domicile_building/domicile_building_bagage.dds"
+		texture = "gfx/interface/window_domiciles/laamp_building_baggage_train.dds"
+		intersectionmask_texture = "gfx/interface/window_domiciles/laamp_building_baggage_train_mask.png"
+		soundeffect = "event:/DLC/EP3/SFX/UI/camp_buildings/ep3_ui_domicile_buildings_baggage_train"
+	}
+}
+
+baggage_train_04 = {
+	construction_time = @camp_building_main_slot_construction_duration_t4
+	allowed_domicile_types = { camp }
+	previous_building = baggage_train_03
+	internal_slots = 13
+
+	cost = { gold = baggage_train_04_domicile_building_gold_cost_value }
+	refund = {
+		gold = {
+			value = baggage_train_04_domicile_building_gold_cost_value
+			add = baggage_train_03_domicile_building_gold_cost_value
+			add = baggage_train_02_domicile_building_gold_cost_value
+			add = baggage_train_01_domicile_building_gold_cost_value
+			multiply = camp_refund_mult_value
+			floor = yes
+		}
+	}
+
+	character_modifier = {
+		character_travel_speed_mult = 0.02
+		provisions_capacity_mult = 0.1
+		supply_capacity_mult = 0.2
+		light_cavalry_max_size_add = 1
+	}
+
+	parameters = {
+		camp_better_scout_for_talent = yes
+		camp_unlocks_head_porter_officer = yes
+		receives_more_escort_contracts = yes
+	}
+
+	ai_value = { value = baggage_train_main_path_value }
+
+	asset = {
+		trigger = {
+			owner.culture = {
+				OR = {
+					has_graphical_chinese_culture_group_trigger = yes
+					has_graphical_japanese_culture_group_trigger = yes
+				}
+			}
+		}
+		icon = "gfx/interface/icons/domicile_building/domicile_building_bagage.dds"
+		texture = "gfx/interface/window_domiciles/laamp_building_baggage_train_asian.dds"
+		intersectionmask_texture = "gfx/interface/window_domiciles/laamp_building_baggage_train_asian_mask.png"
+		soundeffect = "event:/DLC/EP3/SFX/UI/camp_buildings/ep3_ui_domicile_buildings_baggage_train"
+	}
+
+	asset = {
+		icon = "gfx/interface/icons/domicile_building/domicile_building_bagage.dds"
+		texture = "gfx/interface/window_domiciles/laamp_building_baggage_train.dds"
+		intersectionmask_texture = "gfx/interface/window_domiciles/laamp_building_baggage_train_mask.png"
+		soundeffect = "event:/DLC/EP3/SFX/UI/camp_buildings/ep3_ui_domicile_buildings_baggage_train"
+	}
+}
+
+baggage_train_05 = {
+	construction_time = @camp_building_main_slot_construction_duration_t5
+	allowed_domicile_types = { camp }
+	previous_building = baggage_train_04
+	internal_slots = 13
+
+	cost = { gold = baggage_train_05_domicile_building_gold_cost_value }
+	refund = {
+		gold = {
+			value = baggage_train_05_domicile_building_gold_cost_value
+			add = baggage_train_04_domicile_building_gold_cost_value
+			add = baggage_train_03_domicile_building_gold_cost_value
+			add = baggage_train_02_domicile_building_gold_cost_value
+			add = baggage_train_01_domicile_building_gold_cost_value
+			multiply = camp_refund_mult_value
+			floor = yes
+		}
+	}
+
+	character_modifier = {
+		character_travel_speed_mult = 0.02
+		provisions_capacity_mult = 0.1
+		supply_capacity_mult = 0.2
+		heavy_cavalry_max_size_add = 1
+	}
+
+	parameters = {
+		camp_better_scout_for_talent = yes
+		camp_unlocks_head_porter_officer = yes
+		receives_more_escort_contracts = yes
+	}
+
+	ai_value = { value = baggage_train_main_path_value }
+
+	asset = {
+		trigger = {
+			owner.culture = {
+				OR = {
+					has_graphical_chinese_culture_group_trigger = yes
+					has_graphical_japanese_culture_group_trigger = yes
+				}
+			}
+		}
+		icon = "gfx/interface/icons/domicile_building/domicile_building_bagage.dds"
+		texture = "gfx/interface/window_domiciles/laamp_building_baggage_train_asian.dds"
+		intersectionmask_texture = "gfx/interface/window_domiciles/laamp_building_baggage_train_asian_mask.png"
+		soundeffect = "event:/DLC/EP3/SFX/UI/camp_buildings/ep3_ui_domicile_buildings_baggage_train"
+	}
+
+	asset = {
+		icon = "gfx/interface/icons/domicile_building/domicile_building_bagage.dds"
+		texture = "gfx/interface/window_domiciles/laamp_building_baggage_train.dds"
+		intersectionmask_texture = "gfx/interface/window_domiciles/laamp_building_baggage_train_mask.png"
+		soundeffect = "event:/DLC/EP3/SFX/UI/camp_buildings/ep3_ui_domicile_buildings_baggage_train"
+	}
+}
+
+barber_tent_01 = {
+	internal_slots = 5
+	construction_time = @camp_building_main_slot_construction_duration_t1
+	allowed_domicile_types = { camp }
+
+	cost = { gold = barber_tent_01_domicile_building_gold_cost_value }
+	refund = {
+		gold = {
+			value = barber_tent_01_domicile_building_gold_cost_value
+			multiply = camp_refund_mult_value
+			floor = yes
+		}
+	}
+
+	character_modifier = {
+		epidemic_travel_danger = -10
+		negate_health_penalty_add = 0.2
+		hard_casualty_modifier = -0.03
+		domicile_monthly_gold_add = 0.2
+	}
+
+	parameters = {
+		camp_infection_chance_buff_1 = yes
+	}
+
+	ai_value = { value = barber_tent_main_path_value }
+
+	asset = {
+		trigger = {
+			owner.culture = {
+				OR = {
+					has_graphical_chinese_culture_group_trigger = yes
+					has_graphical_japanese_culture_group_trigger = yes
+				}
+			}
+		}
+		icon = "gfx/interface/icons/domicile_building/domicile_building_barber.dds"
+		texture = "gfx/interface/window_domiciles/laamp_building_barber_asian.dds"
+		intersectionmask_texture = "gfx/interface/window_domiciles/laamp_building_barber_asian_mask.png"
+		soundeffect = "event:/DLC/EP3/SFX/UI/camp_buildings/ep3_ui_domicile_buildings_barber_tent"
+	}
+	
+	asset = {
+		icon = "gfx/interface/icons/domicile_building/domicile_building_barber.dds"
+		texture = "gfx/interface/window_domiciles/laamp_building_barber.dds"
+		intersectionmask_texture = "gfx/interface/window_domiciles/laamp_building_barber_mask.png"
+		soundeffect = "event:/DLC/EP3/SFX/UI/camp_buildings/ep3_ui_domicile_buildings_barber_tent"
+
+	}
+}
+
+barber_tent_02 = {
+	construction_time = @camp_building_main_slot_construction_duration_t2
+	allowed_domicile_types = { camp }
+	previous_building = barber_tent_01
+	internal_slots = 5
+
+	cost = { gold = barber_tent_02_domicile_building_gold_cost_value }
+	refund = {
+		gold = {
+			value = barber_tent_02_domicile_building_gold_cost_value
+			add = barber_tent_01_domicile_building_gold_cost_value
+			multiply = camp_refund_mult_value
+			floor = yes
+		}
+	}
+
+	character_modifier = {
+		epidemic_travel_danger = -5
+		negate_health_penalty_add = 0.2
+		hard_casualty_modifier = -0.03
+		domicile_monthly_gold_add = 0.2
+	}
+
+	parameters = {
+		camp_infection_chance_buff_2 = yes
+	}
+
+	ai_value = { value = barber_tent_main_path_value }
+
+	asset = {
+		trigger = {
+			owner.culture = {
+				OR = {
+					has_graphical_chinese_culture_group_trigger = yes
+					has_graphical_japanese_culture_group_trigger = yes
+				}
+			}
+		}
+		icon = "gfx/interface/icons/domicile_building/domicile_building_barber.dds"
+		texture = "gfx/interface/window_domiciles/laamp_building_barber_asian.dds"
+		intersectionmask_texture = "gfx/interface/window_domiciles/laamp_building_barber_asian_mask.png"
+		soundeffect = "event:/DLC/EP3/SFX/UI/camp_buildings/ep3_ui_domicile_buildings_barber_tent"
+	}
+
+	asset = {
+		icon = "gfx/interface/icons/domicile_building/domicile_building_barber.dds"
+		texture = "gfx/interface/window_domiciles/laamp_building_barber.dds"
+		intersectionmask_texture = "gfx/interface/window_domiciles/laamp_building_barber_mask.png"
+		soundeffect = "event:/DLC/EP3/SFX/UI/camp_buildings/ep3_ui_domicile_buildings_barber_tent"
+	}
+}
+
+barber_tent_03 = {
+	construction_time = @camp_building_main_slot_construction_duration_t3
+	allowed_domicile_types = { camp }
+	previous_building = barber_tent_02
+	internal_slots = 5
+
+	cost = { gold = barber_tent_03_domicile_building_gold_cost_value }
+	refund = {
+		gold = {
+			value = barber_tent_03_domicile_building_gold_cost_value
+			add = barber_tent_02_domicile_building_gold_cost_value
+			add = barber_tent_01_domicile_building_gold_cost_value
+			multiply = camp_refund_mult_value
+			floor = yes
+		}
+	}
+
+	character_modifier = {
+		epidemic_travel_danger = -5
+		negate_health_penalty_add = 0.2
+		hard_casualty_modifier = -0.03
+		domicile_monthly_gold_add = 0.2
+	}
+
+	parameters = {
+		camp_infection_chance_buff_3 = yes
+	}
+
+	ai_value = { value = barber_tent_main_path_value }
+
+	asset = {
+		trigger = {
+			owner.culture = {
+				OR = {
+					has_graphical_chinese_culture_group_trigger = yes
+					has_graphical_japanese_culture_group_trigger = yes
+				}
+			}
+		}
+		icon = "gfx/interface/icons/domicile_building/domicile_building_barber.dds"
+		texture = "gfx/interface/window_domiciles/laamp_building_barber_asian.dds"
+		intersectionmask_texture = "gfx/interface/window_domiciles/laamp_building_barber_asian_mask.png"
+		soundeffect = "event:/DLC/EP3/SFX/UI/camp_buildings/ep3_ui_domicile_buildings_barber_tent"
+	}
+
+	asset = {
+		icon = "gfx/interface/icons/domicile_building/domicile_building_barber.dds"
+		texture = "gfx/interface/window_domiciles/laamp_building_barber.dds"
+		intersectionmask_texture = "gfx/interface/window_domiciles/laamp_building_barber_mask.png"
+		soundeffect = "event:/DLC/EP3/SFX/UI/camp_buildings/ep3_ui_domicile_buildings_barber_tent"
+	}
+}
+
+barber_tent_04 = {
+	construction_time = @camp_building_main_slot_construction_duration_t4
+	allowed_domicile_types = { camp }
+	previous_building = barber_tent_03
+	internal_slots = 5
+
+	cost = { gold = barber_tent_04_domicile_building_gold_cost_value }
+	refund = {
+		gold = {
+			value = barber_tent_04_domicile_building_gold_cost_value
+			add = barber_tent_03_domicile_building_gold_cost_value
+			add = barber_tent_02_domicile_building_gold_cost_value
+			add = barber_tent_01_domicile_building_gold_cost_value
+			multiply = camp_refund_mult_value
+			floor = yes
+		}
+	}
+
+	character_modifier = {
+		epidemic_travel_danger = -7
+		negate_health_penalty_add = 0.2
+		hard_casualty_modifier = -0.03
+		domicile_monthly_gold_add = 0.2
+	}
+
+	parameters = {
+		camp_infection_chance_buff_4 = yes
+	}
+
+	ai_value = { value = barber_tent_main_path_value }
+
+	asset = {
+		trigger = {
+			owner.culture = {
+				OR = {
+					has_graphical_chinese_culture_group_trigger = yes
+					has_graphical_japanese_culture_group_trigger = yes
+				}
+			}
+		}
+		icon = "gfx/interface/icons/domicile_building/domicile_building_barber.dds"
+		texture = "gfx/interface/window_domiciles/laamp_building_barber_asian.dds"
+		intersectionmask_texture = "gfx/interface/window_domiciles/laamp_building_barber_asian_mask.png"
+		soundeffect = "event:/DLC/EP3/SFX/UI/camp_buildings/ep3_ui_domicile_buildings_barber_tent"
+	}
+
+	asset = {
+		icon = "gfx/interface/icons/domicile_building/domicile_building_barber.dds"
+		texture = "gfx/interface/window_domiciles/laamp_building_barber.dds"
+		intersectionmask_texture = "gfx/interface/window_domiciles/laamp_building_barber_mask.png"
+		soundeffect = "event:/DLC/EP3/SFX/UI/camp_buildings/ep3_ui_domicile_buildings_barber_tent"
+	}
+}
+
+barber_tent_05 = {
+	construction_time = @camp_building_main_slot_construction_duration_t5
+	allowed_domicile_types = { camp }
+	previous_building = barber_tent_04
+	internal_slots = 5
+
+	cost = { gold = barber_tent_05_domicile_building_gold_cost_value }
+	refund = {
+		gold = {
+			value = barber_tent_05_domicile_building_gold_cost_value
+			add = barber_tent_04_domicile_building_gold_cost_value
+			add = barber_tent_03_domicile_building_gold_cost_value
+			add = barber_tent_02_domicile_building_gold_cost_value
+			add = barber_tent_01_domicile_building_gold_cost_value
+			multiply = camp_refund_mult_value
+			floor = yes
+		}
+	}
+
+	character_modifier = {
+		epidemic_travel_danger = -7
+		negate_health_penalty_add = 0.2
+		hard_casualty_modifier = -0.03
+		domicile_monthly_gold_add = 0.2
+	}
+
+	parameters = {
+		camp_infection_chance_buff_5 = yes
+	}
+
+	ai_value = { value = barber_tent_main_path_value }
+
+	asset = {
+		trigger = {
+			owner.culture = {
+				OR = {
+					has_graphical_chinese_culture_group_trigger = yes
+					has_graphical_japanese_culture_group_trigger = yes
+				}
+			}
+		}
+		icon = "gfx/interface/icons/domicile_building/domicile_building_barber.dds"
+		texture = "gfx/interface/window_domiciles/laamp_building_barber_asian.dds"
+		intersectionmask_texture = "gfx/interface/window_domiciles/laamp_building_barber_asian_mask.png"
+		soundeffect = "event:/DLC/EP3/SFX/UI/camp_buildings/ep3_ui_domicile_buildings_barber_tent"
+	}
+
+	asset = {
+		icon = "gfx/interface/icons/domicile_building/domicile_building_barber.dds"
+		texture = "gfx/interface/window_domiciles/laamp_building_barber.dds"
+		intersectionmask_texture = "gfx/interface/window_domiciles/laamp_building_barber_mask.png"
+		soundeffect = "event:/DLC/EP3/SFX/UI/camp_buildings/ep3_ui_domicile_buildings_barber_tent"
+	}
+}
+
+camp_fire_01 = {
+	internal_slots = 8
+	construction_time = @camp_building_main_slot_construction_duration_t1
+	allowed_domicile_types = { camp }
+
+	cost = { gold = camp_fire_01_domicile_building_gold_cost_value }
+	refund = {
+		gold = {
+			value = camp_fire_01_domicile_building_gold_cost_value
+			multiply = camp_refund_mult_value
+			floor = yes
+		}
+	}
+
+	character_modifier = {
+		knight_limit = 1
+		knight_effectiveness_mult = 0.02
+		men_at_arms_cap = 1
+	}
+
+	parameters = {
+		camp_better_scout_for_talent = yes
+		fireside_chat_intent_unlock = yes
+	}
+
+	ai_value = { value = camp_fire_main_path_value }
+
+	asset = {
+		trigger = {
+			owner.culture = {
+				OR = {
+					has_graphical_chinese_culture_group_trigger = yes
+					has_graphical_japanese_culture_group_trigger = yes
+				}
+			}
+		}
+		icon = "gfx/interface/icons/domicile_building/domicile_building_campfire.dds"
+		texture = "gfx/interface/window_domiciles/laamp_building_roaring_campfire_asian.dds"
+		intersectionmask_texture = "gfx/interface/window_domiciles/laamp_building_roaring_campfire_asian_mask.png"
+		soundeffect = "event:/DLC/EP3/SFX/UI/camp_buildings/ep3_ui_domicile_buildings_campfire"
+	}
+
+	asset = {
+		icon = "gfx/interface/icons/domicile_building/domicile_building_campfire.dds"
+		texture = "gfx/interface/window_domiciles/laamp_building_roaring_campfire.dds"
+		intersectionmask_texture = "gfx/interface/window_domiciles/laamp_building_roaring_campfire_mask.png"
+		soundeffect = "event:/DLC/EP3/SFX/UI/camp_buildings/ep3_ui_domicile_buildings_campfire"
+	}
+}
+
+camp_fire_02 = {
+	construction_time = @camp_building_main_slot_construction_duration_t2
+	allowed_domicile_types = { camp }
+	previous_building = camp_fire_01
+	internal_slots = 8
+
+	cost = { gold = camp_fire_02_domicile_building_gold_cost_value }
+	refund = {
+		gold = {
+			value = camp_fire_02_domicile_building_gold_cost_value
+			add = camp_fire_01_domicile_building_gold_cost_value
+			multiply = camp_refund_mult_value
+			floor = yes
+		}
+	}
+
+	character_modifier = {
+		knight_limit = 1
+		knight_effectiveness_mult = 0.02
+	}
+
+	parameters = {
+		camp_better_scout_for_talent = yes
+		fireside_chat_intent_unlock = yes
+	}
+
+	ai_value = { value = camp_fire_main_path_value }
+
+	asset = {
+		trigger = {
+			owner.culture = {
+				OR = {
+					has_graphical_chinese_culture_group_trigger = yes
+					has_graphical_japanese_culture_group_trigger = yes
+				}
+			}
+		}
+		icon = "gfx/interface/icons/domicile_building/domicile_building_campfire.dds"
+		texture = "gfx/interface/window_domiciles/laamp_building_roaring_campfire_asian.dds"
+		intersectionmask_texture = "gfx/interface/window_domiciles/laamp_building_roaring_campfire_asian_mask.png"
+		soundeffect = "event:/DLC/EP3/SFX/UI/camp_buildings/ep3_ui_domicile_buildings_campfire"
+	}
+
+	asset = {
+		icon = "gfx/interface/icons/domicile_building/domicile_building_campfire.dds"
+		texture = "gfx/interface/window_domiciles/laamp_building_roaring_campfire.dds"
+		intersectionmask_texture = "gfx/interface/window_domiciles/laamp_building_roaring_campfire_mask.png"
+		soundeffect = "event:/DLC/EP3/SFX/UI/camp_buildings/ep3_ui_domicile_buildings_campfire"
+	}
+}
+
+camp_fire_03 = {
+	construction_time = @camp_building_main_slot_construction_duration_t3
+	allowed_domicile_types = { camp }
+	previous_building = camp_fire_02
+	internal_slots = 8
+
+	cost = { gold = camp_fire_03_domicile_building_gold_cost_value }
+	refund = {
+		gold = {
+			value = camp_fire_03_domicile_building_gold_cost_value
+			add = camp_fire_02_domicile_building_gold_cost_value
+			add = camp_fire_01_domicile_building_gold_cost_value
+			multiply = camp_refund_mult_value
+			floor = yes
+		}
+	}
+
+	character_modifier = {
+		knight_limit = 1
+		knight_effectiveness_mult = 0.02
+	}
+
+	parameters = {
+		camp_better_scout_for_talent = yes
+		fireside_chat_intent_unlock = yes
+	}
+
+	ai_value = { value = camp_fire_main_path_value }
+
+	asset = {
+		trigger = {
+			owner.culture = {
+				OR = {
+					has_graphical_chinese_culture_group_trigger = yes
+					has_graphical_japanese_culture_group_trigger = yes
+				}
+			}
+		}
+		icon = "gfx/interface/icons/domicile_building/domicile_building_campfire.dds"
+		texture = "gfx/interface/window_domiciles/laamp_building_roaring_campfire_asian.dds"
+		intersectionmask_texture = "gfx/interface/window_domiciles/laamp_building_roaring_campfire_asian_mask.png"
+		soundeffect = "event:/DLC/EP3/SFX/UI/camp_buildings/ep3_ui_domicile_buildings_campfire"
+	}
+
+	asset = {
+		icon = "gfx/interface/icons/domicile_building/domicile_building_campfire.dds"
+		texture = "gfx/interface/window_domiciles/laamp_building_roaring_campfire.dds"
+		intersectionmask_texture = "gfx/interface/window_domiciles/laamp_building_roaring_campfire_mask.png"
+		soundeffect = "event:/DLC/EP3/SFX/UI/camp_buildings/ep3_ui_domicile_buildings_campfire"
+	}
+}
+
+camp_fire_04 = {
+	construction_time = @camp_building_main_slot_construction_duration_t4
+	allowed_domicile_types = { camp }
+	previous_building = camp_fire_03
+	internal_slots = 8
+
+	cost = { gold = camp_fire_04_domicile_building_gold_cost_value }
+	refund = {
+		gold = {
+			value = camp_fire_04_domicile_building_gold_cost_value
+			add = camp_fire_03_domicile_building_gold_cost_value
+			add = camp_fire_02_domicile_building_gold_cost_value
+			add = camp_fire_01_domicile_building_gold_cost_value
+			multiply = camp_refund_mult_value
+			floor = yes
+		}
+	}
+
+	character_modifier = {
+		knight_limit = 1
+		knight_effectiveness_mult = 0.02
+		men_at_arms_cap = 1
+	}
+
+	parameters = {
+		camp_better_scout_for_talent = yes
+		fireside_chat_intent_unlock = yes
+	}
+
+	ai_value = { value = camp_fire_main_path_value }
+
+	asset = {
+		trigger = {
+			owner.culture = {
+				OR = {
+					has_graphical_chinese_culture_group_trigger = yes
+					has_graphical_japanese_culture_group_trigger = yes
+				}
+			}
+		}
+		icon = "gfx/interface/icons/domicile_building/domicile_building_campfire.dds"
+		texture = "gfx/interface/window_domiciles/laamp_building_roaring_campfire_asian.dds"
+		intersectionmask_texture = "gfx/interface/window_domiciles/laamp_building_roaring_campfire_asian_mask.png"
+		soundeffect = "event:/DLC/EP3/SFX/UI/camp_buildings/ep3_ui_domicile_buildings_campfire"
+	}
+
+	asset = {
+		icon = "gfx/interface/icons/domicile_building/domicile_building_campfire.dds"
+		texture = "gfx/interface/window_domiciles/laamp_building_roaring_campfire.dds"
+		intersectionmask_texture = "gfx/interface/window_domiciles/laamp_building_roaring_campfire_mask.png"
+		soundeffect = "event:/DLC/EP3/SFX/UI/camp_buildings/ep3_ui_domicile_buildings_campfire"
+	}
+}
+
+camp_fire_05 = {
+	construction_time = @camp_building_main_slot_construction_duration_t5
+	allowed_domicile_types = { camp }
+	previous_building = camp_fire_04
+	internal_slots = 8
+
+	cost = { gold = camp_fire_05_domicile_building_gold_cost_value }
+	refund = {
+		gold = {
+			value = camp_fire_05_domicile_building_gold_cost_value
+			add = camp_fire_04_domicile_building_gold_cost_value
+			add = camp_fire_03_domicile_building_gold_cost_value
+			add = camp_fire_02_domicile_building_gold_cost_value
+			add = camp_fire_01_domicile_building_gold_cost_value
+			multiply = camp_refund_mult_value
+			floor = yes
+		}
+	}
+
+	character_modifier = {
+		knight_limit = 1
+		knight_effectiveness_mult = 0.02
+	}
+
+	parameters = {
+		camp_better_scout_for_talent = yes
+		fireside_chat_intent_unlock = yes
+	}
+
+	ai_value = { value = camp_fire_main_path_value }
+
+	asset = {
+		trigger = {
+			owner.culture = {
+				OR = {
+					has_graphical_chinese_culture_group_trigger = yes
+					has_graphical_japanese_culture_group_trigger = yes
+				}
+			}
+		}
+		icon = "gfx/interface/icons/domicile_building/domicile_building_campfire.dds"
+		texture = "gfx/interface/window_domiciles/laamp_building_roaring_campfire_asian.dds"
+		intersectionmask_texture = "gfx/interface/window_domiciles/laamp_building_roaring_campfire_asian_mask.png"
+		soundeffect = "event:/DLC/EP3/SFX/UI/camp_buildings/ep3_ui_domicile_buildings_campfire"
+	}
+
+	asset = {
+		icon = "gfx/interface/icons/domicile_building/domicile_building_campfire.dds"
+		texture = "gfx/interface/window_domiciles/laamp_building_roaring_campfire.dds"
+		intersectionmask_texture = "gfx/interface/window_domiciles/laamp_building_roaring_campfire_mask.png"
+		soundeffect = "event:/DLC/EP3/SFX/UI/camp_buildings/ep3_ui_domicile_buildings_campfire"
+	}
+}
+
+camp_perimeter_01 = {
+	internal_slots = 6
+	construction_time = @camp_building_main_slot_construction_duration_t1
+	allowed_domicile_types = { camp }
+
+	cost = { gold = camp_perimeter_01_domicile_building_gold_cost_value }
+	refund = {
+		gold = {
+			value = camp_perimeter_01_domicile_building_gold_cost_value
+			multiply = camp_refund_mult_value
+			floor = yes
+		}
+	}
+
+	character_modifier = {
+		character_travel_safety = 3
+		enemy_hostile_scheme_success_chance_max_add = -5
+		character_travel_speed = 5
+		domicile_travel_speed = 0.05
+	}
+
+	parameters = {
+		camp_unlocks_forward_scouts = yes
+	}
+
+	ai_value = { value = camp_perimeter_main_path_value }
+
+	asset = {
+		trigger = {
+			owner.culture = {
+				OR = {
+					has_graphical_chinese_culture_group_trigger = yes
+					has_graphical_japanese_culture_group_trigger = yes
+				}
+			}
+		}
+		icon = "gfx/interface/icons/domicile_building/domicile_building_camp_perimiter.dds"
+		texture = "gfx/interface/window_domiciles/laamp_building_perimeter_asian.dds"
+		intersectionmask_texture = "gfx/interface/window_domiciles/laamp_building_perimeter_asian_mask.png"
+		soundeffect = "event:/DLC/EP3/SFX/UI/camp_buildings/ep3_ui_domicile_buildings_perimeter"
+	}
+
+	asset = {
+		icon = "gfx/interface/icons/domicile_building/domicile_building_camp_perimiter.dds"
+		texture = "gfx/interface/window_domiciles/laamp_building_perimeter.dds"
+		intersectionmask_texture = "gfx/interface/window_domiciles/laamp_building_perimeter_mask.png"
+		soundeffect = "event:/DLC/EP3/SFX/UI/camp_buildings/ep3_ui_domicile_buildings_perimeter"
+	}
+}
+
+camp_perimeter_02 = {
+	construction_time = @camp_building_main_slot_construction_duration_t2
+	allowed_domicile_types = { camp }
+	previous_building = camp_perimeter_01
+	internal_slots = 6
+
+	cost = { gold = camp_perimeter_02_domicile_building_gold_cost_value }
+	refund = {
+		gold = {
+			value = camp_perimeter_02_domicile_building_gold_cost_value
+			add = camp_perimeter_01_domicile_building_gold_cost_value
+			multiply = camp_refund_mult_value
+			floor = yes
+		}
+	}
+
+	character_modifier = {
+		character_travel_safety = 3
+		enemy_hostile_scheme_success_chance_max_add = -5
+		character_travel_speed = 5
+		domicile_travel_speed = 0.05
+	}
+
+	parameters = {
+		camp_unlocks_forward_scouts = yes
+	}
+
+	ai_value = { value = camp_perimeter_main_path_value }
+
+	asset = {
+		trigger = {
+			owner.culture = {
+				OR = {
+					has_graphical_chinese_culture_group_trigger = yes
+					has_graphical_japanese_culture_group_trigger = yes
+				}
+			}
+		}
+		icon = "gfx/interface/icons/domicile_building/domicile_building_camp_perimiter.dds"
+		texture = "gfx/interface/window_domiciles/laamp_building_perimeter_asian.dds"
+		intersectionmask_texture = "gfx/interface/window_domiciles/laamp_building_perimeter_asian_mask.png"
+		soundeffect = "event:/DLC/EP3/SFX/UI/camp_buildings/ep3_ui_domicile_buildings_perimeter"
+	}
+
+	asset = {
+		icon = "gfx/interface/icons/domicile_building/domicile_building_camp_perimiter.dds"
+		texture = "gfx/interface/window_domiciles/laamp_building_perimeter.dds"
+		intersectionmask_texture = "gfx/interface/window_domiciles/laamp_building_perimeter_mask.png"
+		soundeffect = "event:/DLC/EP3/SFX/UI/camp_buildings/ep3_ui_domicile_buildings_perimeter"
+	}
+}
+
+camp_perimeter_03 = {
+	construction_time = @camp_building_main_slot_construction_duration_t3
+	allowed_domicile_types = { camp }
+	previous_building = camp_perimeter_02
+	internal_slots = 6
+
+	cost = { gold = camp_perimeter_03_domicile_building_gold_cost_value }
+	refund = {
+		gold = {
+			value = camp_perimeter_03_domicile_building_gold_cost_value
+			add = camp_perimeter_02_domicile_building_gold_cost_value
+			add = camp_perimeter_01_domicile_building_gold_cost_value
+			multiply = camp_refund_mult_value
+			floor = yes
+		}
+	}
+
+	character_modifier = {
+		character_travel_safety = 3
+		enemy_hostile_scheme_success_chance_max_add = -5
+		character_travel_speed = 5
+		domicile_travel_speed = 0.05
+	}
+
+	parameters = {
+		camp_unlocks_forward_scouts = yes
+	}
+
+	ai_value = { value = camp_perimeter_main_path_value }
+
+	asset = {
+		trigger = {
+			owner.culture = {
+				OR = {
+					has_graphical_chinese_culture_group_trigger = yes
+					has_graphical_japanese_culture_group_trigger = yes
+				}
+			}
+		}
+		icon = "gfx/interface/icons/domicile_building/domicile_building_camp_perimiter.dds"
+		texture = "gfx/interface/window_domiciles/laamp_building_perimeter_asian.dds"
+		intersectionmask_texture = "gfx/interface/window_domiciles/laamp_building_perimeter_asian_mask.png"
+		soundeffect = "event:/DLC/EP3/SFX/UI/camp_buildings/ep3_ui_domicile_buildings_perimeter"
+	}
+
+	asset = {
+		icon = "gfx/interface/icons/domicile_building/domicile_building_camp_perimiter.dds"
+		texture = "gfx/interface/window_domiciles/laamp_building_perimeter.dds"
+		intersectionmask_texture = "gfx/interface/window_domiciles/laamp_building_perimeter_mask.png"
+		soundeffect = "event:/DLC/EP3/SFX/UI/camp_buildings/ep3_ui_domicile_buildings_perimeter"
+	}
+}
+
+camp_perimeter_04 = {
+	construction_time = @camp_building_main_slot_construction_duration_t4
+	allowed_domicile_types = { camp }
+	previous_building = camp_perimeter_03
+	internal_slots = 6
+
+	cost = { gold = camp_perimeter_04_domicile_building_gold_cost_value }
+	refund = {
+		gold = {
+			value = camp_perimeter_04_domicile_building_gold_cost_value
+			add = camp_perimeter_03_domicile_building_gold_cost_value
+			add = camp_perimeter_02_domicile_building_gold_cost_value
+			add = camp_perimeter_01_domicile_building_gold_cost_value
+			multiply = camp_refund_mult_value
+			floor = yes
+		}
+	}
+
+	character_modifier = {
+		character_travel_safety = 3
+		enemy_hostile_scheme_success_chance_max_add = -5
+		character_travel_speed = 5
+		domicile_travel_speed = 0.05
+	}
+
+	parameters = {
+		camp_unlocks_forward_scouts = yes
+	}
+
+	ai_value = { value = camp_perimeter_main_path_value }
+
+	asset = {
+		trigger = {
+			owner.culture = {
+				OR = {
+					has_graphical_chinese_culture_group_trigger = yes
+					has_graphical_japanese_culture_group_trigger = yes
+				}
+			}
+		}
+		icon = "gfx/interface/icons/domicile_building/domicile_building_camp_perimiter.dds"
+		texture = "gfx/interface/window_domiciles/laamp_building_perimeter_asian.dds"
+		intersectionmask_texture = "gfx/interface/window_domiciles/laamp_building_perimeter_asian_mask.png"
+		soundeffect = "event:/DLC/EP3/SFX/UI/camp_buildings/ep3_ui_domicile_buildings_perimeter"
+	}
+
+	asset = {
+		icon = "gfx/interface/icons/domicile_building/domicile_building_camp_perimiter.dds"
+		texture = "gfx/interface/window_domiciles/laamp_building_perimeter.dds"
+		intersectionmask_texture = "gfx/interface/window_domiciles/laamp_building_perimeter_mask.png"
+		soundeffect = "event:/DLC/EP3/SFX/UI/camp_buildings/ep3_ui_domicile_buildings_perimeter"
+	}
+}
+
+camp_perimeter_05 = {
+	construction_time = @camp_building_main_slot_construction_duration_t5
+	allowed_domicile_types = { camp }
+	previous_building = camp_perimeter_04
+	internal_slots = 6
+
+	cost = { gold = camp_perimeter_05_domicile_building_gold_cost_value }
+	refund = {
+		gold = {
+			value = camp_perimeter_05_domicile_building_gold_cost_value
+			add = camp_perimeter_04_domicile_building_gold_cost_value
+			add = camp_perimeter_03_domicile_building_gold_cost_value
+			add = camp_perimeter_02_domicile_building_gold_cost_value
+			add = camp_perimeter_01_domicile_building_gold_cost_value
+			multiply = camp_refund_mult_value
+			floor = yes
+		}
+	}
+
+	character_modifier = {
+		character_travel_safety = 3
+		enemy_hostile_scheme_success_chance_max_add = -5
+		character_travel_speed = 5
+		domicile_travel_speed = 0.05
+	}
+
+	parameters = {
+		camp_unlocks_forward_scouts = yes
+	}
+
+	ai_value = { value = camp_perimeter_main_path_value }
+
+	asset = {
+		trigger = {
+			owner.culture = {
+				OR = {
+					has_graphical_chinese_culture_group_trigger = yes
+					has_graphical_japanese_culture_group_trigger = yes
+				}
+			}
+		}
+		icon = "gfx/interface/icons/domicile_building/domicile_building_camp_perimiter.dds"
+		texture = "gfx/interface/window_domiciles/laamp_building_perimeter_asian.dds"
+		intersectionmask_texture = "gfx/interface/window_domiciles/laamp_building_perimeter_asian_mask.png"
+		soundeffect = "event:/DLC/EP3/SFX/UI/camp_buildings/ep3_ui_domicile_buildings_perimeter"
+	}
+
+	asset = {
+		icon = "gfx/interface/icons/domicile_building/domicile_building_camp_perimiter.dds"
+		texture = "gfx/interface/window_domiciles/laamp_building_perimeter.dds"
+		intersectionmask_texture = "gfx/interface/window_domiciles/laamp_building_perimeter_mask.png"
+		soundeffect = "event:/DLC/EP3/SFX/UI/camp_buildings/ep3_ui_domicile_buildings_perimeter"
+	}
+}
+
+mess_tent_01 = {
+	internal_slots = 5
+	construction_time = @camp_building_main_slot_construction_duration_t1
+	allowed_domicile_types = { camp }
+
+	cost = { gold = mess_tent_01_domicile_building_gold_cost_value }
+	refund = {
+		gold = {
+			value = mess_tent_01_domicile_building_gold_cost_value
+			multiply = camp_refund_mult_value
+			floor = yes
+		}
+	}
+
+	character_modifier = {
+		courtier_and_guest_opinion = 3
+		stress_loss_mult = 0.05
+		prowess_scheme_phase_duration = miniscule_scheme_phase_duration_bonus_value
+	}
+
+	parameters = {
+		camp_unlocks_camp_cook_officer = yes
+		camp_improves_gather_provisions_decision = yes
+		camp_unlocks_camp_party_food_option = yes
+	}
+
+	ai_value = { value = mess_tent_main_path_value }
+
+	asset = {
+		trigger = {
+			owner.culture = {
+				OR = {
+					has_graphical_chinese_culture_group_trigger = yes
+					has_graphical_japanese_culture_group_trigger = yes
+				}
+			}
+		}
+		icon = "gfx/interface/icons/domicile_building/domicile_building_mess.dds"
+		texture = "gfx/interface/window_domiciles/laamp_building_mess_asian.dds"
+		intersectionmask_texture = "gfx/interface/window_domiciles/laamp_building_mess_asian_mask.png"
+		soundeffect = "event:/DLC/EP3/SFX/UI/camp_buildings/ep3_ui_domicile_buildings_mess_tent"
+	}
+
+	asset = {
+		icon = "gfx/interface/icons/domicile_building/domicile_building_mess.dds"
+		texture = "gfx/interface/window_domiciles/laamp_building_mess.dds"
+		intersectionmask_texture = "gfx/interface/window_domiciles/laamp_building_mess_mask.png"
+		soundeffect = "event:/DLC/EP3/SFX/UI/camp_buildings/ep3_ui_domicile_buildings_mess_tent"
+	}
+}
+
+mess_tent_02 = {
+	construction_time = @camp_building_main_slot_construction_duration_t2
+	allowed_domicile_types = { camp }
+	previous_building = mess_tent_01
+	internal_slots = 5
+
+	cost = { gold = mess_tent_02_domicile_building_gold_cost_value }
+	refund = {
+		gold = {
+			value = mess_tent_02_domicile_building_gold_cost_value
+			add = mess_tent_01_domicile_building_gold_cost_value
+			multiply = camp_refund_mult_value
+			floor = yes
+		}
+	}
+
+	character_modifier = {
+		courtier_and_guest_opinion = 3
+		stress_loss_mult = 0.05
+		prowess_scheme_phase_duration = miniscule_scheme_phase_duration_bonus_value
+	}
+
+	parameters = {
+		camp_unlocks_camp_cook_officer = yes
+		camp_improves_gather_provisions_decision = yes
+		camp_unlocks_camp_party_food_option = yes
+	}
+
+	ai_value = { value = mess_tent_main_path_value }
+
+	asset = {
+		trigger = {
+			owner.culture = {
+				OR = {
+					has_graphical_chinese_culture_group_trigger = yes
+					has_graphical_japanese_culture_group_trigger = yes
+				}
+			}
+		}
+		icon = "gfx/interface/icons/domicile_building/domicile_building_mess.dds"
+		texture = "gfx/interface/window_domiciles/laamp_building_mess_asian.dds"
+		intersectionmask_texture = "gfx/interface/window_domiciles/laamp_building_mess_asian_mask.png"
+		soundeffect = "event:/DLC/EP3/SFX/UI/camp_buildings/ep3_ui_domicile_buildings_mess_tent"
+	}
+
+	asset = {
+		icon = "gfx/interface/icons/domicile_building/domicile_building_mess.dds"
+		texture = "gfx/interface/window_domiciles/laamp_building_mess.dds"
+		intersectionmask_texture = "gfx/interface/window_domiciles/laamp_building_mess_mask.png"
+		soundeffect = "event:/DLC/EP3/SFX/UI/camp_buildings/ep3_ui_domicile_buildings_mess_tent"
+	}
+}
+
+mess_tent_03 = {
+	construction_time = @camp_building_main_slot_construction_duration_t3
+	allowed_domicile_types = { camp }
+	previous_building = mess_tent_02
+	internal_slots = 5
+
+	cost = { gold = mess_tent_03_domicile_building_gold_cost_value }
+	refund = {
+		gold = {
+			value = mess_tent_03_domicile_building_gold_cost_value
+			add = mess_tent_02_domicile_building_gold_cost_value
+			add = mess_tent_01_domicile_building_gold_cost_value
+			multiply = camp_refund_mult_value
+			floor = yes
+		}
+	}
+
+	character_modifier = {
+		courtier_and_guest_opinion = 3
+		stress_loss_mult = 0.05
+		prowess_scheme_phase_duration = miniscule_scheme_phase_duration_bonus_value
+	}
+
+	parameters = {
+		camp_unlocks_camp_cook_officer = yes
+		camp_improves_gather_provisions_decision = yes
+		camp_unlocks_camp_party_food_option = yes
+	}
+
+	ai_value = { value = mess_tent_main_path_value }
+
+	asset = {
+		trigger = {
+			owner.culture = {
+				OR = {
+					has_graphical_chinese_culture_group_trigger = yes
+					has_graphical_japanese_culture_group_trigger = yes
+				}
+			}
+		}
+		icon = "gfx/interface/icons/domicile_building/domicile_building_mess.dds"
+		texture = "gfx/interface/window_domiciles/laamp_building_mess_asian.dds"
+		intersectionmask_texture = "gfx/interface/window_domiciles/laamp_building_mess_asian_mask.png"
+		soundeffect = "event:/DLC/EP3/SFX/UI/camp_buildings/ep3_ui_domicile_buildings_mess_tent"
+	}
+
+	asset = {
+		icon = "gfx/interface/icons/domicile_building/domicile_building_mess.dds"
+		texture = "gfx/interface/window_domiciles/laamp_building_mess.dds"
+		intersectionmask_texture = "gfx/interface/window_domiciles/laamp_building_mess_mask.png"
+		soundeffect = "event:/DLC/EP3/SFX/UI/camp_buildings/ep3_ui_domicile_buildings_mess_tent"
+	}
+}
+
+mess_tent_04 = {
+	construction_time = @camp_building_main_slot_construction_duration_t4
+	allowed_domicile_types = { camp }
+	previous_building = mess_tent_03
+	internal_slots = 5
+
+	cost = { gold = mess_tent_04_domicile_building_gold_cost_value }
+	refund = {
+		gold = {
+			value = mess_tent_04_domicile_building_gold_cost_value
+			add = mess_tent_03_domicile_building_gold_cost_value
+			add = mess_tent_02_domicile_building_gold_cost_value
+			add = mess_tent_01_domicile_building_gold_cost_value
+			multiply = camp_refund_mult_value
+			floor = yes
+		}
+	}
+
+	character_modifier = {
+		courtier_and_guest_opinion = 3
+		stress_loss_mult = 0.05
+		prowess_scheme_phase_duration = miniscule_scheme_phase_duration_bonus_value
+	}
+
+	parameters = {
+		camp_unlocks_camp_cook_officer = yes
+		camp_improves_gather_provisions_decision = yes
+		camp_unlocks_camp_party_food_option = yes
+	}
+
+	ai_value = { value = mess_tent_main_path_value }
+
+	asset = {
+		trigger = {
+			owner.culture = {
+				OR = {
+					has_graphical_chinese_culture_group_trigger = yes
+					has_graphical_japanese_culture_group_trigger = yes
+				}
+			}
+		}
+		icon = "gfx/interface/icons/domicile_building/domicile_building_mess.dds"
+		texture = "gfx/interface/window_domiciles/laamp_building_mess_asian.dds"
+		intersectionmask_texture = "gfx/interface/window_domiciles/laamp_building_mess_asian_mask.png"
+		soundeffect = "event:/DLC/EP3/SFX/UI/camp_buildings/ep3_ui_domicile_buildings_mess_tent"
+	}
+
+	asset = {
+		icon = "gfx/interface/icons/domicile_building/domicile_building_mess.dds"
+		texture = "gfx/interface/window_domiciles/laamp_building_mess.dds"
+		intersectionmask_texture = "gfx/interface/window_domiciles/laamp_building_mess_mask.png"
+		soundeffect = "event:/DLC/EP3/SFX/UI/camp_buildings/ep3_ui_domicile_buildings_mess_tent"
+	}
+}
+
+mess_tent_05 = {
+	construction_time = @camp_building_main_slot_construction_duration_t5
+	allowed_domicile_types = { camp }
+	previous_building = mess_tent_04
+	internal_slots = 5
+
+	cost = { gold = mess_tent_05_domicile_building_gold_cost_value }
+	refund = {
+		gold = {
+			value = mess_tent_05_domicile_building_gold_cost_value
+			add = mess_tent_04_domicile_building_gold_cost_value
+			add = mess_tent_03_domicile_building_gold_cost_value
+			add = mess_tent_02_domicile_building_gold_cost_value
+			add = mess_tent_01_domicile_building_gold_cost_value
+			multiply = camp_refund_mult_value
+			floor = yes
+		}
+	}
+
+	character_modifier = {
+		courtier_and_guest_opinion = 3
+		stress_loss_mult = 0.05
+		prowess_scheme_phase_duration = miniscule_scheme_phase_duration_bonus_value
+	}
+
+	parameters = {
+		camp_unlocks_camp_cook_officer = yes
+		camp_improves_gather_provisions_decision = yes
+		camp_unlocks_camp_party_food_option = yes
+	}
+
+	ai_value = { value = mess_tent_main_path_value }
+
+	asset = {
+		trigger = {
+			owner.culture = {
+				OR = {
+					has_graphical_chinese_culture_group_trigger = yes
+					has_graphical_japanese_culture_group_trigger = yes
+				}
+			}
+		}
+		icon = "gfx/interface/icons/domicile_building/domicile_building_bagage.dds"
+		texture = "gfx/interface/window_domiciles/laamp_building_mess_asian.dds"
+		intersectionmask_texture = "gfx/interface/window_domiciles/laamp_building_mess_asian_mask.png"
+		soundeffect = "event:/DLC/EP3/SFX/UI/camp_buildings/ep3_ui_domicile_buildings_mess_tent"
+	}
+
+	asset = {
+		icon = "gfx/interface/icons/domicile_building/domicile_building_mess.dds"
+		texture = "gfx/interface/window_domiciles/laamp_building_mess.dds"
+		intersectionmask_texture = "gfx/interface/window_domiciles/laamp_building_mess_mask.png"
+		soundeffect = "event:/DLC/EP3/SFX/UI/camp_buildings/ep3_ui_domicile_buildings_mess_tent"
+	}
+}
+
+proving_grounds_01 = {
+	internal_slots = 13
+	construction_time = @camp_building_main_slot_construction_duration_t1
+	allowed_domicile_types = { camp }
+
+	cost = { gold = proving_grounds_01_domicile_building_gold_cost_value }
+	refund = {
+		gold = {
+			value = proving_grounds_01_domicile_building_gold_cost_value
+			multiply = camp_refund_mult_value
+			floor = yes
+		}
+	}
+
+	character_modifier = {
+		men_at_arms_limit = 1
+		maa_damage_mult = 0.01
+	}
+
+	parameters = {
+		camp_unlocks_master_of_arms_officer = yes
+	}
+
+	ai_value = { value = proving_grounds_main_path_value }
+
+	asset = {
+		trigger = {
+			owner.culture = {
+				OR = {
+					has_graphical_chinese_culture_group_trigger = yes
+					has_graphical_japanese_culture_group_trigger = yes
+				}
+			}
+		}
+		icon = "gfx/interface/icons/domicile_building/domicile_building_proving.dds"
+		texture = "gfx/interface/window_domiciles/laamp_building_proving_grounds_asian.dds"
+		intersectionmask_texture = "gfx/interface/window_domiciles/laamp_building_proving_grounds_asian_mask.png"
+		soundeffect = "event:/DLC/EP3/SFX/UI/camp_buildings/ep3_ui_domicile_buildings_proving_ground"
+	}
+
+	asset = {
+		icon = "gfx/interface/icons/domicile_building/domicile_building_proving.dds"
+		texture = "gfx/interface/window_domiciles/laamp_building_proving_grounds.dds"
+		intersectionmask_texture = "gfx/interface/window_domiciles/laamp_building_proving_grounds_mask.png"
+		soundeffect = "event:/DLC/EP3/SFX/UI/camp_buildings/ep3_ui_domicile_buildings_proving_ground"
+	}
+}
+
+proving_grounds_02 = {
+	construction_time = @camp_building_main_slot_construction_duration_t2
+	allowed_domicile_types = { camp }
+	previous_building = proving_grounds_01
+	internal_slots = 13
+
+	cost = { gold = proving_grounds_02_domicile_building_gold_cost_value }
+	refund = {
+		gold = {
+			value = proving_grounds_02_domicile_building_gold_cost_value
+			add = proving_grounds_01_domicile_building_gold_cost_value
+			multiply = camp_refund_mult_value
+			floor = yes
+		}
+	}
+
+	character_modifier = {
+		maa_damage_mult = 0.01
+		men_at_arms_recruitment_cost = -0.05
+	}
+
+	parameters = {
+		camp_unlocks_master_of_arms_officer = yes
+	}
+
+	ai_value = { value = proving_grounds_main_path_value }
+
+	asset = {
+		trigger = {
+			owner.culture = {
+				OR = {
+					has_graphical_chinese_culture_group_trigger = yes
+					has_graphical_japanese_culture_group_trigger = yes
+				}
+			}
+		}
+		icon = "gfx/interface/icons/domicile_building/domicile_building_proving.dds"
+		texture = "gfx/interface/window_domiciles/laamp_building_proving_grounds_asian.dds"
+		intersectionmask_texture = "gfx/interface/window_domiciles/laamp_building_proving_grounds_asian_mask.png"
+		soundeffect = "event:/DLC/EP3/SFX/UI/camp_buildings/ep3_ui_domicile_buildings_main_building"
+	}
+
+	asset = {
+		icon = "gfx/interface/icons/domicile_building/domicile_building_proving.dds"
+		texture = "gfx/interface/window_domiciles/laamp_building_proving_grounds.dds"
+		intersectionmask_texture = "gfx/interface/window_domiciles/laamp_building_proving_grounds_mask.png"
+		soundeffect = "event:/DLC/EP3/SFX/UI/camp_buildings/ep3_ui_domicile_buildings_proving_ground"
+	}
+}
+
+proving_grounds_03 = {
+	construction_time = @camp_building_main_slot_construction_duration_t3
+	allowed_domicile_types = { camp }
+	previous_building = proving_grounds_02
+	internal_slots = 13
+
+	cost = { gold = proving_grounds_03_domicile_building_gold_cost_value }
+	refund = {
+		gold = {
+			value = proving_grounds_03_domicile_building_gold_cost_value
+			add = proving_grounds_02_domicile_building_gold_cost_value
+			add = proving_grounds_01_domicile_building_gold_cost_value
+			multiply = camp_refund_mult_value
+			floor = yes
+		}
+	}
+
+	character_modifier = {
+		maa_damage_mult = 0.02
+	}
+
+	parameters = {
+		camp_unlocks_master_of_arms_officer = yes
+	}
+
+	ai_value = { value = proving_grounds_main_path_value }
+
+	asset = {
+		trigger = {
+			owner.culture = {
+				OR = {
+					has_graphical_chinese_culture_group_trigger = yes
+					has_graphical_japanese_culture_group_trigger = yes
+				}
+			}
+		}
+		icon = "gfx/interface/icons/domicile_building/domicile_building_proving.dds"
+		texture = "gfx/interface/window_domiciles/laamp_building_proving_grounds_asian.dds"
+		intersectionmask_texture = "gfx/interface/window_domiciles/laamp_building_proving_grounds_asian_mask.png"
+		soundeffect = "event:/DLC/EP3/SFX/UI/camp_buildings/ep3_ui_domicile_buildings_proving_ground"
+	}
+
+	asset = {
+		icon = "gfx/interface/icons/domicile_building/domicile_building_proving.dds"
+		texture = "gfx/interface/window_domiciles/laamp_building_proving_grounds.dds"
+		intersectionmask_texture = "gfx/interface/window_domiciles/laamp_building_proving_grounds_mask.png"
+		soundeffect = "event:/DLC/EP3/SFX/UI/camp_buildings/ep3_ui_domicile_buildings_proving_ground"
+	}
+}
+
+proving_grounds_04 = {
+	construction_time = @camp_building_main_slot_construction_duration_t4
+	allowed_domicile_types = { camp }
+	previous_building = proving_grounds_03
+	internal_slots = 13
+
+	cost = { gold = proving_grounds_04_domicile_building_gold_cost_value }
+	refund = {
+		gold = {
+			value = proving_grounds_04_domicile_building_gold_cost_value
+			add = proving_grounds_03_domicile_building_gold_cost_value
+			add = proving_grounds_02_domicile_building_gold_cost_value
+			add = proving_grounds_01_domicile_building_gold_cost_value
+			multiply = camp_refund_mult_value
+			floor = yes
+		}
+	}
+
+	character_modifier = {
+		men_at_arms_limit = 1
+		maa_damage_mult = 0.02
+		men_at_arms_recruitment_cost = -0.05
+	}
+
+	parameters = {
+		camp_unlocks_master_of_arms_officer = yes
+	}
+
+	ai_value = { value = proving_grounds_main_path_value }
+
+	asset = {
+		trigger = {
+			owner.culture = {
+				OR = {
+					has_graphical_chinese_culture_group_trigger = yes
+					has_graphical_japanese_culture_group_trigger = yes
+				}
+			}
+		}
+		icon = "gfx/interface/icons/domicile_building/domicile_building_proving.dds"
+		texture = "gfx/interface/window_domiciles/laamp_building_proving_grounds_asian.dds"
+		intersectionmask_texture = "gfx/interface/window_domiciles/laamp_building_proving_grounds_asian_mask.png"
+		soundeffect = "event:/DLC/EP3/SFX/UI/camp_buildings/ep3_ui_domicile_buildings_proving_ground"
+	}
+
+	asset = {
+		icon = "gfx/interface/icons/domicile_building/domicile_building_proving.dds"
+		texture = "gfx/interface/window_domiciles/laamp_building_proving_grounds.dds"
+		intersectionmask_texture = "gfx/interface/window_domiciles/laamp_building_proving_grounds_mask.png"
+		soundeffect = "event:/DLC/EP3/SFX/UI/camp_buildings/ep3_ui_domicile_buildings_proving_ground"
+	}
+}
+
+proving_grounds_05 = {
+	construction_time = @camp_building_main_slot_construction_duration_t5
+	allowed_domicile_types = { camp }
+	previous_building = proving_grounds_04
+	internal_slots = 13
+
+	cost = { gold = proving_grounds_05_domicile_building_gold_cost_value }
+	refund = {
+		gold = {
+			value = proving_grounds_05_domicile_building_gold_cost_value
+			add = proving_grounds_04_domicile_building_gold_cost_value
+			add = proving_grounds_03_domicile_building_gold_cost_value
+			add = proving_grounds_02_domicile_building_gold_cost_value
+			add = proving_grounds_01_domicile_building_gold_cost_value
+			multiply = camp_refund_mult_value
+			floor = yes
+		}
+	}
+
+	character_modifier = {
+		maa_damage_mult = 0.04
+	}
+
+	parameters = {
+		camp_unlocks_master_of_arms_officer = yes
+	}
+
+	ai_value = { value = proving_grounds_main_path_value }
+
+	asset = {
+		trigger = {
+			owner.culture = {
+				OR = {
+					has_graphical_chinese_culture_group_trigger = yes
+					has_graphical_japanese_culture_group_trigger = yes
+				}
+			}
+		}
+		icon = "gfx/interface/icons/domicile_building/domicile_building_proving.dds"
+		texture = "gfx/interface/window_domiciles/laamp_building_proving_grounds_asian.dds"
+		intersectionmask_texture = "gfx/interface/window_domiciles/laamp_building_proving_grounds_asian_mask.png"
+		soundeffect = "event:/DLC/EP3/SFX/UI/camp_buildings/ep3_ui_domicile_buildings_proving_ground"
+	}
+
+	asset = {
+		icon = "gfx/interface/icons/domicile_building/domicile_building_proving.dds"
+		texture = "gfx/interface/window_domiciles/laamp_building_proving_grounds.dds"
+		intersectionmask_texture = "gfx/interface/window_domiciles/laamp_building_proving_grounds_mask.png"
+		soundeffect = "event:/DLC/EP3/SFX/UI/camp_buildings/ep3_ui_domicile_buildings_proving_ground"
+	}
+}
+
+supply_tent_01 = {
+	internal_slots = 8
+	construction_time = @camp_building_main_slot_construction_duration_t1
+	allowed_domicile_types = { camp }
+
+	cost = { gold = supply_tent_01_domicile_building_gold_cost_value }
+	refund = {
+		gold = {
+			value = supply_tent_01_domicile_building_gold_cost_value
+			multiply = camp_refund_mult_value
+			floor = yes
+		}
+	}
+
+	character_modifier = {
+		provisions_capacity_mult = 0.5
+		supply_capacity_mult = 0.25
+	}
+
+	parameters = {
+		camp_unlocks_quartermaster_officer = yes
+		camp_unlocks_camp_party_food_option = yes
+	}
+
+	ai_value = { value = supply_tent_main_path_value }
+
+	asset = {
+		trigger = {
+			owner.culture = {
+				OR = {
+					has_graphical_chinese_culture_group_trigger = yes
+					has_graphical_japanese_culture_group_trigger = yes
+				}
+			}
+		}
+		icon = "gfx/interface/icons/domicile_building/domicile_building_supply_tent.dds"
+		texture = "gfx/interface/window_domiciles/laamp_building_supply_tent_asian.dds"
+		intersectionmask_texture = "gfx/interface/window_domiciles/laamp_building_supply_tent_asian_mask.png"
+		soundeffect = "event:/DLC/EP3/SFX/UI/camp_buildings/ep3_ui_domicile_buildings_supply_tent"
+	}
+	
+	asset = {
+		icon = "gfx/interface/icons/domicile_building/domicile_building_supply_tent.dds"
+		texture = "gfx/interface/window_domiciles/laamp_building_supply_tent.dds"
+		intersectionmask_texture = "gfx/interface/window_domiciles/laamp_building_supply_tent_mask.png"
+		soundeffect = "event:/DLC/EP3/SFX/UI/camp_buildings/ep3_ui_domicile_buildings_supply_tent"
+	}
+}
+
+supply_tent_02 = {
+	construction_time = @camp_building_main_slot_construction_duration_t2
+	allowed_domicile_types = { camp }
+	previous_building = supply_tent_01
+	internal_slots = 8
+
+	cost = { gold = supply_tent_02_domicile_building_gold_cost_value }
+	refund = {
+		gold = {
+			value = supply_tent_02_domicile_building_gold_cost_value
+			add = supply_tent_01_domicile_building_gold_cost_value
+			multiply = camp_refund_mult_value
+			floor = yes
+		}
+	}
+
+	character_modifier = {
+		provisions_capacity_mult = 0.25
+		supply_capacity_mult = 0.25
+	}
+
+	parameters = {
+		camp_unlocks_quartermaster_officer = yes
+		camp_unlocks_camp_party_food_option = yes
+	}
+
+	ai_value = { value = supply_tent_main_path_value }
+
+	asset = {
+		trigger = {
+			owner.culture = {
+				OR = {
+					has_graphical_chinese_culture_group_trigger = yes
+					has_graphical_japanese_culture_group_trigger = yes
+				}
+			}
+		}
+		icon = "gfx/interface/icons/domicile_building/domicile_building_supply_tent.dds"
+		texture = "gfx/interface/window_domiciles/laamp_building_supply_tent_asian.dds"
+		intersectionmask_texture = "gfx/interface/window_domiciles/laamp_building_supply_tent_asian_mask.png"
+		soundeffect = "event:/DLC/EP3/SFX/UI/camp_buildings/ep3_ui_domicile_buildings_supply_tent"
+	}
+
+	asset = {
+		icon = "gfx/interface/icons/domicile_building/domicile_building_supply_tent.dds"
+		texture = "gfx/interface/window_domiciles/laamp_building_supply_tent.dds"
+		intersectionmask_texture = "gfx/interface/window_domiciles/laamp_building_supply_tent_mask.png"
+		soundeffect = "event:/DLC/EP3/SFX/UI/camp_buildings/ep3_ui_domicile_buildings_supply_tent"
+	}
+}
+
+supply_tent_03 = {
+	construction_time = @camp_building_main_slot_construction_duration_t3
+	allowed_domicile_types = { camp }
+	previous_building = supply_tent_02
+	internal_slots = 8
+
+	cost = { gold = supply_tent_03_domicile_building_gold_cost_value }
+	refund = {
+		gold = {
+			value = supply_tent_03_domicile_building_gold_cost_value
+			add = supply_tent_02_domicile_building_gold_cost_value
+			add = supply_tent_01_domicile_building_gold_cost_value
+			multiply = camp_refund_mult_value
+			floor = yes
+		}
+	}
+
+	character_modifier = {
+		provisions_capacity_mult = 0.25
+		supply_capacity_mult = 0.25
+	}
+
+	parameters = {
+		camp_unlocks_quartermaster_officer = yes
+		camp_unlocks_camp_party_food_option = yes
+	}
+
+	ai_value = { value = supply_tent_main_path_value }
+
+	asset = {
+		trigger = {
+			owner.culture = {
+				OR = {
+					has_graphical_chinese_culture_group_trigger = yes
+					has_graphical_japanese_culture_group_trigger = yes
+				}
+			}
+		}
+		icon = "gfx/interface/icons/domicile_building/domicile_building_supply_tent.dds"
+		texture = "gfx/interface/window_domiciles/laamp_building_supply_tent_asian.dds"
+		intersectionmask_texture = "gfx/interface/window_domiciles/laamp_building_supply_tent_asian_mask.png"
+		soundeffect = "event:/DLC/EP3/SFX/UI/camp_buildings/ep3_ui_domicile_buildings_supply_tent"
+	}
+
+	asset = {
+		icon = "gfx/interface/icons/domicile_building/domicile_building_supply_tent.dds"
+		texture = "gfx/interface/window_domiciles/laamp_building_supply_tent.dds"
+		intersectionmask_texture = "gfx/interface/window_domiciles/laamp_building_supply_tent_mask.png"
+		soundeffect = "event:/DLC/EP3/SFX/UI/camp_buildings/ep3_ui_domicile_buildings_supply_tent"
+	}
+}
+
+supply_tent_04 = {
+	construction_time = @camp_building_main_slot_construction_duration_t4
+	allowed_domicile_types = { camp }
+	previous_building = supply_tent_03
+	internal_slots = 8
+
+	cost = { gold = supply_tent_04_domicile_building_gold_cost_value }
+	refund = {
+		gold = {
+			value = supply_tent_04_domicile_building_gold_cost_value
+			add = supply_tent_03_domicile_building_gold_cost_value
+			add = supply_tent_02_domicile_building_gold_cost_value
+			add = supply_tent_01_domicile_building_gold_cost_value
+			multiply = camp_refund_mult_value
+			floor = yes
+		}
+	}
+
+	character_modifier = {
+		provisions_capacity_mult = 0.35
+		supply_capacity_mult = 0.25
+	}
+
+	parameters = {
+		camp_unlocks_quartermaster_officer = yes
+		camp_unlocks_camp_party_food_option = yes
+	}
+
+	ai_value = { value = supply_tent_main_path_value }
+
+	asset = {
+		trigger = {
+			owner.culture = {
+				OR = {
+					has_graphical_chinese_culture_group_trigger = yes
+					has_graphical_japanese_culture_group_trigger = yes
+				}
+			}
+		}
+		icon = "gfx/interface/icons/domicile_building/domicile_building_supply_tent.dds"
+		texture = "gfx/interface/window_domiciles/laamp_building_supply_tent_asian.dds"
+		intersectionmask_texture = "gfx/interface/window_domiciles/laamp_building_supply_tent_asian_mask.png"
+		soundeffect = "event:/DLC/EP3/SFX/UI/camp_buildings/ep3_ui_domicile_buildings_supply_tent"
+	}
+
+	asset = {
+		icon = "gfx/interface/icons/domicile_building/domicile_building_supply_tent.dds"
+		texture = "gfx/interface/window_domiciles/laamp_building_supply_tent.dds"
+		intersectionmask_texture = "gfx/interface/window_domiciles/laamp_building_supply_tent_mask.png"
+		soundeffect = "event:/DLC/EP3/SFX/UI/camp_buildings/ep3_ui_domicile_buildings_supply_tent"
+	}
+}
+
+supply_tent_05 = {
+	construction_time = @camp_building_main_slot_construction_duration_t5
+	allowed_domicile_types = { camp }
+	previous_building = supply_tent_04
+	internal_slots = 8
+
+	cost = { gold = supply_tent_05_domicile_building_gold_cost_value }
+	refund = {
+		gold = {
+			value = supply_tent_05_domicile_building_gold_cost_value
+			add = supply_tent_04_domicile_building_gold_cost_value
+			add = supply_tent_03_domicile_building_gold_cost_value
+			add = supply_tent_02_domicile_building_gold_cost_value
+			add = supply_tent_01_domicile_building_gold_cost_value
+			multiply = camp_refund_mult_value
+			floor = yes
+		}
+	}
+
+	character_modifier = {
+		provisions_capacity_mult = 0.35
+		supply_capacity_mult = 0.25
+	}
+
+	parameters = {
+		camp_unlocks_quartermaster_officer = yes
+		camp_unlocks_camp_party_food_option = yes
+	}
+
+	ai_value = { value = supply_tent_main_path_value }
+
+	asset = {
+		trigger = {
+			owner.culture = {
+				OR = {
+					has_graphical_chinese_culture_group_trigger = yes
+					has_graphical_japanese_culture_group_trigger = yes
+				}
+			}
+		}
+		icon = "gfx/interface/icons/domicile_building/domicile_building_supply_tent.dds"
+		texture = "gfx/interface/window_domiciles/laamp_building_supply_tent_asian.dds"
+		intersectionmask_texture = "gfx/interface/window_domiciles/laamp_building_supply_tent_asian_mask.png"
+		soundeffect = "event:/DLC/EP3/SFX/UI/camp_buildings/ep3_ui_domicile_buildings_supply_tent"
+	}
+
+	asset = {
+		icon = "gfx/interface/icons/domicile_building/domicile_building_supply_tent.dds"
+		texture = "gfx/interface/window_domiciles/laamp_building_supply_tent.dds"
+		intersectionmask_texture = "gfx/interface/window_domiciles/laamp_building_supply_tent_mask.png"
+		soundeffect = "event:/DLC/EP3/SFX/UI/camp_buildings/ep3_ui_domicile_buildings_supply_tent"
+	}
+}
+

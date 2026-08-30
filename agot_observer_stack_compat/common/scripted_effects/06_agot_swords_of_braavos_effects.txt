@@ -1,0 +1,188 @@
+﻿# ============================================================================
+# Observer Stack P41 - AGOT: Royal Guards (3733779333) queue flood, second pass
+#
+# P39 gated the .1006 fan-out, but agot_guard_positions.1007 has FIVE trigger
+# sites, not one. The other four live in the departure-cleanup effects here and
+# in 06_agot_swords_of_braavos_effects.txt.
+#
+# Those four are already guarded by agot_guard_positions_departure_cleanup_complete
+# -- but that flag is REMOVED on rejoin (lines 2190 / 2198 / 2216 of the upstream
+# file). Any character who churns through guard membership re-arms the whole
+# cycle every time, and each pass queues another .1007 at days=10 plus a .1004
+# on the liege at days=1.
+#
+# In the 8183 run that produced 14,116 .1007 across three characters and 12,104
+# .1004 on one, 72% of the pending-event queue, and the engine began logging
+#   jomini_event_queue_manager.cpp:454  Event agot_guard_positions.1007 has been
+#   queued twice
+# The daily tick could not drain the queue and the clock stopped.
+#
+# Both events are idempotent sweeps, so this cap loses nothing: a duration flag
+# the rejoin path does not clear, sized just past each event's own delay.
+#   .1007 -> at most one per character per 11 days (event delay 10)
+#   .1004 -> at most one per liege per 2 days (event delay 1)
+#
+# Only the churn path is gated. The 31 interaction and decision call sites are
+# player- and AI-initiated one-offs and are deliberately left alone.
+# ============================================================================
+agot_guard_positions_promote_swords_of_braavos_commander_effect = {
+	agot_guard_positions_promote_standard_commander_effect = {
+		GUARD = $GUARD$
+		COMMANDER_POSITION = swords_of_braavos_lord_commander
+		MEMBER_FLAG = agot_guard_positions_swords_of_braavos_member
+		MEMBER_TRAIT = agot_swords_of_braavos
+	}
+	agot_guard_positions_sync_first_sword_court_position_effect = yes
+}
+
+# Resolve the current commander every time this runs. No permanent character
+# scope is retained, so succession or a new Sealord cannot stale the link.
+agot_guard_positions_sync_first_sword_court_position_effect = {
+	if = {
+		limit = { exists = cp:swords_of_braavos_lord_commander }
+		cp:swords_of_braavos_lord_commander = { save_scope_as = current_first_sword }
+		if = {
+			limit = {
+				exists = court_position:first_sword_court_position
+				court_position:first_sword_court_position = { NOT = { this = scope:current_first_sword } }
+			}
+			court_position:first_sword_court_position = { save_scope_as = former_first_sword_courtier }
+			add_character_flag = free_revoke_cost
+			revoke_court_position = {
+				recipient = scope:former_first_sword_courtier
+				court_position = first_sword_court_position
+			}
+			remove_character_flag = free_revoke_cost
+		}
+		if = {
+			limit = { scope:current_first_sword = { NOT = { has_court_position = first_sword_court_position } } }
+			appoint_court_position = {
+				recipient = scope:current_first_sword
+				court_position = first_sword_court_position
+			}
+		}
+	}
+}
+
+agot_guard_positions_on_lose_swords_of_braavos_position_effect = {
+	if = {
+		limit = {
+			has_court_position = first_sword_court_position
+			exists = scope:councillor_liege
+		}
+		save_scope_as = departing_first_sword
+		scope:councillor_liege = {
+			add_character_flag = free_revoke_cost
+			revoke_court_position = {
+				recipient = scope:departing_first_sword
+				court_position = first_sword_court_position
+			}
+			remove_character_flag = free_revoke_cost
+		}
+	}
+	if = {
+		limit = {
+			is_alive = yes
+			NOT = { has_character_flag = agot_guard_positions_commander_promotion_in_progress }
+			NOT = { has_character_flag = agot_guard_positions_inherited_title_as_guard }
+			NOT = { has_character_flag = agot_guard_positions_departure_cleanup_complete }
+			liege_or_court_owner = { NOT = { has_character_flag = agot_guard_positions_swords_of_braavos_dissolving } }
+		}
+		add_character_flag = agot_guard_positions_departure_cleanup_complete
+		if = {
+			limit = { NOT = { has_character_flag = agot_guard_positions_strip_review_queued } }
+			add_character_flag = { flag = agot_guard_positions_strip_review_queued days = 11 }
+			trigger_event = { id = agot_guard_positions.1007 days = 10 }
+		}
+		fired_from_council_position_effect = yes
+		agot_guard_positions_destroy_guard_armor_artifacts_effect = yes
+		agot_guard_positions_destroy_guard_service_weapon_artifacts_effect = yes
+		agot_guard_positions_clear_guard_portrait_armor_effect = yes
+		remove_character_flag = agot_guard_positions_swords_of_braavos_member
+		remove_trait = agot_swords_of_braavos
+		remove_character_flag = blocked_from_leaving
+		remove_character_flag = can_fire_kingsguard
+		if = { limit = { exists = scope:councillor_liege } scope:councillor_liege = { if = { limit = { NOT = { has_character_flag = agot_guard_positions_repair_queued } } add_character_flag = { flag = agot_guard_positions_repair_queued days = 2 } trigger_event = { id = agot_guard_positions.1004 days = 1 } } } }
+	}
+}
+
+agot_guard_assign_swords_of_braavos_effect = {
+	if = {
+		limit = { agot_guard_has_empty_swords_of_braavos_slot_trigger = yes }
+		agot_guard_positions_transfer_unlanded_guard_to_holder_effect = { GUARD = $GUARD$ }
+		$GUARD$ = {
+			remove_character_modifier = agot_former_swords_of_braavos
+			add_character_flag = agot_guard_positions_swords_of_braavos_member
+			add_trait = agot_swords_of_braavos
+			remove_character_flag = agot_guard_positions_guard_ambition
+			remove_character_flag = kingsguard_ambition
+			if = { limit = { agot_guard_positions_has_any_training_ambition_trigger = yes } agot_guard_positions_clear_training_ambition_effect = yes }
+			agot_guard_positions_ensure_guard_artifacts_effect = yes
+			agot_guard_positions_record_appointment_effect = { HOLDER = root }
+		}
+		if = {
+			limit = { NOT = { exists = cp:swords_of_braavos_lord_commander } }
+			assign_councillor_type = { type = swords_of_braavos_lord_commander target = $GUARD$ }
+			$GUARD$ = { agot_guard_positions_record_lord_commander_effect = { HOLDER = root } }
+			agot_guard_positions_sync_first_sword_court_position_effect = yes
+		}
+		else_if = { limit = { NOT = { exists = cp:swords_of_braavos_1 } } assign_councillor_type = { type = swords_of_braavos_1 target = $GUARD$ } }
+		else_if = { limit = { NOT = { exists = cp:swords_of_braavos_2 } } assign_councillor_type = { type = swords_of_braavos_2 target = $GUARD$ } }
+		else_if = { limit = { NOT = { exists = cp:swords_of_braavos_3 } } assign_councillor_type = { type = swords_of_braavos_3 target = $GUARD$ } }
+		else_if = { limit = { NOT = { exists = cp:swords_of_braavos_4 } } assign_councillor_type = { type = swords_of_braavos_4 target = $GUARD$ } }
+		else_if = { limit = { NOT = { exists = cp:swords_of_braavos_5 } } assign_councillor_type = { type = swords_of_braavos_5 target = $GUARD$ } }
+		else_if = { limit = { NOT = { exists = cp:swords_of_braavos_6 } } assign_councillor_type = { type = swords_of_braavos_6 target = $GUARD$ } }
+	}
+}
+
+agot_guard_positions_end_swords_of_braavos_effect = {
+	add_character_flag = agot_guard_positions_swords_of_braavos_dissolving
+	if = {
+		limit = { exists = court_position:first_sword_court_position }
+		court_position:first_sword_court_position = { save_scope_as = departing_first_sword }
+		add_character_flag = free_revoke_cost
+		revoke_court_position = {
+			recipient = scope:departing_first_sword
+			court_position = first_sword_court_position
+		}
+		remove_character_flag = free_revoke_cost
+	}
+	if = { limit = { exists = cp:swords_of_braavos_lord_commander } fire_councillor = cp:swords_of_braavos_lord_commander }
+	if = { limit = { exists = cp:swords_of_braavos_1 } fire_councillor = cp:swords_of_braavos_1 }
+	if = { limit = { exists = cp:swords_of_braavos_2 } fire_councillor = cp:swords_of_braavos_2 }
+	if = { limit = { exists = cp:swords_of_braavos_3 } fire_councillor = cp:swords_of_braavos_3 }
+	if = { limit = { exists = cp:swords_of_braavos_4 } fire_councillor = cp:swords_of_braavos_4 }
+	if = { limit = { exists = cp:swords_of_braavos_5 } fire_councillor = cp:swords_of_braavos_5 }
+	if = { limit = { exists = cp:swords_of_braavos_6 } fire_councillor = cp:swords_of_braavos_6 }
+	every_living_character = {
+		limit = { agot_guard_positions_is_swords_of_braavos_trigger = yes }
+		agot_guard_positions_destroy_guard_armor_artifacts_effect = yes
+		agot_guard_positions_destroy_guard_service_weapon_artifacts_effect = yes
+		agot_guard_positions_clear_guard_portrait_armor_effect = yes
+		remove_character_flag = agot_guard_positions_swords_of_braavos_member
+		remove_trait = agot_swords_of_braavos
+		remove_character_flag = blocked_from_leaving
+	}
+	remove_character_flag = has_swords_of_braavos
+	remove_character_flag = agot_guard_positions_swords_of_braavos_dissolving
+	every_living_character = {
+		limit = { has_character_modifier = training_for_swords_of_braavos }
+		agot_guard_positions_clear_training_ambition_effect = yes
+	}
+}
+
+agot_guard_positions_ai_fill_swords_of_braavos_slot_effect = {
+	if = {
+		limit = { agot_guard_has_empty_swords_of_braavos_slot_trigger = yes }
+		random_courtier_or_guest = {
+			limit = { agot_guard_can_be_swords_of_braavos_trigger = { COURT_OWNER = root } }
+			weight = {
+				base = 1
+				modifier = { add = prowess }
+				modifier = { add = 100 has_culture = culture:braavosi }
+			}
+			save_scope_as = swords_of_braavos_candidate
+		}
+		if = { limit = { exists = scope:swords_of_braavos_candidate } agot_guard_assign_swords_of_braavos_effect = { GUARD = scope:swords_of_braavos_candidate } }
+	}
+}

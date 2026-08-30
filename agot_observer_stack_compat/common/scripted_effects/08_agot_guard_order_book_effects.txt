@@ -1,0 +1,251 @@
+﻿# Persistent custom-order equivalent of AGOT's Kingsguard White Book. Each
+# service period owns a dynamic-title page. The page remains in the order's
+# global history after dismissal or death, while its prose is extended through
+# the same set_title_name_dynamic chain used by the native White Book.
+
+agot_guard_order_book_create_page_effect = {
+	if = {
+		limit = {
+			NOT = { exists = var:agot_guard_positions_order_book_page }
+			OR = {
+				has_character_flag = agot_guard_positions_battleguard_member
+				has_character_flag = agot_guard_positions_rainbow_guard_member
+				has_character_flag = agot_guard_positions_winged_knight_member
+				has_character_flag = agot_guard_positions_swords_of_braavos_member
+				has_character_flag = agot_guard_positions_kingsmen_member
+				has_character_flag = agot_guard_positions_queensguard_member
+				has_character_flag = agot_guard_positions_greenhand_member
+			}
+		}
+		save_scope_as = selected_guard
+		$HOLDER$ = { save_scope_as = guard_book_holder }
+		create_dynamic_title = {
+			tier = duchy
+			name = agot_guard_order_book_page
+		}
+		scope:new_title ?= {
+			set_capital_county = title:c_ruins
+			set_landless_title = yes
+			set_delete_on_destroy = no
+			set_coa = d_kingsguard
+			save_scope_as = guard_order_book_page
+			set_variable = { name = agot_guard_order_book_member value = scope:selected_guard }
+			set_variable = { name = kingsguard_member value = scope:selected_guard }
+			set_variable = { name = agot_guard_order_book_holder value = scope:guard_book_holder }
+			if = {
+				limit = { scope:selected_guard = { has_character_flag = agot_guard_positions_battleguard_member } }
+				set_variable = { name = agot_guard_order_book_order value = 1 }
+				set_title_name_dynamic = agot_guard_order_book_page_join_battleguard
+			}
+			else_if = {
+				limit = { scope:selected_guard = { has_character_flag = agot_guard_positions_rainbow_guard_member } }
+				set_variable = { name = agot_guard_order_book_order value = 2 }
+				set_title_name_dynamic = agot_guard_order_book_page_join_rainbow
+			}
+			else_if = {
+				limit = { scope:selected_guard = { has_character_flag = agot_guard_positions_winged_knight_member } }
+				set_variable = { name = agot_guard_order_book_order value = 3 }
+				set_title_name_dynamic = agot_guard_order_book_page_join_winged
+			}
+			else_if = {
+				limit = { scope:selected_guard = { has_character_flag = agot_guard_positions_swords_of_braavos_member } }
+				set_variable = { name = agot_guard_order_book_order value = 7 }
+				set_title_name_dynamic = agot_guard_order_book_page_join_swords_of_braavos
+			}
+			else_if = {
+				limit = { scope:selected_guard = { has_character_flag = agot_guard_positions_kingsmen_member } }
+				set_variable = { name = agot_guard_order_book_order value = 4 }
+				set_title_name_dynamic = agot_guard_order_book_page_join_kingsmen
+			}
+			else_if = {
+				limit = { scope:selected_guard = { has_character_flag = agot_guard_positions_queensguard_member } }
+				set_variable = { name = agot_guard_order_book_order value = 5 }
+				set_title_name_dynamic = agot_guard_order_book_page_join_queensguard
+			}
+			else = {
+				set_variable = { name = agot_guard_order_book_order value = 6 }
+				set_title_name_dynamic = agot_guard_order_book_page_join_greenhand
+			}
+			set_variable = hide_in_ledger
+			if = { limit = { var:agot_guard_order_book_order = 1 } add_to_global_variable_list = { name = agot_guard_order_book_pages_battleguard target = this } }
+			else_if = { limit = { var:agot_guard_order_book_order = 2 } add_to_global_variable_list = { name = agot_guard_order_book_pages_rainbow target = this } }
+			else_if = { limit = { var:agot_guard_order_book_order = 3 } add_to_global_variable_list = { name = agot_guard_order_book_pages_winged target = this } }
+			else_if = { limit = { var:agot_guard_order_book_order = 4 } add_to_global_variable_list = { name = agot_guard_order_book_pages_kingsmen target = this } }
+			else_if = { limit = { var:agot_guard_order_book_order = 5 } add_to_global_variable_list = { name = agot_guard_order_book_pages_queensguard target = this } }
+			else_if = { limit = { var:agot_guard_order_book_order = 7 } add_to_global_variable_list = { name = agot_guard_order_book_pages_swords_of_braavos target = this } }
+			else = { add_to_global_variable_list = { name = agot_guard_order_book_pages_greenhand target = this } }
+			add_to_global_variable_list = { name = agot_guard_order_book_pages target = scope:guard_order_book_page }
+			scope:selected_guard = { set_variable = { name = agot_guard_positions_order_book_page value = scope:guard_order_book_page } }
+		}
+	}
+}
+
+# Observer Stack P35 - guard against repeated Lord Commander entries.
+#
+# agot_guard_positions_record_lord_commander_effect has ten call sites and only
+# one of them (00_agot_guard_positions_effects.txt:5056) checks the author's own
+# agot_guard_positions_command_recorded flag before firing. The other nine --
+# including 06_agot_swords_of_braavos_effects.txt:95 -- call it unguarded, so the
+# same appointment could be written to the page over and over.
+#
+# Each write concatenates the page's existing name onto itself via
+# [guard_book_page.GetNameNoTierNoTooltip], so repeated calls grew one title name
+# without bound. In the 7899 and 8299 runs two such titles reached 332 MB and
+# 325 MB, landed_titles became 663 MB of a 760 MB gamestate, and the daily tick
+# could no longer complete -- the clock froze while the UI stayed responsive.
+#
+# dismissal / retirement / death already self-terminate by removing
+# agot_guard_positions_order_book_page. Lord Commander was the only once-per-
+# career deed with no guard, so it gets a per-page marker here. The genuinely
+# repeatable deeds (battle, wound, duel, tournament, mission, capture, ward,
+# rescue) are left accumulating, which is the intended White Book behaviour and
+# matches AGOT's own agot_kingsguard_white_book_page_*_update chain.
+agot_guard_order_book_append_lord_commander_effect = {
+	if = {
+		limit = {
+			exists = var:agot_guard_positions_order_book_page
+			NOT = { var:agot_guard_positions_order_book_page = { has_variable = agot_guard_order_book_lc_recorded } }
+		}
+		save_scope_as = selected_guard
+		$HOLDER$ = { save_scope_as = guard_book_holder }
+		var:agot_guard_positions_order_book_page = { set_variable = { name = agot_guard_order_book_holder value = scope:guard_book_holder } set_variable = agot_guard_order_book_lc_recorded save_scope_as = guard_book_page set_title_name_dynamic = agot_guard_order_book_page_lord_commander }
+	}
+}
+
+agot_guard_order_book_append_mission_success_effect = {
+	if = { limit = { exists = var:agot_guard_positions_order_book_page } save_scope_as = selected_guard $HOLDER$ = { save_scope_as = guard_book_holder } var:agot_guard_positions_order_book_page = { set_variable = { name = agot_guard_order_book_holder value = scope:guard_book_holder } save_scope_as = guard_book_page set_title_name_dynamic = agot_guard_order_book_page_mission_success } }
+}
+
+agot_guard_order_book_append_mission_failure_effect = {
+	if = { limit = { exists = var:agot_guard_positions_order_book_page } save_scope_as = selected_guard $HOLDER$ = { save_scope_as = guard_book_holder } var:agot_guard_positions_order_book_page = { save_scope_as = guard_book_page set_title_name_dynamic = agot_guard_order_book_page_mission_failure } }
+}
+
+agot_guard_order_book_append_rescue_effect = {
+	if = { limit = { exists = var:agot_guard_positions_order_book_page } save_scope_as = selected_guard $HOLDER$ = { save_scope_as = guard_book_holder } var:agot_guard_positions_order_book_page = { set_variable = { name = agot_guard_order_book_holder value = scope:guard_book_holder } save_scope_as = guard_book_page set_title_name_dynamic = agot_guard_order_book_page_rescue } }
+}
+
+agot_guard_order_book_append_capture_effect = {
+	if = { limit = { exists = var:agot_guard_positions_order_book_page } save_scope_as = selected_guard var:agot_guard_positions_order_book_page = { save_scope_as = guard_book_page set_title_name_dynamic = agot_guard_order_book_page_capture } }
+}
+
+agot_guard_order_book_append_ward_effect = {
+	if = { limit = { exists = var:agot_guard_positions_order_book_page } save_scope_as = selected_guard var:agot_guard_positions_order_book_page = { save_scope_as = guard_book_page set_title_name_dynamic = agot_guard_order_book_page_ward } }
+}
+
+agot_guard_order_book_append_tournament_effect = {
+	if = { limit = { exists = var:agot_guard_positions_order_book_page } save_scope_as = selected_guard var:agot_guard_positions_order_book_page = { save_scope_as = guard_book_page set_title_name_dynamic = agot_guard_order_book_page_tournament } }
+}
+
+agot_guard_order_book_append_battle_effect = {
+	if = { limit = { exists = var:agot_guard_positions_order_book_page } save_scope_as = selected_guard var:agot_guard_positions_order_book_page = { save_scope_as = guard_book_page set_title_name_dynamic = agot_guard_order_book_page_battle } }
+}
+
+agot_guard_order_book_append_wound_effect = {
+	if = { limit = { exists = var:agot_guard_positions_order_book_page } save_scope_as = selected_guard $HOLDER$ = { save_scope_as = guard_book_holder } var:agot_guard_positions_order_book_page = { set_variable = { name = agot_guard_order_book_holder value = scope:guard_book_holder } save_scope_as = guard_book_page set_title_name_dynamic = agot_guard_order_book_page_wound } }
+}
+
+agot_guard_order_book_append_duel_effect = {
+	if = {
+		limit = { exists = var:agot_guard_positions_order_book_page }
+		save_scope_as = selected_guard
+		$OPPONENT$ = { save_scope_as = guard_book_opponent }
+		var:agot_guard_positions_order_book_page = { save_scope_as = guard_book_page set_title_name_dynamic = agot_guard_order_book_page_duel }
+	}
+}
+
+agot_guard_order_book_append_dismissal_effect = {
+	if = {
+		limit = { exists = var:agot_guard_positions_order_book_page }
+		save_scope_as = selected_guard
+		$HOLDER$ = { save_scope_as = guard_book_holder }
+		var:agot_guard_positions_order_book_page = { set_variable = { name = agot_guard_order_book_holder value = scope:guard_book_holder } save_scope_as = guard_book_page set_title_name_dynamic = agot_guard_order_book_page_dismissal }
+		remove_variable = agot_guard_positions_order_book_page
+	}
+}
+
+agot_guard_order_book_append_retirement_effect = {
+	if = {
+		limit = { exists = var:agot_guard_positions_order_book_page }
+		save_scope_as = selected_guard
+		$HOLDER$ = { save_scope_as = guard_book_holder }
+		var:agot_guard_positions_order_book_page = { set_variable = { name = agot_guard_order_book_holder value = scope:guard_book_holder } save_scope_as = guard_book_page set_title_name_dynamic = agot_guard_order_book_page_retirement }
+		remove_variable = agot_guard_positions_order_book_page
+	}
+}
+
+agot_guard_order_book_append_death_effect = {
+	if = {
+		limit = { exists = var:agot_guard_positions_order_book_page }
+		save_scope_as = selected_guard
+		$HOLDER$ = { save_scope_as = guard_book_holder }
+		var:agot_guard_positions_order_book_page = { save_scope_as = guard_book_page set_title_name_dynamic = agot_guard_order_book_page_death }
+		remove_variable = agot_guard_positions_order_book_page
+	}
+}
+
+# Copy one already-indexed custom order into the temporary display list.
+agot_guard_order_book_copy_indexed_pages_effect = {
+	every_in_global_list = {
+		variable = $LIST$
+		limit = { exists = var:agot_guard_order_book_member }
+		save_temporary_scope_as = visible_guard_book_page
+		set_variable = { name = kingsguard_member value = var:agot_guard_order_book_member }
+		if = { limit = { NOT = { exists = var:agot_guard_order_book_holder } } set_variable = { name = agot_guard_order_book_holder value = root } }
+		root = { add_to_variable_list = { name = agot_guard_order_book_visible_pages target = scope:visible_guard_book_page } }
+	}
+}
+
+# Build a temporary player-owned contents list. Custom pages are indexed once
+# by order, avoiding a scan of every order's complete history on every opening.
+agot_guard_order_book_build_visible_pages_effect = {
+	clear_variable_list = agot_guard_order_book_visible_pages
+	if = {
+		limit = { NOT = { has_global_variable = agot_guard_order_book_order_indexes_built } }
+		set_global_variable = agot_guard_order_book_order_indexes_built
+		clear_global_variable_list = agot_guard_order_book_pages_battleguard
+		clear_global_variable_list = agot_guard_order_book_pages_rainbow
+		clear_global_variable_list = agot_guard_order_book_pages_winged
+		clear_global_variable_list = agot_guard_order_book_pages_kingsmen
+		clear_global_variable_list = agot_guard_order_book_pages_queensguard
+		clear_global_variable_list = agot_guard_order_book_pages_greenhand
+		clear_global_variable_list = agot_guard_order_book_pages_swords_of_braavos
+		every_in_global_list = {
+			variable = agot_guard_order_book_pages
+			if = { limit = { var:agot_guard_order_book_order = 1 } add_to_global_variable_list = { name = agot_guard_order_book_pages_battleguard target = this } }
+			else_if = { limit = { var:agot_guard_order_book_order = 2 } add_to_global_variable_list = { name = agot_guard_order_book_pages_rainbow target = this } }
+			else_if = { limit = { var:agot_guard_order_book_order = 3 } add_to_global_variable_list = { name = agot_guard_order_book_pages_winged target = this } }
+			else_if = { limit = { var:agot_guard_order_book_order = 4 } add_to_global_variable_list = { name = agot_guard_order_book_pages_kingsmen target = this } }
+			else_if = { limit = { var:agot_guard_order_book_order = 5 } add_to_global_variable_list = { name = agot_guard_order_book_pages_queensguard target = this } }
+			else_if = { limit = { var:agot_guard_order_book_order = 6 } add_to_global_variable_list = { name = agot_guard_order_book_pages_greenhand target = this } }
+			else_if = { limit = { var:agot_guard_order_book_order = 7 } add_to_global_variable_list = { name = agot_guard_order_book_pages_swords_of_braavos target = this } }
+		}
+	}
+	# The native White Book remains the source of Kingsguard prose. Adapt its
+	# pages in place to the unified Chronicle row contract.
+	if = {
+		limit = { ruler_primary_title_has_kingsguard_trigger = yes }
+		every_in_global_list = {
+			variable = kingsguard_white_book_pages
+			limit = { exists = var:kingsguard_member }
+			save_temporary_scope_as = visible_guard_book_page
+			set_variable = { name = agot_guard_order_book_member value = var:kingsguard_member }
+			set_variable = { name = agot_guard_order_book_holder value = root }
+			root = { add_to_variable_list = { name = agot_guard_order_book_visible_pages target = scope:visible_guard_book_page } }
+		}
+	}
+	else_if = { limit = { has_character_flag = has_battleguard } agot_guard_order_book_copy_indexed_pages_effect = { LIST = agot_guard_order_book_pages_battleguard } }
+	else_if = { limit = { has_character_flag = has_rainbow_guard } agot_guard_order_book_copy_indexed_pages_effect = { LIST = agot_guard_order_book_pages_rainbow } }
+	else_if = { limit = { has_character_flag = has_winged_knights } agot_guard_order_book_copy_indexed_pages_effect = { LIST = agot_guard_order_book_pages_winged } }
+	else_if = { limit = { has_character_flag = has_swords_of_braavos } agot_guard_order_book_copy_indexed_pages_effect = { LIST = agot_guard_order_book_pages_swords_of_braavos } }
+	else_if = { limit = { has_character_flag = has_kingsmen } agot_guard_order_book_copy_indexed_pages_effect = { LIST = agot_guard_order_book_pages_kingsmen } }
+	else_if = { limit = { has_character_flag = has_queensguard } agot_guard_order_book_copy_indexed_pages_effect = { LIST = agot_guard_order_book_pages_queensguard } }
+	else_if = { limit = { agot_guard_positions_has_greenhand_trigger = yes } agot_guard_order_book_copy_indexed_pages_effect = { LIST = agot_guard_order_book_pages_greenhand } }
+	# Event options are evaluated when the page opens, not after a GUI row click.
+	# Seed a valid first selection; clicking another row replaces it normally.
+	every_in_list = {
+		variable = agot_guard_order_book_visible_pages
+		limit = { root = { NOT = { exists = var:selected_guard_order_book_page } } }
+		save_temporary_scope_as = first_visible_guard_book_page
+		root = { set_variable = { name = selected_guard_order_book_page value = scope:first_visible_guard_book_page } }
+	}
+}

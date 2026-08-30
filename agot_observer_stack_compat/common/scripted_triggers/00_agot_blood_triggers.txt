@@ -1,0 +1,123 @@
+﻿# Observer Stack P44 - AGOT (2962333032) temporary/permanent scope-name collision.
+#
+# is_converting_to_hairymen_culture and is_converting_from_hairymen_culture both
+# did save_temporary_scope_as = actor. In any context that already has a
+# PERMANENT scope named actor -- every character_interaction does -- the engine
+# refuses the temporary and logs, once per evaluation:
+#   jomini_eventscope.cpp:565  Trying to add the temporary target 'actor' which
+#   has the same name as a permanent target
+# 62 entries across the 8183 Viserys run, fired whenever a culture-conversion
+# check ran.
+#
+# The temporary is renamed to agot_blood_actor in both triggers, with its two
+# reads updated to match. The scope is local to these triggers, so nothing
+# outside this file refers to it and behaviour is otherwise unchanged.
+has_kingsblood = {
+	OR = {
+		highest_held_title_tier = tier_hegemony
+		AND = {
+			agot_is_independent_ruler = yes
+			any_held_title = {
+				tier >= tier_kingdom
+			}
+		}
+		any_close_family_member = {
+			OR = {
+				highest_held_title_tier = tier_hegemony
+				AND = {
+					agot_is_independent_ruler = yes
+					any_held_title = {
+						tier >= tier_kingdom
+					}
+				}
+			}
+		}
+	}
+}
+
+has_paramountblood = {
+	OR = {
+		has_kingsblood = yes
+		highest_held_title_tier = tier_empire
+		any_close_family_member = {
+			highest_held_title_tier = tier_empire
+		}
+	}
+}
+
+has_dukesblood = {
+	OR = {
+		has_paramountblood = yes
+		highest_held_title_tier = tier_kingdom
+		any_close_family_member = {
+			highest_held_title_tier = tier_kingdom
+		}
+		highest_held_title_tier = tier_duchy
+		any_close_family_member = {
+			highest_held_title_tier = tier_duchy
+		}
+	}
+}
+
+has_countsblood = {
+	OR = {
+		has_dukesblood = yes
+		highest_held_title_tier = tier_county
+		any_close_family_member = {
+			highest_held_title_tier = tier_county
+		}
+	}
+}
+
+has_incompatible_blood_trigger = {
+	$MOTHER$ = { save_temporary_scope_as = mother_temp }
+	$FATHER$ = { save_temporary_scope_as = father_temp }
+	##This is a XOR, not an OR, I do not want this to be true if both are, only if one of them is
+	calc_true_if = {
+		amount = 1
+		scope:mother_temp = {
+			OR = {
+				AND = {
+					culture = { has_cultural_pillar = heritage_hairyman }
+					NOT = { has_character_flag = converted_to_ibbenese }
+				}
+				has_character_flag = converted_from_ibbenese
+			}
+		}
+		scope:father_temp = {
+			OR = {
+				AND = {
+					culture = { has_cultural_pillar = heritage_hairyman }
+					NOT = { has_character_flag = converted_to_ibbenese }
+				}
+				has_character_flag = converted_from_ibbenese
+			}
+		}
+	}
+}
+
+is_converting_to_hairymen_culture = {
+	$NEW_CULTURE$ = { save_temporary_scope_as = new_culture }
+	$ACTOR$ = { save_temporary_scope_as = agot_blood_actor }
+
+	scope:new_culture = { has_cultural_pillar = heritage_hairyman }
+	scope:agot_blood_actor = {
+		NOT = { has_character_flag = converted_from_ibbenese }
+		culture = {
+			NOT = { has_cultural_pillar = heritage_hairyman }
+		}
+	}
+}
+
+is_converting_from_hairymen_culture = {
+	$NEW_CULTURE$ = { save_temporary_scope_as = new_culture }
+	$ACTOR$ = { save_temporary_scope_as = agot_blood_actor }
+
+	scope:new_culture = {
+		NOT = { has_cultural_pillar = heritage_hairyman }
+	}
+	scope:agot_blood_actor = {
+		NOT = { has_character_flag = converted_to_ibbenese }
+		culture = { has_cultural_pillar = heritage_hairyman }
+	}
+}
