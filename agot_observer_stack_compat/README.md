@@ -1,6 +1,6 @@
 # AGOT Observer Stack Compatibility v1.1.0
 
-This aggregate compatibility layer targets CK3 1.19.0.6 / AGOT 0.5.1 and the current 52-mod successor playset. P09–P22 are grounded in runtime evidence from the earlier 49-mod Tybert run; this implementation itself is statically verified only.
+This aggregate compatibility layer targets CK3 1.19.0.6 / AGOT 0.5.1 and the current 52-mod successor playset. P09–P22 are grounded in runtime evidence from the earlier 49-mod Tybert run. P24–P33, added in the 2026-08-29 revision wave without a version bump, are grounded in the independent 405-year observer run 7899–8304. Both implementations are statically verified only.
 
 ## Patch contents
 
@@ -22,8 +22,24 @@ P01–P07 remain intact: AGOT+ canon-child creation and parser repair, AGOT+/art
 | P20 | Oathbound | Guards oathholder/heir variables, types custom localization, removes Persia-only sway/ransom branches, and scopes task cleanup to the surviving oathbound variable owner. |
 | P21 | Grand Remembrance + AGOT submod | Uses the proven fabricate root, migrates 12 memory-count checks, and removes unsupported vanilla/RICE classifications. |
 | P22 | Advanced Character Search | Keeps UI IDs stable while neutralizing unsupported AGOT database filters and removing invalid mixed keys. |
+| P24 | Grand Remembrance | Requires a real character scope before the chronicle window's `is_shown` reads `is_alive`. This single null-scope check produced 82,917 of the run's 100,000 logged errors and exhausted the global error budget 23 years in. |
+| P25 | Grand Remembrance | Removes the RICE trait-detection section; the RICE mod is not installed, so its 26 trait identifiers never resolved. Non-RICE obituary classification is unchanged. |
+| P26 | Advanced Character Search | Collapses religion-family bucketing to the single AGOT-safe `other` list. The vanilla `rf_abrahamic` / `rf_eastern` / `rf_pagan` families do not exist in AGOT. |
+| P27 | LOCAL-1.1.0 / AGOT | Scores appointment candidates only for titles that actually use appointment succession, replacing a holder-level realm-law check that admitted ordinary titles such as `c_the_lower_city`. |
+| P28 | LOCAL-1.1.0 / AGOT | Requires the optional `recruit` scope to exist before it is compared. |
+| P29 | AGOT | Gives the `scion_title_data` story cycle a 30-day self-termination group. AGOT creates one story per title and never ends it, leaving records pointing at dead royals and destroyed titles. |
+| P30 | AGOT | Compares the dragon-terror rider's top liege instead of calling `top_liege` on a province scope, and soft-compares dynamic dynasty founders in the Rhllor personal-CoA trigger. |
+| P31 | LOCAL-1.1.0 / AGOT+ | Repairs Mance Rayder's `giant` men-at-arms key, both Young Griff nickname keys, the undefined `is_targaryen_11` inactive trait, and the two locationless dummy characters in the landing event. |
+| P32 | LOCAL-1.1.0 / AGOT+ | Points the seven dragon spawns at `faith:valyrian_pan_dragon` and removes the two obsolete More Bookmarks `faith:rhllor` migrations. Neither faith id exists in this playset. |
+| P33 | LOCAL-1.1.0 / AGOT+ | Implements the seven canon children of Aegon IV (Targaryen 98–104), re-keying AGOT+'s duplicate-trigger typo, and supplies the undefined `asoiaf_Greyjoy_13_alt_modifier` while dropping the undefined `asoiaf_Targaryen_95_modifier` call. |
 
-Intentional neutralizations are limited to missing Targaryen branches, redundant dragon scheme starts, orphan city event hooks, non-AGOT Grand Remembrance classifications, Persia-only Oathbound branches, and unsupported ACS filters.
+P23 is unused. Intentional neutralizations are limited to missing Targaryen branches, redundant dragon scheme starts, orphan city event hooks, non-AGOT Grand Remembrance classifications, Persia-only Oathbound branches, unsupported ACS filters, non-installed RICE classifications, ACS religion families absent from AGOT, and the obsolete More Bookmarks faith migrations.
+
+### P33 note on canon sources
+
+AGOT+ references birth effects for Targaryen 98–104 from events `.0882` / `.0883` but never defines them, so each matching pregnancy was terminated and no child was created. Its trigger file also defines `asoiaf_canon_children_Targaryen_99_trigger` twice (Lily and Willow) and never defines `_101_trigger` (Rosey). The rebuilt shims re-key the author's own trigger bodies correctly and add the missing Summer Islander gates, made mutually exclusive with the Westerosi sequence on the mother's heritage.
+
+Names, genders, cultures and house assignment follow AGOT's own canonical history entries for `Targaryen_98`–`Targaryen_104`: Alysanne, Lily, Willow and Rosey by Aegon IV's lowborn Westerosi lover, and Bellenora, Narha and Balerion by his Summer Islander lover. Appearance is copied from those same canon characters, which ship complete DNA in AGOT's `dna_data`, so `has_scripted_appearance` is truthful here.
 
 ## Load order (user-managed)
 

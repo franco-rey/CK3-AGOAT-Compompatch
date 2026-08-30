@@ -27,3 +27,34 @@ WORKSHOP_FILES_MODIFIED=NO
 EXISTING_LOCAL_MODS_MODIFIED=NO
 SAVE_FILES_MODIFIED=NO
 UPDATE_WARNING=Disable and re-audit this keyed override if AGOT changes or the upstream source hash differs.
+
+ADDITION (2026-08-29, no version bump) — interaction-level claimant faction creation
+AGOT_SOURCE_2=common/character_interactions/00_vassal_interactions.txt
+AGOT_SOURCE_2_SHA256=B7A36B408A6C0583429EBF81DBE07A794F6AF140E91D39E75B9318F77AB162E1
+AGOT_OVERRIDDEN_KEYS_2=create_claimant_faction_against_interaction
+PATCH_BUILT_2=common/character_interactions/00_vassal_interactions.txt
+PATCH_BUILT_2_SHA256=D9EB534E17C11AD489B9A4B283F750035EF04CDD965B8EFFB3B35A825761EA03
+PATCH_DESCRIPTOR_SHA256_2=11B2EFC2D60CC855F51A75E00F50A70EBE20B600F3737A114CE874976C72EC7A
+
+CHANGE_4=can_send gains hard preconditions. AGOT left the body empty, so the interaction
+  could be sent when create_faction was certain to fail: recipient and landed title must
+  exist, the actor must not already be in a faction, must not have initiated this in the
+  last day, and must satisfy can_create_faction for a claimant faction against the target.
+CHANGE_5=on_send sets a one-day agot_claimant_faction_creation_in_progress flag, which
+  suppresses duplicate same-day queued calls without permanently blocking the character.
+  The flag is deliberately never removed explicitly; expiry handles it.
+CHANGE_6=Every joined_faction dereference now sits behind a single validated-faction
+  guard. create_faction can still fail after can_create_faction passes (truce, war, law,
+  capacity); previously that produced an invalid faction scope which then cascaded into
+  invalid set_special_character, set_special_title, claimant-list insertion, scope saves
+  and a faction invitation. Source ordering is otherwise preserved.
+
+VALIDATION_SOLE_PROVIDER_2=PASS: A Game of Thrones is the only enabled provider of
+  common/character_interactions/00_vassal_interactions.txt, and no local patch loading
+  after this one owns that virtual path.
+VALIDATION_OTHER_INTERACTIONS_UNCHANGED=PASS: only create_claimant_faction_against_interaction
+  was modified; every other interaction in the file is byte-identical to source.
+VALIDATION_BRACE_BALANCE_2=PASS.
+NOTE_LOAD_ORDER=Unchanged. This patch still loads after AGOT and before the Observer patch.
+NOTE_LAUNCHER_POINTER=Version deliberately NOT incremented. The owner hand-maintains the
+  launcher pointer .mod files across machines; descriptor.mod and the pointer both stay at 1.0.0.

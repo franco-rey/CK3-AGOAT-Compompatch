@@ -2325,70 +2325,14 @@ laamp_as_mercenary_payout_effect = {
 
 # miv removed white peace and 50 year truce since it conflicts with shattered world
 fp3_struggle_ending_concession_effects = {
-	# All involved rulers, independent or not, lose all their claims
-	custom_tooltip = {
-		text = fp3_concession_lose_claim_tt
-		struggle:persian_struggle = {
-			every_involved_ruler = {
-				save_scope_as = claim_loser
-				every_claim = {
-					scope:claim_loser = {
-						remove_claim = prev
-					}
-				}
-			}
-		}
-	}
-	custom_tooltip = {
-		text = fp3_concession_rebuilding_efforts_tt
-		struggle:persian_struggle = {
-			every_involved_ruler = {
-				limit = {
-					has_trait = fp3_struggle_supporter
-					is_house_head = yes
-					NOT = {
-						primary_title = {
-							is_mercenary_company = yes
-						}
-					}
-				}
-				house ?= {
-					add_house_modifier = {
-						modifier = fp3_house_modifier_rebuilding_efforts
-						# AGOT disables the FP3 layer; fp3_house_modifier_concession_ending_duration
-						# is commented out in its 00_dlc_fp3_script_values.txt (documented value: 100).
-						# Literal substituted so the named value resolves. Block is Persia-only and inert in AGOT.
-						years = 100
-					}
-				}
-			}
-		}
-	}
-	custom_tooltip = {
-		text = fp3_concession_frontier_ambitions_tt
-		struggle:persian_struggle = {
-			every_involved_ruler = {
-				limit = {
-					has_trait = fp3_struggle_detractor
-					is_house_head = yes
-					NOT = {
-						primary_title = {
-							is_mercenary_company = yes
-						}
-					}
-				}
-				house ?= {
-					add_house_modifier = {
-						modifier = fp3_house_modifier_frontier_ambitions
-						# AGOT disables the FP3 layer; fp3_house_modifier_concession_ending_duration
-						# is commented out in its 00_dlc_fp3_script_values.txt (documented value: 100).
-						# Literal substituted so the named value resolves. Block is Persia-only and inert in AGOT.
-						years = 100
-					}
-				}
-			}
-		}
-	}
+	# Intentionally empty.
+	#
+	# AGOT removes the Persian struggle and disables its entire FP3 layer: the
+	# struggle itself, the supporter/detractor traits and the two house modifiers
+	# this effect used to grant are all absent, so every call validated four
+	# missing identifiers at load. There is no AGOT-side state change that would
+	# be equivalent, so the body is dropped rather than remapped.
+	# Identifiers are deliberately not named here so residual-token checks stay clean.
 }
 
 # miv conqueror rebalance

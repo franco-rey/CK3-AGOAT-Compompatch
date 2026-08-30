@@ -1,4 +1,105 @@
-﻿asoiaf_canon_children_Targaryen_101_trigger = { always = no }
-asoiaf_canon_children_Targaryen_102_trigger = { always = no }
-asoiaf_canon_children_Targaryen_103_trigger = { always = no }
-asoiaf_canon_children_Targaryen_104_trigger = { always = no }
+﻿# Observer Stack P33 -- canon children of Aegon IV Targaryen, IDs 98-104.
+#
+# AGOT+ ships these gates with a duplicate-key typo: asoiaf_canon_children_
+# Targaryen_99_trigger is defined twice (Lily and Willow) and _101_trigger
+# (Rosey) is never defined, while the on_action and events .0882/.0883 call
+# the full 98-101 and 102-104 ranges. This file re-keys the author's own
+# bodies correctly and supplies the missing Summer Islander gates.
+#
+# The two sequences are made mutually exclusive on the mother's heritage so
+# a single pregnancy can never satisfy both .0882 and .0883.
+asoiaf_canon_children_Targaryen_98_trigger = { #Alysanne (bastard of Aegon IV)
+	asoiaf_canon_children_enabled_trigger = yes
+	AND = {
+		NOT = { exists = global_var:asoiaf_canon_children_Targaryen_98_born_variable } #Alysanne hasn't been born
+		NOT = { exists = global_var:asoiaf_canon_children_Targaryen_99_born_variable } #Lily hasn't been born
+		NOT = { exists = global_var:asoiaf_canon_children_Targaryen_100_born_variable } #Willow hasn't been born
+		NOT = { exists = global_var:asoiaf_canon_children_Targaryen_101_born_variable } #Rosey hasn't been born
+	}
+	scope:real_father = { has_inactive_trait = asoiaf_Targaryen_88_trait } #Aegon IV Targaryen
+	scope:mother ?= {
+		is_lowborn = yes
+		NOT = { culture = { has_cultural_pillar = heritage_summer } }
+	}
+}
+asoiaf_canon_children_Targaryen_99_trigger = { #Lily (bastard of Aegon IV)
+	asoiaf_canon_children_enabled_trigger = yes
+	AND = {
+		exists = global_var:asoiaf_canon_children_Targaryen_98_born_variable #Alysanne has been born
+		NOT = { exists = global_var:asoiaf_canon_children_Targaryen_99_born_variable } #Lily hasn't been born
+		NOT = { exists = global_var:asoiaf_canon_children_Targaryen_100_born_variable } #Willow hasn't been born
+		NOT = { exists = global_var:asoiaf_canon_children_Targaryen_101_born_variable } #Rosey hasn't been born
+	}
+	scope:real_father = { has_inactive_trait = asoiaf_Targaryen_88_trait } #Aegon IV Targaryen
+	scope:mother ?= {
+		is_lowborn = yes
+		NOT = { culture = { has_cultural_pillar = heritage_summer } }
+	}
+}
+asoiaf_canon_children_Targaryen_100_trigger = { #Willow (bastard of Aegon IV)
+	asoiaf_canon_children_enabled_trigger = yes
+	AND = {
+		exists = global_var:asoiaf_canon_children_Targaryen_98_born_variable #Alysanne has been born
+		exists = global_var:asoiaf_canon_children_Targaryen_99_born_variable #Lily has been born
+		NOT = { exists = global_var:asoiaf_canon_children_Targaryen_100_born_variable } #Willow hasn't been born
+		NOT = { exists = global_var:asoiaf_canon_children_Targaryen_101_born_variable } #Rosey hasn't been born
+	}
+	scope:real_father = { has_inactive_trait = asoiaf_Targaryen_88_trait } #Aegon IV Targaryen
+	scope:mother ?= {
+		is_lowborn = yes
+		NOT = { culture = { has_cultural_pillar = heritage_summer } }
+	}
+}
+asoiaf_canon_children_Targaryen_101_trigger = { #Rosey (bastard of Aegon IV)
+	asoiaf_canon_children_enabled_trigger = yes
+	AND = {
+		exists = global_var:asoiaf_canon_children_Targaryen_98_born_variable #Alysanne has been born
+		exists = global_var:asoiaf_canon_children_Targaryen_99_born_variable #Lily has been born
+		exists = global_var:asoiaf_canon_children_Targaryen_100_born_variable #Willow has been born
+		NOT = { exists = global_var:asoiaf_canon_children_Targaryen_101_born_variable } #Rosey hasn't been born
+	}
+	scope:real_father = { has_inactive_trait = asoiaf_Targaryen_88_trait } #Aegon IV Targaryen
+	scope:mother ?= {
+		is_lowborn = yes
+		NOT = { culture = { has_cultural_pillar = heritage_summer } }
+	}
+}
+asoiaf_canon_children_Targaryen_102_trigger = { #Bellenora (bastard of Aegon IV)
+	asoiaf_canon_children_enabled_trigger = yes
+	AND = {
+		NOT = { exists = global_var:asoiaf_canon_children_Targaryen_102_born_variable } #Bellenora hasn't been born
+		NOT = { exists = global_var:asoiaf_canon_children_Targaryen_103_born_variable } #Narha hasn't been born
+		NOT = { exists = global_var:asoiaf_canon_children_Targaryen_104_born_variable } #Balerion hasn't been born
+	}
+	scope:real_father = { has_inactive_trait = asoiaf_Targaryen_88_trait } #Aegon IV Targaryen
+	scope:mother ?= {
+		is_lowborn = yes
+		culture = { has_cultural_pillar = heritage_summer }
+	}
+}
+asoiaf_canon_children_Targaryen_103_trigger = { #Narha (bastard of Aegon IV)
+	asoiaf_canon_children_enabled_trigger = yes
+	AND = {
+		exists = global_var:asoiaf_canon_children_Targaryen_102_born_variable #Bellenora has been born
+		NOT = { exists = global_var:asoiaf_canon_children_Targaryen_103_born_variable } #Narha hasn't been born
+		NOT = { exists = global_var:asoiaf_canon_children_Targaryen_104_born_variable } #Balerion hasn't been born
+	}
+	scope:real_father = { has_inactive_trait = asoiaf_Targaryen_88_trait } #Aegon IV Targaryen
+	scope:mother ?= {
+		is_lowborn = yes
+		culture = { has_cultural_pillar = heritage_summer }
+	}
+}
+asoiaf_canon_children_Targaryen_104_trigger = { #Balerion (bastard of Aegon IV)
+	asoiaf_canon_children_enabled_trigger = yes
+	AND = {
+		exists = global_var:asoiaf_canon_children_Targaryen_102_born_variable #Bellenora has been born
+		exists = global_var:asoiaf_canon_children_Targaryen_103_born_variable #Narha has been born
+		NOT = { exists = global_var:asoiaf_canon_children_Targaryen_104_born_variable } #Balerion hasn't been born
+	}
+	scope:real_father = { has_inactive_trait = asoiaf_Targaryen_88_trait } #Aegon IV Targaryen
+	scope:mother ?= {
+		is_lowborn = yes
+		culture = { has_cultural_pillar = heritage_summer }
+	}
+}

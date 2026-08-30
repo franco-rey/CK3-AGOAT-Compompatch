@@ -8436,12 +8436,6 @@ asoiaf_got_traits_effect = {
 			}
 			add_character_modifier = asoiaf_stress_jarred_children #keeps her stillborn children in jars
 		}
-		if = { #for people using the More Bookmarks mod, so that Selyse is of the proper faith
-			limit = {
-				faith = faith:rhllor
-			}
-			set_character_faith = faith:rhllor_fots
-		}
 	}
 	character:Florent_8 ?= { #Melessa Florent (daughter of Alester)
 		asoiaf_clear_personality_traits_effect = yes
@@ -9076,18 +9070,6 @@ asoiaf_got_traits_effect = {
 				opinion = 200
 				target = character:Melisandre_1
 			}
-		}
-		if = { #for people using the More Bookmarks mod, so that Stannis and his followers are of the proper faith
-			limit = {
-				#AND = {
-					#current_date >= 8299.3.3 #the day Stannis converts
-					faith = faith:rhllor
-				#}
-			}
-			set_character_faith = faith:rhllor_fots
-			every_courtier_or_guest  = { limit = { faith = faith:rhllor } set_character_faith = faith:rhllor_fots }
-			every_vassal_or_below  = { limit = { faith = faith:rhllor } set_character_faith = faith:rhllor_fots }
-			every_vassal_or_below = { every_courtier_or_guest  = { limit = { faith = faith:rhllor } set_character_faith = faith:rhllor_fots } }
 		}
 	}
 	character:Baratheon_4 ?= { #Renly Baratheon (son of Steffon)

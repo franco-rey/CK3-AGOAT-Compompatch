@@ -93,7 +93,7 @@
 			}
 			if = { #SET CANON TRAITS IF HISTORICAL GAME MODE
 				limit = { asoiaf_historical_trigger = yes }
-				give_nickname = nick_young_griff
+				give_nickname = nick_agot_young_griff
 				asoiaf_clear_personality_traits_effect = yes
 				asoiaf_clear_education_traits_effect = yes
 				add_trait = diligent

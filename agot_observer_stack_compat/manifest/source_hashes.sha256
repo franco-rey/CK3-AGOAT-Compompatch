@@ -96,3 +96,27 @@ f38164d695316f2f61a3cc70c333e9f90166f35ba0b4ba9ca5845272490649c6  BUILT/events/d
 565244825e173d1e0544403d5b38fd39810c3c851fd3e946718c5870449b08f3  BUILT/events/oathbound_heir_events.txt
 038abd4c2e77cf649714dfad9e95a20794be48fcf2e2f16f6f00383200f4d5d8  BUILT/events/scheme_events/oathbound_sway_vassals_events.txt
 e2b5a8da661a5d3d4e5695e52183cc5f400160c99c03ac85e06d54dd35864389  BUILT/gui/window_county_view.gui
+
+# 2026-08-29 revision wave Workshop source gates (11/11 PASS pre/post, rechecked 2026-08-29)
+c0355f9df7b85c6e5b3351677d300a636bea25607b4a06d73175e99c01e31078  3678529052/common/scripted_guis/gr_scripted_guis.txt  # PASS pre/post  [P24]
+aeaa707e4b3491dd427f157be7432c55616cc64156d66116bd316a6037e157e5  3678529052/common/scripted_effects/gr_npc_obituary_data_effect.txt  # PASS pre/post  [P25]
+98bd4ad3ec4ad280308372fb98a5253477e36c5c2fef01b78ccccfdaaf4189e2  3084203091/common/scripted_effects/acs_se_religion.txt  # PASS pre/post  [P26]
+3a252a0ff70619be73d40b6ed3ce1ee46e0fadde10ae13ec8ab3a8838be42abe  2962333032/common/story_cycles/agot_story_cycle_naming_and_title_gui.txt  # PASS pre/post  [P29]
+1a9291499a5d60eef5f362153fcd1e7cb5dc09cd11d00b3e215bac9b712bba16  2962333032/events/agot_events/agot_dragon_events.txt  # PASS pre/post  [P30A]
+29fd4a0777c1f088c3394b9bca6deda66dc2271496d40c593ff00a78be39f742  2962333032/common/scripted_triggers/00_agot_coa_triggers.txt  # PASS pre/post  [P30B]
+d4f006bb9434f0975828df61854904213124a3168d45c67a53ab533a681b96bb  2950245430/common/scripted_effects/asoiaf_targaryen_invasion_claimants_effects.txt  # PASS pre/post  [P31C]
+78e72ddccb21730de508aa056158eb9618eb0c3d6ea5ea0595c179297f82b4ed  2950245430/events/asoiaf_young_griff_landing_events.txt  # PASS pre/post  [P31D]
+04d527edce9813f551bfa06aa69fd0647c5d81b9bfeb0feae82f41bda08b2e6b  2950245430/common/scripted_effects/asoiaf_agot_overwrite_effects.txt  # PASS pre/post  [P32A]
+4786ed9b37b34d4382dcbaea41132ced9958f06e6f5af6a04ec3688a2262416b  2950245430/common/scripted_effects/asoiaf_assign_inactive_traits_effects.txt  # PASS pre/post  [P33c]
+
+# 2026-08-29 revision wave installed-patch preconditions (all PASS)
+27a6bc7f49ffb6d929a441ad206f34bc34331d10d6b964ed9d0441eeed25787e  LOCAL/common/character_interactions/06_ep3_interactions.txt  # PASS pre  [P27]
+6535e5853ec09ab2572819ff9af1238cac19f93c0072db502fd218fc92664811  LOCAL/common/scripted_effects/00_interaction_effects.txt  # PASS pre  [P28]
+0e5c15d8f0f3ff8aef61e1f9d432cf10f7d398ab749a9446ac0726601a3641d7  LOCAL/common/on_action/asoiaf_yearly_on_actions.txt  # PASS pre  [P31A]
+eb1125f3ea7c75aec17ddcc707cba87419bc026b64428f40843b277def9410c4  LOCAL/common/scripted_character_templates/asoiaf_invader_templates.txt  # PASS pre  [P31B]
+fcf57d60b1586334a3dfd676761921d22707b65f188524c384d522b768b3d985  LOCAL/common/scripted_effects/asoiaf_setup_effects.txt  # PASS pre  [P32B]
+f4859d089d7fa0b9bfe3a24a08c21845c29f0f195e623db1ed7589698876b192  LOCAL/common/scripted_triggers/zz_observer_stack_canon_child_missing_triggers.txt  # PASS pre  [P33a]
+656697f7804abcd76b361daedebee94ab42e21818144f2cbb1c26e47d7b29828  LOCAL/common/scripted_effects/zz_observer_stack_canon_child_missing_effects.txt  # PASS pre  [P33b]
+
+# 2026-08-29 revision wave sole-provider file authored by this patch (no upstream source)
+# (none)  common/modifiers/zz_observer_stack_missing_canon_child_modifiers.txt  [P33]

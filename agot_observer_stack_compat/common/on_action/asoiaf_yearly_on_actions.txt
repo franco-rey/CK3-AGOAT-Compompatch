@@ -138,7 +138,7 @@ asoiaf_mance_rayder_desertion = {
 			spawn_army = {
 				name = asoiaf_wildling_army
 				men_at_arms = {
-					type = giant #100
+					type = giant_regiment #100
 					stacks = 20
 				}
 				men_at_arms = {

@@ -1238,9 +1238,7 @@ support_candidacy_interaction = {
 		modifier = {
 			scope:target = {
 				is_head_of_faith = no
-				holder = {
-					has_realm_law_flag = appointment_type_succession
-				}
+				has_title_law_flag = appointment_type_succession
 				current_heir ?= {
 					NOR = {
 						"appointment_candidate_accumulated_score(scope:target)" > 0
@@ -1345,9 +1343,7 @@ support_candidacy_interaction = {
 		modifier = {
 			scope:target = {
 				is_head_of_faith = no
-				holder = {
-					has_realm_law_flag = appointment_type_succession
-				}
+				has_title_law_flag = appointment_type_succession
 				any_title_heir = {
 					exists = house
 					exists = scope:actor.house

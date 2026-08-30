@@ -617,6 +617,7 @@ blind_castrated_disfigured_recipient_support_effect = { #To be used in other eff
 	}
 	if = {
 		limit = {
+			exists = scope:recruit
 			scope:recruit = yes
 		}
 		scope:actor = {

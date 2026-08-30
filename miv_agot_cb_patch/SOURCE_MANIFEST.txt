@@ -39,3 +39,17 @@ P08 update (2026-08-28) — AGOT Observer Stack Compatibility
 - common/on_action/interactive_on_actions.txt
   previous installed patch hash: E03F3400EC01F0F871E3D3259B6EEA2DE0266A5E04ACCADAC728924EF722BAF6
   new built hash: D402A25411F7D691AE682F8E99FC88ACA1C4FC09AC089C3A47FDADE14DD1AB8E
+
+P34 update (2026-08-29) — AGOT Observer Stack revision wave (no version bump)
+- common/scripted_effects/interactive_scripted_effects.txt
+  Emptied the body of `fp3_struggle_ending_concession_effects`.
+  AGOT removes the Persian struggle and disables its whole FP3 layer, so the struggle
+  scope, the supporter/detractor traits and the two house modifiers this effect granted
+  were all absent; every load validated four missing identifiers. There is no AGOT-side
+  equivalent state change, so the body is dropped rather than remapped. No other key in
+  the file is touched, including the 16 disabled `using_cb` conditions and the P08
+  random-ruler-placement removal.
+  installed precondition hash: 0A96566661488965901F8F44E14330FB5388594AA4B84BEE8332569B92B74688
+  new built hash:              DD0DDDFBDA7E2E250DC9C1EA386C13E0001D25A3159F5B5FE4A1779D4B5668B1
+- Version deliberately NOT incremented: the owner hand-maintains the launcher pointer .mod
+  files across machines, so both descriptor.mod and the pointer stay at 1.0.1.

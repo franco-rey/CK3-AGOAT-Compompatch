@@ -76,14 +76,16 @@
       "source_sha256": "7cb2344b17b8b7eb7b0bebb0ecd9262b5a4207dc4ce57984dc87071de533f736",
       "transformations": [
         "P05_LORATH_EXCLUSION",
-        "P11"
+        "P11",
+        "P27_APPOINTMENT_TITLE_LAW"
       ],
       "replacement_counts": {
         "P05_LORATH_EXCLUSION": 2,
-        "head_of_faith_guards_inserted": 4
+        "head_of_faith_guards_inserted": 4,
+        "P27_APPOINTMENT_TITLE_LAW": 2
       },
-      "built_sha256": "27a6bc7f49ffb6d929a441ad206f34bc34331d10d6b964ed9d0441eeed25787e",
-      "previous_built_sha256": "5620dedc529e73a223c108f90d04d7ac1419fde60a91dbcc4a5349d07c99f295",
+      "built_sha256": "56eb2ade73d9106b0e78c951369c22f641cbb4ebb70e129caad8998eac38c0a2",
+      "previous_built_sha256": "27a6bc7f49ffb6d929a441ad206f34bc34331d10d6b964ed9d0441eeed25787e",
       "v1_1_input": {
         "provider": "LOCAL-1.0.0",
         "current_local_sha256": "5620dedc529e73a223c108f90d04d7ac1419fde60a91dbcc4a5349d07c99f295",
@@ -92,6 +94,16 @@
         ],
         "replacement_counts": {
           "head_of_faith_guards_inserted": 4
+        }
+      },
+      "revision_input": {
+        "provider": "LOCAL-1.1.0",
+        "current_local_sha256": "27a6bc7f49ffb6d929a441ad206f34bc34331d10d6b964ed9d0441eeed25787e",
+        "transformations": [
+          "P27_APPOINTMENT_TITLE_LAW"
+        ],
+        "replacement_counts": {
+          "P27_APPOINTMENT_TITLE_LAW": 2
         }
       }
     },
@@ -198,12 +210,25 @@
       "virtual_path": "common/on_action/asoiaf_yearly_on_actions.txt",
       "source_sha256": "fb8c2952993e341fe23bf9e8bd0cc92c8c40e7f7e19540023db6c06cd9a031a9",
       "transformations": [
-        "P14.3"
+        "P14.3",
+        "P31A_MANCE_GIANT_REGIMENT"
       ],
       "replacement_counts": {
-        "fixed_dragon_start_scheme_blocks_removed": 10
+        "fixed_dragon_start_scheme_blocks_removed": 10,
+        "P31A_MANCE_GIANT_REGIMENT": 1
       },
-      "built_sha256": "0e5c15d8f0f3ff8aef61e1f9d432cf10f7d398ab749a9446ac0726601a3641d7"
+      "built_sha256": "bb2213047351b6ba064f2734052721c566b1164e67c0454b2993d10899d93871",
+      "previous_built_sha256": "0e5c15d8f0f3ff8aef61e1f9d432cf10f7d398ab749a9446ac0726601a3641d7",
+      "revision_input": {
+        "provider": "LOCAL-1.1.0",
+        "current_local_sha256": "0e5c15d8f0f3ff8aef61e1f9d432cf10f7d398ab749a9446ac0726601a3641d7",
+        "transformations": [
+          "P31A_MANCE_GIANT_REGIMENT"
+        ],
+        "replacement_counts": {
+          "P31A_MANCE_GIANT_REGIMENT": 1
+        }
+      }
     },
     {
       "provider_workshop_id": "3678529052",
@@ -257,12 +282,25 @@
       "virtual_path": "common/scripted_character_templates/asoiaf_invader_templates.txt",
       "source_sha256": "67ed5a01e2b1226ad6eb5c496cfc00e71ef6536d699cfc547002ebe05889c0f2",
       "transformations": [
-        "P02_INVADER_IS_DEAD"
+        "P02_INVADER_IS_DEAD",
+        "P31B_YOUNG_GRIFF_NICKNAME"
       ],
       "replacement_counts": {
-        "P02_INVADER_IS_DEAD": 1
+        "P02_INVADER_IS_DEAD": 1,
+        "P31B_YOUNG_GRIFF_NICKNAME": 1
       },
-      "built_sha256": "eb1125f3ea7c75aec17ddcc707cba87419bc026b64428f40843b277def9410c4"
+      "built_sha256": "4708f34e5f0558ab456c7f36989051f5af79f98e76962cac58ef633dc4e78862",
+      "previous_built_sha256": "eb1125f3ea7c75aec17ddcc707cba87419bc026b64428f40843b277def9410c4",
+      "revision_input": {
+        "provider": "LOCAL-1.1.0",
+        "current_local_sha256": "eb1125f3ea7c75aec17ddcc707cba87419bc026b64428f40843b277def9410c4",
+        "transformations": [
+          "P31B_YOUNG_GRIFF_NICKNAME"
+        ],
+        "replacement_counts": {
+          "P31B_YOUNG_GRIFF_NICKNAME": 1
+        }
+      }
     },
     {
       "provider_workshop_id": "2995674648",
@@ -294,12 +332,25 @@
       "virtual_path": "common/scripted_effects/00_interaction_effects.txt",
       "source_sha256": "dfde92191c93bf93a074dc475fe1a188d8d17f7f4515c22b4f903bb2d6cfff91",
       "transformations": [
-        "P10"
+        "P10",
+        "P28_RECRUIT_SCOPE_GUARD"
       ],
       "replacement_counts": {
-        "actor_guarded_effects": 2
+        "actor_guarded_effects": 2,
+        "P28_RECRUIT_SCOPE_GUARD": 1
       },
-      "built_sha256": "6535e5853ec09ab2572819ff9af1238cac19f93c0072db502fd218fc92664811"
+      "built_sha256": "c0358c88859bbf11bd4fdd2cbb67636bb38b95ce6ae05cc0de0daa27f43c1549",
+      "previous_built_sha256": "6535e5853ec09ab2572819ff9af1238cac19f93c0072db502fd218fc92664811",
+      "revision_input": {
+        "provider": "LOCAL-1.1.0",
+        "current_local_sha256": "6535e5853ec09ab2572819ff9af1238cac19f93c0072db502fd218fc92664811",
+        "transformations": [
+          "P28_RECRUIT_SCOPE_GUARD"
+        ],
+        "replacement_counts": {
+          "P28_RECRUIT_SCOPE_GUARD": 1
+        }
+      }
     },
     {
       "provider_workshop_id": "2962333032",
@@ -370,27 +421,53 @@
         "P02_UNDERAGED_SCOPE_PREFIX",
         "P02_HAS_CLAIM_ON",
         "P02_IS_DEAD_TRIGGER",
-        "P02_REMOVE_NOOP_EXISTS"
+        "P02_REMOVE_NOOP_EXISTS",
+        "P32B_MORE_BOOKMARKS_RHLLOR_REMOVED"
       ],
       "replacement_counts": {
         "P02_UNDERAGED_SCOPE_PREFIX": 107,
         "P02_HAS_CLAIM_ON": 15,
         "P02_IS_DEAD_TRIGGER": 2,
-        "P02_REMOVE_NOOP_EXISTS": 9
+        "P02_REMOVE_NOOP_EXISTS": 9,
+        "P32B_MORE_BOOKMARKS_RHLLOR_REMOVED": 2
       },
-      "built_sha256": "70b969f8bbe1e513c51b0945a6b2cdbc61c527004576f3bfe58f5b1b600f132c"
+      "built_sha256": "e772a746fa4612461590535c585adbb86921c465ccc97cc86346bd649d4efde8",
+      "previous_built_sha256": "70b969f8bbe1e513c51b0945a6b2cdbc61c527004576f3bfe58f5b1b600f132c",
+      "revision_input": {
+        "provider": "LOCAL-1.1.0",
+        "current_local_sha256": "fcf57d60b1586334a3dfd676761921d22707b65f188524c384d522b768b3d985",
+        "transformations": [
+          "P32B_MORE_BOOKMARKS_RHLLOR_REMOVED"
+        ],
+        "replacement_counts": {
+          "P32B_MORE_BOOKMARKS_RHLLOR_REMOVED": 2
+        }
+      }
     },
     {
       "provider_workshop_id": "additive",
       "virtual_path": "common/scripted_effects/zz_observer_stack_canon_child_missing_effects.txt",
       "source_sha256": null,
       "transformations": [
-        "P14.1_MISSING_EFFECT_SHIMS"
+        "P14.1_MISSING_EFFECT_SHIMS",
+        "P33_CANON_CHILD_BIRTH_EFFECTS_98_104"
       ],
       "replacement_counts": {
-        "definitions_created": 7
+        "definitions_created": 7,
+        "P33_CANON_CHILD_BIRTH_EFFECTS_98_104": 7
       },
-      "built_sha256": "656697f7804abcd76b361daedebee94ab42e21818144f2cbb1c26e47d7b29828"
+      "built_sha256": "1dc0d038247cab979a91230ed94ec6de546d0ea37ecf37d1b7c8264eb1815166",
+      "previous_built_sha256": "656697f7804abcd76b361daedebee94ab42e21818144f2cbb1c26e47d7b29828",
+      "revision_input": {
+        "provider": "LOCAL-1.1.0",
+        "current_local_sha256": "656697f7804abcd76b361daedebee94ab42e21818144f2cbb1c26e47d7b29828",
+        "transformations": [
+          "P33_CANON_CHILD_BIRTH_EFFECTS_98_104"
+        ],
+        "replacement_counts": {
+          "P33_CANON_CHILD_BIRTH_EFFECTS_98_104": 7
+        }
+      }
     },
     {
       "provider_workshop_id": "2962333032",
@@ -479,12 +556,25 @@
       "virtual_path": "common/scripted_triggers/zz_observer_stack_canon_child_missing_triggers.txt",
       "source_sha256": null,
       "transformations": [
-        "P14.1_MISSING_TRIGGER_SHIMS"
+        "P14.1_MISSING_TRIGGER_SHIMS",
+        "P33_CANON_CHILD_TRIGGERS_98_104"
       ],
       "replacement_counts": {
-        "definitions_created": 4
+        "definitions_created": 4,
+        "P33_CANON_CHILD_TRIGGERS_98_104": 7
       },
-      "built_sha256": "f4859d089d7fa0b9bfe3a24a08c21845c29f0f195e623db1ed7589698876b192"
+      "built_sha256": "68ce31cfb7856b0f7e6d26f3329a9d891f6d5792f86dea99b8b416fd306fee08",
+      "previous_built_sha256": "f4859d089d7fa0b9bfe3a24a08c21845c29f0f195e623db1ed7589698876b192",
+      "revision_input": {
+        "provider": "LOCAL-1.1.0",
+        "current_local_sha256": "f4859d089d7fa0b9bfe3a24a08c21845c29f0f195e623db1ed7589698876b192",
+        "transformations": [
+          "P33_CANON_CHILD_TRIGGERS_98_104"
+        ],
+        "replacement_counts": {
+          "P33_CANON_CHILD_TRIGGERS_98_104": 7
+        }
+      }
     },
     {
       "provider_workshop_id": "3101422928",
@@ -582,6 +672,150 @@
         "P07_SCROLLAREA_IGNOREINVISIBLE": 1
       },
       "built_sha256": "e2b5a8da661a5d3d4e5695e52183cc5f400160c99c03ac85e06d54dd35864389"
+    },
+    {
+      "provider_workshop_id": "3678529052",
+      "virtual_path": "common/scripted_guis/gr_scripted_guis.txt",
+      "transformations": [
+        "P24_GR_CHRONICLE_NULL_SCOPE"
+      ],
+      "replacement_counts": {
+        "P24_GR_CHRONICLE_NULL_SCOPE": 1
+      },
+      "built_sha256": "f250dd4ae1f5dafc7ef6f0d93a28185034a145bfe98da59d7b1e29fd62b38aa0",
+      "added_in": "2026-08-29 revision wave",
+      "source_sha256": "c0355f9df7b85c6e5b3351677d300a636bea25607b4a06d73175e99c01e31078"
+    },
+    {
+      "provider_workshop_id": "3678529052",
+      "virtual_path": "common/scripted_effects/gr_npc_obituary_data_effect.txt",
+      "transformations": [
+        "P25_RICE_SECTION_REMOVED"
+      ],
+      "replacement_counts": {
+        "P25_RICE_SECTION_REMOVED": 1
+      },
+      "built_sha256": "67c6cd1f20558b0cbf8ff90849f8731be1ecc615b435a42b78b84e5b2646289a",
+      "added_in": "2026-08-29 revision wave",
+      "source_sha256": "aeaa707e4b3491dd427f157be7432c55616cc64156d66116bd316a6037e157e5"
+    },
+    {
+      "provider_workshop_id": "3084203091",
+      "virtual_path": "common/scripted_effects/acs_se_religion.txt",
+      "transformations": [
+        "P26_RELIGION_FAMILY_SINGLE_BUCKET"
+      ],
+      "replacement_counts": {
+        "P26_RELIGION_FAMILY_SINGLE_BUCKET": 2
+      },
+      "built_sha256": "30927343cf1c13efce3a3367d5feef05f8f855d8158008a6db249f57f3e606e0",
+      "added_in": "2026-08-29 revision wave",
+      "source_sha256": "98bd4ad3ec4ad280308372fb98a5253477e36c5c2fef01b78ccccfdaaf4189e2"
+    },
+    {
+      "provider_workshop_id": "2962333032",
+      "virtual_path": "common/story_cycles/agot_story_cycle_naming_and_title_gui.txt",
+      "transformations": [
+        "P29_SCION_STORY_SELF_TERMINATE"
+      ],
+      "replacement_counts": {
+        "P29_SCION_STORY_SELF_TERMINATE": 1
+      },
+      "built_sha256": "8c1a8a45faf52cdaeff61d20b404517bf227209ed0e1a05f8d457930c336754c",
+      "added_in": "2026-08-29 revision wave",
+      "source_sha256": "3a252a0ff70619be73d40b6ed3ce1ee46e0fadde10ae13ec8ab3a8838be42abe"
+    },
+    {
+      "provider_workshop_id": "2962333032",
+      "virtual_path": "events/agot_events/agot_dragon_events.txt",
+      "transformations": [
+        "P30A_DRAGON_TERROR_TOP_LIEGE"
+      ],
+      "replacement_counts": {
+        "P30A_DRAGON_TERROR_TOP_LIEGE": 2
+      },
+      "built_sha256": "f9fd463c0762a41b1a8a9a308703b3398c1ef8138c29ff8b8da70216d9d4c9ea",
+      "added_in": "2026-08-29 revision wave",
+      "source_sha256": "1a9291499a5d60eef5f362153fcd1e7cb5dc09cd11d00b3e215bac9b712bba16"
+    },
+    {
+      "provider_workshop_id": "2962333032",
+      "virtual_path": "common/scripted_triggers/00_agot_coa_triggers.txt",
+      "transformations": [
+        "P30B_COA_DYNASTY_FOUNDER_SOFT"
+      ],
+      "replacement_counts": {
+        "P30B_COA_DYNASTY_FOUNDER_SOFT": 33
+      },
+      "built_sha256": "df78f21816e7115dbc56f7f8933896b4c528aa44bb49ca4bb69a72058ecdf85a",
+      "added_in": "2026-08-29 revision wave",
+      "source_sha256": "29fd4a0777c1f088c3394b9bca6deda66dc2271496d40c593ff00a78be39f742"
+    },
+    {
+      "provider_workshop_id": "2950245430",
+      "virtual_path": "common/scripted_effects/asoiaf_targaryen_invasion_claimants_effects.txt",
+      "transformations": [
+        "P31C_YOUNG_GRIFF_NICKNAME_AND_TRAIT"
+      ],
+      "replacement_counts": {
+        "P31C_YOUNG_GRIFF_NICKNAME_AND_TRAIT": 2
+      },
+      "built_sha256": "cf1df2171a61de1c92fc309c079f7e2bb76d238d5bbc234b0237e878e10d3f8c",
+      "added_in": "2026-08-29 revision wave",
+      "source_sha256": "d4f006bb9434f0975828df61854904213124a3168d45c67a53ab533a681b96bb"
+    },
+    {
+      "provider_workshop_id": "2950245430",
+      "virtual_path": "events/asoiaf_young_griff_landing_events.txt",
+      "transformations": [
+        "P31D_DUMMY_CHARACTER_LOCATION"
+      ],
+      "replacement_counts": {
+        "P31D_DUMMY_CHARACTER_LOCATION": 2
+      },
+      "built_sha256": "adfb457dfd9885e2a086c71b62888b2394c501f7aec88ecba7b5a4cb8f4938e8",
+      "added_in": "2026-08-29 revision wave",
+      "source_sha256": "78e72ddccb21730de508aa056158eb9618eb0c3d6ea5ea0595c179297f82b4ed"
+    },
+    {
+      "provider_workshop_id": "2950245430",
+      "virtual_path": "common/scripted_effects/asoiaf_agot_overwrite_effects.txt",
+      "transformations": [
+        "P32A_DRAGON_FAITH_VALYRIAN_PAN_DRAGON"
+      ],
+      "replacement_counts": {
+        "P32A_DRAGON_FAITH_VALYRIAN_PAN_DRAGON": 7
+      },
+      "built_sha256": "17f2e205174f3863a144e138b3463a42c0c4b6a292cb883a6210c25a69b519ab",
+      "added_in": "2026-08-29 revision wave",
+      "source_sha256": "04d527edce9813f551bfa06aa69fd0647c5d81b9bfeb0feae82f41bda08b2e6b"
+    },
+    {
+      "provider_workshop_id": "2950245430",
+      "virtual_path": "common/scripted_effects/asoiaf_assign_inactive_traits_effects.txt",
+      "transformations": [
+        "P33_TARGARYEN_95_MODIFIER_REMOVED"
+      ],
+      "replacement_counts": {
+        "P33_TARGARYEN_95_MODIFIER_REMOVED": 1
+      },
+      "built_sha256": "fbb7b231421c288c1b0ef23b1b627ed184f9b5e04004e66dc0d830a6483b827d",
+      "added_in": "2026-08-29 revision wave",
+      "source_sha256": "4786ed9b37b34d4382dcbaea41132ced9958f06e6f5af6a04ec3688a2262416b"
+    },
+    {
+      "provider_workshop_id": "NEW",
+      "virtual_path": "common/modifiers/zz_observer_stack_missing_canon_child_modifiers.txt",
+      "transformations": [
+        "P33_GREYJOY_13_ALT_MODIFIER_DEFINED"
+      ],
+      "replacement_counts": {
+        "P33_GREYJOY_13_ALT_MODIFIER_DEFINED": 1
+      },
+      "built_sha256": "2610c92af200a56c05b267b358cdcc3d5b4db59e9f53bc1472a9b4c02b3b102f",
+      "added_in": "2026-08-29 revision wave",
+      "source_sha256": null,
+      "note": "authored by this patch; no upstream source"
     }
   ],
   "p08_miv_agot_cb_patch": {
@@ -703,5 +937,6 @@
     "P22_MIXED_KEY_REMOVED_tradition_mubarizuns": 2,
     "P22_MIXED_KEY_REMOVED_tradition_roman_legacy": 2,
     "P22_RELIGION_FAMILY_CASES_REPLACED": 8
-  }
+  },
+  "revision": "2026-08-29 revision wave"
 }

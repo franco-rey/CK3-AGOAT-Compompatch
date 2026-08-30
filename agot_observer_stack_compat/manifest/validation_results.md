@@ -153,3 +153,75 @@ Every item below is **PENDING USER PLAYTEST / SAVE-LOG REVIEW**. CK3 was not lau
 - [ ] PENDING USER PLAYTEST / SAVE-LOG REVIEW — 25-year save/exit/reload/month advance.
 - [ ] PENDING USER PLAYTEST / SAVE-LOG REVIEW — 50-year checkpoint.
 - [ ] PENDING USER PLAYTEST / SAVE-LOG REVIEW — 100-year checkpoint without the 100,000-record ceiling.
+
+---
+
+## Static validation — 2026-08-29 revision wave (P24–P33, no version bump)
+
+Evidence baseline: independent 405-year observer run, 7899–8304.
+
+### Preconditions
+
+- 11/11 Workshop source hashes recomputed and matched before editing.
+- 7/7 already-owned installed-patch hashes recomputed and matched before editing.
+- 0 shared virtual paths among the five local patches after the build.
+- Every new override has exactly one upstream provider; no later-loading enabled mod owns any of them.
+- Only the three authorized patch directories were modified.
+
+### Transformation counts (expected = actual)
+
+| Module | Virtual path | Transformation | Count |
+|---|---|---|---:|
+| P24 | `common/scripted_guis/gr_scripted_guis.txt` | `P24_GR_CHRONICLE_NULL_SCOPE` | 1 |
+| P25 | `common/scripted_effects/gr_npc_obituary_data_effect.txt` | `P25_RICE_SECTION_REMOVED` | 1 |
+| P26 | `common/scripted_effects/acs_se_religion.txt` | `P26_RELIGION_FAMILY_SINGLE_BUCKET` | 2 |
+| P27 | `common/character_interactions/06_ep3_interactions.txt` | `P27_APPOINTMENT_TITLE_LAW` | 2 |
+| P28 | `common/scripted_effects/00_interaction_effects.txt` | `P28_RECRUIT_SCOPE_GUARD` | 1 |
+| P29 | `common/story_cycles/agot_story_cycle_naming_and_title_gui.txt` | `P29_SCION_STORY_SELF_TERMINATE` | 1 |
+| P30A | `events/agot_events/agot_dragon_events.txt` | `P30A_DRAGON_TERROR_TOP_LIEGE` | 2 |
+| P30B | `common/scripted_triggers/00_agot_coa_triggers.txt` | `P30B_COA_DYNASTY_FOUNDER_SOFT` | 33 |
+| P31A | `common/on_action/asoiaf_yearly_on_actions.txt` | `P31A_MANCE_GIANT_REGIMENT` | 1 |
+| P31B | `common/scripted_character_templates/asoiaf_invader_templates.txt` | `P31B_YOUNG_GRIFF_NICKNAME` | 1 |
+| P31C | `common/scripted_effects/asoiaf_targaryen_invasion_claimants_effects.txt` | `P31C_YOUNG_GRIFF_NICKNAME_AND_TRAIT` | 2 |
+| P31D | `events/asoiaf_young_griff_landing_events.txt` | `P31D_DUMMY_CHARACTER_LOCATION` | 2 |
+| P32A | `common/scripted_effects/asoiaf_agot_overwrite_effects.txt` | `P32A_DRAGON_FAITH_VALYRIAN_PAN_DRAGON` | 7 |
+| P32B | `common/scripted_effects/asoiaf_setup_effects.txt` | `P32B_MORE_BOOKMARKS_RHLLOR_REMOVED` | 2 |
+| P33a | `common/scripted_triggers/zz_observer_stack_canon_child_missing_triggers.txt` | `P33_CANON_CHILD_TRIGGERS_98_104` | 7 |
+| P33b | `common/scripted_effects/zz_observer_stack_canon_child_missing_effects.txt` | `P33_CANON_CHILD_BIRTH_EFFECTS_98_104` | 7 |
+| P33c | `common/scripted_effects/asoiaf_assign_inactive_traits_effects.txt` | `P33_TARGARYEN_95_MODIFIER_REMOVED` | 1 |
+| P33d | `common/modifiers/zz_observer_stack_missing_canon_child_modifiers.txt` | `P33_GREYJOY_13_ALT_MODIFIER_DEFINED` | 1 |
+
+### Structural checks
+
+- Brace balance verified on every changed file (comment- and string-aware scan): PASS.
+- UTF-8 BOM, LF endings and trailing-newline convention preserved per source file: PASS.
+- Residual-token scans (word-boundary where a corrected token is a superstring):
+
+  - `RICE_` in the P25 file: 0
+  - `rf_abrahamic` / `rf_eastern` / `rf_pagan` in the P26 file: 0
+  - three-line holder-level appointment guard at the two P27 sites: 0 (the unrelated line-82 `is_valid` site is deliberately retained)
+  - unguarded `scope:recruit` comparison in the P28 effect: 0
+  - `house = dynasty:dynn_*.dynasty_founder.house` in P30B: 0; soft form: 33; static house comparisons: unchanged
+  - `type = giant` as a whole token: 0 (`type = giant_regiment` present)
+  - `nick_young_griff`, `is_targaryen_11`, `asoiaf_Targaryen_95_modifier`: 0
+  - `faith:valyrian` / `faith:rhllor` as whole tokens: 0
+  - non-empty body for `fp3_struggle_ending_concession_effects`: none
+  - unguarded `joined_faction` dereference in the claimant interaction: 0
+
+### Dependency existence checks
+
+- `giant_regiment`, `nick_agot_young_griff`, `valyrian_pan_dragon`, `has_title_law_flag`,
+  `acs_gvl_rf_other`, `acs_set_update_rf = { FAMILY = other }`, `heritage_summer`,
+  `language_agot_westeros`, `birth.1001/1002/1003`, traits `asoiaf_Targaryen_98`–`104_trait`,
+  `asoiaf_Targaryen_88_trait` and history/DNA for `Targaryen_98`–`Targaryen_104`: all present.
+
+### Runtime status
+
+- [ ] PENDING USER PLAYTEST / SAVE-LOG REVIEW — fresh observer start, error.log must not reach 100,000.
+- [ ] PENDING USER PLAYTEST / SAVE-LOG REVIEW — `gr_chronicle_window:is_shown` signature must be 0.
+- [ ] PENDING USER PLAYTEST / SAVE-LOG REVIEW — open/close the GR chronicle on a living character.
+- [ ] PENDING USER PLAYTEST / SAVE-LOG REVIEW — open ACS, exercise and clear the religion filter.
+- [ ] PENDING USER PLAYTEST / SAVE-LOG REVIEW — 25-year run, then 100-year run with save/reload and 31+ days.
+- [ ] PENDING USER PLAYTEST / SAVE-LOG REVIEW — no stale `scion_title_data` story after reload; dragon storage and the ACS object pool still present.
+- [ ] PENDING USER PLAYTEST / SAVE-LOG REVIEW — P27 residual at the sibling `scope:secondary_recipient` call; apply the specified third guard only if it persists.
+- [ ] PENDING USER PLAYTEST / SAVE-LOG REVIEW — canon children 98–104 spawn once each and are not duplicated.

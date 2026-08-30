@@ -1,0 +1,135 @@
+﻿# Grand Remembrance - Scripted GUIs
+# Controls the chronicle window visibility and navigation
+#
+# Architecture:
+#   - gr_chronicle_window: visibility gate (is_shown checks gr_chronicle_open)
+#   - gr_chronicle_next/prev/first/last: page navigation
+#   - gr_chronicle_replay: fires gr_obituary.11 on the current page artifact
+#   - gr_chronicle_close: cleanup and hide
+#
+# The decision sets gr_chronicle_open + gr_chronicle_page, then calls
+# gr_cw_page_setup_effect. The GUI window's visibility is bound to
+# gr_chronicle_window.IsShown(). Navigation buttons call scripted_gui
+# effects that update the page and re-run page setup.
+
+gr_chronicle_window = {
+	scope = character
+
+	is_shown = {
+		exists = this
+		is_alive = yes
+		has_variable = gr_chronicle_open
+		var:gr_chronicle_open > 0
+	}
+}
+
+gr_chronicle_next = {
+	scope = character
+
+	is_valid = {
+		has_variable = gr_chronicle_open
+		has_variable = gr_chronicle_total
+		has_variable = gr_chronicle_page
+		var:gr_chronicle_page < {
+			value = var:gr_chronicle_total
+			subtract = 1
+		}
+	}
+
+	effect = {
+		change_variable = { name = gr_chronicle_page add = 1 }
+		gr_cw_page_setup_effect = yes
+	}
+}
+
+gr_chronicle_prev = {
+	scope = character
+
+	is_valid = {
+		has_variable = gr_chronicle_open
+		has_variable = gr_chronicle_page
+		var:gr_chronicle_page > 0
+	}
+
+	effect = {
+		change_variable = { name = gr_chronicle_page add = -1 }
+		gr_cw_page_setup_effect = yes
+	}
+}
+
+gr_chronicle_first = {
+	scope = character
+
+	is_valid = {
+		has_variable = gr_chronicle_open
+		has_variable = gr_chronicle_page
+		var:gr_chronicle_page > 0
+	}
+
+	effect = {
+		set_variable = { name = gr_chronicle_page value = 0 }
+		gr_cw_page_setup_effect = yes
+	}
+}
+
+gr_chronicle_last = {
+	scope = character
+
+	is_valid = {
+		has_variable = gr_chronicle_open
+		has_variable = gr_chronicle_total
+		has_variable = gr_chronicle_page
+		var:gr_chronicle_page < {
+			value = var:gr_chronicle_total
+			subtract = 1
+		}
+	}
+
+	effect = {
+		set_variable = {
+			name = gr_chronicle_page
+			value = {
+				value = var:gr_chronicle_total
+				subtract = 1
+			}
+		}
+		gr_cw_page_setup_effect = yes
+	}
+}
+
+# Replay the full obituary narrative for the currently-paged ruler.
+# Fires gr_obituary.11 (scope = artifact) on gr_cp_page — the chronicle
+# page artifact that was created at time of death and carries every
+# gr_* var from the original heir. The obit loc is scope-agnostic
+# (uses ROOT.Var('gr_X').Type indirection), so replay renders the
+# identical text the player saw on death.
+gr_chronicle_replay = {
+	scope = character
+
+	is_shown = { has_variable = gr_cp_page }
+	is_valid = { has_variable = gr_cp_page }
+
+	effect = {
+		# Save artifact ref on player so gr_obituary.11 immediate can read it
+		set_variable = { name = gr_replay_page value = var:gr_cp_page }
+		trigger_event = gr_obituary.11
+	}
+}
+
+gr_chronicle_close = {
+	scope = character
+
+	is_shown = { always = yes }
+	is_valid = { always = yes }
+
+	effect = {
+		set_variable = { name = gr_chronicle_open value = 0 }
+		if = { limit = { has_variable = gr_chronicle_page } remove_variable = gr_chronicle_page }
+		if = { limit = { has_variable = gr_chronicle_total } remove_variable = gr_chronicle_total }
+		if = { limit = { has_variable = gr_chronicle_page_display } remove_variable = gr_chronicle_page_display }
+		if = { limit = { has_variable = gr_cp } remove_variable = gr_cp }
+		if = { limit = { has_variable = gr_cp_page } remove_variable = gr_cp_page }
+		if = { limit = { has_variable = gr_replay_page } remove_variable = gr_replay_page }
+		gr_replay_cleanup_vars_effect = yes
+	}
+}

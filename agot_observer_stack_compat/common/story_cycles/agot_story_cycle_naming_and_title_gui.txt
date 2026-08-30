@@ -1,0 +1,42 @@
+﻿scion_title_data = {
+	on_setup = {
+		set_variable = {
+			name = scoped_title
+			value = character:Ruin_Empress.var:scoped_title
+		}
+		add_to_variable_list = {
+			name = scoped_scions_list
+			target = character:Ruin_Empress.var:scoped_scion
+		}
+		set_variable = {
+			name = scoped_royal
+			value = character:Ruin_Empress.var:scoped_royal
+		}
+	}
+	on_end = {}
+	on_owner_death = {}
+
+	# Observer Stack P29: terminate stale instances.
+	# AGOT creates one story per title and never ends it; on royal death or
+	# title destruction the record survives and is re-evaluated by the naming
+	# GUI forever. Every OR branch re-tests exists, because CK3 evaluates all
+	# branches and an unguarded var read would itself emit errors.
+	effect_group = {
+		days = 30
+		triggered_effect = {
+			trigger = {
+				OR = {
+					NOT = { exists = var:scoped_royal }
+					NOT = { exists = var:scoped_title }
+					AND = {
+						exists = var:scoped_royal
+						var:scoped_royal = { is_alive = no }
+					}
+				}
+			}
+			effect = {
+				scope:story = { end_story = yes }
+			}
+		}
+	}
+}
