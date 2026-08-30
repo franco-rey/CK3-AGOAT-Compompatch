@@ -192,7 +192,6 @@
                                                  "P02_CROWN_CREATOR_CALLS_REQUIRED_BY_MANUAL":  8,
                                                  "creator_arguments_added":  3
                                              },
-                      "built_sha256":  "1707def3f76fbf5bd743b0bec68efb68a6a7753cd18462fb14fb0213dc8dd890",
                       "previous_built_sha256":  "a25c438c11526ce180d25078a0cf62f6b5d5f4964177b95922cfa5ea9d62cc17",
                       "v1_1_input":  {
                                          "provider":  "LOCAL-1.0.0",
@@ -203,7 +202,8 @@
                                          "replacement_counts":  {
                                                                     "creator_arguments_added":  3
                                                                 }
-                                     }
+                                     },
+                      "built_sha256":  "8340c72902020940ad27a345685a7fe6df2b44a3f5fd4002169babd22efbcc6f"
                   },
                   {
                       "provider_workshop_id":  "2950245430",
@@ -275,7 +275,7 @@
                       "replacement_counts":  {
                                                  "definitions_replaced":  1
                                              },
-                      "built_sha256":  "6f18d59272f3a70cdc9030e4d2bb482fd46b1120ca0e7b31d6824753d4e21c4c"
+                      "built_sha256":  "4df7e6590ac6726f523819ccf33e9680e4929a506a88d6e9ab424e4975520804"
                   },
                   {
                       "provider_workshop_id":  "2950245430",
@@ -456,7 +456,6 @@
                                                  "definitions_created":  7,
                                                  "P33_CANON_CHILD_BIRTH_EFFECTS_98_104":  7
                                              },
-                      "built_sha256":  "1dc0d038247cab979a91230ed94ec6de546d0ea37ecf37d1b7c8264eb1815166",
                       "previous_built_sha256":  "656697f7804abcd76b361daedebee94ab42e21818144f2cbb1c26e47d7b29828",
                       "revision_input":  {
                                              "provider":  "LOCAL-1.1.0",
@@ -467,7 +466,8 @@
                                              "replacement_counts":  {
                                                                         "P33_CANON_CHILD_BIRTH_EFFECTS_98_104":  7
                                                                     }
-                                         }
+                                         },
+                      "built_sha256":  "6455d5c5638ca435ca92fe4eeb80f7a1596a025c0d0bfb12fe6ba596e374522c"
                   },
                   {
                       "provider_workshop_id":  "2962333032",
@@ -859,15 +859,16 @@
                   {
                       "provider_workshop_id":  "3733779333",
                       "virtual_path":  "gui/guard_academy_button_widget.gui",
-                      "transformations":  [
-                                              "P36_GUARD_HUD_BINDING_PLAYER_VALID_GATE"
-                                          ],
                       "replacement_counts":  {
                                                  "P36_GUARD_HUD_BINDING_PLAYER_VALID_GATE":  1
                                              },
-                      "built_sha256":  "b10b3497444a79c77657f1ef53b3fd0366cb8d055cad51c9dfb0e9466f8dabf6",
                       "added_in":  "2026-08-30 revision wave",
-                      "source_sha256":  "44aec66cc1b41593d8d8c50d833d5fe1237da0157a149d030d2b40ef72c99b3f"
+                      "source_sha256":  "44aec66cc1b41593d8d8c50d833d5fe1237da0157a149d030d2b40ef72c99b3f",
+                      "transformations":  [
+                                              "P36_GUARD_HUD_BINDING_PLAYER_VALID_GATE",
+                                              "P47_HUD_COLLISION_REPOSITION"
+                                          ],
+                      "built_sha256":  "d558b0ad81b7dbafef6549dff23166fb9eb83b36b5a77fcc6bf541c73742a513"
                   },
                   {
                       "provider_workshop_id":  "NEW",
@@ -989,19 +990,6 @@
                   },
                   {
                       "provider_workshop_id":  "3733779333",
-                      "virtual_path":  "common/scripted_effects/00_agot_guard_positions_effects.txt",
-                      "transformations":  [
-                                              "P41_GUARD_QUEUE_CHURN_DEDUP"
-                                          ],
-                      "replacement_counts":  {
-                                                 "P41_GUARD_QUEUE_CHURN_DEDUP":  7
-                                             },
-                      "built_sha256":  "07f3172e9b062fa71ed662850c088627e28146791dd52095d211ff6a130b30de",
-                      "added_in":  "2026-08-30 revision wave",
-                      "source_sha256":  "202c52a56a3d7ac85629d2d87d935cfcb6f5595c80074f4076bceea603c956c3"
-                  },
-                  {
-                      "provider_workshop_id":  "3733779333",
                       "virtual_path":  "common/scripted_effects/06_agot_swords_of_braavos_effects.txt",
                       "transformations":  [
                                               "P41_GUARD_QUEUE_CHURN_DEDUP"
@@ -1012,19 +1000,6 @@
                       "built_sha256":  "40956cd94137797fec76bc476ac45e6759583de8e771098b2dac18c4489e0320",
                       "added_in":  "2026-08-30 revision wave",
                       "source_sha256":  "24ae56a3ccfe1d0156be4236edcbe5254a2f9514924bfaf9ea134daa4d865deb"
-                  },
-                  {
-                      "provider_workshop_id":  "3733779333",
-                      "virtual_path":  "common/scripted_effects/00_agot_guard_positions_effects.txt",
-                      "transformations":  [
-                                              "P42_TRAINING_RANK_TOOLTIP_SAFE_READS"
-                                          ],
-                      "replacement_counts":  {
-                                                 "P42_TRAINING_RANK_TOOLTIP_SAFE_READS":  6
-                                             },
-                      "built_sha256":  "5e77eac3d3cd6ab347d8c520f246ee99a8e23565688266268e5a080b9e64a92c",
-                      "added_in":  "2026-08-30 revision wave",
-                      "source_sha256":  "202c52a56a3d7ac85629d2d87d935cfcb6f5595c80074f4076bceea603c956c3"
                   },
                   {
                       "provider_workshop_id":  "2962333032",
@@ -1066,6 +1041,36 @@
                       "source_sha256":  "02b3481a5f7abe10cacb2f143001f6087119c3cc62f581efacc58ec457553c59",
                       "override_kind":  "database_key",
                       "overridden_key":  "dw_hunt_feral_pack_decision"
+                  },
+                  {
+                      "provider_workshop_id":  "3733779333",
+                      "virtual_path":  "common/scripted_effects/00_agot_guard_positions_effects.txt",
+                      "transformations":  [
+                                              "P41_GUARD_QUEUE_CHURN_DEDUP",
+                                              "P42_TRAINING_RANK_TOOLTIP_SAFE_READS",
+                                              "P46_ACADEMY_PATH_XP_TOOLTIP_GUARD"
+                                          ],
+                      "replacement_counts":  {
+                                                 "P41_GUARD_QUEUE_CHURN_DEDUP":  7,
+                                                 "P42_TRAINING_RANK_TOOLTIP_SAFE_READS":  6,
+                                                 "P46_ACADEMY_PATH_XP_TOOLTIP_GUARD":  8
+                                             },
+                      "built_sha256":  "fadd1cc5cd196c1148abbfe9d1d84c77f8b7b95ed4d2088ffc010ae8e55240ef",
+                      "source_sha256":  "202c52a56a3d7ac85629d2d87d935cfcb6f5595c80074f4076bceea603c956c3",
+                      "added_in":  "2026-08-30 revision wave; P46 added 2026-08-30 Ser Duncan follow-up"
+                  },
+                  {
+                      "provider_workshop_id":  "3157170996",
+                      "virtual_path":  "common/script_values/accou_marriage_values.txt",
+                      "transformations":  [
+                                              "P48_ACTIVE_COURTIERS_FP3_STRUGGLE_NEUTRALISED"
+                                          ],
+                      "replacement_counts":  {
+                                                 "P48_ACTIVE_COURTIERS_FP3_STRUGGLE_NEUTRALISED":  2
+                                             },
+                      "built_sha256":  "aa5ac8257d767b78554e33ba50b15487327e6f90c1e8671403dbc1a6ce7f3c59",
+                      "source_sha256":  "07b7251b30455f5b7b1fec606f25758a1d4a969e5ab6eeaeef973abaaab7fb7e",
+                      "added_in":  "pre-existing override, documented retroactively 2026-08-30 clerical pass"
                   }
               ],
     "p08_miv_agot_cb_patch":  {
@@ -1188,5 +1193,5 @@
                                   "P22_MIXED_KEY_REMOVED_tradition_roman_legacy":  2,
                                   "P22_RELIGION_FAMILY_CASES_REPLACED":  8
                               },
-    "revision":  "2026-08-30 read-only follow-up"
+    "revision":  "2026-08-30 clerical pass"
 }

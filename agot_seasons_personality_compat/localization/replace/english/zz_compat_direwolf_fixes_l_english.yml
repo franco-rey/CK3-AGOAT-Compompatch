@@ -1,0 +1,20 @@
+﻿# Seasons + Personality Compat  P06 - DireWolves malformed localization keys.
+#
+# localization/english/dw_direwolf_l_english.yml ships two syntactically invalid
+# entries that the localization reader rejects outright:
+#   line 10  trait_direwolf_young_wolf:0 "Young Wolf"A pup. Just born and yet ...
+#            -> prose after the closing quote; localization_reader.cpp:581
+#               "Unexpected localization token 'A'"
+#   line 73  dw_debug_show_wolf_blood_interaction_desc:0 Display Wolf-Blood in ..."
+#            -> no opening quote; localization_reader.cpp:535
+#               "Missing quoted string value"
+#
+# Both keys are re-declared here with correct quoting. Files under
+# localization/replace/ take priority over the normal localization tree
+# regardless of load order, so only these two keys are affected and the rest of
+# DireWolves' localization is untouched. The young-wolf prose is dropped from the
+# NAME key -- a trait name is a short label and DireWolves already ships the
+# descriptive text as trait_direwolf_young_wolf_desc.
+l_english:
+ trait_direwolf_young_wolf:0 "Young Wolf"
+ dw_debug_show_wolf_blood_interaction_desc:0 "Display Wolf-Blood in percentage"

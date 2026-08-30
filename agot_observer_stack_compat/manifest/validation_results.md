@@ -268,3 +268,64 @@ plus its own additions, and no enabled mod loading after it provides those paths
 
 - [ ] PENDING RUNTIME — duel window shows AGOT-formatted participant names with the
       Duel Overlay bars visible.
+
+---
+
+# Addendum: P35-P48 and runtime status (2026-08-30)
+
+The record above is the v1.1.0 static validation as of 2026-08-29 and covers P01-P34. It is retained
+unchanged as the historical audit. Everything below supersedes its `Runtime status: PENDING` line.
+
+## Runtime status: VERIFIED across four playtests
+
+| Run | Character | Length | Result |
+|---|---|---|---|
+| 8183 | Gar Sagon | - | Confirmed the P35/P37 title-name repair: `landed_titles` 663 MB -> 5.7 MB, guard-book prose 7,918,803 -> 49 lines. Exposed the pending-event flood P39/P41 address. |
+| 8296 | Lucerys of Driftmark | 22 min at 5x | No clock freeze. Eight of ten patches at exactly zero. P35 down to 37 legitimate writes. |
+| 8212 | Ser Duncan (camp) | 18 min | First run to reach the guard academy final trials, surfacing the P46 defect. |
+| 8251 | Lord Paramount Ormund | 38 min | Clean exit. gamestate 200 MB, `landed_titles` 23 KB, pending-event queue empty. |
+
+Two clock freezes that motivated the P35 and P39/P41 work have not recurred in any run since.
+
+## Applied transformation counts, P35-P48
+
+- P35: per-page marker added; 10 call sites reach the Lord Commander record effect, 1 previously guarded.
+- P36: **NOT EFFECTIVE.** Binding rewritten but `And()` does not short-circuit, so it is logically
+  identical to the original. Confirmed still firing. See the P24/P36 GUI note in the README.
+- P37: 1 localization key re-rendered with `GetNameNoTooltip`.
+- P38: 40 file-scoped `@constants` restored across 6 domicile building files.
+- P39: 1 on_action de-duplicated with the author's own pending flag.
+- P40: 4 hard scopes soft-scoped.
+- P41: 7 queue sites gated with duration flags.
+- P42: 6 tooltip-safe reads.
+- P43: 2 soft scopes.
+- P44: 4 temporary-scope renames.
+- P45: 1 save moved inside the author's existing guard (single-key decision override).
+- P46: 8 academy `add_trait_xp` reads wrapped in `has_variable` guards.
+- P47: 1 HUD position change, -631 -> -960.
+- P48: 2 FP3 struggle branches neutralised. Pre-existing; documented retroactively, file unchanged.
+
+## Verified-at-zero in the 8251 Ormund run
+
+P37, P38, P39/P41, P40, P42, P43, P44, P45, P46. Also zero: the `on_action_namespace.192`
+queued-twice flood (37,987 in a prior run).
+
+## Known not working
+
+- **P24** (Grand Remembrance chronicle window) and **P36** (guard academy HUD binding). Both gate a
+  scripted-GUI call inside `And()`, which evaluates every argument. Three approaches are already
+  known to fail; the README records them so they are not retried. Settling this needs an in-game
+  observer-mode test, not further static analysis.
+
+## Clerical pass, 2026-08-30
+
+- `source_hashes.sha256`: 9 stale BUILT hashes refreshed; 3 superseded duplicate BUILT lines removed
+  (2 for `gui/guard_academy_button_widget.gui`, 3 recorded for
+  `common/scripted_effects/00_agot_guard_positions_effects.txt` reduced to the current one).
+- `build_manifest.json`: 3 stale `built_sha256` refreshed; the two duplicate entries for
+  `00_agot_guard_positions_effects.txt` consolidated into one listing P41+P42+P46; P48 entry added
+  for `common/script_values/accou_marriage_values.txt`, which had been shipping unrecorded.
+- `README.md`: P46, P47 and P48 rows added (P46/P47 had been reported as added in an earlier session
+  but the edit had silently no-opped); patch table reordered numerically and made contiguous;
+  playset size corrected from 61 to 66 mods; provenance paragraph brought current.
+- All 70 manifest entries now hash-match the files on disk.

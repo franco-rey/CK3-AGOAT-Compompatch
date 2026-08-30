@@ -1,0 +1,183 @@
+﻿# Seasons + Personality Compat  P07 - More Personality Depth x Immersive Personalities:
+# the paranoid trait-XP calls that cannot succeed.
+#
+#   add_trait_xp effect [ Trait 'paranoid' has multiple trait tracks, you must
+#   specify which you want ]
+#     common/scripted_effects/mpd_xp_calculator.txt lines 60, 118, 158
+# 23,209 entries in the 8251 Ormund run -- 50% of the whole error log -- reached
+# from mpd_join_court_xp_catchup and mpd_birthday_xp_catchup.
+#
+# Cause: paranoid is defined four times in this playset -- AGOT (6, no tracks),
+# Mayham (38, no tracks), MPD (56, one anonymous track block) and Immersive
+# Personalities (63, flat, no tracks). The engine reports MULTIPLE tracks although
+# no single definition declares more than one, i.e. the definitions are being
+# merged rather than replaced. paranoid is the only one of MPD's 36 tracked
+# personality traits that IP also redefines, and the only one of the 39 rolled that errors.
+#
+# Why this is a removal and not a repair:
+#   - add_trait_xp without a track name fails outright on a multi-track trait, so
+#     paranoid ALREADY receives no XP from MPD. Every one of these 23,209 calls is
+#     a no-op that logs. Deleting them is therefore behaviour-identical.
+#   - Supplying a track name would be a guess: the merged track identifiers cannot
+#     be determined statically and the engine error does not name them.
+#   - Redefining the trait is not possible from here -- this mod loads at 58 and
+#     Immersive Personalities at 63, so IP's definition wins regardless.
+#
+# Removed: the paranoid entry in mpd_roll_all_personality_xp (was line 123) and
+# its counterpart in mpd_force_reroll_all_personality_xp (was line 51). All 38
+# other personality traits (38 of 39) keep both their roll and their reset, verified by
+# count. paranoid still exists, is still granted, and still carries Immersive
+# Personalities' stats -- it simply no longer gets MPD's L1/L2/L3 progression,
+# which it was never actually receiving.
+#
+# If MPD's tracked paranoid is wanted instead of IP's flat one, that is a design
+# choice between the two mods and needs this layer moved after IP (position 64+),
+# which is safe: nothing at 59-65 claims any path this mod owns.
+# More Personality Depth — XP Roller Dispatcher (childhood-locked design v0.2.0)
+#
+# This file replaces the old per-trait dumb rollers (60/30/10 random) with a
+# single dispatcher that calls the parameterized calculator
+# (see mpd_xp_calculator.txt) for each of the 36 personality traits.
+#
+# CK3 scripted_effects don't support optional parameters via $X|default$ syntax
+# (that's only for character_interaction localization). So every call site
+# must pass TRAIT, WN_SOCIAL, and WN_COMPETE explicitly. Most traits pass 0
+# for the WN_* params; only intrinsic social/competitive traits pass non-zero.
+#
+# Hooks calling this dispatcher (see common/on_action/mpd_on_actions.txt):
+#   - on_game_start_after_lobby (initial roll for existing characters)
+#   - on_birthday (annual safety net for adults)
+#   - mpd_xp.0001 event (1 day after each child_personality_gain dispatch)
+#
+# The calculator is idempotent: each call skips traits already at XP >= 1.
+
+# Force re-roll for every personality trait. Resets XP to 0 first via large
+# negative add (CK3 clamps trait XP at 0), then calls the standard roller.
+# Use this from the console to fix saves where characters were rolled by a
+# previous (buggy) version of the calculator and are stuck at XP=1:
+#   effect every_living_character = { mpd_force_reroll_all_personality_xp = yes }
+mpd_force_reroll_all_personality_xp = {
+	if = { limit = { has_trait = lustful }       add_trait_xp = { trait = lustful       value = -1000 } }
+	if = { limit = { has_trait = chaste }        add_trait_xp = { trait = chaste        value = -1000 } }
+	if = { limit = { has_trait = gluttonous }    add_trait_xp = { trait = gluttonous    value = -1000 } }
+	if = { limit = { has_trait = temperate }     add_trait_xp = { trait = temperate     value = -1000 } }
+	if = { limit = { has_trait = greedy }        add_trait_xp = { trait = greedy        value = -1000 } }
+	if = { limit = { has_trait = generous }      add_trait_xp = { trait = generous      value = -1000 } }
+	if = { limit = { has_trait = lazy }          add_trait_xp = { trait = lazy          value = -1000 } }
+	if = { limit = { has_trait = diligent }      add_trait_xp = { trait = diligent      value = -1000 } }
+	if = { limit = { has_trait = wrathful }      add_trait_xp = { trait = wrathful      value = -1000 } }
+	if = { limit = { has_trait = calm }          add_trait_xp = { trait = calm          value = -1000 } }
+	if = { limit = { has_trait = patient }       add_trait_xp = { trait = patient       value = -1000 } }
+	if = { limit = { has_trait = impatient }     add_trait_xp = { trait = impatient     value = -1000 } }
+	if = { limit = { has_trait = arrogant }      add_trait_xp = { trait = arrogant      value = -1000 } }
+	if = { limit = { has_trait = humble }        add_trait_xp = { trait = humble        value = -1000 } }
+	if = { limit = { has_trait = deceitful }     add_trait_xp = { trait = deceitful     value = -1000 } }
+	if = { limit = { has_trait = honest }        add_trait_xp = { trait = honest        value = -1000 } }
+	if = { limit = { has_trait = craven }        add_trait_xp = { trait = craven        value = -1000 } }
+	if = { limit = { has_trait = brave }         add_trait_xp = { trait = brave         value = -1000 } }
+	if = { limit = { has_trait = shy }           add_trait_xp = { trait = shy           value = -1000 } }
+	if = { limit = { has_trait = gregarious }    add_trait_xp = { trait = gregarious    value = -1000 } }
+	if = { limit = { has_trait = ambitious }     add_trait_xp = { trait = ambitious     value = -1000 } }
+	if = { limit = { has_trait = content }       add_trait_xp = { trait = content       value = -1000 } }
+	if = { limit = { has_trait = arbitrary }     add_trait_xp = { trait = arbitrary     value = -1000 } }
+	if = { limit = { has_trait = just }          add_trait_xp = { trait = just          value = -1000 } }
+	if = { limit = { has_trait = cynical }       add_trait_xp = { trait = cynical       value = -1000 } }
+	if = { limit = { has_trait = zealous }       add_trait_xp = { trait = zealous       value = -1000 } }
+	# Compat P07: paranoid reset removed -- see this file's header.
+	if = { limit = { has_trait = trusting }      add_trait_xp = { trait = trusting      value = -1000 } }
+	if = { limit = { has_trait = vengeful }      add_trait_xp = { trait = vengeful      value = -1000 } }
+	if = { limit = { has_trait = forgiving }     add_trait_xp = { trait = forgiving     value = -1000 } }
+	if = { limit = { has_trait = compassionate } add_trait_xp = { trait = compassionate value = -1000 } }
+	if = { limit = { has_trait = callous }       add_trait_xp = { trait = callous       value = -1000 } }
+	if = { limit = { has_trait = sadistic }      add_trait_xp = { trait = sadistic      value = -1000 } }
+	if = { limit = { has_trait = stubborn }      add_trait_xp = { trait = stubborn      value = -1000 } }
+	if = { limit = { has_trait = fickle }        add_trait_xp = { trait = fickle        value = -1000 } }
+	if = { limit = { has_trait = eccentric }     add_trait_xp = { trait = eccentric     value = -1000 } }
+	# AGOT-added personality traits
+	if = { limit = { has_trait = authoritative } add_trait_xp = { trait = authoritative value = -1000 } }
+	if = { limit = { has_trait = rude }          add_trait_xp = { trait = rude          value = -1000 } }
+	if = { limit = { has_trait = inquisitive }   add_trait_xp = { trait = inquisitive   value = -1000 } }
+	# Now run the standard roller — XP is back to 0, idempotent guard satisfied.
+	mpd_roll_all_personality_xp = yes
+}
+
+mpd_roll_all_personality_xp = {
+	# ─── Vanilla pair: lustful / chaste ───
+	mpd_calculate_trait_xp = { TRAIT = lustful       WN_SOCIAL = 0   WN_COMPETE = 0 }
+	mpd_calculate_trait_xp = { TRAIT = chaste        WN_SOCIAL = 0   WN_COMPETE = 0 }
+
+	# ─── Vanilla pair: gluttonous / temperate ───
+	mpd_calculate_trait_xp = { TRAIT = gluttonous    WN_SOCIAL = 0   WN_COMPETE = 0 }
+	mpd_calculate_trait_xp = { TRAIT = temperate     WN_SOCIAL = 0   WN_COMPETE = 0 }
+
+	# ─── Vanilla pair: greedy / generous ───
+	mpd_calculate_trait_xp = { TRAIT = greedy        WN_SOCIAL = 0   WN_COMPETE = 0 }
+	mpd_calculate_trait_xp = { TRAIT = generous      WN_SOCIAL = 10  WN_COMPETE = 0 }
+
+	# ─── Vanilla pair: lazy / diligent ───
+	mpd_calculate_trait_xp = { TRAIT = lazy          WN_SOCIAL = 0   WN_COMPETE = -15 }
+	mpd_calculate_trait_xp = { TRAIT = diligent      WN_SOCIAL = 0   WN_COMPETE = 10 }
+
+	# ─── Vanilla pair: wrathful / calm ───
+	mpd_calculate_trait_xp = { TRAIT = wrathful      WN_SOCIAL = -10 WN_COMPETE = 25 }
+	mpd_calculate_trait_xp = { TRAIT = calm          WN_SOCIAL = 0   WN_COMPETE = -15 }
+
+	# ─── Vanilla pair: patient / impatient ───
+	mpd_calculate_trait_xp = { TRAIT = patient       WN_SOCIAL = 0   WN_COMPETE = -10 }
+	mpd_calculate_trait_xp = { TRAIT = impatient     WN_SOCIAL = 0   WN_COMPETE = 10 }
+
+	# ─── Vanilla pair: arrogant / humble ───
+	mpd_calculate_trait_xp = { TRAIT = arrogant      WN_SOCIAL = -15 WN_COMPETE = 15 }
+	mpd_calculate_trait_xp = { TRAIT = humble        WN_SOCIAL = 10  WN_COMPETE = 0 }
+
+	# ─── Vanilla pair: deceitful / honest ───
+	mpd_calculate_trait_xp = { TRAIT = deceitful     WN_SOCIAL = -15 WN_COMPETE = 20 }
+	mpd_calculate_trait_xp = { TRAIT = honest        WN_SOCIAL = 15  WN_COMPETE = 0 }
+
+	# ─── Vanilla pair: craven / brave ───
+	mpd_calculate_trait_xp = { TRAIT = craven        WN_SOCIAL = 0   WN_COMPETE = -25 }
+	mpd_calculate_trait_xp = { TRAIT = brave         WN_SOCIAL = 0   WN_COMPETE = 20 }
+
+	# ─── Vanilla pair: shy / gregarious ───
+	mpd_calculate_trait_xp = { TRAIT = shy           WN_SOCIAL = -25 WN_COMPETE = 0 }
+	mpd_calculate_trait_xp = { TRAIT = gregarious    WN_SOCIAL = 25  WN_COMPETE = 0 }
+
+	# ─── Vanilla pair: ambitious / content ───
+	mpd_calculate_trait_xp = { TRAIT = ambitious     WN_SOCIAL = 0   WN_COMPETE = 30 }
+	mpd_calculate_trait_xp = { TRAIT = content       WN_SOCIAL = 0   WN_COMPETE = -15 }
+
+	# ─── Vanilla pair: arbitrary / just ───
+	mpd_calculate_trait_xp = { TRAIT = arbitrary     WN_SOCIAL = 0   WN_COMPETE = 0 }
+	mpd_calculate_trait_xp = { TRAIT = just          WN_SOCIAL = 0   WN_COMPETE = 0 }
+
+	# ─── Vanilla pair: cynical / zealous ───
+	mpd_calculate_trait_xp = { TRAIT = cynical       WN_SOCIAL = -10 WN_COMPETE = 0 }
+	mpd_calculate_trait_xp = { TRAIT = zealous       WN_SOCIAL = 0   WN_COMPETE = 0 }
+
+	# ─── Vanilla pair: paranoid / trusting ───
+	# Compat P07: paranoid removed from the XP roll -- see this file's header.
+	mpd_calculate_trait_xp = { TRAIT = trusting      WN_SOCIAL = 20  WN_COMPETE = -10 }
+
+	# ─── Vanilla pair: vengeful / forgiving ───
+	mpd_calculate_trait_xp = { TRAIT = vengeful      WN_SOCIAL = -15 WN_COMPETE = 25 }
+	mpd_calculate_trait_xp = { TRAIT = forgiving     WN_SOCIAL = 15  WN_COMPETE = -15 }
+
+	# ─── Trio: compassionate / callous / sadistic ───
+	mpd_calculate_trait_xp = { TRAIT = compassionate WN_SOCIAL = 15  WN_COMPETE = -10 }
+	mpd_calculate_trait_xp = { TRAIT = callous       WN_SOCIAL = -15 WN_COMPETE = 15 }
+	mpd_calculate_trait_xp = { TRAIT = sadistic      WN_SOCIAL = 0   WN_COMPETE = 10 }
+
+	# ─── Trio: stubborn / fickle / eccentric ───
+	mpd_calculate_trait_xp = { TRAIT = stubborn      WN_SOCIAL = 0   WN_COMPETE = 20 }
+	mpd_calculate_trait_xp = { TRAIT = fickle        WN_SOCIAL = 0   WN_COMPETE = 0 }
+	mpd_calculate_trait_xp = { TRAIT = eccentric     WN_SOCIAL = 0   WN_COMPETE = 0 }
+
+	# ─── AGOT-added personality traits ───
+	# authoritative: dread/martial-driven, opposite of humble. WN_COMPETE small bonus.
+	mpd_calculate_trait_xp = { TRAIT = authoritative WN_SOCIAL = -10 WN_COMPETE = 15 }
+	# rude: stress-relief through coarseness, opposite of compassionate/humble.
+	mpd_calculate_trait_xp = { TRAIT = rude          WN_SOCIAL = -20 WN_COMPETE = 10 }
+	# inquisitive: learning-driven, opposite of zealous. Slight social bonus
+	# (inquiry encourages dialogue), neutral on competition.
+	mpd_calculate_trait_xp = { TRAIT = inquisitive   WN_SOCIAL = 5   WN_COMPETE = 0 }
+}

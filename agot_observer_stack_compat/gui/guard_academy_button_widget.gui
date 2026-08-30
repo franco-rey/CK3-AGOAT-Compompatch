@@ -3,7 +3,26 @@
 	parentanchor = bottom|right
 	widgetanchor = bottom|right
 	# Standalone layout occupies the normal bottom HUD row.
-	position = { -631 0 }
+	# Observer Stack P47 - HUD collision with Search & Trade Artifacts and
+	# Advanced Character Search.
+	#
+	# All three mods anchor bottom|right, so a position of -X places the widget's
+	# right edge X px from the screen edge and it extends LEFTWARD by its width.
+	# Measured leftward from the right edge, the row was:
+	#     ACS  'find person'      630 -> 685   (55 wide, acs_external_integration.gui)
+	#     THIS widget             631 -> 745   (114 wide)   <-- covered both
+	#     S&T  'find artifact' R  690 -> 746   (56 wide, at_find_artifacts_widget.gui)
+	#     S&T  'find artifact' C  780 -> 836
+	#     S&T  'find artifact' L  870 -> 926
+	# At -631 this widget sat on top of 54 of ACS's 55 px and 55 of S&T-right's 56,
+	# hiding both buttons behind the guard row.
+	#
+	# Moved to -960, which continues S&T's own 90 px pitch (870 + 90) and leaves a
+	# 34 px gap after S&T-left ends at 926 -- the same gap S&T uses between its own
+	# buttons. New span 960 -> 1074. Nothing else in the playset anchors bottom|right
+	# beyond 926, and vanilla's timeline_widget occupies only 0 -> 649, so this is
+	# clear space. Size and all three button bindings are unchanged.
+	position = { -960 0 }
 	size = { 114 36 }
 	# Observer Stack P36 - same defect P24 fixed for the Grand Remembrance chronicle
 # window. And() does not short-circuit, so IsShown(GetPlayer.MakeScope) was
