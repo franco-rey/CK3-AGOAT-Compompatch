@@ -816,6 +816,19 @@
       "added_in": "2026-08-29 revision wave",
       "source_sha256": null,
       "note": "authored by this patch; no upstream source"
+    },
+    {
+      "provider_workshop_id": "3678529052",
+      "virtual_path": "gui/gr_chronicle_window.gui",
+      "source_sha256": "6d6a69c4eda29ab0d1d6cfde452bf4d3db173dfc0f068859ea70ba9d1209fa4a",
+      "transformations": [
+        "P24_GUI_GETPLAYER_ISVALID_GUARD"
+      ],
+      "replacement_counts": {
+        "P24_GUI_GETPLAYER_ISVALID_GUARD": 1
+      },
+      "built_sha256": "c042858a90ec9f08e0419804c7f129e71129c34087c14dcedee375d4d980b088",
+      "added_in": "2026-08-29 revision wave (P24 follow-up)"
     }
   ],
   "p08_miv_agot_cb_patch": {

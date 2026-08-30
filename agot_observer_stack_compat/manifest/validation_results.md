@@ -225,3 +225,30 @@ Evidence baseline: independent 405-year observer run, 7899–8304.
 - [ ] PENDING USER PLAYTEST / SAVE-LOG REVIEW — no stale `scion_title_data` story after reload; dragon storage and the ACS object pool still present.
 - [ ] PENDING USER PLAYTEST / SAVE-LOG REVIEW — P27 residual at the sibling `scope:secondary_recipient` call; apply the specified third guard only if it persists.
 - [ ] PENDING USER PLAYTEST / SAVE-LOG REVIEW — canon children 98–104 spawn once each and are not duplicated.
+
+---
+
+## Runtime test 1 — observer run 8283-8334 (51 years), 2026-08-29
+
+Save: `observer test.ck3`. 17 of 18 acceptance signatures returned **zero**:
+P25 RICE, P26 religion families, P27 appointment candidates, P28 recruit scope,
+P30A/B dragon and CoA scopes, P31 nickname/trait/giant/location, P32 faiths,
+P33 canon children and modifiers, MIV Persia/FP3, and the claimant cascade.
+
+P29 confirmed working: 3 surviving `scion_title_data` stories, all with a
+**living** `scoped_royal` and an existing `scoped_title`, each scheduled for the
+next 30-day tick. The 405-year baseline had 164 of 175 pointing at dead royals.
+
+**P24 FAILED and was re-fixed.** The script-side `exists = this` guard did not
+reduce the storm (82,917 baseline -> 81,879). Root cause: the window's `visible`
+binding in `gui/gr_chronicle_window.gui` passes `GetPlayer`, which in observer
+mode is a dangling character reference. `exists = this` cannot catch that - the
+scope is set and typed Character, it just points at nothing. Fixed at the binding
+with `And(GetPlayer.IsValid, ...)`. The scripted-GUI guard is retained as
+harmless defence in depth but is not the load-bearing fix.
+
+Residual: 6 linter warnings for `acs_gvl_rf_abrahamic/eastern/pagan` "used but
+never set" - expected consequence of the P26 single-bucket design, cosmetic.
+
+- [ ] PENDING RE-TEST — `gr_chronicle_window` signature must be 0 in the next run.
+- [ ] PENDING RE-TEST — error.log must not reach 100,000.
