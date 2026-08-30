@@ -32,6 +32,7 @@ P01–P07 remain intact: AGOT+ canon-child creation and parser repair, AGOT+/art
 | P31 | LOCAL-1.1.0 / AGOT+ | Repairs Mance Rayder's `giant` men-at-arms key, both Young Griff nickname keys, the undefined `is_targaryen_11` inactive trait, and the two locationless dummy characters in the landing event. |
 | P32 | LOCAL-1.1.0 / AGOT+ | Points the seven dragon spawns at `faith:valyrian_pan_dragon` and removes the two obsolete More Bookmarks `faith:rhllor` migrations. Neither faith id exists in this playset. |
 | P33 | LOCAL-1.1.0 / AGOT+ | Implements the seven canon children of Aegon IV (Targaryen 98–104), re-keying AGOT+'s duplicate-trigger typo, and supplies the undefined `asoiaf_Greyjoy_13_alt_modifier` while dropping the undefined `asoiaf_Targaryen_95_modifier` call. |
+| P34 | Duel Overlay | Restores AGOT's two name-formatting lines (`agot_text_label_center`, `AGOTGetShortUINameNoTooltip`) on top of Duel Overlay's duel window. Duel Overlay is built on vanilla and otherwise reverts them; all of its own overlay content is preserved. |
 
 P23 is unused. Intentional neutralizations are limited to missing Targaryen branches, redundant dragon scheme starts, orphan city event hooks, non-AGOT Grand Remembrance classifications, Persia-only Oathbound branches, unsupported ACS filters, non-installed RICE classifications, ACS religion families absent from AGOT, and the obsolete More Bookmarks faith migrations.
 

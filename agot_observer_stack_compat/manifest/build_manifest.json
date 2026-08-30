@@ -829,6 +829,19 @@
       },
       "built_sha256": "c042858a90ec9f08e0419804c7f129e71129c34087c14dcedee375d4d980b088",
       "added_in": "2026-08-29 revision wave (P24 follow-up)"
+    },
+    {
+      "provider_workshop_id": "2636170225",
+      "virtual_path": "gui/event_windows/duel_event.gui",
+      "source_sha256": "81cf5538a4f688e80187c539095ec8a5271144ffa1e57f923a101ddd06e1a442",
+      "transformations": [
+        "P34_DUEL_OVERLAY_RESTORE_AGOT_NAME_FORMATTING"
+      ],
+      "replacement_counts": {
+        "P34_DUEL_OVERLAY_RESTORE_AGOT_NAME_FORMATTING": 1
+      },
+      "built_sha256": "d0780252942485561e048786a49552c16036b8cab113a305736527c26afd75f3",
+      "added_in": "2026-08-29 revision wave (P34)"
     }
   ],
   "p08_miv_agot_cb_patch": {

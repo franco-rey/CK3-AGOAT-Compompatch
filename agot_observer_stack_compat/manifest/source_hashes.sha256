@@ -124,3 +124,6 @@ f4859d089d7fa0b9bfe3a24a08c21845c29f0f195e623db1ed7589698876b192  LOCAL/common/s
 # P24 follow-up (2026-08-29): GUI-level guard after runtime test showed the
 # script-side guard was ineffective against a dangling GetPlayer reference.
 6d6a69c4eda29ab0d1d6cfde452bf4d3db173dfc0f068859ea70ba9d1209fa4a  3678529052/gui/gr_chronicle_window.gui  # PASS pre/post  [P24-GUI]
+
+# P34 (2026-08-29): Duel Overlay compatibility.
+81cf5538a4f688e80187c539095ec8a5271144ffa1e57f923a101ddd06e1a442  2636170225/gui/event_windows/duel_event.gui  # PASS pre/post  [P34]

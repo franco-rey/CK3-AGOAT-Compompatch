@@ -252,3 +252,19 @@ never set" - expected consequence of the P26 single-bucket design, cosmetic.
 
 - [ ] PENDING RE-TEST — `gr_chronicle_window` signature must be 0 in the next run.
 - [ ] PENDING RE-TEST — error.log must not reach 100,000.
+
+## P34 — Duel Overlay compatibility (2026-08-29)
+
+Duel Overlay (@55 in the current order) loads before this patch (@60) and ships its
+own `gui/event_windows/duel_event.gui` built on vanilla, reverting AGOT's custom
+name widget. This patch takes ownership of the path and restores exactly two AGOT
+lines on top of Duel Overlay's file. Diff vs the Duel Overlay source is those two
+changes and nothing else. Brace balance PASS.
+
+**DireWolves needs no patch.** Verified: its overrides of
+`common/scripted_triggers/00_agot_character_triggers.txt` (+1/-0),
+`gui/window_character.gui` and `gui/shared/portraits.gui` are all AGOT's content
+plus its own additions, and no enabled mod loading after it provides those paths.
+
+- [ ] PENDING RUNTIME — duel window shows AGOT-formatted participant names with the
+      Duel Overlay bars visible.
