@@ -1,4 +1,21 @@
-﻿agot_scenario_rr_toj_create_baby_snow_effect = {
+﻿# AGOT Unified Compatibility Patch  P55 - dragon culture reference fix.
+#
+# AGOT+ (2950245430) spawns the named dragons with:
+#     culture = culture:dragon
+# but no enabled mod and not vanilla defines a culture called "dragon".
+# AGOT itself uses culture:dragon_culture (defined in AGOT
+# common/culture/cultures/00_agot_cul_ancient_races.txt) at 72 sites.
+# ck3-tiger flagged this as:
+#     error(missing-item): culture dragon not defined in common/culture/cultures/
+#
+# A create_character whose culture reference does not resolve produces a
+# character with no valid culture, and culture drives portrait gene selection,
+# so these dragons render with blank/empty portraits.
+#
+# Fixed at 7 sites: Vermax, Drogon x2, Rhaegal x2, Viserion x2.
+# This is an UPSTREAM AGOT+ bug carried verbatim in this file; if AGOT+ updates,
+# re-check whether it still writes culture:dragon before rebasing.
+agot_scenario_rr_toj_create_baby_snow_effect = {
 	create_character = {
 		age = 0
 		random_traits = no
@@ -73,7 +90,7 @@ agot_spawn_vermax_effect = {
 	create_character = {
 		name = "Vermax"
 		gender = male
-		culture = culture:dragon
+		culture = culture:dragon_culture
 		faith = faith:valyrian_pan_dragon
 		location = location
 		age = 0
@@ -306,7 +323,7 @@ agot_spawn_drogon_effect = {
 	create_character = {
 		name = "Drogon"
 		gender = male
-		culture = culture:dragon
+		culture = culture:dragon_culture
 		faith = faith:valyrian_pan_dragon
 		location = location
 		age = 0
@@ -541,7 +558,7 @@ agot_spawn_adult_drogon_effect = {
 	create_character = {
 		name = "Drogon"
 		gender = male
-		culture = culture:dragon
+		culture = culture:dragon_culture
 		faith = faith:valyrian_pan_dragon
 		location = location
 		age = 2
@@ -768,7 +785,7 @@ agot_spawn_rhaegal_effect = {
 	create_character = {
 		name = "Rhaegal"
 		gender = female
-		culture = culture:dragon
+		culture = culture:dragon_culture
 		faith = faith:valyrian_pan_dragon
 		location = location
 		age = 0
@@ -995,7 +1012,7 @@ agot_spawn_adult_rhaegal_effect = {
 	create_character = {
 		name = "Rhaegal"
 		gender = female
-		culture = culture:dragon
+		culture = culture:dragon_culture
 		faith = faith:valyrian_pan_dragon
 		location = location
 		age = 2
@@ -1222,7 +1239,7 @@ agot_spawn_viserion_effect = {
 	create_character = {
 		name = "Viserion"
 		gender = male
-		culture = culture:dragon
+		culture = culture:dragon_culture
 		faith = faith:valyrian_pan_dragon
 		location = location
 		age = 0
@@ -1449,7 +1466,7 @@ agot_spawn_adult_viserion_effect = {
 	create_character = {
 		name = "Viserion"
 		gender = male
-		culture = culture:dragon
+		culture = culture:dragon_culture
 		faith = faith:valyrian_pan_dragon
 		location = location
 		age = 2

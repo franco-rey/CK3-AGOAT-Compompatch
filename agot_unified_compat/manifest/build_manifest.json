@@ -784,14 +784,15 @@
                       "provider_workshop_id":  "2950245430",
                       "provider_name":  null,
                       "transformations":  [
-                                              "P32A_DRAGON_FAITH_VALYRIAN_PAN_DRAGON"
+                                              "P32A_DRAGON_FAITH_VALYRIAN_PAN_DRAGON",
+                                              "P55: culture:dragon -\u003e culture:dragon_culture at 7 dragon create_character sites (AGOT+ upstream references an undefined culture; AGOT defines dragon_culture in 00_agot_cul_ancient_races.txt)"
                                           ],
                       "source_sha256":  "04d527edce9813f551bfa06aa69fd0647c5d81b9bfeb0feae82f41bda08b2e6b",
                       "replacement_counts":  {
                                                  "P32A_DRAGON_FAITH_VALYRIAN_PAN_DRAGON":  7
                                              },
                       "added_in":  "2026-08-29 revision wave",
-                      "built_sha256":  "17f2e205174f3863a144e138b3463a42c0c4b6a292cb883a6210c25a69b519ab"
+                      "built_sha256":  "185aeea8d257b52703b7be9d8579032f896f9238015861571a3d45940a0dc461"
                   },
                   {
                       "virtual_path":  "common/scripted_effects/asoiaf_assign_inactive_traits_effects.txt",
@@ -1517,6 +1518,27 @@
                       "source_sha256":  "362ec7c3a8701dccc40769c6a003d03d0a49c3084e54e199313e9b3954564490",
                       "built_sha256":  "ae336d8b162f332d4cc5281bf67b1b6f9bc186d07d858e418f67a8ce5cad9a3a",
                       "added_in":  "2026-08-30 King Ronnel playthrough wave"
+                  },
+                  {
+                      "virtual_path":  "gfx/FX/court_scene.shader",
+                      "origin_patch":  "P54_SHADER_APPLYVARIATIONPATTERNS_ARITY",
+                      "provider_workshop_id":  "3381385128",
+                      "transformations":  [
+                                              "base = AGOT Color Picker for Clothes court_scene.shader verbatim (7-param ApplyVariationPatterns matching its agot_portrait_decals_shared.fxh)",
+                                              "appended Battle Graphics ACG Addition block (sine_flag_animation_acg_coa, sine_flag_animation_acg_coa_selection) required by acg_MESH_flag_banner.asset and acg_MESH_flag_weapon.asset"
+                                          ],
+                      "source_sha256":  "46d1db35c8f5245efc36dec2401a717a045277969505c01afdff857739b83c72",
+                      "built_sha256":  "806d129c944809ecd4111fff5d3e781d34867144bea53a0819fb4ca4e0d353fd"
+                  },
+                  {
+                      "virtual_path":  "gfx/FX/jomini/portrait_decals.fxh",
+                      "origin_patch":  "P57_DIAG_TEMPORARY",
+                      "provider_workshop_id":  "3381385128",
+                      "transformations":  [
+                                              "TEMPORARY DIAGNOSTIC - NOT A FIX. Color Picker portrait_decals.fxh verbatim except //#define AGOT_DEBUG_DRAGON_VIEW_1 replaced by an enabled #define AGOT_DEBUG_DRAGON_VIEW_9 (constant-colour calibration view). DELETE THIS FILE AND THESE ENTRIES AFTER TESTING."
+                                          ],
+                      "source_sha256":  "a46257afc511e0370d398fb47789992aff4a02e859eac847b26932622b7c3331",
+                      "built_sha256":  "a155eb53d602f5f9de662d8b6a1eefc84d1c13327d46c661b30c9637cb15ca1a"
                   }
               ],
     "file_count":  95,

@@ -194,7 +194,7 @@ f1536a47e61fb622c8326a4742bf44ea1d134bd582705baba51da2c8987bbd09  BUILT/common/s
 
 # common/scripted_effects/asoiaf_agot_overwrite_effects.txt  [P32A_DRAGON_FAITH_VALYRIAN_PAN_DRAGON]  (from agot_observer_stack_compat)
 04d527edce9813f551bfa06aa69fd0647c5d81b9bfeb0feae82f41bda08b2e6b  2950245430/common/scripted_effects/asoiaf_agot_overwrite_effects.txt  # SOURCE
-17f2e205174f3863a144e138b3463a42c0c4b6a292cb883a6210c25a69b519ab  BUILT/common/scripted_effects/asoiaf_agot_overwrite_effects.txt
+185aeea8d257b52703b7be9d8579032f896f9238015861571a3d45940a0dc461  BUILT/common/scripted_effects/asoiaf_agot_overwrite_effects.txt
 
 # common/scripted_effects/asoiaf_assign_inactive_traits_effects.txt  [P33_TARGARYEN_95_MODIFIER_REMOVED]  (from agot_observer_stack_compat)
 4786ed9b37b34d4382dcbaea41132ced9958f06e6f5af6a04ec3688a2262416b  2950245430/common/scripted_effects/asoiaf_assign_inactive_traits_effects.txt  # SOURCE
@@ -380,3 +380,10 @@ e5aa673592e746fa0954ac0cb7cda80f7fa7f15fc3f0ff8dbd9128aee633ec1a  BUILT/common/s
 # events/agot_events/agot_kingsguard_events.txt  [P53_KINGSGUARD_CANDIDATE_SOFT_SCOPE]
 362ec7c3a8701dccc40769c6a003d03d0a49c3084e54e199313e9b3954564490  2962333032/events/agot_events/agot_kingsguard_events.txt  # SOURCE (A Game of Thrones)
 ae336d8b162f332d4cc5281bf67b1b6f9bc186d07d858e418f67a8ce5cad9a3a  BUILT/events/agot_events/agot_kingsguard_events.txt
+# gfx/FX/court_scene.shader  [P54_SHADER_APPLYVARIATIONPATTERNS_ARITY]  (new in unified patch)
+46d1db35c8f5245efc36dec2401a717a045277969505c01afdff857739b83c72  3381385128/gfx/FX/court_scene.shader  # SOURCE (AGOT Color Picker for Clothes - base)
+158eb11f7ba197dd4e706afe414780cbedebb4810c016965982bdeabc10b0a3f  3235061780/gfx/FX/court_scene.shader  # DONOR (Battle Graphics AGOT Patch - ACG block only)
+806d129c944809ecd4111fff5d3e781d34867144bea53a0819fb4ca4e0d353fd  BUILT/gfx/FX/court_scene.shader  [P54]
+# gfx/FX/jomini/portrait_decals.fxh  [P57_DIAG_TEMPORARY]  *** DIAGNOSTIC - REMOVE AFTER TESTING ***
+a46257afc511e0370d398fb47789992aff4a02e859eac847b26932622b7c3331  3381385128/gfx/FX/jomini/portrait_decals.fxh  # SOURCE
+a155eb53d602f5f9de662d8b6a1eefc84d1c13327d46c661b30c9637cb15ca1a  BUILT/gfx/FX/jomini/portrait_decals.fxh  [P57-DIAG]
