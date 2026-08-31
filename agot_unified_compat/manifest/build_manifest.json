@@ -1,4 +1,4 @@
-{
+﻿{
     "mod":  "agot_unified_compat",
     "name":  "AGOT Unified Compatibility Patch",
     "version":  "1.0.0",
@@ -1380,7 +1380,7 @@
                                               "P47_HUD_COLLISION_REPOSITION",
                                               "P49_GUARD_HUD_PARENT_GATE"
                                           ],
-                      "built_sha256":  "b12cbf0e826f56a93d79c2cd65da36d822d0a4385df402930f1c5d221acd964e",
+                      "built_sha256":  "5991e123e92fe3cdcddf6d67a8be1fb719fecbc6add8a7f98df7ac56f76a96c4",
                       "status":  "VERIFIED: 19,978 -\u003e 0 in the 20:21 observer run"
                   },
                   {

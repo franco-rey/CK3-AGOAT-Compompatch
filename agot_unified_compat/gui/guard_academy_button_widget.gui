@@ -26,19 +26,27 @@
 # idiom is sanctioned -- but vanilla never combines it with a scripted-GUI call, so
 # whether CK3 suppresses a hidden parent's child bindings is NOT statically provable.
 #
-# STATUS: UNVERIFIED. Confirm with an observer run and check whether
-# 03_agot_guard_academy_gui.txt:22 still appears in error.log. If it does, this
-# approach is dead too and the remaining option is to stop shipping the widget in
-# observer mode entirely. P24 (gr_chronicle_window.gui) is deliberately left alone
-# until this test settles the question -- no point restructuring a 486-line window
-# on an unproven hypothesis.
+# STATUS: VERIFIED. The observer run after this change logged 0 occurrences of
+# 03_agot_guard_academy_gui.txt:22, down from 19,978. The same pattern was then
+# applied to gr_chronicle_window.gui as P50 (19,977 -> 0).
+#
+# Also verified in normal play (save King_Ronnel 8004.10.5): the player held the
+# has_winged_knights character flag and agot_guards_roster_button_enabled was set,
+# so all three button is_shown blocks passed and the gate did not suppress them.
+# The buttons were invisible purely because of the position value below.
 #
 # Position, size, layer and all three button bindings are carried over unchanged.
 widget = {
 	name = "agot_guard_hud_player_gate"
 	parentanchor = bottom|right
 	widgetanchor = bottom|right
-	position = { -930 0 }
+	# X OFFSET FROM THE RIGHT EDGE. More negative = further LEFT.
+	# Upstream ships -631. A -930 attempt put the 114px strip at x 990-1104 on a
+	# 1920-wide screen, directly behind the centre bottom HUD panel (same
+	# hud_layer), so the buttons rendered but were never visible. Restored to the
+	# known-good -631. To nudge toward find character / find artifact, make this
+	# LESS negative (e.g. -520); do not go below about -700.
+	position = { -631 0 }
 	size = { 114 36 }
 	layer = hud_layer
 	# P49 gate: GetPlayer.IsValid ALONE. No scripted-GUI call at this level.

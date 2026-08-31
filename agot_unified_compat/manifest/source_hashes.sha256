@@ -1,4 +1,4 @@
-# AGOT Unified Compatibility Patch v1.0.0 - source and built hash ledger
+﻿# AGOT Unified Compatibility Patch v1.0.0 - source and built hash ledger
 # Consolidated 2026-08-30 from six local patch mods. See manifest/legacy/ for the originals.
 #
 # SOURCE lines gate the upstream file a patch was derived from. If one changes after a
@@ -341,7 +341,7 @@ d0780252942485561e048786a49552c16036b8cab113a305736527c26afd75f3  BUILT/gui/even
 
 # gui/guard_academy_button_widget.gui  [P36_GUARD_HUD_BINDING_PLAYER_VALID_GATE, P47_HUD_COLLISION_REPOSITION]  (from agot_observer_stack_compat)
 44aec66cc1b41593d8d8c50d833d5fe1237da0157a149d030d2b40ef72c99b3f  3733779333/gui/guard_academy_button_widget.gui  # SOURCE
-b12cbf0e826f56a93d79c2cd65da36d822d0a4385df402930f1c5d221acd964e  BUILT/gui/guard_academy_button_widget.gui  [P47+P49]
+5991e123e92fe3cdcddf6d67a8be1fb719fecbc6add8a7f98df7ac56f76a96c4  BUILT/gui/guard_academy_button_widget.gui  [P47+P49]
 
 # gui/window_character.gui  [P03_MPD_X_DIREWOLVES_X_AGOT_CHARACTER_WINDOW]  (from agot_seasons_personality_compat)
 62d426a1d3ab8dd39eda587fa96b8ae7e410eabff1ed8a3f8ade385bc19b9534  3717990443/gui/window_character.gui  # SOURCE
