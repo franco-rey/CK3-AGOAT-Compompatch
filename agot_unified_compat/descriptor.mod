@@ -1,0 +1,28 @@
+version="1.0.0"
+name="AGOT Unified Compatibility Patch"
+supported_version="1.19.0.6"
+tags={
+	"Fixes"
+	"Total Conversion"
+	"Compatibility"
+}
+dependencies={
+	"A Game of Thrones"
+	"Advanced Character Search"
+	"AGOT - Crowns of Westeros"
+	"AGOT - More Personality Depth"
+	"AGOT : Seasons of Ice and Fire"
+	"AGOT: House Founders"
+	"AGOT+"
+	"COW-AGOT: 3D Models & Bigger Castles"
+	"DireWolves"
+	"Grand Remembrance"
+	"Grand Remembrance - AGOT Compatibility Submod"
+	"Immersive Personalities"
+	"Legacy Of The Dragon"
+	"More Interactive Vassals"
+	"Oathbound"
+	"Patch AGOT - MBS"
+	"Royal Court Event Pack"
+	"Search & Trade Artifacts AGOT Compatibility"
+}

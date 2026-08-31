@@ -1,0 +1,1453 @@
+{
+    "mod":  "agot_unified_compat",
+    "name":  "AGOT Unified Compatibility Patch",
+    "version":  "1.0.0",
+    "ck3_version":  "1.19.0.6",
+    "agot_version":  "0.5.1",
+    "consolidated_on":  "2026-08-30",
+    "load_position":  "FINAL - this mod must be the last entry in the playset, after every Workshop mod.",
+    "consolidated_from":  [
+                              {
+                                  "folder":  "agot_seasons_personality_compat",
+                                  "name":  "AGOT Seasons + Personality Compatibility",
+                                  "version":  "1.0.0",
+                                  "files":  7
+                              },
+                              {
+                                  "folder":  "miv_agot_cb_patch",
+                                  "name":  "MIV - AGOT CB Compatibility",
+                                  "version":  "1.0.1",
+                                  "files":  5
+                              },
+                              {
+                                  "folder":  "agot_mw_revolt_succession_fix",
+                                  "name":  "AGOT - Mega Wars Revolt Succession Fix",
+                                  "version":  "1.1.0",
+                                  "files":  4
+                              },
+                              {
+                                  "folder":  "agot_claimant_faction_war_fix",
+                                  "name":  "AGOT - Claimant Faction War Fix",
+                                  "version":  "1.0.0",
+                                  "files":  2
+                              },
+                              {
+                                  "folder":  "agot_observer_stack_compat",
+                                  "name":  "AGOT Observer Stack Compatibility",
+                                  "version":  "1.1.0",
+                                  "files":  70
+                              },
+                              {
+                                  "folder":  "agot_opb_addon_compat",
+                                  "name":  "AGOT OPB Addon Compatibility",
+                                  "version":  "1.0.1",
+                                  "files":  3
+                              }
+                          ],
+    "file_count":  91,
+    "files":  [
+                  {
+                      "virtual_path":  "common/artifacts/templates/asoiaf_artifacts_templates.txt",
+                      "origin_patch":  "agot_observer_stack_compat",
+                      "provider_workshop_id":  "2950245430",
+                      "provider_name":  null,
+                      "transformations":  [
+                                              "P02_KRAKENFALL_HOUSE_SCOPE"
+                                          ],
+                      "source_sha256":  "7819e8e963bc5929a3f43a39328f74c2ac6d543caf395263ec98d4e7b1e58450",
+                      "replacement_counts":  {
+                                                 "P02_KRAKENFALL_HOUSE_SCOPE":  1
+                                             },
+                      "added_in":  null,
+                      "built_sha256":  "e8086a6ab44514937137097584ac5007bd0475181da0b601613e9f7d6977ca4c"
+                  },
+                  {
+                      "virtual_path":  "common/artifacts/templates/ntc_artifacts_templates.txt",
+                      "origin_patch":  "agot_observer_stack_compat",
+                      "provider_workshop_id":  "2995674648",
+                      "provider_name":  "AGOT - Crowns of Westeros",
+                      "transformations":  [
+                                              "P03_CULTURE_MIGRATION"
+                                          ],
+                      "source_sha256":  "4a6a2270954c02502aad32c281d183edd45faee06d0ac478448ff1d8c5e482a6",
+                      "replacement_counts":  {
+                                                 "culture:stormlander":  10,
+                                                 "culture:riverlander":  3,
+                                                 "culture:valeman":  3,
+                                                 "culture:westerman":  1
+                                             },
+                      "added_in":  null,
+                      "built_sha256":  "f2f629dca7b1fbf7f5d4828c72422f1cce78d160a2a9aa820584133d0d63cb34"
+                  },
+                  {
+                      "virtual_path":  "common/buildings/yy_agotcities_special_buildings_westeros.txt",
+                      "origin_patch":  "agot_observer_stack_compat",
+                      "provider_workshop_id":  "2971198450",
+                      "provider_name":  "COW-AGOT: 3D Models \u0026 Bigger Castles",
+                      "transformations":  [
+                                              "P06_RHOYNISH_OPINION",
+                                              "P06_HOLDING_CONTEXT",
+                                              "P13"
+                                          ],
+                      "source_sha256":  "d0517274f260152db56300c364316a9070a166a6b765e0691b62754d014e0e78",
+                      "replacement_counts":  {
+                                                 "P06_RHOYNISH_OPINION":  2,
+                                                 "P06_HOLDING_CONTEXT":  1,
+                                                 "on_complete_blocks_removed":  3
+                                             },
+                      "added_in":  null,
+                      "built_sha256":  "ce75dc485d29b771774316b0b9df58efd0fe1ff53a6fc4874c20a56fe0b2ffac"
+                  },
+                  {
+                      "virtual_path":  "common/casus_belli_types/oathbound_conquests.txt",
+                      "origin_patch":  "agot_observer_stack_compat",
+                      "provider_workshop_id":  "3457401824",
+                      "provider_name":  "Oathbound",
+                      "transformations":  [
+                                              "P20.1"
+                                          ],
+                      "source_sha256":  "64c00507435bbbbb2f51a10f82aa2b3495761ce73060f774c58f6ec433a7a4ea",
+                      "replacement_counts":  {
+                                                 "cb_prerequisite_blocks_inserted":  3
+                                             },
+                      "added_in":  null,
+                      "built_sha256":  "6144736e0646da6be6ae269932299d36566e8ad8ecf932f00e22859b33e7cb74"
+                  },
+                  {
+                      "virtual_path":  "common/casus_belli_types/zz_agot_mw_revolt_succession_fix.txt",
+                      "origin_patch":  "agot_mw_revolt_succession_fix",
+                      "provider_workshop_id":  null,
+                      "provider_name":  null,
+                      "transformations":  [
+                                              "MWRSF_REVOLT_AND_REBELLION_CB_OVERRIDE"
+                                          ],
+                      "source_sha256":  null,
+                      "added_in":  "pre-JSON patch; entry generated during the 2026-08-30 consolidation",
+                      "built_sha256":  "be18f735fe9bd16f3eb438deee21641c0cf0b4d2068c839c1193c7c827fcb74b"
+                  },
+                  {
+                      "virtual_path":  "common/character_interactions/00_vassal_interactions.txt",
+                      "origin_patch":  "agot_claimant_faction_war_fix",
+                      "provider_workshop_id":  "2962333032",
+                      "provider_name":  "A Game of Thrones",
+                      "transformations":  [
+                                              "CFWF_CLAIMANT_FACTION_INTERACTION_GUARDS"
+                                          ],
+                      "source_sha256":  "b7a36b408a6c0583429ebf81dbe07a794f6af140e91d39e75b9318f77ab162e1",
+                      "added_in":  "pre-JSON patch; entry generated during the 2026-08-30 consolidation",
+                      "built_sha256":  "d9eb534e17c11ad489b9a4b283f750035ef04cdd965b8effb3b35a825761ea03"
+                  },
+                  {
+                      "virtual_path":  "common/character_interactions/06_ep3_interactions.txt",
+                      "origin_patch":  "agot_observer_stack_compat",
+                      "provider_workshop_id":  "2962333032",
+                      "provider_name":  "A Game of Thrones",
+                      "transformations":  [
+                                              "P05_LORATH_EXCLUSION",
+                                              "P11",
+                                              "P27_APPOINTMENT_TITLE_LAW"
+                                          ],
+                      "source_sha256":  "7cb2344b17b8b7eb7b0bebb0ecd9262b5a4207dc4ce57984dc87071de533f736",
+                      "replacement_counts":  {
+                                                 "P05_LORATH_EXCLUSION":  2,
+                                                 "head_of_faith_guards_inserted":  4,
+                                                 "P27_APPOINTMENT_TITLE_LAW":  2
+                                             },
+                      "added_in":  null,
+                      "built_sha256":  "56eb2ade73d9106b0e78c951369c22f641cbb4ebb70e129caad8998eac38c0a2"
+                  },
+                  {
+                      "virtual_path":  "common/character_interactions/interactive_call_ally.txt",
+                      "origin_patch":  "miv_agot_cb_patch",
+                      "provider_workshop_id":  "2712590542",
+                      "provider_name":  "More Interactive Vassals",
+                      "transformations":  [
+                                              "P08_MIV_DISABLED_CB_CONDITIONS"
+                                          ],
+                      "source_sha256":  "c5ed6fe72dac22e8d7d7e7bb1f83b54815ce8652157398b775b250f06469418d",
+                      "added_in":  "pre-JSON patch; entry generated during the 2026-08-30 consolidation",
+                      "built_sha256":  "609d270c55b21b1ff64cb3dad962410643be0dbdc4bfc89a347afdd8aea07688"
+                  },
+                  {
+                      "virtual_path":  "common/character_interactions/interactive_request_vassal_support.txt",
+                      "origin_patch":  "miv_agot_cb_patch",
+                      "provider_workshop_id":  "2712590542",
+                      "provider_name":  "More Interactive Vassals",
+                      "transformations":  [
+                                              "P08_MIV_SUPPORT_INTERACTION_ALIGNMENT"
+                                          ],
+                      "source_sha256":  "aa25e398ed7f7c5aa15cbdc3cbd4eff4045d03a655447f06177dadba1731b3f1",
+                      "added_in":  "pre-JSON patch; entry generated during the 2026-08-30 consolidation",
+                      "built_sha256":  "f2b365f0343e61449d457779fb6cd292fb4ffebff7aea476a09a96ec79184d80"
+                  },
+                  {
+                      "virtual_path":  "common/character_interactions/oathbound_ransom_interaction.txt",
+                      "origin_patch":  "agot_observer_stack_compat",
+                      "provider_workshop_id":  "3457401824",
+                      "provider_name":  "Oathbound",
+                      "transformations":  [
+                                              "P20.6"
+                                          ],
+                      "source_sha256":  "98470232a23d52a08708a9e3fe3a16d366254b36c2ff656f896bbd4342cfaa46",
+                      "replacement_counts":  {
+                                                 "persia_catalyst_blocks_removed":  1
+                                             },
+                      "added_in":  null,
+                      "built_sha256":  "e655372afb7a6154a5a71a4a829408b205491ab1870dae7c54a135e442775f01"
+                  },
+                  {
+                      "virtual_path":  "common/council_positions/00_agot_council_kingsguard.txt",
+                      "origin_patch":  "agot_observer_stack_compat",
+                      "provider_workshop_id":  "2962333032",
+                      "provider_name":  "A Game of Thrones",
+                      "transformations":  [
+                                              "P43_KINGSGUARD_6_SOFT_SCOPE"
+                                          ],
+                      "source_sha256":  "a77bf99ffe80c315167fb6896c90cd8074701b3334af4f10a1e762182701e8fd",
+                      "replacement_counts":  {
+                                                 "P43_KINGSGUARD_6_SOFT_SCOPE":  2
+                                             },
+                      "added_in":  "2026-08-30 revision wave",
+                      "built_sha256":  "1b1c9aba7b460e02fb8e74828b45deb4e6ae330fddac0cba2359f2534a2e5daa"
+                  },
+                  {
+                      "virtual_path":  "common/customizable_localization/oathbound_custom_loc.txt",
+                      "origin_patch":  "agot_observer_stack_compat",
+                      "provider_workshop_id":  "3457401824",
+                      "provider_name":  "Oathbound",
+                      "transformations":  [
+                                              "P20.2"
+                                          ],
+                      "source_sha256":  "e37fafb0400ec38c60290c671584add546b0e4eb5b7362164dd5a706abf817db",
+                      "replacement_counts":  {
+                                                 "character_type_declarations_inserted":  5
+                                             },
+                      "added_in":  null,
+                      "built_sha256":  "9e560d5f9b03e3a0ce5201575c8f898e565b4e75c81a8e69ac4113a2f89a30e0"
+                  },
+                  {
+                      "virtual_path":  "common/decisions/interactive_decisions.txt",
+                      "origin_patch":  "miv_agot_cb_patch",
+                      "provider_workshop_id":  "2712590542",
+                      "provider_name":  "More Interactive Vassals",
+                      "transformations":  [
+                                              "P08_MIV_DISABLED_CB_CONDITIONS"
+                                          ],
+                      "source_sha256":  "41dfca17c0f0a7605b943128360e4e325f182d8e311a82f61c66bfd2b894ef15",
+                      "added_in":  "pre-JSON patch; entry generated during the 2026-08-30 consolidation",
+                      "built_sha256":  "fefdbf8ced37ab8abc7e8d46ed7efbdfb0b9eda438ed8e7bfece6918ff304b76"
+                  },
+                  {
+                      "virtual_path":  "common/decisions/zz_observer_stack_direwolf_hunt_fix.txt",
+                      "origin_patch":  "agot_observer_stack_compat",
+                      "provider_workshop_id":  "3766320609",
+                      "provider_name":  "DireWolves",
+                      "transformations":  [
+                                              "P45_DIREWOLF_PACK_SIZE_GUARD"
+                                          ],
+                      "source_sha256":  "02b3481a5f7abe10cacb2f143001f6087119c3cc62f581efacc58ec457553c59",
+                      "replacement_counts":  {
+                                                 "P45_DIREWOLF_PACK_SIZE_GUARD":  1
+                                             },
+                      "added_in":  "2026-08-30 read-only follow-up",
+                      "built_sha256":  "61e4dee34be9cb42488ee70eef3c97324cd309c5791c7df3ef11aa09761f26a8"
+                  },
+                  {
+                      "virtual_path":  "common/domiciles/buildings/00_agot_pirate_ship_buildings_UE.txt",
+                      "origin_patch":  "agot_observer_stack_compat",
+                      "provider_workshop_id":  "3768775292",
+                      "provider_name":  "Expanded Domiciles for AGOT",
+                      "transformations":  [
+                                              "P38_DOMICILE_FILE_SCOPED_CONSTANTS_RESTORED"
+                                          ],
+                      "source_sha256":  "256679008ea2a1be1441c623cbc3f7b9d82dc9162a3eae64c76b04ba1032c459",
+                      "replacement_counts":  {
+                                                 "P38_DOMICILE_FILE_SCOPED_CONSTANTS_RESTORED":  6
+                                             },
+                      "added_in":  "2026-08-30 revision wave",
+                      "built_sha256":  "a59ba6ce8485f8457afc6a56db28e57c7caede9afdad4337247aca2c68f1bae9"
+                  },
+                  {
+                      "virtual_path":  "common/domiciles/buildings/00_agot_ranger_buildings_UE.txt",
+                      "origin_patch":  "agot_observer_stack_compat",
+                      "provider_workshop_id":  "3768775292",
+                      "provider_name":  "Expanded Domiciles for AGOT",
+                      "transformations":  [
+                                              "P38_DOMICILE_FILE_SCOPED_CONSTANTS_RESTORED"
+                                          ],
+                      "source_sha256":  "b7ebbd544910aaf02c10943034a0560012d20c898968e4a07dbf98740c05b04f",
+                      "replacement_counts":  {
+                                                 "P38_DOMICILE_FILE_SCOPED_CONSTANTS_RESTORED":  8
+                                             },
+                      "added_in":  "2026-08-30 revision wave",
+                      "built_sha256":  "7c021786992f2dfaee4811a79dd4ba62a7fff3c6c5233579851d7f9aa7599e11"
+                  },
+                  {
+                      "virtual_path":  "common/domiciles/buildings/00_camp_buildings_UC.txt",
+                      "origin_patch":  "agot_observer_stack_compat",
+                      "provider_workshop_id":  "3768775292",
+                      "provider_name":  "Expanded Domiciles for AGOT",
+                      "transformations":  [
+                                              "P38_DOMICILE_FILE_SCOPED_CONSTANTS_RESTORED"
+                                          ],
+                      "source_sha256":  "8d77fa105f8793e928e10287ea3eced9e6a1391de78966cd72d1e336c2e751ea",
+                      "replacement_counts":  {
+                                                 "P38_DOMICILE_FILE_SCOPED_CONSTANTS_RESTORED":  4
+                                             },
+                      "added_in":  "2026-08-30 revision wave",
+                      "built_sha256":  "20dc9c7c2e437298e46837ac9f9045da25f058805594c3c8f037623acbd50779"
+                  },
+                  {
+                      "virtual_path":  "common/domiciles/buildings/00_chinese_estate_buildings_UE.txt",
+                      "origin_patch":  "agot_observer_stack_compat",
+                      "provider_workshop_id":  "3768775292",
+                      "provider_name":  "Expanded Domiciles for AGOT",
+                      "transformations":  [
+                                              "P38_DOMICILE_FILE_SCOPED_CONSTANTS_RESTORED"
+                                          ],
+                      "source_sha256":  "df441ffed5c15357e9c4accdb87c665e5b5ecb4c82e53ea147461e6c87ee33fe",
+                      "replacement_counts":  {
+                                                 "P38_DOMICILE_FILE_SCOPED_CONSTANTS_RESTORED":  6
+                                             },
+                      "added_in":  "2026-08-30 revision wave",
+                      "built_sha256":  "7ed3b107435295ef13e7ad4a341a7bbc831b26f5c9317d803cb40b4e567a9bb9"
+                  },
+                  {
+                      "virtual_path":  "common/domiciles/buildings/00_yurt_buildings_UY.txt",
+                      "origin_patch":  "agot_observer_stack_compat",
+                      "provider_workshop_id":  "3768775292",
+                      "provider_name":  "Expanded Domiciles for AGOT",
+                      "transformations":  [
+                                              "P38_DOMICILE_FILE_SCOPED_CONSTANTS_RESTORED"
+                                          ],
+                      "source_sha256":  "7e9bc1eef50f1891eaa8cb9d28ccd9cad6169d0ae91d610dadbbe4c0eefb3864",
+                      "replacement_counts":  {
+                                                 "P38_DOMICILE_FILE_SCOPED_CONSTANTS_RESTORED":  11
+                                             },
+                      "added_in":  "2026-08-30 revision wave",
+                      "built_sha256":  "be53a43f6e198d28cbe331eb0602ceee9ba9ec4f1c952d4f235da6077cdbabb4"
+                  },
+                  {
+                      "virtual_path":  "common/domiciles/buildings/01_camp_level_one_internal_slots_UE.txt",
+                      "origin_patch":  "agot_observer_stack_compat",
+                      "provider_workshop_id":  "3768775292",
+                      "provider_name":  "Expanded Domiciles for AGOT",
+                      "transformations":  [
+                                              "P38_DOMICILE_FILE_SCOPED_CONSTANTS_RESTORED"
+                                          ],
+                      "source_sha256":  "52d3d18b51afd7d413ad1eada0ba0c61b4fec7abbd96654ecb7b15d243078b7f",
+                      "replacement_counts":  {
+                                                 "P38_DOMICILE_FILE_SCOPED_CONSTANTS_RESTORED":  5
+                                             },
+                      "added_in":  "2026-08-30 revision wave",
+                      "built_sha256":  "ad6fb27a7060a5401e3f4c1a19356475cfe589701e42b85c0d88f691367f6f30"
+                  },
+                  {
+                      "virtual_path":  "common/factions/00_factions.txt",
+                      "origin_patch":  "agot_observer_stack_compat",
+                      "provider_workshop_id":  "2962333032",
+                      "provider_name":  "A Game of Thrones",
+                      "transformations":  [
+                                              "P18"
+                                          ],
+                      "source_sha256":  "5913734738ba47f0fcc3a82de29e4abb9f3ba9f1ac273688b468d79b4a3d638e",
+                      "replacement_counts":  {
+                                                 "special_title_block_replaced":  1
+                                             },
+                      "added_in":  null,
+                      "built_sha256":  "89afd7d76158f4ebb60801b7732f7586b9595bb86f5b5d61c8d42d89d90ab23c"
+                  },
+                  {
+                      "virtual_path":  "common/modifier_definition_formats/zz_observer_stack_culture_opinion_definitions.txt",
+                      "origin_patch":  "agot_observer_stack_compat",
+                      "provider_workshop_id":  "additive",
+                      "provider_name":  null,
+                      "transformations":  [
+                                              "P03_VALEMAN_DEF_FORMAT"
+                                          ],
+                      "source_sha256":  null,
+                      "replacement_counts":  {
+                                                 "created_file":  1
+                                             },
+                      "added_in":  null,
+                      "built_sha256":  "7f944979b7faaf4332b35db9ea1ec7d044e3cce218decef1404fa0f7ee628bc6"
+                  },
+                  {
+                      "virtual_path":  "common/modifiers/asoiaf_artifact_modifiers.txt",
+                      "origin_patch":  "agot_observer_stack_compat",
+                      "provider_workshop_id":  "2950245430",
+                      "provider_name":  null,
+                      "transformations":  [
+                                              "P02_WESTERMAN_OPINION"
+                                          ],
+                      "source_sha256":  "b781c7358e4a93e7c980133728bff9de1f077595c0dc26420f2e65e4ea7a894d",
+                      "replacement_counts":  {
+                                                 "P02_WESTERMAN_OPINION":  1
+                                             },
+                      "added_in":  null,
+                      "built_sha256":  "7f0a8d0c3db3cb3cdf862c4cad09b05c04dbeb82a01788149575bd9cece6fa74"
+                  },
+                  {
+                      "virtual_path":  "common/modifiers/ntc_artifact_modifiers.txt",
+                      "origin_patch":  "agot_observer_stack_compat",
+                      "provider_workshop_id":  "2995674648",
+                      "provider_name":  "AGOT - Crowns of Westeros",
+                      "transformations":  [
+                                              "P03_VALEMAN_OPINION"
+                                          ],
+                      "source_sha256":  "bef9756f993e237614ecedbd37773f71684c3628ed0706d7bdf03e9933c1fa4f",
+                      "replacement_counts":  {
+                                                 "valeman_opinion":  3
+                                             },
+                      "added_in":  null,
+                      "built_sha256":  "1673631ca8b4923aa23c72a13cd076d4d61db2ada4b639ac192ec9a5f6bba117"
+                  },
+                  {
+                      "virtual_path":  "common/modifiers/zz_observer_stack_missing_canon_child_modifiers.txt",
+                      "origin_patch":  "agot_observer_stack_compat",
+                      "provider_workshop_id":  "NEW",
+                      "provider_name":  null,
+                      "transformations":  [
+                                              "P33_GREYJOY_13_ALT_MODIFIER_DEFINED"
+                                          ],
+                      "source_sha256":  null,
+                      "replacement_counts":  {
+                                                 "P33_GREYJOY_13_ALT_MODIFIER_DEFINED":  1
+                                             },
+                      "added_in":  "2026-08-29 revision wave",
+                      "built_sha256":  "2610c92af200a56c05b267b358cdcc3d5b4db59e9f53bc1472a9b4c02b3b102f"
+                  },
+                  {
+                      "virtual_path":  "common/on_action/00_agot_guard_positions_on_actions.txt",
+                      "origin_patch":  "agot_observer_stack_compat",
+                      "provider_workshop_id":  "3733779333",
+                      "provider_name":  "AGOT: Royal Guards",
+                      "transformations":  [
+                                              "P39_GUARD_INHERITS_TITLE_REVIEW_DEDUP"
+                                          ],
+                      "source_sha256":  "267015befb42fd0f053f8395cf26ddb189076fc5e3a2029c6540b9ce0c73f2de",
+                      "replacement_counts":  {
+                                                 "P39_GUARD_INHERITS_TITLE_REVIEW_DEDUP":  2
+                                             },
+                      "added_in":  "2026-08-30 revision wave",
+                      "built_sha256":  "e2b2fd212a03676d08eeea75ec3ffaa99a4cb1631ca3f30df06f81e46e528dd3"
+                  },
+                  {
+                      "virtual_path":  "common/on_action/05_agot_queensguard_on_actions.txt",
+                      "origin_patch":  "agot_observer_stack_compat",
+                      "provider_workshop_id":  "3733779333",
+                      "provider_name":  "AGOT: Royal Guards",
+                      "transformations":  [
+                                              "P40_QUEENSGUARD_TARGARYEN63_SOFT_SCOPE"
+                                          ],
+                      "source_sha256":  "db487fe565ee07abb705c7d5de21a3adedb01b557474d2a2ba095ea0ed794af4",
+                      "replacement_counts":  {
+                                                 "P40_QUEENSGUARD_TARGARYEN63_SOFT_SCOPE":  4
+                                             },
+                      "added_in":  "2026-08-30 revision wave",
+                      "built_sha256":  "fdce46c0dafe659e6e9cc7adc5fd1ee889cac13a5e33f59b3a0a64555bc6afb6"
+                  },
+                  {
+                      "virtual_path":  "common/on_action/agot_on_actions/test_title_on_actions.txt",
+                      "origin_patch":  "agot_observer_stack_compat",
+                      "provider_workshop_id":  "2950245430",
+                      "provider_name":  null,
+                      "transformations":  [
+                                              "P02_CROWN_CREATOR_CALLS",
+                                              "P12"
+                                          ],
+                      "source_sha256":  "c5d8c4ed2a7e7d74c3ce69b813a59b79f2f9ba7a9051b986d8be9b8da6d3c909",
+                      "replacement_counts":  {
+                                                 "P02_CROWN_CREATOR_CALLS":  7,
+                                                 "P02_CROWN_CREATOR_CALLS_REQUIRED_BY_MANUAL":  8,
+                                                 "creator_arguments_added":  3
+                                             },
+                      "added_in":  null,
+                      "built_sha256":  "8340c72902020940ad27a345685a7fe6df2b44a3f5fd4002169babd22efbcc6f"
+                  },
+                  {
+                      "virtual_path":  "common/on_action/asoiaf_yearly_on_actions.txt",
+                      "origin_patch":  "agot_observer_stack_compat",
+                      "provider_workshop_id":  "2950245430",
+                      "provider_name":  null,
+                      "transformations":  [
+                                              "P14.3",
+                                              "P31A_MANCE_GIANT_REGIMENT"
+                                          ],
+                      "source_sha256":  "fb8c2952993e341fe23bf9e8bd0cc92c8c40e7f7e19540023db6c06cd9a031a9",
+                      "replacement_counts":  {
+                                                 "fixed_dragon_start_scheme_blocks_removed":  10,
+                                                 "P31A_MANCE_GIANT_REGIMENT":  1
+                                             },
+                      "added_in":  null,
+                      "built_sha256":  "bb2213047351b6ba064f2734052721c566b1164e67c0454b2993d10899d93871"
+                  },
+                  {
+                      "virtual_path":  "common/on_action/child_birth_on_actions.txt",
+                      "origin_patch":  "agot_seasons_personality_compat",
+                      "provider_workshop_id":  "2967263410",
+                      "provider_name":  "AGOT: House Founders",
+                      "transformations":  [
+                                              "P01_HF_BIRTH_HOOKS_X_SEASONS_NICKNAME"
+                                          ],
+                      "source_sha256":  "b3c78e09d7538f2b3b51087396c3b4563b2a6a0bc86b626bc7ab3bd7ef32d029",
+                      "donor_workshop_id":  "3377641022",
+                      "donor_sha256":  "54b36c1f4eb16a74d5e6947984a4bc249e13f38e7741ce8632803e91dbeb2107",
+                      "added_in":  "2026-08-30 seasons+personality wave",
+                      "built_sha256":  "14ec214b5575319a308dd9a9eb07717f08b5dcf0b8e7d58573b5a1ded63840f7"
+                  },
+                  {
+                      "virtual_path":  "common/on_action/gr_on_actions.txt",
+                      "origin_patch":  "agot_observer_stack_compat",
+                      "provider_workshop_id":  "3678529052",
+                      "provider_name":  "Grand Remembrance",
+                      "transformations":  [
+                                              "P21.3"
+                                          ],
+                      "source_sha256":  "73b6cc9c2dec76b121169d1a9724a4fc3b1caec8e58d9132467846747ac6aee1",
+                      "replacement_counts":  {
+                                                 "rice_revalidate_neutralized":  1,
+                                                 "missing_trait_checks_removed":  4,
+                                                 "physician_chain_lines_removed":  3,
+                                                 "papacy_blocks_removed":  1,
+                                                 "rice_sections_removed":  1,
+                                                 "crossing_sections_removed":  1,
+                                                 "born_in_purple_checks_removed":  1,
+                                                 "elective_sections_removed":  1
+                                             },
+                      "added_in":  null,
+                      "built_sha256":  "756b2247d9bccdc38449290c9faee734b158507abd39d432069853b439a957d0"
+                  },
+                  {
+                      "virtual_path":  "common/on_action/interactive_on_actions.txt",
+                      "origin_patch":  "miv_agot_cb_patch",
+                      "provider_workshop_id":  "2712590542",
+                      "provider_name":  "More Interactive Vassals",
+                      "transformations":  [
+                                              "P08_MIV_DISABLED_CB_CONDITIONS",
+                                              "P08_RANDOM_RULER_PLACEMENT_REMOVED"
+                                          ],
+                      "source_sha256":  "4e6342659b59cd46c9ac1f77b802f81ed19cb9c9c30c90e30f4e1e06c314b2e2",
+                      "added_in":  "pre-JSON patch; entry generated during the 2026-08-30 consolidation",
+                      "built_sha256":  "d402a25411f7d691ae682f8e99fc88aca1c4fc09ac089c3a47fdade14dd1ab8e"
+                  },
+                  {
+                      "virtual_path":  "common/on_action/relations/oathbound_on_relation_deaths.txt",
+                      "origin_patch":  "agot_observer_stack_compat",
+                      "provider_workshop_id":  "3457401824",
+                      "provider_name":  "Oathbound",
+                      "transformations":  [
+                                              "P20.3"
+                                          ],
+                      "source_sha256":  "8851e72f769f8c884ec157dcacac26d72308ec3f4f0da6dc67e0acb1a35e47e3",
+                      "replacement_counts":  {
+                                                 "forced_heir_prerequisite_sets":  1,
+                                                 "heir_soft_scopes":  2,
+                                                 "permanent_transfer_prerequisite_sets":  2,
+                                                 "cleanup_variable_guards":  3,
+                                                 "task_target_scope_corrections":  2
+                                             },
+                      "added_in":  null,
+                      "built_sha256":  "4383797b93e2f37c2976eff907ca6b943eda1d77dca68e9d402a5ea008180133"
+                  },
+                  {
+                      "virtual_path":  "common/on_action/xx_gptc_on_action_replace.txt",
+                      "origin_patch":  "agot_opb_addon_compat",
+                      "provider_workshop_id":  "3360676953",
+                      "provider_name":  "Royal Court Event Pack",
+                      "transformations":  [
+                                              null
+                                          ],
+                      "source_sha256":  "d45d56ff2f7ad5979e3638785783de3407986dd20f4f700c5daa560ae2fe8219",
+                      "added_in":  null,
+                      "built_sha256":  "fd6274c02e1b053147a657ed935acaa2fa08b136844e0e99814ddbd5b7d50e6d"
+                  },
+                  {
+                      "virtual_path":  "common/on_action/zz_gptev_on_actions.txt",
+                      "origin_patch":  "agot_opb_addon_compat",
+                      "provider_workshop_id":  "3596393244",
+                      "provider_name":  "Immersive Personalities",
+                      "transformations":  [
+                                              {
+                                                  "id":  "A1",
+                                                  "description":  "Age-16 birthday guard: added is_human = yes to gpt_on_birthday_animal_archetypes trigger",
+                                                  "required_count":  1,
+                                                  "actual_count":  1
+                                              },
+                                              {
+                                                  "id":  "A2",
+                                                  "description":  "CORRECTED join-court guard: is_human = yes added at ROOT of gpt_on_join_court_animal_archetypes trigger (the joiner); scope:new_employer retains only is_ai = no and does NOT contain is_human",
+                                                  "required_count":  1,
+                                                  "actual_count":  1
+                                              },
+                                              {
+                                                  "id":  "A3",
+                                                  "description":  "Age-12 coming-of-age guard: added is_human = yes to gptev_coming_of_age_check trigger",
+                                                  "required_count":  1,
+                                                  "actual_count":  1
+                                              }
+                                          ],
+                      "source_sha256":  "409a3fc7d33846950effb3e43510a894e32c296888daacb75304b9309b8a68a9",
+                      "added_in":  null,
+                      "built_sha256":  "94548f0f048fe90cf568535edaaa9f15e13b5a2f6b7f2b3cbe02853be9a8ca63"
+                  },
+                  {
+                      "virtual_path":  "common/on_action/zz_gr_memory_tracking.txt",
+                      "origin_patch":  "agot_observer_stack_compat",
+                      "provider_workshop_id":  "3678529052",
+                      "provider_name":  "Grand Remembrance",
+                      "transformations":  [
+                                              "P21.1"
+                                          ],
+                      "source_sha256":  "091c10c430a6b9b061b470b83c779e5c395ec5afd1cdce46ce3a63a36b647193",
+                      "replacement_counts":  {
+                                                 "definitions_replaced":  1
+                                             },
+                      "added_in":  null,
+                      "built_sha256":  "4df7e6590ac6726f523819ccf33e9680e4929a506a88d6e9ab424e4975520804"
+                  },
+                  {
+                      "virtual_path":  "common/script_values/accou_marriage_values.txt",
+                      "origin_patch":  "agot_observer_stack_compat",
+                      "provider_workshop_id":  "3157170996",
+                      "provider_name":  "Active Courtiers",
+                      "transformations":  [
+                                              "P48_ACTIVE_COURTIERS_FP3_STRUGGLE_NEUTRALISED"
+                                          ],
+                      "source_sha256":  "07b7251b30455f5b7b1fec606f25758a1d4a969e5ab6eeaeef973abaaab7fb7e",
+                      "replacement_counts":  {
+                                                 "P48_ACTIVE_COURTIERS_FP3_STRUGGLE_NEUTRALISED":  2
+                                             },
+                      "added_in":  "pre-existing override, documented retroactively 2026-08-30 clerical pass",
+                      "built_sha256":  "aa5ac8257d767b78554e33ba50b15487327e6f90c1e8671403dbc1a6ce7f3c59"
+                  },
+                  {
+                      "virtual_path":  "common/scripted_character_templates/asoiaf_invader_templates.txt",
+                      "origin_patch":  "agot_observer_stack_compat",
+                      "provider_workshop_id":  "2950245430",
+                      "provider_name":  null,
+                      "transformations":  [
+                                              "P02_INVADER_IS_DEAD",
+                                              "P31B_YOUNG_GRIFF_NICKNAME"
+                                          ],
+                      "source_sha256":  "67ed5a01e2b1226ad6eb5c496cfc00e71ef6536d699cfc547002ebe05889c0f2",
+                      "replacement_counts":  {
+                                                 "P02_INVADER_IS_DEAD":  1,
+                                                 "P31B_YOUNG_GRIFF_NICKNAME":  1
+                                             },
+                      "added_in":  null,
+                      "built_sha256":  "4708f34e5f0558ab456c7f36989051f5af79f98e76962cac58ef633dc4e78862"
+                  },
+                  {
+                      "virtual_path":  "common/scripted_character_templates/ntc_scripted_character_template.txt",
+                      "origin_patch":  "agot_observer_stack_compat",
+                      "provider_workshop_id":  "2995674648",
+                      "provider_name":  "AGOT - Crowns of Westeros",
+                      "transformations":  [
+                                              "P03_CULTURE_MIGRATION"
+                                          ],
+                      "source_sha256":  "2d5333009be4138a3e1c200a3eac012e8d72435423ce4ed5ffef03292a3a896c",
+                      "replacement_counts":  {
+                                                 "culture:mountain_clansman":  1
+                                             },
+                      "added_in":  null,
+                      "built_sha256":  "ee2ae88d0ddbecb760cd41de5770c8e9141f2a1363a44b1ad72d81414a35b430"
+                  },
+                  {
+                      "virtual_path":  "common/scripted_effects/00_agot_guard_positions_effects.txt",
+                      "origin_patch":  "agot_observer_stack_compat",
+                      "provider_workshop_id":  "3733779333",
+                      "provider_name":  "AGOT: Royal Guards",
+                      "transformations":  [
+                                              "P41_GUARD_QUEUE_CHURN_DEDUP",
+                                              "P42_TRAINING_RANK_TOOLTIP_SAFE_READS",
+                                              "P46_ACADEMY_PATH_XP_TOOLTIP_GUARD"
+                                          ],
+                      "source_sha256":  "202c52a56a3d7ac85629d2d87d935cfcb6f5595c80074f4076bceea603c956c3",
+                      "replacement_counts":  {
+                                                 "P41_GUARD_QUEUE_CHURN_DEDUP":  7,
+                                                 "P42_TRAINING_RANK_TOOLTIP_SAFE_READS":  6,
+                                                 "P46_ACADEMY_PATH_XP_TOOLTIP_GUARD":  8
+                                             },
+                      "added_in":  "2026-08-30 revision wave; P46 added 2026-08-30 Ser Duncan follow-up",
+                      "built_sha256":  "fadd1cc5cd196c1148abbfe9d1d84c77f8b7b95ed4d2088ffc010ae8e55240ef"
+                  },
+                  {
+                      "virtual_path":  "common/scripted_effects/00_agot_hf_effects.txt",
+                      "origin_patch":  "agot_observer_stack_compat",
+                      "provider_workshop_id":  "2967263410",
+                      "provider_name":  "AGOT: House Founders",
+                      "transformations":  [
+                                              "P19"
+                                          ],
+                      "source_sha256":  "66628c384eef295d4966fb4057a4af92b69c3c39fc54d28df514e5451f93cce6",
+                      "replacement_counts":  {
+                                                 "prerequisite_blocks_inserted":  1,
+                                                 "prerequisites_in_block":  6
+                                             },
+                      "added_in":  null,
+                      "built_sha256":  "5c81c79b6dfc9b3d1227cc4b805e6a758fa94bbb3fb48d8332b6b9a81ec3638f"
+                  },
+                  {
+                      "virtual_path":  "common/scripted_effects/00_interaction_effects.txt",
+                      "origin_patch":  "agot_observer_stack_compat",
+                      "provider_workshop_id":  "2962333032",
+                      "provider_name":  "A Game of Thrones",
+                      "transformations":  [
+                                              "P10",
+                                              "P28_RECRUIT_SCOPE_GUARD"
+                                          ],
+                      "source_sha256":  "dfde92191c93bf93a074dc475fe1a188d8d17f7f4515c22b4f903bb2d6cfff91",
+                      "replacement_counts":  {
+                                                 "actor_guarded_effects":  2,
+                                                 "P28_RECRUIT_SCOPE_GUARD":  1
+                                             },
+                      "added_in":  null,
+                      "built_sha256":  "c0358c88859bbf11bd4fdd2cbb67636bb38b95ce6ae05cc0de0daa27f43c1549"
+                  },
+                  {
+                      "virtual_path":  "common/scripted_effects/06_agot_swords_of_braavos_effects.txt",
+                      "origin_patch":  "agot_observer_stack_compat",
+                      "provider_workshop_id":  "3733779333",
+                      "provider_name":  "AGOT: Royal Guards",
+                      "transformations":  [
+                                              "P41_GUARD_QUEUE_CHURN_DEDUP"
+                                          ],
+                      "source_sha256":  "24ae56a3ccfe1d0156be4236edcbe5254a2f9514924bfaf9ea134daa4d865deb",
+                      "replacement_counts":  {
+                                                 "P41_GUARD_QUEUE_CHURN_DEDUP":  2
+                                             },
+                      "added_in":  "2026-08-30 revision wave",
+                      "built_sha256":  "40956cd94137797fec76bc476ac45e6759583de8e771098b2dac18c4489e0320"
+                  },
+                  {
+                      "virtual_path":  "common/scripted_effects/07_dlc_ep3_scripted_effects.txt",
+                      "origin_patch":  "agot_seasons_personality_compat",
+                      "provider_workshop_id":  "2967263410",
+                      "provider_name":  "AGOT: House Founders",
+                      "transformations":  [
+                                              "P02_HF_ADVENTURER_NAMING_X_SEASONS_WINTER_TIERS"
+                                          ],
+                      "source_sha256":  "a5171679cd2e3feb2429614146e665e997c20cbcbfe03fecf6e6ff2444de156d",
+                      "donor_workshop_id":  "3377641022",
+                      "donor_sha256":  "26aa808294a4f88a63a2c38c619727770edf0e7296ed6c9aa24b50c7368edfed",
+                      "added_in":  "2026-08-30 seasons+personality wave",
+                      "built_sha256":  "0dfa008fd1e0f5aa76d23f7d70022aee008dad0120cc8bd474d497107b5f5679"
+                  },
+                  {
+                      "virtual_path":  "common/scripted_effects/08_agot_guard_order_book_effects.txt",
+                      "origin_patch":  "agot_observer_stack_compat",
+                      "provider_workshop_id":  "3733779333",
+                      "provider_name":  "AGOT: Royal Guards",
+                      "transformations":  [
+                                              "P35_GUARD_BOOK_LORD_COMMANDER_ONCE_PER_PAGE"
+                                          ],
+                      "source_sha256":  "e1854a917a1599c725c01862c258a7f82729cf577cb0d290d6f59de81e9a1ccd",
+                      "replacement_counts":  {
+                                                 "P35_GUARD_BOOK_LORD_COMMANDER_ONCE_PER_PAGE":  1
+                                             },
+                      "added_in":  "2026-08-30 revision wave",
+                      "built_sha256":  "57feb5ba1f453fc3710ab3313abc222f5bd123b4f41bb40f10c35be9f2c637e8"
+                  },
+                  {
+                      "virtual_path":  "common/scripted_effects/20_health_effects.txt",
+                      "origin_patch":  "agot_observer_stack_compat",
+                      "provider_workshop_id":  "2962333032",
+                      "provider_name":  "A Game of Thrones",
+                      "transformations":  [
+                                              "P16"
+                                          ],
+                      "source_sha256":  "9f871971b349e0555503fbe1bb0c2f8692a82b2067354bcb8e04b1c608e230ec",
+                      "replacement_counts":  {
+                                                 "new_memory_soft_scope":  1
+                                             },
+                      "added_in":  null,
+                      "built_sha256":  "f1536a47e61fb622c8326a4742bf44ea1d134bd582705baba51da2c8987bbd09"
+                  },
+                  {
+                      "virtual_path":  "common/scripted_effects/acs_se_religion.txt",
+                      "origin_patch":  "agot_observer_stack_compat",
+                      "provider_workshop_id":  "3084203091",
+                      "provider_name":  "Advanced Character Search",
+                      "transformations":  [
+                                              "P26_RELIGION_FAMILY_SINGLE_BUCKET"
+                                          ],
+                      "source_sha256":  "98bd4ad3ec4ad280308372fb98a5253477e36c5c2fef01b78ccccfdaaf4189e2",
+                      "replacement_counts":  {
+                                                 "P26_RELIGION_FAMILY_SINGLE_BUCKET":  2
+                                             },
+                      "added_in":  "2026-08-29 revision wave",
+                      "built_sha256":  "30927343cf1c13efce3a3367d5feef05f8f855d8158008a6db249f57f3e606e0"
+                  },
+                  {
+                      "virtual_path":  "common/scripted_effects/asoiaf_agot_overwrite_effects.txt",
+                      "origin_patch":  "agot_observer_stack_compat",
+                      "provider_workshop_id":  "2950245430",
+                      "provider_name":  null,
+                      "transformations":  [
+                                              "P32A_DRAGON_FAITH_VALYRIAN_PAN_DRAGON"
+                                          ],
+                      "source_sha256":  "04d527edce9813f551bfa06aa69fd0647c5d81b9bfeb0feae82f41bda08b2e6b",
+                      "replacement_counts":  {
+                                                 "P32A_DRAGON_FAITH_VALYRIAN_PAN_DRAGON":  7
+                                             },
+                      "added_in":  "2026-08-29 revision wave",
+                      "built_sha256":  "17f2e205174f3863a144e138b3463a42c0c4b6a292cb883a6210c25a69b519ab"
+                  },
+                  {
+                      "virtual_path":  "common/scripted_effects/asoiaf_assign_inactive_traits_effects.txt",
+                      "origin_patch":  "agot_observer_stack_compat",
+                      "provider_workshop_id":  "2950245430",
+                      "provider_name":  null,
+                      "transformations":  [
+                                              "P33_TARGARYEN_95_MODIFIER_REMOVED"
+                                          ],
+                      "source_sha256":  "4786ed9b37b34d4382dcbaea41132ced9958f06e6f5af6a04ec3688a2262416b",
+                      "replacement_counts":  {
+                                                 "P33_TARGARYEN_95_MODIFIER_REMOVED":  1
+                                             },
+                      "added_in":  "2026-08-29 revision wave",
+                      "built_sha256":  "fbb7b231421c288c1b0ef23b1b627ed184f9b5e04004e66dc0d830a6483b827d"
+                  },
+                  {
+                      "virtual_path":  "common/scripted_effects/asoiaf_canon_children_effects.txt",
+                      "origin_patch":  "agot_observer_stack_compat",
+                      "provider_workshop_id":  "2950245430",
+                      "provider_name":  null,
+                      "transformations":  [
+                                              "P01_REMOVE_DUAL_PLACEMENT",
+                                              "P01_ATTACH_NEWBORN_TO_COURT",
+                                              "P01_CANON_PARSE_REPAIRS",
+                                              "P14.2",
+                                              "P14.3"
+                                          ],
+                      "source_sha256":  "080981232f0708671afd71203df3466158d5d90ae0085381ae8c36e5446b747d",
+                      "replacement_counts":  {
+                                                 "P01_REMOVE_DUAL_PLACEMENT":  202,
+                                                 "P01_ATTACH_NEWBORN_TO_COURT":  1,
+                                                 "P01_TRAIT_ADD":  1,
+                                                 "P01_DYNASTY_TRIGGER_ANY":  6,
+                                                 "P01_SPOUSE_NOT_BLOCK":  1,
+                                                 "P01_TOTAL_ADJACENT_PARSE_REPAIRS":  8,
+                                                 "nickname_keys_replaced":  1,
+                                                 "fixed_dragon_start_scheme_blocks_removed":  24
+                                             },
+                      "added_in":  null,
+                      "built_sha256":  "ffcf1299dbf37c3ed21f1bddaadef492b3494b133adb7adc6805eaefb86c4775"
+                  },
+                  {
+                      "virtual_path":  "common/scripted_effects/asoiaf_scripted_effects_artifacts.txt",
+                      "origin_patch":  "agot_observer_stack_compat",
+                      "provider_workshop_id":  "2950245430",
+                      "provider_name":  null,
+                      "transformations":  [
+                                              "P02_CROWN_CREATOR_CONTRACT"
+                                          ],
+                      "source_sha256":  "42c5da841ddb36017f8418637fb4438f344c100807334cf7d889b329bb90a8a7",
+                      "replacement_counts":  {
+                                                 "P02_CROWN_CREATOR_DECLARATIONS":  3,
+                                                 "P02_CROWN_CREATOR_FIELDS":  6
+                                             },
+                      "added_in":  null,
+                      "built_sha256":  "75dc08fe7731bdca2d3b90b5b733a200c91c589e8209fd4295cf10e5689c38b0"
+                  },
+                  {
+                      "virtual_path":  "common/scripted_effects/asoiaf_setup_effects.txt",
+                      "origin_patch":  "agot_observer_stack_compat",
+                      "provider_workshop_id":  "2950245430",
+                      "provider_name":  null,
+                      "transformations":  [
+                                              "P02_UNDERAGED_SCOPE_PREFIX",
+                                              "P02_HAS_CLAIM_ON",
+                                              "P02_IS_DEAD_TRIGGER",
+                                              "P02_REMOVE_NOOP_EXISTS",
+                                              "P32B_MORE_BOOKMARKS_RHLLOR_REMOVED"
+                                          ],
+                      "source_sha256":  "60daa8eaa60ab1bf44c24a6065e31019fca5a621c7876e9a96634b20c6a7bbd7",
+                      "replacement_counts":  {
+                                                 "P02_UNDERAGED_SCOPE_PREFIX":  107,
+                                                 "P02_HAS_CLAIM_ON":  15,
+                                                 "P02_IS_DEAD_TRIGGER":  2,
+                                                 "P02_REMOVE_NOOP_EXISTS":  9,
+                                                 "P32B_MORE_BOOKMARKS_RHLLOR_REMOVED":  2
+                                             },
+                      "added_in":  null,
+                      "built_sha256":  "e772a746fa4612461590535c585adbb86921c465ccc97cc86346bd649d4efde8"
+                  },
+                  {
+                      "virtual_path":  "common/scripted_effects/asoiaf_targaryen_invasion_claimants_effects.txt",
+                      "origin_patch":  "agot_observer_stack_compat",
+                      "provider_workshop_id":  "2950245430",
+                      "provider_name":  null,
+                      "transformations":  [
+                                              "P31C_YOUNG_GRIFF_NICKNAME_AND_TRAIT"
+                                          ],
+                      "source_sha256":  "d4f006bb9434f0975828df61854904213124a3168d45c67a53ab533a681b96bb",
+                      "replacement_counts":  {
+                                                 "P31C_YOUNG_GRIFF_NICKNAME_AND_TRAIT":  2
+                                             },
+                      "added_in":  "2026-08-29 revision wave",
+                      "built_sha256":  "cf1df2171a61de1c92fc309c079f7e2bb76d238d5bbc234b0237e878e10d3f8c"
+                  },
+                  {
+                      "virtual_path":  "common/scripted_effects/gr_npc_obituary_data_effect.txt",
+                      "origin_patch":  "agot_observer_stack_compat",
+                      "provider_workshop_id":  "3678529052",
+                      "provider_name":  "Grand Remembrance",
+                      "transformations":  [
+                                              "P25_RICE_SECTION_REMOVED"
+                                          ],
+                      "source_sha256":  "aeaa707e4b3491dd427f157be7432c55616cc64156d66116bd316a6037e157e5",
+                      "replacement_counts":  {
+                                                 "P25_RICE_SECTION_REMOVED":  1
+                                             },
+                      "added_in":  "2026-08-29 revision wave",
+                      "built_sha256":  "67c6cd1f20558b0cbf8ff90849f8731be1ecc615b435a42b78b84e5b2646289a"
+                  },
+                  {
+                      "virtual_path":  "common/scripted_effects/interactive_scripted_effects.txt",
+                      "origin_patch":  "miv_agot_cb_patch",
+                      "provider_workshop_id":  "2712590542",
+                      "provider_name":  "More Interactive Vassals",
+                      "transformations":  [
+                                              "P34_FP3_STRUGGLE_CONCESSION_EMPTIED"
+                                          ],
+                      "source_sha256":  "4fc85c67fd7a07a8f96c3de66289c3aa9724b5b5a1468f9e3ec55e163f4323b0",
+                      "added_in":  "pre-JSON patch; entry generated during the 2026-08-30 consolidation",
+                      "built_sha256":  "dd0dddfbda7e2e250dc9c1ea386c13e0001d25a3159f5b5fe4a1779d4b5668b1"
+                  },
+                  {
+                      "virtual_path":  "common/scripted_effects/mpd_scripted_effects.txt",
+                      "origin_patch":  "agot_seasons_personality_compat",
+                      "provider_workshop_id":  "3717990443",
+                      "provider_name":  "AGOT - More Personality Depth",
+                      "transformations":  [
+                                              "P07_PARANOID_UNSATISFIABLE_XP_CALLS_REMOVED"
+                                          ],
+                      "source_sha256":  "88ecb64b1283086e6f77c37017a0c7587080706f3ec4477bfefd58442e872d8d",
+                      "added_in":  "2026-08-30 Ormund follow-up",
+                      "built_sha256":  "03a8e5dc48d7b79c5e2d3e93c9a3a7465a81d4794b8b2dec29c4b4a1d68a29ff"
+                  },
+                  {
+                      "virtual_path":  "common/scripted_effects/mpd_xp_calculator.txt",
+                      "origin_patch":  "agot_seasons_personality_compat",
+                      "provider_workshop_id":  "3717990443",
+                      "provider_name":  "AGOT - More Personality Depth",
+                      "transformations":  [
+                                              "P04_MPD_COURT_OWNER_SOFT_SCOPE"
+                                          ],
+                      "source_sha256":  "fe8e6eea7b7b74e3573065aaf446c37f61c39da345f22915e56bcc1364ebb081",
+                      "added_in":  "2026-08-30 Ser Duncan follow-up",
+                      "built_sha256":  "ccdba8a3eb60ab41bc0c8111822aa8ae5d7f3360d698e4a52606edf919721444"
+                  },
+                  {
+                      "virtual_path":  "common/scripted_effects/zz_agot_claimant_faction_war_fix.txt",
+                      "origin_patch":  "agot_claimant_faction_war_fix",
+                      "provider_workshop_id":  null,
+                      "provider_name":  null,
+                      "transformations":  [
+                                              "CFWF_CLAIMANT_FACTION_WAR_EFFECTS"
+                                          ],
+                      "source_sha256":  null,
+                      "added_in":  "pre-JSON patch; entry generated during the 2026-08-30 consolidation",
+                      "built_sha256":  "9d83235124269619499cc76b680b94f60373d1af2792ddc8f4408872aafb1101"
+                  },
+                  {
+                      "virtual_path":  "common/scripted_effects/zz_observer_stack_canon_child_missing_effects.txt",
+                      "origin_patch":  "agot_observer_stack_compat",
+                      "provider_workshop_id":  "additive",
+                      "provider_name":  null,
+                      "transformations":  [
+                                              "P14.1_MISSING_EFFECT_SHIMS",
+                                              "P33_CANON_CHILD_BIRTH_EFFECTS_98_104"
+                                          ],
+                      "source_sha256":  null,
+                      "replacement_counts":  {
+                                                 "definitions_created":  7,
+                                                 "P33_CANON_CHILD_BIRTH_EFFECTS_98_104":  7
+                                             },
+                      "added_in":  null,
+                      "built_sha256":  "6455d5c5638ca435ca92fe4eeb80f7a1596a025c0d0bfb12fe6ba596e374522c"
+                  },
+                  {
+                      "virtual_path":  "common/scripted_guis/gr_scripted_guis.txt",
+                      "origin_patch":  "agot_observer_stack_compat",
+                      "provider_workshop_id":  "3678529052",
+                      "provider_name":  "Grand Remembrance",
+                      "transformations":  [
+                                              "P24_GR_CHRONICLE_NULL_SCOPE"
+                                          ],
+                      "source_sha256":  "c0355f9df7b85c6e5b3351677d300a636bea25607b4a06d73175e99c01e31078",
+                      "replacement_counts":  {
+                                                 "P24_GR_CHRONICLE_NULL_SCOPE":  1
+                                             },
+                      "added_in":  "2026-08-29 revision wave",
+                      "built_sha256":  "f250dd4ae1f5dafc7ef6f0d93a28185034a145bfe98da59d7b1e29fd62b38aa0"
+                  },
+                  {
+                      "virtual_path":  "common/scripted_modifiers/00_faction_modifiers.txt",
+                      "origin_patch":  "agot_observer_stack_compat",
+                      "provider_workshop_id":  "2962333032",
+                      "provider_name":  "A Game of Thrones",
+                      "transformations":  [
+                                              "P18"
+                                          ],
+                      "source_sha256":  "db445a723e4961cea6335cd4a70bfa3248825e559fce5e19c7561c18b65640f1",
+                      "replacement_counts":  {
+                                                 "prerequisite_lines_inserted":  4,
+                                                 "modifiers_guarded":  2
+                                             },
+                      "added_in":  null,
+                      "built_sha256":  "694f20806130a5b9c6d71c4701091c6148f6bac410cf7ebb088ba25643241866"
+                  },
+                  {
+                      "virtual_path":  "common/scripted_triggers/00_agot_blood_triggers.txt",
+                      "origin_patch":  "agot_observer_stack_compat",
+                      "provider_workshop_id":  "2962333032",
+                      "provider_name":  "A Game of Thrones",
+                      "transformations":  [
+                                              "P44_BLOOD_TRIGGER_SCOPE_RENAME"
+                                          ],
+                      "source_sha256":  "f646af7405c24d17296bc8919d1b3f40173b1e05a0621bbba01767e48b160791",
+                      "replacement_counts":  {
+                                                 "P44_BLOOD_TRIGGER_SCOPE_RENAME":  4
+                                             },
+                      "added_in":  "2026-08-30 revision wave",
+                      "built_sha256":  "e027557d1fef6161952fee7812d128960a5b6ef97883c42c1b7d9c758e196e1b"
+                  },
+                  {
+                      "virtual_path":  "common/scripted_triggers/00_agot_coa_triggers.txt",
+                      "origin_patch":  "agot_observer_stack_compat",
+                      "provider_workshop_id":  "2962333032",
+                      "provider_name":  "A Game of Thrones",
+                      "transformations":  [
+                                              "P30B_COA_DYNASTY_FOUNDER_SOFT"
+                                          ],
+                      "source_sha256":  "29fd4a0777c1f088c3394b9bca6deda66dc2271496d40c593ff00a78be39f742",
+                      "replacement_counts":  {
+                                                 "P30B_COA_DYNASTY_FOUNDER_SOFT":  33
+                                             },
+                      "added_in":  "2026-08-29 revision wave",
+                      "built_sha256":  "df78f21816e7115dbc56f7f8933896b4c528aa44bb49ca4bb69a72058ecdf85a"
+                  },
+                  {
+                      "virtual_path":  "common/scripted_triggers/00_agot_triggers.txt",
+                      "origin_patch":  "agot_observer_stack_compat",
+                      "provider_workshop_id":  "2962333032",
+                      "provider_name":  "A Game of Thrones",
+                      "transformations":  [
+                                              "P09"
+                                          ],
+                      "source_sha256":  "3322d4d43d8ac93e8d999f9c24e840fe7e35be7526d17903d1e48543d14b68ea",
+                      "replacement_counts":  {
+                                                 "dead_holder_branch":  1,
+                                                 "living_realm_scope_softened":  1,
+                                                 "living_guard_inserted":  1,
+                                                 "lord_scope_softened":  1
+                                             },
+                      "added_in":  null,
+                      "built_sha256":  "94ac2c04ab9f1744e189e3ffa3491103449314f94b15efc0b206fdafb77d08e9"
+                  },
+                  {
+                      "virtual_path":  "common/scripted_triggers/00_courtier_guest_management_triggers.txt",
+                      "origin_patch":  "agot_observer_stack_compat",
+                      "provider_workshop_id":  "2962333032",
+                      "provider_name":  "A Game of Thrones",
+                      "transformations":  [
+                                              "P10"
+                                          ],
+                      "source_sha256":  "906ec0b763e2576c3606378cf575957c05cb2ea0b4c35d22eb1e67b7f931a2bb",
+                      "replacement_counts":  {
+                                                 "ruler_guarded_triggers":  2
+                                             },
+                      "added_in":  null,
+                      "built_sha256":  "9b7af5257e72364b9267d9155fdad07025d71fbb420cd98383596f50e1286f44"
+                  },
+                  {
+                      "virtual_path":  "common/scripted_triggers/00_ntc_crown_commission_triggers.txt",
+                      "origin_patch":  "agot_observer_stack_compat",
+                      "provider_workshop_id":  "2995674648",
+                      "provider_name":  "AGOT - Crowns of Westeros",
+                      "transformations":  [
+                                              "P03_CULTURE_MIGRATION"
+                                          ],
+                      "source_sha256":  "a32c297dc92b89478a5a2c8fab634c871ef58b0f203fd5fb630d52adc992c5a4",
+                      "replacement_counts":  {
+                                                 "culture:stormlander":  2
+                                             },
+                      "added_in":  null,
+                      "built_sha256":  "1db29585b5ea62af29cf34fe1e2a7d8c6147e6d24ec86e49ed992b0a49e65d61"
+                  },
+                  {
+                      "virtual_path":  "common/scripted_triggers/asoiaf_clothing_triggers.txt",
+                      "origin_patch":  "agot_observer_stack_compat",
+                      "provider_workshop_id":  "2950245430",
+                      "provider_name":  null,
+                      "transformations":  [
+                                              "P15"
+                                          ],
+                      "source_sha256":  "5e039ba54bdc8b0b9e13e4da82c84b6730f2ba681dd0685dde75cd4b5ad538b9",
+                      "replacement_counts":  {
+                                                 "liege_exists_guards_inserted":  1
+                                             },
+                      "added_in":  null,
+                      "built_sha256":  "7c668bd2df1947c8b21be753ef3d032d6d95863854a505e2097e3ea9836fb144"
+                  },
+                  {
+                      "virtual_path":  "common/scripted_triggers/gen_acs_st_big_switch.txt",
+                      "origin_patch":  "agot_observer_stack_compat",
+                      "provider_workshop_id":  "3084203091",
+                      "provider_name":  "Advanced Character Search",
+                      "transformations":  [
+                                              "P22"
+                                          ],
+                      "source_sha256":  "1d96dfc4e69c57a735a38e703334f4b8eff6f84a27a5ef04860b4c04c9e597ce",
+                      "replacement_counts":  {
+                                                 "trait_cases_replaced":  24,
+                                                 "confucian_cases_replaced":  14,
+                                                 "religion_cases_replaced":  8,
+                                                 "council_cases_replaced":  10,
+                                                 "minister_cases_replaced":  18,
+                                                 "mixed_invalid_key_lines_removed":  28,
+                                                 "gunpowder_cases_replaced":  2
+                                             },
+                      "added_in":  null,
+                      "built_sha256":  "a2324c3e415559ca882d8ba72d8d6bdb08c229c08ba59062a8e5a137ecdcdc5e"
+                  },
+                  {
+                      "virtual_path":  "common/scripted_triggers/zz_observer_stack_canon_child_missing_triggers.txt",
+                      "origin_patch":  "agot_observer_stack_compat",
+                      "provider_workshop_id":  "additive",
+                      "provider_name":  null,
+                      "transformations":  [
+                                              "P14.1_MISSING_TRIGGER_SHIMS",
+                                              "P33_CANON_CHILD_TRIGGERS_98_104"
+                                          ],
+                      "source_sha256":  null,
+                      "replacement_counts":  {
+                                                 "definitions_created":  4,
+                                                 "P33_CANON_CHILD_TRIGGERS_98_104":  7
+                                             },
+                      "added_in":  null,
+                      "built_sha256":  "68ce31cfb7856b0f7e6d26f3329a9d891f6d5792f86dea99b8b416fd306fee08"
+                  },
+                  {
+                      "virtual_path":  "common/story_cycles/agot_story_cycle_naming_and_title_gui.txt",
+                      "origin_patch":  "agot_observer_stack_compat",
+                      "provider_workshop_id":  "2962333032",
+                      "provider_name":  "A Game of Thrones",
+                      "transformations":  [
+                                              "P29_SCION_STORY_SELF_TERMINATE"
+                                          ],
+                      "source_sha256":  "3a252a0ff70619be73d40b6ed3ce1ee46e0fadde10ae13ec8ab3a8838be42abe",
+                      "replacement_counts":  {
+                                                 "P29_SCION_STORY_SELF_TERMINATE":  1
+                                             },
+                      "added_in":  "2026-08-29 revision wave",
+                      "built_sha256":  "8c1a8a45faf52cdaeff61d20b404517bf227209ed0e1a05f8d457930c336754c"
+                  },
+                  {
+                      "virtual_path":  "events/agot_events/agot_dragon_events.txt",
+                      "origin_patch":  "agot_observer_stack_compat",
+                      "provider_workshop_id":  "2962333032",
+                      "provider_name":  "A Game of Thrones",
+                      "transformations":  [
+                                              "P30A_DRAGON_TERROR_TOP_LIEGE"
+                                          ],
+                      "source_sha256":  "1a9291499a5d60eef5f362153fcd1e7cb5dc09cd11d00b3e215bac9b712bba16",
+                      "replacement_counts":  {
+                                                 "P30A_DRAGON_TERROR_TOP_LIEGE":  2
+                                             },
+                      "added_in":  "2026-08-29 revision wave",
+                      "built_sha256":  "f9fd463c0762a41b1a8a9a308703b3398c1ef8138c29ff8b8da70216d9d4c9ea"
+                  },
+                  {
+                      "virtual_path":  "events/agot_mw_revolt_succession_fix_crown_events.txt",
+                      "origin_patch":  "agot_mw_revolt_succession_fix",
+                      "provider_workshop_id":  null,
+                      "provider_name":  null,
+                      "transformations":  [
+                                              "MWRSF_SYNCHRONOUS_CROWN_CHOICE_CHAIN"
+                                          ],
+                      "source_sha256":  null,
+                      "added_in":  "pre-JSON patch; entry generated during the 2026-08-30 consolidation",
+                      "built_sha256":  "bb914ecafee565878e1733167ac46668b839fc8875c2b2cfd7f71fdedfabd6b2"
+                  },
+                  {
+                      "virtual_path":  "events/agot_mw_revolt_succession_fix_events.txt",
+                      "origin_patch":  "agot_mw_revolt_succession_fix",
+                      "provider_workshop_id":  null,
+                      "provider_name":  null,
+                      "transformations":  [
+                                              "MWRSF_DEFERRED_REVOLT_PUNISHMENT"
+                                          ],
+                      "source_sha256":  null,
+                      "added_in":  "pre-JSON patch; entry generated during the 2026-08-30 consolidation",
+                      "built_sha256":  "c22b46ae83e37bb7781918875d6e8afc1af8b5cc61b1f9b2564782b94b1e7e9c"
+                  },
+                  {
+                      "virtual_path":  "events/asoiaf_young_griff_landing_events.txt",
+                      "origin_patch":  "agot_observer_stack_compat",
+                      "provider_workshop_id":  "2950245430",
+                      "provider_name":  null,
+                      "transformations":  [
+                                              "P31D_DUMMY_CHARACTER_LOCATION"
+                                          ],
+                      "source_sha256":  "78e72ddccb21730de508aa056158eb9618eb0c3d6ea5ea0595c179297f82b4ed",
+                      "replacement_counts":  {
+                                                 "P31D_DUMMY_CHARACTER_LOCATION":  2
+                                             },
+                      "added_in":  "2026-08-29 revision wave",
+                      "built_sha256":  "adfb457dfd9885e2a086c71b62888b2394c501f7aec88ecba7b5a4cb8f4938e8"
+                  },
+                  {
+                      "virtual_path":  "events/decisions_events/rediscover_events.txt",
+                      "origin_patch":  "agot_observer_stack_compat",
+                      "provider_workshop_id":  "3101422928",
+                      "provider_name":  null,
+                      "transformations":  [
+                                              "P12"
+                                          ],
+                      "source_sha256":  "19ca2e563b805321ca9a63779edf6ec23ef98c0f85bcd5432a9e902cdc8056fa",
+                      "replacement_counts":  {
+                                                 "creator_arguments_added":  5
+                                             },
+                      "added_in":  null,
+                      "built_sha256":  "f38164d695316f2f61a3cc70c333e9f90166f35ba0b4ba9ca5845272490649c6"
+                  },
+                  {
+                      "virtual_path":  "events/dlc/bp1/bp1_yearly.txt",
+                      "origin_patch":  "agot_observer_stack_compat",
+                      "provider_workshop_id":  "2962333032",
+                      "provider_name":  "A Game of Thrones",
+                      "transformations":  [
+                                              "P17"
+                                          ],
+                      "source_sha256":  "c772b8035b45f9e16672dcd2d8136540b6000d85722362766d3437d29e72444e",
+                      "replacement_counts":  {
+                                                 "option_variable_guard":  1
+                                             },
+                      "added_in":  null,
+                      "built_sha256":  "35a6af5485b02b08ef6ac887e7517d2d7787c6dd7d2de95c96dd88b976bb93ee"
+                  },
+                  {
+                      "virtual_path":  "events/dlc/ep3/ep3_laamp_decision_events.txt",
+                      "origin_patch":  "agot_observer_stack_compat",
+                      "provider_workshop_id":  "2962333032",
+                      "provider_name":  "A Game of Thrones",
+                      "transformations":  [
+                                              "P04_PROVINCE_SCOPE_LIMIT"
+                                          ],
+                      "source_sha256":  "412bd22f2b85bc7ef74514aa66f50f4e72bc45a9d60c177b3a25177cf3bd12d4",
+                      "replacement_counts":  {
+                                                 "P04_PROVINCE_SCOPE_LIMIT":  1
+                                             },
+                      "added_in":  null,
+                      "built_sha256":  "6f626553c9ce2195b0ff40c7cccd9d5a32c0f1f15174c9d42db03a0f38c2be8a"
+                  },
+                  {
+                      "virtual_path":  "events/gr_obituary_events.txt",
+                      "origin_patch":  "agot_observer_stack_compat",
+                      "provider_workshop_id":  "3683507542",
+                      "provider_name":  "Grand Remembrance - AGOT Compatibility Submod",
+                      "transformations":  [
+                                              "P21.2"
+                                          ],
+                      "source_sha256":  "63de24ed09e54c1e9b56fa4399d52cd74bb2937de6f976865d40e83c5c0e0d38",
+                      "replacement_counts":  {
+                                                 "memory_triggers_replaced":  6
+                                             },
+                      "added_in":  null,
+                      "built_sha256":  "3526f157cd9d57f8c9cbf3e9c47d772e4d5821d240c4f31b55676588e756e978"
+                  },
+                  {
+                      "virtual_path":  "events/gr_obituary_replay_events.txt",
+                      "origin_patch":  "agot_observer_stack_compat",
+                      "provider_workshop_id":  "3683507542",
+                      "provider_name":  "Grand Remembrance - AGOT Compatibility Submod",
+                      "transformations":  [
+                                              "P21.2"
+                                          ],
+                      "source_sha256":  "c7ed57cc3fb4ebf792537b54a95c8761cf0a7298fcef4a86962af1b6cb49b671",
+                      "replacement_counts":  {
+                                                 "memory_triggers_replaced":  6
+                                             },
+                      "added_in":  null,
+                      "built_sha256":  "8133b62971aa58c8ecf212ca0f8a77d28ad565dd4ce8cd6570810f0cc24d8e60"
+                  },
+                  {
+                      "virtual_path":  "events/oathbound_heir_events.txt",
+                      "origin_patch":  "agot_observer_stack_compat",
+                      "provider_workshop_id":  "3457401824",
+                      "provider_name":  "Oathbound",
+                      "transformations":  [
+                                              "P20.4"
+                                          ],
+                      "source_sha256":  "da4feee8a031f770c021cbbf90e72880d44890d2b42ea67a50a3700e9a7b6aac",
+                      "replacement_counts":  {
+                                                 "event_variable_triggers_inserted":  2,
+                                                 "variable_scope_switches_softened":  3
+                                             },
+                      "added_in":  null,
+                      "built_sha256":  "565244825e173d1e0544403d5b38fd39810c3c851fd3e946718c5870449b08f3"
+                  },
+                  {
+                      "virtual_path":  "events/scheme_events/oathbound_sway_vassals_events.txt",
+                      "origin_patch":  "agot_observer_stack_compat",
+                      "provider_workshop_id":  "3457401824",
+                      "provider_name":  "Oathbound",
+                      "transformations":  [
+                                              "P20.5"
+                                          ],
+                      "source_sha256":  "df16dca1d975080cb06c99de9069880a333bf93160bcc0cf7bfee88f70d4d959",
+                      "replacement_counts":  {
+                                                 "persia_branches_replaced":  1
+                                             },
+                      "added_in":  null,
+                      "built_sha256":  "038abd4c2e77cf649714dfad9e95a20794be48fcf2e2f16f6f00383200f4d5d8"
+                  },
+                  {
+                      "virtual_path":  "events/season_flavor_events.txt",
+                      "origin_patch":  "agot_seasons_personality_compat",
+                      "provider_workshop_id":  "3377641022",
+                      "provider_name":  "AGOT : Seasons of Ice and Fire",
+                      "transformations":  [
+                                              "P05_SEASONS_DEAD_TITLE_CHECKS"
+                                          ],
+                      "source_sha256":  "17ed5560de9b670872c6c4a70f1dfdf9c7be4b20e81b9610c32f39eb375bda0f",
+                      "added_in":  "2026-08-30 Ser Duncan follow-up",
+                      "built_sha256":  "9fb5716b08522bc05bc30959bb519c1013f3c92f20e4258c0bb73fb607224473"
+                  },
+                  {
+                      "virtual_path":  "events/zz_gptev_events.txt",
+                      "origin_patch":  "agot_opb_addon_compat",
+                      "provider_workshop_id":  "3596393244",
+                      "provider_name":  "Immersive Personalities",
+                      "transformations":  [
+                                              {
+                                                  "id":  "A4",
+                                                  "description":  "Game-start living-character sweep guard: added is_human = yes inside every_living_character limit in gpt_olympia_animal_archetype.1000",
+                                                  "required_count":  1,
+                                                  "actual_count":  1
+                                              }
+                                          ],
+                      "source_sha256":  "814004706e104e60288c2769f9184e6911079c399cd8990f275fcdb4090c496d",
+                      "added_in":  null,
+                      "built_sha256":  "451f7aa31f248521fc4630ca365d2f16e6eb4fc24747a0231410b4f67a1c78d2"
+                  },
+                  {
+                      "virtual_path":  "gui/event_windows/duel_event.gui",
+                      "origin_patch":  "agot_observer_stack_compat",
+                      "provider_workshop_id":  "2636170225",
+                      "provider_name":  "Duel Overlay",
+                      "transformations":  [
+                                              "P34_DUEL_OVERLAY_RESTORE_AGOT_NAME_FORMATTING"
+                                          ],
+                      "source_sha256":  "81cf5538a4f688e80187c539095ec8a5271144ffa1e57f923a101ddd06e1a442",
+                      "replacement_counts":  {
+                                                 "P34_DUEL_OVERLAY_RESTORE_AGOT_NAME_FORMATTING":  1
+                                             },
+                      "added_in":  "2026-08-29 revision wave (P34)",
+                      "built_sha256":  "d0780252942485561e048786a49552c16036b8cab113a305736527c26afd75f3"
+                  },
+                  {
+                      "virtual_path":  "gui/gr_chronicle_window.gui",
+                      "origin_patch":  "agot_observer_stack_compat",
+                      "provider_workshop_id":  "3678529052",
+                      "provider_name":  "Grand Remembrance",
+                      "transformations":  [
+                                              "P24_GUI_GETPLAYER_ISVALID_GUARD"
+                                          ],
+                      "source_sha256":  "6d6a69c4eda29ab0d1d6cfde452bf4d3db173dfc0f068859ea70ba9d1209fa4a",
+                      "replacement_counts":  {
+                                                 "P24_GUI_GETPLAYER_ISVALID_GUARD":  1
+                                             },
+                      "added_in":  "2026-08-29 revision wave (P24 follow-up)",
+                      "built_sha256":  "c042858a90ec9f08e0419804c7f129e71129c34087c14dcedee375d4d980b088"
+                  },
+                  {
+                      "virtual_path":  "gui/guard_academy_button_widget.gui",
+                      "origin_patch":  "agot_observer_stack_compat",
+                      "provider_workshop_id":  "3733779333",
+                      "provider_name":  "AGOT: Royal Guards",
+                      "transformations":  [
+                                              "P36_GUARD_HUD_BINDING_PLAYER_VALID_GATE",
+                                              "P47_HUD_COLLISION_REPOSITION"
+                                          ],
+                      "source_sha256":  "44aec66cc1b41593d8d8c50d833d5fe1237da0157a149d030d2b40ef72c99b3f",
+                      "replacement_counts":  {
+                                                 "P36_GUARD_HUD_BINDING_PLAYER_VALID_GATE":  1
+                                             },
+                      "added_in":  "2026-08-30 revision wave",
+                      "built_sha256":  "d558b0ad81b7dbafef6549dff23166fb9eb83b36b5a77fcc6bf541c73742a513"
+                  },
+                  {
+                      "virtual_path":  "gui/window_character.gui",
+                      "origin_patch":  "agot_seasons_personality_compat",
+                      "provider_workshop_id":  "3717990443",
+                      "provider_name":  "AGOT - More Personality Depth",
+                      "transformations":  [
+                                              "P03_MPD_X_DIREWOLVES_X_AGOT_CHARACTER_WINDOW"
+                                          ],
+                      "source_sha256":  "62d426a1d3ab8dd39eda587fa96b8ae7e410eabff1ed8a3f8ade385bc19b9534",
+                      "donor_workshop_id":  "3766320609",
+                      "donor_sha256":  "aea0cea0b08c5b8e10f25250f79244424575b4e3119b46dd3b16c2b5a3e5dea5",
+                      "added_in":  "2026-08-30 seasons+personality wave",
+                      "built_sha256":  "0f9b5d03ceacf4fa8fb07442263765c9840264034c0e5fd852ff5004c7678618"
+                  },
+                  {
+                      "virtual_path":  "gui/window_county_view.gui",
+                      "origin_patch":  "agot_observer_stack_compat",
+                      "provider_workshop_id":  "3316173814",
+                      "provider_name":  "Patch AGOT - MBS",
+                      "transformations":  [
+                                              "P07_SCROLLAREA_IGNOREINVISIBLE"
+                                          ],
+                      "source_sha256":  "b3958c445ac4ba1aee4798f4ee32cf9044a97ed8615490134250409de22cfe90",
+                      "replacement_counts":  {
+                                                 "P07_SCROLLAREA_IGNOREINVISIBLE":  1
+                                             },
+                      "added_in":  null,
+                      "built_sha256":  "e2b5a8da661a5d3d4e5695e52183cc5f400160c99c03ac85e06d54dd35864389"
+                  },
+                  {
+                      "virtual_path":  "localization/english/agot_mw_revolt_succession_fix_l_english.yml",
+                      "origin_patch":  "agot_mw_revolt_succession_fix",
+                      "provider_workshop_id":  null,
+                      "provider_name":  null,
+                      "transformations":  [
+                                              "MWRSF_LOCALIZATION"
+                                          ],
+                      "source_sha256":  null,
+                      "added_in":  "pre-JSON patch; entry generated during the 2026-08-30 consolidation",
+                      "built_sha256":  "9c8d8ffb1df34eca82252f8a68e6d6b9515df5af9f21997459a8261ffcb19f4d"
+                  },
+                  {
+                      "virtual_path":  "localization/replace/english/zz_compat_direwolf_fixes_l_english.yml",
+                      "origin_patch":  "agot_seasons_personality_compat",
+                      "provider_workshop_id":  "3766320609",
+                      "provider_name":  "DireWolves",
+                      "transformations":  [
+                                              "P06_DIREWOLVES_MALFORMED_LOC"
+                                          ],
+                      "source_sha256":  null,
+                      "added_in":  "2026-08-30 Ser Duncan follow-up",
+                      "built_sha256":  "74e7ed9b3b51cf86d97760fc93717a3021dd01e58109d919b17bb57029901872"
+                  },
+                  {
+                      "virtual_path":  "localization/replace/english/zz_observer_stack_guard_book_l_english.yml",
+                      "origin_patch":  "agot_observer_stack_compat",
+                      "provider_workshop_id":  "NEW",
+                      "provider_name":  null,
+                      "transformations":  [
+                                              "P37_SWORDS_OF_BRAAVOS_JOIN_NO_LINK_MARKUP"
+                                          ],
+                      "source_sha256":  null,
+                      "replacement_counts":  {
+                                                 "P37_SWORDS_OF_BRAAVOS_JOIN_NO_LINK_MARKUP":  1
+                                             },
+                      "added_in":  "2026-08-30 revision wave",
+                      "built_sha256":  "5f51237e994665ad6e25693b381246472911af802a6e4d1394d9d87632811c0a"
+                  }
+              ]
+}
