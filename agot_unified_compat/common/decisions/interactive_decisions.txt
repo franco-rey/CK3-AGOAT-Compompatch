@@ -1,4 +1,4 @@
-interactive_bannermen_mode_decision = {
+﻿interactive_bannermen_mode_decision = {
 	desc = interactive_bannermen_mode_decision_desc
 	selection_tooltip = interactive_bannermen_mode_decision_tooltip
 	decision_group_type = interactive_vassals

@@ -1,4 +1,4 @@
-call_ally_interaction = {
+﻿call_ally_interaction = {
 	common_interaction = yes
 	interface_priority = 69
 	category = interaction_category_diplomacy

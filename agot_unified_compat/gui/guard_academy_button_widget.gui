@@ -17,12 +17,12 @@
 	# At -631 this widget sat on top of 54 of ACS's 55 px and 55 of S&T-right's 56,
 	# hiding both buttons behind the guard row.
 	#
-	# Moved to -960, which continues S&T's own 90 px pitch (870 + 90) and leaves a
-	# 34 px gap after S&T-left ends at 926 -- the same gap S&T uses between its own
-	# buttons. New span 960 -> 1074. Nothing else in the playset anchors bottom|right
-	# beyond 926, and vanilla's timeline_widget occupies only 0 -> 649, so this is
-	# clear space. Size and all three button bindings are unchanged.
-	position = { -960 0 }
+	# Moved to -930, placing this widget directly beside Search and Trade's leftmost
+	# button, which ends at 926: a 4 px gap rather than the 34 px of the first attempt
+	# at -960, which read as too detached. New span 930 -> 1044. Nothing else in the
+	# playset anchors bottom|right beyond 926 and vanilla's timeline_widget occupies
+	# only 0 -> 649, so this is clear space. Size and all three bindings unchanged.
+	position = { -930 0 }
 	size = { 114 36 }
 	# Observer Stack P36 - same defect P24 fixed for the Grand Remembrance chronicle
 # window. And() does not short-circuit, so IsShown(GetPlayer.MakeScope) was

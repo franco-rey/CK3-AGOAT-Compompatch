@@ -1,4 +1,4 @@
-# two MIV changes
+﻿# two MIV changes
 on_declared_war = {
 	on_declared_war_play_music = yes
 	miv_vassal_effect = yes	# MIV change: added

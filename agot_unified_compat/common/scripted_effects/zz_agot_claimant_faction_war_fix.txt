@@ -1,4 +1,4 @@
-# AGOT 0.5.1 keyed overrides.
+﻿# AGOT 0.5.1 keyed overrides.
 #
 # For an unlanded claimant, AGOT can promote a higher-ranked faction member to
 # mw_faction_leader. The claimant-faction CB only allows the actual faction

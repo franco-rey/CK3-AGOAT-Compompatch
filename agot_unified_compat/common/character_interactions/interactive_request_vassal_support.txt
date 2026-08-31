@@ -1,4 +1,4 @@
-request_vassal_support = {
+﻿request_vassal_support = {
 	common_interaction = yes
 	interface_priority = 66
 	category = interaction_category_diplomacy

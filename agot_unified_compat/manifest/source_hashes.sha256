@@ -34,11 +34,11 @@ d9eb534e17c11ad489b9a4b283f750035ef04cdd965b8effb3b35a825761ea03  BUILT/common/c
 
 # common/character_interactions/interactive_call_ally.txt  [P08_MIV_DISABLED_CB_CONDITIONS]  (from miv_agot_cb_patch)
 c5ed6fe72dac22e8d7d7e7bb1f83b54815ce8652157398b775b250f06469418d  2712590542/common/character_interactions/interactive_call_ally.txt  # SOURCE
-609d270c55b21b1ff64cb3dad962410643be0dbdc4bfc89a347afdd8aea07688  BUILT/common/character_interactions/interactive_call_ally.txt
+54f9d852daf2f7d1dec18f4fdf61f2a04e12aacb0ba797891ab5e7abca37156f  BUILT/common/character_interactions/interactive_call_ally.txt
 
 # common/character_interactions/interactive_request_vassal_support.txt  [P08_MIV_SUPPORT_INTERACTION_ALIGNMENT]  (from miv_agot_cb_patch)
 aa25e398ed7f7c5aa15cbdc3cbd4eff4045d03a655447f06177dadba1731b3f1  2712590542/common/character_interactions/interactive_request_vassal_support.txt  # SOURCE
-f2b365f0343e61449d457779fb6cd292fb4ffebff7aea476a09a96ec79184d80  BUILT/common/character_interactions/interactive_request_vassal_support.txt
+8c7e68c886aa92c1766cbccc276c68836a80baec3aa8cd5f63dd9ef6123918e5  BUILT/common/character_interactions/interactive_request_vassal_support.txt
 
 # common/character_interactions/oathbound_ransom_interaction.txt  [P20.6]  (from agot_observer_stack_compat)
 98470232a23d52a08708a9e3fe3a16d366254b36c2ff656f896bbd4342cfaa46  3457401824/common/character_interactions/oathbound_ransom_interaction.txt  # SOURCE
@@ -54,7 +54,7 @@ e37fafb0400ec38c60290c671584add546b0e4eb5b7362164dd5a706abf817db  3457401824/com
 
 # common/decisions/interactive_decisions.txt  [P08_MIV_DISABLED_CB_CONDITIONS]  (from miv_agot_cb_patch)
 41dfca17c0f0a7605b943128360e4e325f182d8e311a82f61c66bfd2b894ef15  2712590542/common/decisions/interactive_decisions.txt  # SOURCE
-fefdbf8ced37ab8abc7e8d46ed7efbdfb0b9eda438ed8e7bfece6918ff304b76  BUILT/common/decisions/interactive_decisions.txt
+0bab67aea001e8ae22ad34108f0442241e39d73acb5b04e1c624bd6d84b7af58  BUILT/common/decisions/interactive_decisions.txt
 
 # common/decisions/zz_observer_stack_direwolf_hunt_fix.txt  [P45_DIREWOLF_PACK_SIZE_GUARD]  (from agot_observer_stack_compat)
 02b3481a5f7abe10cacb2f143001f6087119c3cc62f581efacc58ec457553c59  3766320609/common/decisions/zz_observer_stack_direwolf_hunt_fix.txt  # SOURCE
@@ -129,7 +129,7 @@ b3c78e09d7538f2b3b51087396c3b4563b2a6a0bc86b626bc7ab3bd7ef32d029  2967263410/com
 
 # common/on_action/interactive_on_actions.txt  [P08_MIV_DISABLED_CB_CONDITIONS, P08_RANDOM_RULER_PLACEMENT_REMOVED]  (from miv_agot_cb_patch)
 4e6342659b59cd46c9ac1f77b802f81ed19cb9c9c30c90e30f4e1e06c314b2e2  2712590542/common/on_action/interactive_on_actions.txt  # SOURCE
-d402a25411f7d691ae682f8e99fc88aca1c4fc09ac089c3a47fdade14dd1ab8e  BUILT/common/on_action/interactive_on_actions.txt
+47f833bf1534cd998985eabcfd52b38d06c10c10c441de44f0fa19ed7f972ed7  BUILT/common/on_action/interactive_on_actions.txt
 
 # common/on_action/relations/oathbound_on_relation_deaths.txt  [P20.3]  (from agot_observer_stack_compat)
 8851e72f769f8c884ec157dcacac26d72308ec3f4f0da6dc67e0acb1a35e47e3  3457401824/common/on_action/relations/oathbound_on_relation_deaths.txt  # SOURCE
@@ -222,7 +222,7 @@ aeaa707e4b3491dd427f157be7432c55616cc64156d66116bd316a6037e157e5  3678529052/com
 
 # common/scripted_effects/interactive_scripted_effects.txt  [P34_FP3_STRUGGLE_CONCESSION_EMPTIED]  (from miv_agot_cb_patch)
 4fc85c67fd7a07a8f96c3de66289c3aa9724b5b5a1468f9e3ec55e163f4323b0  2712590542/common/scripted_effects/interactive_scripted_effects.txt  # SOURCE
-dd0dddfbda7e2e250dc9c1ea386c13e0001d25a3159f5b5fe4a1779d4b5668b1  BUILT/common/scripted_effects/interactive_scripted_effects.txt
+e71276b0de9219ef4cee0ff0e3bfaf89005df5a6f0e316a93e1bf6e4288ca139  BUILT/common/scripted_effects/interactive_scripted_effects.txt
 
 # common/scripted_effects/mpd_scripted_effects.txt  [P07_PARANOID_UNSATISFIABLE_XP_CALLS_REMOVED]  (from agot_seasons_personality_compat)
 88ecb64b1283086e6f77c37017a0c7587080706f3ec4477bfefd58442e872d8d  3717990443/common/scripted_effects/mpd_scripted_effects.txt  # SOURCE
@@ -233,7 +233,7 @@ fe8e6eea7b7b74e3573065aaf446c37f61c39da345f22915e56bcc1364ebb081  3717990443/com
 ccdba8a3eb60ab41bc0c8111822aa8ae5d7f3360d698e4a52606edf919721444  BUILT/common/scripted_effects/mpd_xp_calculator.txt
 
 # common/scripted_effects/zz_agot_claimant_faction_war_fix.txt  [CFWF_CLAIMANT_FACTION_WAR_EFFECTS]  (from agot_claimant_faction_war_fix)
-9d83235124269619499cc76b680b94f60373d1af2792ddc8f4408872aafb1101  BUILT/common/scripted_effects/zz_agot_claimant_faction_war_fix.txt
+0ec3ef4e47539c19c4302ef842f813dab25fe810b60b08731852dfdb2530b062  BUILT/common/scripted_effects/zz_agot_claimant_faction_war_fix.txt
 
 # common/scripted_effects/zz_observer_stack_canon_child_missing_effects.txt  [P14.1_MISSING_EFFECT_SHIMS, P33_CANON_CHILD_BIRTH_EFFECTS_98_104]  (from agot_observer_stack_compat)
 6455d5c5638ca435ca92fe4eeb80f7a1596a025c0d0bfb12fe6ba596e374522c  BUILT/common/scripted_effects/zz_observer_stack_canon_child_missing_effects.txt
@@ -341,7 +341,7 @@ c042858a90ec9f08e0419804c7f129e71129c34087c14dcedee375d4d980b088  BUILT/gui/gr_c
 
 # gui/guard_academy_button_widget.gui  [P36_GUARD_HUD_BINDING_PLAYER_VALID_GATE, P47_HUD_COLLISION_REPOSITION]  (from agot_observer_stack_compat)
 44aec66cc1b41593d8d8c50d833d5fe1237da0157a149d030d2b40ef72c99b3f  3733779333/gui/guard_academy_button_widget.gui  # SOURCE
-d558b0ad81b7dbafef6549dff23166fb9eb83b36b5a77fcc6bf541c73742a513  BUILT/gui/guard_academy_button_widget.gui
+1f211718b1eed2c222472de2e18a6bf47b35da1b172d647f18bd1011006ba640  BUILT/gui/guard_academy_button_widget.gui
 
 # gui/window_character.gui  [P03_MPD_X_DIREWOLVES_X_AGOT_CHARACTER_WINDOW]  (from agot_seasons_personality_compat)
 62d426a1d3ab8dd39eda587fa96b8ae7e410eabff1ed8a3f8ade385bc19b9534  3717990443/gui/window_character.gui  # SOURCE
