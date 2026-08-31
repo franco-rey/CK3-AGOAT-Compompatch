@@ -44,7 +44,6 @@
                                   "files":  3
                               }
                           ],
-    "file_count":  91,
     "files":  [
                   {
                       "virtual_path":  "common/artifacts/templates/asoiaf_artifacts_templates.txt",
@@ -1355,45 +1354,61 @@
                       "origin_patch":  "agot_observer_stack_compat",
                       "provider_workshop_id":  "3678529052",
                       "provider_name":  "Grand Remembrance",
-                      "transformations":  [
-                                              "P24_GUI_GETPLAYER_ISVALID_GUARD"
-                                          ],
                       "source_sha256":  "6d6a69c4eda29ab0d1d6cfde452bf4d3db173dfc0f068859ea70ba9d1209fa4a",
                       "replacement_counts":  {
                                                  "P24_GUI_GETPLAYER_ISVALID_GUARD":  1
                                              },
                       "added_in":  "2026-08-29 revision wave (P24 follow-up)",
-                      "built_sha256":  "c042858a90ec9f08e0419804c7f129e71129c34087c14dcedee375d4d980b088"
+                      "transformations":  [
+                                              "P50_CHRONICLE_PARENT_GATE"
+                                          ],
+                      "built_sha256":  "5b1f547ef6155d027955f1da24653487985288278c813c4767ddcb90ed5a5f10",
+                      "status":  "uses the P49-proven parent-gate pattern; confirm on next observer run"
                   },
                   {
                       "virtual_path":  "gui/guard_academy_button_widget.gui",
                       "origin_patch":  "agot_observer_stack_compat",
                       "provider_workshop_id":  "3733779333",
                       "provider_name":  "AGOT: Royal Guards",
-                      "transformations":  [
-                                              "P36_GUARD_HUD_BINDING_PLAYER_VALID_GATE",
-                                              "P47_HUD_COLLISION_REPOSITION"
-                                          ],
                       "source_sha256":  "44aec66cc1b41593d8d8c50d833d5fe1237da0157a149d030d2b40ef72c99b3f",
                       "replacement_counts":  {
                                                  "P36_GUARD_HUD_BINDING_PLAYER_VALID_GATE":  1
                                              },
                       "added_in":  "2026-08-30 revision wave",
-                      "built_sha256":  "1f211718b1eed2c222472de2e18a6bf47b35da1b172d647f18bd1011006ba640"
+                      "transformations":  [
+                                              "P36_GUARD_HUD_BINDING_PLAYER_VALID_GATE",
+                                              "P47_HUD_COLLISION_REPOSITION",
+                                              "P49_GUARD_HUD_PARENT_GATE"
+                                          ],
+                      "built_sha256":  "b12cbf0e826f56a93d79c2cd65da36d822d0a4385df402930f1c5d221acd964e",
+                      "status":  "VERIFIED: 19,978 -\u003e 0 in the 20:21 observer run"
                   },
                   {
                       "virtual_path":  "gui/window_character.gui",
                       "origin_patch":  "agot_seasons_personality_compat",
                       "provider_workshop_id":  "3717990443",
                       "provider_name":  "AGOT - More Personality Depth",
-                      "transformations":  [
-                                              "P03_MPD_X_DIREWOLVES_X_AGOT_CHARACTER_WINDOW"
-                                          ],
                       "source_sha256":  "62d426a1d3ab8dd39eda587fa96b8ae7e410eabff1ed8a3f8ade385bc19b9534",
                       "donor_workshop_id":  "3766320609",
                       "donor_sha256":  "aea0cea0b08c5b8e10f25250f79244424575b4e3119b46dd3b16c2b5a3e5dea5",
                       "added_in":  "2026-08-30 seasons+personality wave",
-                      "built_sha256":  "0f9b5d03ceacf4fa8fb07442263765c9840264034c0e5fd852ff5004c7678618"
+                      "transformations":  [
+                                              "P03_MPD_X_DIREWOLVES_X_AGOT_CHARACTER_WINDOW",
+                                              "P08_IRON_AND_SALT_KRAKEN_VIEW"
+                                          ],
+                      "built_sha256":  "b1e154f284715eb070a497667f85061f072a5a0f8ec0421dc2adc6ea4e55c4df",
+                      "additional_donors":  [
+                                                {
+                                                    "workshop_id":  "3766320609",
+                                                    "name":  "DireWolves",
+                                                    "sha256":  "aea0cea0b08c5b8e10f25250f79244424575b4e3119b46dd3b16c2b5a3e5dea5"
+                                                },
+                                                {
+                                                    "workshop_id":  "3781577713",
+                                                    "name":  "AGOT Iron and Salt",
+                                                    "sha256":  "41e95b9f2645d9e6fa2f552bf80525d1daf2a91688d2dbe604e3222469ed51db"
+                                                }
+                                            ]
                   },
                   {
                       "virtual_path":  "gui/window_county_view.gui",
@@ -1448,7 +1463,62 @@
                                              },
                       "added_in":  "2026-08-30 revision wave",
                       "built_sha256":  "5f51237e994665ad6e25693b381246472911af802a6e4d1394d9d87632811c0a"
+                  },
+                  {
+                      "virtual_path":  "gui/shared/cooltip.gui",
+                      "origin_patch":  "agot_unified_compat",
+                      "provider_workshop_id":  "3781577713",
+                      "provider_name":  "AGOT Iron and Salt",
+                      "transformations":  [
+                                              "P09_MPD_PERSONALITY_TRAIT_BAR_X_IRON_AND_SALT"
+                                          ],
+                      "source_sha256":  "48250d0a44271fb37ae7ffc7395dfd232682840207b475e1d2336fbce80f729b",
+                      "donor_workshop_id":  "3717990443",
+                      "donor_name":  "AGOT - More Personality Depth",
+                      "donor_sha256":  "6cf36d66274fc31375d35b370d6ef24705bc04adc837daaa3b9ba75612193d8f",
+                      "built_sha256":  "9d67e21cd7d10c4cf7e84b799b13f75c61d6a42f050d69f1fbdfb2887504d7aa",
+                      "added_in":  "2026-08-30 Iron and Salt wave"
+                  },
+                  {
+                      "virtual_path":  "common/scripted_effects/asoiaf_scripted_effects_strong_seed.txt",
+                      "origin_patch":  "agot_unified_compat",
+                      "provider_workshop_id":  "2950245430",
+                      "provider_name":  "AGOT+",
+                      "transformations":  [
+                                              "P51_NONEXISTENT_DYNASTY_BRANCH_NEUTRALISED"
+                                          ],
+                      "sites_changed":  1,
+                      "source_sha256":  "e4d45eac8b53b5f610a89b39414d6d503f235c303b10fc0a9ca689bec8ea5025",
+                      "built_sha256":  "4f75e2eb31582550c5fefa865949e50edc32e0eff18f00112750665db8fd57c6",
+                      "added_in":  "2026-08-30 King Ronnel playthrough wave"
+                  },
+                  {
+                      "virtual_path":  "common/scripted_effects/04_dlc_ep2_wedding_effects.txt",
+                      "origin_patch":  "agot_unified_compat",
+                      "provider_workshop_id":  "2962333032",
+                      "provider_name":  "A Game of Thrones",
+                      "transformations":  [
+                                              "P52_GRAND_WEDDING_CLEANUP_GUARD"
+                                          ],
+                      "sites_changed":  1,
+                      "source_sha256":  "143e269971bb9bda310b4e04af56050715a618a319afb133ac8403e9643eb102",
+                      "built_sha256":  "e5aa673592e746fa0954ac0cb7cda80f7fa7f15fc3f0ff8dbd9128aee633ec1a",
+                      "added_in":  "2026-08-30 King Ronnel playthrough wave"
+                  },
+                  {
+                      "virtual_path":  "events/agot_events/agot_kingsguard_events.txt",
+                      "origin_patch":  "agot_unified_compat",
+                      "provider_workshop_id":  "2962333032",
+                      "provider_name":  "A Game of Thrones",
+                      "transformations":  [
+                                              "P53_KINGSGUARD_CANDIDATE_SOFT_SCOPE"
+                                          ],
+                      "sites_changed":  25,
+                      "source_sha256":  "362ec7c3a8701dccc40769c6a003d03d0a49c3084e54e199313e9b3954564490",
+                      "built_sha256":  "ae336d8b162f332d4cc5281bf67b1b6f9bc186d07d858e418f67a8ce5cad9a3a",
+                      "added_in":  "2026-08-30 King Ronnel playthrough wave"
                   }
               ],
-    "last_revision":  "2026-08-30 BOM normalisation + guard HUD nudge to -930"
+    "file_count":  95,
+    "last_revision":  "2026-08-30 P51-P53 from the 8003 King Ronnel playthrough"
 }

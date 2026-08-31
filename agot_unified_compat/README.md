@@ -4,7 +4,7 @@ A single local layer holding every compatibility fix for this playset. Targets C
 AGOT 0.5.1 against the 66-mod AGOT playset.
 
 Consolidated on 2026-08-30 from six separate local mods. **No game file was changed by the
-consolidation** — all 91 files were copied byte-identical and verified by hash. Only the packaging
+consolidation** — all 91 files were copied byte-identical and verified by hash (the layer has since grown to 92). Only the packaging
 changed: one folder, one `descriptor.mod`, one launcher pointer, one manifest.
 
 ## Load position — read this first
@@ -30,26 +30,121 @@ path any of them owned, so moving them all to the end flips no winner.
 | AGOT OPB Addon Compatibility | 1.0.1 | 3 | Immersive Personalities animal archetypes, Royal Court Event Pack hold-court selector |
 | AGOT - Claimant Faction War Fix | 1.0.0 | 2 | AGOT claimant faction wars and the creation interaction |
 
-91 game files. Full per-file provenance, transformation IDs and hash gates are in
+92 game files. Full per-file provenance, transformation IDs and hash gates are in
 `manifest/build_manifest.json`; every original document is preserved verbatim under
 `manifest/legacy/`.
 
-## Confirmed NOT working — do not assume these are fixed
+## Iron and Salt wave (2026-08-30)
 
-**P24** (Grand Remembrance chronicle window) and **P36** (guard academy HUD binding). Both try to
-gate a scripted-GUI call inside `And(...)`, which in CK3 GUI **evaluates every argument** rather
-than short-circuiting. Three approaches are already known to fail:
+Five mods were added at positions 60-64, ahead of this layer. Three needed nothing:
+**Custom Name Lists**, **Raised Army CoA** and **Extended Family Actions** each collide with
+nothing in the playset (their only shared keys are `on_action` entries, which merge rather than
+override).
 
-1. A script-side `exists = this` in `is_shown` — the scope is rejected before the trigger body runs.
-2. Reordering the `And()` arguments so `GetPlayer.IsValid` comes first — logically identical.
-3. Patching further call sites of a guard that does not work.
+**CK3 Naval Combat (60) must never be enabled without AGOT Iron and Salt (61) after it.** Naval
+Combat contains zero references to AGOT and its `gui/hud.gui` preserves **0 of 11** of AGOT's
+additions -- it would strip `agot_hud_dragon_army_composition`, the Night's Watch adventurer
+guard and the pirate/landless handling from the HUD. Iron and Salt declares Naval Combat as a
+dependency, carries 6,444 internal `naval_combat` references, and its `hud.gui` preserves
+**11 of 11** of AGOT's additions while adding the naval tab. Iron and Salt loading after Naval
+Combat is what makes the pair safe.
 
-The untried approach is a parent-container gate: an outer widget whose `visible` is
-`[GetPlayer.IsValid]` alone, with the `IsShown` call on a child. Vanilla uses that idiom in
-`hud.gui`, but never alongside a scripted-GUI call, so there is **no static proof** CK3 suppresses
-a child's `visible` evaluation under an invisible parent. Settle it with an in-game observer-mode
-test, not more file reading.
+Two files then needed merging into this layer, because it loads last:
 
+| Module | Base | Merged in |
+|---|---|---|
+| P08 | this layer's existing three-way | `gui/window_character.gui` -- Iron and Salt's `agot_kraken_character_view` registered beside the dragon and fake-death views, and the `main_content` guard rewritten to exclude **both** direwolves and krakens, since all three special views share that container. MPD's view-hook, DireWolves' two bindings and AGOT's portrait/multiplayer clauses are all retained. |
+| P09 | AGOT Iron and Salt | `gui/shared/cooltip.gui` -- new to this layer. Iron and Salt (12-line delta, kraken tooltip type) beat More Personality Depth (1-line delta), dropping MPD's `Not( Trait.IsPersonality )` guard so level-track bars reappeared on personality traits. Iron and Salt is the base; MPD's binding is re-applied on top. |
+
+## Observer mode null-scope defect — SOLVED, pattern proven
+
+In observer mode `GetPlayer` is invalid, so any GUI binding handing `GetPlayer.MakeScope` to a
+scripted GUI passes a dangling character and the engine rejects the scope **before any trigger
+runs**. The 7959 observer run exhausted a 100,000-entry error budget in 16 minutes on this alone.
+
+**Two approaches that do NOT work — never retry them:**
+
+1. `exists = this` inside the scripted GUI's `is_shown`. The scope is rejected before the trigger
+   body is entered. Grand Remembrance already shipped this; it does nothing.
+2. `And(GetPlayer.IsValid, IsShown(...))`. CK3 GUI `And()` **evaluates every argument** — it does
+   not short-circuit — so this is identical to the unguarded binding. This was P24 and P36, and
+   both demonstrably failed across multiple runs.
+
+**The approach that DOES work — parent-container gate:**
+
+```
+container = {                       # or widget
+    visible = "[GetPlayer.IsValid]"   # gate: player validity ALONE, no scripted-GUI call
+    <original element> = {
+        visible = "[... GetScriptedGui('x').IsShown( GetPlayer.MakeScope ) ...]"
+        ...content unchanged...
+    }
+}
+```
+
+CK3 **does** suppress a hidden parent's child bindings. Proven empirically:
+
+| Patch | File | Before | After |
+|---|---|---|---|
+| **P49** | `guard_academy_button_widget.gui` | 19,978 | **0** |
+| **P50** | `gr_chronicle_window.gui` | 19,977 → 2,582 | pending confirmation |
+
+P49 is **VERIFIED** against the 20:21 observer run. P50 applies the identical pattern; the outer
+container carries the registered widget name and the window itself is untouched — layer, movable,
+allow_outside, both state blocks and all content unchanged.
+
+### Still outstanding: CK3 Naval Combat — 60,396 entries
+
+Now the dominant source, and the same defect. The calls live in **AGOT Iron and Salt's**
+`gui/hud.gui` (11,716 lines — Iron and Salt wins that path over Naval Combat), clustered in the
+topbar gold/treasury tooltip around lines 8929–9274: ten `naval_combat_finance_active_gui` calls
+plus `GetPlayer.MakeScope.ScriptValue('naval_combat_monthly_maintenance_value')`.
+
+The fix is the same parent gate and would be a handful of surgical edits — but it means this layer
+takes on an **11,716-line whole-file override of an actively-developed mod**, re-derived on every
+Iron and Salt update. That is a maintenance decision, not a technical one, and is deliberately left
+to the owner. It only affects observer mode; normal play is unaffected because `GetPlayer` is valid.
+## King Ronnel playthrough wave (2026-08-30) — P51, P52, P53
+
+The 8003 normal-play run put total errors at 25,333 of the 100,000 budget, with only 2,508 during
+actual gameplay. These three fixes target the largest remaining gameplay-phase sources. All follow
+patterns already proven in this layer, and all are behaviour-preserving.
+
+| Module | Provider | Fix |
+|---|---|---|
+| P51 | AGOT+ | `asoiaf_scripted_effects_strong_seed.txt` — `agot_assign_strong_seed_traits_effect` tested `dynasty ?= dynasty:dynn_Redbeard`. That dynasty is **not defined by any mod in this playset**, and `?=` only soft-scopes the left side — an unresolvable dynasty literal on the right still errors. **40 entries.** The branch could never be true, so its limit becomes `always = no`. The body is left in place so the intent survives if AGOT+ ever adds the dynasty. |
+| P52 | AGOT | `04_dlc_ep2_wedding_effects.txt` — `clean_grand_wedding_betrothal_variables` dereferenced `var:promised_grand_wedding_marriage_countdown` without checking it exists, producing three errors per call (unset variable, then two invalid-scope `remove_variable` calls). **48 entries.** Now wrapped in `has_variable`, with both inner scopes soft. |
+| P53 | AGOT | `agot_kingsguard_events.txt` — **112 entries**, `Undefined event target 'kingsguard_candidate'` across eight sites. See below. |
+
+### P53 root cause
+
+`agot_kingsguard.9002` picks its candidate with a `random_` block whose limit can match nobody, so
+`scope:kingsguard_candidate` is never saved. Its option ran regardless: `add_courtier` errored, and
+it still fired `agot_kingsguard.1008`, which dereferences the same missing scope at six further
+sites. **One failed raise produced seven errors.**
+
+Two changes:
+
+1. The `.9002` option body is wrapped in `exists = scope:kingsguard_candidate`. With no candidate
+   there is nothing to do, so nothing runs — and `.1008` is no longer fired into a scope it cannot
+   use. This is the root-cause fix.
+2. All 24 `scope:kingsguard_candidate` hard switches across the file become `?=`, which also covers
+   `.1005`, `.1007`, `.1009`, `.3011`, `.9003` and `.9005`. Same idiom as P40 (`Targaryen_63`) and
+   P43 (`cp:kingsguard_6`).
+
+All 10 candidate save sites and all 6 numbered variants are untouched.
+
+### Deliberately not patched from this run
+
+- **Iron and Salt kraken tooltip chain** — 2,002 entries, 80% of gameplay-phase noise. Fires
+  `while building tooltip/description`: the decision preview runs `kraken_create_at_saved_location_effect`,
+  but `create_character` is a no-op in tooltip mode so everything downstream gets an invalid scope.
+  Execution is unaffected. `00_kraken_effects.txt` is 1,384 lines in an actively-developed mod, so a
+  patch would not survive updates for zero functional gain.
+- **The Unnecessary Dragons missing decision art** — 128 entries, `No valid picture found for
+  'hatch_dragon_decision'`. The decision works; the author simply ships no illustration.
+- **`gene_kraken` / `gene_direwolf`** — 5,386 each, load-time only. Saves predating those mods have
+  no stored value for the new portrait genes. Expected and harmless.
 ## Do NOT "fix" these — they are correct as they stand
 
 - **Seasons of Ice and Fire winter tiers.** Seasons deliberately splits AGOT's

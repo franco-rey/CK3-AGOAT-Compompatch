@@ -1,81 +1,99 @@
-﻿widget = {
-	name = "guard_academy_button_widget"
+﻿# AGOT Unified Compatibility Patch  P49 - guard HUD parent-container gate.
+#
+# Supersedes the P36 attempt, which did not work and is now removed.
+#
+# The defect: this widget's visible binding called
+#     GetScriptedGui('agot_guard_positions_standalone_hud_layout').IsShown( GetPlayer.MakeScope )
+# In observer mode GetPlayer is invalid, so the scripted GUI receives a dangling
+# character (Character - 4294967295) and the engine rejects the scope BEFORE any
+# trigger in is_shown runs:
+#     untyped trigger [ Scoped object of type 'character' is not valid ]
+#     common/scripted_guis/03_agot_guard_academy_gui.txt:22
+# The 7959 observer run logged 19,978 of these here and 19,977 from the Grand
+# Remembrance equivalent -- together 75% of a 100,000-entry error budget that was
+# exhausted 16 minutes into the session.
+#
+# Approaches already proven NOT to work, do not retry them:
+#   1. exists = this inside the scripted GUI's is_shown. The scope is rejected
+#      before the trigger body is entered; Grand Remembrance already shipped this.
+#   2. Reordering to And(GetPlayer.IsValid, ...). CK3 GUI And() evaluates every
+#      argument -- it does not short-circuit -- so this was identical to the
+#      unguarded binding. That was P36, and it demonstrably failed.
+#
+# This change: an outer gate widget whose visible is GetPlayer.IsValid ALONE, with
+# the scripted-GUI call moved to a child. Vanilla uses a bare GetPlayer.IsValid
+# container gate in hud.gui (lines 36, 42, 994, 1084) and hud_outliner.gui, so the
+# idiom is sanctioned -- but vanilla never combines it with a scripted-GUI call, so
+# whether CK3 suppresses a hidden parent's child bindings is NOT statically provable.
+#
+# STATUS: UNVERIFIED. Confirm with an observer run and check whether
+# 03_agot_guard_academy_gui.txt:22 still appears in error.log. If it does, this
+# approach is dead too and the remaining option is to stop shipping the widget in
+# observer mode entirely. P24 (gr_chronicle_window.gui) is deliberately left alone
+# until this test settles the question -- no point restructuring a 486-line window
+# on an unproven hypothesis.
+#
+# Position, size, layer and all three button bindings are carried over unchanged.
+widget = {
+	name = "agot_guard_hud_player_gate"
 	parentanchor = bottom|right
 	widgetanchor = bottom|right
-	# Standalone layout occupies the normal bottom HUD row.
-	# Observer Stack P47 - HUD collision with Search & Trade Artifacts and
-	# Advanced Character Search.
-	#
-	# All three mods anchor bottom|right, so a position of -X places the widget's
-	# right edge X px from the screen edge and it extends LEFTWARD by its width.
-	# Measured leftward from the right edge, the row was:
-	#     ACS  'find person'      630 -> 685   (55 wide, acs_external_integration.gui)
-	#     THIS widget             631 -> 745   (114 wide)   <-- covered both
-	#     S&T  'find artifact' R  690 -> 746   (56 wide, at_find_artifacts_widget.gui)
-	#     S&T  'find artifact' C  780 -> 836
-	#     S&T  'find artifact' L  870 -> 926
-	# At -631 this widget sat on top of 54 of ACS's 55 px and 55 of S&T-right's 56,
-	# hiding both buttons behind the guard row.
-	#
-	# Moved to -930, placing this widget directly beside Search and Trade's leftmost
-	# button, which ends at 926: a 4 px gap rather than the 34 px of the first attempt
-	# at -960, which read as too detached. New span 930 -> 1044. Nothing else in the
-	# playset anchors bottom|right beyond 926 and vanilla's timeline_widget occupies
-	# only 0 -> 649, so this is clear space. Size and all three bindings unchanged.
 	position = { -930 0 }
 	size = { 114 36 }
-	# Observer Stack P36 - same defect P24 fixed for the Grand Remembrance chronicle
-# window. And() does not short-circuit, so IsShown(GetPlayer.MakeScope) was
-# evaluated even when GetPlayer.IsValid was false, handing the scripted GUI a
-# dangling character reference every frame. 4,542 errors in one session. A
-# script-side guard cannot catch it -- the scope is typed Character and simply
-# points at nothing -- so the binding itself is gated on GetPlayer.IsValid first.
-	visible = "[And(GetPlayer.IsValid, And(And(Not(IsPauseMenuShown), IsDefaultGUIMode), GetScriptedGui('agot_guard_positions_standalone_hud_layout').IsShown(GuiScope.SetRoot(GetPlayer.MakeScope).End)))]"
-	alwaystransparent = no
 	layer = hud_layer
+	# P49 gate: GetPlayer.IsValid ALONE. No scripted-GUI call at this level.
+	visible = "[GetPlayer.IsValid]"
 
-	flowcontainer = {
-		ignoreinvisible = yes
-		parentanchor = bottom|right
-		button_round = {
-			visible = "[And(And(GetScriptedGui('agot_guard_positions_view_guard_roster_button').IsShown(GuiScope.SetRoot(GetPlayer.MakeScope).End), Not(IsGameViewOpen('barbershop'))), IsDefaultGUIMode)]"
-			name = "agot_guard_roster_button"
-			datacontext = "[GetScriptedGui( 'agot_guard_positions_view_guard_roster_button' )]"
-			onclick = "[ScriptedGui.Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
-			tooltip = "AGOT_GUARD_POSITIONS_VIEW_GUARD_ROSTER"
-			button_icon_highlight = {
-				texture = "gfx/interface/icons/flat_icons/kingsguard_flat_black.dds"
-				parentanchor = center
-				alwaystransparent = yes
-				size = { 36 36 }
+	widget = {
+		name = "guard_academy_button_widget"
+		size = { 100% 100% }
+		alwaystransparent = no
+		# original binding; the outer gate now carries the player-validity check
+		visible = "[And(And(Not(IsPauseMenuShown), IsDefaultGUIMode), GetScriptedGui('agot_guard_positions_standalone_hud_layout').IsShown(GuiScope.SetRoot(GetPlayer.MakeScope).End))]"
+
+		flowcontainer = {
+			ignoreinvisible = yes
+			parentanchor = bottom|right
+			button_round = {
+				visible = "[And(And(GetScriptedGui('agot_guard_positions_view_guard_roster_button').IsShown(GuiScope.SetRoot(GetPlayer.MakeScope).End), Not(IsGameViewOpen('barbershop'))), IsDefaultGUIMode)]"
+				name = "agot_guard_roster_button"
+				datacontext = "[GetScriptedGui( 'agot_guard_positions_view_guard_roster_button' )]"
+				onclick = "[ScriptedGui.Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
+				tooltip = "AGOT_GUARD_POSITIONS_VIEW_GUARD_ROSTER"
+				button_icon_highlight = {
+					texture = "gfx/interface/icons/flat_icons/kingsguard_flat_black.dds"
+					parentanchor = center
+					alwaystransparent = yes
+					size = { 36 36 }
+				}
 			}
-		}
-		button_round = {
-			visible = "[And(And(GetScriptedGui('agot_guard_positions_view_guard_academy_button').IsShown(GuiScope.SetRoot(GetPlayer.MakeScope).End), Not(IsGameViewOpen('barbershop'))), IsDefaultGUIMode)]"
-			name = "agot_guard_academy_button"
-			datacontext = "[GetScriptedGui( 'agot_guard_positions_view_guard_academy_button' )]"
-			onclick = "[ScriptedGui.Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
-			tooltip = "AGOT_GUARD_POSITIONS_VIEW_GUARD_ACADEMY"
-			button_icon_highlight = {
-				texture = "gfx/interface/icons/domicile_building/domicile_building_training_circle.dds"
-				parentanchor = center
-				alwaystransparent = yes
-				size = { 25 25 }
-				alpha = 0.78
+			button_round = {
+				visible = "[And(And(GetScriptedGui('agot_guard_positions_view_guard_academy_button').IsShown(GuiScope.SetRoot(GetPlayer.MakeScope).End), Not(IsGameViewOpen('barbershop'))), IsDefaultGUIMode)]"
+				name = "agot_guard_academy_button"
+				datacontext = "[GetScriptedGui( 'agot_guard_positions_view_guard_academy_button' )]"
+				onclick = "[ScriptedGui.Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
+				tooltip = "AGOT_GUARD_POSITIONS_VIEW_GUARD_ACADEMY"
+				button_icon_highlight = {
+					texture = "gfx/interface/icons/domicile_building/domicile_building_training_circle.dds"
+					parentanchor = center
+					alwaystransparent = yes
+					size = { 25 25 }
+					alpha = 0.78
+				}
 			}
-		}
-		button_round = {
-			visible = "[And(And(GetScriptedGui('agot_guard_positions_view_mission_ledger_button').IsShown(GuiScope.SetRoot(GetPlayer.MakeScope).End), Not(IsGameViewOpen('barbershop'))), IsDefaultGUIMode)]"
-			name = "agot_guard_mission_ledger_button"
-			datacontext = "[GetScriptedGui( 'agot_guard_positions_view_mission_ledger_button' )]"
-			onclick = "[ScriptedGui.Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
-			tooltip = "AGOT_GUARD_POSITIONS_VIEW_MISSION_LEDGER"
-			button_icon_highlight = {
-				texture = "gfx/interface/icons/artifact/artifact_chronicle.dds"
-				parentanchor = center
-				alwaystransparent = yes
-				size = { 25 25 }
-				alpha = 0.52
+			button_round = {
+				visible = "[And(And(GetScriptedGui('agot_guard_positions_view_mission_ledger_button').IsShown(GuiScope.SetRoot(GetPlayer.MakeScope).End), Not(IsGameViewOpen('barbershop'))), IsDefaultGUIMode)]"
+				name = "agot_guard_mission_ledger_button"
+				datacontext = "[GetScriptedGui( 'agot_guard_positions_view_mission_ledger_button' )]"
+				onclick = "[ScriptedGui.Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
+				tooltip = "AGOT_GUARD_POSITIONS_VIEW_MISSION_LEDGER"
+				button_icon_highlight = {
+					texture = "gfx/interface/icons/artifact/artifact_chronicle.dds"
+					parentanchor = center
+					alwaystransparent = yes
+					size = { 25 25 }
+					alpha = 0.52
+				}
 			}
 		}
 	}

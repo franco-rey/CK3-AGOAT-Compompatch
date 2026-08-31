@@ -337,16 +337,16 @@ d0780252942485561e048786a49552c16036b8cab113a305736527c26afd75f3  BUILT/gui/even
 
 # gui/gr_chronicle_window.gui  [P24_GUI_GETPLAYER_ISVALID_GUARD]  (from agot_observer_stack_compat)
 6d6a69c4eda29ab0d1d6cfde452bf4d3db173dfc0f068859ea70ba9d1209fa4a  3678529052/gui/gr_chronicle_window.gui  # SOURCE
-c042858a90ec9f08e0419804c7f129e71129c34087c14dcedee375d4d980b088  BUILT/gui/gr_chronicle_window.gui
+5b1f547ef6155d027955f1da24653487985288278c813c4767ddcb90ed5a5f10  BUILT/gui/gr_chronicle_window.gui  [P50]
 
 # gui/guard_academy_button_widget.gui  [P36_GUARD_HUD_BINDING_PLAYER_VALID_GATE, P47_HUD_COLLISION_REPOSITION]  (from agot_observer_stack_compat)
 44aec66cc1b41593d8d8c50d833d5fe1237da0157a149d030d2b40ef72c99b3f  3733779333/gui/guard_academy_button_widget.gui  # SOURCE
-1f211718b1eed2c222472de2e18a6bf47b35da1b172d647f18bd1011006ba640  BUILT/gui/guard_academy_button_widget.gui
+b12cbf0e826f56a93d79c2cd65da36d822d0a4385df402930f1c5d221acd964e  BUILT/gui/guard_academy_button_widget.gui  [P47+P49]
 
 # gui/window_character.gui  [P03_MPD_X_DIREWOLVES_X_AGOT_CHARACTER_WINDOW]  (from agot_seasons_personality_compat)
 62d426a1d3ab8dd39eda587fa96b8ae7e410eabff1ed8a3f8ade385bc19b9534  3717990443/gui/window_character.gui  # SOURCE
 aea0cea0b08c5b8e10f25250f79244424575b4e3119b46dd3b16c2b5a3e5dea5  3766320609/gui/window_character.gui  # DONOR
-0f9b5d03ceacf4fa8fb07442263765c9840264034c0e5fd852ff5004c7678618  BUILT/gui/window_character.gui
+b1e154f284715eb070a497667f85061f072a5a0f8ec0421dc2adc6ea4e55c4df  BUILT/gui/window_character.gui
 
 # gui/window_county_view.gui  [P07_SCROLLAREA_IGNOREINVISIBLE]  (from agot_observer_stack_compat)
 b3958c445ac4ba1aee4798f4ee32cf9044a97ed8615490134250409de22cfe90  3316173814/gui/window_county_view.gui  # SOURCE
@@ -360,3 +360,23 @@ e2b5a8da661a5d3d4e5695e52183cc5f400160c99c03ac85e06d54dd35864389  BUILT/gui/wind
 
 # localization/replace/english/zz_observer_stack_guard_book_l_english.yml  [P37_SWORDS_OF_BRAAVOS_JOIN_NO_LINK_MARKUP]  (from agot_observer_stack_compat)
 5f51237e994665ad6e25693b381246472911af802a6e4d1394d9d87632811c0a  BUILT/localization/replace/english/zz_observer_stack_guard_book_l_english.yml
+
+# gui/shared/cooltip.gui  [P09_MPD_PERSONALITY_TRAIT_BAR_X_IRON_AND_SALT]  (from agot_unified_compat)
+48250d0a44271fb37ae7ffc7395dfd232682840207b475e1d2336fbce80f729b  3781577713/gui/shared/cooltip.gui  # SOURCE (AGOT Iron and Salt)
+6cf36d66274fc31375d35b370d6ef24705bc04adc837daaa3b9ba75612193d8f  3717990443/gui/shared/cooltip.gui  # DONOR (AGOT - More Personality Depth)
+9d67e21cd7d10c4cf7e84b799b13f75c61d6a42f050d69f1fbdfb2887504d7aa  BUILT/gui/shared/cooltip.gui
+
+# gui/window_character.gui additional donor gate added 2026-08-30 (Iron and Salt wave)
+41e95b9f2645d9e6fa2f552bf80525d1daf2a91688d2dbe604e3222469ed51db  3781577713/gui/window_character.gui  # DONOR (AGOT Iron and Salt)
+
+# common/scripted_effects/asoiaf_scripted_effects_strong_seed.txt  [P51_NONEXISTENT_DYNASTY_BRANCH_NEUTRALISED]
+e4d45eac8b53b5f610a89b39414d6d503f235c303b10fc0a9ca689bec8ea5025  2950245430/common/scripted_effects/asoiaf_scripted_effects_strong_seed.txt  # SOURCE (AGOT+)
+4f75e2eb31582550c5fefa865949e50edc32e0eff18f00112750665db8fd57c6  BUILT/common/scripted_effects/asoiaf_scripted_effects_strong_seed.txt
+
+# common/scripted_effects/04_dlc_ep2_wedding_effects.txt  [P52_GRAND_WEDDING_CLEANUP_GUARD]
+143e269971bb9bda310b4e04af56050715a618a319afb133ac8403e9643eb102  2962333032/common/scripted_effects/04_dlc_ep2_wedding_effects.txt  # SOURCE (A Game of Thrones)
+e5aa673592e746fa0954ac0cb7cda80f7fa7f15fc3f0ff8dbd9128aee633ec1a  BUILT/common/scripted_effects/04_dlc_ep2_wedding_effects.txt
+
+# events/agot_events/agot_kingsguard_events.txt  [P53_KINGSGUARD_CANDIDATE_SOFT_SCOPE]
+362ec7c3a8701dccc40769c6a003d03d0a49c3084e54e199313e9b3954564490  2962333032/events/agot_events/agot_kingsguard_events.txt  # SOURCE (A Game of Thrones)
+ae336d8b162f332d4cc5281bf67b1b6f9bc186d07d858e418f67a8ce5cad9a3a  BUILT/events/agot_events/agot_kingsguard_events.txt
