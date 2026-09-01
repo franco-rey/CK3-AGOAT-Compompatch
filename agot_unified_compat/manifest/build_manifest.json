@@ -210,6 +210,19 @@
             "built_sha256":  "1b1c9aba7b460e02fb8e74828b45deb4e6ae330fddac0cba2359f2534a2e5daa"
         },
         {
+            "virtual_path":  "common/court_positions/types/00_exp_grand_vizier_position.txt",
+            "origin_patch":  "P66_GRAND_VIZIER_DEAD_RELIGION",
+            "provider_workshop_id":  "2754449789",
+            "transformations":  [
+                "base = Court Positions Expanded 1.19 file VERBATIM apart from three lines",
+                "CAUSE: gates Grand Vizier on has_religion = religion:islam_religion in is_shown, valid_position and valid_character. AGOT replace_paths the religion directories so islam_religion does not exist - 2,919 'Failed to fetch a valid religion' errors per session.",
+                "FIX: the three dead lookups become 'always = no'. BEHAVIOUR UNCHANGED - the position was already permanently unavailable.",
+                "NOT DONE DELIBERATELY: mapping it to a real AGOT faith would ENABLE content that has never worked here - a gameplay decision, not a fix."
+            ],
+            "source_sha256":  "d9504bb512ab6c11f4b5ee54c22134202f8dc6de062e5150f13a7091e067a027",
+            "built_sha256":  "8f02b98124706e31a94bf4f88423e37f2da2c7fd9b18b0c4f9e9461cd7f51976"
+        },
+        {
             "virtual_path":  "common/customizable_localization/gr_story_custom_loc.txt",
             "origin_patch":  "P62_GRAND_REMEMBRANCE_UNSET_VARS",
             "provider_workshop_id":  "3678529052",
@@ -1122,6 +1135,33 @@
             "built_sha256":  "68ce31cfb7856b0f7e6d26f3329a9d891f6d5792f86dea99b8b416fd306fee08"
         },
         {
+            "virtual_path":  "common/scripted_triggers/zzzzzz_agot_councillor_triggers_merge.txt",
+            "origin_patch":  "P63_COUNCILLOR_TRIGGERS_3WAY",
+            "provider_workshop_id":  "2962333032",
+            "transformations":  [
+                "base = AGOT 00_councillor_triggers.txt blocks for can_be_chancellor_trigger / can_be_steward_trigger / can_be_marshal_trigger, VERBATIM",
+                "CAUSE: three mods define these keys - AGOT, Female Knight and Councillor (3616413111, zzzzzz_00_councillor_triggers.txt) and More Traditions v2 + AGoT (2968715458, MTXXX_councillor_triggers.txt). Only one wins. Both submods were built by copying AGOT's block and editing, and BOTH dropped AGOT's own guards: NOT = { has_trait = kingsguard } on all three, plus NOT = { has_trait = maester } on marshal.",
+                "FIX: AGOT's blocks verbatim (restoring 4 lore guards) with the single gender-gate line widened into an OR carrying both submods' relaxations - AGOT's faith/doctrine rule, Female Knight's $COURT_OWNER$ = { is_ai = no }, and More Traditions' MTXXX_liege_flouts_council_faith_tradition_trigger + is_ruler = yes.",
+                "VERIFIED: 3 keys, brace balance 0, 4 AGOT guards preserved.",
+                "DEPENDENCY: needs Female Knight AND More Traditions loaded. Delete this file if either is removed - a dangling trigger reference is the failure mode that caused the kraken GUI bug."
+            ],
+            "source_sha256":  "0206d80e8c5f65c5e59c40e70de1f33258a5d18c0de9e0537d765d327d78e6a4",
+            "built_sha256":  "6b59e9121d23cdb6afc31baf4a2accb912fa60a985daab3f66510bb309db635d"
+        },
+        {
+            "virtual_path":  "common/scripted_triggers/zzzzzz_is_human_direwolf_merge.txt",
+            "origin_patch":  "P64_IS_HUMAN_DIREWOLF",
+            "provider_workshop_id":  "3621472324",
+            "transformations":  [
+                "base = AGOT Great Councils' is_human block VERBATIM",
+                "CAUSE: DireWolves (pos 50) extends AGOT's is_human with NOT = { has_trait = direwolf }. AGOT Great Councils (pos 83) ships its own otherwise-identical copy that OMITS that line, loads later, and wins - so direwolves count as human for councils, marriage pools and everything else gated on is_human.",
+                "FIX: Great Councils' version with DireWolves' direwolf exclusion restored. Same failure class as the invisible-dragon and kraken bugs.",
+                "DEPENDENCY: needs DireWolves AND AGOT Great Councils loaded."
+            ],
+            "source_sha256":  "10eb1975b391d457e213659afaf5166320f44d13669a52a20e33eabbd69d9199",
+            "built_sha256":  "d03dd07ba67b7993f5d4bce68af5cabf80c1c0ed5538aa750602143a154da285"
+        },
+        {
             "virtual_path":  "common/story_cycles/agot_story_cycle_naming_and_title_gui.txt",
             "origin_patch":  "agot_observer_stack_compat",
             "provider_workshop_id":  "2962333032",
@@ -1506,6 +1546,6 @@
             "built_sha256":  "5a2ab027d2b7f85078e5164be021d0495ba076b7afd64a8901d8b06761c9ad9e"
         }
     ],
-    "file_count":  95,
-    "last_revision":  "2026-09-01 P60/P61/P62 - log-spam and script-error fixes mined from the 2026-08-31 22:58 crash session (413,840 lines). Removes ~52,500 runtime script errors per session. All three behaviour-preserving."
+    "file_count":  98,
+    "last_revision":  "2026-09-01 P64/P66 - is_human direwolf exclusion restored; Grand Vizier dead religion gate neutralised."
 }

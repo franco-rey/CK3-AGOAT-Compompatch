@@ -1,0 +1,125 @@
+﻿# AGOT Unified Compatibility Patch  P63 - councillor triggers: AGOT x Female Knight x More Traditions.
+#
+# THREE mods define can_be_chancellor_trigger / can_be_steward_trigger / can_be_marshal_trigger:
+#   A Game of Thrones (2962333032)                common/scripted_triggers/00_councillor_triggers.txt
+#   Female Knight and Councillor (3616413111)     .../zzzzzz_00_councillor_triggers.txt
+#   More Traditions v2 + AGoT (2968715458)        .../MTXXX_councillor_triggers.txt
+#
+# These are database keys, so exactly ONE of them wins and the other two vanish. Worse, BOTH
+# submods were built by copying AGOT's block and editing it, and both DROPPED AGOT's own
+# lore guards in the process:
+#     NOT = { has_trait = kingsguard }   (all three positions)
+#     NOT = { has_trait = maester }      (marshal)
+# Without those a Kingsguard can be made Chancellor and a maester can be made Marshal.
+#
+# FIX: AGOT's blocks VERBATIM - which restores the kingsguard/maester guards - with the single
+# gender-gate line widened into an OR carrying BOTH submods' relaxations. Nobody loses a feature:
+#   * AGOT's faith/doctrine gender rule still applies to AI courts
+#   * Female Knight's "human player may appoint freely" still applies
+#   * More Traditions' tradition-based and is_ruler paths still apply
+#
+# DEPENDENCY: references MTXXX_liege_flouts_council_faith_tradition_trigger (More Traditions) and
+# assumes Female Knight is loaded. If either mod is removed, delete this file - a dangling trigger
+# reference is exactly the failure mode that produced the kraken GUI bug (see README).
+
+can_be_chancellor_trigger = {
+	can_be_councillor_basics_trigger = yes
+	$COURT_OWNER$ ?= {
+		NOT = { government_has_flag = government_is_nomadic }
+	}
+	NAND = {
+		has_council_position = councillor_court_chaplain
+		faith = { has_doctrine_parameter = clerical_appointment_fixed }
+	}
+	NOR = {
+		has_council_position = councillor_spouse
+		AND = {
+			this = liege.diarch
+			liege = { has_diarchy_active_parameter = diarchy_is_vizierate }
+		}
+	}
+	# AGOT COMPAT P63: three-way merge of the councillor gender gate.
+	#   AGOT           - can_be_councillor_gender_trigger (faith/doctrine based)
+	#   Female Knight  - $COURT_OWNER$ = { is_ai = no }   (a human player may appoint freely)
+	#   More Traditions- MTXXX_liege_flouts_council_faith_tradition_trigger, is_ruler = yes
+	OR = {
+		can_be_councillor_gender_trigger = { COURT_OWNER = $COURT_OWNER$ }
+		$COURT_OWNER$ = { is_ai = no }
+		MTXXX_liege_flouts_council_faith_tradition_trigger = { LIEGE = $COURT_OWNER$ }
+		is_ruler = yes
+	}
+
+	#AGOT Added
+	NOT = { has_trait = kingsguard }
+}
+
+can_be_steward_trigger = {
+	can_be_councillor_basics_trigger = yes
+	$COURT_OWNER$ ?= {
+		NOT = { government_has_flag = government_is_nomadic }
+	}
+	NAND = {
+		has_council_position = councillor_court_chaplain
+		faith = { has_doctrine_parameter = clerical_appointment_fixed }
+	}
+	NOR = {
+		has_council_position = councillor_spouse
+		AND = {
+			this = liege.diarch
+			liege = { has_diarchy_active_parameter = diarchy_is_vizierate }
+		}
+	}
+	# AGOT COMPAT P63: three-way merge of the councillor gender gate.
+	#   AGOT           - can_be_councillor_gender_trigger (faith/doctrine based)
+	#   Female Knight  - $COURT_OWNER$ = { is_ai = no }   (a human player may appoint freely)
+	#   More Traditions- MTXXX_liege_flouts_council_faith_tradition_trigger, is_ruler = yes
+	OR = {
+		can_be_councillor_gender_trigger = { COURT_OWNER = $COURT_OWNER$ }
+		$COURT_OWNER$ = { is_ai = no }
+		MTXXX_liege_flouts_council_faith_tradition_trigger = { LIEGE = $COURT_OWNER$ }
+		is_ruler = yes
+	}
+
+	#AGOT Added
+	NOT = { has_trait = kingsguard }
+}
+
+can_be_marshal_trigger = {
+	can_be_councillor_basics_trigger = yes
+	$COURT_OWNER$ ?= {
+		NOT = { government_has_flag = government_is_nomadic }
+	}
+	is_hostage = no
+	NAND = {
+		has_council_position = councillor_court_chaplain
+		faith = { has_doctrine_parameter = clerical_appointment_fixed }
+	}
+	NOR = {
+		has_council_position = councillor_spouse
+		AND = {
+			this = liege.diarch
+			liege = { has_diarchy_active_parameter = diarchy_is_vizierate }
+		}
+	}
+	OR = {
+		# AGOT COMPAT P63: three-way merge of the councillor gender gate.
+	#   AGOT           - can_be_councillor_gender_trigger (faith/doctrine based)
+	#   Female Knight  - $COURT_OWNER$ = { is_ai = no }   (a human player may appoint freely)
+	#   More Traditions- MTXXX_liege_flouts_council_faith_tradition_trigger, is_ruler = yes
+	OR = {
+		can_be_councillor_gender_trigger = { COURT_OWNER = $COURT_OWNER$ }
+		$COURT_OWNER$ = { is_ai = no }
+		MTXXX_liege_flouts_council_faith_tradition_trigger = { LIEGE = $COURT_OWNER$ }
+		is_ruler = yes
+	}
+
+		AND = {
+			has_trait = shieldmaiden
+			$COURT_OWNER$.culture = { has_cultural_parameter = has_access_to_shieldmaidens }
+		}
+	}
+
+	#AGOT Added
+	NOT = { has_trait = kingsguard }
+	NOT = { has_trait = maester }
+}

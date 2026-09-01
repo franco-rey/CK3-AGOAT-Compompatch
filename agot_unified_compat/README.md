@@ -696,6 +696,143 @@ variable it touches — 205 guards. All 6 top-level loc keys and all 143 `text` 
 - **2,000 `add_domicile_building … already constructing`** from `07_dlc_ep3_scripted_effects.txt`.
   Five mods ship that path; identifying the right owner needs more evidence than one session.
 
+## Batch 1-2 mod wave (2026-09-01) — 17 mods added, P63
+
+Playset: `E:\Desktop\AGOAT + Batch 1-2.json` — the existing 81-entry order preserved verbatim,
+18 appended at positions 81-98. 96 enabled.
+
+Measured against the live stack (40,811 files, 76,143 db keys indexed, `on_action` excluded because
+those entries merge). Results:
+
+- **No `replace_path`** in any of the 18.
+- **No intra-batch file conflicts** at all.
+- **14 files override AGOT.** All were diffed line-by-line; only one group lost AGOT *keys*.
+- **Two intra-batch key collisions**, one patched (P63) and one irreconcilable (below).
+
+### P63 — councillor triggers, three-way merge
+
+`can_be_chancellor_trigger`, `can_be_steward_trigger`, `can_be_marshal_trigger` are defined by
+**three** mods: AGOT, Female Knight and Councillor (`zzzzzz_00_councillor_triggers.txt`) and
+More Traditions v2 (`MTXXX_councillor_triggers.txt`). One wins, two vanish.
+
+Worse: both submods were built by copying AGOT's block and editing it, and **both dropped AGOT's own
+lore guards** —
+
+```
+NOT = { has_trait = kingsguard }     (chancellor, steward, marshal)
+NOT = { has_trait = maester }        (marshal)
+```
+
+— so with either of them winning, a Kingsguard could be made Chancellor and a maester Marshal.
+
+The patch takes AGOT's blocks verbatim (restoring all 4 guards) and widens the single gender-gate
+line into an OR carrying both submods' relaxations, so nobody loses a feature:
+
+```
+OR = {
+    can_be_councillor_gender_trigger = { COURT_OWNER = $COURT_OWNER$ }          # AGOT
+    $COURT_OWNER$ = { is_ai = no }                                              # Female Knight
+    MTXXX_liege_flouts_council_faith_tradition_trigger = { LIEGE = $COURT_OWNER$ }  # More Traditions
+    is_ruler = yes                                                              # More Traditions
+}
+```
+
+**Dependency:** requires Female Knight *and* More Traditions loaded. Delete the file if either is
+removed — a dangling trigger reference is exactly the failure mode behind the kraken GUI bug.
+
+### Better Executions Updated — DISABLED, not patchable
+
+`Better Executions Updated` (2429466948) and `Bloodlines: Legacies of AGOT` (3522779004) **both fully
+rewrite `execute_prisoner_interaction`** — 2,278 lines and 1,372 lines respectively, and Bloodlines'
+entire file is that one key. This is an either/or, not a merge, and it does not belong in a
+"straightforward patching" batch.
+
+Resolved on the stated priority order (lore first): **Bloodlines kept, Better Executions disabled.**
+Bloodlines adds dozens of house legacy tracks — arryn, baratheon, baelish, ashford, allyrion and
+more — which is the larger lore gain. Better Executions is left in the playset as a disabled entry
+so the decision is recorded rather than forgotten.
+
+### Checked and found harmless — do not "fix" these
+
+- **Bloodlines' dynasty legacy files.** They appear to delete 8 AGOT legacy tracks
+  (`stark_legacy_track`, `bolton_legacy_track`, `umber_legacy_track`, `dayne_legacy_track`,
+  `velaryon_legacy_track`, `borrell_legacy_track`, `forrester_legacy_track`, `dornish_legacy_track`).
+  **They do not** — every one is redefined elsewhere in Bloodlines, alongside dozens of new house
+  tracks. It is a wholesale expansion of AGOT's legacy system. No patch needed.
+- **`blind_castrated_disfigured_recipient_support_effect`.** Better Executions ships a 33-line
+  version that strips AGOT's `keep_imprisoned` handling and patron modifier. Our patch already
+  carries AGOT's 51-line version plus a one-line `exists = scope:recruit` guard, and loads last — so
+  the correct version already wins. Nothing to do.
+- The other 13 AGOT file overrides lose only formatting lines; **no AGOT keys are dropped** by any of
+  them.
+
+### Version rot in this batch — watch these
+
+`Ward Limit Based On Learning` (1.11.\*), `Petty Inheritable Traits` (1.18.\*),
+`Immersive Concubinage` (1.18.\*.\*), `Show Player Opinion` (1.18.1.1). TUD declared 1.12.\* and its
+entire decision system turned out non-functional, so an old `supported_version` here means "verify
+the feature actually works", not merely "probably fine".
+
+## Post-batch live-run findings (2026-09-01) — P64, P66
+
+First live session with the Batch 1-2 playset (96 workshop + patch): a Rhaenyra playthrough and an
+observer run. **All four earlier patches verified working in play** — every target signature 0:
+
+```
+P60 naval "Failed to fetch a valid culture"      0   (was 31,373)
+P61 "father trigger [ Failed context switch ]"   0   (was  7,564)
+P62 gr_story_custom_loc errors                   0   (was 13,608)
+dragon parse error / X3013 shader errors         0 / 0
+```
+
+### P64 — is_human: Great Councils drops DireWolves' exclusion
+
+DireWolves (pos 50) extends AGOT's `is_human` with `NOT = { has_trait = direwolf }`. **AGOT Great
+Councils (pos 83) ships its own otherwise-identical copy that omits that line**, loads later, and
+wins — so direwolves counted as human for councils, marriage pools, and everything else gated on
+`is_human`.
+
+This is the same failure class as the invisible-dragon and kraken bugs: a later mod copies an
+earlier definition and silently drops one line the earlier mod depends on. Patched by taking Great
+Councils' version verbatim with the direwolf exclusion restored.
+
+### P66 — Court Positions Expanded gates Grand Vizier on a religion AGOT deletes
+
+`has_religion = religion:islam_religion` in `is_shown`, `valid_position` and `valid_character`.
+AGOT `replace_path`s the religion directories, so it does not exist: **2,919 errors per session**.
+The three lookups become `always = no`. Behaviour unchanged — the position was already permanently
+unavailable, just noisily so.
+
+**To actually enable it** you would map those three lines to a real AGOT faith (something Essosi
+suits a Grand Vizier). That ADDS content that has never worked here, so it is a gameplay decision
+and deliberately not made in a bug-fix patch.
+
+### Silent losses found and NOT yet patched
+
+Measured across the whole playset — keys where a newly added mod overrides a **non-AGOT** mod:
+
+| Winner | Loses to it | Keys |
+|---|---|---|
+| Ward Limit (pos 85) | **Better AI Education + AGoT Patch** (pos 35/36) | `educate_child_interaction`, `offer_ward_interaction`, `offer_guardianship_interaction`, `remove_guardian_interaction`, `make_child_learn_language_interaction` |
+| Petty Inheritable Traits (pos 89) | **[AGOT] Mayham** (pos 39) | `bleeder`, `lisping`, `stuttering`, `wheezing` |
+| Petty Inheritable Traits | **Better Barbershop + Mayham** | `clubfooted`, `hunchbacked`, `scaly` |
+| No Duchy Limit (pos 81) | AGOT+, More Interactive Vassals | `NCharacterOpinion` |
+
+Ward Limit is the significant one: you run Better AI Education *and* its AGOT patch specifically for
+education behaviour, and all five of its education interactions are being replaced wholesale.
+
+### Observer mode is inherently noisy with CK3 Naval Combat — not a bug
+
+The observer run logged **74,624** null-scope errors (`Character - 4294967295`) from Naval Combat's
+script values (`transport_ship_count_value`, `monthly_maintenance_value`,
+`flagship_active_maintenance_value`). The same session pre-patch had 41.
+
+That is **not** a regression from P60 — P60 only touched three `can_build_*_trigger` definitions and
+none of these values. It is observer mode: with no player character those values evaluate against a
+null character handle, and Naval Combat guards the *variable* (`exists = var:...`) but not the
+*scope*, so the guard itself throws. In normal play there is a player character and it resolves.
+Cosmetic, but it is where a 29 MB log comes from.
+
 ## Do NOT "fix" these — they are correct as they stand
 
 - **Seasons of Ice and Fire winter tiers.** Seasons deliberately splits AGOT's
