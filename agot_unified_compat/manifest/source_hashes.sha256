@@ -327,9 +327,6 @@ d0780252942485561e048786a49552c16036b8cab113a305736527c26afd75f3  BUILT/gui/even
 6d6a69c4eda29ab0d1d6cfde452bf4d3db173dfc0f068859ea70ba9d1209fa4a  3678529052/gui/gr_chronicle_window.gui  # SOURCE
 5b1f547ef6155d027955f1da24653487985288278c813c4767ddcb90ed5a5f10  BUILT/gui/gr_chronicle_window.gui  [P50]
 
-# gui/guard_academy_button_widget.gui  [P36_GUARD_HUD_BINDING_PLAYER_VALID_GATE, P47_HUD_COLLISION_REPOSITION]  (from agot_observer_stack_compat)
-44aec66cc1b41593d8d8c50d833d5fe1237da0157a149d030d2b40ef72c99b3f  3733779333/gui/guard_academy_button_widget.gui  # SOURCE
-5991e123e92fe3cdcddf6d67a8be1fb719fecbc6add8a7f98df7ac56f76a96c4  BUILT/gui/guard_academy_button_widget.gui  [P47+P49]
 
 # gui/window_character.gui  [P03_MPD_X_DIREWOLVES_X_AGOT_CHARACTER_WINDOW]  (from agot_seasons_personality_compat)
 62d426a1d3ab8dd39eda587fa96b8ae7e410eabff1ed8a3f8ade385bc19b9534  3717990443/gui/window_character.gui  # SOURCE

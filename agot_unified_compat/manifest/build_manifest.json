@@ -1393,26 +1393,8 @@
             "transformations":  [
                 "P50_CHRONICLE_PARENT_GATE"
             ],
-            "built_sha256":  "5b1f547ef6155d027955f1da24653487985288278c813c4767ddcb90ed5a5f10",
+            "built_sha256":  "29b6245053cd5b654fa452ced3dc6e14b55fc344e224d6f2ce0e1460a7e52b55",
             "status":  "uses the P49-proven parent-gate pattern; confirm on next observer run"
-        },
-        {
-            "virtual_path":  "gui/guard_academy_button_widget.gui",
-            "origin_patch":  "agot_observer_stack_compat",
-            "provider_workshop_id":  "3733779333",
-            "provider_name":  "AGOT: Royal Guards",
-            "source_sha256":  "44aec66cc1b41593d8d8c50d833d5fe1237da0157a149d030d2b40ef72c99b3f",
-            "replacement_counts":  {
-                "P36_GUARD_HUD_BINDING_PLAYER_VALID_GATE":  1
-            },
-            "added_in":  "2026-08-30 revision wave",
-            "transformations":  [
-                "P36_GUARD_HUD_BINDING_PLAYER_VALID_GATE",
-                "P47_HUD_COLLISION_REPOSITION",
-                "P49_GUARD_HUD_PARENT_GATE"
-            ],
-            "built_sha256":  "5991e123e92fe3cdcddf6d67a8be1fb719fecbc6add8a7f98df7ac56f76a96c4",
-            "status":  "VERIFIED: 19,978 -> 0 in the 20:21 observer run"
         },
         {
             "virtual_path":  "gui/window_character.gui",
@@ -1546,6 +1528,6 @@
             "built_sha256":  "5a2ab027d2b7f85078e5164be021d0495ba076b7afd64a8901d8b06761c9ad9e"
         }
     ],
-    "file_count":  98,
-    "last_revision":  "2026-09-01 P64/P66 - is_human direwolf exclusion restored; Grand Vizier dead religion gate neutralised."
+    "file_count":  97,
+    "last_revision":  "2026-09-01 P36/P47/P49 retired - guard HUD widget override removed; upstream already gates on GetPlayer.IsValid."
 }

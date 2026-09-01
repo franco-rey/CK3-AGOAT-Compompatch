@@ -22,7 +22,9 @@
 # P24 tried And(GetPlayer.IsValid, IsShown(...)). CK3 GUI And() evaluates every
 # argument, so that was identical to the unguarded binding. It never worked.
 #
-# This uses the parent-container gate PROVEN by P49 on guard_academy_button_widget.gui,
+# This uses a parent-container visibility gate. NOTE: the P49 override that technique was
+# named after was RETIRED on 2026-09-01 - it was never confirmed working and the Kingsguard
+# buttons were missing while it was active. Treat the technique as unproven,
 # which took that file's identical error from 19,978 to exactly 0 in the 20:21
 # observer run: an outer container whose visible is GetPlayer.IsValid ALONE, with the
 # scripted-GUI call on the child. CK3 does suppress a hidden parent's child bindings.
