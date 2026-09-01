@@ -102,9 +102,6 @@ bef9756f993e237614ecedbd37773f71684c3628ed0706d7bdf03e9933c1fa4f  2995674648/com
 # common/modifiers/zz_observer_stack_missing_canon_child_modifiers.txt  [P33_GREYJOY_13_ALT_MODIFIER_DEFINED]  (from agot_observer_stack_compat)
 2610c92af200a56c05b267b358cdcc3d5b4db59e9f53bc1472a9b4c02b3b102f  BUILT/common/modifiers/zz_observer_stack_missing_canon_child_modifiers.txt
 
-# common/on_action/00_agot_guard_positions_on_actions.txt  [P39_GUARD_INHERITS_TITLE_REVIEW_DEDUP]  (from agot_observer_stack_compat)
-267015befb42fd0f053f8395cf26ddb189076fc5e3a2029c6540b9ce0c73f2de  3733779333/common/on_action/00_agot_guard_positions_on_actions.txt  # SOURCE
-e2b2fd212a03676d08eeea75ec3ffaa99a4cb1631ca3f30df06f81e46e528dd3  BUILT/common/on_action/00_agot_guard_positions_on_actions.txt
 
 # common/on_action/05_agot_queensguard_on_actions.txt  [P40_QUEENSGUARD_TARGARYEN63_SOFT_SCOPE]  (from agot_observer_stack_compat)
 db487fe565ee07abb705c7d5de21a3adedb01b557474d2a2ba095ea0ed794af4  3733779333/common/on_action/05_agot_queensguard_on_actions.txt  # SOURCE
@@ -159,9 +156,6 @@ aa5ac8257d767b78554e33ba50b15487327e6f90c1e8671403dbc1a6ce7f3c59  BUILT/common/s
 2d5333009be4138a3e1c200a3eac012e8d72435423ce4ed5ffef03292a3a896c  2995674648/common/scripted_character_templates/ntc_scripted_character_template.txt  # SOURCE
 ee2ae88d0ddbecb760cd41de5770c8e9141f2a1363a44b1ad72d81414a35b430  BUILT/common/scripted_character_templates/ntc_scripted_character_template.txt
 
-# common/scripted_effects/00_agot_guard_positions_effects.txt  [P41_GUARD_QUEUE_CHURN_DEDUP, P42_TRAINING_RANK_TOOLTIP_SAFE_READS, P46_ACADEMY_PATH_XP_TOOLTIP_GUARD]  (from agot_observer_stack_compat)
-202c52a56a3d7ac85629d2d87d935cfcb6f5595c80074f4076bceea603c956c3  3733779333/common/scripted_effects/00_agot_guard_positions_effects.txt  # SOURCE
-fadd1cc5cd196c1148abbfe9d1d84c77f8b7b95ed4d2088ffc010ae8e55240ef  BUILT/common/scripted_effects/00_agot_guard_positions_effects.txt
 
 # common/scripted_effects/00_agot_hf_effects.txt  [P19]  (from agot_observer_stack_compat)
 66628c384eef295d4966fb4057a4af92b69c3c39fc54d28df514e5451f93cce6  2967263410/common/scripted_effects/00_agot_hf_effects.txt  # SOURCE
@@ -171,18 +165,12 @@ fadd1cc5cd196c1148abbfe9d1d84c77f8b7b95ed4d2088ffc010ae8e55240ef  BUILT/common/s
 dfde92191c93bf93a074dc475fe1a188d8d17f7f4515c22b4f903bb2d6cfff91  2962333032/common/scripted_effects/00_interaction_effects.txt  # SOURCE
 c0358c88859bbf11bd4fdd2cbb67636bb38b95ce6ae05cc0de0daa27f43c1549  BUILT/common/scripted_effects/00_interaction_effects.txt
 
-# common/scripted_effects/06_agot_swords_of_braavos_effects.txt  [P41_GUARD_QUEUE_CHURN_DEDUP]  (from agot_observer_stack_compat)
-24ae56a3ccfe1d0156be4236edcbe5254a2f9514924bfaf9ea134daa4d865deb  3733779333/common/scripted_effects/06_agot_swords_of_braavos_effects.txt  # SOURCE
-40956cd94137797fec76bc476ac45e6759583de8e771098b2dac18c4489e0320  BUILT/common/scripted_effects/06_agot_swords_of_braavos_effects.txt
 
 # common/scripted_effects/07_dlc_ep3_scripted_effects.txt  [P02_HF_ADVENTURER_NAMING_X_SEASONS_WINTER_TIERS]  (from agot_seasons_personality_compat)
 a5171679cd2e3feb2429614146e665e997c20cbcbfe03fecf6e6ff2444de156d  2967263410/common/scripted_effects/07_dlc_ep3_scripted_effects.txt  # SOURCE
 26aa808294a4f88a63a2c38c619727770edf0e7296ed6c9aa24b50c7368edfed  3377641022/common/scripted_effects/07_dlc_ep3_scripted_effects.txt  # DONOR
 0dfa008fd1e0f5aa76d23f7d70022aee008dad0120cc8bd474d497107b5f5679  BUILT/common/scripted_effects/07_dlc_ep3_scripted_effects.txt
 
-# common/scripted_effects/08_agot_guard_order_book_effects.txt  [P35_GUARD_BOOK_LORD_COMMANDER_ONCE_PER_PAGE]  (from agot_observer_stack_compat)
-e1854a917a1599c725c01862c258a7f82729cf577cb0d290d6f59de81e9a1ccd  3733779333/common/scripted_effects/08_agot_guard_order_book_effects.txt  # SOURCE
-57feb5ba1f453fc3710ab3313abc222f5bd123b4f41bb40f10c35be9f2c637e8  BUILT/common/scripted_effects/08_agot_guard_order_book_effects.txt
 
 # common/scripted_effects/20_health_effects.txt  [P16]  (from agot_observer_stack_compat)
 9f871971b349e0555503fbe1bb0c2f8692a82b2067354bcb8e04b1c608e230ec  2962333032/common/scripted_effects/20_health_effects.txt  # SOURCE
@@ -383,7 +371,8 @@ ae336d8b162f332d4cc5281bf67b1b6f9bc186d07d858e418f67a8ce5cad9a3a  BUILT/events/a
 # gfx/FX/court_scene.shader  [P54_SHADER_APPLYVARIATIONPATTERNS_ARITY]  (new in unified patch)
 46d1db35c8f5245efc36dec2401a717a045277969505c01afdff857739b83c72  3381385128/gfx/FX/court_scene.shader  # SOURCE (AGOT Color Picker for Clothes - base)
 158eb11f7ba197dd4e706afe414780cbedebb4810c016965982bdeabc10b0a3f  3235061780/gfx/FX/court_scene.shader  # DONOR (Battle Graphics AGOT Patch - ACG block only)
-806d129c944809ecd4111fff5d3e781d34867144bea53a0819fb4ca4e0d353fd  BUILT/gfx/FX/court_scene.shader  [P54]
-# gfx/FX/jomini/portrait_decals.fxh  [P57_DIAG_TEMPORARY]  *** DIAGNOSTIC - REMOVE AFTER TESTING ***
-a46257afc511e0370d398fb47789992aff4a02e859eac847b26932622b7c3331  3381385128/gfx/FX/jomini/portrait_decals.fxh  # SOURCE
-a155eb53d602f5f9de662d8b6a1eefc84d1c13327d46c661b30c9637cb15ca1a  BUILT/gfx/FX/jomini/portrait_decals.fxh  [P57-DIAG]
+5a2ab027d2b7f85078e5164be021d0495ba076b7afd64a8901d8b06761c9ad9e  BUILT/gfx/FX/court_scene.shader  [P54]
+
+# common/scripted_effects/zzz_agot_dragon_transfer_vars_fix.txt  [P59_DRAGON_TRANSFER_VARS]
+0b4303a246f46c8a970b0118ca2d63d2f63e59d61683dfc3dc80da63e0b021f0  2962333032/common/scripted_effects/00_agot_dragon_effects.txt  # SOURCE (A Game of Thrones) - lines 2302-2675 verbatim
+ea539922c12d17f356d31ee021fa730f0d9a8309add5e126c40574d7bbd010bd  BUILT/common/scripted_effects/zzz_agot_dragon_transfer_vars_fix.txt  [P59]

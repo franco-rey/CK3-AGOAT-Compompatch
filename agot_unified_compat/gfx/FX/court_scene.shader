@@ -1,26 +1,31 @@
-# AGOT Unified Compatibility Patch - P54  gfx/FX/court_scene.shader
+# AGOT Unified Compatibility Patch  P54 - gfx/FX/court_scene.shader
 #
-# Battle Graphics AGOT Compatibility Patch (3235061780, load pos 78) overwrote this
-# file with a version built against AGOT alone. AGOT Color Picker for Clothes
-# (3381385128, load pos 17) owns gfx/FX/agot_portrait_decals_shared.fxh, which
-# defines ApplyVariationPatterns with SEVEN parameters - the 7th is PortraitEffect.
-# The BG patch's court_scene.shader calls it with SIX. Result:
-#     shadercache/dx11/ps_5_0/*.scache: error X3013:
-#         ApplyVariationPatterns - no matching 6 parameter function
-#     gfx_dx11_shaderstate.cpp:165: Failed getting shader for PS_attachment
-# and then, for every garment mesh in the game:
+# Battle Graphics AGOT Compatibility Patch (3235061780, load pos 78) wins this
+# file with a version built against AGOT alone. But AGOT Color Picker for Clothes
+# (3381385128, pos 17) wins gfx/FX/agot_portrait_decals_shared.fxh and
+# gfx/FX/jomini/portrait_decals.fxh, which define:
+#     ApplyVariationPatterns  with SEVEN parameters (7th = PortraitEffect)
+#     AddDragonDecals         with EIGHT parameters
+# The BG patch calls them with SIX and SEVEN. Result:
+#     error X3013: ApplyVariationPatterns - no matching 6 parameter function
+#     gfx_dx11_shaderstate.cpp: Failed getting shader for PS_attachment
+# and then, for every garment mesh:
 #     pdxassetutil.cpp:900: Failed to create material with shader
 #         portrait_attachment_pattern in gfx/FX/court_scene.shader
 # portrait_attachment_pattern draws clothing and legwear onto portraits, so no
-# garment received a material: characters rendered nude with distorted limbs.
+# garment received a material and every character rendered nude with distorted
+# limbs.
 #
-# Fix: this file is AGOT Color Picker for Clothes' court_scene.shader VERBATIM.
-# It threads PortraitEffect through CommonPixelShaderColor, CommonPixelShader and
-# CommonPixelShaderWithTwoNormal, ~10 AGOT_ScanMarkerDecals call sites,
-# AddDragonDecals and AGOT_TryApplyStatueEffect - 44 lines that cannot simply be
-# grafted onto the BG version. Battle Graphics' ACG Addition block is appended;
-# that block is its ONLY unique contribution to this file, and its two Effects are
-# referenced by acg_MESH_flag_banner.asset and acg_MESH_flag_weapon.asset.
+# Fix: this file is Color Picker's court_scene.shader VERBATIM (correct 7/8 call
+# arity) plus Battle Graphics' ACG Addition block appended. That block is Battle
+# Graphics' only unique contribution here; its two Effects are referenced by
+# acg_MESH_flag_banner.asset and acg_MESH_flag_weapon.asset.
+#
+# DEPENDENCY: this file is ONLY correct while AGOT Color Picker for Clothes is
+# enabled. If it is ever disabled, AGOT's own 6/7-argument chain becomes
+# internally consistent and THIS FILE MUST BE REMOVED or it will reintroduce the
+# very arity error it exists to fix. (Verified: removed once when Color Picker
+# was disabled, restored when it came back.)
 #
 # Do not regenerate from the BG patch. Rebase on Color Picker's file if it updates.
 Includes = {
