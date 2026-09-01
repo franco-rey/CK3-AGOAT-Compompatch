@@ -334,7 +334,7 @@ d0780252942485561e048786a49552c16036b8cab113a305736527c26afd75f3  BUILT/gui/even
 # gui/window_character.gui  [P03_MPD_X_DIREWOLVES_X_AGOT_CHARACTER_WINDOW]  (from agot_seasons_personality_compat)
 62d426a1d3ab8dd39eda587fa96b8ae7e410eabff1ed8a3f8ade385bc19b9534  3717990443/gui/window_character.gui  # SOURCE
 aea0cea0b08c5b8e10f25250f79244424575b4e3119b46dd3b16c2b5a3e5dea5  3766320609/gui/window_character.gui  # DONOR
-b1e154f284715eb070a497667f85061f072a5a0f8ec0421dc2adc6ea4e55c4df  BUILT/gui/window_character.gui
+d7949d16fb76e97a427e6055ca6bf7602905d56f423da0031993f08bcd46d942  BUILT/gui/window_character.gui
 
 # gui/window_county_view.gui  [P07_SCROLLAREA_IGNOREINVISIBLE]  (from agot_observer_stack_compat)
 b3958c445ac4ba1aee4798f4ee32cf9044a97ed8615490134250409de22cfe90  3316173814/gui/window_county_view.gui  # SOURCE
@@ -349,13 +349,8 @@ e2b5a8da661a5d3d4e5695e52183cc5f400160c99c03ac85e06d54dd35864389  BUILT/gui/wind
 # localization/replace/english/zz_observer_stack_guard_book_l_english.yml  [P37_SWORDS_OF_BRAAVOS_JOIN_NO_LINK_MARKUP]  (from agot_observer_stack_compat)
 5f51237e994665ad6e25693b381246472911af802a6e4d1394d9d87632811c0a  BUILT/localization/replace/english/zz_observer_stack_guard_book_l_english.yml
 
-# gui/shared/cooltip.gui  [P09_MPD_PERSONALITY_TRAIT_BAR_X_IRON_AND_SALT]  (from agot_unified_compat)
-48250d0a44271fb37ae7ffc7395dfd232682840207b475e1d2336fbce80f729b  3781577713/gui/shared/cooltip.gui  # SOURCE (AGOT Iron and Salt)
-6cf36d66274fc31375d35b370d6ef24705bc04adc837daaa3b9ba75612193d8f  3717990443/gui/shared/cooltip.gui  # DONOR (AGOT - More Personality Depth)
-9d67e21cd7d10c4cf7e84b799b13f75c61d6a42f050d69f1fbdfb2887504d7aa  BUILT/gui/shared/cooltip.gui
 
 # gui/window_character.gui additional donor gate added 2026-08-30 (Iron and Salt wave)
-41e95b9f2645d9e6fa2f552bf80525d1daf2a91688d2dbe604e3222469ed51db  3781577713/gui/window_character.gui  # DONOR (AGOT Iron and Salt)
 
 # common/scripted_effects/asoiaf_scripted_effects_strong_seed.txt  [P51_NONEXISTENT_DYNASTY_BRANCH_NEUTRALISED]
 e4d45eac8b53b5f610a89b39414d6d503f235c303b10fc0a9ca689bec8ea5025  2950245430/common/scripted_effects/asoiaf_scripted_effects_strong_seed.txt  # SOURCE (AGOT+)

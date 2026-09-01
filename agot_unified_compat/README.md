@@ -7,6 +7,12 @@ Consolidated on 2026-08-30 from six separate local mods. **No game file was chan
 consolidation** — all 91 files were copied byte-identical and verified by hash (the layer has since grown to 92). Only the packaging
 changed: one folder, one `descriptor.mod`, one launcher pointer, one manifest.
 
+> **Current dragon status:** the investigation is closed for the general invisible-body failure.
+> Read [`DRAGON_INVESTIGATION.md`](DRAGON_INVESTIGATION.md) for the authoritative test record,
+> confirmed signatures, production exclusions, false leads, and remaining thumbnail/UI follow-up.
+> Earlier dragon sections below are retained as chronological evidence and may contain conclusions
+> that were explicitly superseded by later controlled runs.
+
 ## Load position — read this first
 
 **This mod must be the last entry in the playset, after every Workshop mod.**
@@ -546,6 +552,71 @@ GUI-modifying mods load *before* it and only 4 after. That is why it clobbered M
 Depth and DireWolves and why P03 and P09 have to exist at all — moving it ahead of the GUI mods
 would make both unnecessary. It is *not* related to the dragon bug: Dragon Test 1 was three mods in
 exactly the prescribed order, with no GUI mods present, and dragons were still invisible.
+
+## DEFINITIVE PLAYSET (2026-08-31) — invisible dragons SOLVED
+
+Dragons render. The cause was **two independent bugs producing an identical symptom**, which is why
+single-culprit hunting failed repeatedly.
+
+| # | Cause | Mechanism | Resolution |
+|---|---|---|---|
+| 1 | **The Unnecessary Dragons** (3287624076) | Declares `common/artifacts/slots/tud_slots.txt` with a slot whose database key is exactly `dragon`, colliding with AGOT's accessory-gene **group** `dragon` in `gene_dragon`. The group fails to parse (`Unexpected token: dragon, near line: 14`) and the body accessory never registers. `gene_dragon_shadow` is a separate gene, so the shadow still drew. | **Mod removed from the playset.** TUD ships zero gene/portrait files, so no structural filter could find it. |
+| 2 | **Battle Graphics** (3225355262) | Stale `gfx/FX/court_scene.shader` calls `ApplyVariationPatterns` with 6 arguments where the winning Color Picker include defines 7 → 1,526 `X3013` errors, 1,526 `Failed getting shader for PS_attachment`. **All** portrait attachments fail, dragon bodies included. | **P54 in this patch.** A shader-only diagnostic mod containing just P54's `court_scene.shader` took X3013 from 1,526 to 0 and dragons rendered. |
+
+The definitive playset is the `AGOT Testing` list with **AGOT Iron and Salt** and **The Unnecessary
+Dragons** disabled, this patch last.
+
+### P54's hard dependencies are now declared
+
+`descriptor.mod` gained three entries it should always have carried, since P54's shader is Color
+Picker for Clothes' file plus Battle Graphics' ACG block:
+
+```
+"AGOT Color Picker for Clothes"
+"Battle Graphics"
+"Battle Graphics AGOT Compatibility Patch"
+```
+
+### Iron and Salt content removed for good — and it was causing a visible UI bug
+
+Iron and Salt is permanently out (its own separate minimal-case dragon failure is unrepaired and
+distinct from TUD's). Two patch files were built on it and had become **actively harmful**:
+
+```
+gui/shared/cooltip.gui:886   'kraken_cooltip_type_living' is not a valid widget/type/property
+gui/shared/cooltip.gui:472   'container_kraken_character_tooltip' is not a valid widget/type/property
+gui/window_character.gui:4121 'agot_kraken_character_view' is not a valid widget/type/property
+```
+
+Line 4121 sits beside the dragon character view. That container failed to build, and the result was
+**two relationship panels rendered superimposed** on dragon characters — duplicated, offset
+Parents / Grandparents / Children / Siblings rows.
+
+- `gui/shared/cooltip.gui` — **deleted.** It existed only to reconcile More Personality Depth with
+  Iron and Salt. With Iron gone, MPD's version wins naturally and is correct.
+- `gui/window_character.gui` — **de-krakened.** `agot_kraken_character_view` and the
+  `kraken_character_window` guard removed; the `main_content` guard is back to DireWolves' form
+  `[And( IsCharacterNormal, Not( IsCharacterDirewolf ) )]`. Verified after the edit: zero live kraken
+  references, brace balance 0, and `dw_direwolf_character_view`, `dw_direwolf_relationship_row`,
+  `IsCharacterDirewolf`, `mpd_view_hook`, `agot_pre_war_liege_portrait_vbox`,
+  `agot_dragons_character_view`, `agot_hidden_character_view` and `agot_fake_death_character_view`
+  all still present. **This file must stay** — its chain is AGOT → DireWolves → MPD → us, so
+  deleting it would silently drop DireWolves' character view.
+
+If Iron and Salt is ever reinstated, both are recoverable from git history — and its Workshop page's
+load-order rule (GUI mods *after* it) should be honoured, which would have avoided needing P03/P09
+at all.
+
+### Still open
+
+- **Two dragons show no portrait thumbnail but render correctly when clicked.** Not explained by the
+  current log: all four decisive signatures are 0, and the only dragon-gene messages are
+  `Unknown gene_dragon_main_horn_shape gene template dragon_horns_none` in AGOT's own
+  `common/dna_data/test_dna_*` files — which describe *human* test characters and are longstanding
+  AGOT data debt present in clean sessions too.
+- **AGOT + CK3 Naval Combat + Iron and Salt** reproduces invisible dragons with a *different*
+  signature (72 `agot_historical_dragon_transfer_vars_to_story_cycle_effect` compile failures, zero
+  parse errors). A third mechanism, unexplained and sidestepped rather than fixed.
 
 ## Do NOT "fix" these — they are correct as they stand
 

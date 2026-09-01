@@ -77,6 +77,37 @@ Every entry now carries `virtual_path`, `origin_patch`, `provider_workshop_id`, 
 
 ## Runtime status
 
+### 2026-08-31 dragon investigation closure
+
+The production candidate was launched with 79 Workshop mods plus the unified compatibility patch
+last (80 enabled entries total). The Unnecessary Dragons and AGOT Iron and Salt were absent; Revive
+Dead House and CK3 Naval Combat were present. The user visually confirmed that almost all dragons
+render, and the decisive error counts were:
+
+```text
+Unexpected token: dragon                                  0
+invalid accessory group [dragon]                          0
+could not find template [dragon]                           0
+X3013 shader errors                                       0
+Failed getting shader for PS_attachment                   0
+```
+
+This follows an earlier controlled 78-Workshop run with a one-file P54 diagnostic loaded last, in
+which dragons rendered and the same five signatures were zero. The preceding identical Workshop
+run without P54 had 1,526 X3013 errors and 1,526 `PS_attachment` failures. Together these runs
+validate both removal of the TUD-triggered database failure and P54's shader correction.
+
+The production run also exposed stale Iron-only GUI references: one invalid
+`agot_kraken_character_view`, 25 invalid `kraken_cooltip_type_living` uses, and one invalid
+`container_kraken_character_tooltip`. They produced the duplicated dragon family/relationship panel.
+The corrective GUI rebase occurred after that run and is awaiting one fresh-launch confirmation.
+
+Two dragons still lacked small portrait thumbnails but displayed complete models when selected.
+Because the database and shader signatures above are clean, this is tracked as a separate residual
+portrait/UI issue, not a recurrence of the invisible-dragon defect.
+
+The full chronology and diagnostic lessons are in `../DRAGON_INVESTIGATION.md`.
+
 **VERIFIED** across four playtests for the patch content, as recorded in the README and in
 `legacy/observer_stack_validation_results.md`.
 

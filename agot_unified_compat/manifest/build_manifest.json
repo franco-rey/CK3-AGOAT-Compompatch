@@ -1345,9 +1345,9 @@
             "added_in":  "2026-08-30 seasons+personality wave",
             "transformations":  [
                 "P03_MPD_X_DIREWOLVES_X_AGOT_CHARACTER_WINDOW",
-                "P08_IRON_AND_SALT_KRAKEN_VIEW"
+                "2026-08-31: Iron and Salt merge REMOVED for good. AGOT Iron and Salt is permanently out of the playset (one of two confirmed invisible-dragon causes). Its widgets no longer exist, so agot_kraken_character_view and the kraken_character_window guard threw 'is not a valid widget/type/property' (gui_warnings.log) and the dragon character view failed to build, rendering the normal human relationship panel superimposed over the dragon one. Guard restored to DireWolves' form. DireWolves x MPD x AGOT merge unchanged."
             ],
-            "built_sha256":  "b1e154f284715eb070a497667f85061f072a5a0f8ec0421dc2adc6ea4e55c4df",
+            "built_sha256":  "d7949d16fb76e97a427e6055ca6bf7602905d56f423da0031993f08bcd46d942",
             "additional_donors":  [
                 {
                     "workshop_id":  "3766320609",
@@ -1416,21 +1416,6 @@
             "built_sha256":  "5f51237e994665ad6e25693b381246472911af802a6e4d1394d9d87632811c0a"
         },
         {
-            "virtual_path":  "gui/shared/cooltip.gui",
-            "origin_patch":  "agot_unified_compat",
-            "provider_workshop_id":  "3781577713",
-            "provider_name":  "AGOT Iron and Salt",
-            "transformations":  [
-                "P09_MPD_PERSONALITY_TRAIT_BAR_X_IRON_AND_SALT"
-            ],
-            "source_sha256":  "48250d0a44271fb37ae7ffc7395dfd232682840207b475e1d2336fbce80f729b",
-            "donor_workshop_id":  "3717990443",
-            "donor_name":  "AGOT - More Personality Depth",
-            "donor_sha256":  "6cf36d66274fc31375d35b370d6ef24705bc04adc837daaa3b9ba75612193d8f",
-            "built_sha256":  "9d67e21cd7d10c4cf7e84b799b13f75c61d6a42f050d69f1fbdfb2887504d7aa",
-            "added_in":  "2026-08-30 Iron and Salt wave"
-        },
-        {
             "virtual_path":  "common/scripted_effects/asoiaf_scripted_effects_strong_seed.txt",
             "origin_patch":  "agot_unified_compat",
             "provider_workshop_id":  "2950245430",
@@ -1481,6 +1466,6 @@
             "built_sha256":  "5a2ab027d2b7f85078e5164be021d0495ba076b7afd64a8901d8b06761c9ad9e"
         }
     ],
-    "file_count":  93,
-    "last_revision":  "2026-08-31 AGOT: Royal Guards updated upstream 16:12; P35/P39/P41/P42/P46 are all now fixed by the mod author, so those 4 patch files were DELETED as superseded. P37/P40/P36+P47+P49 retained (sources unchanged)."
+    "file_count":  92,
+    "last_revision":  "2026-08-31 definitive playset: AGOT Iron and Salt and The Unnecessary Dragons permanently removed (the two confirmed invisible-dragon causes). Iron-dependent patch content stripped: cooltip.gui deleted, window_character.gui de-krakened. P54 shader confirmed as the fix for portrait-attachment rendering."
 }
