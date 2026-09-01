@@ -371,3 +371,15 @@ ae336d8b162f332d4cc5281bf67b1b6f9bc186d07d858e418f67a8ce5cad9a3a  BUILT/events/a
 # common/scripted_effects/zzz_agot_dragon_transfer_vars_fix.txt  [P59_DRAGON_TRANSFER_VARS]
 0b4303a246f46c8a970b0118ca2d63d2f63e59d61683dfc3dc80da63e0b021f0  2962333032/common/scripted_effects/00_agot_dragon_effects.txt  # SOURCE (A Game of Thrones) - lines 2302-2675 verbatim
 ea539922c12d17f356d31ee021fa730f0d9a8309add5e126c40574d7bbd010bd  BUILT/common/scripted_effects/zzz_agot_dragon_transfer_vars_fix.txt  [P59]
+
+# common/scripted_triggers/naval_combat_triggers.txt  [P60_NAVAL_COMBAT_DEAD_CULTURES]
+72996d1454ec1a7056912400739ccd2c8263179601700363deea19f1564359bc  3772178688/common/scripted_triggers/naval_combat_triggers.txt  # SOURCE
+8d455cb45e930dc07139acf93dd132db10c422112bd84d02068d268c76b13094  BUILT/common/scripted_triggers/naval_combat_triggers.txt  [P60]
+
+# common/on_action/on_add_vet_modifer.txt  [P61_LANDED_KNIGHTS_HARD_FATHER_SCOPE]
+3ef399703bc2b6f4028ae6f99a7daae3bd97f19abfe3975093563f5ea95a772b  3361162762/common/on_action/on_add_vet_modifer.txt  # SOURCE
+3aeb3abe51e7e5f162aa35128dcf811379cd29a2b1788d47c2a1df3e45fe5e03  BUILT/common/on_action/on_add_vet_modifer.txt  [P61]
+
+# common/customizable_localization/gr_story_custom_loc.txt  [P62_GRAND_REMEMBRANCE_UNSET_VARS]
+485f0010c2c138a62d68d6a6d603c7d335c6e163bd8e85141a66f3764cd21c37  3678529052/common/customizable_localization/gr_story_custom_loc.txt  # SOURCE
+88fb664b4b97c05d78606b658340a47ea2a9f24518358be22e50df78d8658106  BUILT/common/customizable_localization/gr_story_custom_loc.txt  [P62]

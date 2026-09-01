@@ -1,0 +1,142 @@
+﻿# AGOT Unified Compatibility Patch  P60 - CK3 Naval Combat x AGOT dead culture lookups.
+#
+# CK3 Naval Combat (3772178688) gates its special ships on vanilla cultures and
+# heritages. AGOT declares replace_path on BOTH common/culture/cultures and
+# common/culture/pillars, so none of them exist:
+#     norse norwegian swedish danish greek han goryeo
+#     heritage_north_germanic heritage_byzantine heritage_chinese
+# (Battle Graphics re-adds the culture definitions at position 76, but they
+#  reference the wiped heritages/languages so they still fail to register.)
+#
+# naval_combat_yearly_ai_management evaluates these per character per year. In one
+# 37-minute session at high speed that produced 31,373 'Failed to fetch a valid
+# culture' errors - 53% of all script errors, and a large share of 413,840 log
+# lines written to disk. That is pure waste: the lookups can never succeed.
+#
+# FIX: the three special-ship triggers become 'always = no' and the stray
+# culture:norse test in the sea-raid trigger is dropped. BEHAVIOUR IS UNCHANGED -
+# every one of these already evaluated false, just noisily.
+#
+# If you ever want these ships in AGOT, map them to real AGOT cultures here
+# (ironborn for longships, for example). That is a gameplay decision, not a fix.
+
+naval_combat_has_direct_coastal_county_trigger = {
+	any_held_title = {
+		tier = tier_county
+		is_coastal_county = yes
+	}
+}
+
+naval_combat_has_realm_coast_trigger = {
+	any_sub_realm_county = {
+		is_coastal_county = yes
+	}
+}
+
+naval_combat_direct_holding_tradeport_source_trigger = {
+	OR = {
+		tier = tier_county
+		AND = {
+			tier = tier_barony
+			is_leased_out = no
+			title_province = {
+				is_county_capital = no
+			}
+		}
+	}
+}
+
+naval_combat_player_landless_adventurer_trigger = {
+	is_ai = no
+	is_landless_adventurer = yes
+}
+
+naval_combat_can_manage_navy_trigger = {
+	OR = {
+		AND = {
+			is_landed = yes
+			highest_held_title_tier >= tier_duchy
+			naval_combat_has_realm_coast_trigger = yes
+		}
+		naval_combat_player_landless_adventurer_trigger = yes
+	}
+}
+
+naval_combat_can_use_sea_raid_trigger = {
+	OR = {
+		AND = {
+			naval_combat_player_landless_adventurer_trigger = yes
+			has_realm_law = camp_purpose_brigands
+		}
+		AND = {
+			naval_combat_player_landless_adventurer_trigger = no
+			OR = {
+				naval_combat_can_build_longship_trigger = yes
+			}
+		}
+	}
+}
+
+# Only these AI rulers receive a persistent flagship during the one-time
+# initial fleet seeding. Other AI command ships remain an abstract battle aid.
+naval_combat_ai_initial_real_flagship_trigger = {
+	is_ai = yes
+	is_independent_ruler = yes
+	naval_combat_can_manage_navy_trigger = yes
+	NOT = { var:naval_combat_flagship_constructed ?= 1 }
+	OR = {
+		has_title = title:k_norway
+		has_title = title:e_byzantium
+		has_title = title:h_china
+	}
+}
+
+naval_combat_can_build_longship_trigger = {
+	# AGOT compat: every culture and heritage this trigger tested is removed by
+	# AGOT's replace_path on common/culture/cultures and common/culture/pillars.
+	# The lookups failed and spammed 'Failed to fetch a valid culture' every AI tick.
+	# Behaviour is unchanged - the trigger already evaluated false.
+	always = no
+}
+
+naval_combat_can_build_greek_fire_ship_trigger = {
+	# AGOT compat: every culture and heritage this trigger tested is removed by
+	# AGOT's replace_path on common/culture/cultures and common/culture/pillars.
+	# The lookups failed and spammed 'Failed to fetch a valid culture' every AI tick.
+	# Behaviour is unchanged - the trigger already evaluated false.
+	always = no
+}
+
+naval_combat_can_build_tower_ship_trigger = {
+	# AGOT compat: every culture and heritage this trigger tested is removed by
+	# AGOT's replace_path on common/culture/cultures and common/culture/pillars.
+	# The lookups failed and spammed 'Failed to fetch a valid culture' every AI tick.
+	# Behaviour is unchanged - the trigger already evaluated false.
+	always = no
+}
+
+naval_combat_has_special_ship_culture_trigger = {
+	OR = {
+		naval_combat_can_build_longship_trigger = yes
+		naval_combat_can_build_greek_fire_ship_trigger = yes
+		naval_combat_can_build_tower_ship_trigger = yes
+	}
+}
+
+naval_combat_has_active_fleet_orders_trigger = {
+	is_alive = yes
+	exists = var:naval_combat_initialized
+	naval_combat_can_manage_navy_trigger = yes
+	naval_combat_total_ship_count_value > 0
+	var:naval_combat_readiness > 0
+	OR = {
+		var:naval_combat_transport_active ?= 1
+		var:naval_combat_sea_control_active ?= 1
+	}
+}
+
+naval_combat_can_enter_automatic_battle_trigger = {
+	naval_combat_has_active_fleet_orders_trigger = yes
+	NOT = { exists = var:naval_combat_battle_opponent }
+	NOT = { has_character_flag = naval_combat_automatic_battle_cooldown }
+}

@@ -1,0 +1,41 @@
+﻿# AGOT Unified Compatibility Patch  P61 - A Landed Knights Mod hard father scope.
+# Source: A Landed Knights Mod (3361162762) common/on_action/on_add_vet_modifer.txt
+# 7,564 runtime errors per session; behaviour unchanged (a missing father already
+# failed the test - it just errored while doing so).
+
+on_combat_end_winner = {
+    on_actions = {
+        on_add_vet_modifier
+    }
+}
+
+on_combat_end_loser = {
+    on_actions = {
+        on_add_vet_modifier
+    }
+}
+
+on_add_vet_modifier = {
+    effect = {
+        every_side_knight = {
+            if = {
+                limit = {
+                    is_ruler = no
+                    # AGOT compat P61: 'father' is a HARD scope switch. Landless knights and
+                    # characters with no recorded father fail it, and every_side_knight runs it
+                    # on both sides of every combat - 7,564 'father trigger [ Failed context
+                    # switch ]' errors in one 37-minute session. '?=' makes it a soft switch:
+                    # absent father simply fails the test instead of erroring.
+                    # NOTE: 'is_army_owner' is not a valid CK3 trigger (the game logs
+                    # "Unknown trigger: is_army_owner" at load), so this condition never
+                    # evaluated meaningfully upstream either. Left as-is deliberately - fixing
+                    # the spam is a bug fix, guessing the author's intent would be a rewrite.
+                    NOT = {
+                        father ?= { is_army_owner = root.army_owner }
+                    }
+                }
+                add_character_modifier = veteran_modifier
+            }
+        }
+    }
+}

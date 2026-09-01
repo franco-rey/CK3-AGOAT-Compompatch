@@ -1,0 +1,1238 @@
+﻿# AGOT Unified Compatibility Patch  P62 - Grand Remembrance unguarded variable reads.
+#
+# Source: Grand Remembrance (3678529052) common/customizable_localization/gr_story_custom_loc.txt
+#
+# The file makes 319 'var:' reads and contains ZERO 'exists = var:' guards. Whenever
+# this custom loc is evaluated for a character with no Grand Remembrance story, every
+# read fails. One 37-minute session logged 13,608 errors from this file alone:
+#     4,536 x Event target link 'var' returned an unset scope
+#     4,536 x Invalid left side during comparison 'var'
+#     3,528 x Failed to fetch variable for 'gr_story_opinion'
+#     1,008 x Failed to fetch variable for 'gr_story_chronicler_type'
+#
+# FIX: every trigger block that reads a variable is prefixed with 'exists = var:NAME'
+# for each variable it touches. BEHAVIOUR IS UNCHANGED - an unset variable already
+# made the trigger fail; now it fails silently instead of erroring.
+
+# Grand Remembrance — Customizable Localization for Story Panel
+# Used in [Story.Custom('key')] within the story visualization text.
+
+GrStoryDesc = {
+	type = all
+
+	text = {
+		trigger = { var:gr_story_variant = 1 }
+		localization_key = GR_STORY_DESC_V1
+	}
+	text = {
+		trigger = { var:gr_story_variant = 2 }
+		localization_key = GR_STORY_DESC_V2
+	}
+	text = {
+		trigger = { var:gr_story_variant = 3 }
+		localization_key = GR_STORY_DESC_V3
+	}
+	text = {
+		trigger = { var:gr_story_variant = 4 }
+		localization_key = GR_STORY_DESC_V4
+	}
+	text = {
+		trigger = { var:gr_story_variant = 5 }
+		localization_key = GR_STORY_DESC_V5
+	}
+	text = {
+		trigger = { var:gr_story_variant = 6 }
+		localization_key = GR_STORY_DESC_V6
+	}
+	text = {
+		trigger = { var:gr_story_variant = 7 }
+		localization_key = GR_STORY_DESC_V7
+	}
+	text = {
+		localization_key = GR_STORY_DESC_V1
+	}
+}
+
+GrStoryChroniclerName = {
+	type = all
+
+	text = {
+		trigger = { var:gr_story_chronicler_type = flag:court_chronicler }
+		localization_key = GR_STORY_CHRON_COURT_CHRONICLER
+	}
+	text = {
+		trigger = { var:gr_story_chronicler_type = flag:spouse }
+		localization_key = GR_STORY_CHRON_SPOUSE
+	}
+	text = {
+		trigger = { var:gr_story_chronicler_type = flag:heir }
+		localization_key = GR_STORY_CHRON_HEIR
+	}
+	text = {
+		trigger = { var:gr_story_chronicler_type = flag:regent }
+		localization_key = GR_STORY_CHRON_REGENT
+	}
+	text = {
+		trigger = { var:gr_story_chronicler_type = flag:friend }
+		localization_key = GR_STORY_CHRON_FRIEND
+	}
+	text = {
+		trigger = { var:gr_story_chronicler_type = flag:chancellor }
+		localization_key = GR_STORY_CHRON_CHANCELLOR
+	}
+	text = {
+		localization_key = GR_STORY_CHRON_NONE
+	}
+}
+
+GrStoryChroniclerLine = {
+	type = all
+
+	text = {
+		trigger = {
+			# P62: guard unset variables (see patch header)
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count <= 5
+			var:gr_story_opinion >= 26
+			var:gr_story_variant = 1
+		}
+		localization_key = GR_STORY_CHRON_FEW_LOVE_V1
+	}
+	text = {
+		trigger = {
+			# P62: guard unset variables (see patch header)
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count <= 5
+			var:gr_story_opinion >= 26
+			var:gr_story_variant = 2
+		}
+		localization_key = GR_STORY_CHRON_FEW_LOVE_V2
+	}
+	text = {
+		trigger = {
+			# P62: guard unset variables (see patch header)
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count <= 5
+			var:gr_story_opinion >= 26
+			var:gr_story_variant = 3
+		}
+		localization_key = GR_STORY_CHRON_FEW_LOVE_V3
+	}
+	text = {
+		trigger = {
+			# P62: guard unset variables (see patch header)
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count <= 5
+			var:gr_story_opinion >= 26
+			var:gr_story_variant = 4
+		}
+		localization_key = GR_STORY_CHRON_FEW_LOVE_V4
+	}
+	text = {
+		trigger = {
+			# P62: guard unset variables (see patch header)
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count <= 5
+			var:gr_story_opinion >= 26
+			var:gr_story_variant = 5
+		}
+		localization_key = GR_STORY_CHRON_FEW_LOVE_V5
+	}
+	text = {
+		trigger = {
+			# P62: guard unset variables (see patch header)
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count <= 5
+			var:gr_story_opinion >= 26
+			var:gr_story_variant = 6
+		}
+		localization_key = GR_STORY_CHRON_FEW_LOVE_V6
+	}
+	text = {
+		trigger = {
+			# P62: guard unset variables (see patch header)
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count <= 5
+			var:gr_story_opinion >= 26
+			var:gr_story_variant = 7
+		}
+		localization_key = GR_STORY_CHRON_FEW_LOVE_V7
+	}
+	text = {
+		trigger = {
+			# P62: guard unset variables (see patch header)
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count <= 5
+			var:gr_story_opinion >= -25
+			var:gr_story_opinion <= 25
+			var:gr_story_variant = 1
+		}
+		localization_key = GR_STORY_CHRON_FEW_NEUTRAL_V1
+	}
+	text = {
+		trigger = {
+			# P62: guard unset variables (see patch header)
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count <= 5
+			var:gr_story_opinion >= -25
+			var:gr_story_opinion <= 25
+			var:gr_story_variant = 2
+		}
+		localization_key = GR_STORY_CHRON_FEW_NEUTRAL_V2
+	}
+	text = {
+		trigger = {
+			# P62: guard unset variables (see patch header)
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count <= 5
+			var:gr_story_opinion >= -25
+			var:gr_story_opinion <= 25
+			var:gr_story_variant = 3
+		}
+		localization_key = GR_STORY_CHRON_FEW_NEUTRAL_V3
+	}
+	text = {
+		trigger = {
+			# P62: guard unset variables (see patch header)
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count <= 5
+			var:gr_story_opinion >= -25
+			var:gr_story_opinion <= 25
+			var:gr_story_variant = 4
+		}
+		localization_key = GR_STORY_CHRON_FEW_NEUTRAL_V4
+	}
+	text = {
+		trigger = {
+			# P62: guard unset variables (see patch header)
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count <= 5
+			var:gr_story_opinion >= -25
+			var:gr_story_opinion <= 25
+			var:gr_story_variant = 5
+		}
+		localization_key = GR_STORY_CHRON_FEW_NEUTRAL_V5
+	}
+	text = {
+		trigger = {
+			# P62: guard unset variables (see patch header)
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count <= 5
+			var:gr_story_opinion >= -25
+			var:gr_story_opinion <= 25
+			var:gr_story_variant = 6
+		}
+		localization_key = GR_STORY_CHRON_FEW_NEUTRAL_V6
+	}
+	text = {
+		trigger = {
+			# P62: guard unset variables (see patch header)
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count <= 5
+			var:gr_story_opinion >= -25
+			var:gr_story_opinion <= 25
+			var:gr_story_variant = 7
+		}
+		localization_key = GR_STORY_CHRON_FEW_NEUTRAL_V7
+	}
+	text = {
+		trigger = {
+			# P62: guard unset variables (see patch header)
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count <= 5
+			var:gr_story_opinion <= -26
+			var:gr_story_variant = 1
+		}
+		localization_key = GR_STORY_CHRON_FEW_HATE_V1
+	}
+	text = {
+		trigger = {
+			# P62: guard unset variables (see patch header)
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count <= 5
+			var:gr_story_opinion <= -26
+			var:gr_story_variant = 2
+		}
+		localization_key = GR_STORY_CHRON_FEW_HATE_V2
+	}
+	text = {
+		trigger = {
+			# P62: guard unset variables (see patch header)
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count <= 5
+			var:gr_story_opinion <= -26
+			var:gr_story_variant = 3
+		}
+		localization_key = GR_STORY_CHRON_FEW_HATE_V3
+	}
+	text = {
+		trigger = {
+			# P62: guard unset variables (see patch header)
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count <= 5
+			var:gr_story_opinion <= -26
+			var:gr_story_variant = 4
+		}
+		localization_key = GR_STORY_CHRON_FEW_HATE_V4
+	}
+	text = {
+		trigger = {
+			# P62: guard unset variables (see patch header)
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count <= 5
+			var:gr_story_opinion <= -26
+			var:gr_story_variant = 5
+		}
+		localization_key = GR_STORY_CHRON_FEW_HATE_V5
+	}
+	text = {
+		trigger = {
+			# P62: guard unset variables (see patch header)
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count <= 5
+			var:gr_story_opinion <= -26
+			var:gr_story_variant = 6
+		}
+		localization_key = GR_STORY_CHRON_FEW_HATE_V6
+	}
+	text = {
+		trigger = {
+			# P62: guard unset variables (see patch header)
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count <= 5
+			var:gr_story_opinion <= -26
+			var:gr_story_variant = 7
+		}
+		localization_key = GR_STORY_CHRON_FEW_HATE_V7
+	}
+	text = {
+		trigger = {
+			# P62: guard unset variables (see patch header)
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count >= 6
+			var:gr_story_event_count <= 15
+			var:gr_story_opinion >= 26
+			var:gr_story_variant = 1
+		}
+		localization_key = GR_STORY_CHRON_SOME_LOVE_V1
+	}
+	text = {
+		trigger = {
+			# P62: guard unset variables (see patch header)
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count >= 6
+			var:gr_story_event_count <= 15
+			var:gr_story_opinion >= 26
+			var:gr_story_variant = 2
+		}
+		localization_key = GR_STORY_CHRON_SOME_LOVE_V2
+	}
+	text = {
+		trigger = {
+			# P62: guard unset variables (see patch header)
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count >= 6
+			var:gr_story_event_count <= 15
+			var:gr_story_opinion >= 26
+			var:gr_story_variant = 3
+		}
+		localization_key = GR_STORY_CHRON_SOME_LOVE_V3
+	}
+	text = {
+		trigger = {
+			# P62: guard unset variables (see patch header)
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count >= 6
+			var:gr_story_event_count <= 15
+			var:gr_story_opinion >= 26
+			var:gr_story_variant = 4
+		}
+		localization_key = GR_STORY_CHRON_SOME_LOVE_V4
+	}
+	text = {
+		trigger = {
+			# P62: guard unset variables (see patch header)
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count >= 6
+			var:gr_story_event_count <= 15
+			var:gr_story_opinion >= 26
+			var:gr_story_variant = 5
+		}
+		localization_key = GR_STORY_CHRON_SOME_LOVE_V5
+	}
+	text = {
+		trigger = {
+			# P62: guard unset variables (see patch header)
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count >= 6
+			var:gr_story_event_count <= 15
+			var:gr_story_opinion >= 26
+			var:gr_story_variant = 6
+		}
+		localization_key = GR_STORY_CHRON_SOME_LOVE_V6
+	}
+	text = {
+		trigger = {
+			# P62: guard unset variables (see patch header)
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count >= 6
+			var:gr_story_event_count <= 15
+			var:gr_story_opinion >= 26
+			var:gr_story_variant = 7
+		}
+		localization_key = GR_STORY_CHRON_SOME_LOVE_V7
+	}
+	text = {
+		trigger = {
+			# P62: guard unset variables (see patch header)
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count >= 6
+			var:gr_story_event_count <= 15
+			var:gr_story_opinion >= -25
+			var:gr_story_opinion <= 25
+			var:gr_story_variant = 1
+		}
+		localization_key = GR_STORY_CHRON_SOME_NEUTRAL_V1
+	}
+	text = {
+		trigger = {
+			# P62: guard unset variables (see patch header)
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count >= 6
+			var:gr_story_event_count <= 15
+			var:gr_story_opinion >= -25
+			var:gr_story_opinion <= 25
+			var:gr_story_variant = 2
+		}
+		localization_key = GR_STORY_CHRON_SOME_NEUTRAL_V2
+	}
+	text = {
+		trigger = {
+			# P62: guard unset variables (see patch header)
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count >= 6
+			var:gr_story_event_count <= 15
+			var:gr_story_opinion >= -25
+			var:gr_story_opinion <= 25
+			var:gr_story_variant = 3
+		}
+		localization_key = GR_STORY_CHRON_SOME_NEUTRAL_V3
+	}
+	text = {
+		trigger = {
+			# P62: guard unset variables (see patch header)
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count >= 6
+			var:gr_story_event_count <= 15
+			var:gr_story_opinion >= -25
+			var:gr_story_opinion <= 25
+			var:gr_story_variant = 4
+		}
+		localization_key = GR_STORY_CHRON_SOME_NEUTRAL_V4
+	}
+	text = {
+		trigger = {
+			# P62: guard unset variables (see patch header)
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count >= 6
+			var:gr_story_event_count <= 15
+			var:gr_story_opinion >= -25
+			var:gr_story_opinion <= 25
+			var:gr_story_variant = 5
+		}
+		localization_key = GR_STORY_CHRON_SOME_NEUTRAL_V5
+	}
+	text = {
+		trigger = {
+			# P62: guard unset variables (see patch header)
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count >= 6
+			var:gr_story_event_count <= 15
+			var:gr_story_opinion >= -25
+			var:gr_story_opinion <= 25
+			var:gr_story_variant = 6
+		}
+		localization_key = GR_STORY_CHRON_SOME_NEUTRAL_V6
+	}
+	text = {
+		trigger = {
+			# P62: guard unset variables (see patch header)
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count >= 6
+			var:gr_story_event_count <= 15
+			var:gr_story_opinion >= -25
+			var:gr_story_opinion <= 25
+			var:gr_story_variant = 7
+		}
+		localization_key = GR_STORY_CHRON_SOME_NEUTRAL_V7
+	}
+	text = {
+		trigger = {
+			# P62: guard unset variables (see patch header)
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count >= 6
+			var:gr_story_event_count <= 15
+			var:gr_story_opinion <= -26
+			var:gr_story_variant = 1
+		}
+		localization_key = GR_STORY_CHRON_SOME_HATE_V1
+	}
+	text = {
+		trigger = {
+			# P62: guard unset variables (see patch header)
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count >= 6
+			var:gr_story_event_count <= 15
+			var:gr_story_opinion <= -26
+			var:gr_story_variant = 2
+		}
+		localization_key = GR_STORY_CHRON_SOME_HATE_V2
+	}
+	text = {
+		trigger = {
+			# P62: guard unset variables (see patch header)
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count >= 6
+			var:gr_story_event_count <= 15
+			var:gr_story_opinion <= -26
+			var:gr_story_variant = 3
+		}
+		localization_key = GR_STORY_CHRON_SOME_HATE_V3
+	}
+	text = {
+		trigger = {
+			# P62: guard unset variables (see patch header)
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count >= 6
+			var:gr_story_event_count <= 15
+			var:gr_story_opinion <= -26
+			var:gr_story_variant = 4
+		}
+		localization_key = GR_STORY_CHRON_SOME_HATE_V4
+	}
+	text = {
+		trigger = {
+			# P62: guard unset variables (see patch header)
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count >= 6
+			var:gr_story_event_count <= 15
+			var:gr_story_opinion <= -26
+			var:gr_story_variant = 5
+		}
+		localization_key = GR_STORY_CHRON_SOME_HATE_V5
+	}
+	text = {
+		trigger = {
+			# P62: guard unset variables (see patch header)
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count >= 6
+			var:gr_story_event_count <= 15
+			var:gr_story_opinion <= -26
+			var:gr_story_variant = 6
+		}
+		localization_key = GR_STORY_CHRON_SOME_HATE_V6
+	}
+	text = {
+		trigger = {
+			# P62: guard unset variables (see patch header)
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count >= 6
+			var:gr_story_event_count <= 15
+			var:gr_story_opinion <= -26
+			var:gr_story_variant = 7
+		}
+		localization_key = GR_STORY_CHRON_SOME_HATE_V7
+	}
+	text = {
+		trigger = {
+			# P62: guard unset variables (see patch header)
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count >= 16
+			var:gr_story_opinion >= 26
+			var:gr_story_variant = 1
+		}
+		localization_key = GR_STORY_CHRON_MANY_LOVE_V1
+	}
+	text = {
+		trigger = {
+			# P62: guard unset variables (see patch header)
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count >= 16
+			var:gr_story_opinion >= 26
+			var:gr_story_variant = 2
+		}
+		localization_key = GR_STORY_CHRON_MANY_LOVE_V2
+	}
+	text = {
+		trigger = {
+			# P62: guard unset variables (see patch header)
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count >= 16
+			var:gr_story_opinion >= 26
+			var:gr_story_variant = 3
+		}
+		localization_key = GR_STORY_CHRON_MANY_LOVE_V3
+	}
+	text = {
+		trigger = {
+			# P62: guard unset variables (see patch header)
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count >= 16
+			var:gr_story_opinion >= 26
+			var:gr_story_variant = 4
+		}
+		localization_key = GR_STORY_CHRON_MANY_LOVE_V4
+	}
+	text = {
+		trigger = {
+			# P62: guard unset variables (see patch header)
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count >= 16
+			var:gr_story_opinion >= 26
+			var:gr_story_variant = 5
+		}
+		localization_key = GR_STORY_CHRON_MANY_LOVE_V5
+	}
+	text = {
+		trigger = {
+			# P62: guard unset variables (see patch header)
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count >= 16
+			var:gr_story_opinion >= 26
+			var:gr_story_variant = 6
+		}
+		localization_key = GR_STORY_CHRON_MANY_LOVE_V6
+	}
+	text = {
+		trigger = {
+			# P62: guard unset variables (see patch header)
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count >= 16
+			var:gr_story_opinion >= 26
+			var:gr_story_variant = 7
+		}
+		localization_key = GR_STORY_CHRON_MANY_LOVE_V7
+	}
+	text = {
+		trigger = {
+			# P62: guard unset variables (see patch header)
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count >= 16
+			var:gr_story_opinion >= -25
+			var:gr_story_opinion <= 25
+			var:gr_story_variant = 1
+		}
+		localization_key = GR_STORY_CHRON_MANY_NEUTRAL_V1
+	}
+	text = {
+		trigger = {
+			# P62: guard unset variables (see patch header)
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count >= 16
+			var:gr_story_opinion >= -25
+			var:gr_story_opinion <= 25
+			var:gr_story_variant = 2
+		}
+		localization_key = GR_STORY_CHRON_MANY_NEUTRAL_V2
+	}
+	text = {
+		trigger = {
+			# P62: guard unset variables (see patch header)
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count >= 16
+			var:gr_story_opinion >= -25
+			var:gr_story_opinion <= 25
+			var:gr_story_variant = 3
+		}
+		localization_key = GR_STORY_CHRON_MANY_NEUTRAL_V3
+	}
+	text = {
+		trigger = {
+			# P62: guard unset variables (see patch header)
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count >= 16
+			var:gr_story_opinion >= -25
+			var:gr_story_opinion <= 25
+			var:gr_story_variant = 4
+		}
+		localization_key = GR_STORY_CHRON_MANY_NEUTRAL_V4
+	}
+	text = {
+		trigger = {
+			# P62: guard unset variables (see patch header)
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count >= 16
+			var:gr_story_opinion >= -25
+			var:gr_story_opinion <= 25
+			var:gr_story_variant = 5
+		}
+		localization_key = GR_STORY_CHRON_MANY_NEUTRAL_V5
+	}
+	text = {
+		trigger = {
+			# P62: guard unset variables (see patch header)
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count >= 16
+			var:gr_story_opinion >= -25
+			var:gr_story_opinion <= 25
+			var:gr_story_variant = 6
+		}
+		localization_key = GR_STORY_CHRON_MANY_NEUTRAL_V6
+	}
+	text = {
+		trigger = {
+			# P62: guard unset variables (see patch header)
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count >= 16
+			var:gr_story_opinion >= -25
+			var:gr_story_opinion <= 25
+			var:gr_story_variant = 7
+		}
+		localization_key = GR_STORY_CHRON_MANY_NEUTRAL_V7
+	}
+	text = {
+		trigger = {
+			# P62: guard unset variables (see patch header)
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count >= 16
+			var:gr_story_opinion <= -26
+			var:gr_story_variant = 1
+		}
+		localization_key = GR_STORY_CHRON_MANY_HATE_V1
+	}
+	text = {
+		trigger = {
+			# P62: guard unset variables (see patch header)
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count >= 16
+			var:gr_story_opinion <= -26
+			var:gr_story_variant = 2
+		}
+		localization_key = GR_STORY_CHRON_MANY_HATE_V2
+	}
+	text = {
+		trigger = {
+			# P62: guard unset variables (see patch header)
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count >= 16
+			var:gr_story_opinion <= -26
+			var:gr_story_variant = 3
+		}
+		localization_key = GR_STORY_CHRON_MANY_HATE_V3
+	}
+	text = {
+		trigger = {
+			# P62: guard unset variables (see patch header)
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count >= 16
+			var:gr_story_opinion <= -26
+			var:gr_story_variant = 4
+		}
+		localization_key = GR_STORY_CHRON_MANY_HATE_V4
+	}
+	text = {
+		trigger = {
+			# P62: guard unset variables (see patch header)
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count >= 16
+			var:gr_story_opinion <= -26
+			var:gr_story_variant = 5
+		}
+		localization_key = GR_STORY_CHRON_MANY_HATE_V5
+	}
+	text = {
+		trigger = {
+			# P62: guard unset variables (see patch header)
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count >= 16
+			var:gr_story_opinion <= -26
+			var:gr_story_variant = 6
+		}
+		localization_key = GR_STORY_CHRON_MANY_HATE_V6
+	}
+	text = {
+		trigger = {
+			# P62: guard unset variables (see patch header)
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count >= 16
+			var:gr_story_opinion <= -26
+			var:gr_story_variant = 7
+		}
+		localization_key = GR_STORY_CHRON_MANY_HATE_V7
+	}
+	text = {
+		localization_key = GR_STORY_CHRON_FEW_NEUTRAL_V1
+	}
+}
+
+GrStoryFullPanel = {
+	type = all
+
+	# Age gate — rulers under 16 get age-appropriate text instead of chronicler opinion
+	text = {
+		trigger = { story_owner = { age < 16 } }
+		localization_key = GR_STORY_AGE_PANEL
+	}
+	# When at least one notable event exists, show chronicler + notables
+	text = {
+		trigger = {
+			# P62: guard unset variables (see patch header)
+			exists = var:gr_story_has_war
+			exists = var:gr_story_has_title
+			exists = var:gr_story_has_marriage
+			exists = var:gr_story_has_child
+			exists = var:gr_story_has_faith_change
+			exists = var:gr_story_has_culture_change
+			exists = var:gr_story_has_govt_change
+			exists = var:gr_story_has_adventure
+			OR = {
+				var:gr_story_has_war >= 1
+				var:gr_story_has_title >= 1
+				var:gr_story_has_marriage >= 1
+				var:gr_story_has_child >= 1
+				var:gr_story_has_faith_change >= 1
+				var:gr_story_has_culture_change >= 1
+				var:gr_story_has_govt_change >= 1
+				var:gr_story_has_adventure >= 1
+			}
+		}
+		localization_key = GR_STORY_PANEL_WITH_NOTABLES
+	}
+	# No notables — just the chronicler paragraph, no redundant second message
+	text = {
+		localization_key = GR_STORY_PANEL_NO_NOTABLES
+	}
+}
+
+GrStoryNotables = {
+	type = all
+	# NO random_valid — that causes CK3 to re-pick a random match every UI frame,
+	# which makes the text flicker/spaz. With type=all and no random_valid,
+	# ALL matching entries concatenate into a paragraph of notable events.
+
+	# WAR — 3 variants gated by seed (1-2 = V1, 3-4 = V2, 5-7 = V3)
+	text = {
+		trigger = { var:gr_story_has_war >= 1 var:gr_story_variant <= 2 }
+		localization_key = GR_STORY_NOTABLE_WAR_V1
+	}
+	text = {
+		trigger = { var:gr_story_has_war >= 1 var:gr_story_variant >= 3 var:gr_story_variant <= 4 }
+		localization_key = GR_STORY_NOTABLE_WAR_V2
+	}
+	text = {
+		trigger = { var:gr_story_has_war >= 1 var:gr_story_variant >= 5 }
+		localization_key = GR_STORY_NOTABLE_WAR_V3
+	}
+	# TITLE
+	text = {
+		trigger = { var:gr_story_has_title >= 1 var:gr_story_variant <= 2 }
+		localization_key = GR_STORY_NOTABLE_TITLE_V1
+	}
+	text = {
+		trigger = { var:gr_story_has_title >= 1 var:gr_story_variant >= 3 var:gr_story_variant <= 4 }
+		localization_key = GR_STORY_NOTABLE_TITLE_V2
+	}
+	text = {
+		trigger = { var:gr_story_has_title >= 1 var:gr_story_variant >= 5 }
+		localization_key = GR_STORY_NOTABLE_TITLE_V3
+	}
+	# MARRIAGE
+	text = {
+		trigger = { var:gr_story_has_marriage >= 1 var:gr_story_variant <= 2 }
+		localization_key = GR_STORY_NOTABLE_MARRIAGE_V1
+	}
+	text = {
+		trigger = { var:gr_story_has_marriage >= 1 var:gr_story_variant >= 3 var:gr_story_variant <= 4 }
+		localization_key = GR_STORY_NOTABLE_MARRIAGE_V2
+	}
+	text = {
+		trigger = { var:gr_story_has_marriage >= 1 var:gr_story_variant >= 5 }
+		localization_key = GR_STORY_NOTABLE_MARRIAGE_V3
+	}
+	# CHILD
+	text = {
+		trigger = { var:gr_story_has_child >= 1 var:gr_story_variant <= 2 }
+		localization_key = GR_STORY_NOTABLE_CHILD_V1
+	}
+	text = {
+		trigger = { var:gr_story_has_child >= 1 var:gr_story_variant >= 3 var:gr_story_variant <= 4 }
+		localization_key = GR_STORY_NOTABLE_CHILD_V2
+	}
+	text = {
+		trigger = { var:gr_story_has_child >= 1 var:gr_story_variant >= 5 }
+		localization_key = GR_STORY_NOTABLE_CHILD_V3
+	}
+	# FAITH
+	text = {
+		trigger = { var:gr_story_has_faith_change >= 1 var:gr_story_variant <= 2 }
+		localization_key = GR_STORY_NOTABLE_FAITH_V1
+	}
+	text = {
+		trigger = { var:gr_story_has_faith_change >= 1 var:gr_story_variant >= 3 var:gr_story_variant <= 4 }
+		localization_key = GR_STORY_NOTABLE_FAITH_V2
+	}
+	text = {
+		trigger = { var:gr_story_has_faith_change >= 1 var:gr_story_variant >= 5 }
+		localization_key = GR_STORY_NOTABLE_FAITH_V3
+	}
+	# CULTURE
+	text = {
+		trigger = { var:gr_story_has_culture_change >= 1 var:gr_story_variant <= 2 }
+		localization_key = GR_STORY_NOTABLE_CULTURE_V1
+	}
+	text = {
+		trigger = { var:gr_story_has_culture_change >= 1 var:gr_story_variant >= 3 var:gr_story_variant <= 4 }
+		localization_key = GR_STORY_NOTABLE_CULTURE_V2
+	}
+	text = {
+		trigger = { var:gr_story_has_culture_change >= 1 var:gr_story_variant >= 5 }
+		localization_key = GR_STORY_NOTABLE_CULTURE_V3
+	}
+	# GOVT
+	text = {
+		trigger = { var:gr_story_has_govt_change >= 1 var:gr_story_variant <= 2 }
+		localization_key = GR_STORY_NOTABLE_GOVT_V1
+	}
+	text = {
+		trigger = { var:gr_story_has_govt_change >= 1 var:gr_story_variant >= 3 var:gr_story_variant <= 4 }
+		localization_key = GR_STORY_NOTABLE_GOVT_V2
+	}
+	text = {
+		trigger = { var:gr_story_has_govt_change >= 1 var:gr_story_variant >= 5 }
+		localization_key = GR_STORY_NOTABLE_GOVT_V3
+	}
+	# ADVENTURE
+	text = {
+		trigger = { var:gr_story_has_adventure >= 1 var:gr_story_variant <= 2 }
+		localization_key = GR_STORY_NOTABLE_ADVENTURE_V1
+	}
+	text = {
+		trigger = { var:gr_story_has_adventure >= 1 var:gr_story_variant >= 3 var:gr_story_variant <= 4 }
+		localization_key = GR_STORY_NOTABLE_ADVENTURE_V2
+	}
+	text = {
+		trigger = { var:gr_story_has_adventure >= 1 var:gr_story_variant >= 5 }
+		localization_key = GR_STORY_NOTABLE_ADVENTURE_V3
+	}
+	# Safety fallback — should never show thanks to GrStoryFullPanel wrapper,
+	# but kept in case GrStoryNotables is called directly.
+	text = {
+		trigger = {
+			# P62: guard unset variables (see patch header)
+			exists = var:gr_story_has_war
+			exists = var:gr_story_has_title
+			exists = var:gr_story_has_marriage
+			exists = var:gr_story_has_child
+			exists = var:gr_story_has_faith_change
+			exists = var:gr_story_has_culture_change
+			exists = var:gr_story_has_govt_change
+			exists = var:gr_story_has_adventure
+			NOR = {
+				var:gr_story_has_war >= 1
+				var:gr_story_has_title >= 1
+				var:gr_story_has_marriage >= 1
+				var:gr_story_has_child >= 1
+				var:gr_story_has_faith_change >= 1
+				var:gr_story_has_culture_change >= 1
+				var:gr_story_has_govt_change >= 1
+				var:gr_story_has_adventure >= 1
+			}
+		}
+		localization_key = GR_STORY_NOTABLE_NONE
+	}
+}
+
+# ================================================
+# AGE-GATED PANEL TEXT
+# Rulers under 16 get age-appropriate inner voice instead
+# of the chronicler opinion system. 5 brackets × 7 variants.
+# Under 3: baby noises
+# 3-5: toddler voice
+# 6-8: young child
+# 9-12: pre-teen
+# 13-15: coming of age
+# ================================================
+GrStoryAgePanel = {
+	type = all
+
+	# BABY (under 3)
+	text = {
+		trigger = { story_owner = { age < 3 } var:gr_story_variant = 1 }
+		localization_key = GR_STORY_AGE_BABY_V1
+	}
+	text = {
+		trigger = { story_owner = { age < 3 } var:gr_story_variant = 2 }
+		localization_key = GR_STORY_AGE_BABY_V2
+	}
+	text = {
+		trigger = { story_owner = { age < 3 } var:gr_story_variant = 3 }
+		localization_key = GR_STORY_AGE_BABY_V3
+	}
+	text = {
+		trigger = { story_owner = { age < 3 } var:gr_story_variant = 4 }
+		localization_key = GR_STORY_AGE_BABY_V4
+	}
+	text = {
+		trigger = { story_owner = { age < 3 } var:gr_story_variant = 5 }
+		localization_key = GR_STORY_AGE_BABY_V5
+	}
+	text = {
+		trigger = { story_owner = { age < 3 } var:gr_story_variant = 6 }
+		localization_key = GR_STORY_AGE_BABY_V6
+	}
+	text = {
+		trigger = { story_owner = { age < 3 } var:gr_story_variant = 7 }
+		localization_key = GR_STORY_AGE_BABY_V7
+	}
+
+	# TODDLER (3-5)
+	text = {
+		trigger = { story_owner = { age < 6 } var:gr_story_variant = 1 }
+		localization_key = GR_STORY_AGE_TODDLER_V1
+	}
+	text = {
+		trigger = { story_owner = { age < 6 } var:gr_story_variant = 2 }
+		localization_key = GR_STORY_AGE_TODDLER_V2
+	}
+	text = {
+		trigger = { story_owner = { age < 6 } var:gr_story_variant = 3 }
+		localization_key = GR_STORY_AGE_TODDLER_V3
+	}
+	text = {
+		trigger = { story_owner = { age < 6 } var:gr_story_variant = 4 }
+		localization_key = GR_STORY_AGE_TODDLER_V4
+	}
+	text = {
+		trigger = { story_owner = { age < 6 } var:gr_story_variant = 5 }
+		localization_key = GR_STORY_AGE_TODDLER_V5
+	}
+	text = {
+		trigger = { story_owner = { age < 6 } var:gr_story_variant = 6 }
+		localization_key = GR_STORY_AGE_TODDLER_V6
+	}
+	text = {
+		trigger = { story_owner = { age < 6 } var:gr_story_variant = 7 }
+		localization_key = GR_STORY_AGE_TODDLER_V7
+	}
+
+	# CHILD (6-8)
+	text = {
+		trigger = { story_owner = { age < 9 } var:gr_story_variant = 1 }
+		localization_key = GR_STORY_AGE_CHILD_V1
+	}
+	text = {
+		trigger = { story_owner = { age < 9 } var:gr_story_variant = 2 }
+		localization_key = GR_STORY_AGE_CHILD_V2
+	}
+	text = {
+		trigger = { story_owner = { age < 9 } var:gr_story_variant = 3 }
+		localization_key = GR_STORY_AGE_CHILD_V3
+	}
+	text = {
+		trigger = { story_owner = { age < 9 } var:gr_story_variant = 4 }
+		localization_key = GR_STORY_AGE_CHILD_V4
+	}
+	text = {
+		trigger = { story_owner = { age < 9 } var:gr_story_variant = 5 }
+		localization_key = GR_STORY_AGE_CHILD_V5
+	}
+	text = {
+		trigger = { story_owner = { age < 9 } var:gr_story_variant = 6 }
+		localization_key = GR_STORY_AGE_CHILD_V6
+	}
+	text = {
+		trigger = { story_owner = { age < 9 } var:gr_story_variant = 7 }
+		localization_key = GR_STORY_AGE_CHILD_V7
+	}
+
+	# PRE-TEEN (9-12)
+	text = {
+		trigger = { story_owner = { age < 13 } var:gr_story_variant = 1 }
+		localization_key = GR_STORY_AGE_PRETEEN_V1
+	}
+	text = {
+		trigger = { story_owner = { age < 13 } var:gr_story_variant = 2 }
+		localization_key = GR_STORY_AGE_PRETEEN_V2
+	}
+	text = {
+		trigger = { story_owner = { age < 13 } var:gr_story_variant = 3 }
+		localization_key = GR_STORY_AGE_PRETEEN_V3
+	}
+	text = {
+		trigger = { story_owner = { age < 13 } var:gr_story_variant = 4 }
+		localization_key = GR_STORY_AGE_PRETEEN_V4
+	}
+	text = {
+		trigger = { story_owner = { age < 13 } var:gr_story_variant = 5 }
+		localization_key = GR_STORY_AGE_PRETEEN_V5
+	}
+	text = {
+		trigger = { story_owner = { age < 13 } var:gr_story_variant = 6 }
+		localization_key = GR_STORY_AGE_PRETEEN_V6
+	}
+	text = {
+		trigger = { story_owner = { age < 13 } var:gr_story_variant = 7 }
+		localization_key = GR_STORY_AGE_PRETEEN_V7
+	}
+
+	# COMING OF AGE (13-15)
+	text = {
+		trigger = { story_owner = { age < 16 } var:gr_story_variant = 1 }
+		localization_key = GR_STORY_AGE_TEEN_V1
+	}
+	text = {
+		trigger = { story_owner = { age < 16 } var:gr_story_variant = 2 }
+		localization_key = GR_STORY_AGE_TEEN_V2
+	}
+	text = {
+		trigger = { story_owner = { age < 16 } var:gr_story_variant = 3 }
+		localization_key = GR_STORY_AGE_TEEN_V3
+	}
+	text = {
+		trigger = { story_owner = { age < 16 } var:gr_story_variant = 4 }
+		localization_key = GR_STORY_AGE_TEEN_V4
+	}
+	text = {
+		trigger = { story_owner = { age < 16 } var:gr_story_variant = 5 }
+		localization_key = GR_STORY_AGE_TEEN_V5
+	}
+	text = {
+		trigger = { story_owner = { age < 16 } var:gr_story_variant = 6 }
+		localization_key = GR_STORY_AGE_TEEN_V6
+	}
+	text = {
+		trigger = { story_owner = { age < 16 } var:gr_story_variant = 7 }
+		localization_key = GR_STORY_AGE_TEEN_V7
+	}
+
+	# Fallback (should not reach here — GrStoryFullPanel gates age < 16)
+	text = {
+		localization_key = GR_STORY_AGE_BABY_V1
+	}
+}

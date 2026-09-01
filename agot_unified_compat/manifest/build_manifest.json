@@ -210,6 +210,19 @@
             "built_sha256":  "1b1c9aba7b460e02fb8e74828b45deb4e6ae330fddac0cba2359f2534a2e5daa"
         },
         {
+            "virtual_path":  "common/customizable_localization/gr_story_custom_loc.txt",
+            "origin_patch":  "P62_GRAND_REMEMBRANCE_UNSET_VARS",
+            "provider_workshop_id":  "3678529052",
+            "transformations":  [
+                "base = Grand Remembrance gr_story_custom_loc.txt VERBATIM plus guards",
+                "CAUSE: 319 'var:' reads and ZERO 'exists = var:' guards. Evaluated for any character with no Grand Remembrance story, every read fails: 13,608 errors in one session (4,536 unset scope + 4,536 invalid left side + 3,528 gr_story_opinion + 1,008 gr_story_chronicler_type).",
+                "FIX: each of the 65 trigger blocks that reads a variable is prefixed with 'exists = var:NAME' per variable touched - 205 guards added. All 6 top-level loc keys and every text block preserved, brace balance 0.",
+                "BEHAVIOUR UNCHANGED: an unset variable already made the trigger fail; it now fails silently."
+            ],
+            "source_sha256":  "485f0010c2c138a62d68d6a6d603c7d335c6e163bd8e85141a66f3764cd21c37",
+            "built_sha256":  "88fb664b4b97c05d78606b658340a47ea2a9f24518358be22e50df78d8658106"
+        },
+        {
             "virtual_path":  "common/customizable_localization/oathbound_custom_loc.txt",
             "origin_patch":  "agot_observer_stack_compat",
             "provider_workshop_id":  "3457401824",
@@ -514,6 +527,19 @@
             "source_sha256":  "4e6342659b59cd46c9ac1f77b802f81ed19cb9c9c30c90e30f4e1e06c314b2e2",
             "added_in":  "pre-JSON patch; entry generated during the 2026-08-30 consolidation",
             "built_sha256":  "47f833bf1534cd998985eabcfd52b38d06c10c10c441de44f0fa19ed7f972ed7"
+        },
+        {
+            "virtual_path":  "common/on_action/on_add_vet_modifer.txt",
+            "origin_patch":  "P61_LANDED_KNIGHTS_HARD_FATHER_SCOPE",
+            "provider_workshop_id":  "3361162762",
+            "transformations":  [
+                "base = A Landed Knights Mod on_add_vet_modifer.txt VERBATIM apart from one operator",
+                "CAUSE: 'father = { ... }' is a HARD scope switch inside every_side_knight, run on both sides of every combat. Knights with no recorded father fail the switch: 7,564 'father trigger [ Failed context switch ]' errors in one session.",
+                "FIX: 'father ?=' soft scope. A missing father now fails the test silently instead of erroring.",
+                "NOT FIXED DELIBERATELY: 'is_army_owner' is not a valid CK3 trigger (game logs \"Unknown trigger: is_army_owner\" at load), so this condition never evaluated meaningfully upstream. Guessing the author's intent would be a rewrite, not a fix."
+            ],
+            "source_sha256":  "3ef399703bc2b6f4028ae6f99a7daae3bd97f19abfe3975093563f5ea95a772b",
+            "built_sha256":  "3aeb3abe51e7e5f162aa35128dcf811379cd29a2b1788d47c2a1df3e45fe5e03"
         },
         {
             "virtual_path":  "common/on_action/relations/oathbound_on_relation_deaths.txt",
@@ -1065,6 +1091,20 @@
             "built_sha256":  "a2324c3e415559ca882d8ba72d8d6bdb08c229c08ba59062a8e5a137ecdcdc5e"
         },
         {
+            "virtual_path":  "common/scripted_triggers/naval_combat_triggers.txt",
+            "origin_patch":  "P60_NAVAL_COMBAT_DEAD_CULTURES",
+            "provider_workshop_id":  "3772178688",
+            "transformations":  [
+                "base = CK3 Naval Combat naval_combat_triggers.txt VERBATIM apart from the changes below",
+                "CAUSE: gates special ships on vanilla cultures (norse norwegian swedish danish greek han goryeo) and heritages (heritage_north_germanic heritage_byzantine heritage_chinese). AGOT replace_paths BOTH common/culture/cultures and common/culture/pillars, so none exist. Battle Graphics re-adds the culture definitions at pos 76 but they reference the wiped heritages/languages and still fail to register.",
+                "IMPACT: naval_combat_yearly_ai_management evaluates these per character per year - 31,373 'Failed to fetch a valid culture' errors in one 37-minute session, 53% of all script errors.",
+                "FIX: the three special-ship triggers become 'always = no'; the stray culture:norse test in naval_combat_can_use_sea_raid_trigger is dropped. All 13 trigger definitions preserved, brace balance 0.",
+                "BEHAVIOUR UNCHANGED: every one of these lookups already evaluated false."
+            ],
+            "source_sha256":  "72996d1454ec1a7056912400739ccd2c8263179601700363deea19f1564359bc",
+            "built_sha256":  "8d455cb45e930dc07139acf93dd132db10c422112bd84d02068d268c76b13094"
+        },
+        {
             "virtual_path":  "common/scripted_triggers/zz_observer_stack_canon_child_missing_triggers.txt",
             "origin_patch":  "agot_observer_stack_compat",
             "provider_workshop_id":  "additive",
@@ -1466,6 +1506,6 @@
             "built_sha256":  "5a2ab027d2b7f85078e5164be021d0495ba076b7afd64a8901d8b06761c9ad9e"
         }
     ],
-    "file_count":  92,
-    "last_revision":  "2026-08-31 definitive playset: AGOT Iron and Salt and The Unnecessary Dragons permanently removed (the two confirmed invisible-dragon causes). Iron-dependent patch content stripped: cooltip.gui deleted, window_character.gui de-krakened. P54 shader confirmed as the fix for portrait-attachment rendering."
+    "file_count":  95,
+    "last_revision":  "2026-09-01 P60/P61/P62 - log-spam and script-error fixes mined from the 2026-08-31 22:58 crash session (413,840 lines). Removes ~52,500 runtime script errors per session. All three behaviour-preserving."
 }

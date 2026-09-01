@@ -618,6 +618,84 @@ at all.
   signature (72 `agot_historical_dragon_transfer_vars_to_story_cycle_effect` compile failures, zero
   parse errors). A third mechanism, unexplained and sidestepped rather than fixed.
 
+## Log-spam / script-error wave (2026-09-01) — P60, P61, P62
+
+Mined from the crash session at `crashes/ck3_20260831_225832` — 413,840 error-log lines in 37
+minutes of play. **59,467 of those were script errors**, and three mods accounted for the bulk.
+All three fixes are behaviour-preserving: every condition patched here already evaluated false,
+it just errored loudly while doing so.
+
+| Patch | Mod | Errors/session | Fix |
+|---|---|---|---|
+| P60 | CK3 Naval Combat | **31,373** | dead vanilla culture/heritage lookups |
+| P61 | A Landed Knights Mod | **7,564** | hard `father` scope switch |
+| P62 | Grand Remembrance | **13,608** | 319 unguarded `var:` reads |
+
+Combined: roughly **52,500 fewer runtime script errors per session**, and a large cut in the log
+I/O that accompanies them (~186 lines/second sustained at 5× speed).
+
+### P60 — CK3 Naval Combat gates ships on cultures AGOT deletes
+
+`naval_combat_can_build_longship_trigger` and its two siblings test vanilla cultures and heritages:
+
+```
+norse  norwegian  swedish  danish  greek  han  goryeo
+heritage_north_germanic  heritage_byzantine  heritage_chinese
+```
+
+**AGOT declares `replace_path` on BOTH `common/culture/cultures` and `common/culture/pillars`**, so
+none of them exist. There is a subtlety worth recording: Battle Graphics (pos 76) *does* re-add
+`swedish`, `norse`, `norwegian` and `danish` as real culture definitions after AGOT, so a naive file
+scan says they exist — but each one declares `heritage = heritage_north_germanic` and
+`language = language_norse`, both wiped by the pillars replace_path, so the cultures still fail to
+register. That is why the log says "Failed to fetch a valid culture 'swedish'" while the definition
+is plainly on disk.
+
+`naval_combat_yearly_ai_management` evaluates this per character per year, so at 5× speed it fires
+constantly. The three special-ship triggers are now `always = no` and the stray `culture:norse` test
+in `naval_combat_can_use_sea_raid_trigger` is dropped. All 13 trigger definitions preserved.
+
+**Deliberately not done:** mapping these ships onto real AGOT cultures (ironborn for longships, say).
+That would *enable* content that has never worked in this playset — a gameplay decision, not a fix.
+
+### P61 — A Landed Knights Mod hard-scopes `father`
+
+`on_add_vet_modifer.txt` runs `every_side_knight` on both sides of every combat and tests
+`father = { ... }`. `father` is a **hard** scope switch, so any knight with no recorded father throws
+`father trigger [ Failed context switch ]`. Changed to `father ?=`.
+
+**Deliberately not fixed:** the inner `is_army_owner` is not a valid CK3 trigger — the game logs
+`Unknown trigger: is_army_owner` at load, so this condition never evaluated meaningfully upstream
+either. Silencing 7,564 runtime errors is a fix; guessing what the author meant would be a rewrite.
+
+### P62 — Grand Remembrance reads 319 variables with zero guards
+
+`gr_story_custom_loc.txt` makes 319 `var:` reads and contains **no** `exists = var:` guard anywhere.
+Evaluated against any character without a Grand Remembrance story, every read fails:
+
+```
+4,536  Event target link 'var' returned an unset scope
+4,536  Invalid left side during comparison 'var'
+3,528  Failed to fetch variable for 'gr_story_opinion'
+1,008  Failed to fetch variable for 'gr_story_chronicler_type'
+```
+
+Each of the 65 trigger blocks that reads a variable now carries `exists = var:NAME` for every
+variable it touches — 205 guards. All 6 top-level loc keys and all 143 `text` blocks preserved.
+
+### Also observed in that session — NOT patched
+
+- **The crash itself was memory, not script.** The last three lines before
+  `EXCEPTION_ACCESS_VIOLATION` are `CreateTexture2D failed … Not enough memory resources`, retried at
+  half size and failing again. Settings at the time: `render_scale 2.0` at 2560×1440 (4× the pixels),
+  `portrait_multi_sampling x8`, `texture_quality ultra`, `shadowmap_resolution 4096×4096`,
+  `upscale_quality off`. Clicking rapidly through many armies allocates portrait render targets, which
+  is the trigger — but the ceiling is the settings. This is a settings change, not a patch.
+- **11,624 `portraitcontext.cpp:326`** — longstanding AGOT `common/dna_data` debt, present in clean
+  sessions too. Not ours to fix.
+- **2,000 `add_domicile_building … already constructing`** from `07_dlc_ep3_scripted_effects.txt`.
+  Five mods ship that path; identifying the right owner needs more evidence than one session.
+
 ## Do NOT "fix" these — they are correct as they stand
 
 - **Seasons of Ice and Fire winter tiers.** Seasons deliberately splits AGOT's
