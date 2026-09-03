@@ -3,7 +3,7 @@
 Generated from `manifest/build_manifest.json` on 2026-09-03.
 Derived file - do not hand-edit. Regenerate with `python3 tools/gen_module_index.py`.
 
-100 files across 26 upstream mods. **override** replaces an upstream virtual path;
+102 files across 27 upstream mods. **override** replaces an upstream virtual path;
 **authored** is a new file this layer introduces.
 
 This layer must load **last**; every override below only wins because of that.
@@ -17,6 +17,7 @@ This layer must load **last**; every override below only wins because of that.
 | 17 | AGOT Color Picker for Clothes | 1 | P54_SHADER_APPLYVARIATIONPATTERNS_ARITY |
 | 23 | Patch AGOT - MBS | 1 | P07_SCROLLAREA_IGNOREINVISIBLE |
 | 24 | Active Courtiers | 1 | P48_ACTIVE_COURTIERS_FP3_STRUGGLE_NEUTRALISED |
+| 26 | Search & Trade Artifacts | 2 | P70_SEARCH_TRADE_AGOT_PRICING, P71_SEARCH_TRADE_AGOT_ARTIFACT_PROTECTION |
 | 33 | AGOT - Crowns of Westeros | 4 | P03_CULTURE_MIGRATION, P03_VALEMAN_OPINION |
 | 38 | AGOT+ | 14 | P02_CROWN_CREATOR_CONTRACT, P02_KRAKENFALL_HOUSE_SCOPE, P02_WESTERMAN_OPINION, P15, P31A_MANCE_GIANT_REGIMENT, P31C_YOUNG_GRIFF_NICKNAME_AND_TRAIT, P31D_DUMMY_CHARACTER_LOCATION, P32A_DRAGON_FAITH_VALYRIAN_PAN_DRAGON, P33_TARGARYEN_95_MODIFIER_REMOVED, P51_NONEXISTENT_DYNASTY_BRANCH_NEUTRALISED |
 | 41 | AGOT: House Founders | 3 | P01_HF_BIRTH_HOOKS_X_SEASONS_NICKNAME, P02_HF_ADVENTURER_NAMING_X_SEASONS_WINTER_TIERS, P19 |
@@ -99,6 +100,13 @@ This layer must load **last**; every override below only wins because of that.
 ### Active Courtiers  (`3157170996`, playset #24)
 
 - `common/script_values/accou_marriage_values.txt` — **P48_ACTIVE_COURTIERS_FP3_STRUGGLE_NEUTRALISED** (override)
+
+### Search & Trade Artifacts  (`2962238514`, playset #26)
+
+- `common/script_values/at_basic_values.txt` — **P70_SEARCH_TRADE_AGOT_PRICING** (override)
+  - S&T wins this path over AGOT and ships the two custom-price values as empty extension points, so dragon eggs and Valyrian steel priced at 0. AGOT's bodies restored on S&T's base.
+- `common/scripted_triggers/at_artifact_triggers.txt` — **P71_SEARCH_TRADE_AGOT_ARTIFACT_PROTECTION** (override)
+  - S&T wins this path and ships can_be_sold / can_be_destroyed as `always = yes`, letting the Iron Throne, historical uniques, Valyrian steel, dragon eggs and skulls be sold and destroyed. AGOT's rules restored; buy trigger…
 
 ### AGOT - Crowns of Westeros  (`2995674648`, playset #33)
 

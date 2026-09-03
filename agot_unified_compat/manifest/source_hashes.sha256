@@ -415,3 +415,12 @@ aa5f754b763df4fa933109f2e20b4efd7b3f85bd6577f93b4b18efc437936d91  2962333032/gui
 fb2765e0029ba924f30afa1a2f50e1ce247513aa7d53d2cd30c6f9362e575085  2962333032/gui/window_military.gui  # SOURCE  (P69_RALLY_POINTS_MILITARY_WINDOW)
 e1c82a12089afd7097c27448c29d25c01c5a5b568db060d636216b10f8077ea9  3081701005/gui/window_military.gui  # SOURCE  (P69_RALLY_POINTS_MILITARY_WINDOW)
 4ea8aebbf09e42fb24cd74f167f65118688eaa462655decd5aaa7ca83bf635be  BUILT/gui/window_military.gui  [P69_RALLY_POINTS_MILITARY_WINDOW]
+
+# P70-P71 (2026-09-03): Search & Trade Artifacts x AGOT. Both contributors are gated;
+# a change to either invalidates the merge.
+7037832909c75ecd6014da9a13f635875dcad16800441a1546d9b56e110db0db  2962333032/common/script_values/at_basic_values.txt  # SOURCE  (P70_SEARCH_TRADE_AGOT_PRICING, AGOT side)
+0e21a7d8481d6011063f6c55e9e5287f027621ac0bf194982e983febd5d03434  2962238514/common/script_values/at_basic_values.txt  # SOURCE  (P70_SEARCH_TRADE_AGOT_PRICING, S&T base)
+79a91139b5031ce2910a4021766929a0f7f674f44f3f13cc79ec31ed73bf6967  BUILT/common/script_values/at_basic_values.txt  [P70_SEARCH_TRADE_AGOT_PRICING]
+98f46c880f9ba982f6f1f8c0a8f565bcf28484b73c7c7f67011101e6abc594fa  2962333032/common/scripted_triggers/at_artifact_triggers.txt  # SOURCE  (P71_SEARCH_TRADE_AGOT_ARTIFACT_PROTECTION, AGOT side)
+8e1470365dd743dcaa9767696547bb5b978cf4b1e9305f127f8e1397f87feaf7  2962238514/common/scripted_triggers/at_artifact_triggers.txt  # SOURCE  (P71_SEARCH_TRADE_AGOT_ARTIFACT_PROTECTION, S&T base)
+db8df4f0f5bfbec4ce755e7ab3ae3e40f50f69cbfb9519f8bf0aa8c83780cef3  BUILT/common/scripted_triggers/at_artifact_triggers.txt  [P71_SEARCH_TRADE_AGOT_ARTIFACT_PROTECTION]

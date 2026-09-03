@@ -1819,6 +1819,54 @@
       "rationale": [
         "CoA Rally Points kept 0/2 AGOT identifiers; merged against vanilla, AGOT's 205-line superset block taken over Rally's 13-line subset. All 409 Rally lines retained."
       ]
+    },
+    {
+      "virtual_path": "common/script_values/at_basic_values.txt",
+      "kind": "override",
+      "module": "P70_SEARCH_TRADE_AGOT_PRICING",
+      "transformations": [
+        "P70_SEARCH_TRADE_AGOT_PRICING"
+      ],
+      "origin_patch": "agot_unified_compat",
+      "provider_name": "Search & Trade Artifacts",
+      "provider_workshop_id": "2962238514",
+      "source_sha256": "0e21a7d8481d6011063f6c55e9e5287f027621ac0bf194982e983febd5d03434",
+      "built_sha256": "79a91139b5031ce2910a4021766929a0f7f674f44f3f13cc79ec31ed73bf6967",
+      "additional_donors": [
+        {
+          "workshop_id": "2962333032",
+          "path": "common/script_values/at_basic_values.txt",
+          "sha256": "7037832909c75ecd6014da9a13f635875dcad16800441a1546d9b56e110db0db"
+        }
+      ],
+      "added_in": "2026-09-03",
+      "rationale": [
+        "S&T wins this path over AGOT and ships the two custom-price values as empty extension points, so dragon eggs and Valyrian steel priced at 0. AGOT's bodies restored on S&T's base."
+      ]
+    },
+    {
+      "virtual_path": "common/scripted_triggers/at_artifact_triggers.txt",
+      "kind": "override",
+      "module": "P71_SEARCH_TRADE_AGOT_ARTIFACT_PROTECTION",
+      "transformations": [
+        "P71_SEARCH_TRADE_AGOT_ARTIFACT_PROTECTION"
+      ],
+      "origin_patch": "agot_unified_compat",
+      "provider_name": "Search & Trade Artifacts",
+      "provider_workshop_id": "2962238514",
+      "source_sha256": "8e1470365dd743dcaa9767696547bb5b978cf4b1e9305f127f8e1397f87feaf7",
+      "built_sha256": "db8df4f0f5bfbec4ce755e7ab3ae3e40f50f69cbfb9519f8bf0aa8c83780cef3",
+      "additional_donors": [
+        {
+          "workshop_id": "2962333032",
+          "path": "common/scripted_triggers/at_artifact_triggers.txt",
+          "sha256": "98f46c880f9ba982f6f1f8c0a8f565bcf28484b73c7c7f67011101e6abc594fa"
+        }
+      ],
+      "added_in": "2026-09-03",
+      "rationale": [
+        "S&T wins this path and ships can_be_sold / can_be_destroyed as `always = yes`, letting the Iron Throne, historical uniques, Valyrian steel, dragon eggs and skulls be sold and destroyed. AGOT's rules restored; buy trigger merged (S&T peddler + AGOT artifact-keeper); S&T's 10 newer keys kept."
+      ]
     }
   ],
   "file_count": 97,
