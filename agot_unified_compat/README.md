@@ -13,6 +13,19 @@ changed: one folder, one `descriptor.mod`, one launcher pointer, one manifest.
 > Earlier dragon sections below are retained as chronological evidence and may contain conclusions
 > that were explicitly superseded by later controlled runs.
 
+## Rejected mods — do not re-enable without addressing the cause
+
+Recorded from bisection, so these are not re-tried blindly.
+
+| Mod | Workshop ID | Why |
+|---|---|---|
+| Blood of Valyria | `3469933841` | **Crashes game start.** Hooks `on_game_start_after_lobby` with two `every_living_character` sweeps (`on_sdv_gives_vi_trait_every_living_character`, `on_sdv_beauty_fertility_base_after_lobby`), the second dispatching a per-character event. Does not scale to this playset. Also calls its own `sdv_heir_disinherit_removal_effect` with arguments it does not declare, at ~48 sites ("Scripted effect should have no arguments"). Isolated by bisection 2026-09-03: identical config crashed with it on, loaded with it off, twice each. |
+| AGOT Iron and Salt | `3781577713` | One of two confirmed invisible-dragon causes. |
+| The Unnecessary Dragons | `3287624076` | The other invisible-dragon cause. |
+| Gamerule Gadget | `2826829936` | Overrides 68 game rules defined by AGOT and MIV, and hooks `on_game_start_after_lobby`. Incumbent-priority violation. Not the crash cause, but not wanted. |
+| [KET] Court Position | `3742562925` | Overrides 42 court-position keys belonging to Court Positions Expanded. Incumbent-priority violation. |
+| Dynamic Family Portrait (AGOT) | `3609763696` | Not standalone. Requires DFP base and AGOT More Dragon Eggs; without them its `hud.gui` references `portrait_hud_heir`, `portrait_hud_spouse` and `mde_dragon_portrait_*_size`, which no loaded mod defines. Merging it crashed the HUD build. Re-merge ONLY with both dependencies. |
+
 ## Where to look
 
 | I want to… | Read |

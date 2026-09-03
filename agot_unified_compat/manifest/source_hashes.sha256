@@ -402,3 +402,16 @@ f0a4c843068fd3061037d48114d65ee696b5e0d4490106258da05419eea481b2  3616413111/com
 # P65 (2026-09-02): removed four MIV duplicate scripted-effect definitions from
 # interactive_scripted_effects.txt; see the header note in that file. BOM added to
 # 00_exp_grand_vizier_position.txt (ck3-tiger warning(encoding)).
+
+# P67-P69 (2026-09-03): GUI three-way merges. Sources are the CONTRIBUTORS; a change to
+# any of them invalidates the merge, which must be rebuilt with git merge-file on vanilla.
+aa5f754b763df4fa933109f2e20b4efd7b3f85bd6577f93b4b18efc437936d91  2962333032/gui/hud.gui  # SOURCE  (P67_HUD_FOURWAY_MERGE)
+947e920d6081462fc8be99d3e5eb3429f6ddf5df47b7feb9a4789ab56db59d13  3772178688/gui/hud.gui  # SOURCE  (P67_HUD_FOURWAY_MERGE)
+354211a177dec677c8640916bbee68a3f893a56a2d5374faea0cfa0156e863e4  3763629557/gui/hud.gui  # SOURCE  (P67_HUD_FOURWAY_MERGE)
+6564696ff6e7149ec77c26001989a1be3458cc2f8221f66143e44014fe23f6ce  BUILT/gui/hud.gui  [P67_HUD_FOURWAY_MERGE]
+9748f281fb271856b7b4bfd21f50ec73ee4df54622236a5d2cb1ebc1d48c2d60  2962333032/gui/map_icon_layer.gui  # SOURCE  (P68_RALLY_POINTS_MAP_ICONS)
+5f3a1360db6a72c9d37241c365b0b93937128610ffafec08577054c149d1d018  3081701005/gui/map_icon_layer.gui  # SOURCE  (P68_RALLY_POINTS_MAP_ICONS)
+1d0c8b339f709fa1121f8e017e476944ffbbf47cd78d707173c8b2cb89de50bc  BUILT/gui/map_icon_layer.gui  [P68_RALLY_POINTS_MAP_ICONS]
+fb2765e0029ba924f30afa1a2f50e1ce247513aa7d53d2cd30c6f9362e575085  2962333032/gui/window_military.gui  # SOURCE  (P69_RALLY_POINTS_MILITARY_WINDOW)
+e1c82a12089afd7097c27448c29d25c01c5a5b568db060d636216b10f8077ea9  3081701005/gui/window_military.gui  # SOURCE  (P69_RALLY_POINTS_MILITARY_WINDOW)
+4ea8aebbf09e42fb24cd74f167f65118688eaa462655decd5aaa7ca83bf635be  BUILT/gui/window_military.gui  [P69_RALLY_POINTS_MILITARY_WINDOW]

@@ -1740,6 +1740,85 @@
         "base = AGOT Color Picker for Clothes court_scene.shader verbatim (7-param ApplyVariationPatterns matching its agot_portrait_decals_shared.fxh)",
         "appended Battle Graphics ACG Addition block (sine_flag_animation_acg_coa, sine_flag_animation_acg_coa_selection) required by acg_MESH_flag_banner.asset and acg_MESH_flag_weapon.asset"
       ]
+    },
+    {
+      "virtual_path": "gui/hud.gui",
+      "kind": "override",
+      "module": "P67_HUD_FOURWAY_MERGE",
+      "transformations": [
+        "P67_HUD_FOURWAY_MERGE"
+      ],
+      "origin_patch": "agot_unified_compat",
+      "provider_name": "A Game of Thrones",
+      "provider_workshop_id": "2962333032",
+      "source_sha256": "aa5f754b763df4fa933109f2e20b4efd7b3f85bd6577f93b4b18efc437936d91",
+      "built_sha256": "6564696ff6e7149ec77c26001989a1be3458cc2f8221f66143e44014fe23f6ce",
+      "additional_donors": [
+        {
+          "workshop_id": "3772178688",
+          "path": "gui/hud.gui",
+          "sha256": "947e920d6081462fc8be99d3e5eb3429f6ddf5df47b7feb9a4789ab56db59d13"
+        },
+        {
+          "workshop_id": "3763629557",
+          "path": "gui/hud.gui",
+          "sha256": "354211a177dec677c8640916bbee68a3f893a56a2d5374faea0cfa0156e863e4"
+        }
+      ],
+      "added_in": "2026-09-03",
+      "rationale": [
+        "AGOT + CK3 Naval Combat + Battlefield Duel + + DFP(AGOT), three-way merged on vanilla 1.19.0.6. Repairs the regression where Naval Combat kept 0/3 AGOT identifiers after Iron and Salt was removed.",
+        "2026-09-03: DFP (AGOT) removed as a contributor and disabled - it is a compatch requiring DFP base and AGOT More Dragon Eggs, and its widget references crashed the HUD build.",
+        "2026-09-03 bisection: this merge was temporarily removed to test it as a crash cause and is EXONERATED - the crash reproduced identically without it. Culprit was Blood of Valyria (3469933841)."
+      ]
+    },
+    {
+      "virtual_path": "gui/map_icon_layer.gui",
+      "kind": "override",
+      "module": "P68_RALLY_POINTS_MAP_ICONS",
+      "transformations": [
+        "P68_RALLY_POINTS_MAP_ICONS"
+      ],
+      "origin_patch": "agot_unified_compat",
+      "provider_name": "A Game of Thrones",
+      "provider_workshop_id": "2962333032",
+      "source_sha256": "9748f281fb271856b7b4bfd21f50ec73ee4df54622236a5d2cb1ebc1d48c2d60",
+      "built_sha256": "1d0c8b339f709fa1121f8e017e476944ffbbf47cd78d707173c8b2cb89de50bc",
+      "additional_donors": [
+        {
+          "workshop_id": "3081701005",
+          "path": "gui/map_icon_layer.gui",
+          "sha256": "5f3a1360db6a72c9d37241c365b0b93937128610ffafec08577054c149d1d018"
+        }
+      ],
+      "added_in": "2026-09-03",
+      "rationale": [
+        "CoA Rally Points kept only 1/2 AGOT identifiers; merged against vanilla, AGOT ids 2/2 and all 80 Rally lines retained."
+      ]
+    },
+    {
+      "virtual_path": "gui/window_military.gui",
+      "kind": "override",
+      "module": "P69_RALLY_POINTS_MILITARY_WINDOW",
+      "transformations": [
+        "P69_RALLY_POINTS_MILITARY_WINDOW"
+      ],
+      "origin_patch": "agot_unified_compat",
+      "provider_name": "A Game of Thrones",
+      "provider_workshop_id": "2962333032",
+      "source_sha256": "fb2765e0029ba924f30afa1a2f50e1ce247513aa7d53d2cd30c6f9362e575085",
+      "built_sha256": "4ea8aebbf09e42fb24cd74f167f65118688eaa462655decd5aaa7ca83bf635be",
+      "additional_donors": [
+        {
+          "workshop_id": "3081701005",
+          "path": "gui/window_military.gui",
+          "sha256": "e1c82a12089afd7097c27448c29d25c01c5a5b568db060d636216b10f8077ea9"
+        }
+      ],
+      "added_in": "2026-09-03",
+      "rationale": [
+        "CoA Rally Points kept 0/2 AGOT identifiers; merged against vanilla, AGOT's 205-line superset block taken over Rally's 13-line subset. All 409 Rally lines retained."
+      ]
     }
   ],
   "file_count": 97,

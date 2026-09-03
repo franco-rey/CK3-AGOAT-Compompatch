@@ -579,22 +579,123 @@
    "steamId": "3767938227"
   },
   {
+   "displayName": "Divine Intervention Cheat Menu",
+   "steamId": "2986538297",
+   "enabled": true,
+   "position": 96
+  },
+  {
+   "displayName": "Divine Intervention AGOT Cheat Menu",
+   "steamId": "2996152542",
+   "enabled": true,
+   "position": 97
+  },
+  {
+   "displayName": "Valyrian Namelists Expanded",
+   "steamId": "3264761979",
+   "enabled": true,
+   "position": 98
+  },
+  {
+   "displayName": "Music mod AGOT themed",
+   "steamId": "2962695582",
+   "enabled": true,
+   "position": 99
+  },
+  {
+   "displayName": "The Golden Company",
+   "steamId": "3412222811",
+   "enabled": true,
+   "position": 100
+  },
+  {
+   "displayName": "Inheritable Relations",
+   "steamId": "2829009590",
+   "enabled": true,
+   "position": 101
+  },
+  {
+   "displayName": "AGOT Name Pack+",
+   "steamId": "3462679084",
+   "enabled": true,
+   "position": 102
+  },
+  {
+   "displayName": "AGOT - Battlefield Duel +",
+   "steamId": "3763629557",
+   "enabled": true,
+   "position": 103
+  },
+  {
+   "displayName": "Dynamyc Family Portrait (AGOT)",
+   "steamId": "3609763696",
+   "enabled": false,
+   "position": 104
+  },
+  {
+   "displayName": "CoA Rally Points",
+   "steamId": "3081701005",
+   "enabled": true,
+   "position": 105
+  },
+  {
+   "displayName": "AGOT - More Dragon Events",
+   "steamId": "3466228580",
+   "enabled": true,
+   "position": 106
+  },
+  {
+   "displayName": "AGOT Dragon Wives",
+   "steamId": "3541596590",
+   "enabled": true,
+   "position": 107
+  },
+  {
+   "displayName": "Blood of Valyria - A AGOT Submod",
+   "steamId": "3469933841",
+   "enabled": false,
+   "position": 108
+  },
+  {
+   "displayName": "AGOT: The Knighting Ceremony",
+   "steamId": "3673468355",
+   "enabled": true,
+   "position": 109
+  },
+  {
+   "displayName": "[KET] Court Position",
+   "steamId": "3742562925",
+   "enabled": false,
+   "position": 110
+  },
+  {
+   "displayName": "Gamerule Gadget",
+   "steamId": "2826829936",
+   "enabled": false,
+   "position": 111
+  },
+  {
    "displayName": "AGOT Iron and Salt",
    "enabled": false,
-   "position": 96,
+   "position": 112,
    "steamId": "3781577713"
   },
   {
    "displayName": "The Unnecessary Dragons - AGOT Submod",
    "enabled": false,
-   "position": 97,
+   "position": 113,
    "steamId": "3287624076"
   },
   {
    "displayName": "Better Executions Updated",
    "enabled": false,
-   "position": 98,
+   "position": 114,
    "steamId": "2429466948"
+  },
+  {
+   "displayName": "AGOT Unified Compatibility Patch",
+   "enabled": true,
+   "position": 115
   }
  ]
 }

@@ -1,9 +1,9 @@
 # Module index
 
-Generated from `manifest/build_manifest.json` on 2026-09-02.
+Generated from `manifest/build_manifest.json` on 2026-09-03.
 Derived file - do not hand-edit. Regenerate with `python3 tools/gen_module_index.py`.
 
-97 files across 26 upstream mods. **override** replaces an upstream virtual path;
+100 files across 26 upstream mods. **override** replaces an upstream virtual path;
 **authored** is a new file this layer introduces.
 
 This layer must load **last**; every override below only wins because of that.
@@ -11,7 +11,7 @@ This layer must load **last**; every override below only wins because of that.
 | Playset # | Upstream mod | Files | Modules |
 |---:|---|---:|---|
 | 6 | More Interactive Vassals | 5 | P08_MIV_DISABLED_CB_CONDITIONS, P08_MIV_SUPPORT_INTERACTION_ALIGNMENT, P34_FP3_STRUGGLE_CONCESSION_EMPTIED |
-| 7 | A Game of Thrones | 19 | P04_PROVINCE_SCOPE_LIMIT, P09, P10, P16, P17, P18, P29_SCION_STORY_SELF_TERMINATE, P30A_DRAGON_TERROR_TOP_LIEGE, P30B_COA_DYNASTY_FOUNDER_SOFT, P43_KINGSGUARD_6_SOFT_SCOPE, P44_BLOOD_TRIGGER_SCOPE_RENAME, P52_GRAND_WEDDING_CLEANUP_GUARD, P53_KINGSGUARD_CANDIDATE_SOFT_SCOPE, P59_DRAGON_TRANSFER_VARS, P63_COUNCILLOR_TRIGGERS_3WAY |
+| 7 | A Game of Thrones | 22 | P04_PROVINCE_SCOPE_LIMIT, P09, P10, P16, P17, P18, P29_SCION_STORY_SELF_TERMINATE, P30A_DRAGON_TERROR_TOP_LIEGE, P30B_COA_DYNASTY_FOUNDER_SOFT, P43_KINGSGUARD_6_SOFT_SCOPE, P44_BLOOD_TRIGGER_SCOPE_RENAME, P52_GRAND_WEDDING_CLEANUP_GUARD, P53_KINGSGUARD_CANDIDATE_SOFT_SCOPE, P59_DRAGON_TRANSFER_VARS, P63_COUNCILLOR_TRIGGERS_3WAY, P67_HUD_FOURWAY_MERGE, P68_RALLY_POINTS_MAP_ICONS, P69_RALLY_POINTS_MILITARY_WINDOW |
 | 9 | Legacy Of The Dragon | 1 | P12 |
 | 13 | COW-AGOT: 3D Models & Bigger Castles | 1 | — |
 | 17 | AGOT Color Picker for Clothes | 1 | P54_SHADER_APPLYVARIATIONPATTERNS_ARITY |
@@ -72,6 +72,12 @@ This layer must load **last**; every override below only wins because of that.
 - `events/agot_events/agot_kingsguard_events.txt` — **P53_KINGSGUARD_CANDIDATE_SOFT_SCOPE** (override)
 - `events/dlc/bp1/bp1_yearly.txt` — **P17** (override)
 - `events/dlc/ep3/ep3_laamp_decision_events.txt` — **P04_PROVINCE_SCOPE_LIMIT** (override)
+- `gui/hud.gui` — **P67_HUD_FOURWAY_MERGE** (override)
+  - AGOT + CK3 Naval Combat + Battlefield Duel + + DFP(AGOT), three-way merged on vanilla 1.19.0.6. Repairs the regression where Naval Combat kept 0/3 AGOT identifiers after Iron and Salt was removed.
+- `gui/map_icon_layer.gui` — **P68_RALLY_POINTS_MAP_ICONS** (override)
+  - CoA Rally Points kept only 1/2 AGOT identifiers; merged against vanilla, AGOT ids 2/2 and all 80 Rally lines retained.
+- `gui/window_military.gui` — **P69_RALLY_POINTS_MILITARY_WINDOW** (override)
+  - CoA Rally Points kept 0/2 AGOT identifiers; merged against vanilla, AGOT's 205-line superset block taken over Rally's 13-line subset. All 409 Rally lines retained.
 
 ### Legacy Of The Dragon  (`3101422928`, playset #9)
 
