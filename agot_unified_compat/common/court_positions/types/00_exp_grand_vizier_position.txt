@@ -1,27 +1,4 @@
-﻿# AGOT Unified Compatibility Patch  P66 - Court Positions Expanded: dead religion gate.
-#
-# Court Positions Expanded 1.19 (2754449789) gates its Grand Vizier court position on
-#     has_religion = religion:islam_religion
-# in three places - is_shown, valid_position and valid_character. AGOT declares replace_path on the
-# religion directories, so islam_religion does not exist in this playset. Every evaluation throws
-# "Failed to fetch a valid religion 'islam_religion'": 2,919 errors in a single session.
-#
-# FIX: the three dead lookups become "always = no". BEHAVIOUR IS UNCHANGED - the position was
-# already permanently unavailable because the religion check could never pass; it just errored
-# loudly while being unavailable.
-#
-# TO ACTUALLY ENABLE THE POSITION (a gameplay/lore decision, deliberately NOT made here):
-# replace the three "always = no" lines with a real AGOT faith or culture test - something Essosi
-# would fit the Grand Vizier concept. That ADDS content that has never worked in this playset, so
-# it is your call, not a bug fix.
-
-# Court Positions Expanded - Grand Vizier
-# Adapted for CK3 1.19 framework
-# grand_vizier_court_position
-
-### Special Court Positions ###
-
-grand_vizier_court_position = {
+﻿grand_vizier_court_position = {
 	sort_order = 325
 	skill = stewardship
 	max_available_positions = 1
@@ -116,7 +93,7 @@ grand_vizier_court_position = {
 
 	# Is this an available position for this court? (root is court owner)
 	is_shown = {
-		always = no   # P66: religion:islam_religion does not exist in AGOT (see patch header)
+		always = no
 		is_landed_or_landless_administrative = yes
 		trigger_if = {
 			limit = {
@@ -128,7 +105,7 @@ grand_vizier_court_position = {
 	}
 
 	valid_position = {
-		always = no   # P66: religion:islam_religion does not exist in AGOT (see patch header)
+		always = no
 		is_landed_or_landless_administrative = yes
 		highest_held_title_tier >= tier_kingdom
 	}
@@ -142,7 +119,7 @@ grand_vizier_court_position = {
 	valid_character = {
 		scope:employee = {
 			is_imprisoned = no
-			always = no   # P66: religion:islam_religion does not exist in AGOT (see patch header)
+			always = no
 			trigger_if = {
 				limit = {
 					scope:liege.faith = {

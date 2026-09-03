@@ -1,9 +1,4 @@
-﻿# AGOT Unified Compatibility Patch  P61 - A Landed Knights Mod hard father scope.
-# Source: A Landed Knights Mod (3361162762) common/on_action/on_add_vet_modifer.txt
-# 7,564 runtime errors per session; behaviour unchanged (a missing father already
-# failed the test - it just errored while doing so).
-
-on_combat_end_winner = {
+﻿on_combat_end_winner = {
     on_actions = {
         on_add_vet_modifier
     }
@@ -21,7 +16,6 @@ on_add_vet_modifier = {
             if = {
                 limit = {
                     is_ruler = no
-                    # AGOT compat P61: 'father' is a HARD scope switch. Landless knights and
                     # characters with no recorded father fail it, and every_side_knight runs it
                     # on both sides of every combat - 7,564 'father trigger [ Failed context
                     # switch ]' errors in one 37-minute session. '?=' makes it a soft switch:

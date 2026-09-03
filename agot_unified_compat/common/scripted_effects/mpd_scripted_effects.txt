@@ -1,5 +1,4 @@
-﻿# Seasons + Personality Compat  P07 - More Personality Depth x Immersive Personalities:
-# the paranoid trait-XP calls that cannot succeed.
+﻿# the paranoid trait-XP calls that cannot succeed.
 #
 #   add_trait_xp effect [ Trait 'paranoid' has multiple trait tracks, you must
 #   specify which you want ]
@@ -83,7 +82,6 @@ mpd_force_reroll_all_personality_xp = {
 	if = { limit = { has_trait = just }          add_trait_xp = { trait = just          value = -1000 } }
 	if = { limit = { has_trait = cynical }       add_trait_xp = { trait = cynical       value = -1000 } }
 	if = { limit = { has_trait = zealous }       add_trait_xp = { trait = zealous       value = -1000 } }
-	# Compat P07: paranoid reset removed -- see this file's header.
 	if = { limit = { has_trait = trusting }      add_trait_xp = { trait = trusting      value = -1000 } }
 	if = { limit = { has_trait = vengeful }      add_trait_xp = { trait = vengeful      value = -1000 } }
 	if = { limit = { has_trait = forgiving }     add_trait_xp = { trait = forgiving     value = -1000 } }
@@ -155,7 +153,6 @@ mpd_roll_all_personality_xp = {
 	mpd_calculate_trait_xp = { TRAIT = zealous       WN_SOCIAL = 0   WN_COMPETE = 0 }
 
 	# ─── Vanilla pair: paranoid / trusting ───
-	# Compat P07: paranoid removed from the XP roll -- see this file's header.
 	mpd_calculate_trait_xp = { TRAIT = trusting      WN_SOCIAL = 20  WN_COMPETE = -10 }
 
 	# ─── Vanilla pair: vengeful / forgiving ───

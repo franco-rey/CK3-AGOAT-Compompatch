@@ -1,34 +1,3 @@
-# AGOT Unified Compatibility Patch  P67 - gui/hud.gui three-way merge.
-#
-# CAUSE: CK3 Naval Combat (pos 62) ships a vanilla-derived hud.gui preserving 0 of
-# AGOT's 3 identifiers and 0 of its 11 markers, removing agot_hud_dragon_army_composition,
-# agot_can_see_dragon_military_view and agot_hud_domain_limit. AGOT Iron and Salt used
-# to restore all 11 by loading later; it is permanently out (invisible-dragon cause),
-# so nothing re-applied them.
-#
-# FIX: three-way merge on vanilla 1.19.0.6 via `git merge-file` (diff3 fails - Naval
-# Combat is +3591/-850 vs vanilla and restructures rather than appends):
-#     AGOT -> + CK3 Naval Combat -> + AGOT Battlefield Duel +      [0 conflicts]
-# VERIFIED: AGOT identifiers 3/3, markers 11/11, naval tab and window present.
-#
-# 2026-09-03 REGRESSION AND FIX: Dynamic Family Portrait (AGOT) (3609763696) was
-# initially merged in as a fourth contributor. It is NOT standalone - it is a compatch
-# that assumes Dynamic Family Portrait base (3608374693) and AGOT More Dragon Eggs
-# (3388366564) are both loaded, and its hud.gui references portrait_hud_heir,
-# portrait_hud_spouse and mde_dragon_portrait_*_size which only those two define.
-# With neither installed the widgets were invalid, the HUD failed to build and the
-# game crashed during on_game_start_after_lobby. Its contribution is removed and the
-# mod is disabled. Re-merge it ONLY together with both of its dependencies.
-#
-# DELIBERATELY EXCLUDED: Prisoners of War's hud.gui (6,471 lines vs vanilla's 8,840 -
-# deletes 4,225, 12 conflicts, far older CK3 base).
-#
-# DEPENDENCY: correct while CK3 Naval Combat and Battlefield Duel + are loaded.
-#
-######################################################
-#################### BOTTOM #######################
-######################################################
-
 widget = {
 	size = { 100% 100% }
 	name = "meta_info"

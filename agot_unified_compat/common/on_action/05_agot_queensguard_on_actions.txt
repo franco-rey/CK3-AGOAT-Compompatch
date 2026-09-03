@@ -1,16 +1,4 @@
-﻿# Observer Stack P40 - AGOT: Royal Guards (3733779333)
-#
-# agot_guard_positions_fill_rhaenyra_designated_queensguard_vacancy runs from
-# on_death, i.e. for every death in the world. Its trigger performed a HARD
-# scope switch into character:Targaryen_63 (Rhaenyra). In any era or bookmark
-# where that historical character does not exist, the switch failed and logged
-#   Error: character:Targaryen_63 trigger [ Failed context switch ]
-# 936 times in a single session.
-#
-# All four hard switches are changed to the soft form ( ?= ), which yields
-# false instead of erroring when the character is absent. Behaviour is
-# unchanged whenever Rhaenyra does exist.
-on_title_gain = { on_actions = { agot_guard_positions_rhaenyra_queensguard_title_usurped } }
+﻿on_title_gain = { on_actions = { agot_guard_positions_rhaenyra_queensguard_title_usurped } }
 on_title_gain_inheritance = { on_actions = { agot_guard_positions_rhaenyra_queensguard_title_usurped } }
 on_title_gain_usurpation = { on_actions = { agot_guard_positions_rhaenyra_queensguard_title_usurped } }
 on_title_destroyed = { on_actions = { agot_guard_positions_destroy_rhaenyra_queensguard_with_dragonstone } }

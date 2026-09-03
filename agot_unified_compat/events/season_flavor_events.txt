@@ -1,5 +1,4 @@
-﻿# Seasons + Personality Compat  P05 - Seasons of Ice and Fire non-existent titles.
-#
+﻿#
 # season_flavor_events.00015 (the seasonal-nickname hook) gates on sixteen titles.
 # Seven of them do not exist in AGOT and failed landed-title resolution at load:
 #     h_dorne  h_the_north  h_the_vale  h_the_riverlands
@@ -14,8 +13,6 @@
 # k_dragonstone DO resolve and are kept in all four blocks, so no OR is left empty;
 # the trigger block additionally keeps all seven e_* regional titles.
 #
-# Note: this event is the one Compat P01 re-inserts into child_birth_on_actions.
-# The broken references are Seasons' own and fired before P01 existed.
 namespace = season_flavor_events
 
 

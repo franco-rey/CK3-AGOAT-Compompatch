@@ -1,8 +1,4 @@
-﻿# Observer Stack P33 -- AGOT+ calls asoiaf_Greyjoy_13_alt_modifier from
-# asoiaf_assign_inactive_traits_effects.txt and asoiaf_canon_children_effects.txt
-# but never defines it. Mirrors asoiaf_Greyjoy_13_modifier so the alternate
-# Asha naming path keeps the same mechanical effect as the standard one.
-asoiaf_Greyjoy_13_alt_modifier = {
+﻿asoiaf_Greyjoy_13_alt_modifier = {
 	icon = asoiaf_canon_children_modifier
 	negate_health_penalty_add = 1.5
 	fertility = 0.3

@@ -700,7 +700,6 @@ gr_on_building_completed = {
 				change_variable = { name = gr_building_count add = 1 }
 
 				# M5: New holding detection.
-				# VERIFIED: "num_buildings" is a real province-scope trigger, used the
 				# same way (bare, on the province) in
 				# common/buildings/00_standard_economy_buildings.txt:3917/3926
 				# ("num_buildings < 5" / "num_buildings >= 8" inside a building's
@@ -720,7 +719,6 @@ gr_on_building_completed = {
 					change_variable = { name = gr_holding_count add = 1 }
 
 					# Temple holding specifically.
-					# VERIFIED: "has_holding_type = church_holding" is real vanilla
 					# syntax used in this exact scope (province root) in vanilla's own
 					# on_building_completed handler, common/on_action/province_on_actions.txt:20:
 					#   root = { if = { limit = { ... OR = {
@@ -1243,7 +1241,6 @@ gr_internal_act_chariot_tracking = {
 # ================================================
 
 # Murder scheme completed successfully
-# VERIFIED: murder_success_pre_filter_on_action (common/on_action/schemes/murder_on_actions.txt:90)
 # is the real vanilla hook fired on a successful murder. Its effect block opens
 # with "scope:owner = { ... }" and branches on "scope:target" (the victim) right
 # away, e.g.:
@@ -1283,7 +1280,6 @@ gr_internal_murder_tracking = {
 }
 
 # Kidnap/abduction scheme completed successfully
-# VERIFIED: abduct_succeeded (common/on_action/schemes/abduct_on_actions.txt:17)
 # is the real vanilla hook fired on a successful abduction:
 #   abduct_succeeded = {
 #       trigger = { exists = scope:scheme }
@@ -1479,7 +1475,6 @@ gr_internal_torture_poll = {
 # ================================================
 
 # Language learned
-# VERIFIED: learn_language_success (common/on_action/schemes/learn_language_on_actions.txt:1)
 # is the real vanilla hook. It is fired from inside the learn_language scheme's
 # on_phase_completed (common/schemes/scheme_types/learn_language_scheme.txt:302-327):
 #   on_phase_completed = {
@@ -1759,7 +1754,6 @@ gr_internal_birth_story_tracking = {
 # ================================================
 
 # Seduction scheme completed successfully
-# VERIFIED: seduce_success (common/on_action/schemes/seduce_on_actions.txt:66)
 # is the real vanilla success hook. Both firing paths reach it with
 # scope:owner = the schemer saved and ROOT = the schemer:
 #  * AI target: the seduce scheme's on_phase_completed
@@ -1814,7 +1808,6 @@ gr_internal_seduce_tracking = {
 }
 
 # Befriend scheme completed successfully
-# VERIFIED: befriend_success (common/on_action/schemes/befriend_on_actions.txt:175)
 # is the real vanilla standard-success hook (befriend_critical_success, the
 # instant-friendship tier, is a separate on_action and is deliberately not
 # hooked -- the contract maps gr_befriend_count to befriend_success only).
@@ -1858,7 +1851,6 @@ gr_internal_befriend_tracking = {
 }
 
 # Claim Throne scheme completed successfully
-# VERIFIED: claim_throne_succeeded (common/on_action/schemes/claim_throne_on_actions.txt:23)
 # is the real vanilla success hook. It is fired bare from
 # claim_throne_outcome_roll_effect (common/scripted_effects/
 # 00_scheme_scripted_effects.txt:14516-14523, "trigger_event = { on_action =
@@ -1900,7 +1892,6 @@ gr_internal_claim_throne_tracking = {
 }
 
 # Fabricate Hook scheme completed successfully
-# VERIFIED: fabricate_hook_method_success_outcome
 # (common/on_action/schemes/fabricate_hook_on_actions.txt:2) is the real
 # vanilla success hook. Two firing sites, BOTH with ROOT = the scheme owner:
 #  * events/scheme_events/scheme_critical_moments_events.txt:1484-1488

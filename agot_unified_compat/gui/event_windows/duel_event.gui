@@ -446,7 +446,6 @@ window = {
 											}
 										}
 										
-										# Observer Stack P34: AGOT's two name-formatting lines restored.
 										# Duel Overlay is built on vanilla, so its copy of this file reverts
 										# AGOT's custom label widget and name function. Everything else in this
 										# file is Duel Overlay's own work and is kept as-is.

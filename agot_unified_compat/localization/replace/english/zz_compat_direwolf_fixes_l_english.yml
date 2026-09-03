@@ -1,5 +1,4 @@
-﻿# Seasons + Personality Compat  P06 - DireWolves malformed localization keys.
-#
+﻿#
 # localization/english/dw_direwolf_l_english.yml ships two syntactically invalid
 # entries that the localization reader rejects outright:
 #   line 10  trait_direwolf_young_wolf:0 "Young Wolf"A pup. Just born and yet ...

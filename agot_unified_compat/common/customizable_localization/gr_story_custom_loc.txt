@@ -1,23 +1,4 @@
-﻿# AGOT Unified Compatibility Patch  P62 - Grand Remembrance unguarded variable reads.
-#
-# Source: Grand Remembrance (3678529052) common/customizable_localization/gr_story_custom_loc.txt
-#
-# The file makes 319 'var:' reads and contains ZERO 'exists = var:' guards. Whenever
-# this custom loc is evaluated for a character with no Grand Remembrance story, every
-# read fails. One 37-minute session logged 13,608 errors from this file alone:
-#     4,536 x Event target link 'var' returned an unset scope
-#     4,536 x Invalid left side during comparison 'var'
-#     3,528 x Failed to fetch variable for 'gr_story_opinion'
-#     1,008 x Failed to fetch variable for 'gr_story_chronicler_type'
-#
-# FIX: every trigger block that reads a variable is prefixed with 'exists = var:NAME'
-# for each variable it touches. BEHAVIOUR IS UNCHANGED - an unset variable already
-# made the trigger fail; now it fails silently instead of erroring.
-
-# Grand Remembrance — Customizable Localization for Story Panel
-# Used in [Story.Custom('key')] within the story visualization text.
-
-GrStoryDesc = {
+﻿GrStoryDesc = {
 	type = all
 
 	text = {
@@ -90,7 +71,6 @@ GrStoryChroniclerLine = {
 
 	text = {
 		trigger = {
-			# P62: guard unset variables (see patch header)
 			exists = var:gr_story_event_count
 			exists = var:gr_story_opinion
 			exists = var:gr_story_variant
@@ -102,7 +82,6 @@ GrStoryChroniclerLine = {
 	}
 	text = {
 		trigger = {
-			# P62: guard unset variables (see patch header)
 			exists = var:gr_story_event_count
 			exists = var:gr_story_opinion
 			exists = var:gr_story_variant
@@ -114,7 +93,6 @@ GrStoryChroniclerLine = {
 	}
 	text = {
 		trigger = {
-			# P62: guard unset variables (see patch header)
 			exists = var:gr_story_event_count
 			exists = var:gr_story_opinion
 			exists = var:gr_story_variant
@@ -126,7 +104,6 @@ GrStoryChroniclerLine = {
 	}
 	text = {
 		trigger = {
-			# P62: guard unset variables (see patch header)
 			exists = var:gr_story_event_count
 			exists = var:gr_story_opinion
 			exists = var:gr_story_variant
@@ -138,7 +115,6 @@ GrStoryChroniclerLine = {
 	}
 	text = {
 		trigger = {
-			# P62: guard unset variables (see patch header)
 			exists = var:gr_story_event_count
 			exists = var:gr_story_opinion
 			exists = var:gr_story_variant
@@ -150,7 +126,6 @@ GrStoryChroniclerLine = {
 	}
 	text = {
 		trigger = {
-			# P62: guard unset variables (see patch header)
 			exists = var:gr_story_event_count
 			exists = var:gr_story_opinion
 			exists = var:gr_story_variant
@@ -162,7 +137,6 @@ GrStoryChroniclerLine = {
 	}
 	text = {
 		trigger = {
-			# P62: guard unset variables (see patch header)
 			exists = var:gr_story_event_count
 			exists = var:gr_story_opinion
 			exists = var:gr_story_variant
@@ -174,7 +148,6 @@ GrStoryChroniclerLine = {
 	}
 	text = {
 		trigger = {
-			# P62: guard unset variables (see patch header)
 			exists = var:gr_story_event_count
 			exists = var:gr_story_opinion
 			exists = var:gr_story_variant
@@ -187,7 +160,6 @@ GrStoryChroniclerLine = {
 	}
 	text = {
 		trigger = {
-			# P62: guard unset variables (see patch header)
 			exists = var:gr_story_event_count
 			exists = var:gr_story_opinion
 			exists = var:gr_story_variant
@@ -200,7 +172,6 @@ GrStoryChroniclerLine = {
 	}
 	text = {
 		trigger = {
-			# P62: guard unset variables (see patch header)
 			exists = var:gr_story_event_count
 			exists = var:gr_story_opinion
 			exists = var:gr_story_variant
@@ -213,7 +184,6 @@ GrStoryChroniclerLine = {
 	}
 	text = {
 		trigger = {
-			# P62: guard unset variables (see patch header)
 			exists = var:gr_story_event_count
 			exists = var:gr_story_opinion
 			exists = var:gr_story_variant
@@ -226,7 +196,6 @@ GrStoryChroniclerLine = {
 	}
 	text = {
 		trigger = {
-			# P62: guard unset variables (see patch header)
 			exists = var:gr_story_event_count
 			exists = var:gr_story_opinion
 			exists = var:gr_story_variant
@@ -239,7 +208,6 @@ GrStoryChroniclerLine = {
 	}
 	text = {
 		trigger = {
-			# P62: guard unset variables (see patch header)
 			exists = var:gr_story_event_count
 			exists = var:gr_story_opinion
 			exists = var:gr_story_variant
@@ -252,7 +220,6 @@ GrStoryChroniclerLine = {
 	}
 	text = {
 		trigger = {
-			# P62: guard unset variables (see patch header)
 			exists = var:gr_story_event_count
 			exists = var:gr_story_opinion
 			exists = var:gr_story_variant
@@ -265,7 +232,6 @@ GrStoryChroniclerLine = {
 	}
 	text = {
 		trigger = {
-			# P62: guard unset variables (see patch header)
 			exists = var:gr_story_event_count
 			exists = var:gr_story_opinion
 			exists = var:gr_story_variant
@@ -277,7 +243,6 @@ GrStoryChroniclerLine = {
 	}
 	text = {
 		trigger = {
-			# P62: guard unset variables (see patch header)
 			exists = var:gr_story_event_count
 			exists = var:gr_story_opinion
 			exists = var:gr_story_variant
@@ -289,7 +254,6 @@ GrStoryChroniclerLine = {
 	}
 	text = {
 		trigger = {
-			# P62: guard unset variables (see patch header)
 			exists = var:gr_story_event_count
 			exists = var:gr_story_opinion
 			exists = var:gr_story_variant
@@ -301,7 +265,6 @@ GrStoryChroniclerLine = {
 	}
 	text = {
 		trigger = {
-			# P62: guard unset variables (see patch header)
 			exists = var:gr_story_event_count
 			exists = var:gr_story_opinion
 			exists = var:gr_story_variant
@@ -313,7 +276,6 @@ GrStoryChroniclerLine = {
 	}
 	text = {
 		trigger = {
-			# P62: guard unset variables (see patch header)
 			exists = var:gr_story_event_count
 			exists = var:gr_story_opinion
 			exists = var:gr_story_variant
@@ -325,7 +287,6 @@ GrStoryChroniclerLine = {
 	}
 	text = {
 		trigger = {
-			# P62: guard unset variables (see patch header)
 			exists = var:gr_story_event_count
 			exists = var:gr_story_opinion
 			exists = var:gr_story_variant
@@ -337,7 +298,6 @@ GrStoryChroniclerLine = {
 	}
 	text = {
 		trigger = {
-			# P62: guard unset variables (see patch header)
 			exists = var:gr_story_event_count
 			exists = var:gr_story_opinion
 			exists = var:gr_story_variant
@@ -349,7 +309,6 @@ GrStoryChroniclerLine = {
 	}
 	text = {
 		trigger = {
-			# P62: guard unset variables (see patch header)
 			exists = var:gr_story_event_count
 			exists = var:gr_story_opinion
 			exists = var:gr_story_variant
@@ -362,7 +321,6 @@ GrStoryChroniclerLine = {
 	}
 	text = {
 		trigger = {
-			# P62: guard unset variables (see patch header)
 			exists = var:gr_story_event_count
 			exists = var:gr_story_opinion
 			exists = var:gr_story_variant
@@ -375,7 +333,6 @@ GrStoryChroniclerLine = {
 	}
 	text = {
 		trigger = {
-			# P62: guard unset variables (see patch header)
 			exists = var:gr_story_event_count
 			exists = var:gr_story_opinion
 			exists = var:gr_story_variant
@@ -388,7 +345,6 @@ GrStoryChroniclerLine = {
 	}
 	text = {
 		trigger = {
-			# P62: guard unset variables (see patch header)
 			exists = var:gr_story_event_count
 			exists = var:gr_story_opinion
 			exists = var:gr_story_variant
@@ -401,7 +357,6 @@ GrStoryChroniclerLine = {
 	}
 	text = {
 		trigger = {
-			# P62: guard unset variables (see patch header)
 			exists = var:gr_story_event_count
 			exists = var:gr_story_opinion
 			exists = var:gr_story_variant
@@ -414,7 +369,6 @@ GrStoryChroniclerLine = {
 	}
 	text = {
 		trigger = {
-			# P62: guard unset variables (see patch header)
 			exists = var:gr_story_event_count
 			exists = var:gr_story_opinion
 			exists = var:gr_story_variant
@@ -427,7 +381,6 @@ GrStoryChroniclerLine = {
 	}
 	text = {
 		trigger = {
-			# P62: guard unset variables (see patch header)
 			exists = var:gr_story_event_count
 			exists = var:gr_story_opinion
 			exists = var:gr_story_variant
@@ -440,7 +393,6 @@ GrStoryChroniclerLine = {
 	}
 	text = {
 		trigger = {
-			# P62: guard unset variables (see patch header)
 			exists = var:gr_story_event_count
 			exists = var:gr_story_opinion
 			exists = var:gr_story_variant
@@ -454,7 +406,6 @@ GrStoryChroniclerLine = {
 	}
 	text = {
 		trigger = {
-			# P62: guard unset variables (see patch header)
 			exists = var:gr_story_event_count
 			exists = var:gr_story_opinion
 			exists = var:gr_story_variant
@@ -468,7 +419,6 @@ GrStoryChroniclerLine = {
 	}
 	text = {
 		trigger = {
-			# P62: guard unset variables (see patch header)
 			exists = var:gr_story_event_count
 			exists = var:gr_story_opinion
 			exists = var:gr_story_variant
@@ -482,7 +432,6 @@ GrStoryChroniclerLine = {
 	}
 	text = {
 		trigger = {
-			# P62: guard unset variables (see patch header)
 			exists = var:gr_story_event_count
 			exists = var:gr_story_opinion
 			exists = var:gr_story_variant
@@ -496,7 +445,6 @@ GrStoryChroniclerLine = {
 	}
 	text = {
 		trigger = {
-			# P62: guard unset variables (see patch header)
 			exists = var:gr_story_event_count
 			exists = var:gr_story_opinion
 			exists = var:gr_story_variant
@@ -510,7 +458,6 @@ GrStoryChroniclerLine = {
 	}
 	text = {
 		trigger = {
-			# P62: guard unset variables (see patch header)
 			exists = var:gr_story_event_count
 			exists = var:gr_story_opinion
 			exists = var:gr_story_variant
@@ -524,7 +471,6 @@ GrStoryChroniclerLine = {
 	}
 	text = {
 		trigger = {
-			# P62: guard unset variables (see patch header)
 			exists = var:gr_story_event_count
 			exists = var:gr_story_opinion
 			exists = var:gr_story_variant
@@ -538,7 +484,6 @@ GrStoryChroniclerLine = {
 	}
 	text = {
 		trigger = {
-			# P62: guard unset variables (see patch header)
 			exists = var:gr_story_event_count
 			exists = var:gr_story_opinion
 			exists = var:gr_story_variant
@@ -551,7 +496,6 @@ GrStoryChroniclerLine = {
 	}
 	text = {
 		trigger = {
-			# P62: guard unset variables (see patch header)
 			exists = var:gr_story_event_count
 			exists = var:gr_story_opinion
 			exists = var:gr_story_variant
@@ -564,7 +508,6 @@ GrStoryChroniclerLine = {
 	}
 	text = {
 		trigger = {
-			# P62: guard unset variables (see patch header)
 			exists = var:gr_story_event_count
 			exists = var:gr_story_opinion
 			exists = var:gr_story_variant
@@ -577,7 +520,6 @@ GrStoryChroniclerLine = {
 	}
 	text = {
 		trigger = {
-			# P62: guard unset variables (see patch header)
 			exists = var:gr_story_event_count
 			exists = var:gr_story_opinion
 			exists = var:gr_story_variant
@@ -590,7 +532,6 @@ GrStoryChroniclerLine = {
 	}
 	text = {
 		trigger = {
-			# P62: guard unset variables (see patch header)
 			exists = var:gr_story_event_count
 			exists = var:gr_story_opinion
 			exists = var:gr_story_variant
@@ -603,7 +544,6 @@ GrStoryChroniclerLine = {
 	}
 	text = {
 		trigger = {
-			# P62: guard unset variables (see patch header)
 			exists = var:gr_story_event_count
 			exists = var:gr_story_opinion
 			exists = var:gr_story_variant
@@ -616,7 +556,6 @@ GrStoryChroniclerLine = {
 	}
 	text = {
 		trigger = {
-			# P62: guard unset variables (see patch header)
 			exists = var:gr_story_event_count
 			exists = var:gr_story_opinion
 			exists = var:gr_story_variant
@@ -629,7 +568,6 @@ GrStoryChroniclerLine = {
 	}
 	text = {
 		trigger = {
-			# P62: guard unset variables (see patch header)
 			exists = var:gr_story_event_count
 			exists = var:gr_story_opinion
 			exists = var:gr_story_variant
@@ -641,7 +579,6 @@ GrStoryChroniclerLine = {
 	}
 	text = {
 		trigger = {
-			# P62: guard unset variables (see patch header)
 			exists = var:gr_story_event_count
 			exists = var:gr_story_opinion
 			exists = var:gr_story_variant
@@ -653,7 +590,6 @@ GrStoryChroniclerLine = {
 	}
 	text = {
 		trigger = {
-			# P62: guard unset variables (see patch header)
 			exists = var:gr_story_event_count
 			exists = var:gr_story_opinion
 			exists = var:gr_story_variant
@@ -665,7 +601,6 @@ GrStoryChroniclerLine = {
 	}
 	text = {
 		trigger = {
-			# P62: guard unset variables (see patch header)
 			exists = var:gr_story_event_count
 			exists = var:gr_story_opinion
 			exists = var:gr_story_variant
@@ -677,7 +612,6 @@ GrStoryChroniclerLine = {
 	}
 	text = {
 		trigger = {
-			# P62: guard unset variables (see patch header)
 			exists = var:gr_story_event_count
 			exists = var:gr_story_opinion
 			exists = var:gr_story_variant
@@ -689,7 +623,6 @@ GrStoryChroniclerLine = {
 	}
 	text = {
 		trigger = {
-			# P62: guard unset variables (see patch header)
 			exists = var:gr_story_event_count
 			exists = var:gr_story_opinion
 			exists = var:gr_story_variant
@@ -701,7 +634,6 @@ GrStoryChroniclerLine = {
 	}
 	text = {
 		trigger = {
-			# P62: guard unset variables (see patch header)
 			exists = var:gr_story_event_count
 			exists = var:gr_story_opinion
 			exists = var:gr_story_variant
@@ -713,7 +645,6 @@ GrStoryChroniclerLine = {
 	}
 	text = {
 		trigger = {
-			# P62: guard unset variables (see patch header)
 			exists = var:gr_story_event_count
 			exists = var:gr_story_opinion
 			exists = var:gr_story_variant
@@ -726,7 +657,6 @@ GrStoryChroniclerLine = {
 	}
 	text = {
 		trigger = {
-			# P62: guard unset variables (see patch header)
 			exists = var:gr_story_event_count
 			exists = var:gr_story_opinion
 			exists = var:gr_story_variant
@@ -739,7 +669,6 @@ GrStoryChroniclerLine = {
 	}
 	text = {
 		trigger = {
-			# P62: guard unset variables (see patch header)
 			exists = var:gr_story_event_count
 			exists = var:gr_story_opinion
 			exists = var:gr_story_variant
@@ -752,7 +681,6 @@ GrStoryChroniclerLine = {
 	}
 	text = {
 		trigger = {
-			# P62: guard unset variables (see patch header)
 			exists = var:gr_story_event_count
 			exists = var:gr_story_opinion
 			exists = var:gr_story_variant
@@ -765,7 +693,6 @@ GrStoryChroniclerLine = {
 	}
 	text = {
 		trigger = {
-			# P62: guard unset variables (see patch header)
 			exists = var:gr_story_event_count
 			exists = var:gr_story_opinion
 			exists = var:gr_story_variant
@@ -778,7 +705,6 @@ GrStoryChroniclerLine = {
 	}
 	text = {
 		trigger = {
-			# P62: guard unset variables (see patch header)
 			exists = var:gr_story_event_count
 			exists = var:gr_story_opinion
 			exists = var:gr_story_variant
@@ -791,7 +717,6 @@ GrStoryChroniclerLine = {
 	}
 	text = {
 		trigger = {
-			# P62: guard unset variables (see patch header)
 			exists = var:gr_story_event_count
 			exists = var:gr_story_opinion
 			exists = var:gr_story_variant
@@ -804,7 +729,6 @@ GrStoryChroniclerLine = {
 	}
 	text = {
 		trigger = {
-			# P62: guard unset variables (see patch header)
 			exists = var:gr_story_event_count
 			exists = var:gr_story_opinion
 			exists = var:gr_story_variant
@@ -816,7 +740,6 @@ GrStoryChroniclerLine = {
 	}
 	text = {
 		trigger = {
-			# P62: guard unset variables (see patch header)
 			exists = var:gr_story_event_count
 			exists = var:gr_story_opinion
 			exists = var:gr_story_variant
@@ -828,7 +751,6 @@ GrStoryChroniclerLine = {
 	}
 	text = {
 		trigger = {
-			# P62: guard unset variables (see patch header)
 			exists = var:gr_story_event_count
 			exists = var:gr_story_opinion
 			exists = var:gr_story_variant
@@ -840,7 +762,6 @@ GrStoryChroniclerLine = {
 	}
 	text = {
 		trigger = {
-			# P62: guard unset variables (see patch header)
 			exists = var:gr_story_event_count
 			exists = var:gr_story_opinion
 			exists = var:gr_story_variant
@@ -852,7 +773,6 @@ GrStoryChroniclerLine = {
 	}
 	text = {
 		trigger = {
-			# P62: guard unset variables (see patch header)
 			exists = var:gr_story_event_count
 			exists = var:gr_story_opinion
 			exists = var:gr_story_variant
@@ -864,7 +784,6 @@ GrStoryChroniclerLine = {
 	}
 	text = {
 		trigger = {
-			# P62: guard unset variables (see patch header)
 			exists = var:gr_story_event_count
 			exists = var:gr_story_opinion
 			exists = var:gr_story_variant
@@ -876,7 +795,6 @@ GrStoryChroniclerLine = {
 	}
 	text = {
 		trigger = {
-			# P62: guard unset variables (see patch header)
 			exists = var:gr_story_event_count
 			exists = var:gr_story_opinion
 			exists = var:gr_story_variant
@@ -902,7 +820,6 @@ GrStoryFullPanel = {
 	# When at least one notable event exists, show chronicler + notables
 	text = {
 		trigger = {
-			# P62: guard unset variables (see patch header)
 			exists = var:gr_story_has_war
 			exists = var:gr_story_has_title
 			exists = var:gr_story_has_marriage
@@ -1044,7 +961,6 @@ GrStoryNotables = {
 	# but kept in case GrStoryNotables is called directly.
 	text = {
 		trigger = {
-			# P62: guard unset variables (see patch header)
 			exists = var:gr_story_has_war
 			exists = var:gr_story_has_title
 			exists = var:gr_story_has_marriage

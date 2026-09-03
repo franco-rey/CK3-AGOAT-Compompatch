@@ -1,18 +1,4 @@
-﻿# Observer Stack P44 - AGOT (2962333032) temporary/permanent scope-name collision.
-#
-# is_converting_to_hairymen_culture and is_converting_from_hairymen_culture both
-# did save_temporary_scope_as = actor. In any context that already has a
-# PERMANENT scope named actor -- every character_interaction does -- the engine
-# refuses the temporary and logs, once per evaluation:
-#   jomini_eventscope.cpp:565  Trying to add the temporary target 'actor' which
-#   has the same name as a permanent target
-# 62 entries across the 8183 Viserys run, fired whenever a culture-conversion
-# check ran.
-#
-# The temporary is renamed to agot_blood_actor in both triggers, with its two
-# reads updated to match. The scope is local to these triggers, so nothing
-# outside this file refers to it and behaviour is otherwise unchanged.
-has_kingsblood = {
+﻿has_kingsblood = {
 	OR = {
 		highest_held_title_tier = tier_hegemony
 		AND = {

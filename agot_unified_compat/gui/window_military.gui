@@ -1,16 +1,3 @@
-# AGOT Unified Compatibility Patch  P69 - gui/window_military.gui.
-#
-# CoA Rally Points ships a vanilla-derived copy that keeps 0 of AGOT's 2
-# identifiers, dropping agot_can_hire_mercenaries. Three-way merge against vanilla.
-# The one conflict was a 205-line AGOT block (raised prestige/piety/barter expense
-# widgets plus AGOT's mercenary hiring) against a 13-line re-indented subset from
-# Rally. AGOT's side was taken: it is a strict superset and the incumbent.
-# VERIFIED: AGOT ids 2/2, all 409 of Rally's unique lines retained, braces balanced.
-#
-###################################################
-################### MILTARY VIEW Coa #####################
-######################################################
-
 window = {
 	name = "military_view"
 	widgetid = "military_view"

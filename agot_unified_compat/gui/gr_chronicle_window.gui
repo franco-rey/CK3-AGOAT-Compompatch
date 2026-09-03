@@ -1,44 +1,5 @@
-﻿######################################################
-# Grand Remembrance - Dynasty Chronicle Window
-# Visual style copied from vanilla window_legend_chronicle.gui
-# Data bindings use scripted_gui + player variables
-# instead of the Legend system's C++ backed data model.
-#
-# NOTE: Some textures (window_legend_chronicle/*) are from
-# the Legends of the Dead DLC. If missing, backgrounds
-# degrade gracefully (blank areas, no crash).
-######################################################
-#
-# AGOT Unified Compatibility Patch  P50 - chronicle window parent-container gate.
-# Supersedes P24, which did not work and is now removed.
-#
-# In observer mode GetPlayer is invalid, so passing GetPlayer.MakeScope to this
-# window's scripted GUI handed it a dangling character and the engine rejected the
-# scope before any trigger ran:
-#     untyped trigger [ Scoped object of type 'character' is not valid ]
-#     common/scripted_guis/gr_scripted_guis.txt:18
-# 19,977 entries in the 7959 observer run; 2,582 in the 20:21 run.
-#
-# P24 tried And(GetPlayer.IsValid, IsShown(...)). CK3 GUI And() evaluates every
-# argument, so that was identical to the unguarded binding. It never worked.
-#
-# This uses a parent-container visibility gate. NOTE: the P49 override that technique was
-# named after was RETIRED on 2026-09-01 - it was never confirmed working and the Kingsguard
-# buttons were missing while it was active. Treat the technique as unproven,
-# which took that file's identical error from 19,978 to exactly 0 in the 20:21
-# observer run: an outer container whose visible is GetPlayer.IsValid ALONE, with the
-# scripted-GUI call on the child. CK3 does suppress a hidden parent's child bindings.
-#
-# The outer container carries the registered widget name (gui/gr_chronicle_window.gui
-# = gr_chronicle_window in Grand Remembrance's scripted_widgets). The window itself is
-# otherwise untouched -- layer, movable, allow_outside, both state blocks and all
-# content are exactly as before, so window behaviour is unchanged. Verified that no
-# script opens this window by name; it is driven purely by the gr_chronicle_open
-# variable through the scripted GUI.
-
-container = {
+﻿container = {
 	name = "gr_chronicle_window"
-	# P50 gate: player-validity ONLY. No scripted-GUI call at this level.
 	visible = "[GetPlayer.IsValid]"
 	window = {
 		name = "gr_chronicle_window"

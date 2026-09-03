@@ -1,19 +1,4 @@
-﻿# ============================================================================
-# Observer Stack P38 - Expanded Domiciles for AGOT (3768775292)
-#
-# CK3 @constants are FILE-SCOPED. Expanded Domiciles copied AGOT's and
-# vanilla's domicile building definitions into new _UE / _UY / _UC files but
-# left the @constant definitions behind in the originals, so every reference
-# below failed to resolve:
-#   Cannot read [@ranger_side_cost_1] as a script value
-#   Malformed token: @yurt_external_construction_time_tier_1
-#   Missing construction_time for 'agot_pirate_ship_main_01' defaults to 720 days
-#
-# Building gold/prestige costs and construction times were silently falling
-# back to engine defaults. The 5 constant(s) this file needs are restored
-# below at their original values; nothing else in the file is changed.
-# ============================================================================
-@camp_building_main_slot_construction_duration_t1 = 180   # from 2962333032/00_agot_settlement_buildings.txt
+﻿@camp_building_main_slot_construction_duration_t1 = 180   # from 2962333032/00_agot_settlement_buildings.txt
 @camp_building_main_slot_construction_duration_t2 = 210   # from 2962333032/00_agot_settlement_buildings.txt
 @camp_building_main_slot_construction_duration_t3 = 240   # from 2962333032/00_agot_settlement_buildings.txt
 @camp_building_main_slot_construction_duration_t4 = 300   # from 2962333032/00_agot_settlement_buildings.txt

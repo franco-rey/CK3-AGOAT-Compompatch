@@ -1,25 +1,4 @@
-﻿# AGOT Unified Compatibility Patch  P52 - grand-wedding cleanup on an unset variable.
-#
-# clean_grand_wedding_betrothal_variables opened
-#     var:promised_grand_wedding_marriage_countdown = { ... }
-# without first checking the variable exists. When it did not, three errors fired
-# per call:
-#     Failed to fetch variable for 'promised_grand_wedding_marriage_countdown'  (line 47)
-#     remove_variable effect [ This scope does not have variables ]             (line 48)
-#     remove_variable effect [ Scoped object is not valid ]                     (line 49)
-# 48 entries in the 8003 King Ronnel run.
-#
-# The dereference is now wrapped in has_variable, and both inner scopes are soft.
-# When the variable IS set the behaviour is identical; when it is not, the block
-# was erroring and doing nothing anyway. The two trailing remove_variable calls are
-# unchanged -- removing an unset variable at that level is already safe and neither
-# was cited in the log.
-# Create the grand wedding variables between the two characters, they must already have been betrothed by the code hook in the marry
-# interaction or by manually setting a betrothal. For manual betrothal setting prefer using create_grand_wedding_betrothal.
-# SPOUSE_1 = First spouse character
-# SPOUSE_2 = Second spouse character
-# HOST = Character promising to host the grand wedding
-set_grand_wedding_betrothal_variables = {
+﻿set_grand_wedding_betrothal_variables = {
 	$SPOUSE_1$ = {
 		set_variable = { name = promised_grand_wedding_by value = $HOST$ }
 		save_scope_as = spouse_1
@@ -60,7 +39,6 @@ set_grand_wedding_betrothal_variables = {
 }
 
 clean_grand_wedding_betrothal_variables = {
-	# Unified Compat P52: the countdown variable is not always set when this cleanup
 	# runs, so dereferencing it handed the inner effects an invalid scope.
 	if = {
 		limit = { has_variable = promised_grand_wedding_marriage_countdown }

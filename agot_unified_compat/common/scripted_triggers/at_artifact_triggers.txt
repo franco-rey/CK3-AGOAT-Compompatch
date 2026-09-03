@@ -1,28 +1,4 @@
-﻿# AGOT Unified Compatibility Patch  P71 - common/scripted_triggers/at_artifact_triggers.txt
-#
-# Same cause as P70: Search & Trade Artifacts (pos 25) wins this path over AGOT (pos 6),
-# and its AGOT compatibility submod (pos 26) does not ship this file.
-#
-# S&T ships two of these as `always = yes` stubs. AGOT fills them with the rules that
-# protect unique artifacts. With S&T winning, the Iron Throne, historical uniques,
-# Valyrian steel, dragon eggs and dragon skulls could all be SOLD and DESTROYED.
-#
-# S&T's file is the base - it defines 33 keys to AGOT's 23, including 10 newer ones
-# (at_can_own_artifacts_trigger, at_aniconist_should_destroy_artifact_trigger, etc.)
-# that must be kept. Three keys are restored or merged:
-#   at_artifact_can_be_destroyed_trigger  AGOT's NOR block replaces `always = yes`
-#   at_artifact_can_be_sold_trigger       AGOT's AI/player split replaces `always = yes`
-#   at_artifact_can_be_bought_by_trigger  MERGED - S&T's peddler trigger_if and AGOT's
-#                                         artifact-keeper trigger_if are independent
-#                                         conditions, so both are kept.
-# The other 8 differing keys keep S&T's newer versions; none contains AGOT content.
-#
-# VERIFIED: every symbol the restored AGOT logic references resolves in this playset -
-# at_is_worthless_artifact_trigger, at_is_unsellable_artifact_trigger and the
-# agot_is_* triggers are defined; agot_artifact_keeper, agot_artifact_cannot_gift and
-# agot_new_historical_crown_by_decision are runtime variables set by AGOT.
-#
-at_can_interact_with_trigger = {
+﻿at_can_interact_with_trigger = {
 	this != $PARTY$
 	in_diplomatic_range = $PARTY$
 	NOT = { is_at_war_with = $PARTY$ }

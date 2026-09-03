@@ -1,21 +1,5 @@
-﻿# AGOT Unified Compatibility Patch  P64 - is_human: DireWolves x AGOT Great Councils.
-#
-# DireWolves (3766320609, pos 50) extends AGOT's is_human trigger with its own exclusion:
-#     NOT = { has_trait = direwolf }
-# AGOT Great Councils (3621472324, pos 83) ships its own copy of is_human in
-# zzz_Great_Councils_replaced_triggers.txt that is otherwise identical but OMITS that line.
-# Great Councils loads later, so it wins and direwolves start counting as human - eligible for
-# councils, marriage pools and anything else gated on is_human.
-#
-# This is the same failure class as the invisible-dragon and kraken bugs: a later mod copies an
-# earlier definition and silently drops a line the earlier mod depended on.
-#
-# FIX: Great Councils' version VERBATIM with DireWolves' direwolf exclusion restored.
-# DEPENDENCY: needs DireWolves and Great Councils both loaded. Remove this file if either goes.
-
-is_human = {
+﻿is_human = {
 	NOT = { has_trait = dragon }
-	# P64: restored from DireWolves - Great Councils' copy dropped it.
 	NOT = { has_trait = direwolf }
 	NOT = { agot_is_dummy_character = yes }
 	trigger_if = {

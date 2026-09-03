@@ -1,18 +1,4 @@
-﻿# AGOT Unified Compatibility Patch  P70 - common/script_values/at_basic_values.txt
-#
-# Search & Trade Artifacts (2962238514, pos 25) loads AFTER A Game of Thrones (pos 6)
-# and wins this path. S&T ships these two values as deliberately EMPTY extension
-# points (`value = 0` / `value = 1`); AGOT fills them with its artifact pricing.
-# With S&T winning, dragon eggs and Valyrian steel priced at base 0 with no bid
-# multiplier - they traded as worthless.
-#
-# S&T's file is the base (both mods define the same 6 keys); AGOT's bodies are
-# restored for the two it fills. All other S&T content is untouched.
-# The Search & Trade Artifacts AGOT Compatibility submod (3222480457, pos 26)
-# does NOT ship this file, which is why the conflict was never resolved.
-#
-# AI impact values (base is -50 / 50)
-at_ai_positive_claim_impact_value = 25
+﻿at_ai_positive_claim_impact_value = 25
 at_ai_negative_equipped_impact_value = -50
 at_ai_positive_qwa_impact_value = 0.1
 at_ai_negative_qwa_impact_value = -0.1

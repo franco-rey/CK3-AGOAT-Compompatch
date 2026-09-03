@@ -1,5 +1,4 @@
-﻿# Seasons + Personality Compat  P01 - House Founders x Seasons of Ice and Fire
-#
+﻿#
 # Both mods override common/on_action/child_birth_on_actions.txt as a whole file.
 # Seasons (57) loads after House Founders (39) and therefore won, silently
 # dropping all three House Founders birth hooks:

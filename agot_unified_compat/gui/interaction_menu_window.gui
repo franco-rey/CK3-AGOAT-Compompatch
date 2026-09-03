@@ -1,11 +1,3 @@
-# AGOT Unified Compatibility Patch  P73_SHOW_PLAYER_OPINION_INTERACTION_MENU - gui/interaction_menu_window.gui
-#
-# Show Player Opinion loads after A Game of Thrones and wins this path with a
-# vanilla-derived copy that keeps 0 of AGOT's 3 identifiers.
-# Three-way merge on vanilla 1.19.0.6 via git merge-file, 0 conflicts:
-# AGOT's additions and all of the challenger's own content are retained.
-#
-
 @max_height_before_scrolling = 920
 
 #adjustment to make scrollbar appear as if outside window

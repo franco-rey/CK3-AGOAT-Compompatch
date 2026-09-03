@@ -1,10 +1,3 @@
-# AGOT Unified Compatibility Patch  P74_WAR_PANEL_ALLIES_WAR_OVERVIEW - gui/window_war_overview.gui
-#
-# War Panel Allies Fix loads after A Game of Thrones and wins this path with a
-# vanilla-derived copy that keeps 0 of AGOT's 3 identifiers.
-# Three-way merge on vanilla 1.19.0.6 via git merge-file, 0 conflicts:
-# AGOT's additions and all of the challenger's own content are retained.
-#
 window = {
 	gfxtype = windowgfx
 	name = "war_overview_window"

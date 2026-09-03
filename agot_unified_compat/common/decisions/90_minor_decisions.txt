@@ -1,16 +1,3 @@
-# AGOT Unified Compatibility Patch  P72_EXPANDED_COURT_POSITION_MINOR_DECISIONS - common/decisions/90_minor_decisions.txt
-#
-# Expanded Court Position - Search and Recruit loads after A Game of Thrones and wins this path with a
-# vanilla-derived copy that keeps 0 of AGOT's 5 identifiers.
-# Three-way merge on vanilla 1.19.0.6 via git merge-file, 0 conflicts:
-# AGOT's additions and all of the challenger's own content are retained.
-#
-##########################################
-# Hire for a specific Court Position
-# These used to be separate decisions, but are now combined into one
-# by Chad Uhl
-###########################################
-### Recruit for a Court Position ###
 recruit_court_position_decision = {
 	ai_check_interval = 0
 	picture = {

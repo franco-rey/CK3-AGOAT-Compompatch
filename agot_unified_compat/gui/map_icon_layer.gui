@@ -1,12 +1,3 @@
-# AGOT Unified Compatibility Patch  P68 - gui/map_icon_layer.gui.
-#
-# CoA Rally Points (3081701005) ships a vanilla-derived copy that keeps only 1 of
-# AGOT's 2 identifiers, dropping agot_settle_wilderness_adventurer_button.
-# Three-way merge against vanilla; the single conflict was AGOT's blank line vs
-# Rally's "#Coa" comment - Rally's kept.
-# VERIFIED: AGOT ids 2/2, all 80 of Rally's unique lines retained, braces balanced.
-#
-#Coa
 hbox = {
 	name = "layer_hbox"
 

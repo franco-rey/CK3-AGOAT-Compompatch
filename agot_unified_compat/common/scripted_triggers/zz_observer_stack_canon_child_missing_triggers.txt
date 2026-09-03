@@ -1,14 +1,4 @@
-﻿# Observer Stack P33 -- canon children of Aegon IV Targaryen, IDs 98-104.
-#
-# AGOT+ ships these gates with a duplicate-key typo: asoiaf_canon_children_
-# Targaryen_99_trigger is defined twice (Lily and Willow) and _101_trigger
-# (Rosey) is never defined, while the on_action and events .0882/.0883 call
-# the full 98-101 and 102-104 ranges. This file re-keys the author's own
-# bodies correctly and supplies the missing Summer Islander gates.
-#
-# The two sequences are made mutually exclusive on the mother's heritage so
-# a single pregnancy can never satisfy both .0882 and .0883.
-asoiaf_canon_children_Targaryen_98_trigger = { #Alysanne (bastard of Aegon IV)
+﻿asoiaf_canon_children_Targaryen_98_trigger = { #Alysanne (bastard of Aegon IV)
 	asoiaf_canon_children_enabled_trigger = yes
 	AND = {
 		NOT = { exists = global_var:asoiaf_canon_children_Targaryen_98_born_variable } #Alysanne hasn't been born

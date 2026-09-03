@@ -1,26 +1,4 @@
-﻿# AGOT Unified Compatibility Patch  P53 - kingsguard_candidate dangling scope.
-#
-# 112 entries in the 8003 King Ronnel run, "Undefined event target 'kingsguard_candidate'",
-# across eight sites in agot_kingsguard.1008 and .9002.
-#
-# Root cause: agot_kingsguard.9002 picks its candidate with a random_ block whose
-# limit can match nobody, so scope:kingsguard_candidate is never saved. Its option
-# ran regardless -- add_courtier errored, and it still fired agot_kingsguard.1008,
-# which dereferences the same missing scope at six further sites. One failed raise
-# therefore produced seven errors.
-#
-# Two changes:
-#   1. The .9002 option body is wrapped in exists = scope:kingsguard_candidate.
-#      With no candidate there is nothing to do, so nothing runs -- and .1008 is no
-#      longer fired into a scope it cannot use. This is the root-cause fix.
-#   2. All 24 hard "scope:kingsguard_candidate" switches across the file become
-#      `?=`. Soft scopes yield false instead of erroring, which covers .1005, .1007,
-#      .1009, .3011, .9003 and .9005 as well -- the same idiom already used by P40
-#      (Targaryen_63) and P43 (cp:kingsguard_6).
-#
-# Behaviour is preserved: every site that had a valid candidate behaves exactly as
-# before. Sites that did not were already producing no effect, only errors.
-namespace = agot_kingsguard
+﻿namespace = agot_kingsguard
 
 ################################
 # Kingsguard Maintenance and Appointment Events
@@ -5279,7 +5257,6 @@ agot_kingsguard.9002 = {
 		}
 	}
 	option = {
-		# Unified Compat P53: 9002 saves kingsguard_candidate inside a random_ block that
 		# can match nobody. Unguarded, the option still ran: add_courtier errored, and it
 		# fired .1008, which then errored at six further sites per raise.
 		if = {

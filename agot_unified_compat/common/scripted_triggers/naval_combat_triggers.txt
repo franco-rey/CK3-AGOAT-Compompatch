@@ -1,26 +1,4 @@
-﻿# AGOT Unified Compatibility Patch  P60 - CK3 Naval Combat x AGOT dead culture lookups.
-#
-# CK3 Naval Combat (3772178688) gates its special ships on vanilla cultures and
-# heritages. AGOT declares replace_path on BOTH common/culture/cultures and
-# common/culture/pillars, so none of them exist:
-#     norse norwegian swedish danish greek han goryeo
-#     heritage_north_germanic heritage_byzantine heritage_chinese
-# (Battle Graphics re-adds the culture definitions at position 76, but they
-#  reference the wiped heritages/languages so they still fail to register.)
-#
-# naval_combat_yearly_ai_management evaluates these per character per year. In one
-# 37-minute session at high speed that produced 31,373 'Failed to fetch a valid
-# culture' errors - 53% of all script errors, and a large share of 413,840 log
-# lines written to disk. That is pure waste: the lookups can never succeed.
-#
-# FIX: the three special-ship triggers become 'always = no' and the stray
-# culture:norse test in the sea-raid trigger is dropped. BEHAVIOUR IS UNCHANGED -
-# every one of these already evaluated false, just noisily.
-#
-# If you ever want these ships in AGOT, map them to real AGOT cultures here
-# (ironborn for longships, for example). That is a gameplay decision, not a fix.
-
-naval_combat_has_direct_coastal_county_trigger = {
+﻿naval_combat_has_direct_coastal_county_trigger = {
 	any_held_title = {
 		tier = tier_county
 		is_coastal_county = yes

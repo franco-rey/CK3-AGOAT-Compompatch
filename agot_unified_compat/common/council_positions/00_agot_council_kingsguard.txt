@@ -1,12 +1,4 @@
-﻿# Observer Stack P43 - AGOT (2962333032) vacant Kingsguard slot 6.
-#
-# can_reassign hard-switched into cp:kingsguard_6. When that slot is vacant the
-# switch fails, and because can_reassign is re-evaluated by the council UI it
-# fired continuously - 626 entries in four seconds of the 8183 Viserys run:
-#   cp:kingsguard_6 trigger [ Failed context switch ]
-# Softened to ?= so a vacant slot yields false instead of erroring. Behaviour is
-# unchanged whenever the slot is filled.
-kingsguard_lord_commander = { # Special
+﻿kingsguard_lord_commander = { # Special
 	skill = prowess
 
 	name = {

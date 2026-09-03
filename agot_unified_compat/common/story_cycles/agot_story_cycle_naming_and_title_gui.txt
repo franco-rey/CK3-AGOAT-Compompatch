@@ -16,11 +16,6 @@
 	on_end = {}
 	on_owner_death = {}
 
-	# Observer Stack P29: terminate stale instances.
-	# AGOT creates one story per title and never ends it; on royal death or
-	# title destruction the record survives and is re-evaluated by the naming
-	# GUI forever. Every OR branch re-tests exists, because CK3 evaluates all
-	# branches and an unguarded var read would itself emit errors.
 	effect_group = {
 		days = 30
 		triggered_effect = {

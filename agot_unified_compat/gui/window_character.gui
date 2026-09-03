@@ -1,5 +1,4 @@
-﻿# Seasons + Personality Compat  P03 - More Personality Depth x DireWolves x AGOT
-#
+﻿#
 # Three mods override gui/window_character.gui. More Personality Depth (56) wins
 # over DireWolves (49) and AGOT (6), which dropped:
 #   DireWolves - dw_direwolf_character_view, dw_direwolf_relationship_row, and the

@@ -1,5 +1,4 @@
-﻿# Seasons + Personality Compat  P02 - House Founders x Seasons of Ice and Fire
-#
+﻿#
 # Both mods override common/scripted_effects/07_dlc_ep3_scripted_effects.txt.
 # Seasons (57) won over House Founders (39) and dropped House Founders' entire
 # adventurer-naming rework: HF comments out vanilla's adventurer_name_* entries
