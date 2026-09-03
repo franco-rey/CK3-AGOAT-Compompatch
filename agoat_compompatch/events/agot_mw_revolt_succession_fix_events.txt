@@ -1,0 +1,54 @@
+﻿namespace = agot_mwrsf
+
+agot_mwrsf.0001 = {
+	type = character_event
+	hidden = yes
+
+	immediate = {
+		save_scope_as = selected_traitor
+
+		if = {
+			limit = {
+				exists = var:agot_mwrsf_crown
+				var:agot_mwrsf_crown = {
+					is_alive = yes
+					is_landed = yes
+				}
+			}
+			var:agot_mwrsf_crown = { save_scope_as = agot_mwrsf_crown }
+		}
+		else_if = {
+			limit = {
+				exists = var:agot_mwrsf_crown_title.holder
+				var:agot_mwrsf_crown_title.holder = {
+					is_alive = yes
+					is_landed = yes
+				}
+			}
+			var:agot_mwrsf_crown_title.holder = { save_scope_as = agot_mwrsf_crown }
+		}
+
+		remove_variable = agot_mwrsf_crown
+		remove_variable = agot_mwrsf_crown_title
+
+		if = {
+			limit = { exists = scope:agot_mwrsf_crown }
+
+			agot_mw_gui_punish_traitor_effect = {
+				CROWN_TARGET = scope:agot_mwrsf_crown
+				TRAITOR_TARGET = root
+			}
+
+			if = {
+				limit = { is_alive = yes }
+				agot_mw_clear_traitor_setup_data_effect = yes
+			}
+		}
+		else = {
+			if = {
+				limit = { is_alive = yes }
+				agot_mw_clear_traitor_setup_data_effect = yes
+			}
+		}
+	}
+}

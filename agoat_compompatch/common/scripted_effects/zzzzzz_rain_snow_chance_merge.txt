@@ -1,0 +1,61 @@
+﻿random_rain_snow_chance_effect = {
+	random_list = {
+		10 = {
+			trigger = {
+				exists = location
+				location = {
+					OR = {
+						has_province_modifier = winter_mild_modifier
+
+						has_province_modifier = winter_north_modifier
+						has_province_modifier = winter_normal_modifier_1
+						has_province_modifier = winter_harsh_modifier
+						has_province_modifier = winter_cold_modifier
+						has_province_modifier = winter_light_modifier
+
+					}
+				}
+			}
+			save_scope_as = snow_day
+		}
+		10 = {
+			trigger = {
+				exists = location
+				location = {
+					NOR = {
+						has_province_modifier = winter_mild_modifier
+
+						has_province_modifier = winter_north_modifier
+						has_province_modifier = winter_normal_modifier_1
+						has_province_modifier = winter_harsh_modifier
+						has_province_modifier = winter_cold_modifier
+						has_province_modifier = winter_light_modifier
+
+					}
+				}
+			}
+			modifier = {
+				factor = 1.02
+				exists = location.county
+				location.county = { is_riverside_county = yes }
+			}
+			modifier = {
+				factor = 0.05
+				exists = location
+				location = {
+					OR = {
+
+
+						agot_is_desert_terrain = yes
+						agot_is_drylands_terrain = yes
+						agot_is_desert_mountains_terrain = yes
+						agot_is_oasis_terrain = yes
+
+					}
+				}
+			}
+			save_scope_as = rain_day
+		}
+		10 = {}
+	}
+}

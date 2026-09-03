@@ -1,0 +1,260 @@
+﻿
+
+hth_fp1_adventure_legacy_1 = {
+	legacy = fp1_adventure_legacy_track
+
+	can_be_picked = {
+		hth_adventure_1_legacy_trigger = yes
+		eligible_for_fp1_dynasty_legacies_trigger = yes
+	}
+	character_modifier = {
+		diplomatic_range_mult = 0.25
+		stewardship = 1
+		diplomacy = 1
+		ai_energy = 20
+	}
+	effect = {
+		custom_description_no_bullet = {
+			text = hth_adventure_legacy_1_ai_effect
+		}
+		custom_description_no_bullet = {
+			text = hth_adventure_legacy_1_req_effect
+		}
+	}
+	ai_chance = {
+		value = 11
+		if = {
+			limit = {
+				can_start_new_legacy_track_trigger = no
+			}
+			multiply = 0
+		}
+	}
+}
+hth_fp1_adventure_legacy_2 = {
+	legacy = fp1_adventure_legacy_track
+
+	character_modifier = {
+		supply_duration = 1
+		different_faith_county_opinion_mult = -0.5
+		levy_reinforcement_rate_different_faith = 0.25
+		ai_energy = 20
+	}
+
+	can_be_picked = {
+		hth_adventure_2_legacy_trigger = yes
+	}
+
+	effect = {
+		custom_description_no_bullet = {
+			text = hth_adventure_legacy_1_ai_effect
+		}
+		custom_description_no_bullet = {
+			text = hth_adventure_legacy_2_req_effect
+		}
+	}
+}
+fp1_adventure_legacy_1 = {
+	legacy = fp1_adventure_legacy_track
+
+	character_modifier = {
+		monthly_stewardship_lifestyle_xp_gain_mult = 0.10
+		monthly_diplomacy_lifestyle_xp_gain_mult = 0.10
+		ai_energy = 20
+
+	}
+
+	can_be_picked = {
+		agot_fp1_adventure_legacy_track_trigger = yes
+		hth_adventure_3_legacy_trigger = yes
+	}
+	effect = {
+		custom_description_no_bullet = {
+			text = fp1_adventure_legacy_1_effect
+		}
+		custom_description_no_bullet = {
+			text = hth_adventure_legacy_1_ai_effect
+		}
+
+		custom_description_no_bullet = {
+			text = hth_adventure_legacy_3_req_effect
+		}
+	}
+}
+hth_fp1_adventure_legacy_4 = {
+	legacy = fp1_adventure_legacy_track
+
+	character_modifier = {
+		minority_different_culture_opinion = 10
+		domain_tax_different_faith_mult = 0.25
+		supply_duration = 1
+		ai_energy = 20
+	}
+
+	can_be_picked = {
+		hth_adventure_4_legacy_trigger = yes
+	}
+
+	effect = {
+		custom_description_no_bullet = {
+			text = hth_adventure_legacy_1_ai_effect
+		}
+		custom_description_no_bullet = {
+			text = hth_adventure_legacy_4_req_effect
+		}
+	}
+}
+hth_fp1_adventure_legacy_5 = {
+	legacy = fp1_adventure_legacy_track
+	character_modifier = {
+		stewardship = 1
+		diplomacy = 1
+		minority_levy_contribution_mult = 0.20
+		minority_tax_contribution_mult = 0.20
+		ai_energy = 20
+	}
+	can_be_picked = { hth_adventure_5_legacy_trigger = yes }
+	effect = {
+		custom_description_no_bullet = {
+			text = hth_adventure_legacy_1_ai_effect
+		}
+		custom_description_no_bullet = {
+			text = hth_adventure_legacy_5_req_effect
+		}
+	}
+}
+
+fp1_pillage_legacy_1 = {
+	legacy = fp1_pillage_legacy_track
+
+	can_be_picked = {
+		agot_fp1_pillage_legacy_track_trigger = yes
+		hth_pillage_1_legacy_trigger = yes
+		eligible_for_fp1_dynasty_legacies_trigger = yes
+	}
+	character_modifier = {
+		name = hth_fp1_pillage_legacy_1_name
+		martial = 1
+		prowess = 3
+		ai_greed = 20
+
+	}
+	effect = {
+		custom_description_no_bullet = {
+			text = hth_pillage_legacy_1_effect
+		}
+		custom_description_no_bullet = {
+			text = hth_pillage_legacy_1_ai_effect
+		}
+		custom_description_no_bullet = {
+			text = hth_pillage_legacy_1_req_effect
+		}
+	}
+	ai_chance = {
+		value = 11
+		if = {
+			limit = {
+				can_start_new_legacy_track_trigger = no
+			}
+			multiply = 0
+		}
+	}
+}
+hth_fp1_pillage_legacy_2 = {
+	legacy = fp1_pillage_legacy_track
+
+	character_modifier = {
+		name = hth_fp1_pillage_legacy_2_name
+		max_loot_mult = 0.5
+		coastal_advantage = 5
+		ai_greed = 20
+
+	}
+	can_be_picked = {
+		hth_pillage_2_legacy_trigger = yes
+	}
+	effect = {
+		custom_description_no_bullet = {
+			text = hth_pillage_legacy_2_effect
+		}
+		custom_description_no_bullet = {
+			text = hth_pillage_legacy_1_ai_effect
+		}
+		custom_description_no_bullet = {
+			text = hth_pillage_legacy_2_req_effect
+		}
+	}
+}
+fp1_pillage_legacy_3 = {
+	legacy = fp1_pillage_legacy_track
+
+	character_modifier = {
+		monthly_martial_lifestyle_xp_gain_mult = 0.20
+		ai_greed = 20
+
+	}
+	can_be_picked = {
+		hth_pillage_3_legacy_trigger = yes
+	}
+	effect = {
+		custom_description_no_bullet = {
+			text = fp1_pillage_legacy_3_effect
+		}
+		custom_description_no_bullet = {
+			text = hth_pillage_legacy_1_ai_effect
+		}
+		custom_description_no_bullet = {
+			text = hth_pillage_legacy_3_req_effect
+		}
+	}
+}
+fp1_pillage_legacy_4 = {
+	legacy = fp1_pillage_legacy_track
+
+	character_modifier = {
+		name = hth_fp1_pillage_legacy_4_name
+		max_loot_mult = 0.5
+		ai_greed = 20
+
+	}
+	can_be_picked = {
+		hth_pillage_4_legacy_trigger = yes
+	}
+	effect = {
+		custom_description_no_bullet = {
+			text = hth_pillage_legacy_2_effect
+		}
+		custom_description_no_bullet = {
+			text = fp1_pillage_legacy_4_effect
+		}
+		custom_description_no_bullet = {
+			text = hth_pillage_legacy_1_ai_effect
+		}
+		custom_description_no_bullet = {
+			text = hth_pillage_legacy_4_req_effect
+		}
+	}
+}
+hth_fp1_pillage_legacy_5 = {
+	legacy = fp1_pillage_legacy_track
+
+	effect = {
+		custom_description_no_bullet = {
+			text = hth_pillage_legacy_1_ai_effect
+		}
+		custom_description_no_bullet = {
+			text = hth_pillage_legacy_5_req_effect
+		}
+	}
+
+	can_be_picked = { hth_pillage_5_legacy_trigger = yes }
+
+	character_modifier = {
+		name = hth_fp1_pillage_legacy_5_name
+		martial = 1
+		prowess = 3
+		siege_morale_loss = 0.25
+		no_prowess_loss_from_age = yes
+		ai_greed = 20
+	}
+}

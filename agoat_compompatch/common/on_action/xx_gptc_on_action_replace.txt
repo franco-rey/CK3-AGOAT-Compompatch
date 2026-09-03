@@ -1,0 +1,118 @@
+﻿
+
+hold_court_event_selection = {
+	random_events = {
+
+		50 = gptc_hold_court.0001
+		50 = gptc_hold_court.0002
+		50 = gptc_hold_court.0003
+		50 = gptc_hold_court.0004
+		50 = gptc_hold_court.0005
+		50 = gptc_hold_court.0006
+		50 = gptc_hold_court.0007
+		50 = gptc_hold_court.0008
+		50 = gptc_hold_court.0009
+		50 = gptc_hold_court.0010
+		50 = gptc_hold_court.0011
+		50 = gptc_hold_court.0012
+		50 = gptc_hold_court.0013
+		50 = gptc_hold_court.0014
+		50 = gptc_hold_court.0015
+		50 = gptc_hold_court.0016
+		50 = gptc_hold_court.0017
+		50 = gptc_hold_court.0018
+		50 = gptc_hold_court.0019
+		50 = gptc_hold_court.0020
+		50 = gptc_hold_court.0021
+
+
+		50 = gptc_hold_court.0101
+		50 = gptc_hold_court.0102
+		50 = gptc_hold_court.0103
+		50 = gptc_hold_court.0104
+		50 = gptc_hold_court.0105
+		50 = gptc_hold_court.0106
+		50 = gptc_hold_court.0107
+		50 = gptc_hold_court.0108
+		50 = gptc_hold_court.0109
+		50 = gptc_hold_court.0110
+		50 = gptc_hold_court.0111
+		50 = gptc_hold_court.0112
+		50 = gptc_hold_court.0113
+		50 = gptc_hold_court.0114
+		50 = gptc_hold_court.0115
+		50 = gptc_hold_court.0116
+		50 = gptc_hold_court.0117
+		50 = gptc_hold_court.0118
+		50 = gptc_hold_court.0119
+		50 = gptc_hold_court.0120
+		50 = gptc_hold_court.0121
+		50 = gptc_hold_court.0122
+
+
+		50 = gptc_hold_court.0201
+		50 = gptc_hold_court.0202
+		50 = gptc_hold_court.0203
+		50 = gptc_hold_court.0204
+		50 = gptc_hold_court.0205
+		50 = gptc_hold_court.0206
+		50 = gptc_hold_court.0207
+		50 = gptc_hold_court.0208
+		50 = gptc_hold_court.0209
+		50 = gptc_hold_court.0210
+		50 = gptc_hold_court.0211
+		50 = gptc_hold_court.0212
+		50 = gptc_hold_court.0213
+		50 = gptc_hold_court.0214
+		50 = gptc_hold_court.0215
+		50 = gptc_hold_court.0216
+		50 = gptc_hold_court.0217
+		50 = gptc_hold_court.0218
+		50 = gptc_hold_court.0219
+		50 = gptc_hold_court.0220
+		50 = gptc_hold_court.0221
+		50 = gptc_hold_court.0222
+		50 = gptc_hold_court.0223
+		50 = gptc_hold_court.0224
+
+
+		50 = gptc_hold_court.0301
+		50 = gptc_hold_court.0302
+		50 = gptc_hold_court.0303
+		50 = gptc_hold_court.0304
+		50 = gptc_hold_court.0305
+		50 = gptc_hold_court.0306
+		50 = gptc_hold_court.0307
+		50 = gptc_hold_court.0308
+		50 = gptc_hold_court.0309
+		50 = gptc_hold_court.0310
+		50 = gptc_hold_court.0311
+		50 = gptc_hold_court.0312
+		50 = gptc_hold_court.0313
+		50 = gptc_hold_court.0314
+		50 = gptc_hold_court.0315
+		50 = gptc_hold_court.0316
+		50 = gptc_hold_court.0317
+		50 = gptc_hold_court.0318
+		50 = gptc_hold_court.0319
+		50 = gptc_hold_court.0320
+
+
+		50 = gptc_hold_court.0401
+		50 = gptc_hold_court.0402
+		50 = gptc_hold_court.0403
+		50 = gptc_hold_court.0404
+		50 = gptc_hold_court.0405
+		50 = gptc_hold_court.0406
+		50 = gptc_hold_court.0407
+		50 = gptc_hold_court.0408
+		50 = gptc_hold_court.0409
+		50 = gptc_hold_court.0410
+		50 = gptc_hold_court.0411
+		50 = gptc_hold_court.0412
+		50 = gptc_hold_court.0413
+		50 = gptc_hold_court.0414
+		50 = gptc_hold_court.0415
+		50 = gptc_hold_court.0416
+	}
+}

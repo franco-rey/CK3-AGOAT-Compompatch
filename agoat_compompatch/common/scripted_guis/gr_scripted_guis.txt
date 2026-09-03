@@ -1,0 +1,118 @@
+﻿
+
+gr_chronicle_window = {
+	scope = character
+
+	is_shown = {
+		exists = this
+		is_alive = yes
+		has_variable = gr_chronicle_open
+		var:gr_chronicle_open > 0
+	}
+}
+
+gr_chronicle_next = {
+	scope = character
+
+	is_valid = {
+		has_variable = gr_chronicle_open
+		has_variable = gr_chronicle_total
+		has_variable = gr_chronicle_page
+		var:gr_chronicle_page < {
+			value = var:gr_chronicle_total
+			subtract = 1
+		}
+	}
+
+	effect = {
+		change_variable = { name = gr_chronicle_page add = 1 }
+		gr_cw_page_setup_effect = yes
+	}
+}
+
+gr_chronicle_prev = {
+	scope = character
+
+	is_valid = {
+		has_variable = gr_chronicle_open
+		has_variable = gr_chronicle_page
+		var:gr_chronicle_page > 0
+	}
+
+	effect = {
+		change_variable = { name = gr_chronicle_page add = -1 }
+		gr_cw_page_setup_effect = yes
+	}
+}
+
+gr_chronicle_first = {
+	scope = character
+
+	is_valid = {
+		has_variable = gr_chronicle_open
+		has_variable = gr_chronicle_page
+		var:gr_chronicle_page > 0
+	}
+
+	effect = {
+		set_variable = { name = gr_chronicle_page value = 0 }
+		gr_cw_page_setup_effect = yes
+	}
+}
+
+gr_chronicle_last = {
+	scope = character
+
+	is_valid = {
+		has_variable = gr_chronicle_open
+		has_variable = gr_chronicle_total
+		has_variable = gr_chronicle_page
+		var:gr_chronicle_page < {
+			value = var:gr_chronicle_total
+			subtract = 1
+		}
+	}
+
+	effect = {
+		set_variable = {
+			name = gr_chronicle_page
+			value = {
+				value = var:gr_chronicle_total
+				subtract = 1
+			}
+		}
+		gr_cw_page_setup_effect = yes
+	}
+}
+
+
+gr_chronicle_replay = {
+	scope = character
+
+	is_shown = { has_variable = gr_cp_page }
+	is_valid = { has_variable = gr_cp_page }
+
+	effect = {
+
+		set_variable = { name = gr_replay_page value = var:gr_cp_page }
+		trigger_event = gr_obituary.11
+	}
+}
+
+gr_chronicle_close = {
+	scope = character
+
+	is_shown = { always = yes }
+	is_valid = { always = yes }
+
+	effect = {
+		set_variable = { name = gr_chronicle_open value = 0 }
+		if = { limit = { has_variable = gr_chronicle_page } remove_variable = gr_chronicle_page }
+		if = { limit = { has_variable = gr_chronicle_total } remove_variable = gr_chronicle_total }
+		if = { limit = { has_variable = gr_chronicle_page_display } remove_variable = gr_chronicle_page_display }
+		if = { limit = { has_variable = gr_cp } remove_variable = gr_cp }
+		if = { limit = { has_variable = gr_cp_page } remove_variable = gr_cp_page }
+		if = { limit = { has_variable = gr_replay_page } remove_variable = gr_replay_page }
+		gr_replay_cleanup_vars_effect = yes
+	}
+}

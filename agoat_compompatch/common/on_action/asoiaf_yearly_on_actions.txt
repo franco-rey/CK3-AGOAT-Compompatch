@@ -1,0 +1,862 @@
+﻿
+
+random_yearly_everyone_pulse = {
+	on_actions = {
+		asoiaf_mance_rayder_desertion
+		asoiaf_Targaryen_8_traits_change_maintenance
+		asoiaf_daenerys_maintenance
+		asoiaf_canon_children_cersei_jaime_lover_maintenance
+		asoiaf_canon_children_rhaenyra_harwin_lover_maintenance
+		asoiaf_canon_children_laenor_joffrey_soulmate_maintenance
+		asoiaf_canon_children_aegon_daena_lover_maintenance
+		asoiaf_canon_children_dragon_bonding_maintenance
+
+
+	}
+}
+
+asoiaf_mance_rayder_desertion = {
+	trigger = {
+		asoiaf_historical_trigger = yes
+		root = {
+			exists = character:Rayder_1
+			character:Rayder_1 = { is_alive = yes }
+			this = character:Rayder_1
+			OR = {
+				has_trait = nightswatch
+				has_trait = nightswatch_historical
+			}
+			NOT = {
+				is_imprisoned = yes
+				is_incapable = yes
+			}
+			is_ai = yes
+			NOT = { has_trait = conqueror }
+			is_lowborn = yes
+		}
+		current_date >= 8289.1.1
+
+
+		title:e_beyond_the_wall = { is_title_created = no }
+	}
+	effect = {
+		root = {
+			set_house = house:house_Rayder
+			add_trait = conqueror
+			if = {
+				limit = {
+					has_game_rule = extreme_conquerors_bonuses
+					NOT = { has_character_modifier = ai_extreme_conqueror_modifier }
+				}
+				add_character_modifier = { modifier = ai_extreme_conqueror_modifier }
+			}
+			set_character_faith = faith:old_gods_btw_fnf
+			set_culture = culture:forestman
+			if = {
+				limit = { has_trait = nightswatch }
+				remove_trait = nightswatch
+			}
+			if = {
+				limit = { has_trait = nightswatch_historical }
+				remove_trait = nightswatch_historical
+			}
+			if = {
+				limit = { has_trait = lifestyle_nw_builder }
+				remove_trait = lifestyle_nw_builder
+			}
+			if = {
+				limit = { has_trait = lifestyle_nw_ranger }
+				remove_trait = lifestyle_nw_ranger
+			}
+			if = {
+				limit = { has_trait = lifestyle_nw_steward }
+				remove_trait = lifestyle_nw_steward
+			}
+			add_trait = deserter
+			if = {
+				limit = {
+					OR = {
+						is_landed = yes
+						is_landless_ruler = yes
+					}
+				}
+				agot_depose_effect = yes
+			}
+			title:k_first_forest ?= {
+				random_de_jure_county = {
+					limit = {
+						holder = { is_ai = yes }
+					}
+					save_scope_as = asoiaf_mance_new_county
+				}
+			}
+			if = {
+				limit = {
+					scope:asoiaf_mance_new_county.holder = { government_has_flag = government_is_uninteractable }
+				}
+				ai_colonization_effect = { WILDERNESS = scope:asoiaf_mance_new_county ROOT_SCOPE = root }
+			}
+			else = {
+				create_title_and_vassal_change = {
+					type = conquest
+					save_scope_as = change
+					add_claim_on_loss = yes
+				}
+				scope:asoiaf_mance_new_county = {
+					change_title_holder = {
+						holder = root
+						change = scope:change
+					}
+				}
+				resolve_title_and_vassal_change = scope:change
+			}
+			create_title_and_vassal_change = {
+				type = created
+				save_scope_as = change
+				add_claim_on_loss = yes
+			}
+			title:e_beyond_the_wall = {
+				change_title_holder = {
+					holder = root
+					change = scope:change
+				}
+			}
+			resolve_title_and_vassal_change = scope:change
+			change_government = tribal_government
+			add_prestige = 3000
+			add_gold = 100
+			add_legitimacy = 100
+			spawn_army = {
+				name = asoiaf_wildling_army
+				men_at_arms = {
+					type = giant_regiment
+					stacks = 20
+				}
+				men_at_arms = {
+					type = light_footmen
+					stacks = 30
+				}
+				men_at_arms = {
+					type = bowmen
+					stacks = 30
+				}
+				men_at_arms = {
+					type = battering_ram
+					stacks = 1
+				}
+				levies = 4000
+				location = root.location
+				inheritable = yes
+			}
+			create_character_memory = { type = asoiaf_mance_rayder_desertion_memory }
+			if = {
+				limit = {
+					exists = title:k_the_wall.holder
+				}
+				set_relation_rival = { reason = asoiaf_mance_lord_commander_rival_desc target = title:k_the_wall.holder }
+			}
+		}
+		every_living_character = {
+			limit = {
+				OR = {
+					is_landed = yes
+					is_landless_ruler = yes
+				}
+				this.location = { geographical_region = world_westeros }
+				NOT = { this = character:Rayder_1 }
+			}
+			trigger_event = asoiaf_maintenance_events.0009
+		}
+	}
+}
+
+asoiaf_daenerys_maintenance = {
+	trigger = {
+		asoiaf_canon_children_Targaryen_9_trigger_yearly = yes
+	}
+	effect = {
+		root = {
+			asoiaf_canon_children_Targaryen_9_birth_effect_yearly = yes
+		}
+	}
+}
+
+asoiaf_canon_children_cersei_jaime_lover_maintenance = {
+	trigger = {
+		OR = {
+			has_game_rule = agot_story_historical_events_historical_outcomes
+			has_game_rule = agot_story_historical_events_weighted_outcomes
+		}
+		dynasty:dynn_Lannister = {
+			any_dynasty_member = {
+				AND = {
+					has_inactive_trait = asoiaf_Lannister_7_trait
+					AND = {
+						age >= 16
+						age <= 18
+					}
+				}
+			}
+		}
+		NOT = { exists = global_var:asoiaf_canon_children_cersei_jaime_lovers }
+	}
+	effect = {
+		dynasty:dynn_Lannister = {
+			every_dynasty_member = {
+				limit = {
+					has_inactive_trait = asoiaf_Lannister_7_trait
+				}
+				save_scope_as = asoiaf_jaime
+			}
+		}
+		dynasty:dynn_Lannister = {
+			every_dynasty_member = {
+				limit = {
+					has_inactive_trait = asoiaf_Lannister_6_trait
+				}
+				set_relation_lover = { reason = asoiaf_cersei_jaime_lover_desc target = scope:asoiaf_jaime }
+			}
+		}
+		set_global_variable = asoiaf_canon_children_cersei_jaime_lovers
+	}
+}
+
+asoiaf_canon_children_rhaenyra_harwin_lover_maintenance = {
+	trigger = {
+		OR = {
+			has_game_rule = agot_story_historical_events_historical_outcomes
+			has_game_rule = agot_story_historical_events_weighted_outcomes
+		}
+		dynasty:dynn_Targaryen = {
+			any_dynasty_member = {
+				AND = {
+					has_inactive_trait = asoiaf_Targaryen_63_trait
+					age >= 16
+				}
+			}
+		}
+		dynasty:dynn_Strong = {
+			any_dynasty_member = {
+				AND = {
+					has_inactive_trait = asoiaf_Strong_30_trait
+					age >= 16
+				}
+			}
+		}
+		NOT = { exists = global_var:asoiaf_canon_children_rhaenyra_harwin_lovers }
+	}
+	effect = {
+		dynasty:dynn_Targaryen = {
+			every_dynasty_member = {
+				limit = {
+					has_inactive_trait = asoiaf_Targaryen_63_trait
+				}
+				save_scope_as = asoiaf_rhaenyra
+			}
+		}
+		dynasty:dynn_Strong = {
+			every_dynasty_member = {
+				limit = {
+					has_inactive_trait = asoiaf_Strong_30_trait
+				}
+				set_relation_lover = { reason = asoiaf_rhaenyra_harwin_lover_desc target = scope:asoiaf_rhaenyra }
+			}
+		}
+		set_global_variable = asoiaf_canon_children_rhaenyra_harwin_lovers
+	}
+}
+
+asoiaf_canon_children_laenor_joffrey_soulmate_maintenance = {
+	trigger = {
+		OR = {
+			has_game_rule = agot_story_historical_events_historical_outcomes
+			has_game_rule = agot_story_historical_events_weighted_outcomes
+		}
+		dynasty:dynn_Velaryon = {
+			any_dynasty_member = {
+				AND = {
+					has_inactive_trait = asoiaf_Velaryon_35_trait
+					age >= 16
+				}
+			}
+		}
+		character:Lonmouth_16 ?= {
+			age >= 16
+		}
+		NOT = { exists = global_var:asoiaf_canon_children_laenor_joffrey_soulmates }
+	}
+	effect = {
+		dynasty:dynn_Velaryon = {
+			every_dynasty_member = {
+				limit = {
+					has_inactive_trait = asoiaf_Velaryon_35_trait
+				}
+				save_scope_as = asoiaf_laenor
+			}
+		}
+		character:Lonmouth_16 ?= {
+			set_relation_soulmate = { reason = asoiaf_lanor_joffrey_soulmate_desc target = scope:asoiaf_laenor }
+		}
+		set_global_variable = asoiaf_canon_children_laenor_joffrey_soulmates
+	}
+}
+
+asoiaf_canon_children_aegon_daena_lover_maintenance = {
+	trigger = {
+		OR = {
+			has_game_rule = agot_story_historical_events_historical_outcomes
+			has_game_rule = agot_story_historical_events_weighted_outcomes
+		}
+		dynasty:dynn_Targaryen = {
+			AND = {
+				any_dynasty_member = {
+					AND = {
+						has_inactive_trait = asoiaf_Targaryen_88_trait
+						AND = {
+							age >= 16
+						}
+					}
+				}
+				any_dynasty_member = {
+					AND = {
+						has_inactive_trait = asoiaf_Targaryen_83_trait
+						age >= 16
+					}
+				}
+			}
+		}
+		NOT = { exists = global_var:asoiaf_canon_children_aegon_daena_lovers }
+	}
+	effect = {
+		dynasty:dynn_Targaryen = {
+			every_dynasty_member = {
+				limit = {
+					has_inactive_trait = asoiaf_Targaryen_88_trait
+				}
+				save_scope_as = asoiaf_aegon_IV
+			}
+		}
+		dynasty:dynn_Targaryen = {
+			every_dynasty_member = {
+				limit = {
+					has_inactive_trait = asoiaf_Targaryen_83_trait
+				}
+				set_relation_lover = { reason = asoiaf_aegon_daena_lover_desc target = scope:asoiaf_aegon_IV }
+			}
+		}
+		set_global_variable = asoiaf_canon_children_aegon_daena_lovers
+	}
+}
+
+asoiaf_canon_children_dragon_bonding_maintenance = {
+	trigger = {
+		asoiaf_canon_children_enabled_trigger = yes
+		has_game_rule = asoiaf_canon_children_dragon_bonding_rule_on
+		root = {
+			OR = {
+				has_inactive_trait = asoiaf_Targaryen_30_trait
+				has_inactive_trait = asoiaf_Targaryen_31_trait
+				has_inactive_trait = asoiaf_Targaryen_33_trait
+				has_inactive_trait = asoiaf_Targaryen_59_trait
+				has_inactive_trait = asoiaf_Targaryen_60_trait
+				has_inactive_trait = asoiaf_Targaryen_61_trait
+				has_inactive_trait = asoiaf_Targaryen_63_trait
+				has_inactive_trait = asoiaf_Velaryon_34_trait
+				has_inactive_trait = asoiaf_Targaryen_67_trait
+			}
+		}
+
+	}
+	effect = {
+		if = {
+			limit = {
+				character:dragon_quicksilver ?= {
+					is_alive = yes
+					agot_has_relationship_dragon = no
+				}
+				dynasty:dynn_Targaryen = {
+					any_dynasty_member = {
+						AND = {
+							has_inactive_trait = asoiaf_Targaryen_30_trait
+							agot_has_relationship_dragon = no
+							NOT = { has_trait = nightswatch }
+						}
+					}
+				}
+			}
+			dynasty:dynn_Targaryen = {
+				every_dynasty_member = {
+					limit = {
+						AND = {
+							has_inactive_trait = asoiaf_Targaryen_30_trait
+							agot_has_relationship_dragon = no
+						}
+					}
+					save_scope_as = asoiaf_aenys_i
+				}
+			}
+			agot_bond_dragon_relation_effect = {
+				ACTOR = scope:asoiaf_aenys_i
+				DRAGON = character:dragon_quicksilver
+			}
+			send_interface_toast = {
+				title = bond_dragon_notification
+				left_icon = scope:asoiaf_aenys_i
+				right_icon = character:dragon_quicksilver
+			}
+		}
+		if = {
+			limit = {
+				character:dragon_balerion ?= {
+					is_alive = yes
+					agot_has_relationship_dragon = no
+				}
+				dynasty:dynn_Targaryen = {
+					any_dynasty_member = {
+						AND = {
+							has_inactive_trait = asoiaf_Targaryen_31_trait
+							agot_has_relationship_dragon = no
+							NOT = { has_trait = nightswatch }
+						}
+					}
+				}
+			}
+			dynasty:dynn_Targaryen = {
+				every_dynasty_member = {
+					limit = {
+						AND = {
+							has_inactive_trait = asoiaf_Targaryen_31_trait
+							agot_has_relationship_dragon = no
+						}
+					}
+					save_scope_as = asoiaf_maegor_i
+				}
+			}
+			agot_bond_dragon_relation_effect = {
+				ACTOR = scope:asoiaf_maegor_i
+				DRAGON = character:dragon_balerion
+			}
+			send_interface_toast = {
+				title = bond_dragon_notification
+				left_icon = scope:asoiaf_maegor_i
+				right_icon = character:dragon_balerion
+			}
+		}
+		if = {
+			limit = {
+				character:dragon_quicksilver ?= {
+					is_alive = yes
+					agot_has_relationship_dragon = no
+				}
+				dynasty:dynn_Targaryen = {
+					any_dynasty_member = {
+						AND = {
+							has_inactive_trait = asoiaf_Targaryen_33_trait
+							agot_has_relationship_dragon = no
+							NOT = { has_trait = nightswatch }
+						}
+					}
+				}
+			}
+			dynasty:dynn_Targaryen = {
+				every_dynasty_member = {
+					limit = {
+						AND = {
+							has_inactive_trait = asoiaf_Targaryen_33_trait
+							agot_has_relationship_dragon = no
+						}
+					}
+					save_scope_as = asoiaf_aegon_the_uncrowned
+				}
+			}
+			agot_bond_dragon_relation_effect = {
+				ACTOR = scope:asoiaf_aegon_the_uncrowned
+				DRAGON = character:dragon_quicksilver
+			}
+			send_interface_toast = {
+				title = bond_dragon_notification
+				left_icon = scope:asoiaf_aegon_the_uncrowned
+				right_icon = character:dragon_quicksilver
+			}
+		}
+		if = {
+			limit = {
+				character:dragon_balerion ?= {
+					is_alive = yes
+					agot_has_relationship_dragon = no
+				}
+				dynasty:dynn_Targaryen = {
+					any_dynasty_member = {
+						AND = {
+							has_inactive_trait = asoiaf_Targaryen_41_trait
+							agot_has_relationship_dragon = no
+							NOT = { has_trait = nightswatch }
+						}
+					}
+				}
+			}
+			dynasty:dynn_Targaryen = {
+				every_dynasty_member = {
+					limit = {
+						AND = {
+							has_inactive_trait = asoiaf_Targaryen_41_trait
+							agot_has_relationship_dragon = no
+						}
+					}
+					save_scope_as = asoiaf_aerea
+				}
+			}
+			agot_bond_dragon_relation_effect = {
+				ACTOR = scope:asoiaf_aerea
+				DRAGON = character:dragon_balerion
+			}
+			send_interface_toast = {
+				title = bond_dragon_notification
+				left_icon = scope:asoiaf_aerea
+				right_icon = character:dragon_balerion
+			}
+		}
+		if = {
+			limit = {
+				character:dragon_meleys ?= {
+					is_alive = yes
+					agot_has_relationship_dragon = no
+				}
+				dynasty:dynn_Targaryen = {
+					any_dynasty_member = {
+						AND = {
+							has_inactive_trait = asoiaf_Targaryen_59_trait
+							agot_has_relationship_dragon = no
+							NOT = { has_trait = nightswatch }
+						}
+					}
+				}
+			}
+			dynasty:dynn_Targaryen = {
+				every_dynasty_member = {
+					limit = {
+						AND = {
+							has_inactive_trait = asoiaf_Targaryen_59_trait
+							agot_has_relationship_dragon = no
+						}
+					}
+					save_scope_as = asoiaf_rhaenys_queen_who_never_was
+				}
+			}
+			agot_bond_dragon_relation_effect = {
+				ACTOR = scope:asoiaf_rhaenys_queen_who_never_was
+				DRAGON = character:dragon_meleys
+			}
+			send_interface_toast = {
+				title = bond_dragon_notification
+				left_icon = scope:asoiaf_rhaenys_queen_who_never_was
+				right_icon = character:dragon_meleys
+			}
+		}
+		if = {
+			limit = {
+				character:dragon_balerion ?= {
+					is_alive = yes
+					agot_has_relationship_dragon = no
+				}
+				dynasty:dynn_Targaryen = {
+					any_dynasty_member = {
+						AND = {
+							has_inactive_trait = asoiaf_Targaryen_60_trait
+							agot_has_relationship_dragon = no
+							NOT = { has_trait = nightswatch }
+						}
+					}
+				}
+			}
+			dynasty:dynn_Targaryen = {
+				every_dynasty_member = {
+					limit = {
+						AND = {
+							has_inactive_trait = asoiaf_Targaryen_60_trait
+							agot_has_relationship_dragon = no
+						}
+					}
+					save_scope_as = asoiaf_viserys_i
+				}
+			}
+			agot_bond_dragon_relation_effect = {
+				ACTOR = scope:asoiaf_viserys_i
+				DRAGON = character:dragon_balerion
+			}
+			send_interface_toast = {
+				title = bond_dragon_notification
+				left_icon = scope:asoiaf_viserys_i
+				right_icon = character:dragon_balerion
+			}
+		}
+		if = {
+			limit = {
+				character:dragon_caraxes ?= {
+					is_alive = yes
+					agot_has_relationship_dragon = no
+				}
+				dynasty:dynn_Targaryen = {
+					any_dynasty_member = {
+						AND = {
+							has_inactive_trait = asoiaf_Targaryen_61_trait
+							agot_has_relationship_dragon = no
+							NOT = { has_trait = nightswatch }
+						}
+					}
+				}
+			}
+			dynasty:dynn_Targaryen = {
+				every_dynasty_member = {
+					limit = {
+						AND = {
+							has_inactive_trait = asoiaf_Targaryen_61_trait
+							agot_has_relationship_dragon = no
+						}
+					}
+					save_scope_as = asoiaf_daemon_rogue_prince
+				}
+			}
+			agot_bond_dragon_relation_effect = {
+				ACTOR = scope:asoiaf_daemon_rogue_prince
+				DRAGON = character:dragon_caraxes
+			}
+			send_interface_toast = {
+				title = bond_dragon_notification
+				left_icon = scope:asoiaf_daemon_rogue_prince
+				right_icon = character:dragon_caraxes
+			}
+		}
+		if = {
+			limit = {
+				character:dragon_syrax ?= {
+					is_alive = yes
+					agot_has_relationship_dragon = no
+				}
+				dynasty:dynn_Targaryen = {
+					any_dynasty_member = {
+						AND = {
+							has_inactive_trait = asoiaf_Targaryen_63_trait
+							agot_has_relationship_dragon = no
+							NOT = { has_trait = nightswatch }
+						}
+					}
+				}
+			}
+			dynasty:dynn_Targaryen = {
+				every_dynasty_member = {
+					limit = {
+						AND = {
+							has_inactive_trait = asoiaf_Targaryen_63_trait
+							agot_has_relationship_dragon = no
+						}
+					}
+					save_scope_as = asoiaf_rhaenyra_targaryen
+				}
+			}
+			agot_bond_dragon_relation_effect = {
+				ACTOR = scope:asoiaf_rhaenyra_targaryen
+				DRAGON = character:dragon_syrax
+			}
+			send_interface_toast = {
+				title = bond_dragon_notification
+				left_icon = scope:asoiaf_rhaenyra_targaryen
+				right_icon = character:dragon_syrax
+			}
+		}
+		if = {
+			limit = {
+				character:dragon_vhagar ?= {
+					is_alive = yes
+					agot_has_relationship_dragon = no
+				}
+				dynasty:dynn_Velaryon = {
+					any_dynasty_member = {
+						AND = {
+							has_inactive_trait = asoiaf_Velaryon_34_trait
+							agot_has_relationship_dragon = no
+							NOT = { has_trait = nightswatch }
+						}
+					}
+				}
+			}
+			dynasty:dynn_Velaryon = {
+				every_dynasty_member = {
+					limit = {
+						AND = {
+							has_inactive_trait = asoiaf_Velaryon_34_trait
+							agot_has_relationship_dragon = no
+						}
+					}
+					save_scope_as = asoiaf_laena_velaryon
+				}
+			}
+			agot_bond_dragon_relation_effect = {
+				ACTOR = scope:asoiaf_laena_velaryon
+				DRAGON = character:dragon_vhagar
+			}
+			send_interface_toast = {
+				title = bond_dragon_notification
+				left_icon = scope:asoiaf_laena_velaryon
+				right_icon = character:dragon_vhagar
+			}
+		}
+		if = {
+			limit = {
+				character:dragon_vhagar ?= {
+					is_alive = yes
+					agot_has_relationship_dragon = no
+				}
+				dynasty:dynn_Targaryen = {
+					any_dynasty_member = {
+						AND = {
+							has_inactive_trait = asoiaf_Targaryen_67_trait
+							agot_has_relationship_dragon = no
+							NOT = { has_trait = nightswatch }
+						}
+					}
+				}
+			}
+			dynasty:dynn_Targaryen = {
+				every_dynasty_member = {
+					limit = {
+						AND = {
+							has_inactive_trait = asoiaf_Targaryen_67_trait
+							agot_has_relationship_dragon = no
+						}
+					}
+					save_scope_as = asoiaf_aemond_one_eye
+				}
+			}
+			agot_bond_dragon_relation_effect = {
+				ACTOR = scope:asoiaf_aemond_one_eye
+				DRAGON = character:dragon_vhagar
+			}
+			send_interface_toast = {
+				title = bond_dragon_notification
+				left_icon = scope:asoiaf_aemond_one_eye
+				right_icon = character:dragon_vhagar
+			}
+		}
+	}
+}
+
+
+asoiaf_canon_children_betrothals = {
+
+
+	effect = {
+		if = {
+
+		}
+		if = {
+			limit = {
+				OR = {
+					has_game_rule = agot_ema_targ
+					has_game_rule = agot_ema_lps_targs
+					has_game_rule = agot_ema_enabled
+				}
+				exists = dynasty
+				dynasty = dynasty:dynn_Targaryen
+				NOT = { has_trait = bastard }
+				NOT = { has_trait = disinherited }
+				NOT = { is_betrothed = yes }
+				is_ai = yes
+				trigger_if = {
+					limit = { exists = court_owner }
+					court_owner = { is_ai = yes }
+				}
+				any_sibling = {
+					can_marry_character_trigger = { CHARACTER = root }
+					NOT = { has_trait = bastard }
+					NOT = { has_trait = disinherited }
+					age > 1
+					age < 21
+					exists = dynasty
+					dynasty = dynasty:dynn_Targaryen
+					is_ai = yes
+					trigger_if = {
+						limit = { exists = court_owner }
+						court_owner = { is_ai = yes }
+					}
+					NOT = {
+						any_child = {
+							is_alive = yes
+						}
+					}
+				}
+			}
+			every_sibling = {
+				limit = {
+					can_marry_character_trigger = { CHARACTER = root }
+					NOT = { has_trait = bastard }
+					NOT = { has_trait = disinherited }
+					age < 21
+					exists = dynasty
+					dynasty = dynasty:dynn_Targaryen
+					is_ai = yes
+					trigger_if = {
+						limit = { exists = court_owner }
+						court_owner = { is_ai = yes }
+					}
+					NOT = {
+						any_child = {
+							is_alive = yes
+						}
+					}
+				}
+				add_to_list = sibling_marriage_list
+			}
+			ordered_in_list = {
+				list = sibling_marriage_list
+				order_by = age
+				save_scope_as = betrothed
+			}
+			if = {
+				limit = { is_male = yes}
+				root = {
+					create_betrothal = scope:betrothed
+				}
+			}
+			else = {
+				scope:betrothed = {
+					create_betrothal = root
+				}
+			}
+		}
+	}
+}
+
+
+asoiaf_Targaryen_8_traits_change_maintenance = {
+	trigger = {
+		exists = global_var:asoiaf_Targaryen_8_pending_traits_change_variable
+		root = {
+			has_inactive_trait = asoiaf_Targaryen_8_trait
+			age >= 18
+			OR = {
+				AND = {
+					is_landless_adventurer = yes
+					NOT = { root.location = { geographical_region = world_westeros_seven_kingdoms } }
+				}
+				AND = {
+					is_landed = no
+					is_landless_adventurer = no
+					NOT = { geographical_region = world_westeros_seven_kingdoms }
+					liege ?= {
+						NOT = { capital_county.title_province = { geographical_region = world_westeros_seven_kingdoms } }
+					}
+				}
+				AND = {
+					is_landed = yes
+					NOT = { capital_county.title_province = { geographical_region = world_westeros_seven_kingdoms } }
+				}
+			}
+		}
+	}
+	effect = {
+		root = {
+			trigger_event = { id = asoiaf_maintenance_events.0001 days = 3 }
+		}
+	}
+}

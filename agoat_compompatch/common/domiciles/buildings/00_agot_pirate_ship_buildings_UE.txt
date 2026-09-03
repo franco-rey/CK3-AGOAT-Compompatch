@@ -1,0 +1,216 @@
+﻿@pirate_ship_main_cost_3 = 150
+@pirate_ship_main_cost_4 = 300
+@pirate_ship_main_cost_5 = 600
+@pirate_ship_main_cost_6 = 1200
+@pirate_ship_main_cost_7 = 2500
+@pirate_ship_main_time = 240
+
+
+agot_pirate_ship_main_01 = {
+	slot_type = main
+	internal_slots = 9
+	construction_time = @pirate_ship_main_time
+
+	allowed_domicile_types = {
+		agot_pirate_ship
+	}
+
+	character_modifier = {
+		men_at_arms_maintenance_per_dread_mult = -0.01
+		provisions_capacity_add = 100
+		domicile_monthly_gold_add = 1
+	}
+
+	ai_value = { value = 10000 }
+
+	asset = {
+		icon = "gfx/interface/icons/domicile_building/domicile_agot_pirate_ship_main.dds"
+		texture = "gfx/interface/window_domiciles/pirate_ship.dds"
+		intersectionmask_texture = "gfx/interface/window_domiciles/laamp_building_pavillion_tribal_level_01_mask.png"
+		soundeffect = "event:/DLC/EP3/SFX/UI/camp_buildings/ep3_ui_domicile_buildings_main_building"
+	}
+}
+
+agot_pirate_ship_main_02 = {
+	slot_type = main
+	construction_time = @pirate_ship_main_time
+	internal_slots = 9
+	previous_building = agot_pirate_ship_main_01
+
+	allowed_domicile_types = {
+		agot_pirate_ship
+	}
+
+	cost = {
+		gold = @pirate_ship_main_cost_3
+	}
+
+	character_modifier = {
+		provisions_capacity_add = 100
+	}
+
+	ai_value = {
+		value = camp_main_main_path_value
+		if = {
+			limit = {
+				num_domicile_buildings >= 4
+			}
+			multiply = 10
+		}
+	}
+
+	asset = {
+		icon = "gfx/interface/icons/domicile_building/domicile_agot_pirate_ship_main.dds"
+		texture = "gfx/interface/window_domiciles/pirate_ship.dds"
+		intersectionmask_texture = "gfx/interface/window_domiciles/laamp_building_pavillion_tribal_level_01_mask.png"
+		soundeffect = "event:/DLC/EP3/SFX/UI/camp_buildings/ep3_ui_domicile_buildings_main_building"
+	}
+}
+
+agot_pirate_ship_main_03 = {
+	slot_type = main
+	construction_time = @pirate_ship_main_time
+	internal_slots = 9
+	previous_building = agot_pirate_ship_main_02
+
+	allowed_domicile_types = {
+		agot_pirate_ship
+	}
+
+	cost = {
+		gold = @pirate_ship_main_cost_4
+	}
+
+	character_modifier = {
+		max_loot_mult = 0.1
+		provisions_capacity_add = 100
+	}
+
+	ai_value = {
+		value = camp_main_main_path_value
+		if = {
+			limit = {
+				num_domicile_buildings >= 4
+			}
+			multiply = 10
+		}
+	}
+
+	asset = {
+		icon = "gfx/interface/icons/domicile_building/domicile_agot_pirate_ship_main.dds"
+		texture = "gfx/interface/window_domiciles/pirate_ship.dds"
+		intersectionmask_texture = "gfx/interface/window_domiciles/laamp_building_pavillion_tribal_level_01_mask.png"
+		soundeffect = "event:/DLC/EP3/SFX/UI/camp_buildings/ep3_ui_domicile_buildings_main_building"
+	}
+}
+
+agot_pirate_ship_main_04 = {
+	slot_type = main
+	construction_time = @pirate_ship_main_time
+	internal_slots = 9
+	previous_building = agot_pirate_ship_main_03
+
+	allowed_domicile_types = {
+		agot_pirate_ship
+	}
+
+	cost = {
+		gold = @pirate_ship_main_cost_5
+	}
+
+	character_modifier = {
+		max_loot_mult = 0.1
+		provisions_capacity_add = 100
+	}
+
+	ai_value = {
+		value = camp_main_main_path_value
+		if = {
+			limit = {
+				num_domicile_buildings >= 4
+			}
+			multiply = 10
+		}
+	}
+
+	asset = {
+		icon = "gfx/interface/icons/domicile_building/domicile_agot_pirate_ship_main.dds"
+		texture = "gfx/interface/window_domiciles/pirate_ship.dds"
+		intersectionmask_texture = "gfx/interface/window_domiciles/laamp_building_pavillion_tribal_level_01_mask.png"
+		soundeffect = "event:/DLC/EP3/SFX/UI/camp_buildings/ep3_ui_domicile_buildings_main_building"
+	}
+}
+
+agot_pirate_ship_main_05 = {
+	slot_type = main
+	construction_time = @pirate_ship_main_time
+	internal_slots = 9
+	previous_building = agot_pirate_ship_main_04
+
+	allowed_domicile_types = {
+		agot_pirate_ship
+	}
+
+	cost = {
+		gold = @pirate_ship_main_cost_6
+	}
+
+	character_modifier = {
+		max_loot_mult = 0.1
+		provisions_capacity_add = 100
+	}
+
+	ai_value = {
+		value = camp_main_main_path_value
+		if = {
+			limit = {
+				num_domicile_buildings >= 4
+			}
+			multiply = 10
+		}
+	}
+
+	asset = {
+		icon = "gfx/interface/icons/domicile_building/domicile_agot_pirate_ship_main.dds"
+		texture = "gfx/interface/window_domiciles/pirate_ship.dds"
+		intersectionmask_texture = "gfx/interface/window_domiciles/laamp_building_pavillion_tribal_level_01_mask.png"
+		soundeffect = "event:/DLC/EP3/SFX/UI/camp_buildings/ep3_ui_domicile_buildings_main_building"
+	}
+}
+
+agot_pirate_ship_main_06 = {
+	slot_type = main
+	construction_time = @pirate_ship_main_time
+	internal_slots = 9
+	previous_building = agot_pirate_ship_main_05
+
+	allowed_domicile_types = {
+		agot_pirate_ship
+	}
+
+	cost = {
+		gold = @pirate_ship_main_cost_7
+	}
+
+	character_modifier = {
+		max_loot_mult = 0.1
+		provisions_capacity_add = 100
+	}
+
+	ai_value = {
+		value = camp_main_main_path_value
+		if = {
+			limit = {
+				num_domicile_buildings >= 4
+			}
+			multiply = 10
+		}
+	}
+
+	asset = {
+		icon = "gfx/interface/icons/domicile_building/domicile_agot_pirate_ship_main.dds"
+		texture = "gfx/interface/window_domiciles/pirate_ship.dds"
+		intersectionmask_texture = "gfx/interface/window_domiciles/laamp_building_pavillion_tribal_level_01_mask.png"
+		soundeffect = "event:/DLC/EP3/SFX/UI/camp_buildings/ep3_ui_domicile_buildings_main_building"
+	}
+}

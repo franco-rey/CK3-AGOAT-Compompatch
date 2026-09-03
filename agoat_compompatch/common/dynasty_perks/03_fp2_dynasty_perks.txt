@@ -1,0 +1,234 @@
+﻿
+
+fp2_urbanism_legacy_2 = {
+	legacy = fp2_urbanism_legacy_track
+
+	can_be_picked = {
+		hth_metropolitan_1_legacy_trigger = yes
+		eligible_for_fp2_dynasty_legacies_trigger = yes
+	}
+
+	effect = {
+		custom_description_no_bullet = { text = fp2_urbanism_legacy_2_effect }
+		custom_description_no_bullet = { text = hth_law_legacy_1_ai_effect }
+		custom_description_no_bullet = { text = hth_metropolitan_legacy_1_req_effect }
+	}
+
+	character_modifier = {
+		stewardship = 1
+		learning = 1
+		ai_greed = 20
+	}
+
+	ai_chance = {
+		value = 11
+		if = {
+			limit = {
+				can_start_new_legacy_track_trigger = no
+			}
+			multiply = 0
+		}
+	}
+}
+hth_fp2_urbanism_legacy_2 = {
+	legacy = fp2_urbanism_legacy_track
+
+	effect = {
+		custom_description_no_bullet = { text = hth_law_legacy_1_ai_effect }
+		custom_description_no_bullet = { text = hth_metropolitan_legacy_2_req_effect }
+	}
+	character_modifier = {
+		republic_government_levy_contribution_add = 0.15
+		republic_government_tax_contribution_add = 0.15
+		city_holding_build_speed = -0.1
+		city_holding_build_gold_cost = -0.1
+		city_holding_holding_build_speed = -0.1
+		city_holding_holding_build_gold_cost = -0.1
+		ai_greed = 20
+	}
+	can_be_picked = {
+		hth_metropolitan_2_legacy_trigger = yes
+	}
+	ai_chance = {
+		value = 100
+	}
+}
+fp2_urbanism_legacy_4 = {
+	legacy = fp2_urbanism_legacy_track
+
+	character_modifier = {
+		monthly_stewardship_lifestyle_xp_gain_mult = 0.10
+		monthly_learning_lifestyle_xp_gain_mult = 0.10
+		ai_greed = 20
+	}
+	effect = {
+		custom_description_no_bullet = { text = fp2_urbanism_legacy_4_effect }
+		custom_description_no_bullet = { text = hth_law_legacy_1_ai_effect }
+		custom_description_no_bullet = { text = hth_metropolitan_legacy_3_req_effect }
+	}
+	can_be_picked = {
+		hth_metropolitan_3_legacy_trigger = yes
+	}
+	ai_chance = {
+		value = 100
+	}
+}
+fp2_urbanism_legacy_1 = {
+	legacy = fp2_urbanism_legacy_track
+
+	effect = {
+		custom_description_no_bullet = { text = fp2_urbanism_legacy_1_effect }
+		custom_description_no_bullet = { text = hth_law_legacy_1_ai_effect }
+		custom_description_no_bullet = { text = hth_metropolitan_legacy_4_req_effect }
+	}
+	character_modifier = {
+		court_grandeur_baseline_add = 5
+		parochial_tax_contribution_mult = 0.25
+		ai_greed = 20
+	}
+
+	can_be_picked = {
+		agot_fp2_urbanism_legacy_track_trigger = yes
+		hth_metropolitan_4_legacy_trigger = yes
+	}
+
+	ai_chance = {
+		value = 100
+	}
+}
+fp2_urbanism_legacy_5 = {
+	legacy = fp2_urbanism_legacy_track
+
+	effect = {
+		custom_description_no_bullet = { text = hth_metropolitan_legacy_3_effect }
+		custom_description_no_bullet = { text = hth_law_legacy_1_ai_effect }
+		custom_description_no_bullet = { text = hth_metropolitan_legacy_5_req_effect }
+	}
+	character_modifier = {
+		stewardship = 1
+		learning = 1
+		ai_greed = 20
+	}
+	can_be_picked = {
+		hth_metropolitan_5_legacy_trigger = yes
+	}
+	ai_chance = {
+		value = 100
+	}
+}
+
+hth_fp2_coterie_legacy_1 = {
+	legacy = fp2_coterie_legacy_track
+
+	can_be_picked = {
+		hth_coterie_1_legacy_trigger = yes
+		eligible_for_fp2_dynasty_legacies_trigger = yes
+	}
+	effect = {
+		custom_description_no_bullet = { text = hth_coterie_legacy_1_ai_effect }
+		custom_description_no_bullet = { text = hth_coterie_legacy_1_req_effect }
+	}
+	character_modifier = {
+		intrigue = 1
+		diplomacy = 1
+		dynasty_house_opinion = 5
+		ai_honor = 10
+		ai_vengefulness = 10
+	}
+	ai_chance = {
+		value = 11
+		if = {
+			limit = {
+				can_start_new_legacy_track_trigger = no
+			}
+			multiply = 0
+		}
+	}
+}
+fp2_coterie_legacy_1 = {
+	legacy = fp2_coterie_legacy_track
+
+	can_be_picked = {
+		agot_fp2_coterie_legacy_track_trigger = yes hth_coterie_2_legacy_trigger = yes }
+
+	character_modifier = {
+		max_sway_schemes_add = 1
+		ai_honor = 10
+		ai_vengefulness = 10
+	}
+
+	effect = {
+		custom_description_no_bullet = { text = fp2_coterie_legacy_1_effect }
+		custom_description_no_bullet = { text = hth_coterie_legacy_1_ai_effect }
+		custom_description_no_bullet = { text = hth_coterie_legacy_2_req_effect }
+	}
+
+	ai_chance = {
+		value = 100
+	}
+}
+fp2_coterie_legacy_4 = {
+	legacy = fp2_coterie_legacy_track
+
+	can_be_picked = { hth_coterie_3_legacy_trigger = yes }
+
+	effect = {
+		custom_description_no_bullet = { text = fp2_coterie_legacy_4_effect }
+		custom_description_no_bullet = { text = hth_coterie_legacy_1_ai_effect }
+		custom_description_no_bullet = { text = hth_coterie_legacy_3_req_effect }
+	}
+
+	character_modifier = {
+		monthly_diplomacy_lifestyle_xp_gain_mult = 0.10
+		monthly_intrigue_lifestyle_xp_gain_mult = 0.10
+		ai_honor = 10
+		ai_vengefulness = 10
+	}
+
+	ai_chance = {
+		value = 100
+	}
+}
+fp2_coterie_legacy_3 = {
+	legacy = fp2_coterie_legacy_track
+
+	can_be_picked = { hth_coterie_4_legacy_trigger = yes }
+
+	effect = {
+		custom_description_no_bullet = { text = fp2_coterie_legacy_3_effect }
+		custom_description_no_bullet = { text = hth_coterie_legacy_1_ai_effect }
+		custom_description_no_bullet = { text = hth_coterie_legacy_4_req_effect }
+	}
+
+	character_modifier = {
+		same_heritage_county_advantage_add = 5
+		ai_honor = 10
+		ai_vengefulness = 10
+	}
+
+	ai_chance = {
+		value = 100
+	}
+}
+fp2_coterie_legacy_5 = {
+	legacy = fp2_coterie_legacy_track
+
+	can_be_picked = { hth_coterie_5_legacy_trigger = yes }
+
+	effect = {
+		custom_description_no_bullet = { text = fp2_coterie_legacy_5_effect }
+		custom_description_no_bullet = { text = hth_coterie_legacy_1_ai_effect }
+		custom_description_no_bullet = { text = hth_coterie_legacy_5_req_effect }
+	}
+
+	character_modifier = {
+		intrigue = 1
+		diplomacy = 1
+		ai_honor = 10
+		ai_vengefulness = 10
+	}
+
+	ai_chance = {
+		value = 100
+	}
+}

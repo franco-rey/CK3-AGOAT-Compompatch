@@ -1,0 +1,1212 @@
+﻿
+
+on_birth_mother = {
+
+
+	events = {
+		birth.0001
+		birth.3011
+
+		agot_birth_events.0002
+		agot_birth_events.0100
+		agot_birth_events.1500
+		agot_realm.0040
+	}
+	effect = {
+
+		scope:mother = {
+			if = {
+				limit = { has_character_flag = agot_is_pregnant }
+				scope:child = { agot_canon_children_birth_effect = yes }
+			}
+		}
+
+		scope:mother = {
+			if = {
+				limit = {
+					is_playable_character = yes
+					exists = scope:mother.location
+					exists = scope:child.location
+					scope:mother.location = scope:child.location
+				}
+				trigger_event = {
+					id = bp2_yearly.4000
+ 	  				days = 3
+				}
+
+				if = {
+					limit = {
+						has_legend_chapter_trigger = { CHAPTER = motivation }
+						NOT = {
+							promoted_legend ?= {
+								has_legend_chapter = {
+									name = motivation
+									localization_key = legend_chapter_motivation_child_mother
+								}
+							}
+						}
+					}
+					random = {
+						chance = 10
+						send_interface_toast = {
+							title = legend_chapter_change_toast
+							left_icon = scope:mother
+							right_icon = scope:child
+							promoted_legend = {
+								set_legend_chapter = {
+									name = motivation
+									localization_key = legend_chapter_motivation_child_mother
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+
+		random = {
+			chance = 10
+			scope:mother = {
+				trigger_event = {
+					id = legend_spread_events.8171
+					months = 3
+				}
+			}
+			scope:father ?= {
+				trigger_event = {
+					id = legend_spread_events.8171
+					months = 3
+				}
+			}
+		}
+
+		scope:mother.current_travel_plan ?= {
+			if = {
+				limit = {
+					travel_plan_owner = { is_ruler = yes }
+				}
+				add_companion = scope:child
+			}
+		}
+
+
+		if = {
+			limit = {
+				faith = { has_doctrine_parameter = piety_from_childbirth_active }
+			}
+			send_interface_toast = {
+				type = event_generic_neutral
+				title = piety_from_childbirth_toast
+				left_icon = scope:child
+				right_icon = scope:mother
+				if = {
+					limit = {
+						scope:child = { has_any_negative_bastard_trait_trigger = no }
+					}
+					add_piety = {
+						value = major_piety_gain
+						if = {
+							limit = {
+								any_child = { is_twin_of = scope:child }
+							}
+							add = major_piety_gain
+						}
+						if = {
+							limit = {
+								any_child = {
+									count >= 2
+									is_twin_of = scope:child
+								}
+							}
+							add = major_piety_gain
+						}
+					}
+				}
+				else = {
+					add_piety = {
+						value = minor_piety_gain
+						if = {
+							limit = {
+								any_child = { is_twin_of = scope:child }
+							}
+							add = minor_piety_gain
+						}
+						if = {
+							limit = {
+								any_child = {
+									count >= 2
+									is_twin_of = scope:child
+								}
+							}
+							add = minor_piety_gain
+						}
+					}
+				}
+			}
+		}
+
+		scope:child = {
+			if = {
+				limit = { has_trait = twin }
+				random_sibling = {
+					limit = { is_twin_of = scope:child }
+					save_scope_as = child_2
+				}
+			}
+		}
+
+
+		if = {
+			limit = {
+				government_has_flag = government_is_mandala
+				house ?= {
+					has_house_aspiration_parameter = births_give_piety
+					this = scope:child.house
+				}
+				is_landed = yes
+			}
+			if = {
+				limit = { exists = scope:child_2 }
+				send_interface_message = {
+					type = msg_mandala_creator_birth_good
+					title = mandala_creator_children_born
+					left_icon = scope:child
+					right_icon = scope:child_2
+					add_piety = {
+						value = major_piety_gain
+						multiply = 2
+						if = {
+							limit = {
+								any_child = {
+									count > 2
+									is_twin_of = scope:child
+								}
+							}
+							add = major_piety_gain
+						}
+					}
+				}
+			}
+			else = {
+				send_interface_message = {
+					type = msg_mandala_creator_birth_good
+					title = mandala_creator_child_born
+					left_icon = scope:child
+					right_icon = scope:mother
+					add_piety = major_piety_gain
+				}
+			}
+		}
+
+		if = {
+			limit = {
+				NOR = {
+					any_child = {
+						even_if_dead = yes
+						this != scope:child
+					}
+					exists = scope:child_2
+				}
+			}
+			create_character_memory = {
+				type = first_born
+				participants = {
+					child = scope:child
+				}
+			}
+		}
+		else = {
+			if = {
+				limit = { exists = scope:child_2 }
+				create_character_memory = {
+					type = twins_born
+					participants = {
+						child = scope:child
+						child_2 = scope:child_2
+					}
+				}
+			}
+			else = {
+				create_character_memory = {
+					type = child_born
+					participants = {
+						child = scope:child
+					}
+				}
+			}
+		}
+
+		scope:mother = {
+			if = {
+				limit = {
+					has_character_modifier = oath_of_children
+				}
+				hidden_effect = {
+					remove_character_modifier = oath_of_children
+					add_character_modifier = oath_of_children
+				}
+			}
+		}
+
+
+	}
+}
+
+
+on_birth_father = {
+	events = {
+
+		agot_realm.0040
+	}
+	effect = {
+		scope:father = {
+			if = {
+				limit = {
+					is_playable_character = yes
+					exists = scope:father.location
+					exists = scope:child.location
+					scope:father.location = scope:child.location
+				}
+				trigger_event = {
+					id = bp2_yearly.4000
+ 	  				days = 3
+				}
+
+				if = {
+					limit = {
+						has_legend_chapter_trigger = { CHAPTER = motivation }
+						NOT = {
+							promoted_legend ?= {
+								has_legend_chapter = {
+									name = motivation
+									localization_key = legend_chapter_motivation_child_father
+								}
+							}
+						}
+					}
+					random = {
+						chance = 10
+						send_interface_toast = {
+							title = legend_chapter_change_toast
+							left_icon = scope:father
+							right_icon = scope:child
+							promoted_legend = {
+								set_legend_chapter = {
+									name = motivation
+									localization_key = legend_chapter_motivation_child_father
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+
+
+		if = {
+			limit = {
+				faith = { has_doctrine_parameter = piety_from_childbirth_active }
+			}
+			send_interface_toast = {
+				type = event_generic_neutral
+				title = piety_from_childbirth_toast
+				left_icon = scope:child
+				right_icon = scope:mother
+				if = {
+					limit = {
+						scope:child = { has_any_negative_bastard_trait_trigger = no }
+					}
+					add_piety = {
+						value = major_piety_gain
+						if = {
+							limit = {
+								any_child = { is_twin_of = scope:child }
+							}
+							add = major_piety_gain
+						}
+						if = {
+							limit = {
+								any_child = {
+									count >= 2
+									is_twin_of = scope:child
+								}
+							}
+							add = major_piety_gain
+						}
+					}
+				}
+				else = {
+					add_piety = {
+						value = minor_piety_gain
+						if = {
+							limit = {
+								any_child = { is_twin_of = scope:child }
+							}
+							add = minor_piety_gain
+						}
+						if = {
+							limit = {
+								any_child = {
+									count >= 2
+									is_twin_of = scope:child
+								}
+							}
+							add = minor_piety_gain
+						}
+					}
+				}
+			}
+		}
+
+		scope:child = {
+			if = {
+				limit = { has_trait = twin }
+				random_sibling = {
+					limit = { is_twin_of = scope:child }
+					save_scope_as = child_2
+				}
+
+			}
+		}
+
+
+		if = {
+			limit = {
+				government_has_flag = government_is_mandala
+				house ?= {
+					has_house_aspiration_parameter = births_give_piety
+					this = scope:child.house
+				}
+				is_landed = yes
+			}
+			if = {
+				limit = { exists = scope:child_2 }
+				send_interface_message = {
+					type = msg_mandala_creator_birth_good
+					title = mandala_creator_children_born
+					left_icon = scope:child
+					right_icon = scope:child_2
+					add_piety = {
+						value = major_piety_gain
+						multiply = 2
+						if = {
+							limit = {
+								any_child = {
+									count > 2
+									is_twin_of = scope:child
+								}
+							}
+							add = major_piety_gain
+						}
+					}
+				}
+			}
+			else = {
+				send_interface_message = {
+					type = msg_mandala_creator_birth_good
+					title = mandala_creator_child_born
+					left_icon = scope:child
+					right_icon = scope:father
+					add_piety = major_piety_gain
+				}
+			}
+		}
+
+		if = {
+			limit = {
+				NOR = {
+					any_child = {
+						even_if_dead = yes
+						this != scope:child
+					}
+					exists = scope:child_2
+				}
+			}
+			create_character_memory = {
+				type = first_born
+				participants = {
+					child = scope:child
+				}
+			}
+		}
+		else = {
+			if = {
+				limit = { exists = scope:child_2 }
+				create_character_memory = {
+					type = twins_born
+					participants = {
+						child = scope:child
+						child_2 = scope:child_2
+					}
+				}
+			}
+			else = {
+				create_character_memory = {
+					type = child_born
+					participants = {
+						child = scope:child
+					}
+				}
+			}
+		}
+
+		scope:father = {
+			if = {
+				limit = {
+					has_character_modifier = oath_of_children
+				}
+				hidden_effect = {
+					remove_character_modifier = oath_of_children
+					add_character_modifier = oath_of_children
+				}
+			}
+		}
+	}
+}
+
+
+on_birth_real_father = {
+	events = {
+
+	}
+}
+
+
+on_birth_child = {
+	events = {
+
+
+		major_decisions.0101
+		birth.8001
+
+
+		trait_specific.0500
+		debug.0010
+
+		delay = { days = 1 }
+		agot_dragon_egg_cradling.2010
+		season_flavor_events.00015
+	}
+	effect = {
+
+		if = {
+			limit = {
+				scope:mother = {
+					OR = {
+						has_character_flag = needs_twin_one_female
+						has_character_flag = needs_twin_one_male
+					}
+				}
+			}
+			if = {
+				limit = {
+					scope:mother = { has_character_flag = needs_twin_one_female }
+					is_female = yes
+				}
+				scope:mother = {
+					set_variable = {
+						name = twin_one
+						value = root
+					}
+					remove_character_flag = needs_twin_one_female
+				}
+			}
+			else_if = {
+				limit = {
+					scope:mother = { has_character_flag = needs_twin_one_male }
+					is_female = no
+				}
+				scope:mother = {
+					set_variable = {
+						name = twin_one
+						value = root
+					}
+					remove_character_flag = needs_twin_one_male
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				scope:mother = {
+					OR = {
+						has_character_flag = needs_twin_two_female
+						has_character_flag = needs_twin_two_male
+					}
+				}
+			}
+			if = {
+				limit = {
+					scope:mother = { has_character_flag = needs_twin_two_female }
+					is_female = yes
+				}
+				scope:mother = {
+					set_variable = {
+						name = twin_two
+						value = root
+					}
+					remove_character_flag = needs_twin_two_female
+				}
+			}
+			else_if = {
+				limit = {
+					scope:mother = { has_character_flag = needs_twin_two_male }
+					is_female = no
+				}
+				scope:mother = {
+					set_variable = {
+						name = twin_two
+						value = root
+					}
+					remove_character_flag = needs_twin_two_male
+				}
+			}
+		}
+
+
+		if = {
+			limit = {
+				scope:mother = { has_character_flag = converted_from_ibbenese }
+				scope:real_father = { has_character_flag = converted_from_ibbenese }
+			}
+			add_character_flag = converted_from_ibbenese
+		}
+		else_if = {
+			limit = {
+				scope:mother = { has_character_flag = converted_to_ibbenese }
+				scope:real_father = { has_character_flag = converted_to_ibbenese }
+			}
+			add_character_flag = converted_to_ibbenese
+		}
+
+
+		if = {
+			limit = {
+				NOT = { has_trait = nomadic_philosophy }
+				OR = {
+					scope:mother = {
+						has_trait = nomadic_philosophy
+						NOT = { has_character_flag = nomphil_exodus_first_gen }
+					}
+					scope:father ?= {
+						has_trait = nomadic_philosophy
+						NOT = { has_character_flag = nomphil_exodus_first_gen }
+					}
+				}
+			}
+			add_trait = nomadic_philosophy
+			if = {
+				limit = {
+					NOR = {
+						location.county ?= {
+							any_county_situation = { this = situation:the_great_steppe }
+						}
+						top_liege ?= {
+							government_has_flag = government_is_nomadic
+							government_has_flag = government_is_steppe_admin
+						}
+					}
+				}
+				add_character_flag = nomphil_exodus_first_gen
+			}
+		}
+		if = {
+			limit = {
+				scope:mother = {
+					has_character_flag = blessed_baby
+				}
+			}
+			random_list = {
+				23 = {
+					add_trait = intellect_good_2
+				}
+				10 = {
+					add_trait = intellect_good_3
+				}
+				23 = {
+					add_trait = physique_good_2
+				}
+				10 = {
+					add_trait = physique_good_3
+				}
+				23 = {
+					add_trait = beauty_good_2
+				}
+				10 = {
+					add_trait = beauty_good_3
+				}
+			}
+		}
+
+
+		if = {
+			limit = { scope:father ?= { house ?= house:house_Most_Devout } }
+			if = {
+				limit = { scope:mother = { is_lowborn = no } }
+				set_house = mother.house
+			}
+			else = { set_to_lowborn = yes }
+		}
+
+
+		if = {
+			limit = {
+				OR = {
+					scope:is_bastard = no
+					faith = { has_doctrine_parameter = bastards_none }
+				}
+				scope:child = {
+					is_lowborn = yes
+				}
+				OR = {
+					AND = {
+						exists = scope:father
+						scope:father = {
+							is_lowborn = no
+						}
+					}
+					scope:mother = {
+						is_lowborn = no
+					}
+				}
+			}
+			if = {
+				limit = {
+					NOT = {
+						exists = scope:father
+					}
+					exists = mother.house
+
+					NOT = { mother.house = house:house_Most_Devout }
+					NOT = { mother = { has_trait = bastard } }
+				}
+				set_house = mother.house
+			}
+			else_if = {
+				limit = {
+					exists = scope:father
+					exists = mother.house
+					scope:father = {
+						OR = {
+							AND = {
+								is_spouse_of = scope:mother
+								matrilinear_marriage = yes
+							}
+							is_concubine_of = scope:mother
+						}
+					}
+
+					NOT = { mother.house = house:house_Most_Devout }
+					NOT = { mother = { has_trait = bastard } }
+				}
+				set_house = mother.house
+			}
+			else_if = {
+				limit = {
+					exists = scope:father
+					exists = father.house
+
+					NOT = { father.house = house:house_Most_Devout }
+					NOT = { father = { has_trait = bastard } }
+				}
+				set_house = father.house
+			}
+
+
+			else_if = {
+				limit = {
+					NOT = { mother.house = house:house_Most_Devout }
+					NOT = { mother = { has_trait = bastard } }
+				}
+				set_house = mother.house
+			}
+		}
+
+
+		if = {
+			limit = {
+				scope:mother = {
+					has_trait = bastard
+				}
+				trigger_if = {
+					limit = { exists = scope:father }
+					scope:father = {
+						has_trait = bastard
+					}
+				}
+			}
+			set_to_lowborn = yes
+		}
+
+
+		if = {
+			limit = {
+				liege_or_court_owner ?= { has_trait = nightswatch }
+			}
+			if = {
+				limit = {
+					exists = scope:mother.liege_or_court_owner
+				}
+				scope:mother.liege_or_court_owner = { add_courtier ?= scope:child }
+			}
+			else_if = {
+				limit = {
+					exists = scope:mother.location
+				}
+				move_to_pool_at = scope:mother.location
+			}
+			else = {
+				move_to_pool_at = title:c_winterfell.holder.capital_province
+			}
+		}
+
+
+		hidden_effect = {
+			if = {
+				limit = {
+					is_alive = yes
+				}
+				set_variable = {
+					name = agot_birthplace
+					value = location
+				}
+				if = {
+					limit = { has_trait = twin }
+					random_sibling = {
+						limit = { is_twin_of = scope:child }
+						save_scope_as = child_2
+						scope:child_2 = {
+							if = {
+								limit = { has_variable = agot_birthplace }
+								remove_variable = agot_birthplace
+
+								set_variable = {
+									name = agot_birthplace
+									value = scope:child.var:agot_birthplace
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+
+
+		agot_on_birth_bestow_scion_status_effect = { CHILD = scope:child }
+
+
+		agot_learn_appropiate_languages = yes
+
+
+		if = {
+			limit = {
+				scope:is_bastard = yes
+			}
+			add_bastard_trait_based_on_faith_effect = yes
+
+
+			if = {
+				limit = {
+					exists = var:agot_birthplace
+				}
+				agot_add_birthplace_bastard_nickname_effect = {
+					BIRTHPLACE = var:agot_birthplace
+				}
+			}
+			else = {
+				agot_add_birthplace_bastard_nickname_effect = {
+					BIRTHPLACE = location
+				}
+			}
+
+			if = {
+				limit = {
+					scope:mother = {
+						has_character_flag = pregnancy_real_father_of_bastard_is_known_flag
+					}
+				}
+
+				set_father = scope:real_father
+			}
+			set_parent_house_effect = yes
+
+
+			scope:mother = {
+				every_child = {
+					limit = {
+						is_twin_of = scope:child
+					}
+					add_bastard_trait_based_on_faith_effect = yes
+
+
+					if = {
+						limit = {
+							exists = scope:child.var:agot_birthplace
+						}
+						agot_add_birthplace_bastard_nickname_effect = {
+							BIRTHPLACE = scope:child.var:agot_birthplace
+						}
+					}
+					else = {
+						agot_add_birthplace_bastard_nickname_effect = {
+							BIRTHPLACE = scope:child.location
+						}
+					}
+
+					if = {
+						limit = {
+							scope:mother = {
+								has_character_flag = pregnancy_real_father_of_bastard_is_known_flag
+							}
+						}
+
+						set_father = scope:real_father
+					}
+					set_parent_house_effect = yes
+				}
+			}
+		}
+
+		if = {
+			limit = {
+				is_alive = yes
+				faith = {
+					has_doctrine_parameter = parents_get_hooks_on_children
+				}
+			}
+			if = {
+				limit = {
+					scope:child.father ?= {
+						is_alive = yes
+						faith = {
+							has_doctrine_parameter = parents_get_hooks_on_children
+						}
+					}
+				}
+				scope:child.father = {
+					add_hook = {
+						target = scope:child
+						type = filial_piety_hook
+					}
+				}
+			}
+			if = {
+				limit = {
+					scope:child.mother ?= {
+						is_alive = yes
+						faith = {
+							has_doctrine = tenet_filial_piety
+						}
+					}
+				}
+				scope:child.mother = {
+					add_hook = {
+						target = scope:child
+						type = filial_piety_hook
+					}
+				}
+			}
+		}
+
+
+		if = {
+			limit = {
+				is_alive = yes
+				exists = scope:child.house
+				scope:child.house.house_head = {
+					is_alive = yes
+					can_add_hook = {
+						target = scope:child
+						type = house_head_hook
+					}
+				}
+				NOT = {
+					scope:child = scope:child.house.house_head
+				}
+			}
+			scope:child.house.house_head = {
+				add_hook_no_toast = {
+					type = house_head_hook
+					target = scope:child
+				}
+			}
+		}
+
+		if = {
+			limit = {
+				exists = scope:father
+				exists = scope:mother
+				scope:mother = { is_concubine_of = scope:father }
+			}
+			add_trait = child_of_concubine_female
+		}
+		if = {
+			limit = {
+				exists = scope:father
+				exists = scope:mother
+				scope:father = { is_concubine_of = scope:mother }
+			}
+			add_trait = child_of_concubine_male
+		}
+
+		if = {
+			limit = {
+				scope:child.liege ?= {
+					any_courtier = {
+						has_court_position = wet_nurse_court_position
+						save_temporary_scope_as = wet_nurse
+					}
+				}
+				NOT = { any_relation = { type = wet_nurse } }
+			}
+			set_relation_wet_nurse = scope:wet_nurse
+		}
+
+		if = {
+			limit = {
+				is_hostage = yes
+				dynasty = warden.dynasty
+			}
+			save_scope_as = unhostaged_child
+			warden = { save_scope_as = warden }
+			return_hostage = yes
+			scope:warden = { add_courtier = root }
+		}
+		hidden_effect = {
+			every_parent = {
+				limit = { has_perk = sound_foundations_perk	}
+				sound_foundations_skill_gain_effect = yes
+			}
+		}
+
+
+		hidden_effect = {
+			if = {
+				limit = {
+					exists = scope:child.dynasty
+					scope:child.dynasty = { has_dynasty_perk = blood_legacy_4 }
+					OR = {
+						scope:mother.dynasty = scope:child.dynasty
+						scope:real_father.dynasty = scope:child.dynasty
+					}
+				}
+				if = {
+					limit = {
+						scope:child.dynasty = {
+							exists = var:blood_legacy_4_beauty_good_1
+						}
+						NOR = {
+							has_trait = beauty_good
+							has_trait = beauty_bad
+						}
+					}
+					random = {
+						chance = blood_legacy_4_chance
+						modifier = {
+							add = blood_legacy_4_extra_player_chance
+							any_parent = { is_ai = no }
+						}
+						add_trait = beauty_good_1
+					}
+				}
+				else_if = {
+					limit = {
+						scope:child.dynasty = {
+							exists = var:blood_legacy_4_intellect_good_1
+						}
+						NOR = {
+							has_trait = intellect_good
+							has_trait = intellect_bad
+						}
+					}
+					random = {
+						chance = blood_legacy_4_chance
+						modifier = {
+							add = blood_legacy_4_extra_player_chance
+							any_parent = { is_ai = no }
+						}
+						add_trait = intellect_good_1
+					}
+				}
+				else_if = {
+					limit = {
+						scope:child.dynasty = {
+							exists = var:blood_legacy_4_physique_good_1
+						}
+						NOR = {
+							has_trait = physique_good
+							has_trait = physique_bad
+						}
+					}
+					random = {
+						chance = blood_legacy_4_chance
+						modifier = {
+							add = blood_legacy_4_extra_player_chance
+							any_parent = { is_ai = no }
+						}
+						add_trait = physique_good_1
+					}
+				}
+				else_if = {
+					limit = {
+						scope:child.dynasty = {
+							exists = var:blood_legacy_4_fecund
+						}
+						NOR = {
+							has_trait = infertile
+							has_trait = fecund
+						}
+					}
+					random = {
+						chance = blood_legacy_4_chance
+						modifier = {
+							add = blood_legacy_4_extra_player_chance
+							any_parent = { is_ai = no }
+						}
+						add_trait = fecund
+					}
+				}
+				else_if = {
+					limit = {
+						scope:child.dynasty = {
+							exists = var:blood_legacy_4_giant
+						}
+						NOR = {
+							has_trait = giant
+							has_trait = dwarf
+						}
+					}
+					random = {
+						chance = blood_legacy_4_chance
+						modifier = {
+							add = blood_legacy_4_extra_player_chance
+							any_parent = { is_ai = no }
+						}
+						add_trait = giant
+					}
+				}
+				else_if = {
+					limit = {
+						scope:child.dynasty = {
+							exists = var:blood_legacy_4_dwarf
+						}
+						NOR = {
+							has_trait = giant
+							has_trait = dwarf
+						}
+					}
+					random = {
+						chance = blood_legacy_4_chance
+						modifier = {
+							add = blood_legacy_4_extra_player_chance
+							any_parent = { is_ai = no }
+						}
+						add_trait = dwarf
+					}
+				}
+				else_if = {
+					limit = {
+						scope:child.dynasty = {
+							exists = var:blood_legacy_4_albino
+						}
+						NOT = {
+							has_trait = albino
+						}
+					}
+					random = {
+						chance = blood_legacy_4_chance
+						modifier = {
+							add = blood_legacy_4_extra_player_chance
+							any_parent = { is_ai = no }
+						}
+						add_trait = albino
+					}
+				}
+				else_if = {
+					limit = {
+						scope:child.dynasty = {
+							exists = var:blood_legacy_4_scaly
+						}
+						NOT = {
+							has_trait = scaly
+						}
+					}
+					random = {
+						chance = blood_legacy_4_chance
+						modifier = {
+							add = blood_legacy_4_extra_player_chance
+							any_parent = { is_ai = no }
+						}
+						add_trait = scaly
+					}
+				}
+			}
+		}
+
+
+		scope:child = {
+			if = {
+				limit = {
+					any_parent = {
+						has_blood_brother = yes
+						any_relation = {
+							type = blood_brother
+							NOT = {
+								is_close_family_of = scope:child
+							}
+						}
+					}
+				}
+				every_parent = {
+					limit = {
+						has_blood_brother = yes
+						any_relation = {
+							type = blood_brother
+							NOT = {
+								is_close_family_of = scope:child
+							}
+						}
+					}
+					random_relation = {
+						type = blood_brother
+						save_scope_as = other_blood_brother
+					}
+				}
+				mpo_blood_brother_new_family_member_opinion_effect = yes
+			}
+		}
+
+
+		agot_birth_effects = yes
+
+
+		agot_hf_child_birth_action_cadet_effect = yes
+		agot_hf_child_birth_action_last_bastard_effect = yes
+		agot_hf_lowbron_city_child_effect = yes
+	}
+}
+
+
+on_pregnancy_mother = {
+	events = {
+		pregnancy.0001
+		pregnancy.1001
+		pregnancy.1101
+		pregnancy.2001
+		pregnancy.2002
+		pregnancy.2050
+	}
+}
+
+
+on_pregnancy_father = {
+	events = {
+
+	}
+}
+
+
+on_pregnancy_ended_mother = {
+	events = {
+
+	}
+}

@@ -1,0 +1,120 @@
+﻿namespace = asoiaf_young_griff_landing_events
+
+asoiaf_young_griff_landing_events.1 = {
+	type = character_event
+	hidden = yes
+
+	immediate = {
+		root = {
+			if = {
+				limit = { father = character:Mopatis_1 }
+
+				set_father = character:Targaryen_3
+				set_mother = character:Martell_7
+				set_house = character:Targaryen_3.house
+				every_held_title = {
+					set_coa = dynasty:dynn_Targaryen
+				}
+
+				character:Blackfyre_16 ?= {
+					set_house = house:asoiaf_house_Malazos
+					set_father = character:asoiaf_Blackfyre_16_father
+					set_mother = character:asoiaf_Blackfyre_16_mother
+				}
+				character:Mopatis_hh_1 ?= { set_house = house:asoiaf_house_Malazos }
+			}
+		}
+	}
+}
+
+asoiaf_young_griff_landing_events.2 = {
+	type = character_event
+	hidden = yes
+
+	immediate = {
+		root = {
+			set_court_language = language_agot_westeros
+			if = {
+				limit = {
+					is_ai = no
+				}
+				remove_trait = refusing_marriage
+			}
+		}
+	}
+}
+
+asoiaf_young_griff_landing_events.3 = {
+	type = character_event
+	hidden = yes
+
+	immediate = {
+		root = {
+			if = {
+				limit = {
+					root.father = character:Targaryen_3
+				}
+				hidden_effect = {
+					set_real_father = character:Targaryen_3
+					set_real_mother = character:Martell_7
+					dynasty:dynn_Targaryen = {
+						set_variable = agot_allow_adelphogamous_incest
+						set_variable = { name = blood_legacy_4_beauty_good_1 value = yes }
+					}
+				}
+			}
+			if = {
+				limit = {
+					root.father = character:Mopatis_1
+				}
+				trigger_event = { id = agot_coa_events.1 }
+				hidden_effect = {
+					dynasty:dynn_Targaryen = {
+						set_variable = agot_allow_adelphogamous_incest
+						set_variable = { name = blood_legacy_4_beauty_good_1 value = yes }
+					}
+					create_character = {
+						gender = female
+						age = 50
+						culture = culture:high_valyrian
+						faith = faith:fots_seven
+						location = root.location
+
+						dynasty = generate
+
+						save_scope_as = asoiaf_aegon_fake_mother
+
+						after_creation = {
+							death =  { death_reason = death_disappearance }
+						}
+					}
+					create_character = {
+						gender = male
+						age = 50
+						culture = culture:crownlander
+						faith = faith:fots_seven
+						location = root.location
+
+						dynasty = none
+
+						save_scope_as = asoiaf_pisswater_prince_real_father
+
+						after_creation = {
+							death =  { death_reason = death_disappearance }
+						}
+					}
+					set_mother = scope:asoiaf_aegon_fake_mother
+					set_real_father = character:Targaryen_3
+					set_real_mother = character:Martell_7
+					character:Targaryen_11 = {
+						set_mother = character:Martell_7
+						set_father = character:Targaryen_3
+						set_real_father = scope:asoiaf_pisswater_prince_real_father
+						set_real_mother = scope:asoiaf_aegon_fake_mother
+						set_house =  character:Targaryen_3.house
+					}
+				}
+			}
+		}
+	}
+}

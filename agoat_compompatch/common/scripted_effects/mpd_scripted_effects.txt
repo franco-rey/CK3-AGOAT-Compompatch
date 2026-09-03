@@ -1,0 +1,124 @@
+﻿
+
+mpd_force_reroll_all_personality_xp = {
+	if = { limit = { has_trait = lustful }       add_trait_xp = { trait = lustful       value = -1000 } }
+	if = { limit = { has_trait = chaste }        add_trait_xp = { trait = chaste        value = -1000 } }
+	if = { limit = { has_trait = gluttonous }    add_trait_xp = { trait = gluttonous    value = -1000 } }
+	if = { limit = { has_trait = temperate }     add_trait_xp = { trait = temperate     value = -1000 } }
+	if = { limit = { has_trait = greedy }        add_trait_xp = { trait = greedy        value = -1000 } }
+	if = { limit = { has_trait = generous }      add_trait_xp = { trait = generous      value = -1000 } }
+	if = { limit = { has_trait = lazy }          add_trait_xp = { trait = lazy          value = -1000 } }
+	if = { limit = { has_trait = diligent }      add_trait_xp = { trait = diligent      value = -1000 } }
+	if = { limit = { has_trait = wrathful }      add_trait_xp = { trait = wrathful      value = -1000 } }
+	if = { limit = { has_trait = calm }          add_trait_xp = { trait = calm          value = -1000 } }
+	if = { limit = { has_trait = patient }       add_trait_xp = { trait = patient       value = -1000 } }
+	if = { limit = { has_trait = impatient }     add_trait_xp = { trait = impatient     value = -1000 } }
+	if = { limit = { has_trait = arrogant }      add_trait_xp = { trait = arrogant      value = -1000 } }
+	if = { limit = { has_trait = humble }        add_trait_xp = { trait = humble        value = -1000 } }
+	if = { limit = { has_trait = deceitful }     add_trait_xp = { trait = deceitful     value = -1000 } }
+	if = { limit = { has_trait = honest }        add_trait_xp = { trait = honest        value = -1000 } }
+	if = { limit = { has_trait = craven }        add_trait_xp = { trait = craven        value = -1000 } }
+	if = { limit = { has_trait = brave }         add_trait_xp = { trait = brave         value = -1000 } }
+	if = { limit = { has_trait = shy }           add_trait_xp = { trait = shy           value = -1000 } }
+	if = { limit = { has_trait = gregarious }    add_trait_xp = { trait = gregarious    value = -1000 } }
+	if = { limit = { has_trait = ambitious }     add_trait_xp = { trait = ambitious     value = -1000 } }
+	if = { limit = { has_trait = content }       add_trait_xp = { trait = content       value = -1000 } }
+	if = { limit = { has_trait = arbitrary }     add_trait_xp = { trait = arbitrary     value = -1000 } }
+	if = { limit = { has_trait = just }          add_trait_xp = { trait = just          value = -1000 } }
+	if = { limit = { has_trait = cynical }       add_trait_xp = { trait = cynical       value = -1000 } }
+	if = { limit = { has_trait = zealous }       add_trait_xp = { trait = zealous       value = -1000 } }
+	if = { limit = { has_trait = trusting }      add_trait_xp = { trait = trusting      value = -1000 } }
+	if = { limit = { has_trait = vengeful }      add_trait_xp = { trait = vengeful      value = -1000 } }
+	if = { limit = { has_trait = forgiving }     add_trait_xp = { trait = forgiving     value = -1000 } }
+	if = { limit = { has_trait = compassionate } add_trait_xp = { trait = compassionate value = -1000 } }
+	if = { limit = { has_trait = callous }       add_trait_xp = { trait = callous       value = -1000 } }
+	if = { limit = { has_trait = sadistic }      add_trait_xp = { trait = sadistic      value = -1000 } }
+	if = { limit = { has_trait = stubborn }      add_trait_xp = { trait = stubborn      value = -1000 } }
+	if = { limit = { has_trait = fickle }        add_trait_xp = { trait = fickle        value = -1000 } }
+	if = { limit = { has_trait = eccentric }     add_trait_xp = { trait = eccentric     value = -1000 } }
+
+	if = { limit = { has_trait = authoritative } add_trait_xp = { trait = authoritative value = -1000 } }
+	if = { limit = { has_trait = rude }          add_trait_xp = { trait = rude          value = -1000 } }
+	if = { limit = { has_trait = inquisitive }   add_trait_xp = { trait = inquisitive   value = -1000 } }
+
+	mpd_roll_all_personality_xp = yes
+}
+
+mpd_roll_all_personality_xp = {
+
+	mpd_calculate_trait_xp = { TRAIT = lustful       WN_SOCIAL = 0   WN_COMPETE = 0 }
+	mpd_calculate_trait_xp = { TRAIT = chaste        WN_SOCIAL = 0   WN_COMPETE = 0 }
+
+
+	mpd_calculate_trait_xp = { TRAIT = gluttonous    WN_SOCIAL = 0   WN_COMPETE = 0 }
+	mpd_calculate_trait_xp = { TRAIT = temperate     WN_SOCIAL = 0   WN_COMPETE = 0 }
+
+
+	mpd_calculate_trait_xp = { TRAIT = greedy        WN_SOCIAL = 0   WN_COMPETE = 0 }
+	mpd_calculate_trait_xp = { TRAIT = generous      WN_SOCIAL = 10  WN_COMPETE = 0 }
+
+
+	mpd_calculate_trait_xp = { TRAIT = lazy          WN_SOCIAL = 0   WN_COMPETE = -15 }
+	mpd_calculate_trait_xp = { TRAIT = diligent      WN_SOCIAL = 0   WN_COMPETE = 10 }
+
+
+	mpd_calculate_trait_xp = { TRAIT = wrathful      WN_SOCIAL = -10 WN_COMPETE = 25 }
+	mpd_calculate_trait_xp = { TRAIT = calm          WN_SOCIAL = 0   WN_COMPETE = -15 }
+
+
+	mpd_calculate_trait_xp = { TRAIT = patient       WN_SOCIAL = 0   WN_COMPETE = -10 }
+	mpd_calculate_trait_xp = { TRAIT = impatient     WN_SOCIAL = 0   WN_COMPETE = 10 }
+
+
+	mpd_calculate_trait_xp = { TRAIT = arrogant      WN_SOCIAL = -15 WN_COMPETE = 15 }
+	mpd_calculate_trait_xp = { TRAIT = humble        WN_SOCIAL = 10  WN_COMPETE = 0 }
+
+
+	mpd_calculate_trait_xp = { TRAIT = deceitful     WN_SOCIAL = -15 WN_COMPETE = 20 }
+	mpd_calculate_trait_xp = { TRAIT = honest        WN_SOCIAL = 15  WN_COMPETE = 0 }
+
+
+	mpd_calculate_trait_xp = { TRAIT = craven        WN_SOCIAL = 0   WN_COMPETE = -25 }
+	mpd_calculate_trait_xp = { TRAIT = brave         WN_SOCIAL = 0   WN_COMPETE = 20 }
+
+
+	mpd_calculate_trait_xp = { TRAIT = shy           WN_SOCIAL = -25 WN_COMPETE = 0 }
+	mpd_calculate_trait_xp = { TRAIT = gregarious    WN_SOCIAL = 25  WN_COMPETE = 0 }
+
+
+	mpd_calculate_trait_xp = { TRAIT = ambitious     WN_SOCIAL = 0   WN_COMPETE = 30 }
+	mpd_calculate_trait_xp = { TRAIT = content       WN_SOCIAL = 0   WN_COMPETE = -15 }
+
+
+	mpd_calculate_trait_xp = { TRAIT = arbitrary     WN_SOCIAL = 0   WN_COMPETE = 0 }
+	mpd_calculate_trait_xp = { TRAIT = just          WN_SOCIAL = 0   WN_COMPETE = 0 }
+
+
+	mpd_calculate_trait_xp = { TRAIT = cynical       WN_SOCIAL = -10 WN_COMPETE = 0 }
+	mpd_calculate_trait_xp = { TRAIT = zealous       WN_SOCIAL = 0   WN_COMPETE = 0 }
+
+
+	mpd_calculate_trait_xp = { TRAIT = trusting      WN_SOCIAL = 20  WN_COMPETE = -10 }
+
+
+	mpd_calculate_trait_xp = { TRAIT = vengeful      WN_SOCIAL = -15 WN_COMPETE = 25 }
+	mpd_calculate_trait_xp = { TRAIT = forgiving     WN_SOCIAL = 15  WN_COMPETE = -15 }
+
+
+	mpd_calculate_trait_xp = { TRAIT = compassionate WN_SOCIAL = 15  WN_COMPETE = -10 }
+	mpd_calculate_trait_xp = { TRAIT = callous       WN_SOCIAL = -15 WN_COMPETE = 15 }
+	mpd_calculate_trait_xp = { TRAIT = sadistic      WN_SOCIAL = 0   WN_COMPETE = 10 }
+
+
+	mpd_calculate_trait_xp = { TRAIT = stubborn      WN_SOCIAL = 0   WN_COMPETE = 20 }
+	mpd_calculate_trait_xp = { TRAIT = fickle        WN_SOCIAL = 0   WN_COMPETE = 0 }
+	mpd_calculate_trait_xp = { TRAIT = eccentric     WN_SOCIAL = 0   WN_COMPETE = 0 }
+
+
+	mpd_calculate_trait_xp = { TRAIT = authoritative WN_SOCIAL = -10 WN_COMPETE = 15 }
+
+	mpd_calculate_trait_xp = { TRAIT = rude          WN_SOCIAL = -20 WN_COMPETE = 10 }
+
+
+	mpd_calculate_trait_xp = { TRAIT = inquisitive   WN_SOCIAL = 5   WN_COMPETE = 0 }
+}

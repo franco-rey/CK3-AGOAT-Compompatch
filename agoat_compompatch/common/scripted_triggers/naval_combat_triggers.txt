@@ -1,0 +1,107 @@
+﻿naval_combat_has_direct_coastal_county_trigger = {
+	any_held_title = {
+		tier = tier_county
+		is_coastal_county = yes
+	}
+}
+
+naval_combat_has_realm_coast_trigger = {
+	any_sub_realm_county = {
+		is_coastal_county = yes
+	}
+}
+
+naval_combat_direct_holding_tradeport_source_trigger = {
+	OR = {
+		tier = tier_county
+		AND = {
+			tier = tier_barony
+			is_leased_out = no
+			title_province = {
+				is_county_capital = no
+			}
+		}
+	}
+}
+
+naval_combat_player_landless_adventurer_trigger = {
+	is_ai = no
+	is_landless_adventurer = yes
+}
+
+naval_combat_can_manage_navy_trigger = {
+	OR = {
+		AND = {
+			is_landed = yes
+			highest_held_title_tier >= tier_duchy
+			naval_combat_has_realm_coast_trigger = yes
+		}
+		naval_combat_player_landless_adventurer_trigger = yes
+	}
+}
+
+naval_combat_can_use_sea_raid_trigger = {
+	OR = {
+		AND = {
+			naval_combat_player_landless_adventurer_trigger = yes
+			has_realm_law = camp_purpose_brigands
+		}
+		AND = {
+			naval_combat_player_landless_adventurer_trigger = no
+			OR = {
+				naval_combat_can_build_longship_trigger = yes
+			}
+		}
+	}
+}
+
+
+naval_combat_ai_initial_real_flagship_trigger = {
+	is_ai = yes
+	is_independent_ruler = yes
+	naval_combat_can_manage_navy_trigger = yes
+	NOT = { var:naval_combat_flagship_constructed ?= 1 }
+	OR = {
+		has_title = title:k_norway
+		has_title = title:e_byzantium
+		has_title = title:h_china
+	}
+}
+
+naval_combat_can_build_longship_trigger = {
+	always = no
+}
+
+naval_combat_can_build_greek_fire_ship_trigger = {
+	always = no
+}
+
+naval_combat_can_build_tower_ship_trigger = {
+	always = no
+}
+
+naval_combat_has_special_ship_culture_trigger = {
+	OR = {
+		naval_combat_can_build_longship_trigger = yes
+		naval_combat_can_build_greek_fire_ship_trigger = yes
+		naval_combat_can_build_tower_ship_trigger = yes
+	}
+}
+
+naval_combat_has_active_fleet_orders_trigger = {
+	is_alive = yes
+	exists = var:naval_combat_initialized
+	naval_combat_can_manage_navy_trigger = yes
+	naval_combat_total_ship_count_value > 0
+	var:naval_combat_readiness > 0
+	OR = {
+		var:naval_combat_transport_active ?= 1
+		var:naval_combat_sea_control_active ?= 1
+	}
+}
+
+naval_combat_can_enter_automatic_battle_trigger = {
+	naval_combat_has_active_fleet_orders_trigger = yes
+	NOT = { exists = var:naval_combat_battle_opponent }
+	NOT = { has_character_flag = naval_combat_automatic_battle_cooldown }
+}

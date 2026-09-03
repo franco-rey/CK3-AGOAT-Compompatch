@@ -1,0 +1,95 @@
+﻿asoiaf_canon_children_Targaryen_98_trigger = {
+	asoiaf_canon_children_enabled_trigger = yes
+	AND = {
+		NOT = { exists = global_var:asoiaf_canon_children_Targaryen_98_born_variable }
+		NOT = { exists = global_var:asoiaf_canon_children_Targaryen_99_born_variable }
+		NOT = { exists = global_var:asoiaf_canon_children_Targaryen_100_born_variable }
+		NOT = { exists = global_var:asoiaf_canon_children_Targaryen_101_born_variable }
+	}
+	scope:real_father = { has_inactive_trait = asoiaf_Targaryen_88_trait }
+	scope:mother ?= {
+		is_lowborn = yes
+		NOT = { culture = { has_cultural_pillar = heritage_summer } }
+	}
+}
+asoiaf_canon_children_Targaryen_99_trigger = {
+	asoiaf_canon_children_enabled_trigger = yes
+	AND = {
+		exists = global_var:asoiaf_canon_children_Targaryen_98_born_variable
+		NOT = { exists = global_var:asoiaf_canon_children_Targaryen_99_born_variable }
+		NOT = { exists = global_var:asoiaf_canon_children_Targaryen_100_born_variable }
+		NOT = { exists = global_var:asoiaf_canon_children_Targaryen_101_born_variable }
+	}
+	scope:real_father = { has_inactive_trait = asoiaf_Targaryen_88_trait }
+	scope:mother ?= {
+		is_lowborn = yes
+		NOT = { culture = { has_cultural_pillar = heritage_summer } }
+	}
+}
+asoiaf_canon_children_Targaryen_100_trigger = {
+	asoiaf_canon_children_enabled_trigger = yes
+	AND = {
+		exists = global_var:asoiaf_canon_children_Targaryen_98_born_variable
+		exists = global_var:asoiaf_canon_children_Targaryen_99_born_variable
+		NOT = { exists = global_var:asoiaf_canon_children_Targaryen_100_born_variable }
+		NOT = { exists = global_var:asoiaf_canon_children_Targaryen_101_born_variable }
+	}
+	scope:real_father = { has_inactive_trait = asoiaf_Targaryen_88_trait }
+	scope:mother ?= {
+		is_lowborn = yes
+		NOT = { culture = { has_cultural_pillar = heritage_summer } }
+	}
+}
+asoiaf_canon_children_Targaryen_101_trigger = {
+	asoiaf_canon_children_enabled_trigger = yes
+	AND = {
+		exists = global_var:asoiaf_canon_children_Targaryen_98_born_variable
+		exists = global_var:asoiaf_canon_children_Targaryen_99_born_variable
+		exists = global_var:asoiaf_canon_children_Targaryen_100_born_variable
+		NOT = { exists = global_var:asoiaf_canon_children_Targaryen_101_born_variable }
+	}
+	scope:real_father = { has_inactive_trait = asoiaf_Targaryen_88_trait }
+	scope:mother ?= {
+		is_lowborn = yes
+		NOT = { culture = { has_cultural_pillar = heritage_summer } }
+	}
+}
+asoiaf_canon_children_Targaryen_102_trigger = {
+	asoiaf_canon_children_enabled_trigger = yes
+	AND = {
+		NOT = { exists = global_var:asoiaf_canon_children_Targaryen_102_born_variable }
+		NOT = { exists = global_var:asoiaf_canon_children_Targaryen_103_born_variable }
+		NOT = { exists = global_var:asoiaf_canon_children_Targaryen_104_born_variable }
+	}
+	scope:real_father = { has_inactive_trait = asoiaf_Targaryen_88_trait }
+	scope:mother ?= {
+		is_lowborn = yes
+		culture = { has_cultural_pillar = heritage_summer }
+	}
+}
+asoiaf_canon_children_Targaryen_103_trigger = {
+	asoiaf_canon_children_enabled_trigger = yes
+	AND = {
+		exists = global_var:asoiaf_canon_children_Targaryen_102_born_variable
+		NOT = { exists = global_var:asoiaf_canon_children_Targaryen_103_born_variable }
+		NOT = { exists = global_var:asoiaf_canon_children_Targaryen_104_born_variable }
+	}
+	scope:real_father = { has_inactive_trait = asoiaf_Targaryen_88_trait }
+	scope:mother ?= {
+		is_lowborn = yes
+		culture = { has_cultural_pillar = heritage_summer }
+	}
+}
+asoiaf_canon_children_Targaryen_104_trigger = {
+	asoiaf_canon_children_enabled_trigger = yes
+	AND = {
+		exists = global_var:asoiaf_canon_children_Targaryen_102_born_variable
+		exists = global_var:asoiaf_canon_children_Targaryen_103_born_variable
+		NOT = { exists = global_var:asoiaf_canon_children_Targaryen_104_born_variable }
+	}
+	scope:real_father = { has_inactive_trait = asoiaf_Targaryen_88_trait }
+	scope:mother ?= {
+		is_lowborn = yes
+		culture = { has_cultural_pillar = heritage_summer }
+	}
+}

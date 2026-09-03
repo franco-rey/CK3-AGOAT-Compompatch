@@ -1,0 +1,20 @@
+﻿hth_erudition_1_legacy_trigger = {
+	trigger_if = {
+		limit = {
+			has_game_rule = hth_ai_allowed
+		}
+		OR = {
+			is_ai = yes
+			OR = {
+				has_trait = pilgrim
+				has_trait = lifestyle_traveler
+			}
+		}
+	}
+	trigger_else = {
+		OR = {
+			has_trait = pilgrim
+			has_trait = lifestyle_traveler
+		}
+	}
+}

@@ -1,0 +1,672 @@
+﻿namespace = agot_mwrsf
+
+agot_mwrsf.0100 = {
+	type = character_event
+	title = agot_mega_wars.0500.t
+	desc = {
+		triggered_desc = {
+			trigger = {
+				NOT = { has_character_flag = response_event }
+			}
+			desc = agot_mega_wars.0500.desc.a
+		}
+		triggered_desc = {
+			trigger = {
+				exists = scope:claim_ancestor
+				NOT = { has_character_flag = response_event }
+			}
+			desc = agot_mega_wars.0500.desc.ba
+		}
+		triggered_desc = {
+			trigger = {
+				has_character_flag = num_1
+				NOT = { has_character_flag = response_event }
+			}
+			desc = agot_mega_wars.0500.desc.bb
+		}
+		triggered_desc = {
+			trigger = {
+				scope:mw_num_lp ?= 2
+				NOT = { has_character_flag = response_event }
+			}
+			desc = agot_mega_wars.0500.desc.bc
+		}
+		triggered_desc = {
+			trigger = {
+				scope:mw_num_lp ?= 3
+				NOT = { has_character_flag = response_event }
+			}
+			desc = agot_mega_wars.0500.desc.bd
+		}
+		triggered_desc = {
+			trigger = {
+				NOT = { exists = scope:mw_num_lp }
+				NOT = { has_character_flag = response_event }
+			}
+			desc = agot_mega_wars.0500.desc.be
+		}
+		triggered_desc = {
+			trigger = {
+				exists = scope:mw_num_lp
+				NOT = { has_character_flag = response_event }
+			}
+			desc = agot_mega_wars.0500.desc.c
+		}
+		triggered_desc = {
+			trigger = {
+				has_character_flag = response_event
+			}
+			desc = agot_mega_wars.0500.desc.d
+		}
+	}
+
+	theme = war
+	left_portrait = {
+		character = scope:choosing_ruler
+	}
+	right_portrait = {
+		character = scope:war_loser
+	}
+
+	immediate = {
+		scope:attacker = {
+			random_owned_story = {
+				limit = {
+					story_type = story_agot_mw_rebel
+					var:mw_crown_story_var.story_owner ?= scope:defender
+				}
+				save_scope_as = mw_rebel_story
+				var:mw_crown_story_var ?= {
+					save_scope_as = mw_crown_story
+				}
+			}
+			save_scope_as = choosing_ruler
+		}
+		scope:defender = { save_scope_as = war_loser }
+
+		remove_character_flag = mw_gave_up_crown_after_megawar
+		if = {
+			limit = { NOT = { any_in_list = { list = target_titles exists = this } } }
+
+			scope:defender.primary_title ?= {
+				add_to_list = target_titles
+				every_in_de_jure_hierarchy = {
+					limit = {
+						tier > tier_barony
+						holder = scope:defender
+						OR = {
+							AND = {
+								scope:defender.highest_held_title_tier = tier_hegemony
+								empire ?= scope:defender.primary_title.title_capital_county.empire
+							}
+							AND = {
+								scope:defender.highest_held_title_tier = tier_empire
+								kingdom ?= scope:defender.primary_title.title_capital_county.kingdom
+							}
+							AND = {
+								scope:defender.highest_held_title_tier = tier_kingdom
+								duchy ?= scope:defender.primary_title.title_capital_county.duchy
+							}
+						}
+					}
+					add_to_list = target_titles
+				}
+			}
+		}
+		ordered_in_list = {
+			list = target_titles
+			order_by = tier
+			max = 1
+			save_scope_as = primary_target_title
+		}
+		if = {
+			limit = {
+				any_in_list = {
+					list = attackers
+					highest_held_title_tier > tier_duchy
+					NOT = { this = scope:choosing_ruler }
+					count = 1
+				}
+			}
+			every_in_list = {
+				list = attackers
+				limit = {
+					highest_held_title_tier > tier_duchy
+					NOT = { this = scope:choosing_ruler }
+				}
+
+				save_scope_as = chosen_LP
+			}
+			add_character_flag = { flag = num_1 days = 4 }
+		}
+		else_if = {
+			limit = {
+				OR = {
+					any_in_list = {
+						list = attackers
+						highest_held_title_tier > tier_duchy
+						NOT = { this = scope:choosing_ruler }
+						count = 2
+					}
+					any_in_list = {
+						list = attackers
+						highest_held_title_tier > tier_duchy
+						NOT = { this = scope:choosing_ruler }
+						count > 2
+					}
+				}
+			}
+			if = {
+				limit = {
+					any_in_list = {
+						list = attackers
+						highest_held_title_tier > tier_duchy
+						NOT = { this = scope:choosing_ruler }
+						count = 2
+					}
+				}
+
+				save_scope_value_as = { name = mw_num_lp value = 2 }
+			}
+			if = {
+				limit = {
+					any_in_list = {
+						list = attackers
+						highest_held_title_tier > tier_duchy
+						NOT = { this = scope:choosing_ruler }
+						count > 2
+					}
+				}
+				save_scope_value_as = { name = mw_num_lp value = 3 }
+			}
+			every_in_list = {
+				list = attackers
+				limit = {
+					highest_held_title_tier > tier_duchy
+					NOT = { this = scope:choosing_ruler }
+					NOR = {
+						AND = {
+							exists = scope:option_LP_1
+							this = scope:option_LP_1
+						}
+						AND = {
+							exists = scope:option_LP_2
+							this = scope:option_LP_2
+						}
+					}
+				}
+
+				if = {
+					limit = {
+						NOR = {
+							exists = scope:option_LP_2
+							exists = scope:option_LP_1
+						}
+					}
+					save_scope_as = option_LP_1
+				}
+				if = {
+					limit = {
+						exists = scope:option_LP_1
+						NOR = {
+							exists = scope:option_LP_2
+							this = scope:option_LP_1
+						}
+					}
+					save_scope_as = option_LP_2
+				}
+			}
+		}
+		if = {
+			limit = {
+				OR = {
+					father.father.house = scope:war_loser.house
+					father.mother.house = scope:war_loser.house
+					mother.father.house = scope:war_loser.house
+					mother.mother.house = scope:war_loser.house
+				}
+			}
+
+			if = {
+				limit = {
+					father.house = scope:war_loser.house
+				}
+				father = { save_scope_as = claim_ancestor }
+			}
+			if = {
+				limit = {
+					mother.house = scope:war_loser.house
+				}
+				if = {
+					limit = { NOT = { exists = scope:claim_ancestor } }
+					mother = { save_scope_as = claim_ancestor }
+				}
+			}
+			if = {
+				limit = {
+					father.father.house = scope:war_loser.house
+				}
+
+				if = {
+					limit = { NOT = { exists = scope:claim_ancestor } }
+					father.father = { save_scope_as = claim_ancestor }
+				}
+			}
+			if = {
+				limit = {
+					father.mother.house = scope:war_loser.house
+				}
+
+				if = {
+					limit = { NOT = { exists = scope:claim_ancestor } }
+					father.mother = { save_scope_as = claim_ancestor }
+				}
+			}
+			if = {
+				limit = {
+					mother.father.house = scope:war_loser.house
+				}
+
+				if = {
+					limit = { NOT = { exists = scope:claim_ancestor } }
+					mother.father = { save_scope_as = claim_ancestor }
+				}
+			}
+			if = {
+				limit = {
+					mother.mother.house = scope:war_loser.house
+				}
+
+				if = {
+					limit = { NOT = { exists = scope:claim_ancestor } }
+					mother.mother = { save_scope_as = claim_ancestor }
+				}
+			}
+		}
+
+
+		if = {
+			limit = { exists = scope:war_loser.primary_heir }
+
+			save_opinion_value_as = { name = opinion_of_heir target = scope:war_loser.primary_heir }
+		}
+	}
+
+	option = {
+		name = agot_mega_wars.0500.b
+
+		if = {
+			limit = {
+				OR = {
+					root = character:Baratheon_2
+					root = character:Baratheon_3
+					root = character:Baratheon_4
+				}
+			}
+			set_global_variable = baratheons_won_throne
+			set_variable = rr_summerhall_no_more
+		}
+
+		save_scope_as = chosen_crown_ruler
+		agot_mw_cb_new_ruler_effect = yes
+
+		ai_chance = {
+			base = 50
+
+			modifier = {
+				father.house = scope:war_loser.house
+				add = 20
+			}
+			modifier = {
+				mother.house = scope:war_loser.house
+				add = 20
+			}
+			modifier = {
+				father.father.house = scope:war_loser.house
+				add = 15
+			}
+			modifier = {
+				father.mother.house = scope:war_loser.house
+				add = 15
+			}
+			modifier = {
+				mother.father.house = scope:war_loser.house
+				add = 15
+			}
+			modifier = {
+				mother.mother.house = scope:war_loser.house
+				add = 15
+			}
+
+			modifier = {
+				has_trait = ambitious
+				add = 10
+			}
+			modifier = {
+				has_trait = arrogant
+				add = 7
+			}
+			modifier = {
+				has_trait = diligent
+				add = 5
+			}
+			modifier = {
+				has_trait = brave
+				add = 5
+			}
+
+			modifier = {
+				has_trait = lazy
+				add = -15
+			}
+			modifier = {
+				has_trait = craven
+				add = -10
+			}
+
+			modifier = {
+				any_in_list = {
+					list = target_titles
+
+					root = { has_claim_on = prev }
+				}
+				add = 60
+			}
+		}
+	}
+
+	option = {
+		name = {
+			trigger = { is_ai = no }
+			text = agot_mwrsf.0100.depose_player
+		}
+		name = {
+			trigger = { is_ai = yes }
+			text = agot_mega_wars.0500.a
+		}
+
+		trigger = {
+			NOT = { has_title = scope:primary_target_title }
+		}
+
+		if = {
+			limit = { is_ai = no }
+
+			custom_tooltip = agot_mwrsf.0100.depose_heir_tt
+			trigger_event = agot_mwrsf.0110
+		}
+		else = {
+			save_scope_value_as = {
+				name = depose_king
+				value = yes
+			}
+			scope:war_loser = { depose = yes }
+		}
+
+		ai_chance = {
+			base = 0
+
+
+		}
+	}
+
+	option = {
+		name = {
+			trigger = {
+				any_in_list = {
+					list = attackers
+					highest_held_title_tier > tier_duchy
+					NOT = { this = scope:choosing_ruler }
+					count = 1
+				}
+			}
+			text = agot_mega_wars.0500.ca
+		}
+		name = {
+			trigger = {
+				any_in_list = {
+					list = attackers
+					highest_held_title_tier > tier_duchy
+					NOT = { this = scope:choosing_ruler }
+					count > 1
+				}
+			}
+			text = agot_mega_wars.0500.cb
+		}
+
+		trigger = {
+			any_in_list = {
+				list = attackers
+				highest_held_title_tier > tier_duchy
+				NOT = { this = scope:choosing_ruler }
+				count > 0
+			}
+		}
+
+		add_character_flag = mw_gave_up_crown_after_megawar
+
+		if = {
+			limit = {
+				any_in_list = {
+					list = attackers
+					highest_held_title_tier > tier_duchy
+					NOT = { this = scope:choosing_ruler }
+					count > 1
+				}
+			}
+			if = {
+				limit = { is_ai = no }
+				trigger_event = agot_mwrsf.0101
+				custom_tooltip = MEGA_WARS_0500_cb_TOOLTIP
+			}
+			else = {
+				agot_mw_aftermath_ai_choose_character_from_list_effect = { LIST_TYPE = list LIST = attackers MAX = 7 }
+				scope:ai_selected_char = { trigger_event = agot_mwrsf.0102 }
+			}
+		}
+		else = {
+			scope:chosen_LP = {
+				save_scope_as = chosen_crown_ruler
+				trigger_event = agot_mwrsf.0102
+			}
+			custom_tooltip = MEGA_WARS_0500_ca_TOOLTIP
+		}
+
+		ai_chance = {
+			base = 10
+
+			modifier = {
+				has_trait = lazy
+				add = 20
+			}
+			modifier = {
+				has_trait = craven
+				add = 15
+			}
+			modifier = {
+				root = character:Baratheon_2
+				has_game_rule = agot_story_historical_events_historical_outcomes
+				factor = 0
+			}
+
+			modifier = {
+				root = character:Baratheon_2
+				has_game_rule = agot_story_historical_events_weighted_outcomes
+				factor = 0.5
+			}
+		}
+	}
+
+
+	after = {
+		remove_variable = si_selected_character
+
+		if = {
+			limit = {
+				NOT = { scope:primary_target_title.holder = scope:defender }
+			}
+
+
+		}
+	}
+}
+agot_mwrsf.0101 = {
+	type = character_event
+	title = agot_mega_wars.0501.t
+	desc = agot_mega_wars.0501.desc
+
+	theme = war
+	left_portrait = {
+		character = root
+	}
+	right_portrait = {
+		character = scope:mw_new_rebel_leader
+	}
+
+	widget = {
+		is_shown = {
+			any_in_list = {
+				list = attackers
+				count > 0
+			}
+		}
+		gui = "agot_character_selection_two_options"
+		container = "custom_widgets_container"
+	}
+
+	immediate = {
+		every_in_list = {
+			list = attackers
+
+			limit = {
+				highest_held_title_tier > tier_duchy
+				NOT = { this = scope:choosing_ruler }
+			}
+
+			root = {
+				add_to_variable_list = {
+					name = possible_characters
+					target = prev
+				}
+			}
+		}
+
+		ordered_in_list = {
+			variable = possible_characters
+			set_variable = {
+				name = si_selecting_character
+				value = root
+			}
+			root = {
+				set_variable = {
+					name = si_selected_character
+					value = prev
+				}
+			}
+		}
+	}
+
+	option = {
+		name = agot_mega_wars.0501.a
+
+		custom_tooltip = MEGA_WARS_0501_a_TOOLTIP
+		var:si_selected_character ?= {
+			save_scope_as = chosen_crown_ruler
+			remove_variable = si_selecting_character
+			trigger_event = agot_mwrsf.0102
+		}
+		clear_variable_list = possible_characters
+	}
+}
+
+agot_mwrsf.0102 = {
+	type = character_event
+	title = agot_mega_wars.0502.t
+	desc = agot_mega_wars.0502.desc
+
+	theme = war
+	left_portrait = {
+		character = root
+	}
+	right_portrait = {
+		character = scope:mw_new_rebel_leader
+	}
+
+	immediate = {
+	}
+
+	option = {
+		name = agot_mega_wars.0502.a
+
+		agot_mw_cb_new_ruler_effect = yes
+
+		ai_chance = {
+			base = 80
+		}
+	}
+
+	option = {
+		name = agot_mega_wars.0502.b
+
+		remove_from_list = attackers
+		scope:choosing_ruler = {
+			add_character_flag = { flag = response_event days = 4 }
+			trigger_event = agot_mwrsf.0100
+		}
+
+		ai_chance = {
+			base = 20
+		}
+	}
+}
+
+agot_mwrsf.0110 = {
+	type = character_event
+	title = agot_mwrsf.0110.t
+	desc = {
+		triggered_desc = {
+			trigger = { exists = scope:agot_mwrsf_depose_heir }
+			desc = agot_mwrsf.0110.desc.heir
+		}
+		triggered_desc = {
+			trigger = { NOT = { exists = scope:agot_mwrsf_depose_heir } }
+			desc = agot_mwrsf.0110.desc.no_heir
+		}
+	}
+
+	theme = war
+	left_portrait = {
+		character = scope:choosing_ruler
+	}
+	right_portrait = {
+		character = scope:war_loser
+	}
+
+	immediate = {
+		if = {
+			limit = { exists = scope:war_loser.primary_heir }
+			scope:war_loser.primary_heir = {
+				save_scope_as = agot_mwrsf_depose_heir
+			}
+		}
+	}
+
+	option = {
+		name = agot_mwrsf.0110.a
+
+		save_scope_value_as = {
+			name = depose_king
+			value = yes
+		}
+		scope:war_loser = { depose = yes }
+	}
+
+	option = {
+		name = agot_mwrsf.0110.b
+
+		scope:choosing_ruler = {
+			add_character_flag = { flag = response_event days = 4 }
+			trigger_event = agot_mwrsf.0100
+		}
+	}
+}

@@ -1,0 +1,121 @@
+﻿mpd_calculate_trait_xp = {
+
+
+	if = {
+		limit = {
+			has_trait = $TRAIT$
+			NOT = { has_trait_xp = { trait = $TRAIT$ value >= 1 } }
+		}
+
+		random_list = {
+
+			60 = {
+				add_trait_xp = { trait = $TRAIT$ value = 1 }
+			}
+
+
+			35 = {
+
+				modifier = { add = 20  culture = { has_cultural_parameter = $TRAIT$_trait_more_common } }
+				modifier = { add = -15 culture = { has_cultural_parameter = $TRAIT$_trait_less_common } }
+
+				modifier = { add = 25  faith = { trait_is_virtue = $TRAIT$ } }
+				modifier = { add = -15 faith = { trait_is_sin = $TRAIT$ } }
+
+				modifier = { add = 15  guardian_or_court_tutor_trait = { TRAIT = $TRAIT$ } }
+
+				modifier = { add = 10  any_parent = { has_trait = $TRAIT$ } }
+
+				modifier = { add = 35  has_variable = mpd_trait_from_guardian_influence }
+
+				modifier = {
+					add = 20
+					court_owner ?= {
+
+						has_variable = mpd_wn_active_task
+						var:mpd_wn_active_task = flag:virtue
+						any_court_position_holder = { type = wet_nurse_court_position }
+					}
+					faith = { trait_is_virtue = $TRAIT$ }
+				}
+				modifier = {
+					add = -15
+					court_owner ?= {
+
+						has_variable = mpd_wn_active_task
+						var:mpd_wn_active_task = flag:virtue
+						any_court_position_holder = { type = wet_nurse_court_position }
+					}
+					faith = { trait_is_sin = $TRAIT$ }
+				}
+
+				modifier = {
+					add = $WN_SOCIAL$
+					court_owner ?= {
+
+						has_variable = mpd_wn_active_task
+						var:mpd_wn_active_task = flag:relationships
+						any_court_position_holder = { type = wet_nurse_court_position }
+					}
+				}
+
+				modifier = {
+					add = $WN_COMPETE$
+					court_owner ?= {
+
+						has_variable = mpd_wn_active_task
+						var:mpd_wn_active_task = flag:competition
+						any_court_position_holder = { type = wet_nurse_court_position }
+					}
+				}
+				add_trait_xp = { trait = $TRAIT$ value = 50 }
+			}
+
+
+			5 = {
+				modifier = { add = 15  culture = { has_cultural_parameter = $TRAIT$_trait_more_common } }
+				modifier = { add = -10 culture = { has_cultural_parameter = $TRAIT$_trait_less_common } }
+				modifier = { add = 15  faith = { trait_is_virtue = $TRAIT$ } }
+				modifier = { add = -10 faith = { trait_is_sin = $TRAIT$ } }
+				modifier = { add = 10  guardian_or_court_tutor_trait = { TRAIT = $TRAIT$ } }
+				modifier = { add = 5   any_parent = { has_trait = $TRAIT$ } }
+				modifier = { add = 25  has_variable = mpd_trait_from_guardian_influence }
+				modifier = {
+					add = 15
+					court_owner ?= {
+
+						has_variable = mpd_wn_active_task
+						var:mpd_wn_active_task = flag:virtue
+						any_court_position_holder = { type = wet_nurse_court_position }
+					}
+					faith = { trait_is_virtue = $TRAIT$ }
+				}
+				modifier = {
+					add = $WN_SOCIAL$
+					court_owner ?= {
+
+						has_variable = mpd_wn_active_task
+						var:mpd_wn_active_task = flag:relationships
+						any_court_position_holder = { type = wet_nurse_court_position }
+					}
+				}
+				modifier = {
+					add = $WN_COMPETE$
+					court_owner ?= {
+
+						has_variable = mpd_wn_active_task
+						var:mpd_wn_active_task = flag:competition
+						any_court_position_holder = { type = wet_nurse_court_position }
+					}
+				}
+				add_trait_xp = { trait = $TRAIT$ value = 100 }
+			}
+		}
+
+
+		if = {
+			limit = { has_variable = mpd_trait_from_guardian_influence }
+			remove_variable = mpd_trait_from_guardian_influence
+		}
+	}
+}

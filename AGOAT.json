@@ -1,767 +1,755 @@
 {
- "game": "ck3",
- "name": "AGOAT",
- "mods": [
-  {
-   "displayName": "Advanced Cheat Menu",
-   "enabled": true,
-   "position": 0,
-   "steamId": "2218867072"
-  },
-  {
-   "displayName": "Beautiful Portraits",
-   "enabled": true,
-   "position": 1,
-   "steamId": "2700696193"
-  },
-  {
-   "displayName": "Invite Debutantes",
-   "enabled": true,
-   "position": 2,
-   "steamId": "2677152091"
-  },
-  {
-   "displayName": "Invite Nobles",
-   "enabled": true,
-   "position": 3,
-   "steamId": "2686352443"
-  },
-  {
-   "displayName": "Custom Nickname",
-   "enabled": true,
-   "position": 4,
-   "steamId": "3035543804"
-  },
-  {
-   "displayName": "More Interactive Vassals",
-   "enabled": true,
-   "position": 5,
-   "steamId": "2712590542"
-  },
-  {
-   "displayName": "A Game of Thrones",
-   "enabled": true,
-   "position": 6,
-   "steamId": "2962333032"
-  },
-  {
-   "displayName": "AGOT Submod Core",
-   "enabled": true,
-   "position": 7,
-   "steamId": "3034473189"
-  },
-  {
-   "displayName": "Legacy Of The Dragon",
-   "enabled": true,
-   "position": 8,
-   "steamId": "3101422928"
-  },
-  {
-   "displayName": "Valyrian Steel",
-   "enabled": true,
-   "position": 9,
-   "steamId": "2962713441"
-  },
-  {
-   "displayName": "Armor of the Kingsguard",
-   "enabled": true,
-   "position": 10,
-   "steamId": "2963453899"
-  },
-  {
-   "displayName": "[AGOT] Knights & Banners",
-   "enabled": true,
-   "steamId": "3496313878",
-   "position": 11
-  },
-  {
-   "displayName": "AGOT - Armies of Westeros",
-   "enabled": true,
-   "position": 12,
-   "steamId": "2966543745"
-  },
-  {
-   "displayName": "Armies of Westeros REMASTERED",
-   "enabled": true,
-   "steamId": "3328141802",
-   "position": 13
-  },
-  {
-   "displayName": "COW-AGOT: 3D Models & Bigger Castles",
-   "enabled": true,
-   "position": 14,
-   "steamId": "2971198450"
-  },
-  {
-   "displayName": "AGOT Bookmarked",
-   "enabled": true,
-   "position": 15,
-   "steamId": "3149692324"
-  },
-  {
-   "displayName": "Better Barbershop",
-   "enabled": true,
-   "position": 16,
-   "steamId": "2220326926"
-  },
-  {
-   "displayName": "Color Picker +",
-   "enabled": true,
-   "position": 17,
-   "steamId": "3350459101"
-  },
-  {
-   "displayName": "AGOT Color Picker for Clothes",
-   "enabled": true,
-   "position": 18,
-   "steamId": "3381385128"
-  },
-  {
-   "displayName": "Better CoA Designer",
-   "enabled": true,
-   "position": 19,
-   "steamId": "2766055258"
-  },
-  {
-   "displayName": "Border Disputes",
-   "enabled": true,
-   "position": 20,
-   "steamId": "2702831494"
-  },
-  {
-   "displayName": "Great Empire Wars",
-   "enabled": true,
-   "position": 21,
-   "steamId": "2688782754"
-  },
-  {
-   "displayName": "Warden Vassal Contract",
-   "enabled": true,
-   "position": 22,
-   "steamId": "2683654050"
-  },
-  {
-   "displayName": "More Building Slots",
-   "enabled": true,
-   "position": 23,
-   "steamId": "2216916022"
-  },
-  {
-   "displayName": "Patch AGOT - MBS",
-   "enabled": true,
-   "position": 24,
-   "steamId": "3316173814"
-  },
-  {
-   "displayName": "Active Courtiers",
-   "enabled": true,
-   "position": 25,
-   "steamId": "3157170996"
-  },
-  {
-   "displayName": "Active Courtiers AGOT Compatibility",
-   "enabled": true,
-   "position": 26,
-   "steamId": "3166721580"
-  },
-  {
-   "displayName": "Search & Trade Artifacts",
-   "enabled": true,
-   "position": 27,
-   "steamId": "2962238514"
-  },
-  {
-   "displayName": "Search & Trade Artifacts AGOT Compatibility",
-   "enabled": true,
-   "position": 28,
-   "steamId": "3222480457"
-  },
-  {
-   "displayName": "Revive Dead House",
-   "enabled": true,
-   "position": 29,
-   "steamId": "3083111367"
-  },
-  {
-   "displayName": "AGOT - Valyrian Beauty",
-   "enabled": true,
-   "position": 30,
-   "steamId": "3349991466"
-  },
-  {
-   "displayName": "AGOT Music++",
-   "enabled": true,
-   "position": 31,
-   "steamId": "3422767115"
-  },
-  {
-   "displayName": "AGOT - Council Experience",
-   "enabled": true,
-   "position": 32,
-   "steamId": "3319167091"
-  },
-  {
-   "displayName": "AGOT - Melodies of Ruin",
-   "enabled": true,
-   "position": 33,
-   "steamId": "3356702932"
-  },
-  {
-   "displayName": "AGOT - Crowns of Westeros",
-   "enabled": true,
-   "position": 34,
-   "steamId": "2995674648"
-  },
-  {
-   "displayName": "AGOT Additional Models and Special Buildings",
-   "enabled": true,
-   "position": 35,
-   "steamId": "3319354609"
-  },
-  {
-   "displayName": "Agot More Immersive Loading Screens",
-   "enabled": true,
-   "position": 36,
-   "steamId": "2971798202"
-  },
-  {
-   "displayName": "Better AI Education",
-   "enabled": true,
-   "position": 37,
-   "steamId": "2753934263"
-  },
-  {
-   "displayName": "Better AI Education \u2013 AGoT Patch",
-   "enabled": true,
-   "position": 38,
-   "steamId": "3788024743"
-  },
-  {
-   "displayName": "AGOT+",
-   "enabled": true,
-   "position": 39,
-   "steamId": "2950245430"
-  },
-  {
-   "displayName": "AGOT: More Actions",
-   "enabled": true,
-   "position": 40,
-   "steamId": "3059021049"
-  },
-  {
-   "displayName": "[AGOT] Mayham",
-   "enabled": true,
-   "position": 41,
-   "steamId": "3352171144"
-  },
-  {
-   "displayName": "AGOT COA Switcher",
-   "enabled": true,
-   "steamId": "3533859483",
-   "position": 42
-  },
-  {
-   "displayName": "AGOT: House Founders",
-   "enabled": true,
-   "position": 43,
-   "steamId": "2967263410"
-  },
-  {
-   "displayName": "Advanced Character Search",
-   "enabled": true,
-   "position": 44,
-   "steamId": "3084203091"
-  },
-  {
-   "displayName": "Oathbound",
-   "enabled": true,
-   "position": 45,
-   "steamId": "3457401824"
-  },
-  {
-   "displayName": "Grand Remembrance",
-   "enabled": true,
-   "position": 46,
-   "steamId": "3678529052"
-  },
-  {
-   "displayName": "Grand Remembrance - AGOT Compatibility Submod",
-   "enabled": true,
-   "position": 47,
-   "steamId": "3683507542"
-  },
-  {
-   "displayName": "Leo VI's Mass Vassal Directives (A Game of Thrones)",
-   "enabled": true,
-   "position": 48,
-   "steamId": "3767330440"
-  },
-  {
-   "displayName": "Clear Notifications",
-   "enabled": true,
-   "position": 49,
-   "steamId": "2261468688"
-  },
-  {
-   "displayName": "Free Camera for Royal Court",
-   "enabled": true,
-   "position": 50,
-   "steamId": "2747308365"
-  },
-  {
-   "displayName": "Big Battle View",
-   "enabled": true,
-   "position": 51,
-   "steamId": "3030427202"
-  },
-  {
-   "displayName": "[LOT] Legitimacy Over Time",
-   "enabled": true,
-   "position": 52,
-   "steamId": "3305687550"
-  },
-  {
-   "displayName": "DireWolves",
-   "enabled": true,
-   "position": 53,
-   "steamId": "3766320609"
-  },
-  {
-   "displayName": "Duel Overlay",
-   "enabled": true,
-   "position": 54,
-   "steamId": "2636170225"
-  },
-  {
-   "displayName": "Beautiful Females",
-   "enabled": true,
-   "position": 55,
-   "steamId": "2228828005"
-  },
-  {
-   "displayName": "Expanded Domiciles for AGOT",
-   "enabled": true,
-   "position": 56,
-   "steamId": "3768775292"
-  },
-  {
-   "displayName": "AGOT: Royal Guards",
-   "enabled": true,
-   "position": 57,
-   "steamId": "3733779333"
-  },
-  {
-   "displayName": "AGOT - Landmarks of Westeros",
-   "enabled": true,
-   "position": 58,
-   "steamId": "3692879370"
-  },
-  {
-   "displayName": "Landmarks of Westeros & COW-AGOT Compatch",
-   "enabled": true,
-   "position": 59,
-   "steamId": "3697008412"
-  },
-  {
-   "displayName": "AGOT - More Personality Depth",
-   "enabled": true,
-   "position": 60,
-   "steamId": "3717990443"
-  },
-  {
-   "displayName": "AGOT : Seasons of Ice and Fire",
-   "enabled": true,
-   "position": 61,
-   "steamId": "3377641022"
-  },
-  {
-   "displayName": "Immersive Personalities",
-   "enabled": true,
-   "position": 62,
-   "steamId": "3596393244"
-  },
-  {
-   "displayName": "Royal Court Event Pack",
-   "enabled": true,
-   "position": 63,
-   "steamId": "3360676953"
-  },
-  {
-   "displayName": "CK3 Naval Combat",
-   "enabled": true,
-   "position": 64,
-   "steamId": "3772178688"
-  },
-  {
-   "displayName": "Custom Name Lists",
-   "enabled": true,
-   "position": 65,
-   "steamId": "3786319531"
-  },
-  {
-   "displayName": "Raised Army CoA",
-   "enabled": true,
-   "position": 66,
-   "steamId": "3076667561"
-  },
-  {
-   "displayName": "Extended Family Actions",
-   "enabled": true,
-   "position": 67,
-   "steamId": "2430932902"
-  },
-  {
-   "displayName": "Inherichance",
-   "enabled": true,
-   "position": 68,
-   "steamId": "2569507763"
-  },
-  {
-   "displayName": "Congenital Beauty",
-   "enabled": true,
-   "position": 69,
-   "steamId": "2695438942"
-  },
-  {
-   "displayName": "AGOT - Unbound",
-   "enabled": true,
-   "position": 70,
-   "steamId": "3586934156"
-  },
-  {
-   "displayName": "AGOT - Dragon Riders Duel",
-   "enabled": true,
-   "position": 71,
-   "steamId": "3616679470"
-  },
-  {
-   "displayName": "AGOT - Suggest Dragon Bonding",
-   "enabled": true,
-   "position": 72,
-   "steamId": "3324579171"
-  },
-  {
-   "displayName": "A Landed Knights Mod",
-   "enabled": true,
-   "position": 73,
-   "steamId": "3361162762"
-  },
-  {
-   "displayName": "Battleground Commanders",
-   "enabled": true,
-   "position": 74,
-   "steamId": "3276373926"
-  },
-  {
-   "displayName": "Seize Prisoner Artifacts",
-   "enabled": true,
-   "position": 75,
-   "steamId": "3717840023"
-  },
-  {
-   "displayName": "Visible Disfigurement - No More Masks",
-   "enabled": true,
-   "position": 76,
-   "steamId": "3245958435"
-  },
-  {
-   "displayName": "Lifespan Traits",
-   "enabled": true,
-   "position": 77,
-   "steamId": "2692655730"
-  },
-  {
-   "displayName": "Battle Graphics",
-   "enabled": true,
-   "position": 78,
-   "steamId": "3225355262"
-  },
-  {
-   "displayName": "Battle Graphics AGOT Compatibility Patch",
-   "enabled": true,
-   "position": 79,
-   "steamId": "3235061780"
-  },
-  {
-   "displayName": "Additional Models / AGOT+ Compatch",
-   "enabled": true,
-   "position": 80,
-   "steamId": "3587967020"
-  },
-  {
-   "displayName": "[AGOT] Knights & Banners (AoW)",
-   "enabled": true,
-   "position": 81,
-   "steamId": "3692949151"
-  },
-  {
-   "displayName": "Dragonrider Marriage",
-   "enabled": true,
-   "position": 82,
-   "steamId": "3319506260"
-  },
-  {
-   "displayName": "No Duchy Limit",
-   "enabled": true,
-   "position": 83,
-   "steamId": "2220397689"
-  },
-  {
-   "displayName": "Designate Heir - freely",
-   "enabled": true,
-   "position": 84,
-   "steamId": "2869221069"
-  },
-  {
-   "displayName": "Court Positions Expanded 1.19",
-   "enabled": true,
-   "position": 85,
-   "steamId": "2754449789"
-  },
-  {
-   "displayName": "AGOT Great Councils",
-   "enabled": true,
-   "position": 86,
-   "steamId": "3621472324"
-  },
-  {
-   "displayName": "AGOT - Can Always Use Egg Hatching Ceremony",
-   "enabled": true,
-   "position": 87,
-   "steamId": "3336403491"
-  },
-  {
-   "displayName": "Ward Limit Based On Learning",
-   "enabled": true,
-   "position": 88,
-   "steamId": "2906654841"
-  },
-  {
-   "displayName": "Female Knight and Councillor (Unofficial)",
-   "enabled": true,
-   "position": 89,
-   "steamId": "3616413111"
-  },
-  {
-   "displayName": "Show Player Opinion",
-   "enabled": true,
-   "position": 90,
-   "steamId": "3340687327"
-  },
-  {
-   "displayName": "War Panel Allies Fix",
-   "enabled": true,
-   "position": 91,
-   "steamId": "3781256450"
-  },
-  {
-   "displayName": "Petty Inheritable Traits",
-   "enabled": true,
-   "position": 92,
-   "steamId": "2394747105"
-  },
-  {
-   "displayName": "Immersive Concubinage: A Mechanical Overhaul",
-   "enabled": true,
-   "position": 93,
-   "steamId": "3012760865"
-  },
-  {
-   "displayName": "Bloodlines: Legacies of AGOT",
-   "enabled": true,
-   "position": 94,
-   "steamId": "3522779004"
-  },
-  {
-   "displayName": "More Traditions v2 + AGoT",
-   "enabled": true,
-   "position": 95,
-   "steamId": "2968715458"
-  },
-  {
-   "displayName": "Expanded Court Position - Search and Recruit",
-   "enabled": true,
-   "position": 96,
-   "steamId": "3676293022"
-  },
-  {
-   "displayName": "AGOT Citadel University",
-   "enabled": true,
-   "position": 97,
-   "steamId": "3541693392"
-  },
-  {
-   "displayName": "AGOT - Dynastic Heritage",
-   "enabled": true,
-   "position": 98,
-   "steamId": "3767938227"
-  },
-  {
-   "displayName": "Divine Intervention Cheat Menu",
-   "steamId": "2986538297",
-   "enabled": true,
-   "position": 99
-  },
-  {
-   "displayName": "Divine Intervention AGOT Cheat Menu",
-   "steamId": "2996152542",
-   "enabled": true,
-   "position": 100
-  },
-  {
-   "displayName": "Valyrian Namelists Expanded",
-   "steamId": "3264761979",
-   "enabled": true,
-   "position": 101
-  },
-  {
-   "displayName": "Music mod AGOT themed",
-   "steamId": "2962695582",
-   "enabled": true,
-   "position": 102
-  },
-  {
-   "displayName": "The Golden Company",
-   "steamId": "3412222811",
-   "enabled": true,
-   "position": 103
-  },
-  {
-   "displayName": "Inheritable Relations",
-   "steamId": "2829009590",
-   "enabled": true,
-   "position": 104
-  },
-  {
-   "displayName": "AGOT Name Pack+",
-   "steamId": "3462679084",
-   "enabled": true,
-   "position": 105
-  },
-  {
-   "displayName": "AGOT - Battlefield Duel +",
-   "steamId": "3763629557",
-   "enabled": true,
-   "position": 106
-  },
-  {
-   "displayName": "CoA Rally Points",
-   "steamId": "3081701005",
-   "enabled": true,
-   "position": 107
-  },
-  {
-   "displayName": "AGOT - More Dragon Events",
-   "steamId": "3466228580",
-   "enabled": true,
-   "position": 108
-  },
-  {
-   "displayName": "AGOT Dragon Wives",
-   "steamId": "3541596590",
-   "enabled": true,
-   "position": 109
-  },
-  {
-   "displayName": "AGOT More Dragon Eggs",
-   "enabled": true,
-   "steamId": "3388366564",
-   "position": 110
-  },
-  {
-   "displayName": "AGOT: The Knighting Ceremony",
-   "steamId": "3673468355",
-   "enabled": true,
-   "position": 111
-  },
-  {
-   "displayName": "Gamerule Gadget",
-   "steamId": "2826829936",
-   "enabled": true,
-   "position": 112
-  },
-  {
-   "displayName": "AGOT Iron and Salt",
-   "enabled": false,
-   "position": 113,
-   "steamId": "3781577713"
-  },
-  {
-   "displayName": "The Unnecessary Dragons - AGOT Submod",
-   "enabled": false,
-   "position": 114,
-   "steamId": "3287624076"
-  },
-  {
-   "displayName": "AGOT: The Long Night & Azor Ahai",
-   "enabled": true,
-   "steamId": "3780269495",
-   "position": 115
-  },
-  {
-   "displayName": "Legacy of Valyria",
-   "enabled": true,
-   "steamId": "3403938445",
-   "position": 116
-  },
-  {
-   "displayName": "Legacy of Valyria - AGOT 0.5.1 Compatch (Beta)",
-   "enabled": true,
-   "steamId": "3788296332",
-   "position": 117
-  },
-  {
-   "displayName": "Offical COW:AGOT - Legacy of Valyria Compatch",
-   "enabled": true,
-   "steamId": "3337903092",
-   "position": 118
-  },
-  {
-   "displayName": "AGOT Nobility of Westeros",
-   "enabled": true,
-   "steamId": "3664900993",
-   "position": 119
-  },
-  {
-   "displayName": "COW-AGOT: Nobility of Westeros Compatch",
-   "enabled": true,
-   "steamId": "3742055253",
-   "position": 120
-  },
-  {
-   "displayName": "Rescue & Vengeance",
-   "enabled": true,
-   "steamId": "3089046758",
-   "position": 121
-  },
-  {
-   "displayName": "Local Artisan",
-   "enabled": true,
-   "steamId": "2875403237",
-   "position": 122
-  },
-  {
-   "displayName": "In My Humble Opinion",
-   "enabled": false,
-   "steamId": "2625307328",
-   "position": 123
-  },
-  {
-   "displayName": "Entitled",
-   "enabled": false,
-   "steamId": "2984126808",
-   "position": 124
-  },
-  {
-   "displayName": "Better Ruler Designer",
-   "enabled": true,
-   "steamId": "3275318194",
-   "position": 125
-  },
-  {
-   "displayName": "AGOT Unified Compatibility Patch",
-   "enabled": true,
-   "position": 126
-  }
- ]
+  "game": "ck3",
+  "name": "AGOAT",
+  "mods": [
+    {
+      "displayName": "Advanced Cheat Menu",
+      "enabled": true,
+      "position": 0,
+      "steamId": "2218867072"
+    },
+    {
+      "displayName": "Beautiful Portraits",
+      "enabled": true,
+      "position": 1,
+      "steamId": "2700696193"
+    },
+    {
+      "displayName": "Invite Debutantes",
+      "enabled": true,
+      "position": 2,
+      "steamId": "2677152091"
+    },
+    {
+      "displayName": "Invite Nobles",
+      "enabled": true,
+      "position": 3,
+      "steamId": "2686352443"
+    },
+    {
+      "displayName": "Custom Nickname",
+      "enabled": true,
+      "position": 4,
+      "steamId": "3035543804"
+    },
+    {
+      "displayName": "More Interactive Vassals",
+      "enabled": true,
+      "position": 5,
+      "steamId": "2712590542"
+    },
+    {
+      "displayName": "A Game of Thrones",
+      "enabled": true,
+      "position": 6,
+      "steamId": "2962333032"
+    },
+    {
+      "displayName": "AGOT Submod Core",
+      "enabled": true,
+      "position": 7,
+      "steamId": "3034473189"
+    },
+    {
+      "displayName": "Legacy Of The Dragon",
+      "enabled": true,
+      "position": 8,
+      "steamId": "3101422928"
+    },
+    {
+      "displayName": "Valyrian Steel",
+      "enabled": true,
+      "position": 9,
+      "steamId": "2962713441"
+    },
+    {
+      "displayName": "Armor of the Kingsguard",
+      "enabled": true,
+      "position": 10,
+      "steamId": "2963453899"
+    },
+    {
+      "displayName": "[AGOT] Knights & Banners",
+      "enabled": true,
+      "steamId": "3496313878",
+      "position": 11
+    },
+    {
+      "displayName": "AGOT - Armies of Westeros",
+      "enabled": true,
+      "position": 12,
+      "steamId": "2966543745"
+    },
+    {
+      "displayName": "Armies of Westeros REMASTERED",
+      "enabled": true,
+      "steamId": "3328141802",
+      "position": 13
+    },
+    {
+      "displayName": "COW-AGOT: 3D Models & Bigger Castles",
+      "enabled": true,
+      "position": 14,
+      "steamId": "2971198450"
+    },
+    {
+      "displayName": "AGOT Bookmarked",
+      "enabled": true,
+      "position": 15,
+      "steamId": "3149692324"
+    },
+    {
+      "displayName": "Better Barbershop",
+      "enabled": true,
+      "position": 16,
+      "steamId": "2220326926"
+    },
+    {
+      "displayName": "Color Picker +",
+      "enabled": true,
+      "position": 17,
+      "steamId": "3350459101"
+    },
+    {
+      "displayName": "AGOT Color Picker for Clothes",
+      "enabled": true,
+      "position": 18,
+      "steamId": "3381385128"
+    },
+    {
+      "displayName": "Better CoA Designer",
+      "enabled": true,
+      "position": 19,
+      "steamId": "2766055258"
+    },
+    {
+      "displayName": "Border Disputes",
+      "enabled": true,
+      "position": 20,
+      "steamId": "2702831494"
+    },
+    {
+      "displayName": "Great Empire Wars",
+      "enabled": true,
+      "position": 21,
+      "steamId": "2688782754"
+    },
+    {
+      "displayName": "Warden Vassal Contract",
+      "enabled": true,
+      "position": 22,
+      "steamId": "2683654050"
+    },
+    {
+      "displayName": "More Building Slots",
+      "enabled": true,
+      "position": 23,
+      "steamId": "2216916022"
+    },
+    {
+      "displayName": "Patch AGOT - MBS",
+      "enabled": true,
+      "position": 24,
+      "steamId": "3316173814"
+    },
+    {
+      "displayName": "Active Courtiers",
+      "enabled": true,
+      "position": 25,
+      "steamId": "3157170996"
+    },
+    {
+      "displayName": "Active Courtiers AGOT Compatibility",
+      "enabled": true,
+      "position": 26,
+      "steamId": "3166721580"
+    },
+    {
+      "displayName": "Search & Trade Artifacts",
+      "enabled": true,
+      "position": 27,
+      "steamId": "2962238514"
+    },
+    {
+      "displayName": "Search & Trade Artifacts AGOT Compatibility",
+      "enabled": true,
+      "position": 28,
+      "steamId": "3222480457"
+    },
+    {
+      "displayName": "Revive Dead House",
+      "enabled": true,
+      "position": 29,
+      "steamId": "3083111367"
+    },
+    {
+      "displayName": "AGOT - Valyrian Beauty",
+      "enabled": true,
+      "position": 30,
+      "steamId": "3349991466"
+    },
+    {
+      "displayName": "AGOT Music++",
+      "enabled": true,
+      "position": 31,
+      "steamId": "3422767115"
+    },
+    {
+      "displayName": "AGOT - Council Experience",
+      "enabled": true,
+      "position": 32,
+      "steamId": "3319167091"
+    },
+    {
+      "displayName": "AGOT - Melodies of Ruin",
+      "enabled": true,
+      "position": 33,
+      "steamId": "3356702932"
+    },
+    {
+      "displayName": "AGOT - Crowns of Westeros",
+      "enabled": true,
+      "position": 34,
+      "steamId": "2995674648"
+    },
+    {
+      "displayName": "AGOT Additional Models and Special Buildings",
+      "enabled": true,
+      "position": 35,
+      "steamId": "3319354609"
+    },
+    {
+      "displayName": "Agot More Immersive Loading Screens",
+      "enabled": true,
+      "position": 36,
+      "steamId": "2971798202"
+    },
+    {
+      "displayName": "Better AI Education",
+      "enabled": true,
+      "position": 37,
+      "steamId": "2753934263"
+    },
+    {
+      "displayName": "Better AI Education – AGoT Patch",
+      "enabled": true,
+      "position": 38,
+      "steamId": "3788024743"
+    },
+    {
+      "displayName": "AGOT+",
+      "enabled": true,
+      "position": 39,
+      "steamId": "2950245430"
+    },
+    {
+      "displayName": "AGOT: More Actions",
+      "enabled": true,
+      "position": 40,
+      "steamId": "3059021049"
+    },
+    {
+      "displayName": "[AGOT] Mayham",
+      "enabled": true,
+      "position": 41,
+      "steamId": "3352171144"
+    },
+    {
+      "displayName": "AGOT COA Switcher",
+      "enabled": true,
+      "steamId": "3533859483",
+      "position": 42
+    },
+    {
+      "displayName": "AGOT: House Founders",
+      "enabled": true,
+      "position": 43,
+      "steamId": "2967263410"
+    },
+    {
+      "displayName": "Advanced Character Search",
+      "enabled": true,
+      "position": 44,
+      "steamId": "3084203091"
+    },
+    {
+      "displayName": "Oathbound",
+      "enabled": true,
+      "position": 45,
+      "steamId": "3457401824"
+    },
+    {
+      "displayName": "Grand Remembrance",
+      "enabled": true,
+      "position": 46,
+      "steamId": "3678529052"
+    },
+    {
+      "displayName": "Grand Remembrance - AGOT Compatibility Submod",
+      "enabled": true,
+      "position": 47,
+      "steamId": "3683507542"
+    },
+    {
+      "displayName": "Leo VI's Mass Vassal Directives (A Game of Thrones)",
+      "enabled": true,
+      "position": 48,
+      "steamId": "3767330440"
+    },
+    {
+      "displayName": "Clear Notifications",
+      "enabled": true,
+      "position": 49,
+      "steamId": "2261468688"
+    },
+    {
+      "displayName": "Free Camera for Royal Court",
+      "enabled": true,
+      "position": 50,
+      "steamId": "2747308365"
+    },
+    {
+      "displayName": "Big Battle View",
+      "enabled": true,
+      "position": 51,
+      "steamId": "3030427202"
+    },
+    {
+      "displayName": "[LOT] Legitimacy Over Time",
+      "enabled": true,
+      "position": 52,
+      "steamId": "3305687550"
+    },
+    {
+      "displayName": "DireWolves",
+      "enabled": true,
+      "position": 53,
+      "steamId": "3766320609"
+    },
+    {
+      "displayName": "Duel Overlay",
+      "enabled": true,
+      "position": 54,
+      "steamId": "2636170225"
+    },
+    {
+      "displayName": "Beautiful Females",
+      "enabled": true,
+      "position": 55,
+      "steamId": "2228828005"
+    },
+    {
+      "displayName": "Expanded Domiciles for AGOT",
+      "enabled": true,
+      "position": 56,
+      "steamId": "3768775292"
+    },
+    {
+      "displayName": "AGOT: Royal Guards",
+      "enabled": true,
+      "position": 57,
+      "steamId": "3733779333"
+    },
+    {
+      "displayName": "AGOT - Landmarks of Westeros",
+      "enabled": true,
+      "position": 58,
+      "steamId": "3692879370"
+    },
+    {
+      "displayName": "Landmarks of Westeros & COW-AGOT Compatch",
+      "enabled": true,
+      "position": 59,
+      "steamId": "3697008412"
+    },
+    {
+      "displayName": "AGOT - More Personality Depth",
+      "enabled": true,
+      "position": 60,
+      "steamId": "3717990443"
+    },
+    {
+      "displayName": "AGOT : Seasons of Ice and Fire",
+      "enabled": true,
+      "position": 61,
+      "steamId": "3377641022"
+    },
+    {
+      "displayName": "Immersive Personalities",
+      "enabled": true,
+      "position": 62,
+      "steamId": "3596393244"
+    },
+    {
+      "displayName": "Royal Court Event Pack",
+      "enabled": true,
+      "position": 63,
+      "steamId": "3360676953"
+    },
+    {
+      "displayName": "CK3 Naval Combat",
+      "enabled": true,
+      "position": 64,
+      "steamId": "3772178688"
+    },
+    {
+      "displayName": "Custom Name Lists",
+      "enabled": true,
+      "position": 65,
+      "steamId": "3786319531"
+    },
+    {
+      "displayName": "Raised Army CoA",
+      "enabled": true,
+      "position": 66,
+      "steamId": "3076667561"
+    },
+    {
+      "displayName": "Extended Family Actions",
+      "enabled": true,
+      "position": 67,
+      "steamId": "2430932902"
+    },
+    {
+      "displayName": "Inherichance",
+      "enabled": true,
+      "position": 68,
+      "steamId": "2569507763"
+    },
+    {
+      "displayName": "Congenital Beauty",
+      "enabled": true,
+      "position": 69,
+      "steamId": "2695438942"
+    },
+    {
+      "displayName": "AGOT - Unbound",
+      "enabled": true,
+      "position": 70,
+      "steamId": "3586934156"
+    },
+    {
+      "displayName": "AGOT - Dragon Riders Duel",
+      "enabled": true,
+      "position": 71,
+      "steamId": "3616679470"
+    },
+    {
+      "displayName": "AGOT - Suggest Dragon Bonding",
+      "enabled": true,
+      "position": 72,
+      "steamId": "3324579171"
+    },
+    {
+      "displayName": "A Landed Knights Mod",
+      "enabled": true,
+      "position": 73,
+      "steamId": "3361162762"
+    },
+    {
+      "displayName": "Battleground Commanders",
+      "enabled": true,
+      "position": 74,
+      "steamId": "3276373926"
+    },
+    {
+      "displayName": "Seize Prisoner Artifacts",
+      "enabled": true,
+      "position": 75,
+      "steamId": "3717840023"
+    },
+    {
+      "displayName": "Visible Disfigurement - No More Masks",
+      "enabled": true,
+      "position": 76,
+      "steamId": "3245958435"
+    },
+    {
+      "displayName": "Lifespan Traits",
+      "enabled": true,
+      "position": 77,
+      "steamId": "2692655730"
+    },
+    {
+      "displayName": "Battle Graphics",
+      "enabled": true,
+      "position": 78,
+      "steamId": "3225355262"
+    },
+    {
+      "displayName": "Battle Graphics AGOT Compatibility Patch",
+      "enabled": true,
+      "position": 79,
+      "steamId": "3235061780"
+    },
+    {
+      "displayName": "Additional Models / AGOT+ Compatch",
+      "enabled": true,
+      "position": 80,
+      "steamId": "3587967020"
+    },
+    {
+      "displayName": "[AGOT] Knights & Banners (AoW)",
+      "enabled": true,
+      "position": 81,
+      "steamId": "3692949151"
+    },
+    {
+      "displayName": "Dragonrider Marriage",
+      "enabled": true,
+      "position": 82,
+      "steamId": "3319506260"
+    },
+    {
+      "displayName": "No Duchy Limit",
+      "enabled": true,
+      "position": 83,
+      "steamId": "2220397689"
+    },
+    {
+      "displayName": "Designate Heir - freely",
+      "enabled": true,
+      "position": 84,
+      "steamId": "2869221069"
+    },
+    {
+      "displayName": "Court Positions Expanded 1.19",
+      "enabled": true,
+      "position": 85,
+      "steamId": "2754449789"
+    },
+    {
+      "displayName": "AGOT Great Councils",
+      "enabled": true,
+      "position": 86,
+      "steamId": "3621472324"
+    },
+    {
+      "displayName": "AGOT - Can Always Use Egg Hatching Ceremony",
+      "enabled": true,
+      "position": 87,
+      "steamId": "3336403491"
+    },
+    {
+      "displayName": "Ward Limit Based On Learning",
+      "enabled": true,
+      "position": 88,
+      "steamId": "2906654841"
+    },
+    {
+      "displayName": "Female Knight and Councillor (Unofficial)",
+      "enabled": true,
+      "position": 89,
+      "steamId": "3616413111"
+    },
+    {
+      "displayName": "Show Player Opinion",
+      "enabled": true,
+      "position": 90,
+      "steamId": "3340687327"
+    },
+    {
+      "displayName": "War Panel Allies Fix",
+      "enabled": true,
+      "position": 91,
+      "steamId": "3781256450"
+    },
+    {
+      "displayName": "Petty Inheritable Traits",
+      "enabled": true,
+      "position": 92,
+      "steamId": "2394747105"
+    },
+    {
+      "displayName": "Immersive Concubinage: A Mechanical Overhaul",
+      "enabled": true,
+      "position": 93,
+      "steamId": "3012760865"
+    },
+    {
+      "displayName": "Bloodlines: Legacies of AGOT",
+      "enabled": true,
+      "position": 94,
+      "steamId": "3522779004"
+    },
+    {
+      "displayName": "More Traditions v2 + AGoT",
+      "enabled": true,
+      "position": 95,
+      "steamId": "2968715458"
+    },
+    {
+      "displayName": "Expanded Court Position - Search and Recruit",
+      "enabled": true,
+      "position": 96,
+      "steamId": "3676293022"
+    },
+    {
+      "displayName": "AGOT Citadel University",
+      "enabled": true,
+      "position": 97,
+      "steamId": "3541693392"
+    },
+    {
+      "displayName": "AGOT - Dynastic Heritage",
+      "enabled": true,
+      "position": 98,
+      "steamId": "3767938227"
+    },
+    {
+      "displayName": "Divine Intervention Cheat Menu",
+      "steamId": "2986538297",
+      "enabled": true,
+      "position": 99
+    },
+    {
+      "displayName": "Divine Intervention AGOT Cheat Menu",
+      "steamId": "2996152542",
+      "enabled": true,
+      "position": 100
+    },
+    {
+      "displayName": "Valyrian Namelists Expanded",
+      "steamId": "3264761979",
+      "enabled": true,
+      "position": 101
+    },
+    {
+      "displayName": "Music mod AGOT themed",
+      "steamId": "2962695582",
+      "enabled": true,
+      "position": 102
+    },
+    {
+      "displayName": "The Golden Company",
+      "steamId": "3412222811",
+      "enabled": true,
+      "position": 103
+    },
+    {
+      "displayName": "Inheritable Relations",
+      "steamId": "2829009590",
+      "enabled": true,
+      "position": 104
+    },
+    {
+      "displayName": "AGOT Name Pack+",
+      "steamId": "3462679084",
+      "enabled": true,
+      "position": 105
+    },
+    {
+      "displayName": "AGOT - Battlefield Duel +",
+      "steamId": "3763629557",
+      "enabled": true,
+      "position": 106
+    },
+    {
+      "displayName": "CoA Rally Points",
+      "steamId": "3081701005",
+      "enabled": true,
+      "position": 107
+    },
+    {
+      "displayName": "AGOT - More Dragon Events",
+      "steamId": "3466228580",
+      "enabled": true,
+      "position": 108
+    },
+    {
+      "displayName": "AGOT Dragon Wives",
+      "steamId": "3541596590",
+      "enabled": true,
+      "position": 109
+    },
+    {
+      "displayName": "AGOT More Dragon Eggs",
+      "enabled": true,
+      "steamId": "3388366564",
+      "position": 110
+    },
+    {
+      "displayName": "AGOT: The Knighting Ceremony",
+      "steamId": "3673468355",
+      "enabled": true,
+      "position": 111
+    },
+    {
+      "displayName": "Gamerule Gadget",
+      "steamId": "2826829936",
+      "enabled": true,
+      "position": 112
+    },
+    {
+      "displayName": "AGOT: The Long Night & Azor Ahai",
+      "enabled": true,
+      "steamId": "3780269495",
+      "position": 113
+    },
+    {
+      "displayName": "Legacy of Valyria",
+      "enabled": true,
+      "steamId": "3403938445",
+      "position": 114
+    },
+    {
+      "displayName": "Legacy of Valyria - AGOT 0.5.1 Compatch (Beta)",
+      "enabled": true,
+      "steamId": "3788296332",
+      "position": 115
+    },
+    {
+      "displayName": "Offical COW:AGOT - Legacy of Valyria Compatch",
+      "enabled": true,
+      "steamId": "3337903092",
+      "position": 116
+    },
+    {
+      "displayName": "AGOT Nobility of Westeros",
+      "enabled": true,
+      "steamId": "3664900993",
+      "position": 117
+    },
+    {
+      "displayName": "COW-AGOT: Nobility of Westeros Compatch",
+      "enabled": true,
+      "steamId": "3742055253",
+      "position": 118
+    },
+    {
+      "displayName": "Rescue & Vengeance",
+      "enabled": true,
+      "steamId": "3089046758",
+      "position": 119
+    },
+    {
+      "displayName": "Local Artisan",
+      "enabled": true,
+      "steamId": "2875403237",
+      "position": 120
+    },
+    {
+      "displayName": "In My Humble Opinion",
+      "enabled": true,
+      "steamId": "2625307328",
+      "position": 121
+    },
+    {
+      "displayName": "Better Ruler Designer",
+      "enabled": true,
+      "steamId": "3275318194",
+      "position": 122
+    },
+    {
+      "displayName": "Hiraeth - Dynasty Legacies Overhaul",
+      "enabled": true,
+      "steamId": "2697392271",
+      "position": 123
+    },
+    {
+      "displayName": "AGOAT Compompatch",
+      "enabled": true,
+      "position": 124
+    }
+  ]
 }

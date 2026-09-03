@@ -1,0 +1,4253 @@
+﻿
+intimidated_from_faction_modifier = {
+	modifier = {
+		desc = "FACTION_REASON_INTIMIDATED"
+		add = {
+			if = {
+				limit = {
+					$POWER$ < $THRESHOLD$
+				}
+				add = -50
+			}
+		}
+		has_dread_level_towards = {
+			target = $TARGET$
+			level = 1
+		}
+	}
+	modifier = {
+		desc = "FACTION_REASON_TERRIFIED"
+		add = {
+			if = {
+				limit = {
+					$POWER$ < $THRESHOLD$
+				}
+				add = -1000
+			}
+			else = {
+				add = -100
+			}
+		}
+		has_dread_level_towards = {
+			target = $TARGET$
+			level = 2
+		}
+	}
+}
+
+legalism_virtue_and_sin_modifier = {
+
+	modifier = {
+		desc = "FACTION_REASON_LEGALISM_VIRTUES"
+		add = {
+			subtract = $SCORE_PER_TRAIT$
+			multiply = $TARGET$.num_virtuous_traits
+			if = {
+				limit = {
+					$TARGET$ = {
+						has_trait = zealous
+					}
+				}
+				multiply = 2
+			}
+			else_if = {
+				limit = {
+					$TARGET$ = {
+						has_trait = cynical
+					}
+				}
+				multiply = 0.5
+			}
+		}
+		$TARGET$ = {
+			faith = {
+				has_doctrine_parameter = legalism_reduced_faction_virtues
+			}
+		}
+	}
+
+
+	modifier = {
+		desc = "FACTION_REASON_LEGALISM_SINS"
+		add = {
+			add = $SCORE_PER_TRAIT$
+			multiply = $TARGET$.num_sinful_traits
+			if = {
+				limit = {
+					$TARGET$ = {
+						has_trait = zealous
+					}
+				}
+				multiply = 2
+			}
+			else_if = {
+				limit = {
+					$TARGET$ = {
+						has_trait = cynical
+					}
+				}
+				multiply = 0.5
+			}
+		}
+		$TARGET$ = {
+			faith = {
+				has_doctrine_parameter = legalism_increased_faction_sins
+			}
+		}
+
+	}
+}
+
+pluralism_fundamentalism_modifier = {
+	modifier = {
+		desc = "FACTION_REASON_PLURALISM_ASTRAY"
+		add = {
+			value = $ASTRAY_BASE_VALUE$
+
+			if = {
+				limit = {
+					$TARGET$.faith = { has_doctrine = doctrine_pluralism_righteous }
+				}
+				multiply = hostility_multiplier_righteous
+			}
+			else_if = {
+				limit = {
+					$TARGET$.faith = { has_doctrine = doctrine_pluralism_pluralistic }
+				}
+				multiply = hostility_multiplier_pluralism
+			}
+			else_if = {
+				limit = {
+					$TARGET$.faith = { has_doctrine = doctrine_pluralism_fundamentalist }
+				}
+				multiply = hostility_multiplier_fundamentalist
+			}
+
+
+			if = {
+				limit = {
+					$TARGET$.faith = { has_doctrine_parameter = reduced_vassal_religion_discontent }
+				}
+				add = {
+					value = $ASTRAY_BASE_VALUE$
+					multiply = hostility_multiplier_reduction_adaptive
+				}
+			}
+		}
+		NOT = {
+			has_active_diarch_for_factions_trigger = { TARGET = $TARGET$ }
+		}
+		$BASE_FAITH$ = {
+			faith_hostility_level = {
+				target = $TARGET$.faith
+				value = faith_astray_level
+			}
+		}
+		NOT = {
+			root.culture = {
+				has_cultural_parameter = doesnt_care_about_culture_faith_in_factions
+			}
+		}
+	}
+	modifier = {
+		desc = "FACTION_REASON_PLURALISM_HOSTILE"
+		add = {
+			value = $HOSTILE_BASE_VALUE$
+			if = {
+				limit = {
+					$TARGET$.faith = { has_doctrine = doctrine_pluralism_righteous }
+				}
+				multiply = hostility_multiplier_righteous
+			}
+			else_if = {
+				limit = {
+					$TARGET$.faith = { has_doctrine = doctrine_pluralism_pluralistic }
+				}
+				multiply = hostility_multiplier_pluralism
+			}
+			else_if = {
+				limit = {
+					$TARGET$.faith = { has_doctrine = doctrine_pluralism_fundamentalist }
+				}
+				multiply = hostility_multiplier_fundamentalist
+			}
+
+
+			if = {
+				limit = {
+					$TARGET$.faith = { has_doctrine_parameter = reduced_vassal_religion_discontent }
+				}
+				add = {
+					value = $ASTRAY_BASE_VALUE$
+					multiply = hostility_multiplier_reduction_adaptive
+				}
+			}
+		}
+		NOT = {
+			has_active_diarch_for_factions_trigger = { TARGET = $TARGET$ }
+		}
+		$BASE_FAITH$ = {
+			faith_hostility_level = {
+				target = $TARGET$.faith
+				value = faith_hostile_level
+			}
+		}
+		NOT = {
+			root.culture = {
+				has_cultural_parameter = doesnt_care_about_culture_faith_in_factions
+			}
+		}
+	}
+	modifier = {
+		desc = "FACTION_REASON_PLURALISM_EVIL"
+		add = {
+			value = $EVIL_BASE_VALUE$
+			if = {
+				limit = {
+					$TARGET$.faith = { has_doctrine = doctrine_pluralism_righteous }
+				}
+				multiply = hostility_multiplier_righteous
+			}
+			else_if = {
+				limit = {
+					$TARGET$.faith = { has_doctrine = doctrine_pluralism_pluralistic }
+				}
+				multiply = hostility_multiplier_pluralism
+			}
+			else_if = {
+				limit = {
+					$TARGET$.faith = { has_doctrine = doctrine_pluralism_fundamentalist }
+				}
+				multiply = hostility_multiplier_fundamentalist
+			}
+
+
+			if = {
+				limit = {
+					$TARGET$.faith = { has_doctrine_parameter = reduced_vassal_religion_discontent }
+				}
+				add = {
+					value = $ASTRAY_BASE_VALUE$
+					multiply = hostility_multiplier_reduction_adaptive
+				}
+			}
+		}
+		NOT = {
+			has_active_diarch_for_factions_trigger = { TARGET = $TARGET$ }
+		}
+		$BASE_FAITH$ = {
+			faith_hostility_level = {
+				target = $TARGET$.faith
+				value = faith_evil_level
+			}
+		}
+		NOT = {
+			root.culture = {
+				has_cultural_parameter = doesnt_care_about_culture_faith_in_factions
+			}
+		}
+	}
+}
+
+pluralism_fundamentalism_dual_modifier = {
+	modifier = {
+		desc = "FACTION_REASON_PLURALISM_ASTRAY"
+		add = {
+			value = $ASTRAY_BASE_VALUE$
+
+			if = {
+				limit = {
+					OR = {
+						$TARGET$.faith = { has_doctrine = doctrine_pluralism_righteous }
+						$TARGET$.diarch.faith = { has_doctrine = doctrine_pluralism_righteous }
+					}
+				}
+				multiply = hostility_multiplier_righteous
+			}
+			else_if = {
+				limit = {
+					OR = {
+						$TARGET$.faith = { has_doctrine = doctrine_pluralism_pluralistic }
+						$TARGET$.diarch.faith = { has_doctrine = doctrine_pluralism_pluralistic }
+					}
+				}
+				multiply = hostility_multiplier_pluralism
+			}
+			else_if = {
+				limit = {
+					OR = {
+						$TARGET$.faith = { has_doctrine = doctrine_pluralism_fundamentalist }
+						$TARGET$.diarch.faith = { has_doctrine = doctrine_pluralism_fundamentalist }
+					}
+				}
+				multiply = hostility_multiplier_fundamentalist
+			}
+
+
+			if = {
+				limit = {
+					OR = {
+						$TARGET$.faith = { has_doctrine_parameter = reduced_vassal_religion_discontent }
+						$TARGET$.diarch.faith = { has_doctrine_parameter = reduced_vassal_religion_discontent }
+					}
+				}
+				add = {
+					value = $ASTRAY_BASE_VALUE$
+					multiply = hostility_multiplier_reduction_adaptive
+				}
+			}
+		}
+		has_active_diarch_for_factions_trigger = { TARGET = $TARGET$ }
+		OR = {
+			$BASE_FAITH$ = {
+				faith_hostility_level = {
+					target = $TARGET$.faith
+					value = faith_astray_level
+				}
+			}
+			$BASE_FAITH$ = {
+				faith_hostility_level = {
+					target = $TARGET$.diarch.faith
+					value = faith_astray_level
+				}
+			}
+		}
+		NOT = {
+			root.culture = {
+				has_cultural_parameter = doesnt_care_about_culture_faith_in_factions
+			}
+		}
+	}
+	modifier = {
+		desc = "FACTION_REASON_PLURALISM_HOSTILE"
+		add = {
+			value = $HOSTILE_BASE_VALUE$
+			if = {
+				limit = {
+					OR = {
+						$TARGET$.faith = { has_doctrine = doctrine_pluralism_righteous }
+						$TARGET$.diarch.faith = { has_doctrine = doctrine_pluralism_righteous }
+					}
+				}
+				multiply = hostility_multiplier_righteous
+			}
+			else_if = {
+				limit = {
+					OR = {
+						$TARGET$.faith = { has_doctrine = doctrine_pluralism_pluralistic }
+						$TARGET$.diarch.faith = { has_doctrine = doctrine_pluralism_pluralistic }
+					}
+				}
+				multiply = hostility_multiplier_pluralism
+			}
+			else_if = {
+				limit = {
+					OR = {
+						$TARGET$.faith = { has_doctrine = doctrine_pluralism_fundamentalist }
+						$TARGET$.diarch.faith = { has_doctrine = doctrine_pluralism_fundamentalist }
+					}
+				}
+				multiply = hostility_multiplier_fundamentalist
+			}
+
+
+			if = {
+				limit = {
+					OR = {
+						$TARGET$.faith = { has_doctrine_parameter = reduced_vassal_religion_discontent }
+						$TARGET$.diarch.faith = { has_doctrine_parameter = reduced_vassal_religion_discontent }
+					}
+				}
+				add = {
+					value = $ASTRAY_BASE_VALUE$
+					multiply = hostility_multiplier_reduction_adaptive
+				}
+			}
+		}
+		has_active_diarch_for_factions_trigger = { TARGET = $TARGET$ }
+		OR = {
+			$BASE_FAITH$ = {
+				faith_hostility_level = {
+					target = $TARGET$.faith
+					value = faith_hostile_level
+				}
+			}
+			$BASE_FAITH$ = {
+				faith_hostility_level = {
+					target = $TARGET$.diarch.faith
+					value = faith_hostile_level
+				}
+			}
+		}
+		NOT = {
+			root.culture = {
+				has_cultural_parameter = doesnt_care_about_culture_faith_in_factions
+			}
+		}
+	}
+	modifier = {
+		desc = "FACTION_REASON_PLURALISM_EVIL"
+		add = {
+			value = $EVIL_BASE_VALUE$
+			if = {
+				limit = {
+					OR = {
+						$TARGET$.faith = { has_doctrine = doctrine_pluralism_righteous }
+						$TARGET$.diarch.faith = { has_doctrine = doctrine_pluralism_righteous }
+					}
+				}
+				multiply = hostility_multiplier_righteous
+			}
+			else_if = {
+				limit = {
+					OR = {
+						$TARGET$.faith = { has_doctrine = doctrine_pluralism_pluralistic }
+						$TARGET$.diarch.faith = { has_doctrine = doctrine_pluralism_pluralistic }
+					}
+				}
+				multiply = hostility_multiplier_pluralism
+			}
+			else_if = {
+				limit = {
+					OR = {
+						$TARGET$.faith = { has_doctrine = doctrine_pluralism_fundamentalist }
+						$TARGET$.diarch.faith = { has_doctrine = doctrine_pluralism_fundamentalist }
+					}
+				}
+				multiply = hostility_multiplier_fundamentalist
+			}
+
+
+			if = {
+				limit = {
+					OR = {
+						$TARGET$.faith = { has_doctrine_parameter = reduced_vassal_religion_discontent }
+						$TARGET$.diarch.faith = { has_doctrine_parameter = reduced_vassal_religion_discontent }
+					}
+				}
+				add = {
+					value = $ASTRAY_BASE_VALUE$
+					multiply = hostility_multiplier_reduction_adaptive
+				}
+			}
+		}
+		has_active_diarch_for_factions_trigger = { TARGET = $TARGET$ }
+		OR = {
+			$BASE_FAITH$ = {
+				faith_hostility_level = {
+					target = $TARGET$.faith
+					value = faith_evil_level
+				}
+			}
+			$BASE_FAITH$ = {
+				faith_hostility_level = {
+					target = $TARGET$.diarch.faith
+					value = faith_evil_level
+				}
+			}
+		}
+		NOT = {
+			root.culture = {
+				has_cultural_parameter = doesnt_care_about_culture_faith_in_factions
+			}
+		}
+	}
+}
+
+liege_debt_modifier = {
+	modifier = {
+		desc = "FACTION_REASON_LIEGE_DEBT"
+		$TARGET$ = { gold <= 0 }
+		add = {
+			value = 0
+			if = {
+				limit = { $TARGET$ = { debt_level = 0 }}
+				add = $SCORE_PER_DEBT_LEVEL$
+				multiply = 1
+			}
+			else_if = {
+				limit = { $TARGET$ = { debt_level = 1 }}
+				add = $SCORE_PER_DEBT_LEVEL$
+				multiply = 2
+			}
+			else_if = {
+				limit = { $TARGET$ = { debt_level = 2 }}
+				add = $SCORE_PER_DEBT_LEVEL$
+				multiply = 3
+			}
+			else_if = {
+				limit = { $TARGET$ = { debt_level = 3 }}
+				add = $SCORE_PER_DEBT_LEVEL$
+				multiply = 4
+			}
+			else_if = {
+				limit = { $TARGET$ = { debt_level = 4 }}
+				add = $SCORE_PER_DEBT_LEVEL$
+				multiply = 5
+			}
+			else_if = {
+				limit = { $TARGET$ = { debt_level = 5 }}
+				add = $SCORE_PER_DEBT_LEVEL$
+				multiply = 6
+			}
+			else_if = {
+				limit = { $TARGET$ = { debt_level = 6 }}
+				add = $SCORE_PER_DEBT_LEVEL$
+				multiply = 7
+			}
+			else_if = {
+				limit = { $TARGET$ = { debt_level = 7 }}
+				add = $SCORE_PER_DEBT_LEVEL$
+				multiply = 8
+			}
+			else_if = {
+				limit = { $TARGET$ = { debt_level = 8 }}
+				add = $SCORE_PER_DEBT_LEVEL$
+				multiply = 9
+			}
+			else_if = {
+				limit = { $TARGET$ = { debt_level = 9 }}
+				add = $SCORE_PER_DEBT_LEVEL$
+				multiply = 10
+			}
+			if = {
+				limit = { $TARGET$ = { treasury_debt_level = 0 }}
+				add = $SCORE_PER_DEBT_LEVEL$
+				multiply = 1
+			}
+			else_if = {
+				limit = { $TARGET$ = { treasury_debt_level = 1 }}
+				add = $SCORE_PER_DEBT_LEVEL$
+				multiply = 2
+			}
+			else_if = {
+				limit = { $TARGET$ = { treasury_debt_level = 2 }}
+				add = $SCORE_PER_DEBT_LEVEL$
+				multiply = 3
+			}
+			else_if = {
+				limit = { $TARGET$ = { treasury_debt_level = 3 }}
+				add = $SCORE_PER_DEBT_LEVEL$
+				multiply = 4
+			}
+			else_if = {
+				limit = { $TARGET$ = { treasury_debt_level = 4 }}
+				add = $SCORE_PER_DEBT_LEVEL$
+				multiply = 5
+			}
+			else_if = {
+				limit = { $TARGET$ = { treasury_debt_level = 5 }}
+				add = $SCORE_PER_DEBT_LEVEL$
+				multiply = 6
+			}
+			else_if = {
+				limit = { $TARGET$ = { treasury_debt_level = 6 }}
+				add = $SCORE_PER_DEBT_LEVEL$
+				multiply = 7
+			}
+			else_if = {
+				limit = { $TARGET$ = { treasury_debt_level = 7 }}
+				add = $SCORE_PER_DEBT_LEVEL$
+				multiply = 8
+			}
+			else_if = {
+				limit = { $TARGET$ = { treasury_debt_level = 8 }}
+				add = $SCORE_PER_DEBT_LEVEL$
+				multiply = 9
+			}
+			else_if = {
+				limit = { $TARGET$ = { treasury_debt_level = 9 }}
+				add = $SCORE_PER_DEBT_LEVEL$
+				multiply = 10
+			}
+		}
+	}
+}
+
+debt_modifier = {
+	modifier = {
+		desc = "REASON_DEBT"
+		$TARGET$ = { gold <= 0 }
+		add = {
+			value = 0
+			if = {
+				limit = { $TARGET$ = { debt_level = 0 }}
+				add = $SCORE_PER_DEBT_LEVEL$
+				multiply = 1
+			}
+			else_if = {
+				limit = { $TARGET$ = { debt_level = 1 }}
+				add = $SCORE_PER_DEBT_LEVEL$
+				multiply = 2
+			}
+			else_if = {
+				limit = { $TARGET$ = { debt_level = 2 }}
+				add = $SCORE_PER_DEBT_LEVEL$
+				multiply = 3
+			}
+			else_if = {
+				limit = { $TARGET$ = { debt_level = 3 }}
+				add = $SCORE_PER_DEBT_LEVEL$
+				multiply = 4
+			}
+			else_if = {
+				limit = { $TARGET$ = { debt_level = 4 }}
+				add = $SCORE_PER_DEBT_LEVEL$
+				multiply = 5
+			}
+			else_if = {
+				limit = { $TARGET$ = { debt_level = 5 }}
+				add = $SCORE_PER_DEBT_LEVEL$
+				multiply = 6
+			}
+			else_if = {
+				limit = { $TARGET$ = { debt_level = 6 }}
+				add = $SCORE_PER_DEBT_LEVEL$
+				multiply = 7
+			}
+			else_if = {
+				limit = { $TARGET$ = { debt_level = 7 }}
+				add = $SCORE_PER_DEBT_LEVEL$
+				multiply = 8
+			}
+			else_if = {
+				limit = { $TARGET$ = { debt_level = 8 }}
+				add = $SCORE_PER_DEBT_LEVEL$
+				multiply = 9
+			}
+			else_if = {
+				limit = { $TARGET$ = { debt_level = 9 }}
+				add = $SCORE_PER_DEBT_LEVEL$
+				multiply = 10
+			}
+			if = {
+				limit = { $TARGET$ = { treasury_debt_level = 0 }}
+				add = $SCORE_PER_DEBT_LEVEL$
+				multiply = 1
+			}
+			else_if = {
+				limit = { $TARGET$ = { treasury_debt_level = 1 }}
+				add = $SCORE_PER_DEBT_LEVEL$
+				multiply = 2
+			}
+			else_if = {
+				limit = { $TARGET$ = { treasury_debt_level = 2 }}
+				add = $SCORE_PER_DEBT_LEVEL$
+				multiply = 3
+			}
+			else_if = {
+				limit = { $TARGET$ = { treasury_debt_level = 3 }}
+				add = $SCORE_PER_DEBT_LEVEL$
+				multiply = 4
+			}
+			else_if = {
+				limit = { $TARGET$ = { treasury_debt_level = 4 }}
+				add = $SCORE_PER_DEBT_LEVEL$
+				multiply = 5
+			}
+			else_if = {
+				limit = { $TARGET$ = { treasury_debt_level = 5 }}
+				add = $SCORE_PER_DEBT_LEVEL$
+				multiply = 6
+			}
+			else_if = {
+				limit = { $TARGET$ = { treasury_debt_level = 6 }}
+				add = $SCORE_PER_DEBT_LEVEL$
+				multiply = 7
+			}
+			else_if = {
+				limit = { $TARGET$ = { treasury_debt_level = 7 }}
+				add = $SCORE_PER_DEBT_LEVEL$
+				multiply = 8
+			}
+			else_if = {
+				limit = { $TARGET$ = { treasury_debt_level = 8 }}
+				add = $SCORE_PER_DEBT_LEVEL$
+				multiply = 9
+			}
+			else_if = {
+				limit = { $TARGET$ = { treasury_debt_level = 9 }}
+				add = $SCORE_PER_DEBT_LEVEL$
+				multiply = 10
+			}
+		}
+	}
+}
+
+dynamic_power_threshold_scripted_modifier = {
+
+
+	modifier = {
+		add = {
+			value = 0
+
+			if = {
+				limit = {
+					faction_target = {
+						any_targeting_faction = {
+							faction_is_type = $FACTION_TYPE1$
+							faction_is_at_war = yes
+						}
+					}
+				}
+				add = -20
+			}
+			else_if = {
+				limit = {
+					faction_target = {
+						any_targeting_faction = {
+							faction_is_type = $FACTION_TYPE1$
+							faction_is_at_war = no
+							faction_power >= faction_power_threshold
+						}
+					}
+				}
+				add = -10
+			}
+			else_if = {
+				limit = {
+					faction_target = {
+						any_targeting_faction = {
+							faction_is_type = $FACTION_TYPE1$
+							faction_is_at_war = no
+						}
+					}
+				}
+				add = -5
+			}
+
+			if = {
+				limit = {
+					faction_target = {
+						any_targeting_faction = {
+							faction_is_type = $FACTION_TYPE2$
+							faction_is_at_war = yes
+						}
+					}
+				}
+				add = -20
+			}
+			else_if = {
+				limit = {
+					faction_target = {
+						any_targeting_faction = {
+							faction_is_type = $FACTION_TYPE2$
+							faction_is_at_war = no
+							faction_power >= faction_power_threshold
+						}
+					}
+				}
+				add = -10
+			}
+			else_if = {
+				limit = {
+					faction_target = {
+						any_targeting_faction = {
+							faction_is_type = $FACTION_TYPE2$
+							faction_is_at_war = no
+						}
+					}
+				}
+				add = -5
+			}
+
+			if = {
+				limit = {
+					faction_target = {
+						any_targeting_faction = {
+							faction_is_type = $FACTION_TYPE3$
+							faction_is_at_war = yes
+						}
+					}
+				}
+				add = -20
+			}
+			else_if = {
+				limit = {
+					faction_target = {
+						any_targeting_faction = {
+							faction_is_type = $FACTION_TYPE3$
+							faction_is_at_war = no
+							faction_power >= faction_power_threshold
+						}
+					}
+				}
+				add = -10
+			}
+			else_if = {
+				limit = {
+					faction_target = {
+						any_targeting_faction = {
+							faction_is_type = $FACTION_TYPE3$
+							faction_is_at_war = no
+						}
+					}
+				}
+				add = -5
+			}
+
+			min = -70
+		}
+		desc = "FACTION_POWER_INTERNAL_ISSUES"
+	}
+}
+
+common_discontent_progress_modifier = {
+
+	modifier = {
+		add = base_discontent_progress
+		desc = "BASE_COLON"
+	}
+
+
+	modifier = {
+		faction_power > faction_power_threshold
+		add = faction_discontent_for_extra_power
+		desc = "FACTION_DISCONTENT_POWER_ABOVE_THRESHOLD"
+	}
+
+
+	modifier = {
+		faction_power < faction_power_threshold
+		add = {
+			add = base_discontent_progress
+			multiply = -2
+		}
+		desc = "FACTION_DISCONTENT_POWER_BELOW_THRESHOLD"
+	}
+}
+
+common_create_faction_blockers = {
+
+	modifier = {
+		add = -1000
+		$FACTION_TARGET$ = {
+			has_character_flag = $FLAG$
+		}
+	}
+
+
+	modifier = {
+		add = -1000
+		is_at_war = yes
+	}
+
+
+	modifier = {
+		add = -1000
+		save_temporary_opinion_value_as = { name = target_opinion target = $FACTION_TARGET$ }
+		scope:target_opinion >= 80
+	}
+
+
+	modifier = {
+		add = -1000
+		$FACTION_TARGET$ = {
+			government_allows = administrative
+			any_targeting_faction = { faction_is_at_war = yes }
+		}
+	}
+
+
+	modifier = {
+		add = -1000
+		has_character_modifier = ach_intent_faction_joining_prevention_modifier
+	}
+}
+
+common_join_faction_blockers = {
+
+	modifier = {
+		add = -1000
+		AND = {
+			is_at_war = yes
+			trigger_if = {
+				limit = {
+					exists = joined_faction
+				}
+				joined_faction != scope:faction
+			}
+		}
+	}
+
+	modifier = {
+		add = -1000
+		save_temporary_opinion_value_as = { name = target_opinion target = $FACTION_TARGET$ }
+		scope:target_opinion >= 80
+	}
+
+
+	modifier = {
+		add = -1000
+		has_character_modifier = ach_intent_faction_joining_prevention_modifier
+	}
+}
+
+common_faction_modifiers = {
+
+	opinion_modifier = {
+		who = root
+		opinion_target = $FACTION_TARGET$
+		multiplier = $OPINION_MULTIPLIER$
+		max = $MAX_OPINION$
+	}
+
+
+	pluralism_fundamentalism_modifier = {
+		ASTRAY_BASE_VALUE = 25
+		HOSTILE_BASE_VALUE = 50
+		EVIL_BASE_VALUE = 100
+		BASE_FAITH = faith
+		TARGET = $FACTION_TARGET$
+	}
+
+
+	legalism_virtue_and_sin_modifier = {
+		TARGET = $FACTION_TARGET$
+		SCORE_PER_TRAIT = 25
+	}
+
+
+	intimidated_from_faction_modifier = {
+		TARGET = $FACTION_TARGET$
+		POWER =  $POWER$
+		THRESHOLD = $THRESHOLD$
+	}
+
+
+	modifier = {
+		desc = "FACTION_REASON_unity_less_likely_claimant_factions"
+		add = -20
+		exists = root.house
+		exists = $FACTION_TARGET$.house
+		house = $FACTION_TARGET$.house
+		house = {
+			has_house_unity_parameter = unity_less_likely_factions
+		}
+	}
+	modifier = {
+		desc = "FACTION_REASON_unity_significantly_less_likely_claimant_factions"
+		add = -40
+		exists = root.house
+		exists = $FACTION_TARGET$.house
+		house = $FACTION_TARGET$.house
+		house = {
+			has_house_unity_parameter = unity_significantly_less_likely_factions
+		}
+	}
+
+
+	liege_debt_modifier = {
+		TARGET = $FACTION_TARGET$
+		SCORE_PER_DEBT_LEVEL = 10
+	}
+
+
+	modifier = {
+		desc = FACTION_REASON_duty_focus
+		add = duty_focus_value
+		$FACTION_TARGET$ = {
+			has_focus = stewardship_duty_focus
+		}
+	}
+
+
+	modifier = {
+		desc = FACTION_REASON_court_position_task
+		add = duty_focus_value
+		$FACTION_TARGET$ = {
+			has_variable = court_position_faction_commitment_task
+		}
+	}
+
+
+	modifier = {
+		desc = "FACTION_REASON_DIFFICULTY_EASY"
+		add = -50
+		has_game_rule = easy_difficulty
+		$FACTION_TARGET$ = {
+			is_ai = no
+		}
+	}
+	modifier = {
+		desc = "FACTION_REASON_DIFFICULTY_VERY_EASY"
+		add = -150
+		has_game_rule = very_easy_difficulty
+		$FACTION_TARGET$ = {
+			is_ai = no
+		}
+	}
+	modifier = {
+		desc = "FACTION_REASON_DIFFICULTY_HARD"
+		add = -100
+		has_game_rule = hard_difficulty
+		$FACTION_TARGET$ = {
+			is_ai = yes
+		}
+	}
+	modifier = {
+		desc = "FACTION_REASON_DIFFICULTY_VERY_HARD"
+		add = -200
+		has_game_rule = very_hard_difficulty
+		$FACTION_TARGET$ = {
+			is_ai = yes
+		}
+	}
+	modifier = {
+		desc = "game_rule_base_value"
+		add = 50
+		has_game_rule = hard_difficulty
+		$FACTION_TARGET$ = {
+			is_ai = no
+		}
+		opinion = {
+			target = $FACTION_TARGET$
+			value > 25
+		}
+	}
+	modifier = {
+		desc = "game_rule_base_value"
+		add = 75
+		has_game_rule = very_hard_difficulty
+		$FACTION_TARGET$ = {
+			is_ai = no
+		}
+		opinion = {
+			target = $FACTION_TARGET$
+			value > 25
+		}
+	}
+	modifier = {
+		desc = "game_rule_base_value"
+		add = 100
+		has_game_rule = hard_difficulty
+		$FACTION_TARGET$ = {
+			is_ai = no
+		}
+		opinion = {
+			target = $FACTION_TARGET$
+			value <= 25
+		}
+	}
+	modifier = {
+		desc = "game_rule_base_value"
+		add = 150
+		has_game_rule = very_hard_difficulty
+		$FACTION_TARGET$ = {
+			is_ai = no
+		}
+		opinion = {
+			target = $FACTION_TARGET$
+			value <= 25
+		}
+	}
+	modifier = {
+		desc = "NO_FRIVOLOUS_ACTIVITIES_REASON"
+		add = -100
+		$FACTION_TARGET$ = {
+			ai_should_get_conqueror_bonuses = yes
+		}
+	}
+	modifier = {
+		desc = "NO_FRIVOLOUS_ACTIVITIES_REASON"
+		add = -250
+		$FACTION_TARGET$ = {
+			ai_should_get_extreme_conqueror_bonuses = yes
+		}
+	}
+
+
+	modifier = {
+		desc = "MPO_OBEDIENT_NOMAD"
+		is_obedient_to = $FACTION_TARGET$
+		$FACTION_TARGET$ = { government_has_flag = government_is_nomadic }
+		add = -75
+	}
+
+
+	modifier = {
+		desc = "MPO_NON_OBEDIENT_NOMAD"
+		obedience_target = $FACTION_TARGET$
+		NOT = {
+			is_obedient_to = $FACTION_TARGET$
+		}
+		$FACTION_TARGET$ = { government_has_flag = government_is_nomadic }
+		add = 75
+	}
+
+	modifier = {
+		$FACTION_TARGET$ = {
+			any_memory = {
+				has_memory_type = nomad_showed_weakness_in_war
+			}
+		}
+
+		add = {
+			value = 25
+			if = {
+				limit = {
+					$FACTION_TARGET$ = {
+						any_memory = {
+							has_memory_type = nomad_showed_weakness_in_war
+							memory_age_years < 10
+						}
+					}
+				}
+				add = 75
+			}
+		}
+		desc = cease_tribute_showed_weakness_in_war_reason
+	}
+
+	modifier = {
+		$FACTION_TARGET$ = {
+			any_memory = {
+				has_memory_type = had_chaotic_kurultai_succession
+			}
+		}
+		add = {
+			value = 25
+			if = {
+				limit = {
+					$FACTION_TARGET$ = {
+						any_memory = {
+							has_memory_type = had_chaotic_kurultai_succession
+							memory_age_years < 10
+						}
+					}
+				}
+				add = 75
+			}
+		}
+		desc = cease_tribute_had_chaotic_kurultai_succession_reason
+	}
+
+
+	modifier = {
+		desc = "FACTION_REASON_GAME_RULE_REALM_STABILITY_LESSER"
+		add = 50
+		has_game_rule = lesser_realm_stability
+	}
+	modifier = {
+		desc = "FACTION_REASON_GAME_RULE_REALM_STABILITY_HIGHER"
+		add = -50
+		has_game_rule = higher_realm_stability
+	}
+	modifier = {
+		desc = "FACTION_REASON_GAME_RULE_REALM_STABILITY_EXTREME"
+		add = -100
+		has_game_rule = extreme_realm_stability
+	}
+	modifier = {
+		desc = "FACTION_REASON_GAME_RULE_REALM_STABILITY_LESSER"
+		add = 50
+		has_game_rule = lesser_realm_stability_ai_only
+		$FACTION_TARGET$ = {
+			is_ai = yes
+		}
+	}
+	modifier = {
+		desc = "FACTION_REASON_GAME_RULE_REALM_STABILITY_HIGHER"
+		add = -50
+		has_game_rule = higher_realm_stability_ai_only
+		$FACTION_TARGET$ = {
+			is_ai = yes
+		}
+	}
+	modifier = {
+		desc = "FACTION_REASON_GAME_RULE_REALM_STABILITY_EXTREME"
+		add = -100
+		has_game_rule = extreme_realm_stability_ai_only
+		$FACTION_TARGET$ = {
+			is_ai = yes
+		}
+	}
+	modifier = {
+		desc = "FACTION_REASON_GAME_RULE_REALM_STABILITY_LESSER"
+		add = 50
+		has_game_rule = lesser_realm_stability_regular_factions
+	}
+	modifier = {
+		desc = "FACTION_REASON_GAME_RULE_REALM_STABILITY_HIGHER"
+		add = -50
+		has_game_rule = higher_realm_stability_regular_factions
+	}
+	modifier = {
+		desc = "FACTION_REASON_GAME_RULE_REALM_STABILITY_EXTREME"
+		add = -100
+		has_game_rule = extreme_realm_stability_regular_factions
+	}
+	modifier = {
+		desc = "FACTION_REASON_GAME_RULE_REALM_STABILITY_LESSER"
+		add = 50
+		has_game_rule = lesser_realm_stability_regular_factions_ai_only
+		$FACTION_TARGET$ = {
+			is_ai = yes
+		}
+	}
+	modifier = {
+		desc = "FACTION_REASON_GAME_RULE_REALM_STABILITY_HIGHER"
+		add = -50
+		has_game_rule = higher_realm_stability_regular_factions_ai_only
+		$FACTION_TARGET$ = {
+			is_ai = yes
+		}
+	}
+	modifier = {
+		desc = "FACTION_REASON_GAME_RULE_REALM_STABILITY_EXTREME"
+		add = -100
+		has_game_rule = extreme_realm_stability_regular_factions_ai_only
+		$FACTION_TARGET$ = {
+			is_ai = yes
+		}
+	}
+
+
+	modifier = {
+		add = -10000
+		years_from_game_start < 1
+		$FACTION_TARGET$.primary_title.tier = tier_duchy
+		trigger_if = {
+			limit = { exists = scope:actor }
+			NOT = {
+				scope:actor.joined_faction ?= {
+					exists = faction_war
+					faction_target = $FACTION_TARGET$
+				}
+			}
+		}
+		desc = "FACTION_REASON_GAME_START_DUCHY"
+	}
+
+	modifier = {
+		add = -10000
+		years_from_game_start < 5
+		$FACTION_TARGET$.primary_title.tier = tier_kingdom
+		trigger_if = {
+			limit = { exists = scope:actor }
+			NOT = {
+				scope:actor.joined_faction ?= {
+					exists = faction_war
+					faction_target = $FACTION_TARGET$
+				}
+			}
+		}
+		desc = "FACTION_REASON_GAME_START_KINGDOM"
+	}
+
+	modifier = {
+		add = -10000
+		years_from_game_start < 10
+		$FACTION_TARGET$.primary_title.tier = tier_empire
+		trigger_if = {
+			limit = { exists = scope:actor }
+			NOT = {
+				scope:actor.joined_faction ?= {
+					exists = faction_war
+					faction_target = $FACTION_TARGET$
+				}
+			}
+		}
+		desc = "FACTION_REASON_GAME_START_EMPIRE"
+	}
+
+
+	modifier = {
+		add = -10000
+		years_from_game_start < 15
+		$FACTION_TARGET$.primary_title.tier = tier_hegemony
+		trigger_if = {
+			limit = { exists = scope:actor }
+			NOT = {
+				scope:actor.joined_faction ?= {
+					exists = faction_war
+					faction_target = $FACTION_TARGET$
+				}
+			}
+		}
+		desc = "FACTION_REASON_GAME_START_HEGEMONY"
+	}
+
+	modifier = {
+		desc = "FACTION_REASON_HOSTAGE"
+		add = -50
+		any_home_court_hostage = { warden = $FACTION_TARGET$ }
+	}
+
+
+	modifier = {
+		add = 500
+		trigger_if = {
+			limit = {
+				exists = scope:actor
+			}
+			confederation.leading_house.house_head.joined_faction ?= scope:actor.joined_faction
+			scope:actor.joined_faction.faction_leader ?= confederation.leading_house.house_head
+		}
+		trigger_else = {
+			confederation.leading_house.house_head.joined_faction ?= scope:faction
+			scope:faction.faction_leader ?= confederation.leading_house.house_head
+		}
+		desc = "FACTION_REASON_BLOC_LEADER"
+	}
+	modifier = {
+		add = 300
+		desc = FACTION_REASON_DETRACTOR
+		has_variable = detractor_faction
+		var:detractor_faction ?= $FACTION_TARGET$
+	}
+}
+
+independence_faction_create_blockers = {
+
+
+	modifier = {
+		add = -2000
+		OR = {
+			government_has_flag = government_is_nomadic
+			government_has_flag = government_is_tribal
+		}
+		$FACTION_TARGET$.primary_title = {
+			has_title_law = confederation_elective_succession_law
+	  	}
+	}
+	modifier = {
+		add = -2000
+		government_has_flag = government_is_nomadic
+		$FACTION_TARGET$ = {
+			any_owned_story = {
+				OR = {
+					story_type = story_greatest_of_khans
+
+
+				}
+			}
+	  	}
+	}
+}
+
+independence_faction_modifiers = {
+
+	modifier = {
+		add = -15
+		desc = "AGOT_FACTON_REASON_HOLDER_IS_LEGITIMATE_HOUSE"
+		$FACTION_TARGET$.primary_title = {
+			title_uses_legitimate_house_mechanic = yes
+		}
+		$FACTION_TARGET$.primary_title = { has_variable = legitimate_house }
+		$FACTION_TARGET$.primary_title.var:legitimate_house = $FACTION_TARGET$.house
+	}
+	modifier = {
+		add = 15
+		desc = "AGOT_FACTON_REASON_HOLDER_IS_NOT_LEGITIMATE_HOUSE"
+		$FACTION_TARGET$.primary_title = {
+			title_uses_legitimate_house_mechanic = yes
+		}
+		$FACTION_TARGET$.primary_title = { has_variable = legitimate_house }
+		NOT = { $FACTION_TARGET$.primary_title.var:legitimate_house = $FACTION_TARGET$.house }
+	}
+
+	modifier = {
+		desc = "FACTION_REASON_ELECTOR"
+
+		add = {
+			value = -150
+
+
+		}
+		$FACTION_TARGET$.primary_title = {
+			has_order_of_succession = election
+			any_elector = {
+				this = root
+			}
+		}
+		faith = {
+			faith_hostility_level = {
+				target = $FACTION_TARGET$.faith
+				value <= faith_astray_level
+			}
+		}
+	}
+
+
+	modifier = {
+		desc = "FACTION_REASON_RIGHTFUL"
+		add = {
+			value = 125
+
+			add = {
+				value = sub_realm_size
+				multiply = 2
+			}
+		}
+		OR = {
+	 		NOT = {
+	 			$FACTION_TARGET$ = { is_rightful_liege_of = root }
+			}
+			any_sub_realm_county = {
+				percent <= 0.5
+				save_temporary_scope_as = current_county
+				$FACTION_TARGET$.primary_title = {
+					any_in_de_jure_hierarchy = {
+						this = scope:current_county
+					}
+				}
+			}
+		}
+	}
+
+
+	modifier = {
+		desc = "FACTION_REASON_KING"
+		add = {
+			value =	50
+			if = {
+				limit = {
+					has_royal_court = yes
+					has_dlc_feature = royal_court
+					$FACTION_TARGET$ = {
+						has_royal_court = yes
+					}
+					court_grandeur_current_level > $FACTION_TARGET$.court_grandeur_current_level
+				}
+				add = {
+					add = court_grandeur_current_level
+					subtract = $FACTION_TARGET$.court_grandeur_current_level
+					multiply = 15
+				}
+			}
+		}
+		NOT = { government_allows = administrative }
+		highest_held_title_tier = tier_kingdom
+	}
+
+
+	modifier = {
+		desc = "FACTION_REASON_COUNT"
+		add = -25
+		highest_held_title_tier = tier_county
+		NOT = { government_has_flag = government_is_nomadic }
+	}
+
+
+	modifier = {
+		desc = "FACTION_REASON_PERK_TOE_THE_LINE"
+		add = -50
+		$FACTION_TARGET$ = {
+			has_perk = toe_the_line_perk
+		}
+	}
+
+
+	modifier = {
+		desc = "FACTION_REASON_CULTURE_ACCEPTANCE"
+		culture = {
+			NOR = {
+				this = $FACTION_TARGET$.culture
+				cultural_acceptance = { target = $FACTION_TARGET$.culture value >= 90 }
+				has_cultural_parameter = doesnt_care_about_culture_faith_in_factions
+			}
+		}
+		add = {
+			value = 20
+			if = {
+				limit = {
+					culture = {
+						cultural_acceptance = { target = $FACTION_TARGET$.culture value <= 20 }
+					}
+				}
+				add = 20
+			}
+			if = {
+				limit = {
+					culture = {
+						cultural_acceptance = { target = $FACTION_TARGET$.culture value <= 35 }
+					}
+				}
+				add = 15
+			}
+			if = {
+				limit = {
+					culture = {
+						cultural_acceptance = { target = $FACTION_TARGET$.culture value <= 50 }
+					}
+				}
+				add = 10
+			}
+			if = {
+				limit = {
+					culture = {
+						cultural_acceptance = { target = $FACTION_TARGET$.culture value <= 70 }
+					}
+				}
+				add = 5
+			}
+			if = {
+				limit = {
+					culture = {
+						cultural_acceptance = { target = $FACTION_TARGET$.culture value <= 80 }
+					}
+				}
+				add = 5
+			}
+			if = {
+				limit = {
+					$FACTION_TARGET$ = {
+						knows_language_of_culture = prev.culture
+					}
+				}
+				multiply = 0.5
+			}
+		}
+	}
+
+
+	modifier = {
+		desc = "FACTION_REASON_PREFER_DISSOLUTION_FACTION"
+		add = {
+			value = 0
+
+			if = {
+				limit = {
+					$FACTION_TARGET$ = {
+						any_character_struggle = {
+
+
+							is_struggle_type = btw_struggle
+							involvement = involved
+							OR = {
+
+
+								is_struggle_phase = struggle_btw_phase_hostility
+								is_struggle_phase = struggle_btw_phase_opportunity
+							}
+						}
+					}
+				}
+				add = -100
+			}
+		}
+		$FACTION_TARGET$ = {
+			any_character_struggle = {
+
+
+				is_struggle_type = btw_struggle
+				involvement = involved
+			}
+		}
+		OR = {
+			is_powerful_vassal_of = $FACTION_TARGET$
+			$FACTION_TARGET$ = {
+				any_targeting_faction = {
+					faction_type = nation_fracturing_faction
+				}
+			}
+		}
+	}
+
+
+	modifier = {
+		desc = "FACTION_REASON_NEW_VASSAL"
+		add = -1000
+		has_opinion_modifier = {
+			modifier = became_vassal
+			target = $FACTION_TARGET$
+		}
+	}
+
+
+	modifier = {
+		desc = "FACTION_REASON_ADMINISTRATIVE"
+		add = -25
+		government_allows = administrative
+	}
+
+
+	modifier = {
+		desc = "FACTION_REASON_NOMADIC"
+		add = 150
+		government_has_flag = government_is_nomadic
+		$FACTION_TARGET$ = {
+			NOT = {
+				government_has_flag = government_is_nomadic
+			}
+		}
+	}
+
+
+	modifier = {
+		desc = "FACTION_REASON_NOMADIC"
+		add = {
+			value = 125
+
+			add = {
+				value = sub_realm_size
+				multiply = 2
+			}
+		}
+		government_has_flag = government_is_nomadic
+	}
+}
+
+nation_fracturing_faction_modifiers = {
+
+	modifier = {
+		add = -15
+		desc = "AGOT_FACTON_REASON_HOLDER_IS_LEGITIMATE_HOUSE"
+		$FACTION_TARGET$.primary_title = {
+			title_uses_legitimate_house_mechanic = yes
+		}
+		$FACTION_TARGET$.primary_title = { has_variable = legitimate_house }
+		$FACTION_TARGET$.primary_title.var:legitimate_house = $FACTION_TARGET$.house
+	}
+	modifier = {
+		add = 15
+		desc = "AGOT_FACTON_REASON_HOLDER_IS_NOT_LEGITIMATE_HOUSE"
+		$FACTION_TARGET$.primary_title = {
+			title_uses_legitimate_house_mechanic = yes
+		}
+		$FACTION_TARGET$.primary_title = { has_variable = legitimate_house }
+		NOT = { $FACTION_TARGET$.primary_title.var:legitimate_house = $FACTION_TARGET$.house }
+	}
+
+
+	modifier = {
+		desc = "FACTION_REASON_SHORT_REIGN"
+		add = {
+			value = 0
+			if =  {
+				limit =  {
+					$FACTION_TARGET$ = {
+						primary_title = {
+							title_held_years <= 1
+						}
+					}
+				}
+				add = 15
+			}
+			if =  {
+				limit =  {
+					$FACTION_TARGET$ = {
+						primary_title = {
+							title_held_years <= 5
+						}
+					}
+				}
+				add = 10
+			}
+			if =  {
+				limit =  {
+					$FACTION_TARGET$ = {
+						primary_title = {
+							title_held_years <= 10
+						}
+					}
+				}
+				add = 5
+			}
+		}
+	}
+
+
+	modifier = {
+		desc = "FACTION_REASON_CLAIMANTS_OF_MY_CULTURE"
+		add = -200
+		$FACTION_TARGET$ = {
+			primary_title = {
+				any_claimant = {
+					count > 0
+					culture = root.culture
+				}
+			}
+		}
+	}
+
+
+	modifier = {
+		desc = "FACTION_REASON_CULTURAL_ACCEPTANCE"
+		culture = {
+			NOR = {
+				this = $FACTION_TARGET$.culture
+				cultural_acceptance = { target = $FACTION_TARGET$.culture value >= 90 }
+				has_cultural_parameter = doesnt_care_about_culture_faith_in_factions
+			}
+		}
+		add = {
+			value = 10
+			if = {
+				limit = {
+					culture = {
+						cultural_acceptance = { target = $FACTION_TARGET$.culture value <= 20 }
+					}
+				}
+				add = 20
+			}
+			if = {
+				limit = {
+					culture = {
+						cultural_acceptance = { target = $FACTION_TARGET$.culture value <= 35 }
+					}
+				}
+				add = 15
+			}
+			if = {
+				limit = {
+					culture = {
+						cultural_acceptance = { target = $FACTION_TARGET$.culture value <= 50 }
+					}
+				}
+				add = 10
+			}
+			if = {
+				limit = {
+					culture = {
+						cultural_acceptance = { target = $FACTION_TARGET$.culture value <= 70 }
+					}
+				}
+				add = 5
+			}
+			if = {
+				limit = {
+					culture = {
+						cultural_acceptance = { target = $FACTION_TARGET$.culture value <= 80 }
+					}
+				}
+				add = 5
+			}
+		}
+	}
+
+
+	modifier = {
+		desc = "FACTION_REASON_TARGET_NOT_FULL_CONTROL"
+		add = {
+			value = 0
+			$FACTION_TARGET$ = {
+				every_held_title = {
+					limit = {
+						this.tier = prev.primary_title.tier
+						NOT = { $FACTION_TARGET$ = { completely_controls = prev } }
+					}
+					add = {
+						if = {
+							limit = { tier = tier_empire }
+							add = 50
+						}
+						else_if = {
+							limit = { tier = tier_kingdom }
+							add = 20
+						}
+						else_if = {
+							limit = { tier = tier_duchy }
+							add = 15
+						}
+						else_if = {
+							limit = { tier = tier_county }
+							add = 10
+						}
+
+						if = {
+							limit = { this = $FACTION_TARGET$.primary_title }
+							add = 50
+						}
+					}
+				}
+			}
+		}
+	}
+
+
+	modifier = {
+		desc = "FACTION_REASON_RECENT_LOST_WAR"
+		add = {
+			value = 0
+			if = {
+				limit = { $FACTION_TARGET$ = { has_variable =  recently_lost_wars } }
+				add = $FACTION_TARGET$.var:recently_lost_wars
+				multiply = 15
+			}
+		}
+	}
+
+
+	modifier = {
+		desc = "FACTION_REASON_TRIBAL_CLAN"
+		add = {
+			value = 0
+			if = {
+				limit = {
+					$FACTION_TARGET$ = {
+						OR = {
+							government_has_flag = government_is_tribal
+							government_has_flag = government_is_nomadic
+						}
+					}
+				}
+				add = 25
+			}
+			else_if = {
+				limit = { $FACTION_TARGET$ = { government_has_flag = government_is_clan } }
+
+				add = {
+					value = 0
+					$FACTION_TARGET$ = {
+						every_vassal = {
+							limit = {
+								is_powerful_vassal_of = $FACTION_TARGET$
+								NOT = { is_allied_to = $FACTION_TARGET$ }
+							}
+							add = 10
+						}
+					}
+				}
+			}
+		}
+	}
+
+	modifier = {
+		$FACTION_TARGET$ = {
+			any_memory = {
+				has_memory_type = nomad_showed_weakness_in_war
+				memory_age_years < 10
+			}
+		}
+
+		add = {
+			value = 125
+			add = $FACTION_TARGET$.sub_realm_size
+		}
+		desc = cease_tribute_showed_weakness_in_war_reason
+	}
+
+	modifier = {
+		$FACTION_TARGET$ = {
+			any_memory = {
+				has_memory_type = had_chaotic_kurultai_succession
+				memory_age_years < 10
+			}
+		}
+		add = {
+			value = 125
+			add = {
+				value = $FACTION_TARGET$.sub_realm_size
+				multiply = 2
+			}
+		}
+		desc = cease_tribute_had_chaotic_kurultai_succession_reason
+	}
+
+
+	modifier = {
+		add = {
+			value = 0
+
+			if = {
+				limit = {
+					$FACTION_TARGET$ = {
+						any_character_struggle = {
+
+
+							is_struggle_type = btw_struggle
+							involvement = involved
+
+
+							is_struggle_phase = struggle_btw_phase_hostility
+						}
+					}
+				}
+				add = 50
+			}
+
+			else_if = {
+				limit = {
+					$FACTION_TARGET$ = {
+						any_character_struggle = {
+
+
+							is_struggle_type = btw_struggle
+							involvement = involved
+
+
+							is_struggle_phase = struggle_btw_phase_opportunity
+						}
+					}
+				}
+				add = 100
+			}
+		}
+		$FACTION_TARGET$ = {
+			any_character_struggle = {
+
+
+				is_struggle_type = btw_struggle
+				involvement = involved
+			}
+		}
+	}
+
+
+	modifier = {
+		desc = "FACTION_REASON_ELECTIVE_PRIMARY"
+		add = -125
+	 	$FACTION_TARGET$.primary_title = {
+			has_order_of_succession = election
+		}
+	}
+
+
+	modifier = {
+		desc = "FACTION_REASON_LOW_CROWN_AUTHORITY"
+		add = -50
+	 	$FACTION_TARGET$ = {
+			OR = {
+				has_realm_law = crown_authority_0
+				has_realm_law = crown_authority_1
+			}
+		}
+	}
+
+
+	modifier = {
+		desc = "FACTION_REASON_NEW_VASSAL"
+		add = -1000
+		has_opinion_modifier = {
+			modifier = became_vassal
+			target = $FACTION_TARGET$
+		}
+	}
+
+
+}
+
+nation_fracturing_faction_blockers = {
+
+	modifier = {
+		add = -1000
+		OR = {
+			has_weak_claim_on = $FACTION_TARGET$.primary_title
+			has_claim_on = $FACTION_TARGET$.primary_title
+		}
+	}
+
+
+	modifier = {
+		add = -1000
+		$FACTION_TARGET$.primary_title.tier < tier_kingdom
+	}
+
+	modifier = {
+		add = -2000
+		OR = {
+			government_has_flag = government_is_nomadic
+			government_has_flag = government_is_tribal
+		}
+		$FACTION_TARGET$.primary_title = {
+			has_title_law = confederation_elective_succession_law
+	  	}
+	}
+
+	modifier = {
+		add = -2000
+		government_has_flag = government_is_nomadic
+		$FACTION_TARGET$ = {
+			any_owned_story = {
+				OR = {
+					story_type = story_greatest_of_khans
+
+
+				}
+			}
+	  	}
+	}
+
+
+}
+
+liberty_faction_modifiers = {
+	modifier = {
+		desc = "FACTION_REASON_CROWN_AUTHORITY_1"
+		add = 10
+		$FACTION_TARGET$ = {
+			has_realm_law = crown_authority_1
+		}
+	}
+	modifier = {
+		desc = "FACTION_REASON_CROWN_AUTHORITY_2"
+		add = 20
+		$FACTION_TARGET$ = {
+			has_realm_law = crown_authority_2
+		}
+	}
+	modifier = {
+		desc = "FACTION_REASON_CROWN_AUTHORITY_3"
+		add = 40
+		$FACTION_TARGET$ = {
+			has_realm_law = crown_authority_3
+		}
+	}
+
+
+	modifier = {
+		desc = "FACTION_REASON_GLORY_LEGACY_4"
+		add = -20
+		$FACTION_TARGET$.dynasty ?= { has_dynasty_perk = glory_legacy_4 }
+	}
+}
+
+claimant_faction_blockers = {
+
+	modifier = {
+		add = -5000
+		has_opinion_modifier = {
+			modifier = claimant_faction_member_opinion
+			target = $FACTION_TARGET$
+		}
+	}
+
+
+	modifier = {
+		add = -1000
+		$FACTION_CLAIMANT$ = {
+			OR = {
+				has_trait = incapable
+				government_has_flag = government_is_theocracy
+
+				government_has_flag = government_is_republic
+				has_trait = maester
+				has_trait = septon
+				has_trait = kingsguard
+				has_trait = nightswatch
+			}
+		}
+	}
+
+
+}
+
+claimant_faction_modifiers = {
+
+	modifier = {
+		add = 40
+		desc = "AGOT_FACTON_REASON_CLAIMANT_IS_LEGITIMATE_HOUSE"
+		exists = $FACTION_TITLE$.var:legitimate_house
+		exists = $FACTION_TARGET$.house
+		$FACTION_TITLE$ = {
+			title_uses_legitimate_house_mechanic = yes
+			NOT = { var:legitimate_house = $FACTION_TARGET$.house }
+		}
+		AND = {
+			exists = $FACTION_CLAIMANT$.house
+			$FACTION_TITLE$.var:legitimate_house = $FACTION_CLAIMANT$.house
+		}
+	}
+	modifier = {
+		add = -40
+		desc = "AGOT_FACTON_REASON_CLAIMANT_IS_NOT_LEGITIMATE_HOUSE"
+		exists = $FACTION_TITLE$.var:legitimate_house
+		exists = $FACTION_TARGET$.house
+		$FACTION_TITLE$ = {
+			title_uses_legitimate_house_mechanic = yes
+			var:legitimate_house = $FACTION_TARGET$.house
+		}
+		OR = {
+			NOT = { exists = $FACTION_CLAIMANT$.house }
+			NOT = { $FACTION_TITLE$.var:legitimate_house = $FACTION_CLAIMANT$.house }
+		}
+	}
+
+
+	modifier = {
+		desc = "FACTION_REASON_CLAIMANT_GENDER"
+		add = -50
+		NOT = { $FACTION_CLAIMANT$ = root }
+		OR = {
+			AND = {
+				faith = { has_doctrine = doctrine_gender_female_dominated }
+				$FACTION_CLAIMANT$ = { is_male = yes }
+			}
+			AND = {
+				faith = { has_doctrine = doctrine_gender_male_dominated }
+				$FACTION_CLAIMANT$ = { is_female = yes }
+			}
+		}
+	}
+
+
+	modifier = {
+		desc = "FACTION_REASON_CLAIMANT_GENDER_VS_TARGET"
+		add = 25
+		OR = {
+			AND = {
+				faith = { has_doctrine = doctrine_gender_female_dominated }
+				$FACTION_TARGET$ = { is_male = yes }
+				$FACTION_CLAIMANT$ = {
+					is_female = yes
+					faith = root.faith
+				}
+			}
+			AND = {
+				faith = { has_doctrine = doctrine_gender_male_dominated }
+				$FACTION_TARGET$ = { is_female = yes }
+				$FACTION_CLAIMANT$ = {
+					is_male = yes
+					faith = root.faith
+				}
+			}
+		}
+	}
+
+
+	opinion_modifier = {
+		desc = "FACTION_REASON_POWERFUL_LIKES_CLAIMANT_MORE"
+		trigger = {
+			is_powerful_vassal_of = $FACTION_TARGET$
+			save_temporary_opinion_value_as = { name = opinion_of_current_liege target = $FACTION_TARGET$ }
+			opinion = { target = $FACTION_CLAIMANT$ value > scope:opinion_of_current_liege }
+		}
+		who = root
+		opinion_target = $FACTION_TARGET$
+		multiplier = -1.5
+		min = 0
+	}
+
+
+	modifier = {
+		desc = "FACTION_REASON_LIKES_LIEGE_UNLESS_CULTURE"
+		add = -50
+		NOT = {	$FACTION_CLAIMANT$ = root }
+		NAND = {
+			culture = $FACTION_CLAIMANT$.culture
+			NOT = { culture = $FACTION_TARGET$.culture }
+		}
+		save_temporary_opinion_value_as = { name = opinion_of_current_liege target = $FACTION_TARGET$ }
+		opinion = { target = $FACTION_CLAIMANT$ value < scope:opinion_of_current_liege }
+	}
+
+	modifier = {
+		desc = "FACTION_REASON_LIKE_CLAIMANT_MORE_THAN_LIEGE"
+		NOT = {	$FACTION_CLAIMANT$ = root }
+		save_temporary_opinion_value_as = { name = opinion_of_current_liege target = $FACTION_TARGET$ }
+		save_temporary_opinion_value_as = { name = opinion_of_claimant target = $FACTION_CLAIMANT$ }
+		scope:opinion_of_claimant > liege_opinion_value
+		scope:opinion_of_claimant > 0
+		add = {
+			value = scope:opinion_of_claimant
+			multiply = 1.5
+			subtract = scope:opinion_of_current_liege
+		}
+	}
+
+	opinion_modifier = {
+		desc = "FACTION_REASON_LIKES_LIEGE"
+		who = root
+		opinion_target = $FACTION_TARGET$
+		multiplier = -0.5
+		max = 0
+	}
+
+	modifier = {
+		desc = "FACTION_REASON_CLAIMANT_TOO_OLD"
+		add = {
+			value = $FACTION_CLAIMANT$.age
+			subtract = 45
+			multiply = -4
+		}
+		NOT = {	$FACTION_CLAIMANT$ = root }
+		$FACTION_CLAIMANT$.age > 45
+	}
+	modifier = {
+		desc = "FACTION_REASON_CLAIMANT_TOO_YOUNG"
+		add = -25
+		NOT = { $FACTION_CLAIMANT$ = root }
+		$FACTION_CLAIMANT$ = { is_adult = no }
+	}
+	modifier = {
+		desc = "FACTION_REASON_CLAIMAINT_DYING"
+		add = {
+			value = 1.5
+			subtract = $FACTION_CLAIMANT$.health
+			multiply = -20
+		}
+		NOT = {	$FACTION_CLAIMANT$ = root }
+		$FACTION_CLAIMANT$.health < 1.5
+	}
+	modifier = {
+		desc = "FACTION_REASON_CLAIMANT_RARE_PRODUCE_HEIR"
+		add = -50
+
+		$FACTION_CLAIMANT$.fertility <= 0.1
+		NOT = {	$FACTION_CLAIMANT$ = root }
+		NOT = {
+			$FACTION_CLAIMANT$ = {
+				any_child = { count >= 1 }
+			}
+		}
+	}
+
+
+	modifier = {
+		desc = "FACTION_REASON_INFIRM"
+		add = -50
+		NOT = { $FACTION_CLAIMANT$ = root }
+		$FACTION_CLAIMANT$ = { has_trait = infirm }
+	}
+
+
+	modifier = {
+		desc = "FACTION_REASON_CLAIMANT_LOW_LEGITIMACY"
+		add = -100
+		$FACTION_CLAIMANT$ = {
+			has_legitimacy = yes
+			legitimacy_level = 0
+		}
+	}
+
+
+	modifier = {
+		desc = "FACTION_REASON_CLAIMANT_LOW_LEGITIMACY"
+		add = -50
+		$FACTION_CLAIMANT$ = {
+			has_legitimacy = yes
+			legitimacy_level = 1
+		}
+	}
+
+
+	modifier = {
+		desc = "FACTION_REASON_CLAIMANT_LOW_LEGITIMACY"
+		add = -25
+		$FACTION_CLAIMANT$ = {
+			has_legitimacy = yes
+			legitimacy_level = 2
+		}
+	}
+
+
+	modifier = {
+		desc = "FACTION_REASON_MEMBER_IS_CLAIMANT"
+		add = {
+			value = 50
+			add = {
+				value = ai_greed
+				multiply = 1.5
+				min = 0
+			}
+		}
+		AND = {
+			$FACTION_CLAIMANT$ = root
+			NOT = { has_trait = content }
+		}
+	}
+
+
+	modifier = {
+		desc = "FACTION_REASON_GLORY_LEGACY_4"
+		add = -20
+		$FACTION_TARGET$.dynasty ?= { has_dynasty_perk = glory_legacy_4 }
+	}
+
+
+	modifier = {
+		desc = "FACTION_REASON_TARGET_FRIEND_LOVER"
+		add = -500
+		OR = {
+			has_secret_relation_lover = $FACTION_TARGET$
+			has_relation_lover = $FACTION_TARGET$
+			has_relation_soulmate = $FACTION_TARGET$
+			has_relation_friend = $FACTION_TARGET$
+			has_relation_best_friend = $FACTION_TARGET$
+		}
+	}
+
+	modifier = {
+		desc = "FACTION_REASON_CLAIMANT_FRIEND_LOVER"
+		add = 25
+		OR = {
+			has_secret_relation_lover = $FACTION_CLAIMANT$
+			has_relation_lover = $FACTION_CLAIMANT$
+			has_relation_soulmate = $FACTION_CLAIMANT$
+			has_relation_friend = $FACTION_CLAIMANT$
+			has_relation_best_friend = $FACTION_CLAIMANT$
+		}
+	}
+
+	modifier = {
+		desc = "FACTION_REASON_CLAIMANT_SUPER_FRIEND_LOVER"
+		add = 100
+		OR = {
+			has_relation_soulmate = $FACTION_CLAIMANT$
+			has_relation_best_friend = $FACTION_CLAIMANT$
+		}
+	}
+
+
+	modifier = {
+		NOT = { this = $FACTION_CLAIMANT$ }
+		exists = house
+		exists = $FACTION_CLAIMANT$.house
+		house != $FACTION_CLAIMANT$.house
+		dynasty = $FACTION_CLAIMANT$.dynasty
+		dynasty != $FACTION_TARGET$.dynasty
+		add = 5
+		desc = FACTION_REASON_CLAIMANT_DYNASTY
+	}
+
+	modifier = {
+		NOT = { this = $FACTION_CLAIMANT$ }
+		exists = house
+		exists = $FACTION_CLAIMANT$.house
+		house = $FACTION_CLAIMANT$.house
+		house != $FACTION_TARGET$.house
+		add = 10
+		desc = FACTION_REASON_CLAIMANT_HOUSE
+	}
+
+	modifier = {
+		NOT = { this = $FACTION_CLAIMANT$ }
+		is_parent_of = $FACTION_CLAIMANT$
+		NOT = { is_parent_of = $FACTION_TARGET$ }
+		desc = FACTION_REASON_CLAIMANT_PARENT
+		add = 30
+	}
+
+	modifier = {
+		NOT = { this = $FACTION_CLAIMANT$ }
+		is_close_family_of = $FACTION_CLAIMANT$
+		NOT = { is_parent_of = $FACTION_CLAIMANT$ }
+		NOT = { is_close_family_of = $FACTION_TARGET$ }
+		add = 20
+		desc = FACTION_REASON_CLAIMANT_CLOSE_FAMILY
+	}
+
+	modifier = {
+		NOT = { this = $FACTION_CLAIMANT$ }
+		is_extended_family_of = $FACTION_CLAIMANT$
+		NOT = { is_extended_family_of = $FACTION_TARGET$ }
+		add = 10
+		desc = FACTION_REASON_CLAIMANT_EXTENDED_FAMILY
+	}
+
+	modifier = {
+		primary_title = {
+			place_in_line_of_succession = {
+				target = $FACTION_CLAIMANT$
+				value <= 5
+			}
+		}
+		$FACTION_CLAIMANT$ = {
+			OR = {
+				is_child_of = root
+				is_sibling_of = root
+				is_nibling_of = root
+			}
+			save_temporary_scope_as = faction_claimant_temp
+		}
+		add = {
+			value = 25
+			multiply = {
+				value = 5
+				subtract = "primary_title.place_in_line_of_succession(scope:faction_claimant_temp)"
+			}
+			if = {
+				limit = { primary_heir ?= $FACTION_CLAIMANT$ }
+				add = 25
+			}
+		}
+		desc = FACTION_REASON_CLAIMANT_PRIMARY_HEIR
+	}
+
+
+	modifier = {
+		desc = "FACTION_REASON_TARGET_IS_CHILD"
+		add = 25
+		$FACTION_TARGET$ = { is_adult = no }
+	}
+
+
+	modifier = {
+		desc = "FACTION_REASON_CULTURAL_REASONS"
+		culture = {
+			NOR = {
+				this = $FACTION_TARGET$.culture
+				cultural_acceptance = { target = $FACTION_TARGET$.culture value >= 90 }
+				has_cultural_parameter = doesnt_care_about_culture_faith_in_factions
+			}
+			OR = {
+				this = $FACTION_CLAIMANT$.culture
+				cultural_acceptance = { target = $FACTION_CLAIMANT$.culture value >= 90 }
+			}
+		}
+		add = {
+			value = 50
+			culture = {
+				if = {
+					limit = { this = $FACTION_CLAIMANT$.culture }
+					add = 50
+				}
+				if = {
+					limit = {
+						cultural_acceptance = { target = $FACTION_TARGET$.culture value <= 20 }
+					}
+					add = 25
+				}
+				if = {
+					limit = {
+						cultural_acceptance = { target = $FACTION_TARGET$.culture value <= 35 }
+					}
+					add = 15
+				}
+				if = {
+					limit = {
+						cultural_acceptance = { target = $FACTION_TARGET$.culture value <= 50 }
+					}
+					add = 10
+				}
+				if = {
+					limit = {
+						cultural_acceptance = { target = $FACTION_TARGET$.culture value <= 70 }
+					}
+					add = 5
+				}
+				if = {
+					limit = {
+						cultural_acceptance = { target = $FACTION_TARGET$.culture value <= 80 }
+					}
+					add = 5
+				}
+			}
+			if = {
+				limit = {
+					$FACTION_TARGET$ = { knows_language_of_culture = prev.culture }
+				}
+				multiply = 0.5
+			}
+
+
+		}
+	}
+
+
+	modifier = {
+		desc = "FACTION_REASON_CLAIMAINT_SAME_FAITH"
+		add = 100
+		NOT = { faith = $FACTION_TARGET$.faith }
+		faith = $FACTION_CLAIMANT$.faith
+		NOT = {
+			culture = { has_cultural_parameter = doesnt_care_about_culture_faith_in_factions }
+		}
+	}
+
+	modifier = {
+		desc = "FACTION_REASON_CLAIMANT_FAITH_ASTRAY"
+		add = -25
+		NOT = { faith = $FACTION_CLAIMANT$.faith }
+		faith = {
+			faith_hostility_level = {
+				target = $FACTION_CLAIMANT$.faith
+				value = faith_astray_level
+			}
+		}
+		NOT = {
+			culture = { has_cultural_parameter = doesnt_care_about_culture_faith_in_factions }
+		}
+	}
+
+	modifier = {
+		desc = "FACTION_REASON_CLAIMANT_FAITH_HOSTILE"
+		add = -250
+		NOT = { faith = $FACTION_CLAIMANT$.faith }
+		faith = {
+			faith_hostility_level = {
+				target = $FACTION_CLAIMANT$.faith
+				value = faith_hostile_level
+			}
+		}
+		NOT = {
+			culture = { has_cultural_parameter = doesnt_care_about_culture_faith_in_factions }
+		}
+	}
+
+	modifier = {
+		desc = "FACTION_REASON_CLAIMANT_FAITH_EVIL"
+		add = -1000
+		NOT = { faith = $FACTION_CLAIMANT$.faith }
+		faith = {
+			faith_hostility_level = {
+				target = $FACTION_CLAIMANT$.faith
+				value = faith_evil_level
+			}
+		}
+		NOT = {
+			culture = { has_cultural_parameter = doesnt_care_about_culture_faith_in_factions }
+		}
+	}
+
+
+	modifier = {
+		desc = "FACTION_REASON_LOW_TIER_TARGET_TITLE"
+		add = -500
+		$FACTION_TITLE$.tier < $FACTION_TARGET$.primary_title.tier
+		$FACTION_TITLE$.tier < tier_kingdom
+	}
+
+
+	modifier = {
+		desc = "FACTION_REASON_CLAIMANT_IS_RIGHTFUL_LIEGE"
+		add = 100
+		$FACTION_CLAIMANT$ = { is_rightful_liege_of = root }
+	}
+
+
+	modifier = {
+		desc = "FACTION_REASON_TITLE_DEJURE_ABOVE"
+		add = -100
+		root.primary_title = { is_noble_family_title = no }
+		NOT = {
+			$FACTION_TITLE$ = { is_de_jure_liege_or_above_target = root.primary_title }
+		}
+	}
+
+
+	modifier = {
+		desc = "FACTION_REASON_PREFER_INDEPENDENCE_FACTION"
+		add = -200
+
+
+		liege = { agot_is_independent_ruler = yes }
+		NOT = { government_allows = administrative }
+		NOT = {
+			$FACTION_TARGET$ = { is_rightful_liege_of = root }
+		}
+	}
+
+
+	modifier = {
+		desc = "FACTION_REASON_LIEGE_IS_UNPREFERRED_HEIR"
+		add = 25
+		NOT = { was_preferred_heir = $FACTION_TARGET$ }
+	}
+
+
+	modifier = {
+		desc = "FACTION_REASON_LIEGE_IS_PREFERRED_HEIR"
+		add = -25
+		was_preferred_heir = $FACTION_TARGET$
+	}
+
+
+	modifier = {
+		desc = "FACTION_REASON_BETTER_CROWN_AUTHORITY"
+		add = 10
+		AND = {
+			$FACTION_TARGET$ = { has_realm_law = crown_authority_1 }
+			$FACTION_CLAIMANT$ = { has_realm_law = crown_authority_0 }
+		}
+	}
+	modifier = {
+		desc = "FACTION_REASON_BETTER_CROWN_AUTHORITY"
+		add = 15
+		AND = {
+			$FACTION_TARGET$ = { has_realm_law = crown_authority_2 }
+			$FACTION_CLAIMANT$ = {
+				OR = {
+					has_realm_law = crown_authority_0
+					has_realm_law = crown_authority_1
+				}
+			}
+		}
+	}
+	modifier = {
+		desc = "FACTION_REASON_BETTER_CROWN_AUTHORITY"
+		add = 15
+		AND = {
+			$FACTION_TARGET$ = { has_realm_law = crown_authority_3 }
+			$FACTION_CLAIMANT$ = {
+				OR = {
+					has_realm_law = crown_authority_0
+					has_realm_law = crown_authority_1
+					has_realm_law = crown_authority_2
+				}
+			}
+		}
+	}
+
+
+	modifier = {
+		desc = "FACTION_REASON_LOWER_COURT_GRANDEUR"
+		add = 50
+		$FACTION_TARGET$.court_grandeur_current_level < $FACTION_TARGET$.court_grandeur_minimum_expected_level
+	}
+
+
+	modifier = {
+		add = 20
+		desc = "FACTION_REASON_unity_more_likely_claimant_factions"
+		exists = root.house
+		exists = $FACTION_TARGET$.house
+		house = $FACTION_TARGET$.house
+		house = { has_house_unity_parameter = unity_more_likely_claimant_factions }
+	}
+	modifier = {
+		add = 40
+		desc = "FACTION_REASON_unity_significantly_more_likely_claimant_factions"
+		exists = root.house
+		exists = $FACTION_TARGET$.house
+		house = $FACTION_TARGET$.house
+		house = { has_house_unity_parameter = unity_significantly_more_likely_claimant_factions }
+	}
+
+
+	modifier = {
+		desc = "FACTION_REASON_LOW_LEGITIMACY"
+		$FACTION_TARGET$ = {
+			OR = {
+				has_legitimacy_flag = increased_factions
+				has_legitimacy_flag = very_increased_factions
+				has_legitimacy_flag = massively_increased_factions
+			}
+		}
+		add = {
+			value = 10
+			$FACTION_TARGET$ = {
+				if = {
+					limit = { has_legitimacy_flag = very_increased_factions }
+					add = 10
+				}
+				else_if = {
+					limit = { has_legitimacy_flag = massively_increased_factions }
+					add = 20
+				}
+			}
+		}
+	}
+
+
+	modifier = {
+		desc = "FACTION_REASON_HIGH_LEGITIMACY"
+		$FACTION_TARGET$ = {
+			OR = {
+				has_legitimacy_flag = reduced_factions
+				has_legitimacy_flag = very_reduced_factions
+				has_legitimacy_flag = extra_reduced_factions
+			}
+		}
+		add = {
+			value = -10
+			$FACTION_TARGET$ = {
+				if = {
+					limit = { has_legitimacy_flag = very_reduced_factions }
+					add = -10
+				}
+				else_if = {
+					limit = { has_legitimacy_flag = extra_reduced_factions }
+					add = -20
+				}
+			}
+		}
+	}
+
+
+	modifier = {
+		desc = "FACTION_REASON_NOMADIC"
+		add = -3000
+		government_has_flag = government_is_nomadic
+		$FACTION_CLAIMANT$ = {
+			NOT = {
+				has_character_flag = nomad_preferred_claimant
+			}
+		}
+	}
+
+
+	modifier = {
+		desc = "FACTION_REASON_SIDE_WITH_EXISTING"
+		add = {
+			value = -100
+			if = {
+				limit = {
+					government_has_flag = government_is_nomadic
+				}
+				add = -2900
+			}
+		}
+		trigger_if = {
+			limit = {
+				exists = joined_faction
+			}
+			joined_faction = { save_temporary_scope_as = joined_faction_temp }
+		}
+		$FACTION_TARGET$ = {
+			any_targeting_faction = {
+		  		faction_type = claimant_faction
+
+
+				trigger_if = {
+					limit = {
+						exists = scope:joined_faction_temp
+					}
+					this != scope:joined_faction_temp
+				}
+
+			  	NOT = {
+		  			any_faction_member = { is_ai = no }
+		  		}
+
+
+				special_character = {
+					OR = {
+						has_relation_soulmate = root
+						has_relation_best_friend = root
+						AND = {
+							root.primary_heir ?= this
+							reverse_opinion = { target = root value >= medium_positive_opinion }
+							OR = {
+								is_child_of = root
+								is_sibling_of = root
+								is_nibling_of = root
+							}
+						}
+						AND = {
+							root = {
+								save_temporary_opinion_value_as = { name = opinion_of_current_liege target = $FACTION_TARGET$ }
+								opinion = { target = prev value > scope:opinion_of_current_liege }
+							}
+							trigger_if = {
+								limit = { exists = scope:joined_faction_temp.special_character }
+								root = {
+									save_temporary_opinion_value_as = { name = opinion_of_current_faction_claimant target = scope:joined_faction_temp.special_character }
+									opinion = { target = prev value > scope:opinion_of_current_faction_claimant }
+								}
+							}
+							OR = {
+								AND = {
+									root.faith = { has_doctrine = doctrine_pluralism_pluralistic }
+									faith = { has_doctrine = doctrine_pluralism_pluralistic }
+								}
+								faith = root.faith
+							}
+							culture = {
+								OR = {
+									this = root.culture
+									cultural_acceptance = { target = root.culture value >= 90 }
+								}
+							}
+						}
+						AND = {
+							government_has_flag = government_is_nomadic
+							$FACTION_TARGET$ = {
+								government_has_flag = government_is_nomadic
+							}
+							root = {
+								government_has_flag = government_is_nomadic
+							}
+						}
+					}
+				}
+	  		}
+	  	}
+	}
+
+
+	modifier = {
+		add = -50
+		$FACTION_TARGET$.dynasty ?= { has_dynasty_perk = ep3_administrative_legacy_5 }
+	}
+}
+
+struggle_faction_modifiers = {
+
+
+}
+
+join_faction_stacking_modifiers = {
+
+
+	modifier = {
+		desc = "FACTION_REASON_POWER_MINIMAL"
+		scope:faction.faction_power < scope:faction.faction_power_minimal
+		liege = {
+			any_targeting_faction = {
+				faction_type = independence_faction
+				faction_power >= faction_power_minimal
+			}
+		}
+		factor = faction_weight_factor_power_minimal_penalty
+	}
+	modifier = {
+		desc = "FACTION_REASON_POWER_HALFWAY_THRESHOLD"
+		scope:faction.faction_power >= scope:faction.faction_power_halfway_threshold
+		scope:faction.faction_power < scope:faction.faction_power_pushing_threshold
+		factor = faction_weight_factor_power_halfway_threshold
+	}
+	modifier = {
+		desc = "FACTION_REASON_POWER_PUSHING_THRESHOLD"
+		scope:faction.faction_power >= scope:faction.faction_power_pushing_threshold
+		scope:faction.faction_power < scope:faction.faction_power_threshold
+		factor = faction_weight_factor_power_pushing_threshold
+	}
+	modifier = {
+		desc = "FACTION_REASON_POWER_THRESHOLD"
+		scope:faction.faction_power >= scope:faction.faction_power_threshold
+		factor = faction_weight_factor_power_exceeds_threshold
+	}
+}
+
+
+admin_faction_modifiers = {
+
+	modifier = {
+		ep3_admin_faction_trigger = { FACTION_TARGET = $FACTION_TARGET$ }
+		$FACTION_TARGET$.primary_title.title_held_years > 5
+		add = {
+			subtract = $FACTION_TARGET$.primary_title.title_held_years
+			add = 5
+			multiply = 5
+		}
+		desc = FACTION_REASON_ADMIN_SHORT_REIGN_REASON
+	}
+
+	modifier = {
+		ep3_admin_faction_trigger = { FACTION_TARGET = $FACTION_TARGET$ }
+		joined_faction ?= { save_temporary_scope_as = joined_faction_temp }
+		$FACTION_TARGET$ = {
+			any_targeting_faction = {
+				this != scope:joined_faction_temp
+				faction_is_type = $FACTION_TYPE$
+				faction_power > scope:joined_faction_temp.faction_power_existing_threshold_value
+			}
+		}
+		factor = -0.5
+		desc = FACTION_REASON_ADMIN_EXISTING_STRONGER_FACTION_OF_SAME_TYPE_REASON
+	}
+
+	modifier = {
+		ep3_admin_faction_trigger = { FACTION_TARGET = $FACTION_TARGET$ }
+		$FACTION_TARGET$.sum_of_all_skills_and_prowess_value < 30
+		add = {
+			value = 30
+			subtract = $FACTION_TARGET$.sum_of_all_skills_and_prowess_value
+			min = 0
+			multiply = 2
+		}
+		desc = FACTION_REASON_ADMIN_LIEGE_POOR_SKILL
+	}
+
+	modifier = {
+		ep3_admin_faction_trigger = { FACTION_TARGET = $FACTION_TARGET$ }
+		NOR = {
+			has_trait = deviant
+			any_secret = { type = secret_deviant }
+		}
+		$FACTION_TARGET$ = {
+			has_trait = deviant
+			exists = top_liege.primary_title.state_faith
+			trait_is_criminal_in_faith_trigger = { TRAIT = trait:deviant FAITH = $FACTION_TARGET$.primary_title.state_faith GENDER_CHARACTER = $FACTION_TARGET$ }
+		}
+		add = 20
+		desc = FACTION_REASON_ADMIN_LIEGE_DEVIANT_AND_CRIMINAL
+	}
+	modifier = {
+		ep3_admin_faction_trigger = { FACTION_TARGET = $FACTION_TARGET$ }
+		NOR = {
+			has_trait = incestuous
+			any_secret = { type = secret_incest }
+		}
+		$FACTION_TARGET$ = {
+			has_trait = incestuous
+			exists = top_liege.primary_title.state_faith
+			trait_is_criminal_in_faith_trigger = { TRAIT = trait:incestuous FAITH = $FACTION_TARGET$.primary_title.state_faith GENDER_CHARACTER = $FACTION_TARGET$ }
+		}
+		add = 20
+		desc = FACTION_REASON_ADMIN_LIEGE_INCESTUOUS_AND_CRIMINAL
+	}
+	modifier = {
+		ep3_admin_faction_trigger = { FACTION_TARGET = $FACTION_TARGET$ }
+		NOR = {
+			has_trait = sodomite
+			any_secret = { type = secret_homosexual }
+		}
+		$FACTION_TARGET$ = {
+			has_trait = sodomite
+			exists = top_liege.primary_title.state_faith
+			trait_is_criminal_in_faith_trigger = { TRAIT = trait:sodomite FAITH = top_liege.primary_title.state_faith GENDER_CHARACTER = root }
+		}
+		add = 20
+		desc = FACTION_REASON_ADMIN_LIEGE_SODOMITE_AND_CRIMINAL
+	}
+	modifier = {
+		ep3_admin_faction_trigger = { FACTION_TARGET = $FACTION_TARGET$ }
+		NOR = {
+			has_trait = cannibal
+			any_secret = { type = secret_cannibal }
+		}
+		$FACTION_TARGET$ = {
+			has_trait = cannibal
+			exists = top_liege.primary_title.state_faith
+			trait_is_criminal_in_faith_trigger = { TRAIT = trait:cannibal FAITH = top_liege.primary_title.state_faith GENDER_CHARACTER = root }
+		}
+		add = 20
+		desc = FACTION_REASON_ADMIN_LIEGE_CANNIBAL_AND_CRIMINAL
+	}
+	modifier = {
+		ep3_admin_faction_trigger = { FACTION_TARGET = $FACTION_TARGET$ }
+		NOT = { has_trait = kinslayer }
+		$FACTION_TARGET$ = {
+			has_trait = kinslayer_1
+			exists = top_liege.primary_title.state_faith
+			trait_is_criminal_in_faith_trigger = { TRAIT = trait:kinslayer_1 FAITH = top_liege.primary_title.state_faith GENDER_CHARACTER = root }
+		}
+		add = 20
+		desc = FACTION_REASON_ADMIN_LIEGE_KINSLAYER_1_AND_CRIMINAL
+	}
+	modifier = {
+		ep3_admin_faction_trigger = { FACTION_TARGET = $FACTION_TARGET$ }
+		NOT = { has_trait = kinslayer }
+		$FACTION_TARGET$ = {
+			has_trait = kinslayer_2
+			exists = top_liege.primary_title.state_faith
+			trait_is_criminal_in_faith_trigger = { TRAIT = trait:kinslayer_2 FAITH = top_liege.primary_title.state_faith GENDER_CHARACTER = root }
+		}
+		add = 30
+		desc = FACTION_REASON_ADMIN_LIEGE_KINSLAYER_2_AND_CRIMINAL
+	}
+	modifier = {
+		ep3_admin_faction_trigger = { FACTION_TARGET = $FACTION_TARGET$ }
+		NOT = { has_trait = kinslayer }
+		$FACTION_TARGET$ = {
+			has_trait = kinslayer_3
+			exists = top_liege.primary_title.state_faith
+			trait_is_criminal_in_faith_trigger = { TRAIT = trait:kinslayer_3 FAITH = top_liege.primary_title.state_faith GENDER_CHARACTER = root }
+		}
+		add = 40
+		desc = FACTION_REASON_ADMIN_LIEGE_KINSLAYER_3_AND_CRIMINAL
+	}
+	modifier = {
+		ep3_admin_faction_trigger = { FACTION_TARGET = $FACTION_TARGET$ }
+		NOR = {
+			has_trait = witch
+			any_secret = { type = secret_witch }
+		}
+		$FACTION_TARGET$ = {
+			has_trait = witch
+			exists = top_liege.primary_title.state_faith
+			trait_is_criminal_in_faith_trigger = { TRAIT = trait:witch FAITH = top_liege.primary_title.state_faith GENDER_CHARACTER = root }
+		}
+		add = 20
+		desc = FACTION_REASON_ADMIN_LIEGE_WITCH_AND_CRIMINAL
+	}
+	modifier = {
+		ep3_admin_faction_trigger = { FACTION_TARGET = $FACTION_TARGET$ }
+		NOR = {
+			has_trait = adulterer
+			any_secret = { type = secret_lover }
+		}
+		$FACTION_TARGET$ = {
+			has_trait = adulterer
+			exists = top_liege.primary_title.state_faith
+			trait_is_criminal_in_faith_trigger = { TRAIT = trait:adulterer FAITH = top_liege.primary_title.state_faith GENDER_CHARACTER = root }
+		}
+		add = 20
+		desc = FACTION_REASON_ADMIN_LIEGE_ADULTERER_AND_CRIMINAL
+	}
+	modifier = {
+		ep3_admin_faction_trigger = { FACTION_TARGET = $FACTION_TARGET$ }
+		NOT = { has_trait = fornicator }
+		$FACTION_TARGET$ = {
+			has_trait = fornicator
+			exists = top_liege.primary_title.state_faith
+			trait_is_criminal_in_faith_trigger = { TRAIT = trait:fornicator FAITH = top_liege.primary_title.state_faith GENDER_CHARACTER = root }
+		}
+		add = 20
+		desc = FACTION_REASON_ADMIN_LIEGE_FORNICATOR_AND_CRIMINAL
+	}
+}
+
+
+admin_claimant_faction_modifiers = {
+
+	modifier = {
+		ep3_admin_faction_trigger = { FACTION_TARGET = $FACTION_TARGET$ }
+		NOT = { faith = $FACTION_TARGET$.faith }
+		faith = $FACTION_CLAIMANT$.faith
+		$FACTION_TARGET$.primary_title.state_faith ?= faith
+		add = 75
+		desc = FACTION_REASON_ADMIN_CLAIMANT_STATE_FAITH
+	}
+	modifier = {
+		ep3_admin_faction_trigger = { FACTION_TARGET = $FACTION_TARGET$ }
+		$FACTION_TARGET$.primary_title.state_faith ?= faith
+		$FACTION_CLAIMANT$.faith != faith
+		add = {
+			value = -40
+			if = {
+				limit = { has_vassal_stance = zealot }
+				multiply = 2
+			}
+		}
+		desc = FACTION_REASON_ADMIN_CLAIMANT_NOT_STATE_FAITH
+	}
+
+	modifier = {
+		ep3_admin_faction_trigger = { FACTION_TARGET = $FACTION_TARGET$ }
+		NOT = { this = $FACTION_CLAIMANT$ }
+		has_vassal_stance = courtly
+		add = {
+			value = $FACTION_CLAIMANT$.diplomacy
+			subtract = $FACTION_TARGET$.diplomacy
+			multiply = 5
+			if = {
+				limit = {
+					$FACTION_CLAIMANT$ = { has_trait = gregarious }
+					NOT = { $FACTION_TARGET$ = { has_trait = gregarious } }
+				}
+				add = 10
+			}
+			else_if = {
+				limit = {
+					$FACTION_CLAIMANT$ = { has_trait = shy }
+					NOT = { $FACTION_TARGET$ = { has_trait = shy } }
+				}
+				add = -10
+			}
+			if = {
+				limit = {
+					$FACTION_CLAIMANT$ = { has_trait = august }
+					NOT = { $FACTION_TARGET$ = { has_trait = august } }
+				}
+				add = 10
+			}
+			if = {
+				limit = {
+					$FACTION_CLAIMANT$ = { has_trait = family_first }
+					NOT = { $FACTION_TARGET$ = { has_trait = family_first } }
+				}
+				add = 10
+			}
+			if = {
+				limit = {
+					$FACTION_CLAIMANT$ = { has_trait = diplomat }
+					NOT = { $FACTION_TARGET$ = { has_trait = diplomat } }
+				}
+				add = 10
+			}
+		}
+		desc = FACTION_REASON_ADMIN_COURTLY
+	}
+	modifier = {
+		ep3_admin_faction_trigger = { FACTION_TARGET = $FACTION_TARGET$ }
+		NOT = { this = $FACTION_CLAIMANT$ }
+		has_vassal_stance = glory_hound
+		add = {
+			value = $FACTION_CLAIMANT$.martial
+			subtract = $FACTION_TARGET$.martial
+			multiply = 5
+			if = {
+				limit = {
+					$FACTION_CLAIMANT$ = { has_trait = brave }
+					NOT = { $FACTION_TARGET$ = { has_trait = brave } }
+				}
+				add = 10
+			}
+			else_if = {
+				limit = {
+					$FACTION_CLAIMANT$ = { has_trait = craven }
+					NOT = { $FACTION_TARGET$ = { has_trait = craven } }
+				}
+				add = -10
+			}
+			add = {
+				value = $FACTION_CLAIMANT$.number_of_commander_traits
+				subtract = $FACTION_TARGET$.number_of_commander_traits
+				multiply = 5
+			}
+			if = {
+				limit = {
+					$FACTION_CLAIMANT$ = { has_trait = gallant }
+					NOT = { $FACTION_TARGET$ = { has_trait = gallant } }
+				}
+				add = 10
+			}
+			if = {
+				limit = {
+					$FACTION_CLAIMANT$ = { has_trait = overseer }
+					NOT = { $FACTION_TARGET$ = { has_trait = overseer } }
+				}
+				add = 10
+			}
+			if = {
+				limit = {
+					$FACTION_CLAIMANT$ = { has_trait = strategist }
+					NOT = { $FACTION_TARGET$ = { has_trait = strategist } }
+				}
+				add = 10
+			}
+		}
+		desc = FACTION_REASON_ADMIN_GLORY_HOUND
+	}
+	modifier = {
+		ep3_admin_faction_trigger = { FACTION_TARGET = $FACTION_TARGET$ }
+		NOT = { this = $FACTION_CLAIMANT$ }
+		has_vassal_stance = parochial
+		add = {
+			value = $FACTION_CLAIMANT$.stewardship
+			subtract = $FACTION_TARGET$.stewardship
+			multiply = 5
+			if = {
+				limit = {
+					$FACTION_CLAIMANT$ = { has_trait = zealous }
+					NOT = { $FACTION_TARGET$ = { has_trait = zealous } }
+				}
+				add = 10
+			}
+			else_if = {
+				limit = {
+					$FACTION_CLAIMANT$ = { has_trait = cynical }
+					NOT = { $FACTION_TARGET$ = { has_trait = cynical } }
+				}
+				add = -10
+			}
+			if = {
+				limit = {
+					$FACTION_CLAIMANT$ = { has_trait = architect }
+					NOT = { $FACTION_TARGET$ = { has_trait = architect } }
+				}
+				add = 10
+			}
+			if = {
+				limit = {
+					$FACTION_CLAIMANT$ = { has_trait = administrator }
+					NOT = { $FACTION_TARGET$ = { has_trait = administrator } }
+				}
+				add = 10
+			}
+			if = {
+				limit = {
+					$FACTION_CLAIMANT$ = { has_trait = avaricious }
+					NOT = { $FACTION_TARGET$ = { has_trait = avaricious } }
+				}
+				add = 10
+			}
+		}
+		desc = FACTION_REASON_ADMIN_PAROCHIAL
+	}
+	modifier = {
+		ep3_admin_faction_trigger = { FACTION_TARGET = $FACTION_TARGET$ }
+		NOT = { this = $FACTION_CLAIMANT$ }
+		has_vassal_stance = zealot
+		faith = $FACTION_CLAIMANT$.faith
+		faith = $FACTION_TARGET$.faith
+		add = {
+			value = $FACTION_CLAIMANT$.learning
+			subtract = $FACTION_TARGET$.learning
+			multiply = 2
+			if = {
+				limit = {
+					$FACTION_CLAIMANT$ = { has_trait = diligent }
+					NOT = { $FACTION_TARGET$ = { has_trait = diligent } }
+				}
+				add = 10
+			}
+			else_if = {
+				limit = {
+					$FACTION_CLAIMANT$ = { has_trait = lazy }
+					NOT = { $FACTION_TARGET$ = { has_trait = lazy } }
+				}
+				add = -10
+			}
+			if = {
+				limit = {
+					$FACTION_CLAIMANT$ = { has_trait = whole_of_body }
+					NOT = { $FACTION_TARGET$ = { has_trait = whole_of_body } }
+				}
+				add = 10
+			}
+			if = {
+				limit = {
+					$FACTION_CLAIMANT$ = { has_trait = scholar }
+					NOT = { $FACTION_TARGET$ = { has_trait = scholar } }
+				}
+				add = 10
+			}
+			if = {
+				limit = {
+					$FACTION_CLAIMANT$ = { has_trait = theologian }
+					NOT = { $FACTION_TARGET$ = { has_trait = theologian } }
+				}
+				add = 10
+			}
+		}
+		desc = FACTION_REASON_ADMIN_ZEALOT
+	}
+	modifier = {
+		ep3_admin_faction_trigger = { FACTION_TARGET = $FACTION_TARGET$ }
+		NOT = { this = $FACTION_CLAIMANT$ }
+		has_vassal_stance = minority
+		OR = {
+			AND = {
+				culture != $FACTION_TARGET$.culture
+				culture = $FACTION_CLAIMANT$.culture
+			}
+			AND = {
+				faith != $FACTION_TARGET$.faith
+				faith = $FACTION_CLAIMANT$.faith
+			}
+		}
+		add = {
+			value = 10
+			if = {
+				limit = {
+					culture = $FACTION_CLAIMANT$.culture
+					faith = $FACTION_CLAIMANT$.faith
+				}
+				add = 10
+			}
+			if = {
+				limit = {
+					$FACTION_CLAIMANT$ = { has_trait = just }
+					NOT = { $FACTION_TARGET$ = { has_trait = just } }
+				}
+				add = 10
+			}
+			else_if = {
+				limit = {
+					$FACTION_CLAIMANT$ = { has_trait = arbitrary }
+					NOT = { $FACTION_TARGET$ = { has_trait = arbitrary } }
+				}
+				add = -10
+			}
+		}
+		desc = FACTION_REASON_ADMIN_MINORITY
+	}
+
+	modifier = {
+		exists = $FACTION_CLAIMANT$
+		exists = $FACTION_TARGET$
+		ep3_admin_faction_trigger = { FACTION_TARGET = $FACTION_TARGET$ }
+		NOT = { this = $FACTION_CLAIMANT$ }
+		add = {
+			value = $FACTION_CLAIMANT$.governor_efficiency
+			subtract = $FACTION_TARGET$.governor_efficiency
+			multiply = 200
+		}
+		desc = FACTION_REASON_ADMIN_RELATIVE_SKILL
+	}
+
+	modifier = {
+		ep3_admin_faction_trigger = { FACTION_TARGET = $FACTION_TARGET$ }
+		exists = $FACTION_CLAIMANT$.house
+		NOT = { house ?= $FACTION_CLAIMANT$.house }
+		$FACTION_CLAIMANT$.house = { is_powerful_family = no }
+		add = -30
+		desc = FACTION_REASON_ADMIN_POWERFUL_FAMILY
+	}
+	modifier = {
+		ep3_admin_faction_trigger = { FACTION_TARGET = $FACTION_TARGET$ }
+		exists = $FACTION_CLAIMANT$.house
+		$FACTION_CLAIMANT$.house = { is_dominant_family = yes }
+		add = 20
+		desc = FACTION_REASON_ADMIN_DOMINANT_FAMILY
+	}
+	modifier = {
+		ep3_admin_faction_trigger = { FACTION_TARGET = $FACTION_TARGET$ }
+		exists = $FACTION_CLAIMANT$.house
+		house ?= {
+			OR = {
+				is_powerful_family = yes
+				is_dominant_family = yes
+			}
+			NOT = { this = $FACTION_CLAIMANT$.house }
+		}
+		add = -20
+		desc = MY_HOUSE_IS_POWERFUL
+	}
+	modifier = {
+		ep3_admin_faction_trigger = { FACTION_TARGET = $FACTION_TARGET$ }
+		exists = $FACTION_CLAIMANT$.house
+		exists = $FACTION_TARGET$.house
+		house ?= {
+			NOT = { this = $FACTION_CLAIMANT$.house }
+			this = $FACTION_TARGET$.house
+		}
+		add = -20
+		desc = FACTION_REASON_CLAIMANT_HOUSE
+	}
+
+	modifier = {
+		ep3_admin_faction_trigger = { FACTION_TARGET = $FACTION_TARGET$ }
+		$FACTION_CLAIMANT$ = {
+			has_trait = deviant
+			exists = top_liege.primary_title.state_faith
+			trait_is_criminal_in_faith_trigger = { TRAIT = trait:deviant FAITH = $FACTION_TARGET$.primary_title.state_faith GENDER_CHARACTER = $FACTION_CLAIMANT$ }
+		}
+		add = -20
+		desc = FACTION_REASON_ADMIN_CLAIMANT_DEVIANT_AND_CRIMINAL
+	}
+	modifier = {
+		ep3_admin_faction_trigger = { FACTION_TARGET = $FACTION_TARGET$ }
+		$FACTION_CLAIMANT$ = {
+			has_trait = incestuous
+			exists = top_liege.primary_title.state_faith
+			trait_is_criminal_in_faith_trigger = { TRAIT = trait:deviant FAITH = $FACTION_TARGET$.primary_title.state_faith GENDER_CHARACTER = $FACTION_CLAIMANT$ }
+		}
+		add = -20
+		desc = FACTION_REASON_ADMIN_CLAIMANT_INCESTUOUS_AND_CRIMINAL
+	}
+	modifier = {
+		ep3_admin_faction_trigger = { FACTION_TARGET = $FACTION_TARGET$ }
+		$FACTION_CLAIMANT$ = {
+			has_trait = sodomite
+			exists = top_liege.primary_title.state_faith
+			trait_is_criminal_in_faith_trigger = { TRAIT = trait:deviant FAITH = $FACTION_TARGET$.primary_title.state_faith GENDER_CHARACTER = $FACTION_CLAIMANT$ }
+		}
+		add = -20
+		desc = FACTION_REASON_ADMIN_CLAIMANT_SODOMITE_AND_CRIMINAL
+	}
+	modifier = {
+		ep3_admin_faction_trigger = { FACTION_TARGET = $FACTION_TARGET$ }
+		$FACTION_CLAIMANT$ = {
+			has_trait = cannibal
+			exists = top_liege.primary_title.state_faith
+			trait_is_criminal_in_faith_trigger = { TRAIT = trait:deviant FAITH = $FACTION_TARGET$.primary_title.state_faith GENDER_CHARACTER = $FACTION_CLAIMANT$ }
+		}
+		add = -20
+		desc = FACTION_REASON_ADMIN_CLAIMANT_CANNIBAL_AND_CRIMINAL
+	}
+	modifier = {
+		ep3_admin_faction_trigger = { FACTION_TARGET = $FACTION_TARGET$ }
+		$FACTION_CLAIMANT$ = {
+			has_trait = kinslayer_1
+			exists = top_liege.primary_title.state_faith
+			trait_is_criminal_in_faith_trigger = { TRAIT = trait:deviant FAITH = $FACTION_TARGET$.primary_title.state_faith GENDER_CHARACTER = $FACTION_CLAIMANT$ }
+		}
+		add = -10
+		desc = FACTION_REASON_ADMIN_CLAIMANT_KINSLAYER_1_AND_CRIMINAL
+	}
+	modifier = {
+		ep3_admin_faction_trigger = { FACTION_TARGET = $FACTION_TARGET$ }
+		$FACTION_CLAIMANT$ = {
+			has_trait = kinslayer_2
+			exists = top_liege.primary_title.state_faith
+			trait_is_criminal_in_faith_trigger = { TRAIT = trait:deviant FAITH = $FACTION_TARGET$.primary_title.state_faith GENDER_CHARACTER = $FACTION_CLAIMANT$ }
+		}
+		add = -20
+		desc = FACTION_REASON_ADMIN_CLAIMANT_KINSLAYER_2_AND_CRIMINAL
+	}
+	modifier = {
+		ep3_admin_faction_trigger = { FACTION_TARGET = $FACTION_TARGET$ }
+		$FACTION_CLAIMANT$ = {
+			has_trait = kinslayer_3
+			exists = top_liege.primary_title.state_faith
+			trait_is_criminal_in_faith_trigger = { TRAIT = trait:deviant FAITH = $FACTION_TARGET$.primary_title.state_faith GENDER_CHARACTER = $FACTION_CLAIMANT$ }
+		}
+		add = -30
+		desc = FACTION_REASON_ADMIN_CLAIMANT_KINSLAYER_3_AND_CRIMINAL
+	}
+	modifier = {
+		ep3_admin_faction_trigger = { FACTION_TARGET = $FACTION_TARGET$ }
+		$FACTION_CLAIMANT$ = {
+			has_trait = witch
+			exists = top_liege.primary_title.state_faith
+			trait_is_criminal_in_faith_trigger = { TRAIT = trait:deviant FAITH = $FACTION_TARGET$.primary_title.state_faith GENDER_CHARACTER = $FACTION_CLAIMANT$ }
+		}
+		add = -20
+		desc = FACTION_REASON_ADMIN_CLAIMANT_WITCH_AND_CRIMINAL
+	}
+	modifier = {
+		ep3_admin_faction_trigger = { FACTION_TARGET = $FACTION_TARGET$ }
+		$FACTION_CLAIMANT$ = {
+			has_trait = adulterer
+			exists = top_liege.primary_title.state_faith
+			trait_is_criminal_in_faith_trigger = { TRAIT = trait:deviant FAITH = $FACTION_TARGET$.primary_title.state_faith GENDER_CHARACTER = $FACTION_CLAIMANT$ }
+		}
+		add = -20
+		desc = FACTION_REASON_ADMIN_CLAIMANT_ADULTERER_AND_CRIMINAL
+	}
+	modifier = {
+		ep3_admin_faction_trigger = { FACTION_TARGET = $FACTION_TARGET$ }
+		$FACTION_CLAIMANT$ = {
+			has_trait = fornicator
+			exists = top_liege.primary_title.state_faith
+			trait_is_criminal_in_faith_trigger = { TRAIT = trait:deviant FAITH = $FACTION_TARGET$.primary_title.state_faith GENDER_CHARACTER = $FACTION_CLAIMANT$ }
+		}
+		add = -20
+		desc = FACTION_REASON_ADMIN_CLAIMANT_FORNICATOR_AND_CRIMINAL
+	}
+
+
+	modifier = {
+	 	ep3_admin_faction_trigger = { FACTION_TARGET = $FACTION_TARGET$ }
+	 	$FACTION_TARGET$ = {
+		 	has_diarchy_type = co_emperorship
+			has_active_diarchy = yes
+			diarch = $FACTION_CLAIMANT$
+		}
+		factor = 0.5
+		desc = "FACTION_REASON_ADMIN_CLAIMANT_CO_EMPEROR"
+	}
+	modifier = {
+	 	ep3_admin_faction_trigger = { FACTION_TARGET = $FACTION_TARGET$ }
+	 	$FACTION_TARGET$ = {
+		 	has_diarchy_type = junior_emperorship
+			has_active_diarchy = yes
+			diarch = $FACTION_CLAIMANT$
+		}
+		factor = 0.5
+		desc = "FACTION_REASON_ADMIN_CLAIMANT_JUNIOR_EMPEROR"
+	}
+}
+
+ceremonial_claimant_faction_modifiers = {
+
+	modifier = {
+		desc = "FACTION_REASON_CLAIMANT_GENDER"
+		add = -50
+		$FACTION_CLAIMANT$ ?= {
+			NOT = { this = root }
+		}
+		OR = {
+			AND = {
+				faith = { has_doctrine = doctrine_gender_female_dominated }
+				$FACTION_CLAIMANT$ = { is_male = yes }
+			}
+			AND = {
+				faith = { has_doctrine = doctrine_gender_male_dominated }
+				$FACTION_CLAIMANT$ = { is_female = yes }
+			}
+		}
+	}
+
+
+	modifier = {
+		desc = "FACTION_REASON_CLAIMANT_GENDER_VS_TARGET"
+		add = 25
+		exists = $FACTION_TARGET$
+		exists = $FACTION_CLAIMANT$
+		OR = {
+			AND = {
+				faith = { has_doctrine = doctrine_gender_female_dominated }
+				$FACTION_TARGET$ = { is_male = yes }
+				$FACTION_CLAIMANT$ = {
+					is_female = yes
+					faith = root.faith
+				}
+			}
+			AND = {
+				faith = { has_doctrine = doctrine_gender_male_dominated }
+				$FACTION_TARGET$ = { is_female = yes }
+				$FACTION_CLAIMANT$ = {
+					is_male = yes
+					faith = root.faith
+				}
+			}
+		}
+	}
+
+
+	opinion_modifier = {
+		desc = "FACTION_REASON_POWERFUL_LIKES_CLAIMANT_MORE"
+		trigger = {
+			exists = $FACTION_TARGET$
+			exists = $FACTION_CLAIMANT$
+			is_powerful_vassal = yes
+			OR = {
+				is_close_family_of = $FACTION_CLAIMANT$
+
+
+				AND = {
+					exists = $FACTION_CLAIMANT$.primary_spouse
+					is_close_family_of = $FACTION_CLAIMANT$.primary_spouse
+				}
+			}
+			NOR = {
+				is_close_family_of = $FACTION_TARGET$
+
+
+				AND = {
+					exists = $FACTION_TARGET$.primary_spouse
+					is_close_family_of = $FACTION_TARGET$.primary_spouse
+				}
+			}
+		}
+		who = root
+		opinion_target = $FACTION_TARGET$
+		multiplier = -1.5
+		min = 0
+	}
+
+
+	opinion_modifier = {
+		desc = "FACTION_REASON_POWERFUL_LIKES_CLAIMANT_MORE"
+		trigger = {
+			exists = $FACTION_TARGET$
+			exists = $FACTION_CLAIMANT$
+			is_powerful_vassal = yes
+			save_temporary_opinion_value_as = { name = opinion_of_current_liege target = $FACTION_TARGET$ }
+			opinion = { target = $FACTION_CLAIMANT$ value > scope:opinion_of_current_liege }
+		}
+		who = root
+		opinion_target = $FACTION_TARGET$
+		multiplier = -0.5
+		min = 0
+	}
+
+
+	modifier = {
+		desc = "FACTION_REASON_LIKES_LIEGE_UNLESS_CULTURE"
+		trigger = {
+			exists = $FACTION_TARGET$
+			exists = $FACTION_CLAIMANT$
+		}
+		add = -50
+		$FACTION_CLAIMANT$ ?= {
+			NOT = { this = root }
+			NAND = {
+				culture = root.culture
+				NOT = { $FACTION_TARGET$.culture ?= root.culture }
+			}
+		}
+		save_temporary_opinion_value_as = { name = opinion_of_current_liege target = $FACTION_TARGET$ }
+		opinion = { target = $FACTION_CLAIMANT$ value < scope:opinion_of_current_liege }
+	}
+
+	modifier = {
+		desc = "FACTION_REASON_LIKE_CLAIMANT_MORE_THAN_LIEGE"
+		trigger = {
+			exists = $FACTION_TARGET$
+			exists = $FACTION_CLAIMANT$
+		}
+		$FACTION_CLAIMANT$ ?= {
+			NOT = { this = root }
+		}
+		save_temporary_opinion_value_as = {
+			name = opinion_of_current_liege
+			target = $FACTION_TARGET$
+		}
+		save_temporary_opinion_value_as = {
+			name = opinion_of_claimant
+			target = $FACTION_CLAIMANT$
+		}
+		scope:opinion_of_claimant > liege_opinion_value
+		scope:opinion_of_claimant > 0
+		add = {
+			value = scope:opinion_of_claimant
+			multiply = 1.5
+			subtract = scope:opinion_of_current_liege
+		}
+	}
+
+	opinion_modifier = {
+		desc = "FACTION_REASON_LIKES_LIEGE"
+		trigger = {
+			exists = $FACTION_TARGET$
+		}
+		who = root
+		opinion_target = $FACTION_TARGET$
+		multiplier = -0.5
+		max = 0
+	}
+
+	modifier = {
+		desc = "FACTION_REASON_CLAIMANT_TOO_OLD"
+		add = {
+			value = $FACTION_CLAIMANT$.age
+			subtract = 45
+			multiply = -4
+		}
+		$FACTION_CLAIMANT$ ?= {
+			NOT = { this = root }
+			age > 45
+		}
+	}
+	modifier = {
+		desc = "FACTION_REASON_CLAIMANT_TOO_YOUNG"
+		add = -25
+		$FACTION_CLAIMANT$ ?= {
+			NOT = { this = root }
+			is_adult = no
+		}
+	}
+	modifier = {
+		desc = "FACTION_REASON_CLAIMAINT_DYING"
+		add = {
+			value = 1.5
+			subtract = $FACTION_CLAIMANT$.health
+			multiply = -20
+		}
+		$FACTION_CLAIMANT$ ?= {
+			NOT = { this = root }
+			health < 1.5
+		}
+	}
+	modifier = {
+		desc = "FACTION_REASON_CLAIMANT_RARE_PRODUCE_HEIR"
+		add = -50
+
+		$FACTION_CLAIMANT$ ?= {
+			fertility <= 0.1
+			NOR = {
+				this = root
+				any_child = { count >= 1 }
+			}
+		}
+	}
+
+
+	modifier = {
+		desc = "FACTION_REASON_INFIRM"
+		add = -50
+		$FACTION_CLAIMANT$ ?= {
+			NOT = { this = root }
+			has_trait = infirm
+		}
+	}
+
+
+	modifier = {
+		desc = "FACTION_REASON_CLAIMANT_LOW_LEGITIMACY"
+		add = -100
+		$FACTION_CLAIMANT$ ?= {
+			has_legitimacy = yes
+			legitimacy_level = 0
+		}
+	}
+
+
+	modifier = {
+		desc = "FACTION_REASON_CLAIMANT_LOW_LEGITIMACY"
+		add = -50
+		$FACTION_CLAIMANT$ ?= {
+			has_legitimacy = yes
+			legitimacy_level = 1
+		}
+	}
+
+
+	modifier = {
+		desc = "FACTION_REASON_CLAIMANT_LOW_LEGITIMACY"
+		add = -25
+		$FACTION_CLAIMANT$ ?= {
+			has_legitimacy = yes
+			legitimacy_level = 2
+		}
+	}
+
+
+	modifier = {
+		desc = "FACTION_REASON_MEMBER_IS_CLAIMANT"
+		add = {
+			value = 50
+			add = {
+				value = ai_greed
+				multiply = 1.5
+				min = 0
+			}
+		}
+		$FACTION_CLAIMANT$ ?= root
+		NOT = { has_trait = content }
+	}
+
+
+	modifier = {
+		desc = "FACTION_REASON_GLORY_LEGACY_4"
+		add = -20
+		$FACTION_TARGET$.dynasty ?= { has_dynasty_perk = glory_legacy_4 }
+	}
+
+
+	modifier = {
+		desc = "FACTION_REASON_TARGET_FRIEND_LOVER"
+		add = -500
+		exists = $FACTION_TARGET$
+		OR = {
+			has_secret_relation_lover = $FACTION_TARGET$
+			has_relation_lover = $FACTION_TARGET$
+			has_relation_soulmate = $FACTION_TARGET$
+			has_relation_friend = $FACTION_TARGET$
+			has_relation_best_friend = $FACTION_TARGET$
+		}
+	}
+
+	modifier = {
+		desc = "FACTION_REASON_CLAIMANT_FRIEND_LOVER"
+		add = 25
+		exists = $FACTION_CLAIMANT$
+		OR = {
+			has_secret_relation_lover = $FACTION_CLAIMANT$
+			has_relation_lover = $FACTION_CLAIMANT$
+			has_relation_soulmate = $FACTION_CLAIMANT$
+			has_relation_friend = $FACTION_CLAIMANT$
+			has_relation_best_friend = $FACTION_CLAIMANT$
+		}
+	}
+
+	modifier = {
+		desc = "FACTION_REASON_CLAIMANT_SUPER_FRIEND_LOVER"
+		add = 100
+		exists = $FACTION_CLAIMANT$
+		OR = {
+			has_relation_soulmate = $FACTION_CLAIMANT$
+			has_relation_best_friend = $FACTION_CLAIMANT$
+		}
+	}
+
+
+	modifier = {
+		$FACTION_TARGET$ ?= {
+			NOT = { dynasty ?= root.dynasty }
+		}
+		$FACTION_CLAIMANT$ ?= {
+			NOT = { this = root }
+			exists = house
+			dynasty = root.dynasty
+			house != root.house
+		}
+		add = 5
+		desc = FACTION_REASON_CLAIMANT_DYNASTY
+	}
+
+	modifier = {
+		$FACTION_TARGET$ ?= {
+			exists = dynasty
+			house != root.house
+		}
+		$FACTION_CLAIMANT$ ?= {
+			NOT = { this = root }
+			$FACTION_CLAIMANT$.house ?= root.house
+		}
+		add = 10
+		desc = FACTION_REASON_CLAIMANT_HOUSE
+	}
+
+	modifier = {
+		$FACTION_TARGET$ ?= {
+			NOT = { is_child_of = root }
+		}
+		$FACTION_CLAIMANT$ ?= {
+			NOT = { this = root }
+			is_child_of = root
+		}
+		desc = FACTION_REASON_CLAIMANT_PARENT
+		add = 30
+	}
+
+	modifier = {
+		$FACTION_TARGET$ ?= {
+			NOT = { is_close_family_of = root }
+		}
+		$FACTION_CLAIMANT$ ?= {
+			NOT = { this = root }
+			is_child_of = root
+			is_close_family_of = root
+		}
+		add = 20
+		desc = FACTION_REASON_CLAIMANT_CLOSE_FAMILY
+	}
+
+	modifier = {
+		$FACTION_TARGET$ ?= {
+			NOT = { is_extended_family_of = root }
+		}
+		$FACTION_CLAIMANT$ ?= {
+			NOT = { this = root }
+			is_extended_family_of = root
+		}
+		add = 10
+		desc = FACTION_REASON_CLAIMANT_EXTENDED_FAMILY
+	}
+
+	modifier = {
+		exists = $FACTION_TARGET$
+		$FACTION_CLAIMANT$ ?= {
+			NOT = { this = root }
+			primary_spouse ?= { is_close_family_of = root }
+		}
+		trigger_if = {
+			limit = { exists = $FACTION_TARGET$.primary_spouse }
+			NOT = { is_close_family_of = $FACTION_TARGET$.primary_spouse }
+		}
+		add = 20
+		desc = FACTION_REASON_CLAIMANT_CLOSE_FAMILY_SPOUSE
+	}
+
+	modifier = {
+		$FACTION_CLAIMANT$ ?= {
+			OR = {
+				is_child_of = root
+				is_sibling_of = root
+				is_nibling_of = root
+			}
+			save_temporary_scope_as = faction_claimant_temp
+		}
+		primary_title = {
+			place_in_line_of_succession = {
+				target = $FACTION_CLAIMANT$
+				value <= 5
+			}
+		}
+		add = {
+			value = 25
+			multiply = {
+				value = 5
+				subtract = "primary_title.place_in_line_of_succession(scope:faction_claimant_temp)"
+			}
+			if = {
+				limit = { primary_heir ?= $FACTION_CLAIMANT$ }
+				add = 25
+			}
+		}
+		desc = FACTION_REASON_CLAIMANT_PRIMARY_HEIR
+	}
+
+
+	modifier = {
+		desc = "FACTION_REASON_TARGET_IS_CHILD"
+		add = 25
+		$FACTION_TARGET$ ?= { is_adult = no }
+	}
+
+
+	modifier = {
+		desc = "FACTION_REASON_CULTURAL_REASONS"
+		exists = $FACTION_TARGET$.culture
+		exists = $FACTION_CLAIMANT$.culture
+		culture = {
+			NOR = {
+				$FACTION_TARGET$.culture ?= this
+				cultural_acceptance = { target = $FACTION_TARGET$.culture value >= 90 }
+				has_cultural_parameter = doesnt_care_about_culture_faith_in_factions
+			}
+			OR = {
+				$FACTION_CLAIMANT$.culture ?= this
+				cultural_acceptance = { target = $FACTION_CLAIMANT$.culture value >= 90 }
+			}
+		}
+		add = {
+			value = 50
+			culture = {
+				if = {
+					limit = { this = $FACTION_CLAIMANT$.culture }
+					add = 50
+				}
+				if = {
+					limit = {
+						cultural_acceptance = { target = $FACTION_TARGET$.culture value <= 20 }
+					}
+					add = 25
+				}
+				if = {
+					limit = {
+						cultural_acceptance = { target = $FACTION_TARGET$.culture value <= 35 }
+					}
+					add = 15
+				}
+				if = {
+					limit = {
+						cultural_acceptance = { target = $FACTION_TARGET$.culture value <= 50 }
+					}
+					add = 10
+				}
+				if = {
+					limit = {
+						cultural_acceptance = { target = $FACTION_TARGET$.culture value <= 70 }
+					}
+					add = 5
+				}
+				if = {
+					limit = {
+						cultural_acceptance = { target = $FACTION_TARGET$.culture value <= 80 }
+					}
+					add = 5
+				}
+			}
+			if = {
+				limit = {
+					$FACTION_TARGET$ = { knows_language_of_culture = prev.culture }
+				}
+				multiply = 0.5
+			}
+
+
+		}
+	}
+
+
+	modifier = {
+		desc = "FACTION_REASON_CLAIMAINT_SAME_FAITH"
+		add = 100
+		exists = $FACTION_TARGET$
+		NOT = { faith = $FACTION_TARGET$.faith }
+		$FACTION_CLAIMANT$.faith ?= faith
+		NOT = {
+			culture = { has_cultural_parameter = doesnt_care_about_culture_faith_in_factions }
+		}
+	}
+
+	modifier = {
+		desc = "FACTION_REASON_CLAIMANT_FAITH_ASTRAY"
+		add = -25
+		$FACTION_CLAIMANT$.faith ?= {
+			NOT = { this = root.faith }
+			faith_hostility_level = {
+				target = root.faith
+				value = faith_astray_level
+			}
+		}
+		NOT = {
+			culture = { has_cultural_parameter = doesnt_care_about_culture_faith_in_factions }
+		}
+	}
+
+	modifier = {
+		desc = "FACTION_REASON_CLAIMANT_FAITH_HOSTILE"
+		add = -250
+		$FACTION_CLAIMANT$.faith ?= {
+			NOT = { this = root.faith }
+			faith_hostility_level = {
+				target = root.faith
+				value = faith_hostile_level
+			}
+		}
+		NOT = {
+			culture = { has_cultural_parameter = doesnt_care_about_culture_faith_in_factions }
+		}
+	}
+
+	modifier = {
+		desc = "FACTION_REASON_CLAIMANT_FAITH_EVIL"
+		add = -1000
+		$FACTION_CLAIMANT$.faith ?= {
+			NOT = { this = root.faith }
+			faith_hostility_level = {
+				target = root.faith
+				value = faith_evil_level
+			}
+		}
+		NOT = {
+			culture = { has_cultural_parameter = doesnt_care_about_culture_faith_in_factions }
+		}
+	}
+
+
+	modifier = {
+		desc = "FACTION_REASON_LOW_TIER_TARGET_TITLE"
+		add = -500
+		exists = $FACTION_TARGET$
+		exists = $FACTION_TITLE$
+		$FACTION_TITLE$.tier < $FACTION_TARGET$.primary_title.tier
+		$FACTION_TITLE$.tier < tier_kingdom
+	}
+
+
+	modifier = {
+		desc = "FACTION_REASON_CLAIMANT_IS_RIGHTFUL_LIEGE"
+		add = 100
+		$FACTION_CLAIMANT$ ?= { is_rightful_liege_of = root }
+	}
+
+
+	modifier = {
+		desc = "FACTION_REASON_TITLE_DEJURE_ABOVE"
+		add = -100
+		root.primary_title = { is_noble_family_title = no }
+		NOT = {
+			$FACTION_TITLE$ ?= { is_de_jure_liege_or_above_target = root.primary_title }
+		}
+	}
+
+
+	modifier = {
+		desc = "FACTION_REASON_PREFER_INDEPENDENCE_FACTION"
+		add = -200
+		liege = { top_liege = this }
+		NOT = { government_allows = administrative }
+		NOT = {
+			$FACTION_TARGET$ ?= { is_rightful_liege_of = root }
+		}
+	}
+
+
+	modifier = {
+		desc = "FACTION_REASON_LIEGE_IS_UNPREFERRED_HEIR"
+		add = 25
+		exists = $FACTION_TARGET$
+		NOT = { was_preferred_heir = $FACTION_TARGET$ }
+	}
+
+
+	modifier = {
+		desc = "FACTION_REASON_LIEGE_IS_PREFERRED_HEIR"
+		add = -25
+		exists = $FACTION_TARGET$
+		was_preferred_heir = $FACTION_TARGET$
+	}
+
+
+	modifier = {
+		desc = "FACTION_REASON_BETTER_CROWN_AUTHORITY"
+		add = 10
+		$FACTION_TARGET$ ?= { has_realm_law = crown_authority_1 }
+		$FACTION_CLAIMANT$ ?= { has_realm_law = crown_authority_0 }
+	}
+	modifier = {
+		desc = "FACTION_REASON_BETTER_CROWN_AUTHORITY"
+		add = 15
+		$FACTION_TARGET$ ?= { has_realm_law = crown_authority_2 }
+		$FACTION_CLAIMANT$ ?= {
+			OR = {
+				has_realm_law = crown_authority_0
+				has_realm_law = crown_authority_1
+			}
+		}
+	}
+	modifier = {
+		desc = "FACTION_REASON_BETTER_CROWN_AUTHORITY"
+		add = 15
+		$FACTION_TARGET$ ?= { has_realm_law = crown_authority_3 }
+		$FACTION_CLAIMANT$ ?= {
+			OR = {
+				has_realm_law = crown_authority_0
+				has_realm_law = crown_authority_1
+				has_realm_law = crown_authority_2
+			}
+		}
+	}
+
+
+	modifier = {
+		desc = "FACTION_REASON_LOWER_COURT_GRANDEUR"
+		add = 50
+		exists = $FACTION_TARGET$
+		$FACTION_TARGET$.court_grandeur_current_level < $FACTION_TARGET$.court_grandeur_minimum_expected_level
+	}
+
+
+	modifier = {
+		add = 20
+		desc = "FACTION_REASON_unity_more_likely_claimant_factions"
+		exists = root.house
+		exists = $FACTION_TARGET$.house
+		house = $FACTION_TARGET$.house
+		house = { has_house_unity_parameter = unity_more_likely_claimant_factions }
+	}
+	modifier = {
+		add = 40
+		desc = "FACTION_REASON_unity_significantly_more_likely_claimant_factions"
+		exists = root.house
+		exists = $FACTION_TARGET$.house
+		house = $FACTION_TARGET$.house
+		house = { has_house_unity_parameter = unity_significantly_more_likely_claimant_factions }
+	}
+
+
+	modifier = {
+		desc = "FACTION_REASON_LOW_LEGITIMACY"
+		$FACTION_TARGET$ ?= {
+			OR = {
+				has_legitimacy_flag = increased_factions
+				has_legitimacy_flag = very_increased_factions
+				has_legitimacy_flag = massively_increased_factions
+			}
+		}
+		add = {
+			value = 10
+			$FACTION_TARGET$ = {
+				if = {
+					limit = { has_legitimacy_flag = very_increased_factions }
+					add = 10
+				}
+				else_if = {
+					limit = { has_legitimacy_flag = massively_increased_factions }
+					add = 20
+				}
+			}
+		}
+	}
+
+
+	modifier = {
+		desc = "FACTION_REASON_HIGH_LEGITIMACY"
+		$FACTION_TARGET$ ?= {
+			OR = {
+				has_legitimacy_flag = reduced_factions
+				has_legitimacy_flag = very_reduced_factions
+				has_legitimacy_flag = extra_reduced_factions
+			}
+		}
+		add = {
+			value = -10
+			$FACTION_TARGET$ = {
+				if = {
+					limit = { has_legitimacy_flag = very_reduced_factions }
+					add = -10
+				}
+				else_if = {
+					limit = { has_legitimacy_flag = extra_reduced_factions }
+					add = -20
+				}
+			}
+		}
+	}
+
+
+	modifier = {
+		desc = "FACTION_REASON_NOMADIC"
+		add = -3000
+		government_has_flag = government_is_nomadic
+		$FACTION_CLAIMANT$ ?= {
+			NOT = {
+				has_character_flag = nomad_preferred_claimant
+			}
+		}
+	}
+
+
+	modifier = {
+		desc = "FACTION_REASON_SIDE_WITH_EXISTING"
+		add = {
+			value = -100
+			if = {
+				limit = {
+					government_has_flag = government_is_nomadic
+				}
+				add = -2900
+			}
+		}
+		trigger_if = {
+			limit = {
+				exists = joined_faction
+			}
+			joined_faction = { save_temporary_scope_as = joined_faction_temp }
+		}
+		$FACTION_TARGET$ ?= {
+			any_targeting_faction = {
+		  		faction_type = claimant_faction
+
+
+				trigger_if = {
+					limit = {
+						exists = scope:joined_faction_temp
+					}
+					this != scope:joined_faction_temp
+				}
+
+			  	NOT = {
+		  			any_faction_member = { is_ai = no }
+		  		}
+
+
+				special_character = {
+					OR = {
+						has_relation_soulmate = root
+						has_relation_best_friend = root
+						AND = {
+							root.primary_heir ?= this
+							reverse_opinion = { target = root value >= medium_positive_opinion }
+							OR = {
+								is_child_of = root
+								is_sibling_of = root
+								is_nibling_of = root
+							}
+						}
+						AND = {
+							root = {
+								save_temporary_opinion_value_as = { name = opinion_of_current_liege target = $FACTION_TARGET$ }
+								opinion = { target = prev value > scope:opinion_of_current_liege }
+							}
+							trigger_if = {
+								limit = { exists = scope:joined_faction_temp.special_character }
+								root = {
+									save_temporary_opinion_value_as = { name = opinion_of_current_faction_claimant target = scope:joined_faction_temp.special_character }
+									opinion = { target = prev value > scope:opinion_of_current_faction_claimant }
+								}
+							}
+							OR = {
+								AND = {
+									root.faith = { has_doctrine = doctrine_pluralism_pluralistic }
+									faith = { has_doctrine = doctrine_pluralism_pluralistic }
+								}
+								faith = root.faith
+							}
+							culture = {
+								OR = {
+									this = root.culture
+									cultural_acceptance = { target = root.culture value >= 90 }
+								}
+							}
+						}
+						AND = {
+							government_has_flag = government_is_nomadic
+							$FACTION_TARGET$ = {
+								government_has_flag = government_is_nomadic
+							}
+							root = {
+								government_has_flag = government_is_nomadic
+							}
+						}
+					}
+				}
+	  		}
+	  	}
+	}
+
+
+	modifier = {
+		add = -50
+		$FACTION_TARGET$.dynasty ?= { has_dynasty_perk = ep3_administrative_legacy_5 }
+	}
+}
+
+ceremonial_claimant_faction_blockers = {
+
+	modifier = {
+		add = -5000
+		exists = $FACTION_TARGET$
+		has_opinion_modifier = {
+			modifier = ceremonial_claimant_faction_member_opinion
+			target = $FACTION_TARGET$
+		}
+	}
+
+
+	modifier = {
+		add = -1000
+		$FACTION_CLAIMANT$ ?= {
+			OR = {
+				has_trait = incapable
+				government_has_flag = government_is_theocracy
+			}
+		}
+	}
+}
+
+imperial_policy_faction_modifiers = {
+	modifier = {
+		desc = "FACTION_REASON_DESIRES_SORYO_POLICY"
+		add = 15
+		government_has_flag = government_is_japan_feudal
+		$FACTION_TARGET$ = {
+			NOT = {
+				has_realm_law = imperial_expansion_law
+			}
+		}
+	}
+	modifier = {
+		desc = "FACTION_REASON_ANTI_POLICY"
+		add = 15
+		government_has_flag = government_is_japan_feudal
+		$FACTION_TARGET$ = {
+			OR = {
+				has_realm_law = disarmament_law
+			}
+		}
+	}
+	modifier = {
+		desc = "FACTION_REASON_DESIRES_RITSURYO_POLICY"
+		add = 15
+		government_has_flag = government_is_japan_administrative
+		$FACTION_TARGET$ = {
+			NOR = {
+				has_realm_law = manor_reform_law
+			}
+		}
+	}
+}

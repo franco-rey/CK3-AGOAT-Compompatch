@@ -1,0 +1,224 @@
+﻿
+
+agot_mw_faction_war_effect = {
+	scope:faction ?= {
+
+		every_faction_member = {
+			limit = { NOT = { this = scope:faction_leader } }
+
+			set_variable = { name = mw_is_faction_member_of value = scope:faction_leader }
+		}
+
+
+		every_faction_member = {
+			scope:faction_leader = {
+				add_to_variable_list = { name = mw_make_independent_list target = prev }
+
+				add_to_variable_list = {
+					name = mw_faction_members_list
+					target = prev
+				}
+			}
+		}
+	}
+	scope:faction_leader ?= {
+		switch = {
+			trigger = is_leading_faction_type
+
+			independence_faction = {
+				scope:faction_leader = { save_scope_as = mw_faction_leader }
+
+				scope:mw_faction_leader ?= {
+					start_war = {
+						casus_belli = agot_independence_war
+						target = scope:faction_target
+					}
+				}
+			}
+			liberty_faction = {
+				scope:faction_leader = { save_scope_as = mw_faction_leader }
+
+				scope:mw_faction_leader ?= {
+					start_war = {
+						casus_belli = agot_liberty_faction_war
+						target = scope:faction_target
+					}
+				}
+			}
+			claimant_faction = {
+				if = {
+					limit = {
+						scope:faction_claimant = {
+							NOT = { this = root }
+							is_landed = yes
+							highest_held_title_tier > tier_barony
+						}
+					}
+
+					scope:faction_claimant = { trigger_event = agot_mega_wars.0020 }
+				}
+				else = {
+					scope:faction_leader = { save_scope_as = mw_faction_leader }
+
+					agot_mw_faction_war_claimant_effect = yes
+				}
+			}
+			nation_fracturing_faction = {
+				scope:faction_leader = { save_scope_as = mw_faction_leader }
+
+				scope:mw_faction_leader ?= {
+					start_war = {
+						casus_belli = nation_fracturing_faction_war
+						target = scope:faction_target
+					}
+				}
+			}
+		}
+	}
+	if = {
+		limit = {
+			scope:faction_leader ?= {
+				OR = {
+					is_leading_faction_type = independence_faction
+					is_leading_faction_type = liberty_faction
+					is_leading_faction_type = nation_fracturing_faction
+				}
+			}
+		}
+
+		scope:faction ?= {
+			destroy_faction = yes
+		}
+	}
+}
+
+agot_mw_faction_war_claimant_effect = {
+	scope:mw_faction_leader ?= {
+		if = {
+			limit = {
+				scope:faction_targeted_title.tier = tier_empire
+				exists = scope:faction_targeted_title.title_capital_county
+			}
+
+			if = {
+				limit = {
+					scope:faction_targeted_title.tier = tier_empire
+					scope:faction_target = {
+						has_title = scope:faction_targeted_title.title_capital_county.kingdom
+						has_title = scope:faction_targeted_title.title_capital_county.duchy
+						has_title = scope:faction_targeted_title.title_capital_county
+					}
+				}
+
+				start_war = {
+					casus_belli = agot_claimant_faction_war
+					target = scope:faction_target
+					target_title = scope:faction_targeted_title
+					target_title = scope:faction_targeted_title.title_capital_county.kingdom
+					target_title = scope:faction_targeted_title.title_capital_county.duchy
+					target_title = scope:faction_targeted_title.title_capital_county
+					claimant = scope:faction_claimant
+				}
+			}
+			else_if = {
+				limit = {
+					scope:faction_targeted_title.tier = tier_empire
+					scope:faction_target = {
+						has_title = scope:faction_targeted_title.title_capital_county.duchy
+						has_title = scope:faction_targeted_title.title_capital_county
+					}
+				}
+
+				start_war = {
+					casus_belli = agot_claimant_faction_war
+					target = scope:faction_target
+					target_title = scope:faction_targeted_title
+					target_title = scope:faction_targeted_title.title_capital_county.duchy
+					target_title = scope:faction_targeted_title.title_capital_county
+					claimant = scope:faction_claimant
+				}
+			}
+			else_if = {
+				limit = {
+					scope:faction_targeted_title.tier = tier_empire
+					scope:faction_target = {
+						has_title = scope:faction_targeted_title.title_capital_county.kingdom
+						has_title = scope:faction_targeted_title.title_capital_county
+					}
+				}
+
+				start_war = {
+					casus_belli = agot_claimant_faction_war
+					target = scope:faction_target
+					target_title = scope:faction_targeted_title
+					target_title = scope:faction_targeted_title.title_capital_county.kingdom
+					target_title = scope:faction_targeted_title.title_capital_county
+					claimant = scope:faction_claimant
+				}
+			}
+			else_if = {
+				limit = {
+					scope:faction_targeted_title.tier = tier_empire
+					scope:faction_target = {
+						has_title = scope:faction_targeted_title.title_capital_county
+					}
+				}
+
+				start_war = {
+					casus_belli = agot_claimant_faction_war
+					target = scope:faction_target
+					target_title = scope:faction_targeted_title
+					target_title = scope:faction_targeted_title.title_capital_county
+					claimant = scope:faction_claimant
+				}
+			}
+		}
+		else = {
+			start_war = {
+				casus_belli = agot_claimant_faction_war
+				target = scope:faction_target
+				target_title = scope:faction_targeted_title
+				claimant = scope:faction_claimant
+			}
+		}
+	}
+
+	if = {
+		limit = {
+			scope:mw_faction_leader ?= {
+				any_character_war = {
+					using_cb = agot_claimant_faction_war
+					primary_attacker = scope:mw_faction_leader
+					primary_defender = scope:faction_target
+					claimant = scope:faction_claimant
+					casus_belli = {
+						any_target_title = { this = scope:faction_targeted_title }
+					}
+				}
+			}
+		}
+
+		scope:faction ?= {
+			destroy_faction = yes
+		}
+	}
+	else = {
+		scope:faction ?= {
+			every_faction_member = {
+				remove_variable = mw_is_faction_member_of
+			}
+		}
+		scope:faction_leader ?= {
+			clear_variable_list = mw_make_independent_list
+			clear_variable_list = mw_faction_members_list
+		}
+		scope:mw_faction_leader ?= {
+			clear_variable_list = mw_make_independent_list
+			clear_variable_list = mw_faction_members_list
+		}
+
+		debug_log = "[AGOT Claimant Faction War Fix] Claimant faction war failed to start; faction preserved and temporary mega-war handoff state cleared."
+		debug_log_date = yes
+		debug_log_scopes = yes
+	}
+}

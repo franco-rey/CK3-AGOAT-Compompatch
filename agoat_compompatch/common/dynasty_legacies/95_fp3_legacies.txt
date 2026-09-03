@@ -1,0 +1,18 @@
+﻿fp3_khvarenah_legacy_track = {
+	is_shown = {
+		has_dlc_feature = legacy_of_persia
+		OR = {
+			has_game_rule = hth_khvarenah_legacy_track_available_all
+			dynasty = {
+				OR = {
+
+
+					has_dynasty_perk = fp3_khvarenah_legacy_1
+
+
+					always = no
+				}
+			}
+		}
+	}
+}

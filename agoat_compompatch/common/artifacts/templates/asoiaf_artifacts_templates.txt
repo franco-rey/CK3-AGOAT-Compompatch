@@ -1,0 +1,256 @@
+﻿asoiaf_jaimes_sword_template = {
+	can_equip = {
+		always = yes
+	}
+
+
+	can_benefit = {
+	}
+
+
+	fallback = {
+	}
+
+	unique = yes
+	ai_score = {
+		value = 100
+	}
+}
+
+asoiaf_targaryen_falchion_template = {
+	can_equip = {
+		always = yes
+	}
+
+
+	can_benefit = {
+	}
+
+
+	fallback = {
+	}
+
+	unique = yes
+	ai_score = {
+		value = 100
+	}
+}
+
+asoiaf_krakenfall_template = {
+	can_equip = {
+		always = yes
+	}
+
+
+	can_benefit = {
+	}
+
+
+	fallback = {
+	}
+
+	unique = yes
+	ai_score = {
+		value = 100
+		if = {
+			limit = {
+				house = house:house_BaratheonKL
+				OR = {
+					any_artifact = { has_variable = asoiaf_is_hearteater }
+					any_artifact = { has_variable = widows_wail_artifact }
+					any_artifact = { has_variable = oathkeeper_artifact }
+				}
+			}
+			add = -100
+		}
+	}
+}
+
+asoiaf_red_priest_necklace_template = {
+	can_equip = {
+		always = yes
+	}
+
+
+	can_benefit = {
+		OR = {
+			has_trait = lifestyle_mystic
+			has_trait = witch
+		}
+	}
+
+
+	fallback = {
+
+		dread_baseline_add = 5
+	}
+
+	unique = yes
+	ai_score = {
+		value = 100
+	}
+}
+
+asoiaf_aerys_II_crown_template = {
+	can_equip = {
+		agot_can_wear_crown_trigger = yes
+	}
+
+
+	can_benefit = {
+		always = yes
+	}
+
+
+	fallback = {
+	}
+
+	unique = yes
+	ai_score = {
+		value = 101
+		if = {
+			limit = {
+				NOR = {
+					culture = { has_cultural_pillar = heritage_valyrian }
+					religion = religion:the_rhllor_religion
+				}
+			}
+			add = -10000
+		}
+		if = {
+			limit = {
+				any_equipped_character_artifact = {
+					has_variable = stannis_crown_artifact
+					NOT = { has_variable = asoiaf_aerys_II_crown_artefact }
+				}
+			}
+			add = 100000
+		}
+	}
+}
+
+asoiaf_stark_throne_template = {
+	can_equip = {
+		always = yes
+	}
+
+
+	can_benefit = {
+	}
+
+
+	fallback = {
+	}
+
+	unique = yes
+}
+
+asoiaf_radzig_sword_template = {
+	can_equip = {
+		always = yes
+	}
+
+
+	can_benefit = {
+	}
+
+
+	fallback = {
+	}
+
+	unique = yes
+	ai_score = {
+		value = 100
+	}
+}
+
+asoiaf_hound_armour_template = {
+	can_equip = {
+		always = yes
+	}
+
+
+	can_benefit = {
+	}
+
+
+	fallback = {
+	}
+
+	unique = yes
+	ai_score = {
+		value = 100
+
+
+		if = {
+			limit = {
+				exists = character:Clegane_4
+				this = character:Clegane_4
+			}
+			add = 100
+		}
+	}
+}
+
+asoiaf_needle_template = {
+	can_equip = {
+		always = yes
+	}
+
+
+	can_benefit = {
+	}
+
+
+	fallback = {
+	}
+
+	unique = yes
+	ai_score = {
+		value = 50
+		if = {
+			limit = {
+				has_inactive_trait = asoiaf_Stark_9_trait
+			}
+			add = 50
+		}
+	}
+}
+
+asoiaf_hearteater_template = {
+	can_equip = {
+		always = yes
+	}
+
+
+	can_benefit = {
+	}
+
+
+	fallback = {
+	}
+
+	unique = yes
+	ai_score = {
+		value = 100
+	}
+}
+
+asoiaf_red_vipers_spear_template = {
+	can_equip = {
+		always = yes
+	}
+
+
+	can_benefit = {
+	}
+
+
+	fallback = {
+	}
+
+	unique = yes
+	ai_score = {
+		value = 100
+	}
+}

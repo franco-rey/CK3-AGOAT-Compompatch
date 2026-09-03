@@ -1,0 +1,1522 @@
+﻿
+
+on_title_gain = {
+	events = {
+		gr_tracking.1
+	}
+	on_actions = {
+		gr_internal_title_story_tracking
+	}
+}
+
+
+gr_internal_title_story_tracking = {
+	effect = {
+		if = {
+			limit = {
+				is_ai = no
+				exists = scope:title
+				scope:title = { tier >= tier_duchy }
+				NOT = { has_variable = gr_succession_lock }
+			}
+			gr_story_increment_event = { TYPE = flag:title }
+		}
+	}
+}
+
+
+on_combat_end_winner = {
+	on_actions = {
+		gr_internal_battle_tracking
+	}
+}
+
+gr_internal_battle_tracking = {
+	effect = {
+
+		if = {
+			limit = {
+				exists = side_commander
+				side_commander = { gr_is_tracked_character = yes }
+			}
+
+
+			if = {
+				limit = {
+					exists = enemy_side
+				}
+
+
+				save_temporary_scope_value_as = {
+					name = enemy_max
+					value = enemy_side.side_max_army_size
+				}
+				save_temporary_scope_value_as = {
+					name = enemy_current
+					value = enemy_side.side_army_size
+				}
+				save_temporary_scope_value_as = {
+					name = battle_casualties
+					value = {
+						value = scope:enemy_max
+						subtract = scope:enemy_current
+					}
+				}
+
+
+				side_commander = {
+
+					if = {
+						limit = { NOT = { has_variable = gr_memory_led_troops } }
+						set_variable = { name = gr_memory_led_troops value = yes }
+					}
+
+
+					if = {
+						limit = { NOT = { has_variable = gr_total_casualties } }
+						set_variable = { name = gr_total_casualties value = 0 }
+					}
+					change_variable = {
+						name = gr_total_casualties
+						add = scope:battle_casualties
+					}
+
+
+					if = {
+						limit = { scope:enemy_max >= 1000 }
+
+
+						if = {
+							limit = {
+								OR = {
+									NOT = { has_variable = gr_best_battle_strength }
+									scope:enemy_max > var:gr_best_battle_strength
+								}
+							}
+
+							set_variable = {
+								name = gr_best_battle_strength
+								value = scope:enemy_max
+							}
+
+							set_variable = {
+								name = gr_memory_great_battle
+								value = yes
+							}
+
+
+							if = {
+								limit = { scope:enemy_max >= 10000 }
+								set_variable = { name = gr_battle_tier value = flag:legendary }
+							}
+							else_if = {
+								limit = { scope:enemy_max >= 5000 }
+								set_variable = { name = gr_battle_tier value = flag:massive }
+							}
+							else_if = {
+								limit = { scope:enemy_max >= 3000 }
+								set_variable = { name = gr_battle_tier value = flag:major }
+							}
+							else = {
+								set_variable = { name = gr_battle_tier value = flag:significant }
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+
+on_war_won_attacker = {
+	on_actions = {
+		gr_internal_war_won_tracking
+	}
+}
+
+gr_internal_war_won_tracking = {
+	effect = {
+		if = {
+			limit = {
+				exists = scope:attacker
+				scope:attacker = { gr_is_tracked_character = yes }
+			}
+
+
+			scope:attacker = {
+				set_variable = { name = gr_memory_won_war value = yes }
+				set_variable = { name = gr_memory_conquered_realm value = yes }
+
+				gr_story_increment_event = { TYPE = flag:war }
+			}
+
+
+			if = {
+				limit = {
+					exists = scope:war
+					always = no
+				}
+
+				scope:attacker = {
+
+					if = {
+						limit = { exists = scope:war }
+						scope:war = {
+							ordered_in_list = {
+								list = target_titles
+								order_by = tier
+								max = 1
+								save_scope_as = war_target_title
+							}
+						}
+					}
+
+
+					if = {
+						limit = { NOT = { has_variable = gr_memory_varangian } }
+						set_variable = { name = gr_memory_varangian value = yes }
+						set_variable = { name = gr_varangian_count value = 1 }
+						if = {
+							limit = { exists = scope:defender }
+							set_variable = { name = gr_varangian_first_target value = scope:defender }
+							set_variable = { name = gr_varangian_target value = scope:defender }
+						}
+						if = {
+							limit = { exists = scope:war_target_title }
+							set_variable = { name = gr_varangian_first_realm value = scope:war_target_title }
+							set_variable = { name = gr_varangian_realm value = scope:war_target_title }
+						}
+					}
+
+					else = {
+						change_variable = { name = gr_varangian_count add = 1 }
+						if = {
+							limit = { exists = scope:defender }
+							set_variable = { name = gr_varangian_target value = scope:defender }
+						}
+						if = {
+							limit = { exists = scope:war_target_title }
+							set_variable = { name = gr_varangian_realm value = scope:war_target_title }
+						}
+					}
+				}
+			}
+
+
+			else_if = {
+				limit = {
+					exists = scope:war
+					OR = {
+						scope:war = { using_cb = ep3_laamp_adventurer_duchy_invasion }
+						scope:war = { using_cb = ep3_laamp_adventurer_kingdom_invasion }
+						scope:war = { using_cb = ep3_laamp_adventurer_empire_invasion }
+						scope:war = { using_cb = ep3_laamp_adventurer_county_invasion }
+						scope:war = { using_cb = legendary_adventure }
+					}
+				}
+
+				scope:attacker = {
+
+					if = {
+						limit = { exists = scope:war }
+						scope:war = {
+							ordered_in_list = {
+								list = target_titles
+								order_by = tier
+								max = 1
+								save_scope_as = war_target_title
+							}
+						}
+					}
+
+
+					if = {
+						limit = { exists = scope:war_target_title }
+						if = {
+							limit = { scope:war_target_title = { tier = tier_empire } }
+							set_variable = { name = gr_adventure_tier value = flag:empire }
+						}
+						else_if = {
+							limit = { scope:war_target_title = { tier = tier_kingdom } }
+							set_variable = { name = gr_adventure_tier value = flag:kingdom }
+						}
+						else = {
+							set_variable = { name = gr_adventure_tier value = flag:duchy }
+						}
+					}
+
+
+					if = {
+						limit = { NOT = { has_variable = gr_memory_adventure } }
+						set_variable = { name = gr_memory_adventure value = yes }
+						set_variable = { name = gr_adventure_count value = 1 }
+						if = {
+							limit = { exists = scope:defender }
+							set_variable = { name = gr_adventure_first_target value = scope:defender }
+							set_variable = { name = gr_adventure_target value = scope:defender }
+						}
+						if = {
+							limit = { exists = scope:war_target_title }
+							set_variable = { name = gr_adventure_first_realm value = scope:war_target_title }
+							set_variable = { name = gr_adventure_realm value = scope:war_target_title }
+						}
+					}
+
+					else = {
+						change_variable = { name = gr_adventure_count add = 1 }
+						if = {
+							limit = { exists = scope:defender }
+							set_variable = { name = gr_adventure_target value = scope:defender }
+						}
+						if = {
+							limit = { exists = scope:war_target_title }
+							set_variable = { name = gr_adventure_realm value = scope:war_target_title }
+						}
+					}
+
+
+					gr_story_increment_event = { TYPE = flag:adventure }
+				}
+			}
+
+
+			else_if = {
+				limit = {
+					exists = scope:war
+					OR = {
+						scope:war = { using_cb = mpo_nomad_invasion_cb }
+						scope:war = { using_cb = mpo_nomad_duchy_invasion_cb }
+					}
+				}
+
+				scope:attacker = {
+
+					if = {
+						limit = { exists = scope:war }
+						scope:war = {
+							ordered_in_list = {
+								list = target_titles
+								order_by = tier
+								max = 1
+								save_scope_as = war_target_title
+							}
+						}
+					}
+
+
+					if = {
+						limit = { NOT = { has_variable = gr_memory_nomad_invasion } }
+						set_variable = { name = gr_memory_nomad_invasion value = yes }
+						set_variable = { name = gr_nomad_invasion_count value = 1 }
+						if = {
+							limit = { exists = scope:defender }
+							set_variable = { name = gr_nomad_invasion_first_target value = scope:defender }
+							set_variable = { name = gr_nomad_invasion_target value = scope:defender }
+						}
+						if = {
+							limit = { exists = scope:war_target_title }
+							set_variable = { name = gr_nomad_invasion_first_realm value = scope:war_target_title }
+							set_variable = { name = gr_nomad_invasion_realm value = scope:war_target_title }
+						}
+					}
+
+					else = {
+						change_variable = { name = gr_nomad_invasion_count add = 1 }
+						if = {
+							limit = { exists = scope:defender }
+							set_variable = { name = gr_nomad_invasion_target value = scope:defender }
+						}
+						if = {
+							limit = { exists = scope:war_target_title }
+							set_variable = { name = gr_nomad_invasion_realm value = scope:war_target_title }
+						}
+					}
+				}
+			}
+
+
+			else_if = {
+				limit = {
+					exists = scope:war
+					always = no
+				}
+
+				scope:attacker = {
+
+					if = {
+						limit = { exists = scope:war }
+						scope:war = {
+							ordered_in_list = {
+								list = target_titles
+								order_by = tier
+								max = 1
+								save_scope_as = war_target_title
+							}
+						}
+					}
+
+
+					if = {
+						limit = { NOT = { has_variable = gr_memory_chinese_campaign } }
+						set_variable = { name = gr_memory_chinese_campaign value = yes }
+						set_variable = { name = gr_chinese_campaign_count value = 1 }
+						if = {
+							limit = { exists = scope:defender }
+							set_variable = { name = gr_chinese_campaign_first_target value = scope:defender }
+							set_variable = { name = gr_chinese_campaign_target value = scope:defender }
+						}
+						if = {
+							limit = { exists = scope:war_target_title }
+							set_variable = { name = gr_chinese_campaign_first_realm value = scope:war_target_title }
+							set_variable = { name = gr_chinese_campaign_realm value = scope:war_target_title }
+						}
+					}
+
+					else = {
+						change_variable = { name = gr_chinese_campaign_count add = 1 }
+						if = {
+							limit = { exists = scope:defender }
+							set_variable = { name = gr_chinese_campaign_target value = scope:defender }
+						}
+						if = {
+							limit = { exists = scope:war_target_title }
+							set_variable = { name = gr_chinese_campaign_realm value = scope:war_target_title }
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+
+on_government_change = {
+	on_actions = {
+		gr_internal_govt_change_tracking
+	}
+}
+
+gr_internal_govt_change_tracking = {
+	effect = {
+		if = {
+			limit = {
+				gr_is_tracked_character = yes
+
+				NOT = { has_variable = gr_succession_lock }
+			}
+
+			set_variable = { name = gr_memory_govt_change value = yes }
+
+			gr_story_increment_event = { TYPE = flag:govt }
+
+
+			if = {
+				limit = { scope:old_government = government_type:tribal_government }
+				set_variable = { name = gr_govt_old value = flag:tribal }
+			}
+			else_if = {
+				limit = { scope:old_government = government_type:feudal_government }
+				set_variable = { name = gr_govt_old value = flag:feudal }
+			}
+			else_if = {
+				limit = { scope:old_government = government_type:clan_government }
+				set_variable = { name = gr_govt_old value = flag:clan }
+			}
+			else_if = {
+				limit = { scope:old_government = government_type:administrative_government }
+				set_variable = { name = gr_govt_old value = flag:admin }
+			}
+			else_if = {
+				limit = { scope:old_government = government_type:nomad_government }
+				set_variable = { name = gr_govt_old value = flag:nomad }
+			}
+			else = {
+				set_variable = { name = gr_govt_old value = flag:other }
+			}
+
+
+			if = {
+				limit = { government_has_flag = government_is_tribal }
+				set_variable = { name = gr_govt_new value = flag:tribal }
+			}
+			else_if = {
+				limit = { government_has_flag = government_is_feudal }
+				set_variable = { name = gr_govt_new value = flag:feudal }
+			}
+			else_if = {
+				limit = { government_has_flag = government_is_clan }
+				set_variable = { name = gr_govt_new value = flag:clan }
+			}
+			else_if = {
+				limit = { government_has_flag = government_is_administrative }
+				set_variable = { name = gr_govt_new value = flag:admin }
+			}
+			else_if = {
+				limit = { government_has_flag = government_is_nomadic }
+				set_variable = { name = gr_govt_new value = flag:nomad }
+			}
+			else = {
+				set_variable = { name = gr_govt_new value = flag:other }
+			}
+		}
+	}
+}
+
+
+on_character_faith_change = {
+	on_actions = {
+		gr_internal_faith_convert_tracking
+	}
+}
+
+gr_internal_faith_convert_tracking = {
+	effect = {
+		if = {
+			limit = {
+				gr_is_tracked_character = yes
+
+
+				OR = {
+					is_landed = yes
+					is_ruler = yes
+				}
+				exists = scope:old_faith
+			}
+
+
+			if = {
+				limit = { has_variable = gr_memory_faith_created }
+				set_variable = { name = gr_faith_created_old value = scope:old_faith }
+			}
+
+			set_variable = { name = gr_memory_faith_convert value = yes }
+			set_variable = { name = gr_faith_old value = scope:old_faith }
+
+			gr_story_increment_event = { TYPE = flag:faith }
+		}
+	}
+}
+
+
+on_faith_created = {
+	on_actions = {
+		gr_internal_faith_created_tracking
+	}
+}
+
+gr_internal_faith_created_tracking = {
+	effect = {
+		if = {
+			limit = {
+				gr_is_tracked_character = yes
+				exists = scope:old_faith
+			}
+
+			set_variable = { name = gr_memory_faith_created value = yes }
+			set_variable = { name = gr_faith_created_old value = scope:old_faith }
+
+
+			if = {
+				limit = {
+					scope:old_faith = { has_doctrine_parameter = unreformed }
+				}
+				set_variable = { name = gr_faith_created_type value = flag:reformed }
+			}
+
+			else = {
+				set_variable = { name = gr_faith_created_type value = flag:divergent }
+			}
+		}
+	}
+}
+
+
+on_culture_created = {
+	on_actions = {
+		gr_internal_culture_created_tracking
+	}
+}
+
+gr_internal_culture_created_tracking = {
+	effect = {
+		if = {
+			limit = {
+				exists = scope:founder
+				scope:founder = { gr_is_tracked_character = yes }
+			}
+
+			scope:founder = {
+				set_variable = { name = gr_memory_culture_created value = yes }
+
+
+				if = {
+					limit = {
+						root = { is_hybrid_culture = yes }
+					}
+					set_variable = { name = gr_culture_created_type value = flag:hybrid }
+				}
+				else = {
+					set_variable = { name = gr_culture_created_type value = flag:divergent }
+				}
+			}
+
+
+			random_parent_culture = { save_temporary_scope_as = gr_parent_a }
+			if = {
+				limit = { any_parent_culture = { count >= 2 } }
+				random_parent_culture = {
+					limit = { this != scope:gr_parent_a }
+					save_temporary_scope_as = gr_parent_b
+				}
+			}
+			scope:founder = {
+				if = {
+					limit = { exists = scope:gr_parent_a }
+					set_variable = { name = gr_culture_old value = scope:gr_parent_a }
+				}
+				if = {
+					limit = { exists = scope:gr_parent_b }
+					set_variable = { name = gr_culture_parent value = scope:gr_parent_b }
+				}
+			}
+		}
+	}
+}
+
+
+on_building_completed = {
+	on_actions = { gr_on_building_completed }
+}
+gr_on_building_completed = {
+	effect = {
+
+		scope:character ?= {
+			if = {
+				limit = {
+					gr_is_tracked_character = yes
+					NOT = { has_variable = gr_succession_lock }
+				}
+
+				if = {
+					limit = { NOT = { has_variable = gr_building_count } }
+					set_variable = { name = gr_building_count value = 0 }
+				}
+
+				change_variable = { name = gr_building_count add = 1 }
+
+
+				if = {
+					limit = {
+						root = { num_buildings = 1 }
+					}
+					if = {
+						limit = { NOT = { has_variable = gr_holding_count } }
+						set_variable = { name = gr_holding_count value = 0 }
+					}
+					change_variable = { name = gr_holding_count add = 1 }
+
+
+					if = {
+						limit = {
+							root = {
+								OR = {
+									has_holding_type = church_holding
+									has_holding_type = temple_citadel_holding
+								}
+							}
+						}
+						if = {
+							limit = { NOT = { has_variable = gr_temple_count } }
+							set_variable = { name = gr_temple_count value = 0 }
+						}
+						change_variable = { name = gr_temple_count add = 1 }
+					}
+				}
+
+
+				if = {
+					limit = {
+						root = { has_building_with_flag = special_university }
+						NOT = { has_variable_list = gr_university_provinces }
+					}
+
+					set_variable = { name = gr_university_built value = 1 }
+					add_to_variable_list = { name = gr_university_provinces target = root.barony }
+				}
+				else_if = {
+					limit = {
+						root = { has_building_with_flag = special_university }
+						has_variable_list = gr_university_provinces
+						NOT = { is_target_in_variable_list = { name = gr_university_provinces target = root.barony } }
+					}
+					if = {
+						limit = { NOT = { has_variable = gr_university_built } }
+						set_variable = { name = gr_university_built value = 0 }
+					}
+					change_variable = { name = gr_university_built add = 1 }
+					add_to_variable_list = { name = gr_university_provinces target = root.barony }
+				}
+			}
+		}
+	}
+}
+
+
+on_alliance_added = {
+	on_actions = { gr_on_alliance_added }
+}
+gr_on_alliance_added = {
+	effect = {
+
+		scope:first = {
+			if = {
+				limit = {
+					gr_is_tracked_character = yes
+					NOT = { has_variable = gr_succession_lock }
+				}
+				if = {
+					limit = { NOT = { has_variable = gr_alliance_count } }
+					set_variable = { name = gr_alliance_count value = 0 }
+				}
+				change_variable = { name = gr_alliance_count add = 1 }
+
+				if = {
+					limit = { NOT = { has_variable = gr_ally_1 } }
+					set_variable = { name = gr_ally_1 value = scope:second }
+				}
+			}
+		}
+		scope:second = {
+			if = {
+				limit = {
+					gr_is_tracked_character = yes
+					NOT = { has_variable = gr_succession_lock }
+				}
+				if = {
+					limit = { NOT = { has_variable = gr_alliance_count } }
+					set_variable = { name = gr_alliance_count value = 0 }
+				}
+				change_variable = { name = gr_alliance_count add = 1 }
+
+				if = {
+					limit = { NOT = { has_variable = gr_ally_1 } }
+					set_variable = { name = gr_ally_1 value = scope:first }
+				}
+			}
+		}
+	}
+}
+
+
+on_set_relation_friend = {
+	on_actions = { gr_on_set_relation_friend }
+}
+gr_on_set_relation_friend = {
+	effect = {
+
+		if = {
+			limit = {
+				gr_is_tracked_character = yes
+				NOT = { has_variable = gr_succession_lock }
+			}
+			if = {
+				limit = { NOT = { has_variable = gr_friend_count } }
+				set_variable = { name = gr_friend_count value = 0 }
+			}
+			change_variable = { name = gr_friend_count add = 1 }
+		}
+	}
+}
+
+
+feast_new_event_selection_tombola = {
+	on_actions = { gr_internal_act_feast_tracking }
+}
+gr_internal_act_feast_tracking = {
+	effect = {
+		if = {
+			limit = {
+				gr_is_tracked_character = yes
+				NOT = { has_variable = gr_succession_lock }
+				exists = involved_activity
+				NOT = { var:gr_last_act_feast ?= involved_activity }
+			}
+			if = {
+				limit = { NOT = { has_variable = gr_feast_count } }
+				set_variable = { name = gr_feast_count value = 0 }
+			}
+			change_variable = { name = gr_feast_count add = 1 }
+			set_variable = { name = gr_last_act_feast value = involved_activity }
+		}
+	}
+}
+
+
+tournament_opening_on_action = {
+	on_actions = { gr_internal_act_tournament_tracking }
+}
+gr_internal_act_tournament_tracking = {
+	effect = {
+		if = {
+			limit = {
+				gr_is_tracked_character = yes
+				NOT = { has_variable = gr_succession_lock }
+				exists = involved_activity
+				NOT = { var:gr_last_act_tournament ?= involved_activity }
+			}
+			if = {
+				limit = { NOT = { has_variable = gr_tournament_count } }
+				set_variable = { name = gr_tournament_count value = 0 }
+			}
+			change_variable = { name = gr_tournament_count add = 1 }
+			set_variable = { name = gr_last_act_tournament value = involved_activity }
+		}
+	}
+}
+
+
+hunt_start_events = {
+	on_actions = { gr_internal_act_hunt_tracking }
+}
+gr_internal_act_hunt_tracking = {
+	effect = {
+		if = {
+			limit = {
+				gr_is_tracked_character = yes
+				NOT = { has_variable = gr_succession_lock }
+				exists = involved_activity
+				NOT = { var:gr_last_act_hunt ?= involved_activity }
+			}
+			if = {
+				limit = { NOT = { has_variable = gr_hunt_count } }
+				set_variable = { name = gr_hunt_count value = 0 }
+			}
+			change_variable = { name = gr_hunt_count add = 1 }
+			set_variable = { name = gr_last_act_hunt value = involved_activity }
+		}
+	}
+}
+
+
+pilgrimage_arrival_events = {
+	on_actions = { gr_internal_act_pilgrimage_tracking }
+}
+gr_internal_act_pilgrimage_tracking = {
+	effect = {
+		if = {
+			limit = {
+				gr_is_tracked_character = yes
+				NOT = { has_variable = gr_succession_lock }
+				exists = involved_activity
+				NOT = { var:gr_last_act_pilgrimage ?= involved_activity }
+			}
+			if = {
+				limit = { NOT = { has_variable = gr_pilgrimage_count } }
+				set_variable = { name = gr_pilgrimage_count value = 0 }
+			}
+			change_variable = { name = gr_pilgrimage_count add = 1 }
+			set_variable = { name = gr_last_act_pilgrimage value = involved_activity }
+		}
+	}
+}
+
+
+adult_education_arrival_events = {
+	on_actions = { gr_internal_act_university_tracking }
+}
+gr_internal_act_university_tracking = {
+	effect = {
+		if = {
+			limit = {
+				gr_is_tracked_character = yes
+				NOT = { has_variable = gr_succession_lock }
+				exists = involved_activity
+				NOT = { var:gr_last_act_university ?= involved_activity }
+			}
+			if = {
+				limit = { NOT = { has_variable = gr_university_attended } }
+				set_variable = { name = gr_university_attended value = 0 }
+			}
+			change_variable = { name = gr_university_attended add = 1 }
+			set_variable = { name = gr_last_act_university value = involved_activity }
+		}
+	}
+}
+
+
+wedding_ceremony_ending_event_pulse = {
+	on_actions = { gr_internal_act_wedding_tracking }
+}
+gr_internal_act_wedding_tracking = {
+	effect = {
+		if = {
+			limit = {
+				gr_is_tracked_character = yes
+				NOT = { has_variable = gr_succession_lock }
+				exists = involved_activity
+				NOT = { var:gr_last_act_wedding ?= involved_activity }
+			}
+			if = {
+				limit = { NOT = { has_variable = gr_wedding_count } }
+				set_variable = { name = gr_wedding_count value = 0 }
+			}
+			change_variable = { name = gr_wedding_count add = 1 }
+			set_variable = { name = gr_last_act_wedding value = involved_activity }
+		}
+	}
+}
+
+
+debate_opening_on_action = {
+	on_actions = { gr_internal_act_debate_tracking }
+}
+gr_internal_act_debate_tracking = {
+	effect = {
+		if = {
+			limit = {
+				gr_is_tracked_character = yes
+				NOT = { has_variable = gr_succession_lock }
+				exists = involved_activity
+				NOT = { var:gr_last_act_debate ?= involved_activity }
+			}
+			if = {
+				limit = { NOT = { has_variable = gr_debate_count } }
+				set_variable = { name = gr_debate_count value = 0 }
+			}
+			change_variable = { name = gr_debate_count add = 1 }
+			set_variable = { name = gr_last_act_debate value = involved_activity }
+		}
+	}
+}
+
+
+coronation_first_phase_host_events = {
+	on_actions = { gr_internal_act_coronation_tracking }
+}
+gr_internal_act_coronation_tracking = {
+	effect = {
+		if = {
+			limit = {
+				gr_is_tracked_character = yes
+				NOT = { has_variable = gr_succession_lock }
+				exists = involved_activity
+				NOT = { var:gr_last_act_coronation ?= involved_activity }
+			}
+			if = {
+				limit = { NOT = { has_variable = gr_coronation_count } }
+				set_variable = { name = gr_coronation_count value = 0 }
+			}
+			change_variable = { name = gr_coronation_count add = 1 }
+			set_variable = { name = gr_last_act_coronation value = involved_activity }
+		}
+	}
+}
+
+
+random_survey_first_event_pulse = {
+	on_actions = { gr_internal_act_inspection_tracking }
+}
+gr_internal_act_inspection_tracking = {
+	effect = {
+		if = {
+			limit = {
+				gr_is_tracked_character = yes
+				NOT = { has_variable = gr_succession_lock }
+				exists = involved_activity
+				NOT = { var:gr_last_act_inspection ?= involved_activity }
+			}
+			if = {
+				limit = { NOT = { has_variable = gr_inspection_count } }
+				set_variable = { name = gr_inspection_count value = 0 }
+			}
+			change_variable = { name = gr_inspection_count add = 1 }
+			set_variable = { name = gr_last_act_inspection value = involved_activity }
+		}
+	}
+}
+
+
+random_journey_event_pulse = {
+	on_actions = { gr_internal_act_expedition_tracking }
+}
+gr_internal_act_expedition_tracking = {
+	effect = {
+		if = {
+			limit = {
+				gr_is_tracked_character = yes
+				NOT = { has_variable = gr_succession_lock }
+				exists = involved_activity
+				NOT = { var:gr_last_act_expedition ?= involved_activity }
+			}
+			if = {
+				limit = { NOT = { has_variable = gr_expedition_count } }
+				set_variable = { name = gr_expedition_count value = 0 }
+			}
+			change_variable = { name = gr_expedition_count add = 1 }
+			set_variable = { name = gr_last_act_expedition value = involved_activity }
+		}
+	}
+}
+
+
+festival_random_pulse = {
+	on_actions = { gr_internal_act_festival_tracking }
+}
+gr_internal_act_festival_tracking = {
+	effect = {
+		if = {
+			limit = {
+				gr_is_tracked_character = yes
+				NOT = { has_variable = gr_succession_lock }
+				exists = involved_activity
+				NOT = { var:gr_last_act_festival ?= involved_activity }
+			}
+			if = {
+				limit = { NOT = { has_variable = gr_festival_count } }
+				set_variable = { name = gr_festival_count value = 0 }
+			}
+			change_variable = { name = gr_festival_count add = 1 }
+			set_variable = { name = gr_last_act_festival value = involved_activity }
+		}
+	}
+}
+
+
+random_roaming_event_pulse = {
+	on_actions = { gr_internal_act_hike_tracking }
+}
+gr_internal_act_hike_tracking = {
+	effect = {
+		if = {
+			limit = {
+				gr_is_tracked_character = yes
+				NOT = { has_variable = gr_succession_lock }
+				exists = involved_activity
+				NOT = { var:gr_last_act_hike ?= involved_activity }
+			}
+			if = {
+				limit = { NOT = { has_variable = gr_hike_count } }
+				set_variable = { name = gr_hike_count value = 0 }
+			}
+			change_variable = { name = gr_hike_count add = 1 }
+			set_variable = { name = gr_last_act_hike value = involved_activity }
+		}
+	}
+}
+
+
+chariot_race_opening_on_action = {
+	on_actions = { gr_internal_act_chariot_tracking }
+}
+gr_internal_act_chariot_tracking = {
+	effect = {
+		if = {
+			limit = {
+				gr_is_tracked_character = yes
+				NOT = { has_variable = gr_succession_lock }
+				exists = involved_activity
+				NOT = { var:gr_last_act_chariot ?= involved_activity }
+			}
+			if = {
+				limit = { NOT = { has_variable = gr_chariot_count } }
+				set_variable = { name = gr_chariot_count value = 0 }
+			}
+			change_variable = { name = gr_chariot_count add = 1 }
+			set_variable = { name = gr_last_act_chariot value = involved_activity }
+		}
+	}
+}
+
+
+murder_success_pre_filter_on_action = {
+	on_actions = {
+		gr_internal_murder_tracking
+	}
+}
+
+gr_internal_murder_tracking = {
+	effect = {
+		if = {
+			limit = {
+				exists = scope:owner
+				scope:owner = { gr_is_tracked_character = yes }
+			}
+			scope:owner = {
+				if = {
+					limit = { NOT = { has_variable = gr_succession_lock } }
+					if = {
+						limit = { NOT = { has_variable = gr_murder_count } }
+						set_variable = { name = gr_murder_count value = 0 }
+					}
+					change_variable = { name = gr_murder_count add = 1 }
+				}
+			}
+		}
+	}
+}
+
+
+abduct_succeeded = {
+	on_actions = {
+		gr_internal_kidnap_tracking
+	}
+}
+
+gr_internal_kidnap_tracking = {
+	effect = {
+		if = {
+			limit = {
+				exists = scope:owner
+				scope:owner = { gr_is_tracked_character = yes }
+			}
+			scope:owner = {
+				if = {
+					limit = { NOT = { has_variable = gr_succession_lock } }
+					if = {
+						limit = { NOT = { has_variable = gr_kidnap_count } }
+						set_variable = { name = gr_kidnap_count value = 0 }
+					}
+					change_variable = { name = gr_kidnap_count add = 1 }
+				}
+			}
+		}
+	}
+}
+
+
+on_death = {
+	on_actions = {
+		gr_internal_execution_tracking
+	}
+}
+
+gr_internal_execution_tracking = {
+	effect = {
+
+		if = {
+			limit = {
+				exists = scope:killer
+				scope:killer = { gr_is_tracked_character = yes }
+				OR = {
+					death_reason = death_execution
+					death_reason = death_execution_blood_eagle
+				}
+			}
+			scope:killer = {
+				if = {
+					limit = { NOT = { has_variable = gr_succession_lock } }
+					if = {
+						limit = { NOT = { has_variable = gr_execution_count } }
+						set_variable = { name = gr_execution_count value = 0 }
+					}
+					change_variable = { name = gr_execution_count add = 1 }
+				}
+			}
+		}
+	}
+}
+
+
+quarterly_playable_pulse = {
+	trigger = {
+		is_ai = no
+	}
+	on_actions = {
+		gr_internal_torture_poll
+	}
+}
+
+gr_internal_torture_poll = {
+	effect = {
+
+		if = {
+			limit = {
+				gr_is_tracked_character = yes
+				NOT = { has_variable = gr_succession_lock }
+			}
+
+
+			if = {
+				limit = { has_variable_list = gr_tortured_seen }
+				every_in_list = {
+					variable = gr_tortured_seen
+					limit = {
+						NOT = { has_character_modifier = recently_tortured }
+					}
+					save_temporary_scope_as = gr_expired_prisoner
+					root = {
+						remove_list_variable = {
+							name = gr_tortured_seen
+							target = scope:gr_expired_prisoner
+						}
+					}
+				}
+			}
+
+
+			every_prisoner = {
+				limit = {
+					has_character_modifier = recently_tortured
+				}
+				save_temporary_scope_as = gr_new_torture_victim
+				root = {
+					if = {
+						limit = {
+							NOT = {
+								is_target_in_variable_list = { name = gr_tortured_seen target = scope:gr_new_torture_victim }
+							}
+						}
+						if = {
+							limit = { NOT = { has_variable = gr_torture_count } }
+							set_variable = { name = gr_torture_count value = 0 }
+						}
+						change_variable = { name = gr_torture_count add = 1 }
+						add_to_variable_list = { name = gr_tortured_seen target = scope:gr_new_torture_victim }
+					}
+				}
+			}
+		}
+	}
+}
+
+
+learn_language_success = {
+	on_actions = {
+		gr_internal_language_tracking
+	}
+}
+
+gr_internal_language_tracking = {
+	effect = {
+
+		if = {
+			limit = {
+				gr_is_tracked_character = yes
+				NOT = { has_variable = gr_succession_lock }
+			}
+			if = {
+				limit = { NOT = { has_variable = gr_language_count } }
+				set_variable = { name = gr_language_count value = 0 }
+			}
+			change_variable = { name = gr_language_count add = 1 }
+		}
+	}
+}
+
+
+on_hook_used = {
+	on_actions = { gr_on_hook_used }
+}
+gr_on_hook_used = {
+	effect = {
+
+		if = {
+			limit = {
+				gr_is_tracked_character = yes
+				NOT = { has_variable = gr_succession_lock }
+			}
+			if = {
+				limit = { NOT = { has_variable = gr_hook_count } }
+				set_variable = { name = gr_hook_count value = 0 }
+			}
+			change_variable = { name = gr_hook_count add = 1 }
+		}
+	}
+}
+
+
+on_title_lost = {
+	on_actions = {
+		gr_internal_faction_lost_tracking
+		gr_internal_title_grant_tracking
+	}
+}
+
+gr_internal_faction_lost_tracking = {
+	effect = {
+		if = {
+			limit = {
+				gr_is_tracked_character = yes
+				NOT = { has_variable = gr_succession_lock }
+				exists = scope:title
+				exists = scope:transfer_type
+				scope:transfer_type = flag:faction_demand
+				scope:title.tier >= tier_county
+			}
+
+			set_variable = { name = gr_memory_faction_lost_title value = yes }
+			set_variable = { name = gr_faction_lost_title value = scope:title }
+			if = {
+				limit = { exists = scope:new_holder }
+				set_variable = { name = gr_faction_lost_to value = scope:new_holder }
+			}
+		}
+	}
+}
+
+
+gr_internal_title_grant_tracking = {
+	effect = {
+		if = {
+			limit = {
+				gr_is_tracked_character = yes
+				NOT = { has_variable = gr_succession_lock }
+				exists = scope:title
+				exists = scope:transfer_type
+				scope:transfer_type = flag:granted
+			}
+
+
+			if = {
+				limit = {
+					has_variable = gr_created_kingdom
+					scope:title = var:gr_created_kingdom
+				}
+				set_variable = { name = gr_kingdom_granted_away value = yes }
+				if = {
+					limit = { exists = scope:new_holder }
+					set_variable = { name = gr_kingdom_granted_to value = scope:new_holder }
+				}
+			}
+
+
+			if = {
+				limit = {
+					has_variable = gr_created_kingdom_2
+					scope:title = var:gr_created_kingdom_2
+				}
+				set_variable = { name = gr_kingdom_2_granted_away value = yes }
+				if = {
+					limit = { exists = scope:new_holder }
+					set_variable = { name = gr_kingdom_2_granted_to value = scope:new_holder }
+				}
+			}
+
+
+			if = {
+				limit = {
+					has_variable = gr_empire_title
+					scope:title = var:gr_empire_title
+				}
+				set_variable = { name = gr_empire_granted_away value = yes }
+				if = {
+					limit = { exists = scope:new_holder }
+					set_variable = { name = gr_empire_granted_to value = scope:new_holder }
+				}
+			}
+
+
+			if = {
+				limit = {
+					has_variable = gr_empire_2_title
+					scope:title = var:gr_empire_2_title
+				}
+				set_variable = { name = gr_empire_2_granted_away value = yes }
+				if = {
+					limit = { exists = scope:new_holder }
+					set_variable = { name = gr_empire_2_granted_to value = scope:new_holder }
+				}
+			}
+
+
+			if = {
+				limit = {
+					has_variable = gr_created_duchy
+					scope:title = var:gr_created_duchy
+				}
+				set_variable = { name = gr_duchy_granted_away value = yes }
+				if = {
+					limit = { exists = scope:new_holder }
+					set_variable = { name = gr_duchy_granted_to value = scope:new_holder }
+				}
+			}
+		}
+	}
+}
+
+
+on_character_culture_change = {
+	on_actions = {
+		gr_internal_culture_change_tracking
+	}
+}
+
+gr_internal_culture_change_tracking = {
+	effect = {
+		if = {
+			limit = {
+				gr_is_tracked_character = yes
+
+				OR = {
+					is_landed = yes
+					is_ruler = yes
+				}
+				NOT = { has_variable = gr_culture_origin }
+				exists = scope:old_culture
+			}
+			set_variable = { name = gr_culture_origin value = scope:old_culture }
+
+			gr_story_increment_event = { TYPE = flag:culture }
+		}
+	}
+}
+
+
+on_marriage = {
+	on_actions = {
+		gr_internal_marriage_story_tracking
+	}
+}
+
+gr_internal_marriage_story_tracking = {
+	effect = {
+		if = {
+			limit = { is_ai = no }
+			gr_story_increment_event = { TYPE = flag:marriage }
+		}
+	}
+}
+
+on_birth_child = {
+	on_actions = {
+		gr_internal_birth_story_tracking
+	}
+}
+
+gr_internal_birth_story_tracking = {
+	effect = {
+
+		if = {
+			limit = {
+				OR = {
+					mother = { is_ai = no }
+					AND = {
+						exists = real_father
+						real_father = { is_ai = no }
+					}
+				}
+			}
+
+			if = {
+				limit = { mother = { is_ai = no } }
+				mother = { gr_story_increment_event = { TYPE = flag:child } }
+			}
+			else_if = {
+				limit = { exists = real_father real_father = { is_ai = no } }
+				real_father = { gr_story_increment_event = { TYPE = flag:child } }
+			}
+		}
+	}
+}
+
+
+seduce_generic_success = {
+	on_actions = {
+		gr_internal_seduce_tracking
+	}
+}
+
+gr_internal_seduce_tracking = {
+	effect = {
+		if = {
+			limit = {
+				exists = scope:owner
+				scope:owner = { gr_is_tracked_character = yes }
+			}
+			scope:owner = {
+				if = {
+					limit = { NOT = { has_variable = gr_succession_lock } }
+					if = {
+						limit = { NOT = { has_variable = gr_seduce_count } }
+						set_variable = { name = gr_seduce_count value = 0 }
+					}
+					change_variable = { name = gr_seduce_count add = 1 }
+				}
+			}
+		}
+	}
+}
+
+
+befriend_success = {
+	on_actions = {
+		gr_internal_befriend_tracking
+	}
+}
+
+gr_internal_befriend_tracking = {
+	effect = {
+		if = {
+			limit = {
+				exists = scope:owner
+				scope:owner = { gr_is_tracked_character = yes }
+			}
+			scope:owner = {
+				if = {
+					limit = { NOT = { has_variable = gr_succession_lock } }
+					if = {
+						limit = { NOT = { has_variable = gr_befriend_count } }
+						set_variable = { name = gr_befriend_count value = 0 }
+					}
+					change_variable = { name = gr_befriend_count add = 1 }
+				}
+			}
+		}
+	}
+}
+
+
+claim_throne_succeeded = {
+	on_actions = {
+		gr_internal_claim_throne_tracking
+	}
+}
+
+gr_internal_claim_throne_tracking = {
+	effect = {
+		if = {
+			limit = {
+				exists = scope:owner
+				scope:owner = { gr_is_tracked_character = yes }
+			}
+			scope:owner = {
+				if = {
+					limit = { NOT = { has_variable = gr_succession_lock } }
+					if = {
+						limit = { NOT = { has_variable = gr_claim_throne_count } }
+						set_variable = { name = gr_claim_throne_count value = 0 }
+					}
+					change_variable = { name = gr_claim_throne_count add = 1 }
+				}
+			}
+		}
+	}
+}
+
+
+fabricate_hook_method_success_outcome = {
+	on_actions = {
+		gr_internal_fabricate_tracking
+	}
+}
+
+gr_internal_fabricate_tracking = {
+	effect = {
+		if = {
+			limit = {
+				root ?= { gr_is_tracked_character = yes }
+			}
+			root = {
+				if = {
+					limit = { NOT = { has_variable = gr_succession_lock } }
+					if = {
+						limit = { NOT = { has_variable = gr_fabricate_count } }
+						set_variable = { name = gr_fabricate_count value = 0 }
+					}
+					change_variable = { name = gr_fabricate_count add = 1 }
+				}
+			}
+		}
+	}
+}

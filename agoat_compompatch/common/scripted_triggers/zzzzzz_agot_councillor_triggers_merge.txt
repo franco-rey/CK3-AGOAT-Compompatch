@@ -1,0 +1,89 @@
+﻿can_be_chancellor_trigger = {
+	can_be_councillor_basics_trigger = yes
+	$COURT_OWNER$ ?= {
+		NOT = { government_has_flag = government_is_nomadic }
+	}
+	NAND = {
+		has_council_position = councillor_court_chaplain
+		faith = { has_doctrine_parameter = clerical_appointment_fixed }
+	}
+	NOR = {
+		has_council_position = councillor_spouse
+		AND = {
+			this = liege.diarch
+			liege = { has_diarchy_active_parameter = diarchy_is_vizierate }
+		}
+	}
+	OR = {
+		can_be_councillor_gender_trigger = { COURT_OWNER = $COURT_OWNER$ }
+		$COURT_OWNER$ = { is_ai = no }
+		MTXXX_liege_flouts_council_faith_tradition_trigger = { LIEGE = $COURT_OWNER$ }
+		is_ruler = yes
+	}
+
+
+	NOT = { has_trait = kingsguard }
+}
+
+can_be_steward_trigger = {
+	can_be_councillor_basics_trigger = yes
+	$COURT_OWNER$ ?= {
+		NOT = { government_has_flag = government_is_nomadic }
+	}
+	NAND = {
+		has_council_position = councillor_court_chaplain
+		faith = { has_doctrine_parameter = clerical_appointment_fixed }
+	}
+	NOR = {
+		has_council_position = councillor_spouse
+		AND = {
+			this = liege.diarch
+			liege = { has_diarchy_active_parameter = diarchy_is_vizierate }
+		}
+	}
+	OR = {
+		can_be_councillor_gender_trigger = { COURT_OWNER = $COURT_OWNER$ }
+		$COURT_OWNER$ = { is_ai = no }
+		MTXXX_liege_flouts_council_faith_tradition_trigger = { LIEGE = $COURT_OWNER$ }
+		is_ruler = yes
+	}
+
+
+	NOT = { has_trait = kingsguard }
+}
+
+can_be_marshal_trigger = {
+	can_be_councillor_basics_trigger = yes
+	$COURT_OWNER$ ?= {
+		NOT = { government_has_flag = government_is_nomadic }
+	}
+	is_hostage = no
+	NAND = {
+		has_council_position = councillor_court_chaplain
+		faith = { has_doctrine_parameter = clerical_appointment_fixed }
+	}
+	NOR = {
+		has_council_position = councillor_spouse
+		AND = {
+			this = liege.diarch
+			liege = { has_diarchy_active_parameter = diarchy_is_vizierate }
+		}
+	}
+	OR = {
+	OR = {
+		can_be_councillor_gender_trigger = { COURT_OWNER = $COURT_OWNER$ }
+		$COURT_OWNER$ = { is_ai = no }
+		MTXXX_liege_flouts_council_faith_tradition_trigger = { LIEGE = $COURT_OWNER$ }
+		is_ruler = yes
+	}
+
+		AND = {
+			has_trait = shieldmaiden
+			$COURT_OWNER$.culture = { has_cultural_parameter = has_access_to_shieldmaidens }
+		}
+	}
+
+
+	NOT = { has_trait = kingsguard }
+	NOT = { has_trait = maester }
+}

@@ -1,0 +1,67 @@
+﻿at_artifact_can_be_bought_by_trigger = {
+	trigger_if = {
+		limit = {
+			$BUYER$.var:at_merchant_type ?= flag:peddler
+		}
+		at_is_unsellable_artifact_trigger = no
+	}
+
+	trigger_if = {
+		limit = {
+			exists = global_var:agot_artifact_keeper
+			$BUYER$ = global_var:agot_artifact_keeper
+		}
+
+
+		NOR = {
+			has_variable = unwanted_artifact
+			has_variable = cursed_artifact
+			at_is_worthless_artifact_trigger = yes
+			has_variable = banner_dynasty
+			has_variable = banner_house
+		}
+		trigger_if = {
+			limit = {
+				artifact_owner = { is_ai = yes }
+			}
+
+			trigger_if = {
+				limit = {
+					OR = {
+						artifact_type = animal_hide
+						artifact_type = animal_hide_big
+						artifact_type = miscellaneous
+					}
+				}
+				$BUYER$ = {
+					any_character_artifact = {
+						OR = {
+							artifact_type = animal_hide
+							artifact_type = animal_hide_big
+							artifact_type = miscellaneous
+						}
+						count < 6
+					}
+				}
+			}
+
+			trigger_if = {
+				limit = {
+					OR = {
+						rarity = common
+						rarity = masterwork
+					}
+				}
+				$BUYER$ = {
+					any_character_artifact = {
+						OR = {
+							rarity = common
+							rarity = masterwork
+						}
+						count < 9
+					}
+				}
+			}
+		}
+	}
+}

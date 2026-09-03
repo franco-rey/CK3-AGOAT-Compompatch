@@ -1,0 +1,42 @@
+﻿
+fp2_urbanism_legacy_track = {
+	is_shown = {
+		has_dlc_feature = the_fate_of_iberia
+		OR = {
+			has_game_rule = hth_urbanism_legacy_track_available_all
+			dynasty = {
+				OR = {
+
+
+					has_dynasty_perk = fp2_urbanism_legacy_1
+
+
+					dynast = {
+						government_has_flag = government_is_free_city
+					}
+				}
+			}
+		}
+	}
+}
+
+fp2_coterie_legacy_track = {
+	is_shown = {
+		has_dlc_feature = the_fate_of_iberia
+		OR = {
+			has_game_rule = hth_coterie_legacy_track_available_all
+			dynasty = {
+				OR = {
+
+
+					has_dynasty_perk = fp2_coterie_legacy_1
+
+
+					dynast = {
+						government_has_flag = government_is_feudal
+					}
+				}
+			}
+		}
+	}
+}

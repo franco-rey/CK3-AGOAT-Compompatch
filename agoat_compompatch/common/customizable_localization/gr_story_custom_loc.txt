@@ -1,0 +1,1142 @@
+﻿GrStoryDesc = {
+	type = all
+
+	text = {
+		trigger = { var:gr_story_variant = 1 }
+		localization_key = GR_STORY_DESC_V1
+	}
+	text = {
+		trigger = { var:gr_story_variant = 2 }
+		localization_key = GR_STORY_DESC_V2
+	}
+	text = {
+		trigger = { var:gr_story_variant = 3 }
+		localization_key = GR_STORY_DESC_V3
+	}
+	text = {
+		trigger = { var:gr_story_variant = 4 }
+		localization_key = GR_STORY_DESC_V4
+	}
+	text = {
+		trigger = { var:gr_story_variant = 5 }
+		localization_key = GR_STORY_DESC_V5
+	}
+	text = {
+		trigger = { var:gr_story_variant = 6 }
+		localization_key = GR_STORY_DESC_V6
+	}
+	text = {
+		trigger = { var:gr_story_variant = 7 }
+		localization_key = GR_STORY_DESC_V7
+	}
+	text = {
+		localization_key = GR_STORY_DESC_V1
+	}
+}
+
+GrStoryChroniclerName = {
+	type = all
+
+	text = {
+		trigger = { exists = var:gr_story_chronicler_type var:gr_story_chronicler_type = flag:court_chronicler }
+		localization_key = GR_STORY_CHRON_COURT_CHRONICLER
+	}
+	text = {
+		trigger = { exists = var:gr_story_chronicler_type var:gr_story_chronicler_type = flag:spouse }
+		localization_key = GR_STORY_CHRON_SPOUSE
+	}
+	text = {
+		trigger = { exists = var:gr_story_chronicler_type var:gr_story_chronicler_type = flag:heir }
+		localization_key = GR_STORY_CHRON_HEIR
+	}
+	text = {
+		trigger = { exists = var:gr_story_chronicler_type var:gr_story_chronicler_type = flag:regent }
+		localization_key = GR_STORY_CHRON_REGENT
+	}
+	text = {
+		trigger = { exists = var:gr_story_chronicler_type var:gr_story_chronicler_type = flag:friend }
+		localization_key = GR_STORY_CHRON_FRIEND
+	}
+	text = {
+		trigger = { exists = var:gr_story_chronicler_type var:gr_story_chronicler_type = flag:chancellor }
+		localization_key = GR_STORY_CHRON_CHANCELLOR
+	}
+	text = {
+		localization_key = GR_STORY_CHRON_NONE
+	}
+}
+
+GrStoryChroniclerLine = {
+	type = all
+
+	text = {
+		trigger = {
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count <= 5
+			var:gr_story_opinion >= 26
+			var:gr_story_variant = 1
+		}
+		localization_key = GR_STORY_CHRON_FEW_LOVE_V1
+	}
+	text = {
+		trigger = {
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count <= 5
+			var:gr_story_opinion >= 26
+			var:gr_story_variant = 2
+		}
+		localization_key = GR_STORY_CHRON_FEW_LOVE_V2
+	}
+	text = {
+		trigger = {
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count <= 5
+			var:gr_story_opinion >= 26
+			var:gr_story_variant = 3
+		}
+		localization_key = GR_STORY_CHRON_FEW_LOVE_V3
+	}
+	text = {
+		trigger = {
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count <= 5
+			var:gr_story_opinion >= 26
+			var:gr_story_variant = 4
+		}
+		localization_key = GR_STORY_CHRON_FEW_LOVE_V4
+	}
+	text = {
+		trigger = {
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count <= 5
+			var:gr_story_opinion >= 26
+			var:gr_story_variant = 5
+		}
+		localization_key = GR_STORY_CHRON_FEW_LOVE_V5
+	}
+	text = {
+		trigger = {
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count <= 5
+			var:gr_story_opinion >= 26
+			var:gr_story_variant = 6
+		}
+		localization_key = GR_STORY_CHRON_FEW_LOVE_V6
+	}
+	text = {
+		trigger = {
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count <= 5
+			var:gr_story_opinion >= 26
+			var:gr_story_variant = 7
+		}
+		localization_key = GR_STORY_CHRON_FEW_LOVE_V7
+	}
+	text = {
+		trigger = {
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count <= 5
+			var:gr_story_opinion >= -25
+			var:gr_story_opinion <= 25
+			var:gr_story_variant = 1
+		}
+		localization_key = GR_STORY_CHRON_FEW_NEUTRAL_V1
+	}
+	text = {
+		trigger = {
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count <= 5
+			var:gr_story_opinion >= -25
+			var:gr_story_opinion <= 25
+			var:gr_story_variant = 2
+		}
+		localization_key = GR_STORY_CHRON_FEW_NEUTRAL_V2
+	}
+	text = {
+		trigger = {
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count <= 5
+			var:gr_story_opinion >= -25
+			var:gr_story_opinion <= 25
+			var:gr_story_variant = 3
+		}
+		localization_key = GR_STORY_CHRON_FEW_NEUTRAL_V3
+	}
+	text = {
+		trigger = {
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count <= 5
+			var:gr_story_opinion >= -25
+			var:gr_story_opinion <= 25
+			var:gr_story_variant = 4
+		}
+		localization_key = GR_STORY_CHRON_FEW_NEUTRAL_V4
+	}
+	text = {
+		trigger = {
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count <= 5
+			var:gr_story_opinion >= -25
+			var:gr_story_opinion <= 25
+			var:gr_story_variant = 5
+		}
+		localization_key = GR_STORY_CHRON_FEW_NEUTRAL_V5
+	}
+	text = {
+		trigger = {
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count <= 5
+			var:gr_story_opinion >= -25
+			var:gr_story_opinion <= 25
+			var:gr_story_variant = 6
+		}
+		localization_key = GR_STORY_CHRON_FEW_NEUTRAL_V6
+	}
+	text = {
+		trigger = {
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count <= 5
+			var:gr_story_opinion >= -25
+			var:gr_story_opinion <= 25
+			var:gr_story_variant = 7
+		}
+		localization_key = GR_STORY_CHRON_FEW_NEUTRAL_V7
+	}
+	text = {
+		trigger = {
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count <= 5
+			var:gr_story_opinion <= -26
+			var:gr_story_variant = 1
+		}
+		localization_key = GR_STORY_CHRON_FEW_HATE_V1
+	}
+	text = {
+		trigger = {
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count <= 5
+			var:gr_story_opinion <= -26
+			var:gr_story_variant = 2
+		}
+		localization_key = GR_STORY_CHRON_FEW_HATE_V2
+	}
+	text = {
+		trigger = {
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count <= 5
+			var:gr_story_opinion <= -26
+			var:gr_story_variant = 3
+		}
+		localization_key = GR_STORY_CHRON_FEW_HATE_V3
+	}
+	text = {
+		trigger = {
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count <= 5
+			var:gr_story_opinion <= -26
+			var:gr_story_variant = 4
+		}
+		localization_key = GR_STORY_CHRON_FEW_HATE_V4
+	}
+	text = {
+		trigger = {
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count <= 5
+			var:gr_story_opinion <= -26
+			var:gr_story_variant = 5
+		}
+		localization_key = GR_STORY_CHRON_FEW_HATE_V5
+	}
+	text = {
+		trigger = {
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count <= 5
+			var:gr_story_opinion <= -26
+			var:gr_story_variant = 6
+		}
+		localization_key = GR_STORY_CHRON_FEW_HATE_V6
+	}
+	text = {
+		trigger = {
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count <= 5
+			var:gr_story_opinion <= -26
+			var:gr_story_variant = 7
+		}
+		localization_key = GR_STORY_CHRON_FEW_HATE_V7
+	}
+	text = {
+		trigger = {
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count >= 6
+			var:gr_story_event_count <= 15
+			var:gr_story_opinion >= 26
+			var:gr_story_variant = 1
+		}
+		localization_key = GR_STORY_CHRON_SOME_LOVE_V1
+	}
+	text = {
+		trigger = {
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count >= 6
+			var:gr_story_event_count <= 15
+			var:gr_story_opinion >= 26
+			var:gr_story_variant = 2
+		}
+		localization_key = GR_STORY_CHRON_SOME_LOVE_V2
+	}
+	text = {
+		trigger = {
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count >= 6
+			var:gr_story_event_count <= 15
+			var:gr_story_opinion >= 26
+			var:gr_story_variant = 3
+		}
+		localization_key = GR_STORY_CHRON_SOME_LOVE_V3
+	}
+	text = {
+		trigger = {
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count >= 6
+			var:gr_story_event_count <= 15
+			var:gr_story_opinion >= 26
+			var:gr_story_variant = 4
+		}
+		localization_key = GR_STORY_CHRON_SOME_LOVE_V4
+	}
+	text = {
+		trigger = {
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count >= 6
+			var:gr_story_event_count <= 15
+			var:gr_story_opinion >= 26
+			var:gr_story_variant = 5
+		}
+		localization_key = GR_STORY_CHRON_SOME_LOVE_V5
+	}
+	text = {
+		trigger = {
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count >= 6
+			var:gr_story_event_count <= 15
+			var:gr_story_opinion >= 26
+			var:gr_story_variant = 6
+		}
+		localization_key = GR_STORY_CHRON_SOME_LOVE_V6
+	}
+	text = {
+		trigger = {
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count >= 6
+			var:gr_story_event_count <= 15
+			var:gr_story_opinion >= 26
+			var:gr_story_variant = 7
+		}
+		localization_key = GR_STORY_CHRON_SOME_LOVE_V7
+	}
+	text = {
+		trigger = {
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count >= 6
+			var:gr_story_event_count <= 15
+			var:gr_story_opinion >= -25
+			var:gr_story_opinion <= 25
+			var:gr_story_variant = 1
+		}
+		localization_key = GR_STORY_CHRON_SOME_NEUTRAL_V1
+	}
+	text = {
+		trigger = {
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count >= 6
+			var:gr_story_event_count <= 15
+			var:gr_story_opinion >= -25
+			var:gr_story_opinion <= 25
+			var:gr_story_variant = 2
+		}
+		localization_key = GR_STORY_CHRON_SOME_NEUTRAL_V2
+	}
+	text = {
+		trigger = {
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count >= 6
+			var:gr_story_event_count <= 15
+			var:gr_story_opinion >= -25
+			var:gr_story_opinion <= 25
+			var:gr_story_variant = 3
+		}
+		localization_key = GR_STORY_CHRON_SOME_NEUTRAL_V3
+	}
+	text = {
+		trigger = {
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count >= 6
+			var:gr_story_event_count <= 15
+			var:gr_story_opinion >= -25
+			var:gr_story_opinion <= 25
+			var:gr_story_variant = 4
+		}
+		localization_key = GR_STORY_CHRON_SOME_NEUTRAL_V4
+	}
+	text = {
+		trigger = {
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count >= 6
+			var:gr_story_event_count <= 15
+			var:gr_story_opinion >= -25
+			var:gr_story_opinion <= 25
+			var:gr_story_variant = 5
+		}
+		localization_key = GR_STORY_CHRON_SOME_NEUTRAL_V5
+	}
+	text = {
+		trigger = {
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count >= 6
+			var:gr_story_event_count <= 15
+			var:gr_story_opinion >= -25
+			var:gr_story_opinion <= 25
+			var:gr_story_variant = 6
+		}
+		localization_key = GR_STORY_CHRON_SOME_NEUTRAL_V6
+	}
+	text = {
+		trigger = {
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count >= 6
+			var:gr_story_event_count <= 15
+			var:gr_story_opinion >= -25
+			var:gr_story_opinion <= 25
+			var:gr_story_variant = 7
+		}
+		localization_key = GR_STORY_CHRON_SOME_NEUTRAL_V7
+	}
+	text = {
+		trigger = {
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count >= 6
+			var:gr_story_event_count <= 15
+			var:gr_story_opinion <= -26
+			var:gr_story_variant = 1
+		}
+		localization_key = GR_STORY_CHRON_SOME_HATE_V1
+	}
+	text = {
+		trigger = {
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count >= 6
+			var:gr_story_event_count <= 15
+			var:gr_story_opinion <= -26
+			var:gr_story_variant = 2
+		}
+		localization_key = GR_STORY_CHRON_SOME_HATE_V2
+	}
+	text = {
+		trigger = {
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count >= 6
+			var:gr_story_event_count <= 15
+			var:gr_story_opinion <= -26
+			var:gr_story_variant = 3
+		}
+		localization_key = GR_STORY_CHRON_SOME_HATE_V3
+	}
+	text = {
+		trigger = {
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count >= 6
+			var:gr_story_event_count <= 15
+			var:gr_story_opinion <= -26
+			var:gr_story_variant = 4
+		}
+		localization_key = GR_STORY_CHRON_SOME_HATE_V4
+	}
+	text = {
+		trigger = {
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count >= 6
+			var:gr_story_event_count <= 15
+			var:gr_story_opinion <= -26
+			var:gr_story_variant = 5
+		}
+		localization_key = GR_STORY_CHRON_SOME_HATE_V5
+	}
+	text = {
+		trigger = {
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count >= 6
+			var:gr_story_event_count <= 15
+			var:gr_story_opinion <= -26
+			var:gr_story_variant = 6
+		}
+		localization_key = GR_STORY_CHRON_SOME_HATE_V6
+	}
+	text = {
+		trigger = {
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count >= 6
+			var:gr_story_event_count <= 15
+			var:gr_story_opinion <= -26
+			var:gr_story_variant = 7
+		}
+		localization_key = GR_STORY_CHRON_SOME_HATE_V7
+	}
+	text = {
+		trigger = {
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count >= 16
+			var:gr_story_opinion >= 26
+			var:gr_story_variant = 1
+		}
+		localization_key = GR_STORY_CHRON_MANY_LOVE_V1
+	}
+	text = {
+		trigger = {
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count >= 16
+			var:gr_story_opinion >= 26
+			var:gr_story_variant = 2
+		}
+		localization_key = GR_STORY_CHRON_MANY_LOVE_V2
+	}
+	text = {
+		trigger = {
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count >= 16
+			var:gr_story_opinion >= 26
+			var:gr_story_variant = 3
+		}
+		localization_key = GR_STORY_CHRON_MANY_LOVE_V3
+	}
+	text = {
+		trigger = {
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count >= 16
+			var:gr_story_opinion >= 26
+			var:gr_story_variant = 4
+		}
+		localization_key = GR_STORY_CHRON_MANY_LOVE_V4
+	}
+	text = {
+		trigger = {
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count >= 16
+			var:gr_story_opinion >= 26
+			var:gr_story_variant = 5
+		}
+		localization_key = GR_STORY_CHRON_MANY_LOVE_V5
+	}
+	text = {
+		trigger = {
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count >= 16
+			var:gr_story_opinion >= 26
+			var:gr_story_variant = 6
+		}
+		localization_key = GR_STORY_CHRON_MANY_LOVE_V6
+	}
+	text = {
+		trigger = {
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count >= 16
+			var:gr_story_opinion >= 26
+			var:gr_story_variant = 7
+		}
+		localization_key = GR_STORY_CHRON_MANY_LOVE_V7
+	}
+	text = {
+		trigger = {
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count >= 16
+			var:gr_story_opinion >= -25
+			var:gr_story_opinion <= 25
+			var:gr_story_variant = 1
+		}
+		localization_key = GR_STORY_CHRON_MANY_NEUTRAL_V1
+	}
+	text = {
+		trigger = {
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count >= 16
+			var:gr_story_opinion >= -25
+			var:gr_story_opinion <= 25
+			var:gr_story_variant = 2
+		}
+		localization_key = GR_STORY_CHRON_MANY_NEUTRAL_V2
+	}
+	text = {
+		trigger = {
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count >= 16
+			var:gr_story_opinion >= -25
+			var:gr_story_opinion <= 25
+			var:gr_story_variant = 3
+		}
+		localization_key = GR_STORY_CHRON_MANY_NEUTRAL_V3
+	}
+	text = {
+		trigger = {
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count >= 16
+			var:gr_story_opinion >= -25
+			var:gr_story_opinion <= 25
+			var:gr_story_variant = 4
+		}
+		localization_key = GR_STORY_CHRON_MANY_NEUTRAL_V4
+	}
+	text = {
+		trigger = {
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count >= 16
+			var:gr_story_opinion >= -25
+			var:gr_story_opinion <= 25
+			var:gr_story_variant = 5
+		}
+		localization_key = GR_STORY_CHRON_MANY_NEUTRAL_V5
+	}
+	text = {
+		trigger = {
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count >= 16
+			var:gr_story_opinion >= -25
+			var:gr_story_opinion <= 25
+			var:gr_story_variant = 6
+		}
+		localization_key = GR_STORY_CHRON_MANY_NEUTRAL_V6
+	}
+	text = {
+		trigger = {
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count >= 16
+			var:gr_story_opinion >= -25
+			var:gr_story_opinion <= 25
+			var:gr_story_variant = 7
+		}
+		localization_key = GR_STORY_CHRON_MANY_NEUTRAL_V7
+	}
+	text = {
+		trigger = {
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count >= 16
+			var:gr_story_opinion <= -26
+			var:gr_story_variant = 1
+		}
+		localization_key = GR_STORY_CHRON_MANY_HATE_V1
+	}
+	text = {
+		trigger = {
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count >= 16
+			var:gr_story_opinion <= -26
+			var:gr_story_variant = 2
+		}
+		localization_key = GR_STORY_CHRON_MANY_HATE_V2
+	}
+	text = {
+		trigger = {
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count >= 16
+			var:gr_story_opinion <= -26
+			var:gr_story_variant = 3
+		}
+		localization_key = GR_STORY_CHRON_MANY_HATE_V3
+	}
+	text = {
+		trigger = {
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count >= 16
+			var:gr_story_opinion <= -26
+			var:gr_story_variant = 4
+		}
+		localization_key = GR_STORY_CHRON_MANY_HATE_V4
+	}
+	text = {
+		trigger = {
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count >= 16
+			var:gr_story_opinion <= -26
+			var:gr_story_variant = 5
+		}
+		localization_key = GR_STORY_CHRON_MANY_HATE_V5
+	}
+	text = {
+		trigger = {
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count >= 16
+			var:gr_story_opinion <= -26
+			var:gr_story_variant = 6
+		}
+		localization_key = GR_STORY_CHRON_MANY_HATE_V6
+	}
+	text = {
+		trigger = {
+			exists = var:gr_story_event_count
+			exists = var:gr_story_opinion
+			exists = var:gr_story_variant
+			var:gr_story_event_count >= 16
+			var:gr_story_opinion <= -26
+			var:gr_story_variant = 7
+		}
+		localization_key = GR_STORY_CHRON_MANY_HATE_V7
+	}
+	text = {
+		localization_key = GR_STORY_CHRON_FEW_NEUTRAL_V1
+	}
+}
+
+GrStoryFullPanel = {
+	type = all
+
+
+	text = {
+		trigger = { story_owner = { age < 16 } }
+		localization_key = GR_STORY_AGE_PANEL
+	}
+
+	text = {
+		trigger = {
+			exists = var:gr_story_has_war
+			exists = var:gr_story_has_title
+			exists = var:gr_story_has_marriage
+			exists = var:gr_story_has_child
+			exists = var:gr_story_has_faith_change
+			exists = var:gr_story_has_culture_change
+			exists = var:gr_story_has_govt_change
+			exists = var:gr_story_has_adventure
+			OR = {
+				var:gr_story_has_war >= 1
+				var:gr_story_has_title >= 1
+				var:gr_story_has_marriage >= 1
+				var:gr_story_has_child >= 1
+				var:gr_story_has_faith_change >= 1
+				var:gr_story_has_culture_change >= 1
+				var:gr_story_has_govt_change >= 1
+				var:gr_story_has_adventure >= 1
+			}
+		}
+		localization_key = GR_STORY_PANEL_WITH_NOTABLES
+	}
+
+	text = {
+		localization_key = GR_STORY_PANEL_NO_NOTABLES
+	}
+}
+
+GrStoryNotables = {
+	type = all
+
+
+	text = {
+		trigger = { var:gr_story_has_war >= 1 var:gr_story_variant <= 2 }
+		localization_key = GR_STORY_NOTABLE_WAR_V1
+	}
+	text = {
+		trigger = { var:gr_story_has_war >= 1 var:gr_story_variant >= 3 var:gr_story_variant <= 4 }
+		localization_key = GR_STORY_NOTABLE_WAR_V2
+	}
+	text = {
+		trigger = { var:gr_story_has_war >= 1 var:gr_story_variant >= 5 }
+		localization_key = GR_STORY_NOTABLE_WAR_V3
+	}
+
+	text = {
+		trigger = { var:gr_story_has_title >= 1 var:gr_story_variant <= 2 }
+		localization_key = GR_STORY_NOTABLE_TITLE_V1
+	}
+	text = {
+		trigger = { var:gr_story_has_title >= 1 var:gr_story_variant >= 3 var:gr_story_variant <= 4 }
+		localization_key = GR_STORY_NOTABLE_TITLE_V2
+	}
+	text = {
+		trigger = { var:gr_story_has_title >= 1 var:gr_story_variant >= 5 }
+		localization_key = GR_STORY_NOTABLE_TITLE_V3
+	}
+
+	text = {
+		trigger = { var:gr_story_has_marriage >= 1 var:gr_story_variant <= 2 }
+		localization_key = GR_STORY_NOTABLE_MARRIAGE_V1
+	}
+	text = {
+		trigger = { var:gr_story_has_marriage >= 1 var:gr_story_variant >= 3 var:gr_story_variant <= 4 }
+		localization_key = GR_STORY_NOTABLE_MARRIAGE_V2
+	}
+	text = {
+		trigger = { var:gr_story_has_marriage >= 1 var:gr_story_variant >= 5 }
+		localization_key = GR_STORY_NOTABLE_MARRIAGE_V3
+	}
+
+	text = {
+		trigger = { var:gr_story_has_child >= 1 var:gr_story_variant <= 2 }
+		localization_key = GR_STORY_NOTABLE_CHILD_V1
+	}
+	text = {
+		trigger = { var:gr_story_has_child >= 1 var:gr_story_variant >= 3 var:gr_story_variant <= 4 }
+		localization_key = GR_STORY_NOTABLE_CHILD_V2
+	}
+	text = {
+		trigger = { var:gr_story_has_child >= 1 var:gr_story_variant >= 5 }
+		localization_key = GR_STORY_NOTABLE_CHILD_V3
+	}
+
+	text = {
+		trigger = { var:gr_story_has_faith_change >= 1 var:gr_story_variant <= 2 }
+		localization_key = GR_STORY_NOTABLE_FAITH_V1
+	}
+	text = {
+		trigger = { var:gr_story_has_faith_change >= 1 var:gr_story_variant >= 3 var:gr_story_variant <= 4 }
+		localization_key = GR_STORY_NOTABLE_FAITH_V2
+	}
+	text = {
+		trigger = { var:gr_story_has_faith_change >= 1 var:gr_story_variant >= 5 }
+		localization_key = GR_STORY_NOTABLE_FAITH_V3
+	}
+
+	text = {
+		trigger = { var:gr_story_has_culture_change >= 1 var:gr_story_variant <= 2 }
+		localization_key = GR_STORY_NOTABLE_CULTURE_V1
+	}
+	text = {
+		trigger = { var:gr_story_has_culture_change >= 1 var:gr_story_variant >= 3 var:gr_story_variant <= 4 }
+		localization_key = GR_STORY_NOTABLE_CULTURE_V2
+	}
+	text = {
+		trigger = { var:gr_story_has_culture_change >= 1 var:gr_story_variant >= 5 }
+		localization_key = GR_STORY_NOTABLE_CULTURE_V3
+	}
+
+	text = {
+		trigger = { var:gr_story_has_govt_change >= 1 var:gr_story_variant <= 2 }
+		localization_key = GR_STORY_NOTABLE_GOVT_V1
+	}
+	text = {
+		trigger = { var:gr_story_has_govt_change >= 1 var:gr_story_variant >= 3 var:gr_story_variant <= 4 }
+		localization_key = GR_STORY_NOTABLE_GOVT_V2
+	}
+	text = {
+		trigger = { var:gr_story_has_govt_change >= 1 var:gr_story_variant >= 5 }
+		localization_key = GR_STORY_NOTABLE_GOVT_V3
+	}
+
+	text = {
+		trigger = { var:gr_story_has_adventure >= 1 var:gr_story_variant <= 2 }
+		localization_key = GR_STORY_NOTABLE_ADVENTURE_V1
+	}
+	text = {
+		trigger = { var:gr_story_has_adventure >= 1 var:gr_story_variant >= 3 var:gr_story_variant <= 4 }
+		localization_key = GR_STORY_NOTABLE_ADVENTURE_V2
+	}
+	text = {
+		trigger = { var:gr_story_has_adventure >= 1 var:gr_story_variant >= 5 }
+		localization_key = GR_STORY_NOTABLE_ADVENTURE_V3
+	}
+
+
+	text = {
+		trigger = {
+			exists = var:gr_story_has_war
+			exists = var:gr_story_has_title
+			exists = var:gr_story_has_marriage
+			exists = var:gr_story_has_child
+			exists = var:gr_story_has_faith_change
+			exists = var:gr_story_has_culture_change
+			exists = var:gr_story_has_govt_change
+			exists = var:gr_story_has_adventure
+			NOR = {
+				var:gr_story_has_war >= 1
+				var:gr_story_has_title >= 1
+				var:gr_story_has_marriage >= 1
+				var:gr_story_has_child >= 1
+				var:gr_story_has_faith_change >= 1
+				var:gr_story_has_culture_change >= 1
+				var:gr_story_has_govt_change >= 1
+				var:gr_story_has_adventure >= 1
+			}
+		}
+		localization_key = GR_STORY_NOTABLE_NONE
+	}
+}
+
+
+GrStoryAgePanel = {
+	type = all
+
+
+	text = {
+		trigger = { story_owner = { age < 3 } var:gr_story_variant = 1 }
+		localization_key = GR_STORY_AGE_BABY_V1
+	}
+	text = {
+		trigger = { story_owner = { age < 3 } var:gr_story_variant = 2 }
+		localization_key = GR_STORY_AGE_BABY_V2
+	}
+	text = {
+		trigger = { story_owner = { age < 3 } var:gr_story_variant = 3 }
+		localization_key = GR_STORY_AGE_BABY_V3
+	}
+	text = {
+		trigger = { story_owner = { age < 3 } var:gr_story_variant = 4 }
+		localization_key = GR_STORY_AGE_BABY_V4
+	}
+	text = {
+		trigger = { story_owner = { age < 3 } var:gr_story_variant = 5 }
+		localization_key = GR_STORY_AGE_BABY_V5
+	}
+	text = {
+		trigger = { story_owner = { age < 3 } var:gr_story_variant = 6 }
+		localization_key = GR_STORY_AGE_BABY_V6
+	}
+	text = {
+		trigger = { story_owner = { age < 3 } var:gr_story_variant = 7 }
+		localization_key = GR_STORY_AGE_BABY_V7
+	}
+
+
+	text = {
+		trigger = { story_owner = { age < 6 } var:gr_story_variant = 1 }
+		localization_key = GR_STORY_AGE_TODDLER_V1
+	}
+	text = {
+		trigger = { story_owner = { age < 6 } var:gr_story_variant = 2 }
+		localization_key = GR_STORY_AGE_TODDLER_V2
+	}
+	text = {
+		trigger = { story_owner = { age < 6 } var:gr_story_variant = 3 }
+		localization_key = GR_STORY_AGE_TODDLER_V3
+	}
+	text = {
+		trigger = { story_owner = { age < 6 } var:gr_story_variant = 4 }
+		localization_key = GR_STORY_AGE_TODDLER_V4
+	}
+	text = {
+		trigger = { story_owner = { age < 6 } var:gr_story_variant = 5 }
+		localization_key = GR_STORY_AGE_TODDLER_V5
+	}
+	text = {
+		trigger = { story_owner = { age < 6 } var:gr_story_variant = 6 }
+		localization_key = GR_STORY_AGE_TODDLER_V6
+	}
+	text = {
+		trigger = { story_owner = { age < 6 } var:gr_story_variant = 7 }
+		localization_key = GR_STORY_AGE_TODDLER_V7
+	}
+
+
+	text = {
+		trigger = { story_owner = { age < 9 } var:gr_story_variant = 1 }
+		localization_key = GR_STORY_AGE_CHILD_V1
+	}
+	text = {
+		trigger = { story_owner = { age < 9 } var:gr_story_variant = 2 }
+		localization_key = GR_STORY_AGE_CHILD_V2
+	}
+	text = {
+		trigger = { story_owner = { age < 9 } var:gr_story_variant = 3 }
+		localization_key = GR_STORY_AGE_CHILD_V3
+	}
+	text = {
+		trigger = { story_owner = { age < 9 } var:gr_story_variant = 4 }
+		localization_key = GR_STORY_AGE_CHILD_V4
+	}
+	text = {
+		trigger = { story_owner = { age < 9 } var:gr_story_variant = 5 }
+		localization_key = GR_STORY_AGE_CHILD_V5
+	}
+	text = {
+		trigger = { story_owner = { age < 9 } var:gr_story_variant = 6 }
+		localization_key = GR_STORY_AGE_CHILD_V6
+	}
+	text = {
+		trigger = { story_owner = { age < 9 } var:gr_story_variant = 7 }
+		localization_key = GR_STORY_AGE_CHILD_V7
+	}
+
+
+	text = {
+		trigger = { story_owner = { age < 13 } var:gr_story_variant = 1 }
+		localization_key = GR_STORY_AGE_PRETEEN_V1
+	}
+	text = {
+		trigger = { story_owner = { age < 13 } var:gr_story_variant = 2 }
+		localization_key = GR_STORY_AGE_PRETEEN_V2
+	}
+	text = {
+		trigger = { story_owner = { age < 13 } var:gr_story_variant = 3 }
+		localization_key = GR_STORY_AGE_PRETEEN_V3
+	}
+	text = {
+		trigger = { story_owner = { age < 13 } var:gr_story_variant = 4 }
+		localization_key = GR_STORY_AGE_PRETEEN_V4
+	}
+	text = {
+		trigger = { story_owner = { age < 13 } var:gr_story_variant = 5 }
+		localization_key = GR_STORY_AGE_PRETEEN_V5
+	}
+	text = {
+		trigger = { story_owner = { age < 13 } var:gr_story_variant = 6 }
+		localization_key = GR_STORY_AGE_PRETEEN_V6
+	}
+	text = {
+		trigger = { story_owner = { age < 13 } var:gr_story_variant = 7 }
+		localization_key = GR_STORY_AGE_PRETEEN_V7
+	}
+
+
+	text = {
+		trigger = { story_owner = { age < 16 } var:gr_story_variant = 1 }
+		localization_key = GR_STORY_AGE_TEEN_V1
+	}
+	text = {
+		trigger = { story_owner = { age < 16 } var:gr_story_variant = 2 }
+		localization_key = GR_STORY_AGE_TEEN_V2
+	}
+	text = {
+		trigger = { story_owner = { age < 16 } var:gr_story_variant = 3 }
+		localization_key = GR_STORY_AGE_TEEN_V3
+	}
+	text = {
+		trigger = { story_owner = { age < 16 } var:gr_story_variant = 4 }
+		localization_key = GR_STORY_AGE_TEEN_V4
+	}
+	text = {
+		trigger = { story_owner = { age < 16 } var:gr_story_variant = 5 }
+		localization_key = GR_STORY_AGE_TEEN_V5
+	}
+	text = {
+		trigger = { story_owner = { age < 16 } var:gr_story_variant = 6 }
+		localization_key = GR_STORY_AGE_TEEN_V6
+	}
+	text = {
+		trigger = { story_owner = { age < 16 } var:gr_story_variant = 7 }
+		localization_key = GR_STORY_AGE_TEEN_V7
+	}
+
+
+	text = {
+		localization_key = GR_STORY_AGE_BABY_V1
+	}
+}

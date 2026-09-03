@@ -1,0 +1,22 @@
+﻿is_human = {
+	NOT = { has_trait = dragon }
+	NOT = { has_trait = direwolf }
+	NOT = { agot_is_dummy_character = yes }
+	trigger_if = {
+		limit = { exists = top_liege }
+		NOT = { agot_is_dummy_character = yes }
+	}
+	trigger_if = {
+		limit = { exists = employer }
+		NOT = {
+			employer = { agot_is_dummy_character = yes }
+		}
+		trigger_if = {
+			limit = { exists = employer.top_liege }
+			NOT = {
+				employer.top_liege = { agot_is_dummy_character = yes }
+			}
+		}
+	}
+	NOT = { has_character_flag = zzz_great_councils_disable }
+}
