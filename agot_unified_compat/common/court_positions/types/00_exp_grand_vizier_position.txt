@@ -1,4 +1,4 @@
-# AGOT Unified Compatibility Patch  P66 - Court Positions Expanded: dead religion gate.
+﻿# AGOT Unified Compatibility Patch  P66 - Court Positions Expanded: dead religion gate.
 #
 # Court Positions Expanded 1.19 (2754449789) gates its Grand Vizier court position on
 #     has_religion = religion:islam_religion

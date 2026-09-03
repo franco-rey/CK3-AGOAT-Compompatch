@@ -2118,211 +2118,6 @@ miv_vassal_effect = {
 	}
 }
 
-war_for_imprison_effect = {
-	if = {
-		limit = {
-			OR = {
-				scope:actor = {
-					is_ai = no
-				}
-				scope:recipient = {
-					is_ai = no
-				}
-			}
-		}
-		scope:recipient = {
-			save_scope_value_as = {
-				name = war_for_imprisonment_flavour
-				value = yes
-			}
-			start_war = {
-				casus_belli = refused_liege_demand_war
-				target = scope:actor
-			}
-		}
-		scope:recipient = {
-			add_opinion = {
-				target = scope:actor
-				modifier = attempted_arrest_opinion
-			}
-		}
-	}
-}
-
-war_for_revoke_effect = {
-	if = {
-		limit = {
-			OR = {
-				$REBEL$ = {
-					is_ai = no
-				}
-				$LIEGE$ = {
-					is_ai = no
-				}
-			}
-		}
-		$REBEL$ = {
-			save_scope_value_as = {
-				name = war_for_revocation_flavour
-				value = yes
-			}
-			start_war = {
-				casus_belli = refused_liege_demand_war
-				target = $LIEGE$
-			}
-		}
-		$REBEL$ = {
-			add_opinion = {
-				target = $LIEGE$
-				modifier = attempted_arrest_opinion
-			}
-		}
-	}
-}
-
-war_for_retraction_effect = {
-	if = {
-		limit = {
-			OR = {
-				scope:actor = {
-					is_ai = no
-				}
-				scope:recipient = {
-					is_ai = no
-				}
-			}
-		}
-		scope:recipient = {
-			save_scope_value_as = {
-				name = war_for_retraction_flavour
-				value = yes
-			}
-			start_war = {
-				casus_belli = refused_liege_demand_war
-				target = scope:actor
-			}
-		}
-		scope:recipient = {
-			add_opinion = {
-				target = scope:actor
-				modifier = attempted_arrest_opinion
-			}
-		}
-	}
-}
-
-# miv: vanilla bugfix for this firing incorrectly
-laamp_as_mercenary_payout_effect = {
-	scope:war = {
-		if = {
-			limit = {
-				any_war_participant = {
-					# added is_landed = no
-					is_landed = no
-					has_character_flag = joined_as_mercenary
-					is_attacker_in_war = scope:war
-					NOT = {
-						is_leader_in_war = scope:war
-					}
-					OR = {
-						has_raised_armies = yes
-						scope:war = {
-							war_contribution = {
-								target = prev
-								value > 0
-							}
-						}
-					}
-				}
-			}
-			every_war_participant = {
-				limit = {
-					# added is_landed = no
-					is_landed = no
-					has_character_flag = joined_as_mercenary
-					is_attacker_in_war = scope:war
-					NOT = {
-						is_leader_in_war = scope:war
-					}
-					OR = {
-						has_raised_armies = yes
-						scope:war = {
-							war_contribution = {
-								target = prev
-								value > 0
-							}
-						}
-					}
-				}
-				add_to_list = laamp_mercenaries
-			}
-			primary_attacker = {
-				save_scope_as = employer
-				trigger_event = {
-					id = ep3_interactions_events.0121
-					days = {
-						3
-						7
-					}
-				}
-			}
-		}
-		if = {
-			limit = {
-				any_war_participant = {
-					# added is_landed = no
-					is_landed = no
-					has_character_flag = joined_as_mercenary
-					is_defender_in_war = scope:war
-					NOT = {
-						is_leader_in_war = scope:war
-					}
-					OR = {
-						has_raised_armies = yes
-						scope:war = {
-							war_contribution = {
-								target = prev
-								value > 0
-							}
-						}
-					}
-				}
-			}
-			every_war_participant = {
-				limit = {
-					# added is_landed = no
-					is_landed = no
-					has_character_flag = joined_as_mercenary
-					is_defender_in_war = scope:war
-					NOT = {
-						is_leader_in_war = scope:war
-					}
-					OR = {
-						has_raised_armies = yes
-						scope:war = {
-							war_contribution = {
-								target = prev
-								value > 0
-							}
-						}
-					}
-				}
-				add_to_list = laamp_mercenaries
-			}
-			primary_defender = {
-				save_scope_as = employer
-				trigger_event = {
-					id = ep3_interactions_events.0121
-					days = {
-						3
-						7
-					}
-				}
-			}
-		}
-	}
-}
-
 # miv removed white peace and 50 year truce since it conflicts with shattered world
 fp3_struggle_ending_concession_effects = {
 	# Intentionally empty.
@@ -2688,3 +2483,34 @@ ai_chance_to_become_conqueror_effect = {
 		}
 	}
 }
+
+# ---------------------------------------------------------------------------
+# AGOT Unified Compatibility Patch  P65 - duplicate-key removal (2026-09-02)
+#
+# More Interactive Vassals redefines four scripted effects that AGOT (and, for
+# laamp_as_mercenary_payout_effect, AGOT: House Founders) also define, and that
+# this layer already ships patched copies of in other files:
+#
+#     war_for_imprison_effect            00_interaction_effects.txt      (199 lines)
+#     war_for_revoke_effect              00_interaction_effects.txt      (263 lines)
+#     war_for_retraction_effect          00_interaction_effects.txt      (170 lines)
+#     laamp_as_mercenary_payout_effect   07_dlc_ep3_scripted_effects.txt  (55 lines)
+#
+# Before consolidation these lived in separate mods: miv_agot_cb_patch loaded at
+# 45, agot_observer_stack_compat at 48 and agot_seasons_personality_compat later
+# still, so the fuller AGOT-side definitions won by mod order. Consolidating all
+# six patches into one mod moved the contest inside a single directory, where
+# CK3 resolves duplicate keys by FILENAME order - and "interactive_scripted_
+# effects.txt" sorts after both "00_interaction_effects.txt" and
+# "07_dlc_ep3_scripted_effects.txt". MIV's 30-line versions silently began
+# winning instead, replacing AGOT's full imprison/revoke/retraction war effects.
+#
+# The consolidation check verified that no mod loading later claimed a shared
+# virtual PATH. It did not check for duplicate KEYS inside the merged mod, which
+# is how this slipped through. tools/check_duplicate_keys.py now covers it.
+#
+# MIV's four definitions are removed here so the pre-consolidation winners are
+# restored deterministically rather than by filename accident. To reverse this
+# decision, restore them from the Workshop source gated in
+# manifest/source_hashes.sha256 (2712590542) - do not rely on file ordering.
+# ---------------------------------------------------------------------------

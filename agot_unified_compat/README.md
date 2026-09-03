@@ -13,6 +13,24 @@ changed: one folder, one `descriptor.mod`, one launcher pointer, one manifest.
 > Earlier dragon sections below are retained as chronological evidence and may contain conclusions
 > that were explicitly superseded by later controlled runs.
 
+## Where to look
+
+| I want to… | Read |
+|---|---|
+| see every module, by upstream mod, in playset order | [`MODULES.md`](MODULES.md) — generated, do not hand-edit |
+| check a module's source gate or built hash | `manifest/source_hashes.sha256` |
+| see per-file provenance, transformation ids and rationale | `manifest/build_manifest.json` (schema v2) |
+| know why a fix was *not* attempted | the `rationale` field of that file's manifest entry |
+| add a mod without breaking key resolution | run `tools/check_duplicate_keys.py` before committing |
+| regenerate the module index after a change | `python3 tools/gen_module_index.py` |
+| read the dragon investigation record | [`DRAGON_INVESTIGATION.md`](DRAGON_INVESTIGATION.md) |
+| read the six pre-consolidation patch docs | `manifest/legacy/` |
+
+Everything below this table is the working history: chronological, including superseded
+conclusions and approaches that were tried and failed. It is kept deliberately — several
+sections record things that must **never** be retried. Current state lives in `MODULES.md`
+and the manifest; narrative lives here.
+
 ## Load position — read this first
 
 **This mod must be the last entry in the playset, after every Workshop mod.**

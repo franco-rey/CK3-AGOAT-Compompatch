@@ -57,7 +57,7 @@ e37fafb0400ec38c60290c671584add546b0e4eb5b7362164dd5a706abf817db  3457401824/com
 0bab67aea001e8ae22ad34108f0442241e39d73acb5b04e1c624bd6d84b7af58  BUILT/common/decisions/interactive_decisions.txt
 
 # common/decisions/zz_observer_stack_direwolf_hunt_fix.txt  [P45_DIREWOLF_PACK_SIZE_GUARD]  (from agot_observer_stack_compat)
-02b3481a5f7abe10cacb2f143001f6087119c3cc62f581efacc58ec457553c59  3766320609/common/decisions/zz_observer_stack_direwolf_hunt_fix.txt  # SOURCE
+02b3481a5f7abe10cacb2f143001f6087119c3cc62f581efacc58ec457553c59  3766320609/common/decisions/dw_direwolf_decisions.txt  # SOURCE
 61e4dee34be9cb42488ee70eef3c97324cd309c5791c7df3ef11aa09761f26a8  BUILT/common/decisions/zz_observer_stack_direwolf_hunt_fix.txt
 
 # common/domiciles/buildings/00_agot_pirate_ship_buildings_UE.txt  [P38_DOMICILE_FILE_SCOPED_CONSTANTS_RESTORED]  (from agot_observer_stack_compat)
@@ -210,7 +210,7 @@ aeaa707e4b3491dd427f157be7432c55616cc64156d66116bd316a6037e157e5  3678529052/com
 
 # common/scripted_effects/interactive_scripted_effects.txt  [P34_FP3_STRUGGLE_CONCESSION_EMPTIED]  (from miv_agot_cb_patch)
 4fc85c67fd7a07a8f96c3de66289c3aa9724b5b5a1468f9e3ec55e163f4323b0  2712590542/common/scripted_effects/interactive_scripted_effects.txt  # SOURCE
-e71276b0de9219ef4cee0ff0e3bfaf89005df5a6f0e316a93e1bf6e4288ca139  BUILT/common/scripted_effects/interactive_scripted_effects.txt
+d9f29c72126bb2a296fe3ea2b30373599884ef90a89de2ec6f2076bdd15efeff  BUILT/common/scripted_effects/interactive_scripted_effects.txt
 
 # common/scripted_effects/mpd_scripted_effects.txt  [P07_PARANOID_UNSATISFIABLE_XP_CALLS_REMOVED]  (from agot_seasons_personality_compat)
 88ecb64b1283086e6f77c37017a0c7587080706f3ec4477bfefd58442e872d8d  3717990443/common/scripted_effects/mpd_scripted_effects.txt  # SOURCE
@@ -325,7 +325,7 @@ d0780252942485561e048786a49552c16036b8cab113a305736527c26afd75f3  BUILT/gui/even
 
 # gui/gr_chronicle_window.gui  [P24_GUI_GETPLAYER_ISVALID_GUARD]  (from agot_observer_stack_compat)
 6d6a69c4eda29ab0d1d6cfde452bf4d3db173dfc0f068859ea70ba9d1209fa4a  3678529052/gui/gr_chronicle_window.gui  # SOURCE
-5b1f547ef6155d027955f1da24653487985288278c813c4767ddcb90ed5a5f10  BUILT/gui/gr_chronicle_window.gui  [P50]
+29b6245053cd5b654fa452ced3dc6e14b55fc344e224d6f2ce0e1460a7e52b55  BUILT/gui/gr_chronicle_window.gui  [P50]
 
 
 # gui/window_character.gui  [P03_MPD_X_DIREWOLVES_X_AGOT_CHARACTER_WINDOW]  (from agot_seasons_personality_compat)
@@ -363,7 +363,7 @@ ae336d8b162f332d4cc5281bf67b1b6f9bc186d07d858e418f67a8ce5cad9a3a  BUILT/events/a
 # gfx/FX/court_scene.shader  [P54_SHADER_APPLYVARIATIONPATTERNS_ARITY]  (new in unified patch)
 46d1db35c8f5245efc36dec2401a717a045277969505c01afdff857739b83c72  3381385128/gfx/FX/court_scene.shader  # SOURCE (AGOT Color Picker for Clothes - base)
 158eb11f7ba197dd4e706afe414780cbedebb4810c016965982bdeabc10b0a3f  3235061780/gfx/FX/court_scene.shader  # DONOR (Battle Graphics AGOT Patch - ACG block only)
-5a2ab027d2b7f85078e5164be021d0495ba076b7afd64a8901d8b06761c9ad9e  BUILT/gfx/FX/court_scene.shader  [P54]
+24a6bae25fb058154bad05bcc0af645cac6c0d838b4d8678b0df6795bfc47585  BUILT/gfx/FX/court_scene.shader  [P54]
 
 # common/scripted_effects/zzz_agot_dragon_transfer_vars_fix.txt  [P59_DRAGON_TRANSFER_VARS]
 0b4303a246f46c8a970b0118ca2d63d2f63e59d61683dfc3dc80da63e0b021f0  2962333032/common/scripted_effects/00_agot_dragon_effects.txt  # SOURCE (A Game of Thrones) - lines 2302-2675 verbatim
@@ -391,4 +391,14 @@ d03dd07ba67b7993f5d4bce68af5cabf80c1c0ed5538aa750602143a154da285  BUILT/common/s
 
 # common/court_positions/types/00_exp_grand_vizier_position.txt  [P66_GRAND_VIZIER_DEAD_RELIGION]
 d9504bb512ab6c11f4b5ee54c22134202f8dc6de062e5150f13a7091e067a027  2754449789/common/court_positions/types/00_exp_grand_vizier_position.txt  # SOURCE
-8f02b98124706e31a94bf4f88423e37f2da2c7fd9b18b0c4f9e9461cd7f51976  BUILT/common/court_positions/types/00_exp_grand_vizier_position.txt  [P66]
+cbdf9bbb56253e79e9ee5d9e351128b6cc2c3113ea7ca6396ffc0e2e4e9f0dfb  BUILT/common/court_positions/types/00_exp_grand_vizier_position.txt  [P66]
+
+# Added 2026-09-02: merge inputs that were relied on but never gated.
+# A change to any of these silently invalidates the merged trigger built from them.
+f0a4c843068fd3061037d48114d65ee696b5e0d4490106258da05419eea481b2  3616413111/common/scripted_triggers/zzzzzz_00_councillor_triggers.txt  # SOURCE  (P63 councillor merge input - Female Knight and Councillor)
+14305ee8aaf634b09b5c67ee3e277f1e30130b2007b7e63c243020afc19ab777  2968715458/common/scripted_triggers/MTXXX_councillor_triggers.txt  # SOURCE  (P63 councillor merge input - More Traditions v2 + AGoT)
+3185e724433ad75141ea4f04d475192ba85eadbb1feba7a308e4dbe0aed3ba72  3766320609/common/scripted_triggers/00_agot_character_triggers.txt  # SOURCE  (P64 is_human merge input - DireWolves)
+
+# P65 (2026-09-02): removed four MIV duplicate scripted-effect definitions from
+# interactive_scripted_effects.txt; see the header note in that file. BOM added to
+# 00_exp_grand_vizier_position.txt (ck3-tiger warning(encoding)).
