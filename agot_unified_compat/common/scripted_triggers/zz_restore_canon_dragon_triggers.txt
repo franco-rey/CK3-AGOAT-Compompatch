@@ -1,0 +1,15 @@
+agot_is_valid_maegor_12_birth = {
+	$EGG$ = { save_temporary_scope_as = temp_egg }
+	NOT = { exists = scope:maegor_12_birth_reserved }
+	current_date >= 8025.1.1
+	scope:temp_egg = {
+		var:dragon_parent ?= { is_character_dragon_serporoth = yes }
+	}
+	NOT = { exists = character:dragon_maegor_12 }
+	NOT = {
+		any_in_global_list = {
+			variable = gl_dragon_variable_storage
+			var:dragon_id ?= { has_inactive_trait = is_dragon_maegor_12 }
+		}
+	}
+}

@@ -1,0 +1,4653 @@
+window = {
+	name = "ruler_designer"
+	size = { 100% 100% }
+	movable = no
+	layer = windows_layer
+	filter_mouse = all
+	datacontext = "[GetVariableSystem]"
+	datacontext = "[RulerDesignerWindow.GetCharacterToOverwrite]"
+
+	using = Window_Background_No_Edge
+
+	background = {
+		texture = "gfx/interface/component_tiles/tile_window_background_no_edge.dds"
+		spriteType = Corneredtiled
+		spriteborder = { 18 0 }
+		margin = { 20 0 }
+		texture_density = 2
+
+		modify_texture = {
+			texture = "gfx/interface/component_overlay/overlay_effect.dds"
+			blend_mode = overlay
+		}
+	}
+	background = {
+		texture = "gfx/interface/illustrations/event_scenes_frontend/temple.dds"
+		alpha = 0.5
+		mirror = horizontal
+		fittype = centercrop
+
+		modify_texture = {
+			texture = "gfx/interface/window_ruler_designer/rd_bg_mask.dds"
+			blend_mode = alphamultiply
+			spritetype = corneredstretched
+			spriteborder = { 590 0 }
+		}
+	}
+
+	background = {
+		texture = "gfx/interface/component_masks/mask_fade_corner.dds"
+		color = { 0.12 0.12 0.12 1 }
+		mirror = horizontal
+		margin_right = -1200
+		alpha = 0.6
+	}
+
+	using = portrait_bgs_brd
+
+	widget = {
+		using = Window_Background_No_Edge
+		size = { 100% 100% }
+		visible = "[GetVariableSystem.Exists('brd_bg')]"
+		alpha = "[Select_float( GetVariableSystem.Exists('transparent_bg_brd'), '(float)0', '(float)0.75' )]"
+	}
+
+	icon = {
+		visible = "[GetVariableSystem.Exists('brd_bg')]"
+		size = { 100% 100% }
+		texture = "gfx/interface/component_tiles/tile_window_background_no_edge.dds"
+		spriteType = Corneredtiled
+		spriteborder = { 18 0 }
+		texture_density = 2
+		alpha = 0.7
+
+			modify_texture = {
+					name = "mask"
+					texture = "gfx/interface/component_masks/mask_fade_horizontal.dds"
+					spriteType = Corneredstretched
+					spriteborder = { 0 0 }
+					blend_mode = alphamultiply
+			}
+	}
+
+	widget = {
+		size = { 100% 100% }
+		visible = "[GetVariableSystem.HasValue('brd_bg', 'background_ruler_transition_bg')]"
+		background = {
+			texture = "gfx/interface/illustrations/background_ruler_transition.dds"
+		}
+	}
+
+	widget = {
+	    size = { 100% 100% }
+	    visible = "[GetVariableSystem.HasValue('brd_bg', 'green_bg')]"
+	    background = {
+	        texture = "gfx/barber/green.dds"
+	        fittype = centercrop
+	    }
+	}
+	widget = {
+	    size = { 100% 100% }
+	    visible = "[GetVariableSystem.HasValue('brd_bg', 'blue_bg')]"
+	    background = {
+	        texture = "gfx/barber/blue.dds"
+	        fittype = centercrop
+	    }
+	}
+	widget = {
+	    size = { 100% 100% }
+	    visible = "[GetVariableSystem.HasValue('brd_bg', 'white_bg')]"
+	    background = {
+	        texture = "gfx/interface/colors/white.dds"
+	        fittype = centercrop
+	    }
+	}
+	widget = {
+	    size = { 100% 100% }
+	    visible = "[GetVariableSystem.HasValue('brd_bg', 'black_bg')]"
+	    background = {
+	        texture = "gfx/interface/colors/black.dds"
+	        fittype = centercrop
+	    }
+	}
+
+	state = {
+		name = _show
+		using = Animation_FadeIn_Standard
+		on_start = "[GetVariableSystem.Clear( 'faith_select_window_open' )]"
+		on_start = "[GetVariableSystem.Clear( 'culture_select_window_open' )]"
+		on_start = "[GetVariableSystem.Clear( 'trait_select_window_open' )]"
+		on_start = "[GetVariableSystem.Clear( 'trait_select_window_replace' )]"
+		on_start = "[GetVariableSystem.Clear( 'appearance_customization_window_open' )]"
+		on_start = "[GetVariableSystem.Clear( 'appearance_customization_side_tab_open' )]"
+		on_start = "[GetVariableSystem.Clear( 'appearance_customization_portrait_view' )]"
+		on_start = "[GetVariableSystem.Clear( 'coat_of_arms_customization_open' )]"
+		using = CoatOfArmsDesignerAnimationResetState
+
+		on_finish = "[GetScriptedGui('initialize_cameras_brd').Execute( GuiScope.SetRoot( Character.MakeScope ).End )]"
+		on_finish = "[PdxGuiTriggerAllAnimations('reset_position_body_brd')]"
+
+	}
+
+	state = {
+		name = _hide
+		using = Animation_FadeOut_Standard
+	}
+
+	vbox = {
+		hbox = {
+			name = "main_designer"
+			visible = "[Not( Or( VariableSystem.Exists( 'appearance_customization_window_open' ), VariableSystem.Exists( 'coat_of_arms_customization_open' ) ) )]"
+			layoutpolicy_horizontal = expanding
+			layoutpolicy_vertical = expanding
+			# margin = { 20 20 }
+
+			using =  Animation_Tab_Switch
+
+			# left panel
+			vbox = {
+				layoutpolicy_vertical = expanding
+				max_width = 530
+				visible = "[Not( VariableSystem.Exists( 'trait_select_window_open' ) )]"
+
+				background = { using = Background_Area_Border }
+
+				scrollbox = {
+					layoutpolicy_vertical = expanding
+					layoutpolicy_horizontal = expanding
+					minimumsize = { 530 0 }
+
+					blockoverride "scrollbox_background" { }
+
+					blockoverride "scrollbox_content"
+					{
+						vbox = {
+
+							hbox = {
+								layoutpolicy_horizontal = expanding
+
+								vbox = {
+									name = "left_panel"
+
+									vbox = {
+										layoutpolicy_horizontal = expanding
+										spacing = 10
+
+										hbox = {
+											name = "sex_customization"
+											layoutpolicy_horizontal = expanding
+											spacing = 40
+
+											vbox = {
+												name = "sex"
+												layoutpolicy_vertical = expanding
+
+												vbox = {
+													layoutpolicy_horizontal = expanding
+
+													hbox = {
+														layoutpolicy_horizontal = expanding
+
+														text_label_left = {
+															text = "RULER_DESIGNER_SEX"
+															max_width = 120
+															autoresize = yes
+															using = Font_Size_Medium
+														}
+													}
+												}
+
+												hbox = {
+													layoutpolicy_horizontal = expanding
+													margin_top = 3
+													spacing = 5
+
+													button_male = {
+														name = "male"
+														alwaystransparent = "[Not( RulerDesignerWindow.IsFemale )]"
+														onclick = "[RulerDesignerWindow.SetIsFemale( '(bool)no' )]"
+														down = "[Not( RulerDesignerWindow.IsFemale )]"
+														tooltip = RULER_DESIGNER_SET_IS_MALE
+														using = tooltip_se
+
+														onclick = "[PdxGuiTriggerAllAnimations('ruler_designer_portrait_refresh')]"
+													}
+
+													button_female = {
+														name = "female"
+														alwaystransparent = "[RulerDesignerWindow.IsFemale]"
+														onclick = "[RulerDesignerWindow.SetIsFemale( '(bool)yes' )]"
+														down = "[RulerDesignerWindow.IsFemale]"
+														tooltip = RULER_DESIGNER_SET_IS_FEMALE
+														using = tooltip_se
+
+														onclick = "[PdxGuiTriggerAllAnimations('ruler_designer_portrait_refresh')]"
+													}
+
+													expand = { }
+												}
+
+												expand = { }
+											}
+
+
+											vbox = {
+												name = "sexuality"
+												layoutpolicy_vertical = expanding
+
+
+												vbox = {
+													layoutpolicy_horizontal = expanding
+
+													hbox = {
+														layoutpolicy_horizontal = expanding
+
+														text_label_left = {
+															text = "RULER_DESIGNER_SEXUALITY"
+															max_width = 250
+															autoresize = yes
+															using = Font_Size_Medium
+														}
+													}
+												}
+
+
+												text_multi = {
+													max_width = 300
+													autoresize = yes
+													margin_top = 3
+													text = "RULER_DESIGNER_SEXUALITY_NOT_AVAILABLE_INFO"
+													visible = "[Not(RulerDesignerWindow.CanChangeSexuality)]"
+												}
+
+
+
+												hbox = {
+													visible = "[RulerDesignerWindow.CanChangeSexuality]"
+													layoutpolicy_horizontal = expanding
+
+													margin_top = 3
+													spacing = 5
+
+													button_randomize = {
+														name = "random"
+														alwaystransparent = "[RulerDesignerWindow.HasSexuality( 'none' )]"
+														onclick = "[RulerDesignerWindow.SetSexuality( 'none' )]"
+														down = "[RulerDesignerWindow.HasSexuality( 'none' )]"
+														tooltip = RULER_DESIGNER_SET_SEXUALITY_RANDOM
+														using = tooltip_se
+													}
+
+													button_heterosexual = {
+														name = "heterosexual"
+														alwaystransparent = "[RulerDesignerWindow.HasSexuality( 'heterosexual' )]"
+														onclick = "[RulerDesignerWindow.SetSexuality( 'heterosexual' )]"
+														down = "[RulerDesignerWindow.HasSexuality( 'heterosexual' )]"
+														tooltip = RULER_DESIGNER_SET_SEXUALITY_HETEROSEXUAL
+														using = tooltip_se
+													}
+
+													button_homosexual_female = {
+														name = "homosexual_female"
+														visible = "[RulerDesignerWindow.IsFemale]"
+														alwaystransparent = "[RulerDesignerWindow.HasSexuality( 'homosexual' )]"
+														onclick = "[RulerDesignerWindow.SetSexuality( 'homosexual' )]"
+														down = "[RulerDesignerWindow.HasSexuality( 'homosexual' )]"
+														tooltip = RULER_DESIGNER_SET_SEXUALITY_HOMOSEXUAL
+														using = tooltip_se
+													}
+
+													button_homosexual_male = {
+														name = "homosexual_male"
+														visible = "[Not( RulerDesignerWindow.IsFemale )]"
+														alwaystransparent = "[RulerDesignerWindow.HasSexuality( 'homosexual' )]"
+														onclick = "[RulerDesignerWindow.SetSexuality( 'homosexual' )]"
+														down = "[RulerDesignerWindow.HasSexuality( 'homosexual' )]"
+														tooltip = RULER_DESIGNER_SET_SEXUALITY_HOMOSEXUAL
+														using = tooltip_se
+													}
+
+													button_bisexual_female = {
+														name = "bisexual_female"
+														visible = "[RulerDesignerWindow.IsFemale]"
+														alwaystransparent = "[RulerDesignerWindow.HasSexuality( 'bisexual' )]"
+														onclick = "[RulerDesignerWindow.SetSexuality( 'bisexual' )]"
+														down = "[RulerDesignerWindow.HasSexuality( 'bisexual' )]"
+														tooltip = RULER_DESIGNER_SET_SEXUALITY_BISEXUAL
+														using = tooltip_se
+													}
+
+													button_bisexual_male = {
+														name = "bisexual_male"
+														visible = "[Not( RulerDesignerWindow.IsFemale )]"
+														alwaystransparent = "[RulerDesignerWindow.HasSexuality( 'bisexual' )]"
+														onclick = "[RulerDesignerWindow.SetSexuality( 'bisexual' )]"
+														down = "[RulerDesignerWindow.HasSexuality( 'bisexual' )]"
+														tooltip = RULER_DESIGNER_SET_SEXUALITY_BISEXUAL
+														using = tooltip_se
+													}
+
+													button_asexual = {
+														name = "asexual"
+														alwaystransparent = "[RulerDesignerWindow.HasSexuality( 'asexual' )]"
+														onclick = "[RulerDesignerWindow.SetSexuality( 'asexual' )]"
+														down = "[RulerDesignerWindow.HasSexuality( 'asexual' )]"
+														tooltip = RULER_DESIGNER_SET_SEXUALITY_ASEXUAL
+														using = tooltip_se
+													}
+
+													expand = { }
+												}
+
+												expand = { }
+											}
+
+											expand = { }
+										}
+
+										vbox = {
+											name = "culture_and_faith"
+											layoutpolicy_horizontal = expanding
+											spacing = 10
+
+											vbox = {
+												layoutpolicy_horizontal = expanding
+												datacontext = "[RulerDesignerWindow.GetFaith]"
+
+												hbox = {
+													layoutpolicy_horizontal = expanding
+
+													text_label_left = {
+														layoutpolicy_horizontal = expanding
+														text = "RULER_DESIGNER_FAITH_LABEL"
+														using = Font_Size_Medium
+													}
+												}
+
+												hbox = {
+													layoutpolicy_horizontal = expanding
+
+													icon = {
+														name = "item_icon"
+														size = { 60 60 }
+														texture = "[Faith.GetIcon]"
+														using = tooltip_se
+													}
+
+													vbox = {
+														margin_left = 5
+
+														tooltipwidget = {
+															faith_tooltip_core_tenents = { }
+														}
+
+														hbox = {
+															layoutpolicy_horizontal = expanding
+
+															text_single = {
+																layoutpolicy_horizontal = expanding
+																text = "[Faith.GetReligion.GetNameNoTooltip]"
+																default_format = "#bold"
+																margin_right = 5
+																margin_bottom = 5
+															}
+
+															button_replace = {
+																name = "reset"
+																onclick = "[VariableSystem.Toggle( 'faith_select_window_open' )]"
+																onclick = "[VariableSystem.Clear( 'culture_select_window_open' )]"
+																tooltip = RULER_DESIGNER_CHOOSE_FAITH
+																using = tooltip_se
+															}
+														}
+
+														hbox = {
+															layoutpolicy_horizontal = expanding
+
+															text_single = {
+																layoutpolicy_horizontal = expanding
+																text = "[Faith.GetNameNoTooltip]"
+
+																margin_bottom = 5
+															}
+														}
+													}
+
+													expand = { }
+												}
+											}
+
+											vbox = {
+												layoutpolicy_horizontal = expanding
+												datacontext = "[RulerDesignerWindow.GetCulture]"
+
+												hbox = {
+													layoutpolicy_horizontal = expanding
+
+													text_label_left = {
+														layoutpolicy_horizontal = expanding
+														text = "RULER_DESIGNER_CULTURE_LABEL"
+														using = Font_Size_Medium
+													}
+												}
+
+												hbox = {
+													layoutpolicy_horizontal = expanding
+													margin_right = 25
+
+													vbox = {
+														tooltipwidget = {
+															ruler_designer_culture_tooltip = { }
+														}
+														hbox = {
+															layoutpolicy_horizontal = expanding
+
+															text_single = {
+																layoutpolicy_horizontal = expanding
+																text = "[Culture.GetHeritage.GetNameNoTooltip]"
+																# raw_text = "LOREM_IPSUM_TITLE"
+																max_width = 200
+																default_format = "#bold"
+
+																margin_right = 5
+																margin_bottom = 5
+															}
+
+															button_replace = {
+																onclick = "[VariableSystem.Toggle( 'culture_select_window_open' )]"
+																using = Button_Close_Select_Faith
+																tooltip = RULER_DESIGNER_CHOOSE_CULTURE
+																using = tooltip_se
+															}
+														}
+
+														hbox = {
+															layoutpolicy_horizontal = expanding
+
+															text_single = {
+																layoutpolicy_horizontal = expanding
+																text = "[Culture.GetNameNoTooltip]"
+																# raw_text = "LOREM_IPSUM_TITLE"
+																max_width = 200
+
+																margin_bottom = 5
+															}
+														}
+													}
+
+													expand = { }
+
+													button_standard = {
+														size = { 250 32 }
+
+														onclick = "[RulerDesignerWindow.RandomizeEthnicityDnaFromCulture]"
+														onclick = "[PdxGuiTriggerAllAnimations('ruler_designer_portrait_refresh')]"
+														visible = "[Not(VariableSystem.HasValue( 'culture_select_window_open', 'true' ))]"
+														text = "RULER_DESIGNER_REGENERATE_PORTRAIT"
+														margin_left = 30
+
+														button_randomize = {
+															parentanchor = vcenter
+															position = { 7 0 }
+														}
+													}
+												}
+											}
+										}
+
+										vbox = {
+											name = "name"
+											layoutpolicy_horizontal = expanding
+
+											vbox = {
+												layoutpolicy_horizontal = expanding
+
+												hbox = {
+													layoutpolicy_horizontal = expanding
+
+													text_label_left = {
+														layoutpolicy_horizontal = expanding
+														text = "RULER_DESIGNER_CHARACTER_NAME"
+														using = Font_Size_Medium
+													}
+												}
+											}
+
+											vbox = {
+												layoutpolicy_horizontal = expanding
+												margin_top = 10
+												spacing = 10
+
+												hbox = {
+													layoutpolicy_horizontal = expanding
+													margin_right = 20
+													spacing = 5
+
+													text_single = {
+														text = "RULER_DESIGNER_FIRST_NAME_LABEL"
+														align = nobaseline
+													}
+
+													editbox_standard = {
+														layoutpolicy_horizontal = expanding
+
+														blockoverride "editbox_properties"
+														{
+															text = "[RulerDesignerWindow.GetFirstName]"
+															ontextedited = "[RulerDesignerWindow.OnEditFirstName]"
+															maxcharacters = 40
+														}
+													}
+
+													expand = { }
+												}
+
+												hbox = {
+													name = "random_name"
+													layoutpolicy_horizontal = expanding
+													spacing = 5
+
+													button_randomize = {
+														name = "dice_icon"
+														size = { 30 30 }
+														enabled = no
+													}
+
+													text_single = {
+														text = "RULER_DESIGNER_RANDOM_NAME_LABEL"
+														align = nobaseline
+														max_width = 150
+													}
+
+													hbox = {
+														spacing = 5
+
+														button_standard = {
+															name = "random_faith_name"
+															datacontext = "[RulerDesignerWindow.GetFaith]"
+															visible = "[Faith.HasReservedNames( RulerDesignerWindow.IsFemale )]"
+															size = { 140 25 }
+															text = "[Faith.GetAdjectiveNoTooltip]"
+															tooltip = RULER_DESIGNER_RANDOM_NAME_FAITH_TOOLTIP
+															using = tooltip_se
+															onclick = "[RulerDesignerWindow.RandomizeFirstNameFaith]"
+														}
+
+														button_standard = {
+															name = "random_culture_name"
+															datacontext = "[RulerDesignerWindow.GetCulture]"
+															size = { 140 25 }
+															text = "[Culture.GetNameNoTooltip]"
+															tooltip = RULER_DESIGNER_RANDOM_NAME_CULTURE_TOOLTIP
+															using = tooltip_se
+															onclick = "[RulerDesignerWindow.RandomizeFirstNameCulture]"
+														}
+													}
+
+													expand = { }
+												}
+											}
+										}
+
+										hbox = {
+											layoutpolicy_horizontal = expanding
+										}
+
+										vbox = {
+											name = "dynasty_house"
+											layoutpolicy_horizontal = expanding
+
+											hbox = {
+												layoutpolicy_horizontal = expanding
+
+												text_label_left = {
+													layoutpolicy_horizontal = expanding
+													text = "RULER_DESIGNER_DYNASTY_LABEL"
+													using = Font_Size_Medium
+												}
+											}
+
+											vbox = {
+												datacontext = "[RulerDesignerWindow.GetDynastyCoatOfArms]"
+												layoutpolicy_horizontal = expanding
+
+												margin_top = 5
+												margin_bottom = -10
+
+												hbox = {
+													spacing = 5
+
+													coa_preview_dynasty_huge = {
+														datacontext = "[DesignerCoA.GetCoA]"
+														datacontext = "[RulerDesignerWindow.GetCulture]"
+													}
+
+													button_edit_text = {
+														onclick = "[RulerDesignerWindow.OpenDynastyCoatOfArmsDesigner]"
+														onclick = "[VariableSystem.Set( 'coat_of_arms_customization_open', 'dynasty' )]"
+														tooltip = RULER_DESIGNER_CUSTOMIZE_DYNASTY
+														using = tooltip_se
+													}
+												}
+											}
+										}
+
+										vbox = {
+											name = "realm"
+											layoutpolicy_horizontal = expanding
+											datacontext = "[RulerDesignerWindow.GetCharacterToOverwrite]"
+											datacontext = "[Character.GetPrimaryTitle]"
+											datacontext = "[RulerDesignerWindow.GetTitleCoatOfArms]"
+											visible = "[Not( RulerDesignerWindow.IsDesigningLandless )]"
+
+											vbox = {
+												name = "realm_header"
+												layoutpolicy_horizontal = expanding
+
+												hbox = {
+													layoutpolicy_horizontal = expanding
+
+													text_label_left = {
+														layoutpolicy_horizontal = expanding
+														text = "RULER_DESIGNER_REALM_LABEL"
+														using = Font_Size_Medium
+													}
+												}
+											}
+
+											vbox = {
+												layoutpolicy_horizontal = expanding
+												margin_top = 5
+
+												hbox = {
+													layoutpolicy_horizontal = expanding
+													margin_right = 30
+
+													text_multi = {
+														layoutpolicy_horizontal = expanding
+														text = "RULER_DESIGNER_TITLE_NAME"
+														default_format = "#high"
+														using = Font_Size_Big
+														max_width = 470
+														autoresize = yes
+														align = center
+													}
+												}
+
+												hbox = {
+													margin_left = 30
+
+													coa_realm_huge_crown = {
+														name = "default_coa"
+														visible = "[Not( DesignerCoA.IsSet )]"
+														blockoverride "coa_button" { }
+													}
+
+													container = {
+														visible = "[DesignerCoA.IsSet]"
+
+														coa_preview_realm_huge_crown = {
+															name = "custom_coa"
+															datacontext = "[DesignerCoA.GetCoA]"
+
+															blockoverride "frame_override"
+															{
+																frame = "[Title.GetTierFrame]"
+															}
+															blockoverride "coat_of_arms_mask"
+															{
+																coat_of_arms_mask = "[Character.GetGovernment.GetRealmMask]"
+																coat_of_arms_offset = "[Character.GetGovernment.GetRealmMaskOffset]"
+																coat_of_arms_scale = "[Character.GetGovernment.GetRealmMaskScale]"
+															}
+															blockoverride "realm_mask_texture"
+															{
+																texture = "[Character.GetGovernment.GetRealmMask]"
+															}
+															blockoverride "realm_frame_texture"
+															{
+																texture = "[Character.GetGovernment.GetRealmFrame('(int32)115')]"
+															}
+														}
+													}
+
+													button_edit_text = {
+														onclick = "[RulerDesignerWindow.OpenTitleCoatOfArmsDesigner]"
+														onclick = "[VariableSystem.Set( 'coat_of_arms_customization_open', 'title' )]"
+														tooltip = RULER_DESIGNER_CUSTOMIZE_TITLE
+														using = tooltip_se
+													}
+
+													button_revert = {
+														visible = "[Not( RulerDesignerWindow.IsDesigningLandless )]"
+														onclick = "[RulerDesignerWindow.ResetTitleToHistorical]"
+														tooltip = RULER_DESIGNER_RESET_TITLE
+														using = tooltip_se
+													}
+												}
+											}
+
+											widget = {
+												size = {520 1}
+											}
+										}
+									}
+								}
+
+								expand = { }
+
+								divider_light = {
+									visible = "[Not( VariableSystem.Exists( 'trait_select_window_open' ) )]"
+									layoutpolicy_vertical = expanding
+								}
+							}
+
+							expand = { }
+						}
+					}
+				}
+
+				hbox = {
+					visible = "[And(Not(VariableSystem.Exists( 'appearance_customization_window_open' )), Not(GetVariableSystem.Exists('coat_of_arms_customization_open')))]"
+					spacing =  5
+
+					button_standard_back = {
+						onclick = "[RulerDesignerWindow.Close]"
+						shortcut = "close_window"
+
+						blockoverride "text"
+						{
+							text = "BACK_LABEL"
+						}
+					}
+
+					button_standard = {
+						text = "RULER_DESIGNER_SAVE_RULER"
+
+						enabled = "[RulerDesignerWindow.CanOpenSaveRulerWindow]"
+						tooltip = "[RulerDesignerWindow.CanOpenSaveRulerWindowTooltip]"
+
+						onclick = "[RulerDesignerWindow.OpenSaveRulerWindow]"
+					}
+
+					button_standard = {
+						text = "RULER_DESIGNER_LOAD_RULER"
+
+						enabled = "[RulerDesignerWindow.CanOpenLoadRulerWindow]"
+						tooltip = "[RulerDesignerWindow.CanOpenLoadRulerWindowTooltip]"
+
+						onclick = "[RulerDesignerWindow.OpenLoadRulerWindow]"
+					}
+				}
+			}
+
+			vbox = {
+				name = "faith_selection"
+				layoutpolicy_vertical = expanding
+				visible = "[VariableSystem.Exists( 'faith_select_window_open' )]"
+
+				state = {
+					name = _show
+					using = Animation_FadeIn_Quick
+				}
+
+				state = {
+					name = _hide
+					alpha = 0
+					on_start = "[RulerDesignerWindow.AccessReligionList.HideAllChildren]"
+				}
+
+				text_label_center = {
+					text = RULER_DESIGNER_FAITH_LIST_LABEL
+					using = Font_Size_Big
+				}
+
+				scrollbox = {
+					layoutpolicy_vertical = expanding
+					layoutpolicy_horizontal = expanding
+					minimumsize = { 350 0 }
+
+					datacontext = "[RulerDesignerWindow.AccessReligionList]"
+
+					blockoverride "scrollbox_content"
+					{
+						vbox = {
+							datamodel = "[CollapsibleReligionList.AccessItems]"
+							layoutpolicy_horizontal = expanding
+
+							item = {
+								vbox = {
+									name = "religion"
+									datacontext = "[CollapsibleReligionListGroup.GetItem]"
+									layoutpolicy_horizontal = expanding
+
+									hbox = {
+										layoutpolicy_horizontal = expanding
+										tooltip = "RULER_DESIGNER_LIST_FAITH_ENTRY_TOOLTIP"
+
+										button_standard_hover = {
+											layoutpolicy_horizontal = expanding
+											onclick = "[CollapsibleReligionListGroup.ToggleChildrenVisible]"
+
+											hbox = {
+												margin = { 5 0 }
+												spacing = 10
+
+												button_list_expand = {
+													checked = "[CollapsibleReligionListGroup.AreChildrenVisible]"
+													onclick = "[CollapsibleReligionListGroup.ToggleChildrenVisible]"
+												}
+
+												text_single = {
+													layoutpolicy_horizontal = expanding
+													text = "[Religion.GetNameNoTooltip]"
+													size = { 0 40 }
+													align = nobaseline
+													default_format = "#clickable"
+													autoresize = no
+												}
+											}
+										}
+									}
+
+									vbox = {
+										name = "faiths"
+										datamodel = "[Religion.GetFaiths]"
+										visible = "[CollapsibleReligionListGroup.AreChildrenVisible]"
+										layoutpolicy_horizontal = expanding
+
+										item = {
+											hbox = {
+												layoutpolicy_horizontal = expanding
+
+												button_standard_hover = {
+													name = "faith_item"
+													layoutpolicy_horizontal = expanding
+													size = { 0 55 }
+													using = Button_Select_Faith
+													tooltipwidget = { faith_tooltip_ruler_designer = { } }
+													enabled = "[Not( ObjectsEqual( Faith.Self, RulerDesignerWindow.GetFaith ) )]"
+
+													hbox = {
+														margin = { 5 0 }
+														margin_left = 30
+														spacing = 10
+
+														button_religion_icon_ruler_designer = {
+															name = "faith_icon"
+															size = { 50 50 }
+															using = Button_Select_Faith
+														}
+
+														text_single = {
+															layoutpolicy_horizontal = expanding
+															text = "[Faith.GetNameNoTooltip]"
+															default_format = "#clickable"
+															autoresize = no
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+
+				hbox = {
+					layoutpolicy_horizontal = expanding
+					margin_top = 15
+
+					button_standard = {
+						onclick = "[VariableSystem.Clear( 'faith_select_window_open' )]"
+						text = "CANCEL"
+						shortcut = "close_window"
+					}
+				}
+			}
+
+			vbox = {
+				name = "culture_selection"
+				layoutpolicy_vertical = expanding
+				visible = "[VariableSystem.Exists( 'culture_select_window_open' )]"
+
+				state = {
+					name = _show
+					using = Animation_FadeIn_Quick
+				}
+
+				state = {
+					name = _hide
+					alpha = 0
+					on_start = "[RulerDesignerWindow.AccessCultureList.HideAllChildren]"
+				}
+
+				text_label_center = {
+					text = RULER_DESIGNER_CULTURE_LIST_LABEL
+					using = Font_Size_Big
+				}
+
+				scrollbox = {
+					layoutpolicy_vertical = expanding
+					layoutpolicy_horizontal = expanding
+					minimumsize = { 400 100% }
+
+					datacontext = "[RulerDesignerWindow.AccessCultureList]"
+
+					blockoverride "scrollbox_content"
+					{
+						vbox = {
+							datamodel = "[CollapsibleCultureList.AccessItems]"
+							layoutpolicy_horizontal = expanding
+
+							item = {
+								vbox = {
+									name = "culture_group"
+									layoutpolicy_horizontal = expanding
+
+									datacontext = "[CollapsibleCultureListGroup.GetItem]"
+
+									button_standard_hover = {
+										layoutpolicy_horizontal = expanding
+
+										size = { 0 40 }
+										onclick = "[CollapsibleCultureListGroup.ToggleChildrenVisible]"
+										tooltip = RULER_DESIGNER_LIST_CULTURE_ENTRY_TOOLTIP
+
+										hbox = {
+											margin = { 5 0 }
+											spacing = 10
+
+											button_list_expand = {
+												checked = "[CollapsibleCultureListGroup.AreChildrenVisible]"
+												onclick = "[CollapsibleCultureListGroup.ToggleChildrenVisible]"
+											}
+
+											text_single = {
+												layoutpolicy_horizontal = expanding
+												text = "[CulturePillar.GetNameNoTooltip]"
+												default_format = "#clickable"
+												autoresize = no
+											}
+										}
+									}
+
+
+									vbox = {
+										name = "cultures"
+										layoutpolicy_horizontal = expanding
+										datamodel = "[CulturePillar.GetCulturesWithPillar]"
+										visible = "[CollapsibleCultureListGroup.AreChildrenVisible]"
+
+										item = {
+											hbox = {
+												layoutpolicy_horizontal = expanding
+												datacontext = "[Culture.GetTemplate]"
+
+												button_standard_hover = {
+													name = "culture_item"
+													layoutpolicy_horizontal = expanding
+													size = { 0 35 }
+													tooltipwidget = {
+														ruler_designer_culture_tooltip = { }
+													}
+													using = Button_Select_Culture
+													enabled = "[Not( ObjectsEqual( CultureTemplate.Self, RulerDesignerWindow.GetCulture.GetTemplate ) )]"
+
+													hbox = {
+														margin_left = 50
+
+														text_single = {
+															margin = { 5 0 }
+															text = "[CultureTemplate.GetName]"
+															default_format = "#clickable"
+															align = nobaseline
+														}
+
+														expand = { }
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+
+				hbox = {
+					layoutpolicy_horizontal = expanding
+					margin = { 0 10 }
+					margin_bottom = 15
+
+					button_standard = {
+						text = "CANCEL"
+						using = Button_Close_Select_Culture
+						shortcut = "close_window"
+					}
+				}
+			}
+
+			# portrait
+			widget = {
+				name = "middle_portrait"
+				layoutpolicy_horizontal = expanding
+				layoutpolicy_vertical = expanding
+				# error_horse = { }
+
+				portrait_body_brd = {}
+
+				portrait_controls_brd = {
+					blockoverride "big_screen" {
+						position = { 0 -45 }
+					}
+				}
+
+				header_standard = {
+					parentanchor = hcenter
+					position = { 0 10 }
+					size = { 450 50 }
+					visible = "[StringIsEmpty( RulerDesignerWindow.GetFirstName )]"
+
+					blockoverride "header_text"
+					{
+						text = "RULER_DESIGNER"
+					}
+
+					blockoverride "button_close"
+					{
+						visible = no
+					}
+				}
+
+
+				text_label_center = {
+					parentanchor = hcenter
+					text = "RULER_DESIGNER_FULL_NAME"
+					using = Font_Size_Big
+					autoresize = yes
+					max_width = 500
+					position = { 0 15 }
+					multiline = yes
+					visible = "[Not( StringIsEmpty( RulerDesignerWindow.GetFirstName ) )]"
+					using = Animation_ShowHide_Standard
+				}
+
+				button_standard = {
+					size = { 300 40 }
+					texture = "gfx/interface/buttons/button_verb_primary.dds"
+	        # clicksound = "event:/SFX/UI/Generic/sfx_ui_generic_confirm"
+
+	        buttonText = {
+	            text_single = {
+	                size = { 100% 100% }
+	                autoresize = no
+	                margin = { 10 0 }
+	                align = center|nobaseline
+	                default_format = "#high"
+	                alwaystransparent = yes
+	            }
+	        }
+
+					shortcut = map_mode_1
+					parentanchor = hcenter|bottom
+					tooltip = "RULER_DESIGNER_CHANGE_PORTRAIT"
+					text = "RULER_DESIGNER_CHANGE_PORTRAIT"
+					onclick = "[VariableSystem.Set( 'appearance_customization_window_open', 'ethnicity_selection' )]"
+					onclick = "[VariableSystem.Set( 'appearance_customization_portrait_view', 'full_body' )]"
+				}
+			}
+
+			vbox = {
+				name = "trait_selection_panel"
+				layoutpolicy_vertical = expanding
+				visible = "[VariableSystem.Exists( 'trait_select_window_open' )]"
+
+				using =  Animation_Tab_Switch
+
+				text_label_center = {
+					text = RULER_DESIGNER_TRAITS_LABEL
+					layoutpolicy_horizontal = expanding
+				}
+
+				scrollbox = {
+					name = "education_trait_selection_list"
+					layoutpolicy_vertical = expanding
+					layoutpolicy_horizontal = expanding
+					minimumsize = { 400 100% }
+
+					visible = "[VariableSystem.HasValue( 'trait_select_window_open', 'education' )]"
+
+					blockoverride "scrollbox_content"
+					{
+						vbox_trait_selection_content = {
+							layoutpolicy_horizontal = expanding
+							datamodel = "[GetEducationTraits]"
+						}
+					}
+				}
+
+				scrollbox = {
+					name = "personality_trait_selection_list"
+					layoutpolicy_vertical = expanding
+					layoutpolicy_horizontal = expanding
+					minimumsize = { 400 100% }
+
+					visible = "[VariableSystem.HasValue( 'trait_select_window_open', 'personality' )]"
+
+					blockoverride "scrollbox_content"
+					{
+						vbox_trait_selection_content = {
+							layoutpolicy_horizontal = expanding
+							datamodel = "[GetPersonalityTraits]"
+						}
+					}
+				}
+
+				scrollbox = {
+					name = "other_trait_selection_list"
+					layoutpolicy_vertical = expanding
+					layoutpolicy_horizontal = expanding
+					minimumsize = { 400 100% }
+
+					visible = "[VariableSystem.HasValue( 'trait_select_window_open', 'other' )]"
+
+					blockoverride "scrollbox_content"
+					{
+						vbox_trait_selection_content = {
+							layoutpolicy_horizontal = expanding
+							datamodel = "[GetOtherRulerDesignerTraits]"
+						}
+					}
+				}
+
+				hbox = {
+					layoutpolicy_horizontal = expanding
+					margin = { 0 10 }
+					margin_bottom = 15
+
+					button_standard = {
+						text = "DONE"
+						onclick = "[RulerDesignerWindow.CancelTraitEditing]"
+						onclick = "[RulerDesignerWindow.CancelTraitEditing]"
+						onclick = "[VariableSystem.Clear( 'trait_select_window_open' )]"
+						shortcut = "close_window"
+					}
+				}
+			}
+
+			divider_light = {
+				visible = "[Not( Or( VariableSystem.Exists( 'culture_select_window_open' ), VariableSystem.Exists( 'faith_select_window_open' ) ) )]"
+				layoutpolicy_vertical = expanding
+			}
+
+			# main right side
+			vbox = {
+				max_width = 530
+				layoutpolicy_vertical = expanding
+				visible = "[Not( Or( VariableSystem.Exists( 'culture_select_window_open' ), VariableSystem.Exists( 'faith_select_window_open' ) ) )]"
+				background = { using = Background_Area_Border }
+
+				scrollbox = {
+					layoutpolicy_vertical = expanding
+					layoutpolicy_horizontal = expanding
+					minimumsize = { 530 0 }
+					blockoverride "scrollbox_background" { }
+
+					blockoverride "scrollbox_margins" {
+
+					}
+
+					blockoverride "scrollbox_content"
+					{
+						vbox = {
+							name = "right_panel"
+
+							vbox = {
+								layoutpolicy_horizontal = expanding
+								spacing = 10
+								margin_top = 10
+								margin_bottom = 15
+
+								vbox = {
+									name = "points"
+									layoutpolicy_horizontal = expanding
+									spacing = 5
+
+									vbox = {
+										layoutpolicy_horizontal = expanding
+
+										hbox = {
+											layoutpolicy_horizontal = expanding
+
+											text_label_left = {
+												layoutpolicy_horizontal = expanding
+												text = "RULER_DESIGNER_POINTS_LABEL"
+												using = Font_Size_Medium
+											}
+										}
+									}
+
+									hbox = {
+										layoutpolicy_horizontal = expanding
+										datacontext = "[RulerDesignerWindow.GetPointsUsedBreakdown]"
+
+										tooltip_visible = "[ValueBreakdown.HasTooltip]"
+										tooltipwidget = {
+											widget_value_breakdown_tooltip = { }
+										}
+
+										text_single = {
+											name = "current"
+											text = "[ValueBreakdown.GetValue]"
+											using = Font_Size_Big
+											align = nobaseline
+											default_format = "#high"
+											min_width = 50
+										}
+
+										progressbar_standard = {
+											name = "points_bar"
+											layoutpolicy_horizontal = expanding
+											using = ProgressBar_Achievements
+											visible = "[LessThanOrEqualTo_int32( RulerDesignerWindow.GetPointsUsed, GetDefine( 'NRulerDesigner', 'IRONMAN_POINT_MAX' ) )]"
+										}
+
+										progressbar_red = {
+											name = "points_bar_over_limit"
+											layoutpolicy_horizontal = expanding
+											using = ProgressBar_Achievements
+											visible = "[GreaterThan_int32( RulerDesignerWindow.GetPointsUsed, GetDefine( 'NRulerDesigner', 'IRONMAN_POINT_MAX' ) )]"
+										}
+									}
+
+									text_single = {
+										text = RULER_DESIGNER_POINTS_LIMIT_LABEL
+										layoutpolicy_horizontal = expanding
+										align = right
+										margin_right = 15
+									}
+								}
+
+								vbox = {
+									name = "physical"
+									layoutpolicy_horizontal = expanding
+									spacing = 10
+
+									vbox = {
+										name = "age"
+										layoutpolicy_horizontal = expanding
+
+										vbox = {
+											layoutpolicy_horizontal = expanding
+
+											hbox = {
+												layoutpolicy_horizontal = expanding
+
+												text_label_left = {
+													layoutpolicy_horizontal = expanding
+													text = "RULER_DESIGNER_AGE_LABEL"
+													using = Font_Size_Medium
+												}
+											}
+										}
+
+										hbox = {
+											layoutpolicy_horizontal = expanding
+											# spacing = 15
+
+											vbox = {
+												layoutpolicy_horizontal = expanding
+												spacing = 10
+
+												hbox = {
+													layoutpolicy_horizontal = expanding
+													spacing = 10
+													margin_top = 10
+
+													text_single = {
+														text = RULER_DESIGNER_AGE
+														using = Font_Size_Big
+														align = nobaseline
+													}
+
+													expand = { }
+
+													text_single = {
+														text = RULER_DESIGNER_BIRTH_YEAR
+													}
+
+												}
+
+												scrollbar_age = {
+													name = "scrollbar_age"
+													layoutpolicy_horizontal = expanding
+												}
+											}
+
+											expand = { }
+										}
+									}
+
+									expand = { }
+
+									vbox = {
+										name = "weight"
+										layoutpolicy_horizontal = expanding
+										spacing = 5
+
+										vbox = {
+											layoutpolicy_horizontal = expanding
+											margin_bottom = 10
+
+											hbox = {
+												layoutpolicy_horizontal = expanding
+
+												text_label_left = {
+													layoutpolicy_horizontal = expanding
+													text = "RULER_DESIGNER_WEIGHT_LABEL"
+													using = Font_Size_Medium
+
+													text_single = {
+														parentanchor = right|vcenter
+														align = right
+														using = Font_Size_Medium
+														raw_text = "#high [RulerDesignerWindow.GetWeight|=]%"
+													}
+												}
+											}
+										}
+
+										scrollbar_weight = {
+											name = "scrollbar_weight"
+											layoutpolicy_horizontal = expanding
+										}
+									}
+
+									expand = { }
+								}
+
+								vbox = {
+									name = "traits"
+									layoutpolicy_horizontal = expanding
+									datacontext = "[GetNullCharacter]"
+
+									vbox = {
+										layoutpolicy_horizontal = expanding
+
+										hbox = {
+											layoutpolicy_horizontal = expanding
+
+											text_label_left = {
+												layoutpolicy_horizontal = expanding
+												text = "RULER_DESIGNER_TRAITS_LABEL"
+												using = Font_Size_Medium
+											}
+										}
+									}
+
+									vbox = {
+										layoutpolicy_horizontal = expanding
+										margin = { 10 0 }
+										margin_top = 5
+										spacing = 3
+
+										hbox_trait_slot = {
+											name = "education_trait"
+											datacontext = "[RulerDesignerWindow.AccessEducationTraitSlot]"
+											layoutpolicy_horizontal = expanding
+
+											blockoverride "plus_button"
+											{
+												button_trait = {
+													visible = "[RulerDesignerWindow.IsAdult]"
+													datacontext = "[TraitSlot.GetTrait]"
+													onclick = "[TraitSlot.StartEditing]"
+													onclick = "[VariableSystem.Toggle( 'trait_select_window_replace' )]"
+													onclick = "[VariableSystem.Set( 'trait_select_window_open', 'education' )]"
+
+													state = {
+														name = "_mouse_enter"
+														on_start = "[PdxGuiWidget.FindChild('swap_icon').TriggerAnimation('show')]"
+													}
+
+													state = {
+														name = "_mouse_leave"
+														on_start = "[PdxGuiWidget.FindChild('swap_icon').TriggerAnimation('hide')]"
+													}
+
+													button_replace = {
+														name = "swap_icon"
+														parentanchor = center
+														alwaystransparent = yes
+														alpha = 0
+
+														state = {
+															name = "show"
+															using = Animation_FadeIn_Quick
+															duration = 0.05
+														}
+
+														state = {
+															name = "hide"
+															alpha = 0
+															using = Animation_FadeOut_Quick
+														}
+
+														background = {
+															texture = "gfx/interface/component_masks/mask_fade_circle.dds"
+															color = { 0.18 0.18 0.18 0.8 }
+															margin = {20 20}
+														}
+													}
+												}
+
+												icon = {
+													visible = "[Not(RulerDesignerWindow.IsAdult)]"
+													texture = "gfx/interface/icons/symbols/icon_cross.dds"
+													enabled = no
+													size = { 50 50 }
+													tooltip = RULER_DESIGNER_NO_EDUCATION_TOOLTIP
+												}
+											}
+
+											blockoverride "trait_list" { }
+
+											blockoverride "trait_slots_header_text"
+											{
+												text = RULER_DESIGNER_EDUCATION_TRAIT_LABEL
+											}
+											blockoverride "button_trait_onclick"
+											{
+												onclick = "[VariableSystem.Set( 'trait_select_window_open', 'education' )]"
+											}
+										}
+
+										hbox_trait_slot = {
+											name = "personality_traits"
+											datacontext = "[RulerDesignerWindow.AccessPersonalityTraitSlots]"
+											layoutpolicy_horizontal = expanding
+
+											blockoverride "trait_slots_header_text"
+											{
+												text = RULER_DESIGNER_PERSONALITY_TRAIT_LABEL
+											}
+											blockoverride "plus_onclick"
+											{
+												onclick = "[VariableSystem.Set( 'trait_select_window_open', 'personality' )]"
+											}
+										}
+
+										hbox_trait_slot = {
+											name = "other_traits"
+											datacontext = "[RulerDesignerWindow.AccessOtherTraitSlots]"
+											layoutpolicy_horizontal = expanding
+
+											blockoverride "trait_slots_header_text"
+											{
+												text = RULER_DESIGNER_OTHER_TRAIT_LABEL
+											}
+											blockoverride "plus_onclick"
+											{
+												onclick = "[VariableSystem.Set( 'trait_select_window_open', 'other' )]"
+											}
+										}
+									}
+								}
+
+								vbox = {
+									name = "skills"
+									layoutpolicy_horizontal = expanding
+									spacing = 5
+
+									vbox = {
+										layoutpolicy_horizontal = expanding
+
+										hbox = {
+											layoutpolicy_horizontal = expanding
+
+											text_label_left = {
+												layoutpolicy_horizontal = expanding
+												text = "RULER_DESIGNER_SKILLS_LABEL"
+												using = Font_Size_Medium
+											}
+										}
+									}
+
+									fixedgridbox = {
+										name = "skill_buttons"
+										datamodel = "[RulerDesignerWindow.AccessSkills]"
+										datamodel_wrap = 3
+										addrow = 60
+										addcolumn = 245
+
+										item = {
+											widget = {
+												name = "skill_item"
+												size = { 240 60 }
+
+												background = {
+													using = Background_Area
+												}
+
+												hbox = {
+													margin = { 7 0 }
+													spacing = 5
+
+													icon = {
+														name = "skill_icon"
+														texture = "gfx/interface/icons/icon_skills.dds"
+														size = { 32 32 }
+														framesize = { 60 60 }
+														frame = "[RulerDesignerSkill.GetFrame]"
+													}
+
+													vbox = {
+														layoutpolicy_horizontal = expanding
+
+														text_single = {
+															name = "skill_name"
+															layoutpolicy_horizontal = expanding
+															text = "[RulerDesignerSkill.GetName]"
+															autoresize = no
+														}
+
+														text_single = {
+															name = "skill_level"
+															layoutpolicy_horizontal = expanding
+															text = "[RulerDesignerSkill.GetLevelDesc]"
+															default_format = "#weak"
+															autoresize = no
+														}
+													}
+
+													button_round = {
+														size = { 28 28 }
+														onclick = "[RulerDesignerSkill.ChangeValue( '(int32)-1' )]"
+														enabled = "[GreaterThan_int32( RulerDesignerSkill.GetBaseValue, '(int32)0' )]"
+
+														button_minus_small = {
+															name = "decrease_skill"
+															parentanchor = center
+															alwaystransparent = yes
+														}
+													}
+
+													text_single = {
+														name = "skill_value"
+
+														datacontext = "[RulerDesignerSkill.GetModifiedValueBreakdown]"
+
+														tooltip_visible = "[ValueBreakdown.HasTooltip]"
+														tooltipwidget = {
+															widget_value_breakdown_tooltip = { }
+														}
+
+														text = "[ValueBreakdown.GetValue]"
+
+														using = Font_Size_Big
+														default_format = "#high"
+														align = nobaseline|center
+														min_width = 25
+													}
+
+													button_round = {
+														size = { 28 28 }
+														onclick = "[RulerDesignerSkill.ChangeValue( '(int32)1' )]"
+														enabled = "[LessThan_int32( RulerDesignerSkill.GetBaseValue, RulerDesignerSkill.GetMaxValue )]"
+
+														button_plus_small = {
+															name = "increase_skill"
+															parentanchor = center
+															alwaystransparent = yes
+														}
+													}
+												}
+											}
+										}
+									}
+
+									text_multi = {
+										name = "prowess_muscle_info"
+										text = PROWESS_MUSCLE_INFO_PERSONAL
+										default_format = "#weak"
+										autoresize = yes
+										max_width = 500
+									}
+								}
+
+								vbox = {
+									name = "family"
+									layoutpolicy_horizontal = expanding
+									spacing = 10
+									visible = "[Not( RulerDesignerWindow.IsDesigningLandless )]"
+
+									vbox = {
+										layoutpolicy_horizontal = expanding
+
+										hbox = {
+											layoutpolicy_horizontal = expanding
+
+											text_label_left = {
+												layoutpolicy_horizontal = expanding
+												text = "RULER_DESIGNER_FAMILY_LABEL"
+												using = Font_Size_Medium
+											}
+										}
+									}
+
+									hbox = {
+										layoutpolicy_horizontal = expanding
+										spacing = 30
+
+										vbox = {
+											layoutpolicy_vertical = expanding
+
+											button_checkbox_label = {
+												name = "generate_spouse_button"
+												layoutpolicy_horizontal = expanding
+
+												onclick = "[RulerDesignerWindow.ToggleGenerateSpouse]"
+												enabled = "[RulerDesignerWindow.IsAdult]"
+												tooltip = "RULER_DESIGNER_GENERATE_SPOUSE_TOOLTIP"
+
+												blockoverride "checkbox"
+												{
+													checked = "[RulerDesignerWindow.ShouldGenerateSpouse]"
+												}
+
+												blockoverride "text"
+												{
+													text = "RULER_DESIGNER_GENERATE_SPOUSE_LABEL"
+												}
+											}
+
+											expand = { }
+										}
+
+										vbox = {
+											hbox = {
+												name = "generate_sons_amount"
+												layoutpolicy_horizontal = expanding
+												spacing = 20
+
+												text_single = {
+													layoutpolicy_horizontal = expanding
+													text = "RULER_DESIGNER_GENERATED_SONS_LABEL"
+													align = nobaseline
+												}
+
+												tooltip = RULER_DESIGNER_GENERATED_SONS_TOOLTIP
+
+												hbox = {
+													spacing = 10
+
+													button_round = {
+														size = { 28 28 }
+														onclick = "[RulerDesignerWindow.ChangeNumberOfGeneratedSons( '(int32)-1' )]"
+														enabled = "[GreaterThan_int32( RulerDesignerWindow.GetNumberOfGeneratedSons, '(int32)0' )]"
+
+														button_minus_small = {
+															name = "decrease_amount"
+															parentanchor = center
+															alwaystransparent = yes
+														}
+													}
+
+													text_single = {
+														name = "sons_value"
+														text = "[RulerDesignerWindow.GetNumberOfGeneratedSons]"
+														using = Font_Size_Big
+														default_format = "#high"
+														align = nobaseline|center
+														min_width = 25
+													}
+
+													button_round = {
+														size = { 28 28 }
+														onclick = "[RulerDesignerWindow.ChangeNumberOfGeneratedSons( '(int32)1' )]"
+														enabled = "[LessThan_int32( RulerDesignerWindow.GetNumberOfGeneratedChildren, RulerDesignerWindow.CalcMaxNumberOfGeneratedChildren )]"
+
+														button_plus_small = {
+															name = "increase_amount"
+															parentanchor = center
+															alwaystransparent = yes
+														}
+													}
+												}
+											}
+
+											hbox = {
+												name = "generate_daughters_amount"
+												layoutpolicy_horizontal = expanding
+												spacing = 20
+
+												text_single = {
+													layoutpolicy_horizontal = expanding
+													text = "RULER_DESIGNER_GENERATED_DAUGHTERS_LABEL"
+													align = nobaseline
+												}
+
+												tooltip = RULER_DESIGNER_GENERATED_DAUGHTERS_TOOLTIP
+
+												hbox = {
+													spacing = 10
+
+													button_round = {
+														size = { 28 28 }
+														onclick = "[RulerDesignerWindow.ChangeNumberOfGeneratedDaughters( '(int32)-1' )]"
+														enabled = "[GreaterThan_int32( RulerDesignerWindow.GetNumberOfGeneratedDaughters, '(int32)0' )]"
+
+														button_minus_small = {
+															name = "decrease_amount"
+															parentanchor = center
+															alwaystransparent = yes
+														}
+													}
+
+													text_single = {
+														name = "daughters_value"
+														text = "[RulerDesignerWindow.GetNumberOfGeneratedDaughters]"
+														using = Font_Size_Big
+														default_format = "#high"
+														align = nobaseline|center
+														min_width = 25
+													}
+
+													button_round = {
+														size = { 28 28 }
+														onclick = "[RulerDesignerWindow.ChangeNumberOfGeneratedDaughters( '(int32)1' )]"
+														enabled = "[LessThan_int32( RulerDesignerWindow.GetNumberOfGeneratedChildren, RulerDesignerWindow.CalcMaxNumberOfGeneratedChildren )]"
+
+														button_plus_small = {
+															name = "increase_amount"
+															parentanchor = center
+															alwaystransparent = yes
+														}
+													}
+												}
+											}
+										}
+
+										text_multi = {
+											visible = "[Not( RulerDesignerWindow.IsAdult )]"
+											text = RULER_DESIGNER_ADULT_ONLY_WARNING
+											autoresize = yes
+											max_width = 130
+											align = center
+										}
+
+										expand = { }
+									}
+								}
+
+								achievements_availability_box = {
+									blockoverride "achievements_enabled_visible" {
+										visible = "[LessThanOrEqualTo_int32( RulerDesignerWindow.GetPointsUsed, GetDefine( 'NRulerDesigner', 'IRONMAN_POINT_MAX' ) )]"
+									}
+									blockoverride "achievements_disabled_visible" {
+										visible = "[GreaterThan_int32( RulerDesignerWindow.GetPointsUsed, GetDefine( 'NRulerDesigner', 'IRONMAN_POINT_MAX' ) )]"
+									}
+								}
+							}
+
+							expand = { }
+						}
+					}
+				}
+
+				vbox = {
+					datacontext = "[RulerDesignerWindow.GetCharacterToOverwrite]"
+					datacontext = "[AccessGameRules]"
+					datacontext = "[JominiGameRules.AccessNamedGameRule( 'gender_equality' )]"
+
+					vbox = {
+						name = "wrong_gender_for_governor_warning"
+
+						# if you are already huangdi or governor, no need to warn
+						visible = "[RulerDesignerWindow.IsDesigningLandless]"
+
+						text_label_center = {
+							visible = "[And(And(Not(RulerDesignerWindow.IsFemale), Character.GetGovernment.IsType('celestial_government')), EqualTo_string( GuiGameRule.GetSetting.GetName, Localize('setting_inversed_gender_equality')))]"
+							text = "RULER_DESIGNER_CHARACTER_WARNING_CHINA_INVERSED"
+						}
+
+						text_label_center = {
+							visible = "[And(And(Not(RulerDesignerWindow.IsFemale), Character.GetGovernment.IsType('celestial_government')), EqualTo_string( GuiGameRule.GetSetting.GetName, Localize('setting_inversed_gender_equality')))]"
+							text = "RULER_DESIGNER_CHARACTER_WARNING_CHINA_INVERSED_EXPLAINER"
+						}
+
+						text_label_center = {
+							visible = "[And(And(RulerDesignerWindow.IsFemale, Character.GetGovernment.IsType('celestial_government')), EqualTo_string( GuiGameRule.GetSetting.GetName, Localize('setting_default_gender_equality')))]"
+							text = "RULER_DESIGNER_CHARACTER_WARNING_CHINA"
+						}
+					}
+
+
+					spacer = {
+						size = { 0 15 }
+					}
+				}
+
+				button_primary_big = {
+					size = { 520 40 }
+					text = "RULER_DESIGNER_FINALIZE"
+
+					enabled = "[RulerDesignerWindow.CanFinalize]"
+					tooltip = "[RulerDesignerWindow.GetFinalizeTooltip]"
+
+					onclick = "[RulerDesignerWindow.FinalizeOverwrite]"
+				}
+			}
+		}
+
+		hbox = {
+			name = "appearance_customizer_view"
+			visible = "[VariableSystem.Exists( 'appearance_customization_window_open' )]"
+			layoutpolicy_horizontal = expanding
+			layoutpolicy_vertical = expanding
+
+			using =  Animation_Tab_Switch
+
+			# ethnicities
+			widget = {
+				size = { 300 0 }
+				layoutpolicy_vertical = expanding
+				visible = "[VariableSystem.HasValue( 'appearance_customization_window_open', 'ethnicity_selection' )]"
+
+				flowcontainer = {
+					ignoreinvisible = yes
+					position = { 320 0 }
+					direction = vertical
+					spacing = 10
+
+					text_label_left = {
+						name = "override_portrait_warning"
+						text = RULER_DESIGNER_OVERRIDE_PORTRAIT
+						autoresize = yes
+					}
+
+					text_multi = {
+						text = RULER_DESIGNER_ETHNICITY_INFO
+						autoresize = yes
+						max_width = 400
+					}
+				}
+
+				vbox = {
+					name = "ethnicity_panel"
+					layoutpolicy_vertical = expanding
+					layoutpolicy_horizontal = expanding
+					maximumsize = { 300 -1 }
+
+					background = { using = Background_Area_Border }
+
+					using = Animation_ShowHide_Quick
+
+					button_category_brd = {
+						onclick = "[GetVariableSystem.Toggle('ethnicity_brd')]"
+						layoutpolicy_horizontal = expanding
+						blockoverride "frame" {
+							frame = "[Select_int32( GetVariableSystem.Exists('ethnicity_brd'), '(int32)1', '(int32)2')]"
+						}
+						blockoverride "text" {
+							text = RULDER_DESIGNER_ETHNICITY_LABEL
+							using = Font_Size_Medium
+							# margin_left = 10
+						}
+					}
+
+					vbox = {
+						name = "new_appearance"
+						layoutpolicy_horizontal = expanding
+						layoutpolicy_vertical = expanding
+						margin_bottom = 15
+						visible = "[Not(GetVariableSystem.Exists('ethnicity_brd'))]"
+
+						scrollbox = {
+							name = "ethinicity_list"
+							layoutpolicy_horizontal = expanding
+							layoutpolicy_vertical = expanding
+							minimumsize = { 0 470 }
+
+							blockoverride "scrollbox_content"
+							{
+								vbox = {
+									datamodel = "[GetEthnicities]"
+									layoutpolicy_horizontal = expanding
+									item = {
+										button_standard_hover = {
+											visible = "[And( Ethnicity.IsVisible, ObjectsEqual( Ethnicity.GetPortraitGroup, RulerDesignerWindow.GetEthnicity.GetPortraitGroup ) )]"
+											layoutpolicy_horizontal = expanding
+
+											text = "[Ethnicity.GetName]"
+											align = left|nobaseline
+											size = { 0 40 }
+											onclick = "[RulerDesignerWindow.SetEthnicity( Ethnicity.Self )]"
+											onclick = "[PdxGuiTriggerAllAnimations('ruler_designer_portrait_refresh')]"
+											# tooltip = "[Ethnicity.GetName]"
+										}
+									}
+								}
+							}
+						}
+					}
+
+					expand = { }
+
+					vbox = {
+						layoutpolicy_horizontal = expanding
+						spacing = 5
+						# margin = { 10 0 }
+
+						button_standard = {
+							text = "RULER_DESIGNER_SAVE_RULER"
+							layoutpolicy_horizontal = expanding
+
+							enabled = "[RulerDesignerWindow.CanOpenSaveRulerWindow]"
+							tooltip = "[RulerDesignerWindow.CanOpenSaveRulerWindowTooltip]"
+
+							onclick = "[RulerDesignerWindow.OpenSaveRulerWindow]"
+						}
+
+						button_standard = {
+							text = "RULER_DESIGNER_LOAD_RULER"
+							layoutpolicy_horizontal = expanding
+
+							enabled = "[RulerDesignerWindow.CanOpenLoadRulerWindow]"
+							tooltip = "[RulerDesignerWindow.CanOpenLoadRulerWindowTooltip]"
+
+							onclick = "[RulerDesignerWindow.OpenLoadRulerWindow]"
+						}
+
+						spacer = {}
+						spacer = {}
+
+						button_standard_back = {
+							layoutpolicy_horizontal = expanding
+							shortcut = go_back
+							shortcut = close_window
+							text = "BACK_LABEL"
+							onclick = "[VariableSystem.Clear( 'appearance_customization_window_open' )]"
+							onclick = "[VariableSystem.Clear( 'appearance_customization_portrait_view' )]"
+						}
+
+						button_primary = {
+							layoutpolicy_horizontal = expanding
+							visible = "[Not(VariableSystem.HasValue( 'appearance_customization_window_open', 'main_customizer' ))]"
+							text = "RULER_DESIGNER_CUSTOMIZE_APPEARANCE_FURTHER"
+							onclick = "[VariableSystem.Set( 'appearance_customization_window_open', 'main_customizer' )]"
+							onclick = "[VariableSystem.Set( 'appearance_customization_side_tab_open', 'body' )]"
+							shortcut = map_mode_1
+						}
+					}
+				}
+			}
+
+			# left side
+			widget = {
+				size = { 200 0 }
+				layoutpolicy_vertical = expanding
+				visible = "[VariableSystem.HasValue( 'appearance_customization_window_open', 'main_customizer' )]"
+
+				button = {
+					size = { 30 100% }
+				}
+
+				widget = {
+					name = "panel"
+					size = { 100% 100% }
+					onmousehierarchyenter = "[PdxGuiWidget.AccessParent.FindChild('panel').TriggerAnimation(Select_CString(GetVariableSystem.Exists('auto_hide_brd'), 'show_me', 'nothing'))]"
+
+					onmousehierarchyleave = "[PdxGuiWidget.AccessParent.FindChild('panel').TriggerAnimation(Select_CString(GetVariableSystem.Exists('auto_hide_brd'), 'hide_me', 'nothing'))]"
+					alwaystransparent = no
+
+					state = {
+						name = nothing
+						position = { 0 0 }
+					}
+
+					state = {
+						name = hide_me
+						duration = 0.1
+						position = { -180 0 }
+					}
+
+					state = {
+						name = show_me
+						position = { 0 0 }
+					}
+
+					background = { using = Background_Area_Border }
+
+					widget = {
+						size = { 100% 100% }
+						visible = "[And(GetVariableSystem.Exists('transparent_bg_brd'), GetVariableSystem.Exists('brd_bg'))]"
+						background = { using = Background_Area_Border_Solid margin_top = 5 alpha = 0.5 }
+					}
+
+					divider_light = {
+						size = { 3 100% }
+						position = { 1 0 }
+						parentanchor = right
+					}
+					vbox = {
+						name = "main_customizer"
+						spacing = 10
+						# margin_top = 5
+						layoutpolicy_vertical = expanding
+						layoutpolicy_horizontal = expanding
+
+						using = Animation_ShowHide_Quick
+
+						button_category_brd = {
+							onclick = "[GetVariableSystem.Toggle('backgrounds_brd')]"
+							layoutpolicy_horizontal = expanding
+							blockoverride "frame" {
+								frame = "[Select_int32( GetVariableSystem.Exists('backgrounds_brd'), '(int32)1', '(int32)2')]"
+							}
+							blockoverride "text" {
+								text = RULER_DESIGNER_CATEGORY_anatomy
+								using = Font_Size_Medium
+							}
+						}
+
+						scrollbox = {
+							layoutpolicy_horizontal = expanding
+							layoutpolicy_vertical = expanding
+							visible = "[Not(GetVariableSystem.Exists('backgrounds_brd'))]"
+
+							blockoverride "scrollbox_margins" {
+							}
+
+							blockoverride "scrollbox_background" {}
+
+							blockoverride "scrollbox_content" {
+								vbox = {
+									layoutpolicy_horizontal = expanding
+
+									datamodel = "[RulerDesignerWindow.GetGeneGroupCategories]"
+									item = {
+										vbox = {
+											layoutpolicy_horizontal = expanding
+											spacing = 10
+
+											text_label_left = {
+												margin_left = 10
+												margin_top = 5
+												layoutpolicy_horizontal = expanding
+												text = "[Localize( Concatenate( 'RULER_DESIGNER_CATEGORY_' , RulerDesignerGeneGroupCategory.GetCategory ) )]"
+												using = Font_Size_Medium
+											}
+
+											hbox = {
+												layoutpolicy_horizontal = expanding
+
+												vbox = {
+													datamodel = "[RulerDesignerGeneGroupCategory.GetGroups]"
+													spacing = 8
+
+													item = {
+														button_standard = {
+															# [Add_int32(PdxGuiWidget.GetIndexInDataModel, '(int32)1')]
+															text = "[Localize( Concatenate( 'RULER_DESIGNER_GROUP_' , RulerDesignerGeneGroup.GetGroup ) )]"
+															onclick = "[VariableSystem.Set( 'appearance_customization_side_tab_open', RulerDesignerGeneGroup.GetGroup )]"
+															onclick = "[VariableSystem.Set( 'appearance_customization_portrait_view', RulerDesignerGeneGroup.GetCamera )]"
+															down = "[VariableSystem.HasValue( 'appearance_customization_side_tab_open', RulerDesignerGeneGroup.GetGroup )]"
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+
+								spacer = {
+									size = { 0 5 }
+								}
+
+								button_checkbox_label = {
+									name = "toggle_show_accessories"
+
+									visible = "[RulerDesignerWindow.HasAccessoryGenes]"
+									onclick = "[RulerDesignerWindow.ToggleShowAccessories]"
+									tooltip = "RULER_DESIGNER_TOGGLE_SHOW_ACCESSORIES_TOOLTIP"
+
+									blockoverride "checkbox"
+									{
+										checked = "[RulerDesignerWindow.ShouldShowAcesssories]"
+									}
+
+									blockoverride "text"
+									{
+										text = "RULER_DESIGNER_TOGGLE_SHOW_ACCESSORIES_LABEL"
+										max_width = 140
+									}
+								}
+
+								spacer = {
+									size = { 0 5 }
+								}
+
+								vbox = {
+									margin_left = 12
+									layoutpolicy_horizontal = expanding
+									visible = "[And(And(VariableSystem.HasValue( 'appearance_customization_portrait_view', 'full_body' ), Not(GetVariableSystem.HasValue('portrait_brd', 'height'))), Not(VariableSystem.HasValue( 'appearance_customization_window_open', 'ethnicity_selection' )))]"
+
+									divider_light = {
+										layoutpolicy_horizontal = expanding
+									}
+
+									spacer = {
+										size = { 0 5 }
+									}
+
+									button_checkbox_label = {
+										layoutpolicy_horizontal = expanding
+										blockoverride "checkbox" {
+											checked = "[GetVariableSystem.Exists('back_body_brd')]"
+										}
+										blockoverride "text" {
+											text = "body_back_brd"
+											max_width = 140
+										}
+										onclick = "[GetVariableSystem.Toggle('back_body_brd')]"
+									}
+
+									button_checkbox_label = {
+										layoutpolicy_horizontal = expanding
+										blockoverride "checkbox" {
+											checked = "[GetVariableSystem.Exists('side_body_brd')]"
+										}
+										blockoverride "text" {
+											text = "body_side_brd"
+											max_width = 140
+										}
+										onclick = "[GetVariableSystem.Toggle('side_body_brd')]"
+									}
+
+									button_standard_hover = {
+										layoutpolicy_horizontal = expanding
+										text = "reset_positions_brd"
+										margin_left = 35
+										align = left|nobaseline
+										onclick = "[PdxGuiTriggerAllAnimations('reset_position_body_brd')]"
+										button_replace = {
+											parentanchor = vcenter
+											alwaystransparent = yes
+											position = { 0 0 }
+										}
+									}
+
+
+								}
+
+								vbox = {
+									layoutpolicy_horizontal = expanding
+									margin_left = 12
+									visible = "[And(GetVariableSystem.HasValue('appearance_customization_portrait_view', 'face' ), Not(GetVariableSystem.Exists('profile_brd')))]"
+
+									# text_single = {
+									# 	layoutpolicy_horizontal = expanding
+									# 	raw_text = "profiles_brd"
+									# }
+
+									text_label_left = {
+										margin_left = 10
+										layoutpolicy_horizontal = expanding
+										text = "profiles_brd"
+										using = Font_Size_Medium
+									}
+
+									divider_light = {
+										layoutpolicy_horizontal = expanding
+									}
+									spacer = {
+										size = { 0 5 }
+									}
+
+									button_checkbox_label = {
+										layoutpolicy_horizontal = expanding
+										blockoverride "checkbox" {
+											checked = "[GetVariableSystem.Exists('profile_brd_left')]"
+										}
+										blockoverride "text" {
+											text = "profile_left_brd"
+											max_width = 140
+										}
+										onclick = "[GetVariableSystem.Toggle('profile_brd_left')]"
+									}
+
+									button_checkbox_label = {
+										layoutpolicy_horizontal = expanding
+										blockoverride "checkbox" {
+											checked = "[Not(GetVariableSystem.Exists('profile_brd_right'))]"
+										}
+										blockoverride "text" {
+											text = "profile_right_brd"
+											max_width = 140
+										}
+										onclick = "[GetVariableSystem.Toggle('profile_brd_right')]"
+									}
+
+									button_checkbox_label = {
+										layoutpolicy_horizontal = expanding
+										blockoverride "checkbox" {
+											checked = "[GetVariableSystem.Exists('profile_brd_straight')]"
+										}
+										blockoverride "text" {
+											text = "profile_straight_brd"
+											max_width = 140
+										}
+										onclick = "[GetVariableSystem.Toggle('profile_brd_straight')]"
+									}
+								}
+							}
+						}
+
+						button_category_brd = {
+							shortcut = map_mode_3
+							onclick = "[GetVariableSystem.Toggle('backgrounds_brd')]"
+							layoutpolicy_horizontal = expanding
+							blockoverride "frame" {
+								frame = "[Select_int32( GetVariableSystem.Exists('backgrounds_brd'), '(int32)2', '(int32)1')]"
+							}
+							blockoverride "text" {
+								text = "environments_brd"
+								using = Font_Size_Medium
+							}
+
+							text_single = {
+								raw_text = "R"
+								parentanchor = right|vcenter
+								position = { -10 0 }
+								align = nobaseline
+								alpha = 0.6
+								default_format = "#clickable"
+							}
+						}
+
+						bg_button_brd = {
+							text = "default"
+							visible = "[GetVariableSystem.Exists('backgrounds_brd')]"
+							blockoverride "picture" {}
+							blockoverride "light" { onclick = "[GetVariableSystem.Set('environment', 'environment_body')]" }
+							onclick = "[GetVariableSystem.Set(AddTextIf(Not(GetVariableSystem.Exists('lighting')), 'environment'), 'environment_body')]"
+							onclick = "[GetVariableSystem.Clear('brd_bg')]"
+						}
+
+						button_category_brd = {
+							blockoverride "text" {
+								text = "dimmed_brd"
+							}
+
+							visible = "[GetVariableSystem.Exists('backgrounds_brd')]"
+							onclick = "[GetVariableSystem.Toggle('transparent_bg_brd')]"
+							enabled = "[GetVariableSystem.Exists('brd_bg')]"
+
+							blockoverride "check" {
+								checked = "[Not(GetVariableSystem.Exists('transparent_bg_brd'))]"
+							}
+						}
+
+						scrollbox = {
+							visible = "[GetVariableSystem.Exists('backgrounds_brd')]"
+							layoutpolicy_horizontal = expanding
+							layoutpolicy_vertical = expanding
+
+							blockoverride "scrollbox_background" {}
+
+							blockoverride "scrollbox_margins" {
+								margin_left = -5
+							}
+
+							blockoverride "scrollbox_content" {
+
+								using = bg_buttons_brd
+							}
+						}
+						expand = { }
+
+						vbox = {
+							# margin = { 10 0 }
+							layoutpolicy_horizontal = expanding
+							spacing = 5
+
+							button_checkbox_label = {
+								layoutpolicy_horizontal = expanding
+								onclick = "[GetVariableSystem.Toggle('auto_hide_brd')]"
+								blockoverride "text" {
+									text = "auto-hide-brd"
+								}
+								blockoverride "checkbox" {
+									checked = "[GetVariableSystem.Exists('auto_hide_brd')]"
+								}
+							}
+
+							widget = {}
+
+							button_standard = {
+								text = "RULER_DESIGNER_SAVE_RULER"
+								layoutpolicy_horizontal = expanding
+
+								enabled = "[RulerDesignerWindow.CanOpenSaveRulerWindow]"
+								tooltip = "[RulerDesignerWindow.CanOpenSaveRulerWindowTooltip]"
+
+								onclick = "[RulerDesignerWindow.OpenSaveRulerWindow]"
+							}
+
+							button_standard = {
+								text = "RULER_DESIGNER_LOAD_RULER"
+								layoutpolicy_horizontal = expanding
+
+								enabled = "[RulerDesignerWindow.CanOpenLoadRulerWindow]"
+								tooltip = "[RulerDesignerWindow.CanOpenLoadRulerWindowTooltip]"
+
+								onclick = "[RulerDesignerWindow.OpenLoadRulerWindow]"
+							}
+
+							spacer = {}
+							spacer = {}
+
+							button_standard_back = {
+								text = "BACK_LABEL"
+								onclick = "[VariableSystem.Set( 'appearance_customization_window_open', 'ethnicity_selection' )]"
+								onclick = "[VariableSystem.Set( 'appearance_customization_portrait_view', 'full_body' )]"
+								onclick = "[VariableSystem.Clear( 'appearance_customization_side_tab_open' )]"
+								onclick = "[RulerDesignerWindow.SetShowAccessories]"
+								layoutpolicy_horizontal = expanding
+								shortcut = go_back
+								shortcut = close_window
+							}
+
+							button_primary = {
+								visible = "[VariableSystem.HasValue( 'appearance_customization_window_open', 'main_customizer' )]"
+								text = RULER_DESIGNER_CUSTOMIZE_APPEARANCE_FINISH
+								onclick = "[VariableSystem.Clear( 'appearance_customization_side_tab_open' )]"
+								onclick = "[VariableSystem.Clear( 'appearance_customization_window_open' )]"
+								onclick = "[VariableSystem.Clear( 'appearance_customization_portrait_view' )]"
+								onclick = "[RulerDesignerWindow.SetShowAccessories]"
+								layoutpolicy_horizontal = expanding
+							}
+						}
+					}
+
+				}
+			}
+
+			widget = {
+				size = { 40 0 }
+			}
+
+			# portrait
+			widget = {
+				name = "portrait_view"
+				layoutpolicy_horizontal = expanding
+				layoutpolicy_vertical = expanding
+
+				widget = {
+					# need this widget to avoid the portrait going in front of controls
+					size = { 100% 100% }
+					visible = "[VariableSystem.HasValue( 'appearance_customization_portrait_view', 'face' )]"
+
+					window = {
+						visible = "[GetVariableSystem.Exists('profile_brd')]"
+						movable = yes
+						size = { 100% 100% }
+						scale = "[Select_float( Character.MakeScope.Var('zoom_head_brd').IsSet, FixedPointToFloat(Character.MakeScope.Var('zoom_head_brd').GetValue), '(float)1.0')]"
+						parentanchor = center
+
+						# using = Animation_ShowHide_Standard
+
+						state = {
+							name = "reset_position_body_brd"
+							position = { 0 0 }
+						}
+
+						icon = {
+							parentanchor = center
+							size = { 500 700 }
+							position = { 0 -80 }
+							# texture = "[RulerDesignerWindow.GetPortrait( 'environment_head', 'camera_head', PdxGetWidgetScreenSize( PdxGuiWidget.Self ) )]"
+
+							texture = "[RulerDesignerWindow.GetPortrait(Select_CString( GetVariableSystem.Exists('environment'), GetVariableSystem.Get('environment'), 'environment_head'), Concatenate('camera_', Concatenate(Concatenate(Concatenate('1_', Character.Custom('tilt_angle_brd')), '_'), Character.Custom('camera_angle_brd'))), PdxGetWidgetScreenSize(PdxGuiWidget.Self))]"
+
+							using = Animation_ShowHide_Quick
+
+							state = {
+								name = "ruler_designer_portrait_refresh"
+								using = Animation_Refresh_FadeOut
+							}
+
+							state = {
+								using = Animation_Refresh_FadeIn
+							}
+
+							modify_texture = {
+								texture = "gfx/portraits/portrait_mask_event_letter.dds"
+								blend_mode = alphamultiply
+							}
+						}
+					}
+
+					window = {
+						movable = yes
+						visible = "[Not(GetVariableSystem.Exists('profile_brd'))]"
+						size = { 100% 100% }
+						scale = "[Select_float( Character.MakeScope.Var('zoom_head_brd').IsSet, FixedPointToFloat(Character.MakeScope.Var('zoom_head_brd').GetValue), '(float)1.0')]"
+						parentanchor = center
+
+						# using = Animation_ShowHide_Standard
+
+						state = {
+							name = "reset_position_body_brd"
+							position = { 0 0 }
+						}
+
+						flowcontainer = {
+							ignoreinvisible = yes
+							parentanchor = center
+							position = { 0 -80 }
+							spacing = -250
+
+							# left profile
+
+							widget = {
+								using = Animation_ShowHide_Quick
+								size = { 500 700 }
+								visible = "[GetVariableSystem.Exists('profile_brd_left')]"
+
+								icon = {
+									visible = "[GetVariableSystem.Exists('profile_brd_straight')]"
+									size = { 500 700 }
+									# texture = "[RulerDesignerWindow.GetPortrait( 'environment_head', 'camera_ruler_designer_head_profile', PdxGetWidgetScreenSize( PdxGuiWidget.Self ) )]"
+
+									texture = "[RulerDesignerWindow.GetPortrait(Select_CString( GetVariableSystem.Exists('environment'), GetVariableSystem.Get('environment'), 'environment_head'), Concatenate('camera_', Concatenate(Concatenate(Concatenate('1_', Character.Custom('tilt_angle_brd')), '_'), '265')), PdxGetWidgetScreenSize(PdxGuiWidget.Self))]"
+
+									modify_texture = {
+										texture = "gfx/portraits/portrait_mask_event_letter.dds"
+										blend_mode = alphamultiply
+									}
+
+									modify_texture = {
+										texture = "gfx/interface/component_masks/mask_fade_horizontal_thick.dds"
+										blend_mode = alphamultiply
+										mirror = horizontal
+									}
+								}
+
+								icon = {
+									visible = "[Not(GetVariableSystem.Exists('profile_brd_straight'))]"
+									size = { 500 700 }
+									# texture = "[RulerDesignerWindow.GetPortrait( 'environment_head', 'camera_ruler_designer_head_profile', PdxGetWidgetScreenSize( PdxGuiWidget.Self ) )]"
+
+									texture = "[RulerDesignerWindow.GetPortrait(Select_CString( GetVariableSystem.Exists('environment'), GetVariableSystem.Get('environment'), 'environment_head'), Concatenate('camera_', Concatenate(Concatenate(Concatenate('1_', Character.Custom('tilt_angle_brd')), '_'), '305')), PdxGetWidgetScreenSize(PdxGuiWidget.Self))]"
+
+									modify_texture = {
+										texture = "gfx/portraits/portrait_mask_event_letter.dds"
+										blend_mode = alphamultiply
+									}
+
+									modify_texture = {
+										texture = "gfx/interface/component_masks/mask_fade_horizontal_thick.dds"
+										blend_mode = alphamultiply
+										mirror = horizontal
+									}
+								}
+							}
+
+							# center
+							icon = {
+								size = { 500 700 }
+								# texture = "[RulerDesignerWindow.GetPortrait( 'environment_head', 'camera_head', PdxGetWidgetScreenSize( PdxGuiWidget.Self ) )]"
+
+								texture = "[RulerDesignerWindow.GetPortrait(Select_CString( GetVariableSystem.Exists('environment'), GetVariableSystem.Get('environment'), 'environment_head'), Concatenate('camera_', Concatenate(Concatenate(Concatenate('1_', Character.Custom('tilt_angle_brd')), '_'), Character.Custom('camera_angle_brd'))), PdxGetWidgetScreenSize(PdxGuiWidget.Self))]"
+
+								modify_texture = {
+									texture = "gfx/portraits/portrait_mask_event_letter.dds"
+									blend_mode = alphamultiply
+								}
+							}
+
+							widget = {
+								size = { 500 700 }
+								using = Animation_ShowHide_Quick
+								visible = "[Not(GetVariableSystem.Exists('profile_brd_right'))]"
+								# default profile
+								icon = {
+									visible = "[Not(GetVariableSystem.Exists('profile_brd_straight'))]"
+									size = { 500 700 }
+									# texture = "[RulerDesignerWindow.GetPortrait( 'environment_head', 'camera_ruler_designer_head_profile', PdxGetWidgetScreenSize( PdxGuiWidget.Self ) )]"
+
+									texture = "[RulerDesignerWindow.GetPortrait(Select_CString( GetVariableSystem.Exists('environment'), GetVariableSystem.Get('environment'), 'environment_head'), Concatenate('camera_', Concatenate(Concatenate(Concatenate('1_', Character.Custom('tilt_angle_brd')), '_'), '45')), PdxGetWidgetScreenSize(PdxGuiWidget.Self))]"
+
+									modify_texture = {
+										texture = "gfx/portraits/portrait_mask_event_letter.dds"
+										blend_mode = alphamultiply
+									}
+
+									modify_texture = {
+										texture = "gfx/interface/component_masks/mask_fade_horizontal_thick.dds"
+										blend_mode = alphamultiply
+									}
+								}
+
+								# straight profile
+								icon = {
+									visible = "[GetVariableSystem.Exists('profile_brd_straight')]"
+									size = { 500 700 }
+									# texture = "[RulerDesignerWindow.GetPortrait( 'environment_head', 'camera_ruler_designer_head_profile', PdxGetWidgetScreenSize( PdxGuiWidget.Self ) )]"
+
+									texture = "[RulerDesignerWindow.GetPortrait(Select_CString( GetVariableSystem.Exists('environment'), GetVariableSystem.Get('environment'), 'environment_head'), Concatenate('camera_', Concatenate(Concatenate(Concatenate('1_', Character.Custom('tilt_angle_brd')), '_'), '85')), PdxGetWidgetScreenSize(PdxGuiWidget.Self))]"
+
+									modify_texture = {
+										texture = "gfx/portraits/portrait_mask_event_letter.dds"
+										blend_mode = alphamultiply
+									}
+
+									modify_texture = {
+										texture = "gfx/interface/component_masks/mask_fade_horizontal_thick.dds"
+										blend_mode = alphamultiply
+									}
+								}
+							}
+						}
+					}
+				}
+
+				widget = {
+					size = { 100% 100% }
+					visible = "[VariableSystem.HasValue( 'appearance_customization_portrait_view', 'full_body' )]"
+
+					portrait_body_brd = {
+						visible = "[And(And(GetVariableSystem.Exists('back_body_brd'), Not(GetVariableSystem.HasValue('portrait_brd', 'height'))), Not(VariableSystem.HasValue( 'appearance_customization_window_open', 'ethnicity_selection' )))]"
+						position = { -450 300 }
+						state = {
+							position = { -450 300 }
+							name = "reset_position_body_brd"
+						}
+						blockoverride "texture_body" {
+							texture = "[RulerDesignerWindow.GetPortrait(Select_CString( GetVariableSystem.Exists('environment'), GetVariableSystem.Get('environment'), 'environment_body'), Concatenate('camera_', Concatenate(Concatenate(Concatenate('0_', Character.Custom('tilt_angle_brd')), '_'), '180')), PdxGetWidgetScreenSize(PdxGuiWidget.Self))]"
+						}
+					}
+
+					portrait_body_brd = {
+						position = { 400 300 }
+						visible = "[And(And(GetVariableSystem.Exists('side_body_brd'), Not(GetVariableSystem.HasValue('portrait_brd', 'height'))), Not(VariableSystem.HasValue( 'appearance_customization_window_open', 'ethnicity_selection' )))]"
+						state = {
+							position = { 400 300 }
+							name = "reset_position_body_brd"
+						}
+						blockoverride "texture_body" {
+							texture = "[RulerDesignerWindow.GetPortrait(Select_CString( GetVariableSystem.Exists('environment'), GetVariableSystem.Get('environment'), 'environment_body'), Concatenate('camera_', Concatenate(Concatenate(Concatenate('0_', Character.Custom('tilt_angle_brd')), '_'), '90')), PdxGetWidgetScreenSize(PdxGuiWidget.Self))]"
+						}
+					}
+
+					portrait_body_brd = {}
+
+
+					portrait_controls_brd = {}
+				}
+
+				portrait_controls_brd = {
+					visible = "[Not(VariableSystem.HasValue( 'appearance_customization_portrait_view', 'full_body' ))]"
+					blockoverride "zoom_head" {
+						raw_text = "[Character.MakeScope.Var('zoom_head_brd').GetValue|1]x"
+					}
+					blockoverride "zoom_in_head" {
+						onclick = "[GetScriptedGui('zoom_in_head_brd').Execute( GuiScope.SetRoot( Character.MakeScope ).End )]"
+					}
+					blockoverride "zoom_out_head" {
+						onclick = "[GetScriptedGui('zoom_out_head_brd').Execute( GuiScope.SetRoot( Character.MakeScope ).End )]"
+					}
+					blockoverride "reset_zoom" {
+						onclick = "[GetScriptedGui('reset_zoom_head_brd').Execute( GuiScope.SetRoot( Character.MakeScope ).End )]"
+					}
+				}
+
+				widget = {
+					parentanchor = bottom|hcenter
+					visible = "[Not(GetVariableSystem.Exists('hide_controls_brd'))]"
+
+					hbox = {
+						set_parent_size_to_minimum = yes
+						spacing = 15
+
+						button_standard = {
+							size = { 250 32 }
+							onclick = "[RulerDesignerWindow.RandomizeEthnicityDnaFromCurrent]"
+							onclick = "[PdxGuiTriggerAllAnimations('ruler_designer_portrait_refresh')]"
+							# visible = "[Not(VariableSystem.HasValue( 'appearance_customization_window_open', 'ethnicity_selection' ))]"
+							text = "RULER_DESIGNER_REGENERATE_PORTRAIT"
+
+							button_randomize = {
+								parentanchor = vcenter
+								position = { 7 0 }
+							}
+						}
+
+						hbox = {
+							name = "copy_paste_dna"
+							spacing = 20
+							margin = { 10 5 }
+
+							background = { using = Background_Area }
+
+							hbox = {
+								layoutpolicy_horizontal = expanding
+								spacing = 5
+
+
+								text_single = {
+									layoutpolicy_horizontal = expanding
+
+									text = "RULER_DESIGNER_SAVE_DNA_TO_CLIPBOARD"
+								}
+
+								button_copy = {
+									onclick = "[RulerDesignerWindow.SaveDnaToClipboard]"
+								}
+
+								tooltip = RULER_DESIGNER_SAVE_DNA_TO_CLIPBOARD_TOOLTIP
+							}
+
+							hbox = {
+								layoutpolicy_horizontal = expanding
+								spacing = 5
+
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									text = "RULER_DESIGNER_LOAD_DNA_FROM_CLIPBOARD"
+								}
+
+								button_paste = {
+									onclick = "[RulerDesignerWindow.LoadDnaFromClipboard]"
+									onclick = "[PdxGuiTriggerAllAnimations('ruler_designer_portrait_refresh')]"
+								}
+
+								tooltip = RULER_DESIGNER_LOAD_DNA_FROM_CLIPBOARD_TOOLTIP
+							}
+						}
+					}
+				}
+			}
+
+			# right side
+			widget = {
+				layoutpolicy_vertical = expanding
+				size = { 560 0 }
+
+				using = background_no_edge_bdr
+
+				hbox = {
+					layoutpolicy_vertical = expanding
+					visible = "[VariableSystem.HasValue( 'appearance_customization_window_open', 'main_customizer' )]"
+
+					divider_light = {
+						layoutpolicy_vertical = expanding
+					}
+
+					vbox = {
+						# margin_top = 5
+						name = "gene_editor"
+						layoutpolicy_vertical = expanding
+						layoutpolicy_horizontal = expanding
+
+						using = Animation_ShowHide_Quick
+
+						hbox = {
+							layoutpolicy_horizontal = expanding
+							margin_left = 10
+							margin_right = 20
+							margin_bottom = 5
+
+							text_label_left = {
+								layoutpolicy_horizontal = expanding
+								text = "[Localize( Concatenate( 'RULER_DESIGNER_GROUP_' , VariableSystem.Get( 'appearance_customization_side_tab_open' ) ) )]"
+								using = Font_Size_Medium
+
+								button_checkbox_label = {
+									position = { 270 0 }
+									onclick = "[GetVariableSystem.Toggle('mousewheel_brd')]"
+
+									blockoverride "text"
+									{
+										text = "mousewheel_sliders_brd"
+									}
+									blockoverride "checkbox"
+									{
+										checked = "[GetVariableSystem.Exists('mousewheel_brd')]"
+									}
+								}
+							}
+
+						}
+
+						# divider_light = {
+						# 	layoutpolicy_horizontal = expanding
+						# }
+
+						scrollbox = {
+							name = "gene_sliders"
+							layoutpolicy_vertical = expanding
+							layoutpolicy_horizontal = expanding
+							minimumsize = { 200 0 }
+
+							blockoverride "scrollbox_margins" {
+								margin_left = 10
+								margin_right = 20
+								margin_top = 5
+							}
+
+							blockoverride "scrollbox_background"
+							{
+							}
+
+							blockoverride "scrollbox_background_fade"
+							{
+							}
+
+							blockoverride "scrollbox_content"
+							{
+								vbox = {
+									layoutpolicy_horizontal = expanding
+
+									text_multi = {
+										text = "RULER_DESIGNER_CLIPPING_NOTE"
+										default_format = "#weak"
+										margin_bottom = 20
+										autoresize = yes
+										max_width = 480
+									}
+
+
+									vbox = {
+										datamodel = "[RulerDesignerWindow.GetGenesByGroup( VariableSystem.Get( 'appearance_customization_side_tab_open' ) )]"
+										layoutpolicy_horizontal = expanding
+										spacing = 3
+
+										item = {
+											hbox = {
+												name = "gene_entry"
+												layoutpolicy_horizontal = expanding
+
+												vbox = {
+													layoutpolicy_vertical = expanding
+
+													text_single = {
+														layoutpolicy_horizontal = expanding
+														min_width = 210
+														max_width = 210
+														multiline = yes
+														align = nobaseline
+
+														raw_text = "[GeneCategory.GetName]"
+
+														background = {
+										            margin = { 15 3 }
+
+										            texture = "gfx/interface/component_tiles/tile_title_bg_01.dds"
+										            spriteType = Corneredtiled
+										            spriteborder = { 40 8 }
+										            texture_density = 2
+
+										            modify_texture = {
+										                name = "mask"
+										                texture = "gfx/interface/component_masks/mask_fade_horizontal.dds"
+										                spriteType = Corneredstretched
+										                spriteborder = { 0 0 }
+										                blend_mode = alphamultiply
+										                mirror = horizontal
+										            }
+										        }
+													}
+
+													expand = { }
+												}
+
+												widget = {
+													size = { 10 0 }
+												}
+
+
+												vbox = {
+													layoutpolicy_vertical = expanding
+													layoutpolicy_horizontal = expanding
+													spacing = 5
+													margin_bottom = 10
+
+													visible = "[GeneCategory.IsType( 'morph' )]"
+
+													# background = {
+													# 	visible = "[GreaterThan_int32( GetDataModelSize( RulerDesignerWindow.GetMorphTemplatesByGene( GeneCategory.Self ) ), '(int32)1' )]"
+													# 	using = Background_Frame
+													# }
+
+
+													# text_single = {
+													# 	raw_text = "[Multiply_float( Add_float( Character.CalcMorphGeneAttribute('gene_height', 'body_height'), '(float)1' ), FixedPointToFloat(GuiScope.SetRoot(Character.MakeScope).ScriptValue('sex_height')) )|0v] [Localize('cm')]"
+													# }
+
+													# text_single = {
+													# 	raw_text = "([Multiply_float( Add_float( Character.CalcMorphGeneAttribute('gene_height', 'body_height'), '(float)1' ), FixedPointToFloat(GuiScope.SetRoot(Character.MakeScope).ScriptValue('height_feet')) )|1v] [Localize('feet')])"
+													# }
+
+													# RulerDesignerWindow.IsFemale
+													# RulerDesignerWindow.HasTrait( Arg0 )
+													# RulerDesignerWindow.GetAge
+
+													hbox = {
+														layoutpolicy_horizontal = expanding
+
+														text_single = {
+															text = "[RulerDesignerWindow.GetMorphGeneValue( GeneCategory.Self )|0]"
+															align = right|nobaseline
+															min_width = 35
+															max_width = 35
+															margin_right = 5
+															visible = "[RulerDesignerWindow.ShowMorphGeneSlider( GeneCategory.Self )]"
+														}
+
+														scrollbar_morph_gene = {
+															name = "scrollbar_morph_gene"
+															visible = "[RulerDesignerWindow.ShowMorphGeneSlider( GeneCategory.Self )]"
+														}
+													}
+
+
+													text_single = {
+														name = "morph_gene_female_only"
+														text = RULER_DESIGNER_GENE_ONLY_WOMEN
+														visible = "[RulerDesignerWindow.IsOnlyVisibleFemale( GeneCategory.Self )]"
+														align = left
+														layoutpolicy_horizontal = expanding
+														default_format = "#weak"
+													}
+
+													expand = { }
+
+													vbox_morph_gene_template_buttons = {
+														name = "gene_templates"
+														visible = "[GreaterThan_int32( GetDataModelSize( RulerDesignerWindow.GetMorphTemplatesByGene( GeneCategory.Self ) ), '(int32)1' )]"
+														datamodel = "[RulerDesignerWindow.GetMorphTemplatesByGene( GeneCategory.Self )]"
+														spacing = 10
+													}
+												}
+
+												vbox_accessory_gene_buttons = {
+													name = "vbox_accessory_gene_buttons"
+													visible = "[GeneCategory.IsType( 'accessory' )]"
+													datamodel = "[RulerDesignerWindow.GetAccessoryModifiers( GeneCategory.Self )]"
+													layoutpolicy_horizontal = expanding
+													margin_top = 5
+												}
+
+												vbox_color_picker = {
+													name = "vbox_color_picker"
+													datacontext = "[RulerDesignerWindow.AccessColorPicker( GeneCategory.Self )]"
+													visible = "[GeneCategory.IsType( 'color' )]"
+												}
+
+												expand = { }
+											}
+										}
+									}
+								}
+							}
+						}
+
+						expand = { }
+					}
+				}
+			}
+		}
+
+		vbox = {
+			name = "coat_of_arms_page"
+
+			layoutpolicy_horizontal = expanding
+			layoutpolicy_vertical = expanding
+			margin = { 10 0 }
+			margin_top = 15
+			spacing = 10
+
+			visible = "[VariableSystem.Exists( 'coat_of_arms_customization_open' )]"
+
+			using = Animation_ShowHide_Quick
+
+			state = {
+				name = _show
+				using = CoatOfArmsDesignerAnimationResetState
+			}
+
+			hbox = {
+				layoutpolicy_horizontal = expanding
+				layoutpolicy_vertical = expanding
+
+				hbox = {
+					layoutpolicy_vertical = expanding
+					visible = "[Not(GetVariableSystem.Exists('hide_input'))]"
+
+					vbox_dynasty_edit_fields = {
+						name = "dynasty_detail_input"
+						visible = "[VariableSystem.HasValue( 'coat_of_arms_customization_open', 'dynasty' )]"
+						layoutpolicy_vertical = expanding
+						margin_right = 10
+						margin_left = 10
+					}
+
+					vbox_title_edit_fields = {
+						name = "title_detail_input"
+						visible = "[VariableSystem.HasValue( 'coat_of_arms_customization_open', 'title' )]"
+						layoutpolicy_vertical = expanding
+
+					}
+				}
+
+				divider_light = {
+					layoutpolicy_vertical = expanding
+				}
+
+				vbox_coa_designer = {
+					datacontext = "[RulerDesignerWindow.GetCoatOfArmsDesigner]"
+					layoutpolicy_horizontal = expanding
+					layoutpolicy_vertical = expanding
+				}
+			}
+
+			hbox = {
+				name = "finish_buttons"
+				layoutpolicy_horizontal = expanding
+				margin_top = 20
+				margin_bottom = 15
+
+				button_edit_text = {
+					onclick = "[GetVariableSystem.Toggle('hide_input')]"
+					visible = "[And(GetVariableSystem.Exists('hide_input'), VariableSystem.Exists( 'coat_of_arms_customization_open' ))]"
+				}
+				expand = {}
+
+				background = {
+					using = Background_Area
+					margin = { 15 0 }
+				}
+
+				button_primary = {
+					name = "title_finish_button"
+					visible = "[VariableSystem.HasValue( 'coat_of_arms_customization_open', 'title' )]"
+
+					text = "FINISH"
+					tooltip = "RULER_DESIGNER_FINISH_CUSTOMIZE_TITLE"
+					onclick = "[RulerDesignerWindow.FinishTitleCoatOfArmsDesigner]"
+					onclick = "[VariableSystem.Clear( 'coat_of_arms_customization_open' )]"
+
+					size = { 210 40 }
+				}
+
+				button_primary = {
+					name = "dynasty_finish_button"
+					visible = "[VariableSystem.HasValue( 'coat_of_arms_customization_open', 'dynasty' )]"
+
+					text = "FINISH"
+					tooltip = "RULER_DESIGNER_FINISH_CUSTOMIZE_DYNASTY"
+					onclick = "[RulerDesignerWindow.FinishDynastyCoatOfArmsDesigner]"
+					onclick = "[VariableSystem.Clear( 'coat_of_arms_customization_open' )]"
+
+					size = { 210 40 }
+				}
+
+				expand = {}
+			}
+		}
+
+	}
+
+	button_standard_hover = {
+		position = { 520 0 }
+		raw_text = "Errors: [NumberOrErrors], FPS: [GetCurrentFps|0]"
+		onclick = "[ClearErrorLog]"
+		shortcut = undo
+		align = left
+		visible = "[Not(InReleaseMode)]"
+	}
+}
+
+types ruler_designer_types
+{
+	type achievements_availability_box = hbox {
+		name = "achievements_availability_box"
+		layoutpolicy_horizontal = expanding
+		spacing = 10
+
+		achievements_enabled_icon = {
+			block "achievements_enabled_visible" { }
+		}
+		achievements_disabled_icon = {
+			block "achievements_disabled_visible" { }
+		}
+
+		vbox = {
+			block "achievements_title_visible" { }
+
+			text_single = {
+				text = RULER_DESIGNER_ACHIEVEMENTS_LABEL
+			}
+			text_single = {
+				text = RULER_DESIGNER_ACHIEVEMENTS_AVAILABLE
+				block "achievements_enabled_visible" { }
+				default_format = "#P"
+			}
+			text_single = {
+				text = RULER_DESIGNER_ACHIEVEMENTS_NOT_AVAILABLE
+				block "achievements_disabled_visible" { }
+				default_format = "#N"
+			}
+		}
+
+		expand = { }
+
+		text_multi = {
+			name = "achievements_info"
+			text = RULER_DESIGNER_ACHIEVEMENTS_INFO
+			block "achievements_info_visible" { }
+			default_format = "#weak"
+			autoresize = yes
+			max_width = 300
+		}
+	}
+
+	# type vbox_header_with_line = vbox
+	# {
+	# 	vbox = {
+	# 		layoutpolicy_horizontal = expanding
+	# 		spacing = 3
+
+	# 		hbox = {
+	# 			layoutpolicy_horizontal = expanding
+	# 			margin_left = 3
+
+	# 			text_label_left = {
+	# 				block "header_label" { }
+	# 				layoutpolicy_horizontal = expanding
+	# 				using = Font_Size_Medium
+	# 				block "autoresize"
+	# 				{
+	# 					autoresize = no
+	# 				}
+	# 			}
+
+	# 			expand = { }
+	# 		}
+
+	# 		divider_light = {
+	# 			layoutpolicy_horizontal = expanding
+	# 		}
+	# 	}
+	# }
+
+	# type vbox_labelled_entry = vbox
+	# {
+
+	# 	vbox_header_with_line = {
+	# 		layoutpolicy_horizontal = expanding
+	# 	}
+
+	# 	hbox = {
+	# 		layoutpolicy_horizontal = expanding
+	# 		margin_left = 5
+
+	# 		hbox = {
+	# 			layoutpolicy_horizontal = expanding
+	# 			spacing = 10
+	# 			margin_top = 3
+
+	# 			block "tooltip_area"
+	# 			{
+
+	# 			}
+
+	# 			block "item_icon_entry"
+	# 			{
+	# 				icon = {
+	# 					name = "item_icon"
+	# 					size = { 60 60 }
+	# 					block "item_icon_texture"
+	# 					{
+	# 						texture = "gfx/interface/_debug/pink_square_chill.png"
+	# 					}
+	# 				}
+	# 			}
+
+	# 			vbox = {
+	# 				layoutpolicy_horizontal = expanding
+
+	# 				block "item_data"
+	# 				{
+	# 					hbox = {
+	# 						layoutpolicy_horizontal = expanding
+
+	# 						text_single = {
+	# 							name = "item_name"
+	# 							#layoutpolicy_horizontal = expanding
+	# 							default_format = "#bold"
+	# 							margin_right = 5
+	# 							margin_bottom = 5
+	# 							#autoresize = no
+
+	# 							block "item_name_label"
+	# 							{
+	# 								raw_text = "#D FILL ME IN#!"
+	# 							}
+	# 						}
+
+	# 						block "item_button"
+	# 						{
+	# 							button_replace = {
+	# 								name = "reset"
+
+	# 								block "reset_button" { }
+	# 							}
+	# 						}
+
+	# 						expand = { }
+	# 					}
+
+	# 					text_single = {
+	# 						name = "item_info"
+	# 						layoutpolicy_horizontal = expanding
+	# 						default_format = "#high"
+	# 						autoresize = no
+	# 						using = Font_Size_Medium
+	# 						margin_bottom = 5
+
+	# 						block "item_info_text"
+	# 						{
+	# 							raw_text = "#D FILL ME IN#!"
+	# 						}
+	# 					}
+	# 				}
+	# 			}
+	# 		}
+
+	# 		expand = { }
+
+	# 		# block "item_button"
+	# 		# {
+	# 		# 	button_replace = {
+	# 		# 		name = "reset"
+
+	# 		# 		block "reset_button" { }
+	# 		# 	}
+	# 		# }
+	# 	}
+	# }
+
+	type scrollbar_value_slider = scrollbar
+	{
+		direction = horizontal
+		size = { 270 20 }
+		wheelstep = "[Select_float( GetVariableSystem.Exists('mousewheel_brd') , '(float)1', '(float)0' )]"
+
+		track = {
+			button = {
+				texture ="gfx/interface/progressbars/progress_black.dds"
+				size = { 20 14 }
+				spriteType = Corneredtiled
+				spriteborder = { 6 6 }
+				alwaystransparent = yes
+
+				icon = {
+					size = { 98% 12 }
+					parentanchor = center
+
+					texture = "gfx/interface/colors/gold.dds"
+					alpha = 0.07
+					visible = "[GetVariableSystem.Exists('mousewheel_brd')]"
+				}
+
+				icon = {
+					size = { 100% 100% }
+
+					texture ="gfx/interface/progressbars/progress_black.dds"
+
+					modify_texture = {
+							name = "mask"
+							texture = "gfx/interface/component_masks/mask_fade_horizontal_middle_thick.dds"
+							spriteType = Corneredstretched
+							spriteborder = { 0 0 }
+							blend_mode = alphamultiply
+					}
+				}
+
+				icon = {
+					texture = "gfx/interface/colors/blue.dds"
+					size = { 2 12 }
+					alpha = 0.3
+					parentanchor = center
+				}
+			}
+
+		}
+
+		slider = {
+			button = {
+				texture = "gfx/interface/scrollbars/scrollbar_slider.dds"
+				spriteType = Corneredtiled
+				spriteborder = { 0 3 }
+				framesize = { 12 40 }
+				size = { 12 20 }
+				icon = {
+					visible = "[GetVariableSystem.Exists('mousewheel_brd')]"
+					parentanchor = hcenter
+					position = { 0 4 }
+					texture = "gfx/interface/colors/gold.dds"
+					size = { 2 6 }
+					alpha = 0.7
+				}
+			}
+		}
+
+		dec_button = {
+			using = SettingsValueDecButton
+		}
+
+		inc_button = {
+			using = SettingsValueIncButton
+		}
+	}
+
+	type scrollbar_age = scrollbar_value_slider
+	{
+		min = 0
+		max = 120
+
+		onvaluechanged = "[RulerDesignerWindow.OnAgeChange( PdxGuiWidget.Self )]"
+		value = "[IntToFloat( RulerDesignerWindow.GetAge )]"
+	}
+
+	type scrollbar_weight = scrollbar_value_slider
+	{
+		min = -100
+		max = 100
+
+		onvaluechanged = "[RulerDesignerWindow.OnWeightChange( PdxGuiWidget.Self )]"
+		value = "[IntToFloat( RulerDesignerWindow.GetWeight )]"
+	}
+
+	type scrollbar_morph_gene = scrollbar_value_slider
+	{
+		min = 0 # You should probably not change these min and max values, the code relies on them being uint8s
+		max = 255
+
+		onvaluechanged = "[RulerDesignerWindow.OnMorphGeneChange( GeneCategory.Self, PdxGuiWidget.Self )]"
+		value = "[RulerDesignerWindow.GetMorphGeneValue( GeneCategory.Self )]"
+
+
+	}
+
+	type vbox_morph_gene_template_buttons = vbox
+	{
+		spacing = 3
+
+		item = {
+			button_standard = {
+				name = "template_button"
+				text = "[GeneTemplate.GetName]"
+				onclick = "[RulerDesignerWindow.OnMorphTemplateSelected( GeneTemplate.Self ) ]"
+				down = "[RulerDesignerWindow.HasMorphTemplateSelected( GeneTemplate.Self ) ]"
+			}
+		}
+	}
+
+	type vbox_accessory_gene_buttons = vbox
+	{
+		spacing = 3
+
+		item = {
+			button_tertiary_push = {
+				name = "accessory_button"
+				visible = "[RulerDesignerWindow.IsModifierValid( RulerDesignerPortraitModifier.Self )]"
+				layoutpolicy_horizontal = expanding
+
+				text = "[RulerDesignerPortraitModifier.GetName]"
+				onclick = "[RulerDesignerWindow.OnPortraitModifierSelected( GeneCategory.Self, RulerDesignerPortraitModifier.Self )]"
+				down = "[RulerDesignerWindow.IsPortraitModifierSelected( GeneCategory.Self, RulerDesignerPortraitModifier.Self )]"
+			}
+		}
+	}
+
+	type vbox_color_picker = vbox
+	{
+		margin = { 10 10 }
+
+		background = {
+			using = Background_Area_Dark
+			alpha = 0.7
+		}
+
+		background = {
+			using = Background_Frame
+			alpha = 0.7
+			margin = { -5 -5 }
+		}
+
+		button_normal = {
+			size = { 256 256 }
+			onclick = "[ColorGenePicker.OnClick( PdxGuiWidget.Self )]"
+			texture = "[ColorGenePicker.GetTexture]"
+			effectname = "NoHighlight"
+
+			icon = {
+				name = "current"
+				size = { 15 15 }
+				texture = "gfx/interface/icons/color_picker.dds"
+				position = "[Subtract_CVector2f( ColorGenePicker.GetPosition, '(CVector2f)8,8' )]"
+			}
+		}
+
+		text_multi = {
+			text = "[ColorGenePicker.GetPositionInfo]"
+			default_format = "#D"
+			autoresize = yes
+			max_width = 250
+			visible = "[InDebugMode]"
+		}
+	}
+
+	type vbox_trait_selection_content = vbox
+	{
+		datacontext = "[GetNullCharacter]"
+		spacing = 3
+
+		item = {
+			button_standard_hover = {
+				name = "trait_item"
+				visible = "[And( Trait.ShowInRulerDesigner, Not( RulerDesignerWindow.HasTrait( Trait.Self ) ) )]"
+				enabled = "[RulerDesignerWindow.CanPickTrait( Trait.Self )]"
+				layoutpolicy_horizontal = expanding
+				size = { 0 50 }
+				onclick = "[RulerDesignerWindow.FinishTraitEditing( Trait.Self )]"
+				onclick = "[VariableSystem.ClearIf( 'trait_select_window_open', VariableSystem.Exists( 'trait_select_window_replace' ) )]"
+				onclick = "[VariableSystem.Clear( 'trait_select_window_replace' )]"
+				tooltip = "[RulerDesignerWindow.CanPickTraitDesc( Trait.Self )]"
+
+				hbox = {
+					margin = { 5 0 }
+					margin_right = 10
+					spacing = 10
+
+					icon_trait = {
+						blockoverride "faith_context"
+						{
+							datacontext = "[RulerDesignerWindow.GetFaith]"
+						}
+						blockoverride "tooltip_placement"
+						{
+							using = tooltip_ws
+						}
+					}
+
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = "[Trait.GetNameNoTooltip( Character.Self )]"
+						default_format = "#clickable"
+					}
+
+					text_single = {
+						name = "point_cost"
+						text = "[Trait.GetRulerDesignerCost|=]"
+						align = nobaseline
+					}
+				}
+			}
+		}
+	}
+
+	type button_trait_slot_entry = button_trait
+	{
+		datacontext = "[TraitSlot.GetTrait]"
+
+		blockoverride "faith_context"
+		{
+			datacontext = "[RulerDesignerWindow.GetFaith]"
+		}
+
+		block "button_trait_onclick"
+		{
+		}
+
+		state = {
+			name = "_mouse_enter"
+			on_start = "[PdxGuiWidget.FindChild('remove_icon').TriggerAnimation('show')]"
+		}
+
+		state = {
+			name = "_mouse_leave"
+			on_start = "[PdxGuiWidget.FindChild('remove_icon').TriggerAnimation('hide')]"
+		}
+
+		button_close = {
+			name = "remove_icon"
+			parentanchor = center
+			alwaystransparent = yes
+			alpha = 0
+
+			state = {
+				name = "show"
+				using = Animation_FadeIn_Quick
+				duration = 0.05
+			}
+
+			state = {
+				name = "hide"
+				alpha = 0
+				using = Animation_FadeOut_Quick
+			}
+
+			background = {
+				texture = "gfx/interface/component_masks/mask_fade_circle.dds"
+				color = { 0.18 0.18 0.18 0.8 }
+				margin = {20 20}
+			}
+		}
+
+		onclick = "[TraitSlotArray.RemoveTrait( TraitSlot.Self )]"
+		button_ignore = none
+	}
+
+	type hbox_trait_slot = hbox
+	{
+		spacing = -20
+		hbox = {
+			margin_bottom = 4
+
+			text_label_left = {
+				min_width = 160
+				max_width = 160
+				block "trait_slots_header_text"
+				{
+					raw_text = "FILL ME IN"
+					default_format = "#D"
+				}
+			}
+		}
+
+		hbox = {
+			block "trait_list"
+			{
+				hbox = {
+					name = "current_traits_less_than_equal_6"
+					layoutpolicy_horizontal = expanding
+
+					size = { 300 50 }
+
+					datamodel = "[TraitSlotArray.AccessSlots]"
+					visible = "[And( DataModelHasItems( TraitSlotArray.AccessSlots ), LessThanOrEqualTo_int32( GetDataModelSize( TraitSlotArray.AccessSlots ), '(int32)6' ) )]"
+
+					item = {
+						container = {
+							button_trait_slot_entry = { }
+						}
+					}
+				}
+				overlappingitembox = {
+					name = "current_traits_more_than_6"
+					layoutpolicy_horizontal = expanding
+
+					size = { 300 50 }
+
+					datamodel = "[TraitSlotArray.AccessSlots]"
+					visible = "[And( DataModelHasItems( TraitSlotArray.AccessSlots ), GreaterThan_int32( GetDataModelSize( TraitSlotArray.AccessSlots ), '(int32)6' ) )]"
+
+					item = {
+						container = {
+							button_trait_slot_entry = { }
+						}
+					}
+				}
+			}
+
+			block "plus_button"
+			{
+				widget = {
+					size = { 50 50 }
+					name = "add_trait_slot"
+
+					button_plus = {
+						name = "add_trait_button"
+						parentanchor = center
+
+						tooltip = "RULER_DESIGNER_ADD_TRAIT_SLOT_TOOLTIP"
+
+						onclick = "[TraitSlotArray.StartEditing]"
+
+						block "plus_onclick"
+						{
+							onclick = "[VariableSystem.Set( 'trait_select_window_open', 'true' )]"
+						}
+					}
+				}
+			}
+		}
+
+		expand = { }
+	}
+
+	type vbox_dynasty_edit_fields = vbox
+	{
+		minimumsize = { 350 -1 }
+		spacing = 8
+
+		vbox = {
+			layoutpolicy_horizontal = expanding
+			spacing = 10
+
+			hbox = {
+				layoutpolicy_horizontal = expanding
+
+				text_label_left = {
+					layoutpolicy_horizontal = expanding
+					text = "CUSTOMIZATION_NAMING_HEADER"
+					using = Font_Size_Medium
+				}
+
+				button_back = {
+					onclick = "[GetVariableSystem.Toggle('hide_input')]"
+				}
+			}
+
+			blockoverride "header_label"
+			{
+				text = "CUSTOMIZATION_NAMING_HEADER"
+			}
+
+			editbox_standard_with_label = {
+				name = "name_field"
+				layoutpolicy_horizontal = expanding
+
+				blockoverride "editbox_label"
+				{
+					text = "HOUSE_NAME_FIELD"
+				}
+
+				blockoverride "editbox_properties"
+				{
+					text = "[RulerDesignerWindow.GetDynastyName]"
+					ontextedited = "[RulerDesignerWindow.OnEditDynastyName]"
+					maxcharacters = 40
+				}
+
+				blockoverride "editbox_right_side"
+				{
+					spacing = 5
+
+					button_randomize = {
+						onclick = "[RulerDesignerWindow.RandomizeDynastyName]"
+						tooltip = RULER_DESIGNER_RANDOMIZE_DYNASTY_NAME
+						using = tooltip_se
+					}
+				}
+			}
+
+			editbox_standard_with_label = {
+				name = "motto_field"
+				layoutpolicy_horizontal = expanding
+				minimumsize = { -1 140 }
+
+				blockoverride "editbox_label"
+				{
+					text = "HOUSE_MOTTO_FIELD"
+				}
+
+				blockoverride "editbox_properties"
+				{
+					ontextedited = "[RulerDesignerWindow.OnEditHouseMotto]"
+					using = house_motto_editbox_length
+				}
+
+				tooltip = RULER_DESIGNER_HOUSE_MOTTO_TT
+				tooltip_visible = "[Not( RulerDesignerWindow.HasHouseMotto )]"
+			}
+		}
+
+		expand = { }
+	}
+
+	type vbox_title_edit_fields = vbox
+	{
+		minimumsize = { 300 -1 }
+		spacing = 10
+
+		vbox = {
+			layoutpolicy_horizontal = expanding
+			margin = { 10 5 }
+			margin_bottom = 8
+			spacing = 10
+
+			hbox = {
+				layoutpolicy_horizontal = expanding
+
+				text_label_left = {
+					layoutpolicy_horizontal = expanding
+					text = "CUSTOMIZATION_NAMING_HEADER"
+					using = Font_Size_Medium
+				}
+
+				button_back = {
+					onclick = "[GetVariableSystem.Toggle('hide_input')]"
+				}
+			}
+
+			blockoverride "header_label"
+			{
+				text = "CUSTOMIZATION_NAMING_HEADER"
+			}
+
+			editbox_standard_with_label = {
+				layoutpolicy_horizontal = expanding
+
+				blockoverride "editbox_label"
+				{
+					text = "TITLE_NAME_FIELD"
+				}
+
+				blockoverride "editbox_properties"
+				{
+					text = "[RulerDesignerWindow.GetTitleName]"
+					ontextedited = "[RulerDesignerWindow.OnEditTitleName]"
+				}
+			}
+
+			button_checkbox_label = {
+				name = "definite_form"
+				layoutpolicy_horizontal = expanding
+
+				tooltip = "TITLE_CUSTOMIZATION_DEFINITE_FORM_TOOLTIP"
+				onclick = "[RulerDesignerWindow.ToggleTitleUsesDefiniteForm]"
+
+				blockoverride "text"
+				{
+					text = "TITLE_CUSTOMIZATION_DEFINITE_FORM"
+				}
+				blockoverride "checkbox"
+				{
+					checked = "[RulerDesignerWindow.TitleUsesDefiniteForm]"
+				}
+			}
+
+			editbox_standard_with_label = {
+				layoutpolicy_horizontal = expanding
+
+				blockoverride "editbox_label"
+				{
+					text = "TITLE_ADJECTIVE_FIELD"
+				}
+
+				blockoverride "editbox_properties"
+				{
+					text = "[RulerDesignerWindow.GetTitleAdjective]"
+					ontextedited = "[RulerDesignerWindow.OnEditTitleAdjective]"
+				}
+			}
+		}
+
+		vbox = {
+			layoutpolicy_horizontal = expanding
+
+			spacing = 10
+			margin = { 10 5 }
+			margin_bottom = 8
+
+			text_single = {
+				layoutpolicy_horizontal = expanding
+				text = "MAP_COLOR_HEADER"
+			}
+
+			colorpicker_simple = {
+				layoutpolicy_horizontal = expanding
+				color = "[RulerDesignerWindow.GetTitleMapColor]"
+				oncoloredited = "[RulerDesignerWindow.SetTitleMapColor]"
+			}
+		}
+
+		expand = { }
+	}
+}
+
+template Button_Close_Select_Faith
+{
+	onclick = "[VariableSystem.Clear( 'faith_select_window_open' )]"
+}
+
+template Button_Select_Faith
+{
+	onclick = "[RulerDesignerWindow.SetFaith( Faith.Self )]"
+	using = Button_Close_Select_Faith
+}
+
+template Button_Close_Select_Culture
+{
+	onclick = "[VariableSystem.Clear( 'culture_select_window_open' )]"
+}
+
+template Button_Select_Culture
+{
+	onclick = "[RulerDesignerWindow.SetCulture( CultureTemplate.Self )]"
+	using = Button_Close_Select_Culture
+}
+
+template ProgressBar_Achievements
+{
+	size = { 200 20 }
+	value = "[CurrentAndMaxToProgressbarValueInt32( RulerDesignerWindow.GetPointsUsed, GetDefine( 'NRulerDesigner', 'IRONMAN_POINT_MAX' ) )]"
+}
+
+
+types BarbershopTypes {
+	type button_silent = button {
+		clicksound = ""
+	}
+	type rotate_camera_brd = button {
+		button_ignore = none
+		texture = "gfx/interface/buttons/button_standard.dds"
+		spriteType = Corneredtiled
+		spriteborder = { 4 4 }
+		framesize = { 252 80 }
+		size = { 35 35 }
+
+		button_icon = {
+			alwaystransparent = yes
+			size = { 20 20 }
+			parentanchor = center
+
+			block "icon" {
+				texture = "gfx/interface/icons/flat_icons/window_back.dds"
+			}
+		}
+		using = tooltip_ne
+	}
+
+	type portrait_controls_brd = widget {
+		datacontext = "[RulerDesignerWindow.GetCharacterToOverwrite]"
+		parentanchor = hcenter|bottom
+		allow_outside = yes
+		size = { 0 0 }
+
+		flowcontainer = {
+			ignoreinvisible = yes
+			spacing = 10
+			direction = vertical
+			parentanchor = hcenter|bottom
+
+			background = {
+				using = Background_Portrait_Glow
+				margin = { 100 300  }
+				margin_top = 100
+				using = Color_Black
+				alpha =  0.5
+				# visible = "[Or(GetVariableSystem.HasValue('appearance_customization_portrait_view', 'full_body' ), Not(GetVariableSystem.Exists('appearance_customization_portrait_view')))]"
+			}
+
+			state = {
+				trigger_when = "[GetVariableSystem.Exists('hide_controls_brd')]"
+				name = "hide_controls_brd"
+				position = { 0 500 }
+			}
+			state = {
+				trigger_when = "[Not(GetVariableSystem.Exists('hide_controls_brd'))]"
+				name = "restore_controls_brd"
+				block "big_screen" {
+					position = { 0 -35 }
+				}
+			}
+
+			rotate_camera_brd = {
+				visible = "[Or(Not(GetVariableSystem.HasValue('portrait_brd', 'height')), Not(GetVariableSystem.HasValue('appearance_customization_portrait_view', 'full_body' )))]"
+				parentanchor = hcenter
+				onclick = "[GetScriptedGui('rotate_portrait_up_brd').Execute( GuiScope.SetRoot( Character.MakeScope ).End )]"
+
+				onrightclick = "[GetScriptedGui('rotate_portrait_up_brd').Execute( GuiScope.SetRoot( Character.MakeScope ).End )]"
+				onrightclick = "[GetScriptedGui('rotate_portrait_up_brd').Execute( GuiScope.SetRoot( Character.MakeScope ).End )]"
+				onrightclick = "[GetScriptedGui('rotate_portrait_up_brd').Execute( GuiScope.SetRoot( Character.MakeScope ).End )]"
+
+				blockoverride "icon" {
+					texture = "gfx/brd_up.dds"
+					position = { 0 -1 }
+				}
+			}
+
+			flowcontainer = {
+				parentanchor = hcenter
+				spacing = 10
+				allow_outside = yes
+				visible = "[Or(Not(GetVariableSystem.HasValue('portrait_brd', 'height')), Not(GetVariableSystem.HasValue('appearance_customization_portrait_view', 'full_body' )))]"
+
+				text_single = {
+					raw_text = "[Character.MakeScope.Var('rotation_brd').GetValue|0]°, [Character.MakeScope.Var('tilt_brd').GetValue|0]°"
+					using = Font_Size_Medium
+					size = { 100 26 }
+					autoresize = no
+					default_format = "#v;glow_color:{0.0,0.0,0.0,1.0}"
+					alpha = 0.85
+					align = right
+
+					background = {
+						margin = { 20 0 }
+						margin_left = 0
+						margin_bottom = 10
+						alpha = 0.65
+
+            texture = "gfx/interface/component_tiles/tile_title_bg_01.dds"
+            spriteType = Corneredtiled
+            spriteborder = { 40 8 }
+            texture_density = 2
+
+            modify_texture = {
+                name = "mask"
+                texture = "gfx/interface/component_masks/mask_fade_horizontal.dds"
+                spriteType = Corneredstretched
+                spriteborder = { 0 0 }
+                blend_mode = alphamultiply
+            }
+	        }
+				}
+
+				rotate_camera_brd = {
+					onclick = "[GetScriptedGui('rotate_portrait_left_brd').Execute( GuiScope.SetRoot( Character.MakeScope ).End )]"
+
+					onrightclick = "[GetScriptedGui('rotate_portrait_left_brd').Execute( GuiScope.SetRoot( Character.MakeScope ).End )]"
+					onrightclick = "[GetScriptedGui('rotate_portrait_left_brd').Execute( GuiScope.SetRoot( Character.MakeScope ).End )]"
+					onrightclick = "[GetScriptedGui('rotate_portrait_left_brd').Execute( GuiScope.SetRoot( Character.MakeScope ).End )]"
+					onrightclick = "[GetScriptedGui('rotate_portrait_left_brd').Execute( GuiScope.SetRoot( Character.MakeScope ).End )]"
+					onrightclick = "[GetScriptedGui('rotate_portrait_left_brd').Execute( GuiScope.SetRoot( Character.MakeScope ).End )]"
+				}
+				rotate_camera_brd = {
+					onclick = "[GetScriptedGui('rotate_portrait_down_brd').Execute( GuiScope.SetRoot( Character.MakeScope ).End )]"
+
+					onrightclick = "[GetScriptedGui('rotate_portrait_down_brd').Execute( GuiScope.SetRoot( Character.MakeScope ).End )]"
+					onrightclick = "[GetScriptedGui('rotate_portrait_down_brd').Execute( GuiScope.SetRoot( Character.MakeScope ).End )]"
+					onrightclick = "[GetScriptedGui('rotate_portrait_down_brd').Execute( GuiScope.SetRoot( Character.MakeScope ).End )]"
+
+					blockoverride "icon" {
+						texture = "gfx/brd_up.dds"
+						mirror = vertical
+						position = { 0 1 }
+					}
+				}
+				rotate_camera_brd = {
+					onclick = "[GetScriptedGui('rotate_portrait_right_brd').Execute( GuiScope.SetRoot( Character.MakeScope ).End )]"
+
+					onrightclick = "[GetScriptedGui('rotate_portrait_right_brd').Execute( GuiScope.SetRoot( Character.MakeScope ).End )]"
+					onrightclick = "[GetScriptedGui('rotate_portrait_right_brd').Execute( GuiScope.SetRoot( Character.MakeScope ).End )]"
+					onrightclick = "[GetScriptedGui('rotate_portrait_right_brd').Execute( GuiScope.SetRoot( Character.MakeScope ).End )]"
+					onrightclick = "[GetScriptedGui('rotate_portrait_right_brd').Execute( GuiScope.SetRoot( Character.MakeScope ).End )]"
+					onrightclick = "[GetScriptedGui('rotate_portrait_right_brd').Execute( GuiScope.SetRoot( Character.MakeScope ).End )]"
+
+					blockoverride "icon" {
+						texture = "gfx/interface/icons/flat_icons/window_back.dds"
+						mirror = horizontal
+					}
+				}
+
+				widget = {
+					size = { 100 0 }
+					parentanchor = vcenter
+					allow_outside = yes
+
+					button_replace = {
+						parentanchor = vcenter
+						onclick = "[GetScriptedGui('reset_tilt_rotation_brd').Execute( GuiScope.SetRoot( Character.MakeScope ).End )]"
+						tooltip = "reset_rotation_tilt"
+					}
+				}
+			}
+
+			flowcontainer = {
+				name = "zoom_buttons"
+				spacing = 10
+				parentanchor = hcenter
+
+				text_single = {
+					text = "zoom"
+					using = Font_Size_Medium
+					size = { 100 26 }
+					autoresize = no
+					align = right
+					default_format = "#v;glow_color:{0.0,0.0,0.0,1.0}"
+					alpha = 0.85
+
+					background = {
+						margin = { 20 0 }
+						margin_left = 0
+						margin_bottom = 10
+						alpha = 0.65
+
+            texture = "gfx/interface/component_tiles/tile_title_bg_01.dds"
+            spriteType = Corneredtiled
+            spriteborder = { 40 8 }
+            texture_density = 2
+
+            modify_texture = {
+                name = "mask"
+                texture = "gfx/interface/component_masks/mask_fade_horizontal.dds"
+                spriteType = Corneredstretched
+                spriteborder = { 0 0 }
+                blend_mode = alphamultiply
+            }
+	        }
+				}
+
+				rotate_camera_brd = {
+					shortcut = decrease_speed_2
+					shortcut = decrease_speed
+					name = "zoom_out"
+					size = { 35 35 }
+					blockoverride "icon" {
+						texture = "gfx/interface/icons/flat_icons/minus.dds"
+					}
+					block "zoom_out_head" {
+						onclick = "[GetScriptedGui('zoom_out_brd').Execute( GuiScope.SetRoot( Character.MakeScope ).End )]"
+					}
+
+					using = tooltip_se
+					tooltip = "BARBERSHOP_ZOOM_OUT_TT"
+				}
+
+				text_single = {
+					min_width = 35
+					block "zoom_head" {
+						raw_text = "[Character.MakeScope.Var('zoom_brd').GetValue|1]x"
+					}
+					default_format = "#v;glow_color:{0.0,0.0,0.0,1.0}"
+					align = center
+					alpha = 0.85
+					using = Font_Size_Medium
+
+					background = {
+						margin = { 25 0 }
+						margin_bottom = 10
+            alpha = 0.6
+
+            texture = "gfx/interface/component_tiles/tile_title_bg_01.dds"
+            spriteType = Corneredtiled
+            spriteborder = { 40 8 }
+            texture_density = 2
+
+            modify_texture = {
+                name = "mask"
+                texture = "gfx/interface/component_masks/mask_fade_horizontal_middle_thick.dds"
+                spriteType = Corneredstretched
+                spriteborder = { 0 0 }
+                blend_mode = alphamultiply
+            }
+	        }
+				}
+
+				rotate_camera_brd = {
+					shortcut = increase_speed_2
+					shortcut = increase_speed
+					name = "zoom_in"
+					size = { 35 35 }
+					block "zoom_in_head" {
+						onclick = "[GetScriptedGui('zoom_in_brd').Execute( GuiScope.SetRoot( Character.MakeScope ).End )]"
+					}
+
+					using = tooltip_se
+					tooltip = "BARBERSHOP_ZOOM_IN_TT"
+					blockoverride "icon" {
+						texture = "gfx/interface/icons/flat_icons/plus.dds"
+					}
+				}
+
+				widget = {
+					size = { 100 0 }
+					parentanchor = vcenter
+					allow_outside = yes
+
+					button_replace = {
+						parentanchor = vcenter
+						block "reset_zoom" {
+							onclick = "[GetScriptedGui('reset_zoom_brd').Execute( GuiScope.SetRoot( Character.MakeScope ).End )]"
+						}
+						onclick = "[PdxGuiTriggerAllAnimations('reset_position_body_brd')]"
+						tooltip = "reset_zoom_position"
+					}
+				}
+			}
+
+			flowcontainer = {
+				ignoreinvisible = yes
+
+				parentanchor = hcenter
+				spacing = 10
+
+				button_standard = {
+					button_checkbox = {
+						checked = "[GetGlobalVariable('undress_brd').IsSet]"
+						alwaystransparent = yes
+						position = { 1 0 }
+						parentanchor = vcenter
+					}
+
+					text = "undress_brd"
+					down = "[GetGlobalVariable('undress_brd').IsSet]"
+					margin_left = 30
+					state = {
+						name = _mouse_press
+						on_finish = "[GetScriptedGui('undress_brd').Execute( GuiScope.SetRoot( Character.MakeScope ).End )]"
+					}
+					state = {
+						name = _mouse_release
+						on_finish = "[RulerDesignerWindow.ToggleShowAccessories]"
+						on_finish = "[RulerDesignerWindow.ToggleShowAccessories]"
+					}
+				}
+
+				button_standard = {
+					button_checkbox = {
+						checked = "[GetVariableSystem.HasValue('portrait_brd', 'height')]"
+						alwaystransparent = yes
+						position = { 1 0 }
+						parentanchor = vcenter
+					}
+					visible = "[Or(GetVariableSystem.HasValue('appearance_customization_portrait_view', 'full_body' ), Not(GetVariableSystem.Exists('appearance_customization_portrait_view')))]"
+					down = "[GetVariableSystem.HasValue('portrait_brd', 'height')]"
+					text = "height_brd"
+					onclick = "[GetVariableSystem.SetOrToggle('portrait_brd', 'height')]"
+					shortcut = army_split_half
+					margin_left = 30
+				}
+
+				button_standard = {
+					visible = "[GetVariableSystem.HasValue('appearance_customization_portrait_view', 'face' )]"
+					button_checkbox = {
+						checked = "[Not(GetVariableSystem.Exists('profile_brd'))]"
+						alwaystransparent = yes
+						position = { 1 0 }
+						parentanchor = vcenter
+					}
+					shortcut = army_split_half
+
+					down = "[Not(GetVariableSystem.Exists('profile_brd'))]"
+					text = "profile_brd"
+					margin_left = 30
+					onclick = "[GetVariableSystem.Toggle('profile_brd')]"
+				}
+
+				button_standard = {
+					text = "hide_brd"
+					onclick = "[GetVariableSystem.Toggle('hide_controls_brd')]"
+					down = "[GetVariableSystem.Exists('hide_controls_brd')]"
+					shortcut = army_create_new
+
+					button_icon = {
+						texture = "gfx/brd_up.dds"
+						size = { 15 15 }
+						alwaystransparent = yes
+						mirror = vertical
+						parentanchor = right|vcenter
+						position = { -10 0 }
+					}
+				}
+			}
+
+			text_label_center = {
+				parentanchor = hcenter
+				text = "wasd_brd"
+			}
+
+			# silent shortcuts
+			widget = {
+				button_silent = {
+					shortcut = increase_speed_2
+					shortcut = increase_speed
+					block "zoom_in_head" {
+						onclick = "[GetScriptedGui('zoom_in_brd').Execute( GuiScope.SetRoot( Character.MakeScope ).End )]"
+					}
+				}
+
+				button_silent = {
+					shortcut = decrease_speed_2
+					shortcut = decrease_speed
+					block "zoom_out_head" {
+						onclick = "[GetScriptedGui('zoom_out_brd').Execute( GuiScope.SetRoot( Character.MakeScope ).End )]"
+					}
+				}
+				button_silent = {
+					parentanchor = hcenter
+					onclick = "[GetScriptedGui('rotate_portrait_up_brd').Execute( GuiScope.SetRoot( Character.MakeScope ).End )]"
+					#+W
+					shortcut = map_mode_10
+				}
+				button_silent = {
+					parentanchor = hcenter|bottom
+					onclick = "[GetScriptedGui('rotate_portrait_down_brd').Execute( GuiScope.SetRoot( Character.MakeScope ).End )]"
+					#+S
+					shortcut = mapmode_culture_secondary
+				}
+				button_silent = {
+					parentanchor = vcenter
+					onclick = "[GetScriptedGui('rotate_portrait_left_brd').Execute( GuiScope.SetRoot( Character.MakeScope ).End )]"
+					#+A
+					shortcut = mapmode_faith_secondary
+					shortcut = character_finder
+				}
+				button_silent = {
+					parentanchor = vcenter|right
+					onclick = "[GetScriptedGui('rotate_portrait_right_brd').Execute( GuiScope.SetRoot( Character.MakeScope ).End )]"
+					#+D
+					shortcut = mapmode_house_secondary
+					shortcut = find_title_shortcut
+				}
+
+				####
+
+				button_silent = {
+					parentanchor = hcenter
+					onclick = "[GetScriptedGui('rotate_portrait_down_brd').Execute( GuiScope.SetRoot( Character.MakeScope ).End )]"
+					onclick = "[GetScriptedGui('rotate_portrait_down_brd').Execute( GuiScope.SetRoot( Character.MakeScope ).End )]"
+					onclick = "[GetScriptedGui('rotate_portrait_down_brd').Execute( GuiScope.SetRoot( Character.MakeScope ).End )]"
+					#+W
+					shortcut = map_mode_14
+				}
+				button_silent = {
+					parentanchor = hcenter|bottom
+					onclick = "[GetScriptedGui('rotate_portrait_up_brd').Execute( GuiScope.SetRoot( Character.MakeScope ).End )]"
+					onclick = "[GetScriptedGui('rotate_portrait_up_brd').Execute( GuiScope.SetRoot( Character.MakeScope ).End )]"
+					onclick = "[GetScriptedGui('rotate_portrait_up_brd').Execute( GuiScope.SetRoot( Character.MakeScope ).End )]"
+					#+S
+					shortcut = map_mode_7
+				}
+				button_silent = {
+					parentanchor = vcenter
+					onclick = "[GetScriptedGui('rotate_portrait_right_brd').Execute( GuiScope.SetRoot( Character.MakeScope ).End )]"
+					onclick = "[GetScriptedGui('rotate_portrait_right_brd').Execute( GuiScope.SetRoot( Character.MakeScope ).End )]"
+					onclick = "[GetScriptedGui('rotate_portrait_right_brd').Execute( GuiScope.SetRoot( Character.MakeScope ).End )]"
+					onclick = "[GetScriptedGui('rotate_portrait_right_brd').Execute( GuiScope.SetRoot( Character.MakeScope ).End )]"
+					onclick = "[GetScriptedGui('rotate_portrait_right_brd').Execute( GuiScope.SetRoot( Character.MakeScope ).End )]"
+					#+A
+					shortcut = map_mode_13
+				}
+				button_silent = {
+					parentanchor = vcenter|right
+					onclick = "[GetScriptedGui('rotate_portrait_left_brd').Execute( GuiScope.SetRoot( Character.MakeScope ).End )]"
+					onclick = "[GetScriptedGui('rotate_portrait_left_brd').Execute( GuiScope.SetRoot( Character.MakeScope ).End )]"
+					onclick = "[GetScriptedGui('rotate_portrait_left_brd').Execute( GuiScope.SetRoot( Character.MakeScope ).End )]"
+					onclick = "[GetScriptedGui('rotate_portrait_left_brd').Execute( GuiScope.SetRoot( Character.MakeScope ).End )]"
+					onclick = "[GetScriptedGui('rotate_portrait_left_brd').Execute( GuiScope.SetRoot( Character.MakeScope ).End )]"
+					#+D
+					shortcut = map_mode_6
+				}
+			}
+		}
+
+		container = {
+			ignoreinvisible = yes
+			visible = "[GetVariableSystem.Exists('hide_controls_brd')]"
+			parentanchor = hcenter|bottom
+			allow_outside = yes
+
+			button_standard = {
+				shortcut = army_create_new
+				size = { 250 33 }
+				visible = "[GetVariableSystem.Exists('appearance_customization_portrait_view')]"
+				position = { 0 -43 }
+				text = "show_controls"
+				onclick = "[GetVariableSystem.Toggle('hide_controls_brd')]"
+			}
+			button_standard = {
+				size = { 250 33 }
+				shortcut = army_create_new
+				visible = "[Not(GetVariableSystem.Exists('appearance_customization_portrait_view'))]"
+				position = { 0 -5 }
+				text = "show_controls"
+				onclick = "[GetVariableSystem.Toggle('hide_controls_brd')]"
+			}
+		}
+	}
+
+	type portrait_body_brd = widget {
+		parentanchor = hcenter
+		position = { 0 300 }
+		scale = 1.2
+		allow_outside = yes
+
+		window = {
+			movable = yes
+			parentanchor = center
+			alwaystransparent = no
+			size = { 650 1000 }
+			datacontext = "[RulerDesignerWindow.GetCharacterToOverwrite]"
+			scale = "[Select_float( Character.MakeScope.Var('zoom_brd').IsSet, FixedPointToFloat(Character.MakeScope.Var('zoom_brd').GetValue), '(float)1.0')]"
+
+			window = {
+				movable = yes
+				size = { 100% 100% }
+				visible = "[Not(GetVariableSystem.HasValue('portrait_brd', 'height'))]"
+				parentanchor = hcenter
+				# texture = "[RulerDesignerWindow.GetPortrait( 'environment_head', 'camera_0_-180_0', PdxGetWidgetScreenSize( PdxGuiWidget.Self ) )]"
+				block "texture_body" {
+					texture = "[RulerDesignerWindow.GetPortrait(Select_CString( GetVariableSystem.Exists('environment'), GetVariableSystem.Get('environment'), 'environment_body'), Concatenate('camera_', Concatenate(Concatenate(Concatenate('0_', Character.Custom('tilt_angle_brd')), '_'), Character.Custom('camera_angle_brd'))), PdxGetWidgetScreenSize(PdxGuiWidget.Self))]"
+				}
+				position = { 0 150 }
+
+				state = {
+					position = { 0 150 }
+					name = "reset_position_body_brd"
+				}
+			}
+
+			window = {
+				movable = yes
+				size = { 100% 100% }
+				visible = "[GetVariableSystem.HasValue('portrait_brd', 'height')]"
+				scale = 1.2
+				parentanchor = center
+
+				position = { 0 -50 }
+
+				state = {
+					position = { 0 -50 }
+					name = "reset_position_body_brd"
+				}
+
+				# height_line_brd = {
+				# 	position = { 0 -600 }
+				# 	blockoverride "parent" {
+				# 		parentanchor = bottom|right
+				# 	}
+				# 	blockoverride "text" {
+				# 		raw_text = "2 m"
+				# 	}
+				# }
+
+				# height lines
+				flowcontainer = {
+					ignoreinvisible = yes
+
+					parentanchor = bottom|hcenter
+
+					# feet
+					flowcontainer = {
+						ignoreinvisible = yes
+						direction = vertical
+						parentanchor = bottom
+						spacing = 6.6
+
+						one_foot_lines = {}
+						height_line_brd_feet = {
+							blockoverride "text" {
+								raw_text = "7'"
+							}
+						}
+						one_foot_lines = {}
+						height_line_brd_feet = {
+							blockoverride "text" {
+								raw_text = "6'"
+							}
+						}
+						one_foot_lines = {}
+						height_line_brd_feet = {
+							blockoverride "text" {
+								raw_text = "5'"
+							}
+						}
+						one_foot_lines = {}
+						height_line_brd_feet = {
+							blockoverride "text" {
+								raw_text = "4'"
+							}
+						}
+						one_foot_lines = {}
+						height_line_brd_feet = {
+							blockoverride "text" {
+								raw_text = "3'"
+							}
+						}
+						one_foot_lines = {}
+						height_line_brd_feet = {
+							blockoverride "text" {
+								raw_text = "2'"
+							}
+						}
+						one_foot_lines = {}
+						height_line_brd_feet = {
+							blockoverride "text" {
+								raw_text = "1'"
+							}
+						}
+						one_foot_lines = {}
+						height_line_brd_feet = {
+						}
+					}
+
+					# meters
+					flowcontainer = {
+						ignoreinvisible = yes
+						direction = vertical
+						parentanchor = bottom
+						spacing = 14
+
+						height_line_brd_ten = {}
+						height_line_brd_half = {}
+						height_line_brd_ten = {}
+						height_line_brd_half = {}
+						height_line_brd_ten = {}
+						height_line_brd_half = {}
+						height_line_brd_ten = {}
+						height_line_brd_half = {}
+						height_line_brd_ten = {}
+
+						height_line_brd = {
+							blockoverride "text" {
+								raw_text = "2 m"
+							}
+						}
+
+						height_line_brd_ten = {}
+						height_line_brd_half = {}
+						height_line_brd_ten = {}
+						height_line_brd_half = {}
+						height_line_brd_ten = {}
+						height_line_brd_half = {}
+						height_line_brd_ten = {}
+						height_line_brd_half = {}
+						height_line_brd_ten = {}
+
+						height_line_brd = {
+							blockoverride "text" {
+								raw_text = "1.5 m"
+							}
+						}
+
+						height_line_brd_ten = {}
+						height_line_brd_half = {}
+						height_line_brd_ten = {}
+						height_line_brd_half = {}
+						height_line_brd_ten = {}
+						height_line_brd_half = {}
+						height_line_brd_ten = {}
+						height_line_brd_half = {}
+						height_line_brd_ten = {}
+
+						height_line_brd = {
+							blockoverride "text" {
+								raw_text = "1 m"
+							}
+						}
+
+						height_line_brd_ten = {}
+						height_line_brd_half = {}
+						height_line_brd_ten = {}
+						height_line_brd_half = {}
+						height_line_brd_ten = {}
+						height_line_brd_half = {}
+						height_line_brd_ten = {}
+						height_line_brd_half = {}
+						height_line_brd_ten = {}
+
+						height_line_brd = {
+							blockoverride "text" {
+								raw_text = ".5 m"
+							}
+						}
+
+						height_line_brd_ten = {}
+						height_line_brd_half = {}
+						height_line_brd_ten = {}
+						height_line_brd_half = {}
+						height_line_brd_ten = {}
+						height_line_brd_half = {}
+						height_line_brd_ten = {}
+						height_line_brd_half = {}
+						height_line_brd_ten = {}
+						height_line_brd_half = {}
+					}
+				}
+
+				height_line_brd = {
+					size = { 225 0 }
+					position = { 0 -526 }
+					parentanchor = bottom|hcenter
+					widgetanchor = left
+					allow_outside = yes
+					visible = "[Not(RulerDesignerWindow.IsFemale)]"
+
+					blockoverride "text" {
+						text = "avg"
+						tooltip = "male_avg_height"
+					}
+
+					height_line_brd = {
+						size = { 10 1 }
+						alpha = 0.75
+					}
+				}
+
+				height_line_brd = {
+					size = { 225 0 }
+					position = { 0 -481 }
+					parentanchor = bottom|hcenter
+					widgetanchor = left
+					allow_outside = yes
+					visible = "[RulerDesignerWindow.IsFemale]"
+
+					blockoverride "text" {
+						raw_text = "avg."
+						tooltip = "fem_avg_height"
+					}
+
+					height_line_brd = {
+						size = { 10 1 }
+						alpha = 0.5
+					}
+				}
+
+				window = {
+					movable = yes
+					size = { 300 100% }
+					parentanchor = hcenter|bottom
+					texture = "[RulerDesignerWindow.GetPortrait( Select_CString( GetVariableSystem.Exists('environment'), GetVariableSystem.Get('environment'), 'environment_body'), 'body_height_brd', PdxGetWidgetScreenSize( PdxGuiWidget.Self ) )]"
+					position = { 0 200 }
+
+					state = {
+						position = { 0 200 }
+						name = "reset_position_body_brd"
+					}
+				}
+			}
+
+			state = {
+				name = "ruler_designer_portrait_refresh"
+				using = Animation_Refresh_FadeOut
+			}
+
+			state = {
+				using = Animation_Refresh_FadeIn
+			}
+		}
+	}
+
+
+	type height_line_brd = icon {
+		texture = "gfx/interface/colors/white.dds"
+		tintcolor = { 1 1 1 0.6 }
+		size = { 225 1 }
+		block "parent" {
+			parentanchor = right
+		}
+
+		text_single = {
+			block "align" {
+				parentanchor = right
+				align = left
+				widgetanchor = left
+				position = { 5 -16 }
+			}
+			block "text" {
+				visible = no
+				raw_text = "1 m"
+			}
+		}
+	}
+
+	type height_line_brd_feet = height_line_brd_half {
+		blockoverride "parent" {
+		}
+		blockoverride "align" {
+			position = { -5 -18 }
+			widgetanchor = right
+		}
+	}
+
+	type height_line_brd_half = height_line_brd {
+		tintcolor = { 1 1 1 0.3 }
+	}
+
+	type height_line_brd_ten = height_line_brd {
+		alpha = 0.2
+		blockoverride "parent" {
+		}
+	}
+
+	type 5_height_lines_brd = fixedgridbox {
+		# why is this not working???
+		addrow = 15
+		addcolumn = 700
+		parentanchor = bottom
+
+		datamodel = "[GetNullCharacterDataModel('(int32)5')]"
+		# I don't understand why it refuses to show more than 5 items
+
+		item = {
+			widget = {
+				size = { 700 15 }
+				height_line_brd_ten = {}
+			}
+		}
+	}
+
+	type one_foot_lines = flowcontainer {
+		ignoreinvisible = yes
+		direction = vertical
+		spacing = 6.6
+
+		height_line_brd_ten = {}
+		height_line_brd_ten = {}
+		height_line_brd_ten = {}
+		height_line_brd_ten = {}
+		height_line_brd_ten = {}
+
+		height_line_brd_ten = {}
+		height_line_brd_ten = {}
+		height_line_brd_ten = {}
+		height_line_brd_ten = {}
+		height_line_brd_ten = {}
+		height_line_brd_ten = {}
+	}
+
+	type button_left_brd = button_standard {
+		# size = { 180 35 }
+		layoutpolicy_horizontal = expanding
+		align = left|nobaseline
+		margin_left = 10
+
+		text_single = {
+			parentanchor = vcenter|right
+			align = nobaseline
+			position = { -10 -1 }
+			default_format = "#clickable"
+			alpha = 0.6
+			block "shortcut" {
+				raw_text = "1"
+			}
+		}
+	}
+}
+
+template background_no_edge_bdr {
+	background = {
+		texture = "gfx/interface/component_tiles/tile_window_background_no_edge.dds"
+		spriteType = Corneredtiled
+		spriteborder = { 18 0 }
+		block "margin" {
+			margin = { 0 0 }
+		}
+		texture_density = 2
+		block "alpha" {
+			alpha = 0.7
+		}
+
+		modify_texture = {
+			texture = "gfx/interface/component_overlay/overlay_effect.dds"
+			blend_mode = overlay
+		}
+	}
+}
+
+types AGOTCompatRestore {
+	
+		type button_rd_environment = button_standard {
+			layoutpolicy_horizontal = expanding
+
+			onclick = "[GetVariableSystem.SetOrToggle('rd_environment', PdxGuiWidget.GetName )]"
+			down = "[GetVariableSystem.HasValue('rd_environment', PdxGuiWidget.GetName )]"
+		
+			align = left|nobaseline
+		
+			icon = {
+				name = "texture"
+				parentanchor = right
+				size = { 65% 100% }
+
+				alpha = 0.3
+			
+				background = {
+					block "texture" {}
+					using = Mask_Rough_Edges
+					fittype = centercrop
+				
+					modify_texture = {
+						texture = "gfx/interface/component_masks/mask_fade_horizontal_thick.dds"
+						blend_mode = alphamultiply
+						rotate_uv = 3
+						mirror = horizontal
+					}
+				}
+			}
+		}
+
+	
+		type button_rotate_ruler_designer = button {
+			texture = "gfx/interface/buttons/button_standard.dds"
+			spriteType = Corneredtiled
+			spriteborder = { 4 4 }
+			framesize = { 252 80 }
+			size = { 36 36 }
+
+			button_icon = {
+				parentanchor = center
+				size = { 20 20 }
+				alwaystransparent = yes
+			
+				block "mirror" {}
+				block "texture" {
+					texture = "gfx/interface/icons/flat_icons/window_back.dds"
+				}
+			}
+			using = tooltip_ne
+		}
+
+	
+		type text_ruler_designer_label = text_label_left {
+			layoutpolicy_horizontal = expanding
+			max_width = 300
+			margin_left = 45
+			margin_top = 5
+			align = nobaseline
+			using = Font_Size_Medium
+		}
+}
