@@ -3,7 +3,7 @@
 Generated from `manifest/build_manifest.json` on 2026-09-03.
 Derived file - do not hand-edit. Regenerate with `python3 tools/gen_module_index.py`.
 
-102 files across 27 upstream mods. **override** replaces an upstream virtual path;
+105 files across 30 upstream mods. **override** replaces an upstream virtual path;
 **authored** is a new file this layer introduces.
 
 This layer must load **last**; every override below only wins because of that.
@@ -37,6 +37,9 @@ This layer must load **last**; every override below only wins because of that.
 | 71 | A Landed Knights Mod | 1 | P61_LANDED_KNIGHTS_HARD_FATHER_SCOPE |
 | 83 | Court Positions Expanded 1.19 | 1 | P66_GRAND_VIZIER_DEAD_RELIGION |
 | 84 | AGOT Great Councils | 1 | P64_IS_HUMAN_DIREWOLF |
+| 88 | Show Player Opinion | 1 | P73_SHOW_PLAYER_OPINION_INTERACTION_MENU |
+| 89 | War Panel Allies Fix | 1 | P74_WAR_PANEL_ALLIES_WAR_OVERVIEW |
+| 94 | Expanded Court Position - Search and Recruit | 1 | P72_EXPANDED_COURT_POSITION_MINOR_DECISIONS |
 | — | (authored here) | 10 | P03_VALEMAN_DEF_FORMAT, P33_CANON_CHILD_BIRTH_EFFECTS_98_104, P33_CANON_CHILD_TRIGGERS_98_104, P33_GREYJOY_13_ALT_MODIFIER_DEFINED, P37_SWORDS_OF_BRAAVOS_JOIN_NO_LINK_MARKUP |
 
 ## Files by upstream mod
@@ -243,6 +246,21 @@ This layer must load **last**; every override below only wins because of that.
 
 - `common/scripted_triggers/zzzzzz_is_human_direwolf_merge.txt` — **P64_IS_HUMAN_DIREWOLF** (override)
   - base = AGOT Great Councils' is_human block VERBATIM
+
+### Show Player Opinion  (`3340687327`, playset #88)
+
+- `gui/interaction_menu_window.gui` — **P73_SHOW_PLAYER_OPINION_INTERACTION_MENU** (override)
+  - Show Player Opinion wins this path over AGOT with a vanilla-derived copy keeping 0 AGOT identifiers. Three-way merged on vanilla; AGOT content and all challenger content retained.
+
+### War Panel Allies Fix  (`3781256450`, playset #89)
+
+- `gui/window_war_overview.gui` — **P74_WAR_PANEL_ALLIES_WAR_OVERVIEW** (override)
+  - War Panel Allies Fix wins this path over AGOT with a vanilla-derived copy keeping 0 AGOT identifiers. Three-way merged on vanilla; AGOT content and all challenger content retained.
+
+### Expanded Court Position - Search and Recruit  (`3676293022`, playset #94)
+
+- `common/decisions/90_minor_decisions.txt` — **P72_EXPANDED_COURT_POSITION_MINOR_DECISIONS** (override)
+  - Expanded Court Position - Search and Recruit wins this path over AGOT with a vanilla-derived copy keeping 0 AGOT identifiers. Three-way merged on vanilla; AGOT content and all challenger content retained.
 
 ### (authored here)
 

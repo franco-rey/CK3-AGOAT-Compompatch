@@ -424,3 +424,15 @@ e1c82a12089afd7097c27448c29d25c01c5a5b568db060d636216b10f8077ea9  3081701005/gui
 98f46c880f9ba982f6f1f8c0a8f565bcf28484b73c7c7f67011101e6abc594fa  2962333032/common/scripted_triggers/at_artifact_triggers.txt  # SOURCE  (P71_SEARCH_TRADE_AGOT_ARTIFACT_PROTECTION, AGOT side)
 8e1470365dd743dcaa9767696547bb5b978cf4b1e9305f127f8e1397f87feaf7  2962238514/common/scripted_triggers/at_artifact_triggers.txt  # SOURCE  (P71_SEARCH_TRADE_AGOT_ARTIFACT_PROTECTION, S&T base)
 db8df4f0f5bfbec4ce755e7ab3ae3e40f50f69cbfb9519f8bf0aa8c83780cef3  BUILT/common/scripted_triggers/at_artifact_triggers.txt  [P71_SEARCH_TRADE_AGOT_ARTIFACT_PROTECTION]
+
+# P72-P74 (2026-09-03): three-way merges recovering AGOT content from later mods
+# that shipped vanilla-derived copies. Both contributors gated per file.
+62f5436bc5552c85c9ba5eb72f550b447eb12c71b2d456b489c3ff4bb7b34021  2962333032/common/decisions/90_minor_decisions.txt  # SOURCE  (P72_EXPANDED_COURT_POSITION_MINOR_DECISIONS, AGOT side)
+95c6f69d76b9f6b80c55fb9cc2bb15a583a855184c5430ea73ea5f881403416a  3676293022/common/decisions/90_minor_decisions.txt  # SOURCE  (P72_EXPANDED_COURT_POSITION_MINOR_DECISIONS, Expanded Court Position - Search and Recruit)
+787d4bce1579d035a828173ebc762c18808c74d87cf611e7e429d45deb5bd885  BUILT/common/decisions/90_minor_decisions.txt  [P72_EXPANDED_COURT_POSITION_MINOR_DECISIONS]
+f54a6dba8a6df9f4db6d97291a9291433e7feeea31157235b3e1bb449b932ad2  2962333032/gui/interaction_menu_window.gui  # SOURCE  (P73_SHOW_PLAYER_OPINION_INTERACTION_MENU, AGOT side)
+f3a1b4c6b5bd13d141281b456426c6c13a2a8faec1a2d86e9302369785567191  3340687327/gui/interaction_menu_window.gui  # SOURCE  (P73_SHOW_PLAYER_OPINION_INTERACTION_MENU, Show Player Opinion)
+818bcb96fccffe57eff528aac00e4d81ff08901736d12b55fa2c9953604fe54b  BUILT/gui/interaction_menu_window.gui  [P73_SHOW_PLAYER_OPINION_INTERACTION_MENU]
+d32f5cc9d2f65ec1ac15679f1591104c8ffc1841d96efe71740c51774102b845  2962333032/gui/window_war_overview.gui  # SOURCE  (P74_WAR_PANEL_ALLIES_WAR_OVERVIEW, AGOT side)
+6d7fd6578ed3a06e32ba99d326e687f2040eb29d41cc3046e5e9b0f0ba42dcd4  3781256450/gui/window_war_overview.gui  # SOURCE  (P74_WAR_PANEL_ALLIES_WAR_OVERVIEW, War Panel Allies Fix)
+2846dfe4f2e327d3d4abda4d6632bcf78ec5c669818628275f9ab138e385c886  BUILT/gui/window_war_overview.gui  [P74_WAR_PANEL_ALLIES_WAR_OVERVIEW]

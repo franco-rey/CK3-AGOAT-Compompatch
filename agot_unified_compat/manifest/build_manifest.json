@@ -1867,6 +1867,78 @@
       "rationale": [
         "S&T wins this path and ships can_be_sold / can_be_destroyed as `always = yes`, letting the Iron Throne, historical uniques, Valyrian steel, dragon eggs and skulls be sold and destroyed. AGOT's rules restored; buy trigger merged (S&T peddler + AGOT artifact-keeper); S&T's 10 newer keys kept."
       ]
+    },
+    {
+      "virtual_path": "common/decisions/90_minor_decisions.txt",
+      "kind": "override",
+      "module": "P72_EXPANDED_COURT_POSITION_MINOR_DECISIONS",
+      "transformations": [
+        "P72_EXPANDED_COURT_POSITION_MINOR_DECISIONS"
+      ],
+      "origin_patch": "agot_unified_compat",
+      "provider_name": "Expanded Court Position - Search and Recruit",
+      "provider_workshop_id": "3676293022",
+      "source_sha256": "95c6f69d76b9f6b80c55fb9cc2bb15a583a855184c5430ea73ea5f881403416a",
+      "built_sha256": "787d4bce1579d035a828173ebc762c18808c74d87cf611e7e429d45deb5bd885",
+      "additional_donors": [
+        {
+          "workshop_id": "2962333032",
+          "path": "common/decisions/90_minor_decisions.txt",
+          "sha256": "62f5436bc5552c85c9ba5eb72f550b447eb12c71b2d456b489c3ff4bb7b34021"
+        }
+      ],
+      "added_in": "2026-09-03",
+      "rationale": [
+        "Expanded Court Position - Search and Recruit wins this path over AGOT with a vanilla-derived copy keeping 0 AGOT identifiers. Three-way merged on vanilla; AGOT content and all challenger content retained."
+      ]
+    },
+    {
+      "virtual_path": "gui/interaction_menu_window.gui",
+      "kind": "override",
+      "module": "P73_SHOW_PLAYER_OPINION_INTERACTION_MENU",
+      "transformations": [
+        "P73_SHOW_PLAYER_OPINION_INTERACTION_MENU"
+      ],
+      "origin_patch": "agot_unified_compat",
+      "provider_name": "Show Player Opinion",
+      "provider_workshop_id": "3340687327",
+      "source_sha256": "f3a1b4c6b5bd13d141281b456426c6c13a2a8faec1a2d86e9302369785567191",
+      "built_sha256": "818bcb96fccffe57eff528aac00e4d81ff08901736d12b55fa2c9953604fe54b",
+      "additional_donors": [
+        {
+          "workshop_id": "2962333032",
+          "path": "gui/interaction_menu_window.gui",
+          "sha256": "f54a6dba8a6df9f4db6d97291a9291433e7feeea31157235b3e1bb449b932ad2"
+        }
+      ],
+      "added_in": "2026-09-03",
+      "rationale": [
+        "Show Player Opinion wins this path over AGOT with a vanilla-derived copy keeping 0 AGOT identifiers. Three-way merged on vanilla; AGOT content and all challenger content retained."
+      ]
+    },
+    {
+      "virtual_path": "gui/window_war_overview.gui",
+      "kind": "override",
+      "module": "P74_WAR_PANEL_ALLIES_WAR_OVERVIEW",
+      "transformations": [
+        "P74_WAR_PANEL_ALLIES_WAR_OVERVIEW"
+      ],
+      "origin_patch": "agot_unified_compat",
+      "provider_name": "War Panel Allies Fix",
+      "provider_workshop_id": "3781256450",
+      "source_sha256": "6d7fd6578ed3a06e32ba99d326e687f2040eb29d41cc3046e5e9b0f0ba42dcd4",
+      "built_sha256": "2846dfe4f2e327d3d4abda4d6632bcf78ec5c669818628275f9ab138e385c886",
+      "additional_donors": [
+        {
+          "workshop_id": "2962333032",
+          "path": "gui/window_war_overview.gui",
+          "sha256": "d32f5cc9d2f65ec1ac15679f1591104c8ffc1841d96efe71740c51774102b845"
+        }
+      ],
+      "added_in": "2026-09-03",
+      "rationale": [
+        "War Panel Allies Fix wins this path over AGOT with a vanilla-derived copy keeping 0 AGOT identifiers. Three-way merged on vanilla; AGOT content and all challenger content retained."
+      ]
     }
   ],
   "file_count": 97,
