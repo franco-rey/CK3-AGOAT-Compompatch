@@ -1,4 +1,4 @@
-agot_spawn_maegor_12_effect = { # (History id = dragon_maegor_12)
+﻿agot_spawn_maegor_12_effect = { # (History id = dragon_maegor_12)
 	save_scope_value_as = {
 		name = canon_gender
 		value = flag:male

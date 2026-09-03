@@ -717,45 +717,51 @@
    "position": 118
   },
   {
+   "displayName": "AGOT Nobility of Westeros",
+   "enabled": true,
+   "steamId": "3664900993",
+   "position": 119
+  },
+  {
    "displayName": "COW-AGOT: Nobility of Westeros Compatch",
    "enabled": true,
    "steamId": "3742055253",
-   "position": 119
+   "position": 120
   },
   {
    "displayName": "Rescue & Vengeance",
    "enabled": true,
    "steamId": "3089046758",
-   "position": 120
+   "position": 121
   },
   {
    "displayName": "Local Artisan",
    "enabled": true,
    "steamId": "2875403237",
-   "position": 121
+   "position": 122
   },
   {
    "displayName": "In My Humble Opinion",
-   "enabled": true,
+   "enabled": false,
    "steamId": "2625307328",
-   "position": 122
+   "position": 123
   },
   {
    "displayName": "Entitled",
    "enabled": false,
    "steamId": "2984126808",
-   "position": 123
+   "position": 124
   },
   {
    "displayName": "Better Ruler Designer",
    "enabled": true,
    "steamId": "3275318194",
-   "position": 124
+   "position": 125
   },
   {
    "displayName": "AGOT Unified Compatibility Patch",
    "enabled": true,
-   "position": 125
+   "position": 126
   }
  ]
 }

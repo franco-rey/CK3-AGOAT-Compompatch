@@ -1,4 +1,4 @@
-agot_is_valid_maegor_12_birth = {
+﻿agot_is_valid_maegor_12_birth = {
 	$EGG$ = { save_temporary_scope_as = temp_egg }
 	NOT = { exists = scope:maegor_12_birth_reserved }
 	current_date >= 8025.1.1

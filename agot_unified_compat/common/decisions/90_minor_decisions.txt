@@ -1,4 +1,4 @@
-recruit_court_position_decision = {
+﻿recruit_court_position_decision = {
 	ai_check_interval = 0
 	picture = {
 		trigger = { culture = { has_graphical_east_asia_culture_group_trigger = yes } }

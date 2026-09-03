@@ -1,4 +1,4 @@
-window = {
+﻿window = {
 	gfxtype = windowgfx
 	name = "war_overview_window"
 	widgetid = "war_overview_window"

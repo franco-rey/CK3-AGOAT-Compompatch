@@ -1088,6 +1088,8 @@ window = {
 						margin = { 0 2 }
 						agot_name_flavorization_hbox = {}
 
+						hbox_mod_birth_death_dates = {}
+
 						hbox_character_relation_and_ai = {
 							name = "character_relation_and_ai"
 							margin = { 3 0 }

@@ -1,0 +1,42 @@
+
+types CharacterWindow
+{
+	type hbox_mod_birth_death_dates = hbox { 
+        name = "dates_etc"
+        layoutpolicy_horizontal = expanding
+        margin = { 3 3 } 
+        spacing = 2
+        
+        text_single = {
+            name = "character_age_dates_alive"
+            max_width = 432
+            visible = "[Not(Character.IsDeadAndValid)]"
+            raw_text = " [Character.GetBirthDate.GetString] - "
+            default_format = "#medium"
+            tooltip = ""
+            fontsize_min = 13
+            align = nobaseline
+        }						
+        text_single = {
+            name = "character_age_dates_dead"
+            max_width = 432
+            visible = "[Character.IsDeadAndValid]"
+            raw_text = " [Character.GetBirthDate.GetString] - [Character.GetDeathDate.GetString]"
+            default_format = "#medium"
+            tooltip = "[Character.GetDeathReason|U]"
+            fontsize_min = 13
+            align = nobaseline
+        }
+        text_single = {
+            name = "character_age_dates_dead_reason"
+            max_width = 210 #250
+            visible = "[Character.IsDeadAndValid]"
+            raw_text = " ([Character.GetDeathReason|U])"
+            default_format = "#low"
+            tooltip = "[Character.GetDeathReason|U]"
+            fontsize_min = 10
+            align = nobaseline
+        }
+        expand = {}
+    }
+}
