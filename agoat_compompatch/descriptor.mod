@@ -1,6 +1,5 @@
-﻿version="1.0.0"
+version="1.0.0"
 name="AGOAT Compompatch"
-supported_version="1.19.0.6"
 tags={
 	"Fixes"
 	"Total Conversion"
@@ -132,3 +131,5 @@ dependencies={
 	"Better Ruler Designer"
 	"Hiraeth - Dynasty Legacies Overhaul"
 }
+supported_version="1.19.0.6"
+remote_file_id="3795793975"

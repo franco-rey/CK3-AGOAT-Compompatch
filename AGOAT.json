@@ -749,7 +749,8 @@
     {
       "displayName": "AGOAT Compompatch",
       "enabled": true,
-      "position": 124
+      "position": 124,
+      "steamId": "3795793975"
     }
   ]
 }
