@@ -1,4 +1,4 @@
-﻿
+﻿#Tower of Joy Special Outcome
 agot_hf_special_secret_identity_effect = {
 	save_scope_as = agot_hf_special_secret_character
 
@@ -207,6 +207,7 @@ agot_hf_force_house_head = {
 				}
 				trigger_if = {
 					limit = {
+						exists = scope:new_ruler.capital_province
 						scope:new_ruler.capital_province = { geographical_region = world_westeros_seven_kingdoms }
 						exists = scope:new_ruler.house.house_head.capital_province
 						scope:new_ruler.house.house_head.capital_province = { geographical_region = world_westeros_seven_kingdoms }
@@ -218,6 +219,7 @@ agot_hf_force_house_head = {
 						}
 						trigger_if = {
 							limit = {
+								exists = scope:new_ruler.capital_province
 								scope:new_ruler.capital_province = { geographical_region = world_westeros_the_crownlands }
 								scope:new_ruler.house.house_head.capital_province = { geographical_region = world_westeros_the_crownlands }
 							}
@@ -225,6 +227,7 @@ agot_hf_force_house_head = {
 						}
 						trigger_if = {
 							limit = {
+								exists = scope:new_ruler.capital_province
 								scope:new_ruler.capital_province = { geographical_region = world_westeros_the_westerlands }
 								scope:new_ruler.house.house_head.capital_province = { geographical_region = world_westeros_the_westerlands }
 							}
@@ -232,6 +235,7 @@ agot_hf_force_house_head = {
 						}
 						trigger_if = {
 							limit = {
+								exists = scope:new_ruler.capital_province
 								scope:new_ruler.capital_province = { geographical_region = world_westeros_the_vale }
 								scope:new_ruler.house.house_head.capital_province = { geographical_region = world_westeros_the_vale }
 							}
@@ -239,6 +243,7 @@ agot_hf_force_house_head = {
 						}
 						trigger_if = {
 							limit = {
+								exists = scope:new_ruler.capital_province
 								scope:new_ruler.capital_province = { geographical_region = world_westeros_the_north }
 								scope:new_ruler.house.house_head.capital_province = { geographical_region = world_westeros_the_north }
 							}
@@ -246,6 +251,7 @@ agot_hf_force_house_head = {
 						}
 						trigger_if = {
 							limit = {
+								exists = scope:new_ruler.capital_province
 								scope:new_ruler.capital_province = { geographical_region = world_westeros_the_riverlands }
 								scope:new_ruler.house.house_head.capital_province = { geographical_region = world_westeros_the_riverlands }
 							}
@@ -253,6 +259,7 @@ agot_hf_force_house_head = {
 						}
 						trigger_if = {
 							limit = {
+								exists = scope:new_ruler.capital_province
 								scope:new_ruler.capital_province = { geographical_region = world_westeros_the_reach }
 								scope:new_ruler.house.house_head.capital_province = { geographical_region = world_westeros_the_reach }
 							}
@@ -260,6 +267,7 @@ agot_hf_force_house_head = {
 						}
 						trigger_if = {
 							limit = {
+								exists = scope:new_ruler.capital_province
 								scope:new_ruler.capital_province = { geographical_region = world_westeros_dorne }
 								scope:new_ruler.house.house_head.capital_province = { geographical_region = world_westeros_dorne }
 							}
@@ -267,6 +275,7 @@ agot_hf_force_house_head = {
 						}
 						trigger_if = {
 							limit = {
+								exists = scope:new_ruler.capital_province
 								scope:new_ruler.capital_province = { geographical_region = world_westeros_the_stormlands }
 								scope:new_ruler.house.house_head.capital_province = { geographical_region = world_westeros_the_stormlands }
 							}
@@ -339,7 +348,7 @@ agot_hf_revealbastard_liege_finder = {
 
 agot_hf_revealbastard_final_effect = {
 	scope:bastard_character = {
-
+		#IS A BASTARD!
 		if = {
 			limit = {
 				exists = scope:bastard_character.real_father
@@ -348,23 +357,23 @@ agot_hf_revealbastard_final_effect = {
 					NOT = { scope:bastard_character.father = scope:bastard_character.real_father }
 				}
 			}
-
+			#Set father and house
 			set_father = scope:bastard_character.real_father
 			set_parent_house_effect = yes
 
-
+			#Scenario: Bastard is a Dynast
 			if = {
 				limit = {
 					has_trait = disputed_heritage
 					is_dynast = yes
 				}
-
+				#Same House as Mother's House
 				if = {
 					limit = {
 						scope:bastard_character.house = scope:bastard_character.mother.house
 						has_trait = disputed_heritage
 					}
-
+					#Set Bastard House to Real Father's House if it's an active House
 					if = {
 						limit = {
 							has_trait = disputed_heritage
@@ -378,7 +387,7 @@ agot_hf_revealbastard_final_effect = {
 						set_house = real_father.house
 						save_scope_as = father_first
 					}
-
+					#Legitimize Bastard as Mother's House if Real Father's House is extinct
 					if = {
 						limit = {
 							has_trait = disputed_heritage
@@ -404,13 +413,13 @@ agot_hf_revealbastard_final_effect = {
 						}
 					}
 				}
-
+				#Same House as Real Father's House
 				if = {
 					limit = {
 						scope:bastard_character.house = scope:bastard_character.real_father.house
 						has_trait = disputed_heritage
 					}
-
+					#Set Bastard House to Mother's House if it's an active House
 					if = {
 						limit = {
 							has_trait = disputed_heritage
@@ -424,7 +433,7 @@ agot_hf_revealbastard_final_effect = {
 						set_house = mother.house
 						save_scope_as = mother_second
 					}
-
+					#Legitimize Bastard as Real Father's House if Real Father's House is extinct
 					if = {
 						limit = {
 							NOT = { exists = scope:father_first }
@@ -450,7 +459,7 @@ agot_hf_revealbastard_final_effect = {
 							set_house = scope:bastard_character.house
 						}
 					}
-
+					#Legitimize Bastard as Mother's House if Mother's House is active
 					if = {
 						limit = {
 							NOT = { exists = scope:mother_second }
@@ -480,6 +489,8 @@ agot_hf_revealbastard_final_effect = {
 			}
 
 
+
+			#Deciding bastard status.
 			if = {
 				limit = {
 					has_trait = disputed_heritage
@@ -489,17 +500,17 @@ agot_hf_revealbastard_final_effect = {
 				save_scope_as = child
 				add_bastard_trait_based_on_faith_effect = yes
 
-
+				#Add bastard nickname
 				if = {
 					limit = { has_any_nickname = no }
 					agot_hf_bastard_surname_effect = yes
 				}
 
-
+				#Create Cadet - Restricted AGOT Rule
 				if = {
 					limit = { has_game_rule = agot_bastard_cadets_landed_only }
 
-
+					#Playable Character with Children and NOT the last member of the dynasty
 					if = {
 						limit = {
 							is_playable_character = yes
@@ -512,7 +523,7 @@ agot_hf_revealbastard_final_effect = {
 							}
 						}
 
-
+						#Male
 						if = {
 							limit = {
 								is_male = yes
@@ -548,7 +559,7 @@ agot_hf_revealbastard_final_effect = {
 							trigger_event = agot_coa_events.0001
 							trigger_event = agot_dynastic_stability.1002
 						}
-
+						#Female
 						if = {
 							limit = {
 								is_female = yes
@@ -585,7 +596,7 @@ agot_hf_revealbastard_final_effect = {
 						}
 					}
 
-
+					#Playable Character with Children and the last member of the dynasty
 					if = {
 						limit = {
 							is_playable_character = yes
@@ -598,7 +609,7 @@ agot_hf_revealbastard_final_effect = {
 							}
 						}
 
-
+						#Male
 						if = {
 							limit = {
 								is_male = yes
@@ -620,7 +631,7 @@ agot_hf_revealbastard_final_effect = {
 							}
 
 						}
-
+						#Female
 						if = {
 							limit = {
 								is_female = yes
@@ -646,7 +657,7 @@ agot_hf_revealbastard_final_effect = {
 						save_scope_as = the_legit_bastard
 					}
 
-
+					#Not Playable
 					else_if = {
 						limit = { is_playable_character = no }
 
@@ -654,11 +665,11 @@ agot_hf_revealbastard_final_effect = {
 					}
 				}
 
-
+				#Create Cadet - None-Restricted AGOT Rule
 				if = {
 					limit = { has_game_rule = agot_bastard_cadets_everyone }
 
-
+					#Character with Children and NOT the last member of the dynasty
 					if = {
 						limit = {
 							has_trait = bastard
@@ -670,7 +681,7 @@ agot_hf_revealbastard_final_effect = {
 							}
 						}
 
-
+						#Male
 						if = {
 							limit = {
 								is_male = yes
@@ -706,7 +717,7 @@ agot_hf_revealbastard_final_effect = {
 							trigger_event = agot_coa_events.0001
 							trigger_event = agot_dynastic_stability.1002
 						}
-
+						#Female
 						if = {
 							limit = {
 								is_female = yes
@@ -742,7 +753,7 @@ agot_hf_revealbastard_final_effect = {
 							trigger_event = agot_coa_events.0001
 							trigger_event = agot_dynastic_stability.1002
 						}
-
+						#Playable
 						if = {
 							limit = {
 								is_married = no
@@ -777,7 +788,7 @@ agot_hf_revealbastard_final_effect = {
 							trigger_event = agot_coa_events.0001
 							trigger_event = agot_dynastic_stability.1002
 						}
-
+						#None Playable Male
 						if = {
 							limit = {
 								is_married = no
@@ -815,7 +826,7 @@ agot_hf_revealbastard_final_effect = {
 						}
 					}
 
-
+					#Character with Children and the last member of the dynasty
 					if = {
 						limit = {
 							has_trait = bastard
@@ -827,7 +838,7 @@ agot_hf_revealbastard_final_effect = {
 							}
 						}
 
-
+						#Male
 						if = {
 							limit = {
 								is_male = yes
@@ -848,7 +859,7 @@ agot_hf_revealbastard_final_effect = {
 								set_house = scope:bastard_character.house
 							}
 						}
-
+						#Female
 						if = {
 							limit = {
 								is_female = yes
@@ -871,7 +882,7 @@ agot_hf_revealbastard_final_effect = {
 							}
 
 						}
-
+						#Playable
 						if = {
 							limit = {
 								is_married = no
@@ -892,7 +903,7 @@ agot_hf_revealbastard_final_effect = {
 								set_house = scope:bastard_character.house
 							}
 						}
-
+						#None Playable Male
 						if = {
 							limit = {
 								is_married = no
@@ -914,7 +925,7 @@ agot_hf_revealbastard_final_effect = {
 								set_house = scope:bastard_character.house
 							}
 						}
-
+						#None Playable Female
 						if = {
 							limit = {
 								is_married = no
@@ -932,7 +943,7 @@ agot_hf_revealbastard_final_effect = {
 					}
 				}
 			}
-
+			#Adultery penalty for parents
 			if = {
 				limit = {
 					exists = root.mother
@@ -956,7 +967,7 @@ agot_hf_revealbastard_final_effect = {
 				if = {
 					limit = { mother = { is_alive = yes } }
 					mother = {
-
+						#penalties.
 						expose_lover_secret_or_run_consequence_effect = {
 							TARGET = scope:my_real_father
 							EXPOSER = scope:agot_hf_the_husband
@@ -984,7 +995,7 @@ agot_hf_revealbastard_final_effect = {
 			}
 		}
 
-
+		#NOT A BASTARD!
 		else = {
 			limit = {
 				exists = scope:bastard_character.real_father
@@ -994,7 +1005,9 @@ agot_hf_revealbastard_final_effect = {
 			save_scope_as = agot_hf_is_not_bastard
 		}
 
+		#SENDING EVENTS
 
+		#Bastard is from high family - send event to everyone
 		if = {
 			limit = {
 				OR = {
@@ -1025,7 +1038,7 @@ agot_hf_revealbastard_final_effect = {
 				add_to_list = iron_throne_realm
 			}
 		}
-
+		#Bastard is from low family
 		else = {
 			if = {
 				limit = { exists = scope:bastard_character.liege.liege }
@@ -1295,11 +1308,11 @@ agot_hf_laamp_naming_effect = {
 	}
 }
 
-
+# for other siblings
 agot_hf_revealbastard_final_siblings_effect = {
 	save_scope_as = the_bastard_sibling
 	scope:the_bastard_sibling = {
-
+		#IS A BASTARD!
 		if = {
 			limit = {
 				exists = scope:the_bastard_sibling.real_father
@@ -1308,23 +1321,23 @@ agot_hf_revealbastard_final_siblings_effect = {
 					NOT = { scope:the_bastard_sibling.father = scope:the_bastard_sibling.real_father }
 				}
 			}
-
+			#Set father and house
 			set_father = scope:the_bastard_sibling.real_father
 			set_parent_house_effect = yes
 
-
+			#Scenario: Bastard is a Dynast
 			if = {
 				limit = {
 					has_trait = disputed_heritage
 					is_dynast = yes
 				}
-
+				#Same House as Mother's House
 				if = {
 					limit = {
 						scope:the_bastard_sibling.house = scope:the_bastard_sibling.mother.house
 						has_trait = disputed_heritage
 					}
-
+					#Set Bastard House to Real Father's House if it's an active House
 					if = {
 						limit = {
 							has_trait = disputed_heritage
@@ -1338,7 +1351,7 @@ agot_hf_revealbastard_final_siblings_effect = {
 						set_house = real_father.house
 						save_scope_as = father_first
 					}
-
+					#Legitimize Bastard as Mother's House if Real Father's House is extinct
 					if = {
 						limit = {
 							has_trait = disputed_heritage
@@ -1364,13 +1377,13 @@ agot_hf_revealbastard_final_siblings_effect = {
 						}
 					}
 				}
-
+				#Same House as Real Father's House
 				if = {
 					limit = {
 						scope:the_bastard_sibling.house = scope:the_bastard_sibling.real_father.house
 						has_trait = disputed_heritage
 					}
-
+					#Set Bastard House to Mother's House if it's an active House
 					if = {
 						limit = {
 							has_trait = disputed_heritage
@@ -1384,7 +1397,7 @@ agot_hf_revealbastard_final_siblings_effect = {
 						set_house = mother.house
 						save_scope_as = mother_second
 					}
-
+					#Legitimize Bastard as Real Father's House if Real Father's House is extinct
 					if = {
 						limit = {
 							NOT = { exists = scope:father_first }
@@ -1410,7 +1423,7 @@ agot_hf_revealbastard_final_siblings_effect = {
 							set_house = scope:the_bastard_sibling.house
 						}
 					}
-
+					#Legitimize Bastard as Mother's House if Mother's House is active
 					if = {
 						limit = {
 							NOT = { exists = scope:mother_second }
@@ -1440,6 +1453,8 @@ agot_hf_revealbastard_final_siblings_effect = {
 			}
 
 
+
+			#Deciding bastard status.
 			if = {
 				limit = {
 					has_trait = disputed_heritage
@@ -1449,17 +1464,17 @@ agot_hf_revealbastard_final_siblings_effect = {
 				save_scope_as = child
 				add_bastard_trait_based_on_faith_effect = yes
 
-
+				#Add bastard nickname
 				if = {
 					limit = { has_any_nickname = no }
 					agot_hf_bastard_surname_effect = yes
 				}
 
-
+				#Create Cadet - Restricted AGOT Rule
 				if = {
 					limit = { has_game_rule = agot_bastard_cadets_landed_only }
 
-
+					#Playable Character with Children and NOT the last member of the dynasty
 					if = {
 						limit = {
 							is_playable_character = yes
@@ -1472,7 +1487,7 @@ agot_hf_revealbastard_final_siblings_effect = {
 							}
 						}
 
-
+						#Male
 						if = {
 							limit = {
 								is_male = yes
@@ -1508,7 +1523,7 @@ agot_hf_revealbastard_final_siblings_effect = {
 							trigger_event = agot_coa_events.0001
 							trigger_event = agot_dynastic_stability.1002
 						}
-
+						#Female
 						if = {
 							limit = {
 								is_female = yes
@@ -1545,7 +1560,7 @@ agot_hf_revealbastard_final_siblings_effect = {
 						}
 					}
 
-
+					#Playable Character with Children and the last member of the dynasty
 					if = {
 						limit = {
 							is_playable_character = yes
@@ -1558,7 +1573,7 @@ agot_hf_revealbastard_final_siblings_effect = {
 							}
 						}
 
-
+						#Male
 						if = {
 							limit = {
 								is_male = yes
@@ -1580,7 +1595,7 @@ agot_hf_revealbastard_final_siblings_effect = {
 							}
 
 						}
-
+						#Female
 						if = {
 							limit = {
 								is_female = yes
@@ -1606,7 +1621,7 @@ agot_hf_revealbastard_final_siblings_effect = {
 						save_scope_as = the_legit_bastard
 					}
 
-
+					#Not Playable
 					else_if = {
 						limit = { is_playable_character = no }
 
@@ -1614,11 +1629,11 @@ agot_hf_revealbastard_final_siblings_effect = {
 					}
 				}
 
-
+				#Create Cadet - None-Restricted AGOT Rule
 				if = {
 					limit = { has_game_rule = agot_bastard_cadets_everyone }
 
-
+					#Character with Children and NOT the last member of the dynasty
 					if = {
 						limit = {
 							has_trait = bastard
@@ -1630,7 +1645,7 @@ agot_hf_revealbastard_final_siblings_effect = {
 							}
 						}
 
-
+						#Male
 						if = {
 							limit = {
 								is_male = yes
@@ -1666,7 +1681,7 @@ agot_hf_revealbastard_final_siblings_effect = {
 							trigger_event = agot_coa_events.0001
 							trigger_event = agot_dynastic_stability.1002
 						}
-
+						#Female
 						if = {
 							limit = {
 								is_female = yes
@@ -1702,7 +1717,7 @@ agot_hf_revealbastard_final_siblings_effect = {
 							trigger_event = agot_coa_events.0001
 							trigger_event = agot_dynastic_stability.1002
 						}
-
+						#Playable
 						if = {
 							limit = {
 								is_married = no
@@ -1737,7 +1752,7 @@ agot_hf_revealbastard_final_siblings_effect = {
 							trigger_event = agot_coa_events.0001
 							trigger_event = agot_dynastic_stability.1002
 						}
-
+						#None Playable Male
 						if = {
 							limit = {
 								is_married = no
@@ -1775,7 +1790,7 @@ agot_hf_revealbastard_final_siblings_effect = {
 						}
 					}
 
-
+					#Character with Children and the last member of the dynasty
 					if = {
 						limit = {
 							has_trait = bastard
@@ -1787,7 +1802,7 @@ agot_hf_revealbastard_final_siblings_effect = {
 							}
 						}
 
-
+						#Male
 						if = {
 							limit = {
 								is_male = yes
@@ -1808,7 +1823,7 @@ agot_hf_revealbastard_final_siblings_effect = {
 								set_house = scope:the_bastard_sibling.house
 							}
 						}
-
+						#Female
 						if = {
 							limit = {
 								is_female = yes
@@ -1831,7 +1846,7 @@ agot_hf_revealbastard_final_siblings_effect = {
 							}
 
 						}
-
+						#Playable
 						if = {
 							limit = {
 								is_married = no
@@ -1852,7 +1867,7 @@ agot_hf_revealbastard_final_siblings_effect = {
 								set_house = scope:the_bastard_sibling.house
 							}
 						}
-
+						#None Playable Male
 						if = {
 							limit = {
 								is_married = no
@@ -1874,7 +1889,7 @@ agot_hf_revealbastard_final_siblings_effect = {
 								set_house = scope:the_bastard_sibling.house
 							}
 						}
-
+						#None Playable Female
 						if = {
 							limit = {
 								is_married = no
@@ -1892,7 +1907,7 @@ agot_hf_revealbastard_final_siblings_effect = {
 					}
 				}
 			}
-
+			#Adultery penalty for parents
 			if = {
 				limit = {
 					exists = root.mother
@@ -1916,7 +1931,7 @@ agot_hf_revealbastard_final_siblings_effect = {
 				if = {
 					limit = { mother = { is_alive = yes } }
 					mother = {
-
+						#penalties.
 						expose_lover_secret_or_run_consequence_effect = {
 							TARGET = scope:my_real_father
 							EXPOSER = scope:agot_hf_the_husband
@@ -1944,7 +1959,7 @@ agot_hf_revealbastard_final_siblings_effect = {
 			}
 		}
 
-
+		#NOT A BASTARD!
 		else = {
 			limit = {
 				exists = scope:the_bastard_sibling.real_father
@@ -1954,7 +1969,9 @@ agot_hf_revealbastard_final_siblings_effect = {
 			save_scope_as = agot_hf_is_not_bastard
 		}
 
+		#SENDING EVENTS
 
+		#Bastard is from high family - send event to everyone
 		if = {
 			limit = {
 				OR = {
@@ -1985,7 +2002,7 @@ agot_hf_revealbastard_final_siblings_effect = {
 				add_to_list = iron_throne_realm
 			}
 		}
-
+		#Bastard is from low family
 		else = {
 			if = {
 				limit = { exists = scope:the_bastard_sibling.liege.liege }
@@ -2300,7 +2317,7 @@ agot_hf_cadet_generation = {
 				exists = mother.dynasty
 				exists = father.dynasty
 			}
-
+			#Character was not house head
 			trigger_if = {
 				limit = {
 					exists = father
@@ -2328,7 +2345,7 @@ agot_hf_cadet_generation = {
 			}
 			house = { save_scope_as = former_house }
 		}
-		create_cadet_branch = {}
+		create_cadet_branch = {} # Create the Cadet subhouse
 		house = {
 			if = {
 				limit = {
@@ -2375,7 +2392,7 @@ agot_hf_cadet_generation_simple_effect = {
 		trigger_event = agot_coa_events.0001
 	}
 	if = {
-		limit = { scope:recipient = character:Targaryen_96 }
+		limit = { scope:recipient = character:Targaryen_96 } #Bloodraven
 		scope:recipient.house = { set_house_name = nick_agot_historical_bloodraven }
 	}
 	else_if = {
@@ -3249,7 +3266,7 @@ agot_hf_child_birth_action_last_bastard_effect = {
 				limit = { exists = scope:father.mother.house }
 				NOT = { scope:father.house = scope:father.mother.house }
 			}
-			scope:father = { NOT = { has_character_flag = agot_hf_last_bastrd_activated } }
+			scope:father = { NOT = { has_character_flag = agot_hf_last_bastrad_activated } }
 		}
 		scope:father = {
 			trigger_event = { id = agot_hf_new_house_name_generation_events.0004 days = 1 }
@@ -3583,7 +3600,7 @@ agot_hf_lowbron_city_child_effect = {
 				agot_hf_street_name_effect = yes
 			}
 			85 = {
-
+				# Nothing
 			}
 		}
 	}

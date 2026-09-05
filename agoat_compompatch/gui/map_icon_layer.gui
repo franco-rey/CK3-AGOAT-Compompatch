@@ -1,4 +1,5 @@
-﻿hbox = {
+#Coa
+hbox = {
 	name = "layer_hbox"
 
 	window = {
@@ -31,20 +32,20 @@
 	}
 }
 
-
+### Unified province icon
 widget = {
 	name = "province_map_icon"
 	widgetanchor = center
 	allow_outside = yes
 
-
+	### ALL ITEMS
 	flowcontainer = {
 		parentanchor = center
 		direction = vertical
 		ignoreinvisible = yes
 		allow_outside = yes
 
-
+		### Spacer pushing items depending on zoom level
 		widget = {
 			visible = "[And( LessThan_int32( GetZoomLevel, '(int32)9' ), Or( ProvinceIcon.HasCoa, ProvinceIcon.HasLocationIcons ) )]"
 			name = "offset_widget_v"
@@ -105,7 +106,7 @@ widget = {
 			}
 		}
 
-
+		### TOP ITEMS
 		widget = {
 			parentanchor = hcenter
 			allow_outside = yes
@@ -116,7 +117,7 @@ widget = {
 				ignoreinvisible = yes
 				allow_outside = yes
 
-
+				### Flow 1 | Domicile Camp
 				flowcontainer = {
 					name = "flow_province_1"
 					datacontext = "[GetPlayer.GetDomicile]"
@@ -128,14 +129,14 @@ widget = {
 					layoutpolicy_horizontal = shrinking
 					layoutpolicy_vertical = preferred
 
-
+					### Domicile UP (CAMP)
 					domicile_location_icon = {
 						name = "domicile_up"
 						datacontext = "[GetPlayer.GetDomicile]"
 					}
 				}
 
-
+				### Flow 2 | Character Pin, Activity, Task Contract, Combat
 		flowcontainer = {
 					name = "flow_province_2"
 					visible = "[Or( ProvinceIcon.HasCombat, Or( ProvinceIcon.HasTaskContract, Or( ProvinceIcon.HasActivity, And( ProvinceIcon.HasCharacter, Not( ProvinceIcon.HasDomicile ) ) ) ) )]"
@@ -146,7 +147,7 @@ widget = {
 					layoutpolicy_horizontal = shrinking
 					layoutpolicy_vertical = preferred
 
-
+					### Character Pin
 					widget_character_icon = {
 						datacontext = "[ProvinceIcon.GetFocusCharacter]"
 						visible = "[And( ProvinceIcon.HasCharacter, Not( ProvinceIcon.HasDomicile ))]"
@@ -169,7 +170,7 @@ widget = {
 				}
 			}
 
-
+					### Combat icons
 					widget_combat_icon = {
 						visible = "[And(ProvinceIcon.HasCombat, Not(And(CombatMapIcon.RightIsNeutral, CombatMapIcon.LeftIsNeutral)))]"
 				allow_outside = yes
@@ -182,7 +183,7 @@ widget = {
 						size = { 0 60 }
 					}
 
-
+					### Activities
 					flowcontainer = {
 						visible = "[ProvinceIcon.HasActivity]"
 						ignoreinvisible = yes
@@ -193,7 +194,7 @@ widget = {
 						}
 					}
 
-
+					### Task Contracts
 					flowcontainer = {
 						visible = "[ProvinceIcon.HasTaskContract]"
 
@@ -206,7 +207,7 @@ widget = {
 					}
 				}
 
-
+				### Push widgets up when zoomed in
 				widget = {
 					size = { 2 0 }
 
@@ -267,14 +268,14 @@ widget = {
 			}
 		}
 
-
+		### Flow 3 | Coat of Arms, Estates
 		flowcontainer = {
 			visible = "[Or( ProvinceIcon.HasUnits, Or( ProvinceIcon.HasWarfareIcons, Or( ProvinceIcon.HasDomicile, ProvinceIcon.HasCoa ) ) )]"
 			parentanchor = hcenter
 			allow_outside = yes
 			ignoreinvisible = yes
 
-
+			### Domicile LEFT (ESTATE)
 			widget = {
 				name = "domicile_left"
 				datacontext = "[GetPlayer.GetDomicile]"
@@ -311,6 +312,7 @@ widget = {
 			}
 
 
+			### Flow 4 | Warfare icons
 			flowcontainer = {
 				visible = "[ProvinceIcon.HasWarfareIcons]"
 				parentanchor = hcenter
@@ -368,7 +370,7 @@ widget = {
 				}
 			}
 
-
+			### Flow 5 | Unit icons
 			flowcontainer = {
 				visible = "[ProvinceIcon.HasUnits]"
 				ignoreinvisible = yes
@@ -432,12 +434,12 @@ widget = {
 				ignoreinvisible = yes
 				allow_outside = yes
 
-
+				### Flow 6 | The Blue Banner + Holding Icons (Fort Level, Tax & Levies)
 				flowcontainer_holding_info = {
 					visible = "[ProvinceIcon.HasHolding]"
 				}
 
-
+				### Flow 7 | Council Task
 				flowcontainer_active_tasks = {
 					parentanchor = hcenter
 					visible = "[ProvinceIcon.HasCouncilTasks]"
@@ -448,7 +450,7 @@ widget = {
 	}
 }
 
-
+### Unit
 container = {
 	datacontext = "[UnitMapIconHandler.GetUnitIcon]"
 	name = "unit_widget"
@@ -471,7 +473,7 @@ container = {
 	}
 }
 
-
+### RALLY POINT
 container = {
 	name = "rally_point_widget"
 	position = { -48 -10 }
@@ -481,11 +483,11 @@ container = {
 	button_rally_point = {
 		datacontext = "[RallyPointMapIcon.GetRallyPoint]"
 		visible = "[And( RallyPointMapIcon.ShouldBeShown, Not(GetPlayer.HasActiveCompanionAISetting('raise_armies')))]"
-		alwaystransparent = "[Not( RallyPointMapIcon.CanClick )]"
+		alwaystransparent = "[Not( RallyPointMapIcon.CanClick )]" # Ignore the clicks if we are moving or placing a rally point so it filters through to the map to handle it instead of trying to show the info of the not existing rally point
 	}
 }
 
-
+### Major river ford
 widget = {
 	name = "ford_widget"
 	size = { 40 40 }
@@ -504,7 +506,7 @@ widget = {
 	}
 }
 
-
+### Strait
 widget = {
 	name = "strait_widget"
 	size = { 40 40 }
@@ -523,7 +525,7 @@ widget = {
 	}
 }
 
-
+#### Domicile and task contracts Icon for flat map
 widget = {
 	name = "flat_landless_widget"
 
@@ -551,12 +553,13 @@ widget = {
 	}
 }
 
-
+### Title capital
 container = {
 	name = "title_capital_widget"
 	widgetanchor = center
 	allow_outside = yes
 
+	# Animations have been removed for now, should be part of map_realm_coa types
 
 	background = {
 		texture = "gfx/interface/component_masks/mask_fade_circle.dds"
@@ -573,7 +576,7 @@ container = {
 	}
 }
 
-
+### Ruler Objective Advice
 widget = {
 	name = "ruler_objective_advice_widget"
 	widgetanchor = center
@@ -621,7 +624,7 @@ widget = {
 	}
 }
 
-
+### Combat prediction
 container = {
 	name = "combat_prediction_widget"
 	widgetanchor = top|hcenter
@@ -640,7 +643,7 @@ container = {
 	}
 }
 
-
+### Fleet prediction
 flowcontainer = {
 	name = "fleet_embark_widget"
 	widgetanchor = top|hcenter
@@ -661,7 +664,7 @@ flowcontainer = {
 			text = "MAP_ICON_EMBARK_COST"
 			autoresize = yes
 		}
-
+		#ugly spacer to make the text and icon align vertically
 		spacer = {
 			size = {0 30}
 		}
@@ -670,6 +673,7 @@ flowcontainer = {
 
 }
 
+### Council Task
 
 container = {
 	name = "council_task_widget"
@@ -680,7 +684,7 @@ container = {
 	}
 }
 
-
+### Province move attrition
 widget = {
 	name = "province_move_attrition_widget"
 	size = { 30 30 }
@@ -696,21 +700,21 @@ widget = {
 	}
 }
 
-
+### Holy Site
 flowcontainer = {
 	name = "holy_site_widget"
 	widgetanchor = center
-	datacontext = "[HolySiteIcon.GetHolySite]"
-	datacontext = "[GuiHolySiteItem.GetHolySite]"
+	datacontext = "[HolySiteIcon.GetHolySiteItem]"
+	datacontext = "[HolySiteItem.GetHolySite]"
 	direction = vertical
 
 	ignoreinvisible = yes
 
-	button_normal = {
+	button_normal = {	
 		parentanchor = hcenter
 		background = {
 			alpha = 0
-			visible = "[GuiHolySiteItem.IsHeldByFaith]"
+			visible = "[HolySiteItem.IsHeldByFaith]"
 			texture = "gfx/interface/component_masks/mask_circle.dds"
 			margin = { -10 -10 }
 			glow = {
@@ -728,7 +732,7 @@ flowcontainer = {
 
 		background = {
 			alpha = 0
-			visible = "[Not( GuiHolySiteItem.IsHeldByFaith )]"
+			visible = "[Not( HolySiteItem.IsHeldByFaith )]"
 			texture = "gfx/interface/component_masks/mask_circle.dds"
 
 			glow = {
@@ -745,7 +749,7 @@ flowcontainer = {
 		}
 
 		name = "faith_icon"
-		texture = "[GuiHolySiteItem.GetFaith.GetIcon]"
+		texture = "[HolySiteItem.GetFaith.GetIcon]"
 		size = { 60 60 }
 		onclick = "[HolySite.GetBarony.SelectTitle]"
 		tooltip = "FAITH_WINDOW_HOLY_SITE_TOOLTIP"
@@ -753,20 +757,20 @@ flowcontainer = {
 
 	text_label_center = {
 		parentanchor = hcenter
-		visible = "[GuiHolySiteItem.IsHeldByFaith]"
+		visible = "[HolySiteItem.IsHeldByFaith]"
 		text = "[HolySite.GetBarony.GetNameNoTierNoTooltip]"
 		default_format = "#high"
 	}
 
 	text_label_center = {
 		parentanchor = hcenter
-		visible = "[Not( GuiHolySiteItem.IsHeldByFaith )]"
+		visible = "[Not( HolySiteItem.IsHeldByFaith )]"
 		text = "[HolySite.GetBarony.GetNameNoTierNoTooltip]"
 		default_format = "#medium"
 	}
 }
 
-
+### house CoA
 container = {
 	name = "house_coa_icon"
 	widgetanchor = center
@@ -798,7 +802,7 @@ container = {
 	}
 }
 
-
+### Court language
 flowcontainer = {
 	name = "court_language_widget"
 	widgetanchor = center
@@ -819,7 +823,7 @@ flowcontainer = {
 	}
 }
 
-
+### Landless Rulers
 widget = {
 	name = "landless_rulers_map_widget"
 	allow_outside = yes
@@ -846,7 +850,7 @@ widget = {
 	flowcontainer = {
 		name = "normal_map_icon"
 
-
+		# Explicit check on the index due to frame updates and lifetimes. 
 		visible = "[And( And( Not( LobbyHelperWindow.IsLandlessTabSelected ), GreaterThan_int32( LandlessRulersMapIcon.GetValidDomicilesCount, '(int32)0' ) ), LessThan_int32( LandlessRulersMapIcon.GetFirstValidDomicileIndex, GetDataModelSize( LandlessRulersMapIcon.GetDomiciles ) ) )]"
 
 		ignoreinvisible = yes
@@ -873,9 +877,9 @@ widget = {
 		}
 
 		widget = {
-			visible = "[And( GreaterThan_int32( LandlessRulersMapIcon.GetValidDomicilesCount, '(int32)1' ), Not(GetVariableSystem.HasValue( 'domicile_expand_all_in_province', Province.GetTag ) ) )]"
+			visible = "[And( GreaterThan_int32( LandlessRulersMapIcon.GetValidDomicilesCount, '(int32)1' ), Not(GetVariableSystem.HasValue( 'domicile_expand_all_in_province', Province.GetTag ) ) )]"	
 			size = { 48 48 }
-
+					
 					state = {
 						name = "map_zoom_close"
 						size = { 48 48 }
@@ -889,7 +893,7 @@ widget = {
 						duration = 0.25
 						trigger_when = "[GreaterThan_int32( GetZoomLevel, '(int32)13' )]"
 					}
-
+					
 					parentanchor = right|vcenter
 					widgetanchor = left|vcenter
 
@@ -901,11 +905,11 @@ widget = {
 
 			text_single = {
 				parentanchor = center
-
+				
 				text = MAP_ICON_LANDLESS_RULERS_COUNT
 				align = center
 				default_format = "#strong_glow;high"
-
+				
 				position = { 0 -3 }
 
 				using = Font_Size_Small
@@ -949,7 +953,7 @@ widget = {
 	flowcontainer = {
 		name = "lobby_map_icon"
 
-
+		# Explicit check on the index due to frame updates and lifetimes. 
 		visible = "[And( And( LobbyHelperWindow.IsLandlessTabSelected, GreaterThan_int32( LandlessRulersMapIcon.GetValidDomicilesCount, '(int32)0' ) ), LessThan_int32( LandlessRulersMapIcon.GetFirstValidDomicileIndex, GetDataModelSize( LandlessRulersMapIcon.GetDomiciles ) ) )]"
 
 		ignoreinvisible = yes
@@ -962,7 +966,7 @@ widget = {
 
 			datacontext = "[Domicile.GetOwner]"
 			visible = "[And( And( Domicile.GetType.HasLobbyMapPin, Character.IsLandlessRuler), GetLobbyHelper.CharacterHasGovernment( Character.Self ) )]"
-
+			
 			state = {
 				name = "map_zoom_close"
 				size = { 84 95 }
@@ -979,10 +983,10 @@ widget = {
 		}
 
 		widget = {
-			visible = "[And( GreaterThan_int32( LobbyHelperWindow.CountFilteredDomicilesInProvince( Province.Self ), '(int32)1' ), Not(GetVariableSystem.HasValue( 'domicile_expand_all_in_province', Province.GetTag ) ) )]"
-
+			visible = "[And( GreaterThan_int32( LobbyHelperWindow.CountFilteredDomicilesInProvince( Province.Self ), '(int32)1' ), Not(GetVariableSystem.HasValue( 'domicile_expand_all_in_province', Province.GetTag ) ) )]"	
+			
 			size = { 48 48 }
-
+				
 				state = {
 					name = "map_zoom_close"
 					size = { 48 48 }
@@ -996,7 +1000,7 @@ widget = {
 					duration = 0.25
 					trigger_when = "[GreaterThan_int32( GetZoomLevel, '(int32)13' )]"
 				}
-
+				
 			parentanchor = vcenter
 
 			background = {
@@ -1007,7 +1011,7 @@ widget = {
 				parentanchor = center
 
 				position = { 0 -3 }
-
+				
 				text = lobby_more_domiciles_count
 				align = center
 				default_format = "#strong_glow;high"
@@ -1055,7 +1059,7 @@ widget = {
 			}
 		}
 
-
+		### Push widgets up when zoomed in
 		widget = {
 			size = { 2 0 }
 
@@ -1116,7 +1120,7 @@ widget = {
 	}
 }
 
-
+### Men at Arms Origin
 widget = {
 	name = "men_at_arms_origin_widget"
 	widgetanchor = center
@@ -1170,7 +1174,7 @@ widget = {
 				icon = {
 					name = "realm_capital_icon"
 					parentanchor = center
-
+					#position = {0 -5}
 					size = { 30 30 }
 					texture = "gfx/interface/icons/icon_capital.dds"
 					framesize = { 60 60 }
@@ -1187,7 +1191,7 @@ widget = {
 	}
 }
 
-
+### Title Troops
 widget = {
 	name = "title_troops_map_widget"
 	datacontext = "[TitleTroopsMapIcon.GetTitle]"
@@ -1201,7 +1205,7 @@ widget = {
 		layoutpolicy_vertical = expanding
 		allow_outside = yes
 
-
+		# CoA
 		widget = {
 			datacontext = "[Title.GetHolder]"
 			size = { 44 72 }
@@ -1288,7 +1292,7 @@ widget = {
 
 				expand = {}
 
-
+				# Banner & Army size
 				hbox = {
 					layoutpolicy_horizontal = expanding
 					allow_outside = yes
@@ -1343,7 +1347,7 @@ widget = {
 					expand = {}
 				}
 
-
+				# Small CoAs
 				widget = {
 					visible = "[GreaterThan_int32( GetDataModelSize(TitleTroopsMapIcon.GetHiredTitles), '(int32)0' )]"
 					allow_outside = yes
@@ -1454,6 +1458,7 @@ widget = {
 }
 
 
+### Admin Province widget (Theme/Province/Circuit/etc)
 widget = {
 	name = "admin_province_map_widget"
 	datacontext = "[AdminProvinceMapIcon.GetTitle]"
@@ -1554,6 +1559,7 @@ widget = {
 }
 
 
+### Activity planner
 widget = {
 	name = "activity_planner_widget"
 
@@ -1616,7 +1622,7 @@ widget = {
 			visible = "[ActivityPlannerMapIcon.HasTravelPointsOfInterest]"
 		}
 
-
+		# Activity related icons
 		flowcontainer = {
 			visible = "[Or(ActivityPlannerMapIcon.CanSelectDestination, ActivityPlannerMapIcon.IsSelectedDestination )]"
 			direction = vertical
@@ -1625,7 +1631,7 @@ widget = {
 
 			parentanchor = hcenter
 
-
+			# Icon at your current capital
 			icon = {
 				name = "realm_capital_icon"
 				visible = "[ActivityPlannerMapIcon.IsCapital]"
@@ -1651,7 +1657,7 @@ widget = {
 				}
 			}
 
-
+			# Character pin of province holder (only for 'holder' type activity planners)
 			widget_character_icon = {
 				datacontext = "[Province.GetTitle.GetHolder]"
 				visible = "[And( ActivityPlannerMapIcon.IsSelectingDestinations, And( ActivityType.IsPlannerType('holder'), And( LessThan_int32( GetZoomLevel, '(int32)16' ), And( Character.IsValid, Not( Character.IsPlayer ) ) ) ) )]"
@@ -1676,7 +1682,7 @@ widget = {
 				}
 			}
 
-
+			# Holder opinion of you
 			button = {
 				datacontext = "[Province.GetTitle.GetHolder]"
 				visible = "[And( ActivityPlannerMapIcon.IsSelectingDestinations, And( ActivityType.IsPlannerType('holder'), And( Character.IsValid, Not( Character.IsPlayer ) ) ) )]"
@@ -1706,7 +1712,7 @@ widget = {
 				}
 			}
 
-
+			# Name of province
 			text_label_center = {
 				allow_outside = yes
 				visible = "[And(ActivityType.IsPlannerType('province'), Not(EqualTo_string( ActivityType.GetKey(), 'activity_journey')))]"
@@ -1715,7 +1721,7 @@ widget = {
 				text = "[Province.GetNameNoTooltip]"
 			}
 
-
+			# Name of special building
 			text_label_center = {
 				allow_outside = yes
 				visible = "[And(ActivityType.IsPlannerType('province'), EqualTo_string( ActivityType.GetKey(), 'activity_journey') )]"
@@ -1724,7 +1730,7 @@ widget = {
 				text = "[Province.GetHolding.GetSpecialBuildingType.GetName]"
 			}
 
-
+			# Special building skills
 			text_label_center = {
 				allow_outside = yes
 				visible = "[And(ActivityType.IsPlannerType('province'), EqualTo_string( ActivityType.GetKey(), 'activity_journey') )]"
@@ -1733,7 +1739,7 @@ widget = {
 				text = "[Province.Custom('GetSpecialBuildingDiplomacySkill')][Province.Custom('GetSpecialBuildingMartialSkill')][Province.Custom('GetSpecialBuildingLearningSkill')][Province.Custom('GetSpecialBuildingStewardshipSkill')][Province.Custom('GetSpecialBuildingIntrigueSkill')]"
 			}
 
-
+			# Activity Type Pin
 			button = {
 				size = { 43 46 }
 				parentanchor = hcenter
@@ -1802,7 +1808,7 @@ widget = {
 					texture = "[Province.GetHolding.GetSpecialBuildingType.GetTypeIcon]"
 					size = { 44 38 }
 					position = { 0 -5 }
-
+					#mipmaplodbias = -1
 
 					visible = "[EqualTo_string( ActivityType.GetKey(), 'activity_journey')]"
 
@@ -1839,7 +1845,7 @@ widget = {
 					texture = "[Province.GetHolding.GetPrimaryBuildingType.GetTypeIcon]"
 					size = { 44 38 }
 					position = { 0 -5 }
-
+					#mipmaplodbias = -1
 
 					visible = "[EqualTo_string( ActivityType.GetKey(), 'activity_coronation')]"
 
@@ -1904,13 +1910,13 @@ flowcontainer_realm_capital = {
 	name = "realm_capital_small_widget"
 	widgetanchor = center
 	allow_outside = yes
-
+	
 	blockoverride "capital_datacontext" {
 		datacontext = "[CapitalMapIcon.GetOwner]"
 	}
 }
 
-
+### TRAVEL PROVINCE
 widget = {
 	name = "travel_province_widget"
 	widgetanchor = center
@@ -1960,7 +1966,7 @@ widget = {
 			visible = "[TravelProvinceMapIcon.HasPointsOfInterest]"
 		}
 
-
+		### Push widgets up when zoomed in
 		widget = {
 			size = { 2 0 }
 
@@ -2033,7 +2039,7 @@ widget = {
 	}
 }
 
-
+### Unique building
 flowcontainer = {
 	name = "unique_building_widget"
 	ignoreinvisible = yes
@@ -2073,7 +2079,7 @@ flowcontainer = {
 	}
 }
 
-
+# Great building
 flowcontainer = {
 	name = "great_building_widget"
 	ignoreinvisible = yes
@@ -2108,7 +2114,7 @@ flowcontainer = {
 	}
 }
 
-
+### MIGRATION
 widget = {
 	name = "migration_widget"
 	allow_outside = yes
@@ -2447,7 +2453,7 @@ types MapIcons
 				parentanchor = center
 			}
 
-
+			### Tributary Icon
 			widget = {
 				visible = "[Character.HasSuzerain]"
 				visible_at_creation = no
@@ -2541,7 +2547,7 @@ types MapIcons
 				position = { 0 -5 }
 			}
 
-
+			### Tributary Icon
 			widget = {
 				visible = "[Character.HasSuzerain]"
 				visible_at_creation = no
@@ -2614,7 +2620,7 @@ types MapIcons
 			parentanchor = center
 		}
 
-
+		### Tributary Icon
 		widget = {
 			visible = "[Character.HasSuzerain]"
 			visible_at_creation = no
@@ -2640,7 +2646,7 @@ types MapIcons
 		}
 	}
 
-
+	### Holding
 	type flowcontainer_holding_info = flowcontainer  {
 		datacontext = "[ProvinceIcon.GetHolding]"
 		direction = vertical
@@ -2648,6 +2654,19 @@ types MapIcons
 		tooltipwidget = { holding_tooltip = {} }
 		allow_outside = yes
 
+		# widget = {
+		# 	coa_realm_map_small = {
+		# 		datacontext = "[Title.GetLessee]"
+		# 		#	visible = "[And(Title.IsLeasedOut,Title.GetLessee.GetPrimaryTitle.IsHolyOrder)]"
+
+		# 		position = { 30 0 }
+
+		# 		tooltip = "[holy_order|E]"
+		# 		alwaystransparent = no
+		# 		widgetanchor = bottom|left
+		# 		allow_outside = yes
+		# 	}
+		# }
 
 		flowcontainer = {
 			parentanchor = hcenter
@@ -2842,9 +2861,11 @@ types MapIcons
 			parentanchor = hcenter
 			visible = "[And( Holding.GetHolder.IsAtWar, ProvinceIcon.HasHoldingDetails )]"
 
-
+			#using = Animation_MapIcon_Fade
+			#blockoverride "icon_size"
+			#{
 			size = { 150 28 }
-
+			#}
 
 			background = {
 				texture = "gfx/interface/component_masks/mask_fade_circle.dds"
@@ -2931,14 +2952,14 @@ types MapIcons
 		}
 	}
 
-
+	### CHARACTER
 	type widget_character_icon = widget {
 		button = {
 			name = "portrait_pin"
 			parentanchor = bottom|hcenter
 
 			texture = "gfx/interface/icons/map_icons/portrait_pin.dds"
-
+			# Using percentages so it's relative to the size of the top widget
 			size = { 100% 100% }
 
 			tooltip = "[Character.GetLocationDesc]"
@@ -2954,10 +2975,10 @@ types MapIcons
 			block "widget_character_icon_overrides" { }
 
 			portrait_button = {
-
-				using = visible_if_not_dragon
+				#AGOT Added
+				visible = "[Not(IsCharacterDragon)]"
 				parentanchor = bottom|hcenter
-
+				# Using percentages so it's relative to the size of the top widget
 				size = { 95% 105% }
 				using = portrait_base
 				portrait_texture = "[Character.GetPortrait('environment_head', 'camera_shoulders', 'idle', PdxGetWidgetScreenSize(PdxGuiWidget.Self))]"
@@ -2985,7 +3006,7 @@ types MapIcons
 					}
 				}
 			}
-
+			#AGOT Added
 			agot_dragons_portrait_map_icon = {}
 		}
 	}
@@ -2993,30 +3014,31 @@ types MapIcons
 	type button_rally_point = button_normal {
 		name = "rally_point_button"
 		size = { 34 34 }
-
-
+		#texture = "gfx/interface/window_military/banner_icon.dds"
+		#tintcolor = "[RallyPoint.GetIconColor]"
+		
 		coa_realm_overlay = {
 			parentanchor = center
 			texture = "gfx/interface/window_military/Frame.dds"
 			framesize = { 300 300 }
 			size = { 47 58 }
 		}
-
+		
 		coat_of_arms_icon = {
 			parentanchor = center
 			size = { 36 35 }
-
+				
 			coat_of_arms = "[GetPlayer.GetPrimaryTitle.GetTitleCoA.GetTexture('(int32)56','(int32)56')]"
 			coat_of_arms_slot = "[GetPlayer.GetPrimaryTitle.GetTitleCoA.GetSlot('(int32)56','(int32)56')]"
-			coat_of_arms_mask = "[GetPlayer.GetGovernment.GetRealmMask]"
-
+			coat_of_arms_mask = "[GetPlayer.GetGovernment.GetRealmMask]"			
+				
 			coa_realm_overlay = {
 				texture = "[GetPlayer.GetGovernment.GetRealmFrame('(int32)28')]"
 				framesize = { 33 45 }
 				size = { 32 42 }
 			}
 		}
-
+		
 		coa_realm_overlay = {
 			position = { 1 25 }
 			texture = "gfx/interface/window_military/rallycolor.dds"
@@ -3102,6 +3124,14 @@ types MapIcons
 	}
 
 
+	### Brief: widget_lobby_helper_landless_ruler_count
+	#
+	# Needs datacontext:
+	#	Province
+	#		The Province being checked.
+	#	LobbyHelperWindow
+	#		Has access to the helper functions needed for filtering.
+	#
 	type widget_lobby_helper_landless_ruler_count = widget {
 
 		state = {
@@ -3115,7 +3145,7 @@ types MapIcons
 
 		text_single = {
 			parentanchor = center
-
+			
 			text = lobby_more_domiciles_count
 			align = center
 			default_format = "#strong_glow;high"
@@ -3129,7 +3159,7 @@ types MapIcons
 		allow_outside = yes
 		block "pins_size"
 		{
-			size = { 67 76 }
+			size = { 67 76 } 
 		}
 
 		blockoverride "widget_character_icon_overrides"
@@ -3142,7 +3172,7 @@ types MapIcons
 			using = tooltip_se
 		}
 
-		icon = {
+		icon = { 
 			size = { 32 32 }
 			position = { 0 -16 }
 			parentanchor = top|hcenter
@@ -3153,14 +3183,14 @@ types MapIcons
 
 		coa_realm_tiny = {
 			parentanchor = bottom|left
-
+			
 			using = tooltip_se
 		}
 	}
 
 	type domicile_location_icon = widget
 	{
-		name = "domicile_map_icon"
+		name = "domicile_map_icon" #lesson_china_open_estate uses this
 		datacontext = "[GetPlayer]"
 		size = { 96 96 }
 
@@ -3183,7 +3213,7 @@ types MapIcons
 
 		state = {
 			name = "map_zoom_close"
-
+			# We animate the size, and not the scale, so the flowcontainer works nicely
 			size = { 104 104 }
 			duration = 0.25
 			trigger_when = "[LessThan_int32( GetZoomLevel, '(int32)16' )]"
@@ -3191,13 +3221,13 @@ types MapIcons
 
 		state = {
 			name = "map_zoom_far"
-
+			# We animate the size, and not the scale, so the flowcontainer works nicely
 			size = { 80 80 }
 			duration = 0.25
 			trigger_when = "[GreaterThan_int32( GetZoomLevel, '(int32)15' )]"
 		}
 
-
+		### Chinese Estate widget
 		widget = {
 			parentanchor = vcenter
 			size = { 240 80 }
@@ -3279,7 +3309,7 @@ types MapIcons
 							layoutpolicy_horizontal = expanding
 							spacing = 20
 
-
+							### Overview Resources Gold
 							hbox = {
 								spacing = 4
 
@@ -3314,7 +3344,7 @@ types MapIcons
 								}
 							}
 
-
+							### Overview Resources Influence
 							hbox = {
 								visible = "[IsAdministrativeRuler( GetPlayer )]"
 								spacing = 4
@@ -3357,7 +3387,7 @@ types MapIcons
 							layoutpolicy_horizontal = expanding
 							spacing = 20
 
-
+							### Overview Resources Prestige
 							hbox = {
 								spacing = 4
 
@@ -3392,7 +3422,7 @@ types MapIcons
 								}
 							}
 
-
+							### Overview Resources Piety
 							hbox = {
 								spacing = 4
 
@@ -3435,7 +3465,7 @@ types MapIcons
 			}
 		}
 
-
+		### Glow animation when construction completed
 		icon = {
 			datacontext = "[GetPlayer.GetDomicile]"
 			visible = "[Domicile.ShowBuildingNotification]"
@@ -3456,7 +3486,7 @@ types MapIcons
 				using = Animation_FadeOut_Quick
 			}
 
-
+			### Glow shine animation
 			state = {
 				name = "a"
 				next = "b"
@@ -3504,13 +3534,13 @@ types MapIcons
 			}
 		}
 
-
+		### Map pin graphics
 		button = {
 			size = { 100% 100% }
 			name = "domicile_map_icon"
 			onclick = "[ToggleGameViewData( 'domicile', GetPlayer.GetDomicile )]"
 
-
+			### Domicile pin background
 			highlight_icon = {
 				visible = "[Not(Or(Or(GetPlayer.GetGovernment.IsType( 'japan_feudal_government' ),GetPlayer.GetGovernment.IsType( 'japan_administrative_government' )),Or(IsNomad( GetPlayer ),Or(GetPlayer.GetGovernment.IsType( 'celestial_government' ),GetPlayer.GetGovernment.IsType( 'meritocratic_government' )))))]"
 				parentanchor = center
@@ -3543,7 +3573,7 @@ types MapIcons
 				texture = "gfx/interface/window_domiciles/domicile_location_map_pin_background_nomad.dds"
 			}
 
-
+			### Arrow Pointer
 			highlight_icon = {
 				visible = "[And(Not(Or(IsNomad( GetPlayer ),Or(GetPlayer.GetGovernment.IsType( 'celestial_government' ),GetPlayer.GetGovernment.IsType( 'meritocratic_government' )))),Domicile.GetType.HasMapPinAnchor( 'up' ) )]"
 				parentanchor = bottom|hcenter
@@ -3568,7 +3598,7 @@ types MapIcons
 				texture = "gfx/interface/window_domiciles/domicile_location_map_pin_arrow_nomad.dds"
 			}
 
-
+			### Domicile type icon
 			highlight_icon = {
 				datacontext = "[GetPlayer.GetDomicile]"
 				parentanchor = center
@@ -3580,7 +3610,7 @@ types MapIcons
 				texture = "[Domicile.GetType.GetMapPinTexture]"
 			}
 
-
+			### Domicile building construction progress
 			progresspie = {
 				name = "construction_progress_close"
 				datacontext = "[GetPlayer.GetDomicile]"
@@ -3598,7 +3628,7 @@ types MapIcons
 				max = 1
 			}
 
-
+			### Nomad domicile building construction progress
 			progresspie = {
 				name = "construction_progress_close_nomad"
 				datacontext = "[GetPlayer.GetDomicile]"
@@ -3615,7 +3645,7 @@ types MapIcons
 				max = 1
 			}
 
-
+			### Chinese domicile building construction progress
 			progresspie = {
 				name = "construction_progress_close_china"
 				datacontext = "[GetPlayer.GetDomicile]"
@@ -3632,7 +3662,7 @@ types MapIcons
 				max = 1
 			}
 
-
+			### Japanese domicile building construction progress
 			progresspie = {
 				name = "construction_progress_close_japan"
 				datacontext = "[GetPlayer.GetDomicile]"
@@ -3656,7 +3686,7 @@ types MapIcons
 			visible = "[GetVariableSystem.Exists( 'open_camp_contextual_buttons' )]"
 			allow_outside = yes
 			visible_at_creation = no
-
+			
 			state = {
 				name = "map_zoom_close_buttons"
 				position = { -64 -25 }
@@ -3784,8 +3814,8 @@ types MapIcons
 				size = { 50 50 }
 				name = "move_camp_quick_button"
 				datacontext = "[GetPlayer.GetDomicile]"
-
-
+				#AGOT Modified
+				# visible = "[Or(GetPlayer.GetGovernment.IsType('landless_adventurer_government'),Or(GetPlayer.GetGovernment.IsType('celestial_government'),Or(GetPlayer.GetGovernment.IsType('meritocratic_government'),Or(GetPlayer.GetGovernment.IsType('japan_feudal_government'),GetPlayer.GetGovernment.IsType('japan_administrative_government')))))]"
 				visible = "[Or(IsLandlessAdventurer(GetPlayer), Or(GetPlayer.GetGovernment.IsType('celestial_government'), Or(GetPlayer.GetGovernment.IsType('meritocratic_government'), Or(GetPlayer.GetGovernment.IsType('japan_feudal_government'), GetPlayer.GetGovernment.IsType('japan_administrative_government')))))]"
 
 				enabled = "[Domicile.CanMove]"
@@ -3815,20 +3845,20 @@ types MapIcons
 					}
 				}
 			}
-
+			#AGOT Added
 			agot_settle_wilderness_adventurer_button = {}
 		}
 	}
 
 	type task_contract_location_icon = widget
 	{
-		name = "task_contract_icon"
+		name = "task_contract_icon" # This name is used by reactive advise - do not change it
 		allow_outside = yes
 		datacontext = "[GetPlayer]"
 
 		state = {
 			name = "map_zoom_close"
-
+			# We animate the size, and not the scale, so the flowcontainer works nicely
 			size = { 84 85 }
 			duration = 0.25
 			trigger_when = "[LessThan_int32( GetZoomLevel, '(int32)14' )]"
@@ -3836,7 +3866,7 @@ types MapIcons
 
 		state = {
 			name = "map_zoom_far"
-
+			# We animate the size, and not the scale, so the flowcontainer works nicely
 			size = { 42 43 }
 			duration = 0.25
 			trigger_when = "[GreaterThan_int32( GetZoomLevel, '(int32)13' )]"
@@ -3852,7 +3882,7 @@ types MapIcons
 			size = { 100% 100% }
 			parentanchor = center
 
-
+			### Glow shine animation
 			state = {
 				name = "a"
 				next = "b"
@@ -3900,7 +3930,7 @@ types MapIcons
 			}
 		}
 
-
+		### Contract inside accept range
 		button = {
 			visible = "[Not(GetPlayer.GetGovernment.IsType('nomad_government'))]"
 
@@ -3994,24 +4024,24 @@ types MapIcons
 			using = tooltip_ne
 		}
 
-
+		### Nomadic Contract inside accept range
 		button = {
 			state = {
 				name = "map_zoom_close"
-
+				# We animate the size, and not the scale, so the flowcontainer works nicely
 				size = { 84 85 }
 				duration = 0.25
 				trigger_when = "[LessThan_int32( GetZoomLevel, '(int32)14' )]"
 			}
-
+	
 			state = {
 				name = "map_zoom_far"
-
+				# We animate the size, and not the scale, so the flowcontainer works nicely
 				size = { 45 44 }
 				duration = 0.25
 				trigger_when = "[GreaterThan_int32( GetZoomLevel, '(int32)13' )]"
 			}
-
+			
 			visible = "[GetPlayer.GetGovernment.IsType('nomad_government')]"
 
 			size = { 100% 100% }
@@ -4089,7 +4119,7 @@ types MapIcons
 
 		state = {
 			name = "map_zoom_close"
-
+			# We animate the size, and not the scale, so the flowcontainer works nicely
 			size = { 94 102 }
 			duration = 0.25
 			trigger_when = "[LessThan_int32( GetZoomLevel, '(int32)14' )]"
@@ -4097,7 +4127,7 @@ types MapIcons
 
 		state = {
 			name = "map_zoom_far"
-
+			# We animate the size, and not the scale, so the flowcontainer works nicely
 			size = { 63 70 }
 			duration = 0.25
 			trigger_when = "[GreaterThan_int32( GetZoomLevel, '(int32)13' )]"
@@ -4113,7 +4143,7 @@ types MapIcons
 		button = {
 			size = { 100% 100% }
 			visible = "[Activity.IsParticipant( Character.Self )]"
-
+			
 			icon = {
 				visible = "[Activity.GetType.IsGrandActivity]"
 				texture = "gfx/interface/window_activities/pin_grand_activity_location.dds"
@@ -4639,7 +4669,7 @@ types MapIcons
 		}
 
 		coa_realm_map_small = {
-			visible = "[EqualTo_int32(Character.GetPrimaryTitle.GetTierFrame, '(int32)3')]"
+			visible = "[EqualTo_int32(Character.GetPrimaryTitle.GetTierFrame, '(int32)3')]" #Count Rank
 
 			blockoverride "coa_icon_additions" {
 				glow = {
@@ -4657,7 +4687,7 @@ types MapIcons
 		}
 
 		coa_realm_map_medium = {
-			visible = "[EqualTo_int32(Character.GetPrimaryTitle.GetTierFrame, '(int32)4')]"
+			visible = "[EqualTo_int32(Character.GetPrimaryTitle.GetTierFrame, '(int32)4')]" #Duke Rank
 
 			blockoverride "coa_icon_additions" {
 				glow = {
@@ -4675,7 +4705,7 @@ types MapIcons
 		}
 
 		coa_realm_map_big = {
-			visible = "[GreaterThanOrEqualTo_int32(Character.GetPrimaryTitle.GetTierFrame, '(int32)5')]"
+			visible = "[GreaterThanOrEqualTo_int32(Character.GetPrimaryTitle.GetTierFrame, '(int32)5')]" #King or Empire Rank
 
 			blockoverride "coa_icon_additions" {
 				glow = {
@@ -4697,13 +4727,14 @@ types MapIcons
 	{
 		datacontext = "[TravelDangerMapIconData.GetDangerType]"
 
-
+		# Glow (needs to be first to be under the other icon)
+		# Danger - Safety is above TRAVEL_DANGER_ICON_DANGEROUS_VALUE
 		icon = {
 			visible = "[And( TravelDangerMapIconData.IsUnsafe, TravelDangerMapIconData.IsDangerous )]"
 			texture = "gfx/interface/icons/travel_danger_types/dangerous_glow.dds"
 			size = { 60 60 }
 
-
+			# Glow pulse animation
 			state = {
 				name = a
 				next = b
@@ -4720,7 +4751,7 @@ types MapIcons
 			}
 		}
 
-
+		# Danger - Safety is between TRAVEL_DANGER_ICON_UNSAFE_THRESHOLD and TRAVEL_DANGER_ICON_DANGEROUS_VALUE
 		icon = {
 			visible = "[TravelDangerMapIconData.IsUnsafe]"
 			texture = "[TravelDangerType.GetIconActive]"
@@ -4728,7 +4759,7 @@ types MapIcons
 			size = { 60 60 }
 		}
 
-
+		# Danger - Safety is under TRAVEL_DANGER_ICON_UNSAFE_THRESHOLD
 		icon = {
 			visible = "[Not( TravelDangerMapIconData.IsUnsafe )]"
 			texture = "[TravelDangerType.GetIconInactive]"
@@ -5186,7 +5217,7 @@ types MapIcons
 					}
 				}
 
-
+				### Green Fertility
 				icon = {
 					visible = "[MigrationMapIcon.IsAverageFertilityBetween( '(CFixedPoint)0.6', '(CFixedPoint)1.1' )]"
 					parentanchor = center
@@ -5203,7 +5234,7 @@ types MapIcons
 					}
 				}
 
-
+				### Yellow Fertility
 				icon = {
 					visible = "[MigrationMapIcon.IsAverageFertilityBetween( '(CFixedPoint)0.3', '(CFixedPoint)0.6' )]"
 					parentanchor = center
@@ -5219,7 +5250,7 @@ types MapIcons
 					}
 				}
 
-
+				### Red Fertility
 				icon = {
 					visible = "[MigrationMapIcon.IsAverageFertilityBetween( '(CFixedPoint)0.0', '(CFixedPoint)0.3' )]"
 					parentanchor = center
@@ -5298,7 +5329,7 @@ types MapIcons
 					}
 				}
 
-
+				### Green Fertility
 				icon = {
 					visible = "[MigrationMapIcon.IsAverageFertilityBetween( '(CFixedPoint)0.6', '(CFixedPoint)1.1' )]"
 					parentanchor = center
@@ -5315,7 +5346,7 @@ types MapIcons
 					}
 				}
 
-
+				# ### Yellow Fertility
 				icon = {
 					visible = "[MigrationMapIcon.IsAverageFertilityBetween( '(CFixedPoint)0.3', '(CFixedPoint)0.6' )]"
 					parentanchor = center
@@ -5331,7 +5362,7 @@ types MapIcons
 					}
 				}
 
-
+				### Red Fertility
 				icon = {
 					visible = "[MigrationMapIcon.IsAverageFertilityBetween( '(CFixedPoint)0.0', '(CFixedPoint)0.3' )]"
 					parentanchor = center
@@ -5437,7 +5468,7 @@ types MapIcons
 		alwaystransparent = yes
 		size = { 136 92 }
 
-
+		# Paper background
 		icon = {
 			size = { 100% 100% }
 			texture = "gfx/interface/window_situations/silk_road_innovation_bg.dds"
@@ -5490,7 +5521,7 @@ types MapIcons
 					}
 				}
 
-
+				# hide costs
 				blockoverride "cost_section" {}
 			}
 		}
@@ -5594,12 +5625,15 @@ types MapIcons
 	}
 }
 
-
+### Raidable Holding
 widget = {
 	name = "raidable_holding_widget"
 	size = { 60 60 }
 	allow_outside = yes
 
+	# This is implicit in code, such that no calculations for this map
+	# icon will be made if the setting is turned off.
+	#visible = "[ShowDetailedRaidMapIcons]"
 
 	widget = {
 		datacontext = "[DetailedRaidIcon.GetProvince]"
@@ -5697,12 +5731,15 @@ widget = {
 	}
 }
 
-
+### Barterable Holding
 widget = {
 	name = "barterable_holding_widget"
 	size = { 90 90 }
 	allow_outside = yes
 
+	# This is implicit in code, such that no calculations for this map
+	# icon will be made if the setting is turned off.
+	#visible = "[ShowDetailedBarterMapIcons]"
 
 	widget = {
 		datacontext = "[DetailedBarterIcon.GetProvince]"
@@ -5816,7 +5853,7 @@ widget = {
 	}
 }
 
-
+### situation sub region icons
 widget = {
 	name = "silk_road_situation_icon_widget"
 	allow_outside = yes
@@ -5884,7 +5921,7 @@ widget = {
 	}
 }
 
-
+### Confederation Map Icon
 container = {
 	name = "confederation_icon"
 	datacontext = "[ConfederationIcon.GetConfederation]"
@@ -5924,7 +5961,7 @@ container = {
 	}
 }
 
-
+### Great Projects
 widget = {
 	name = "great_project_icon_widget"
 	datacontext = "[GreatProjectMapIcon.GetProvince]"
@@ -6009,7 +6046,7 @@ widget = {
 							size = { 60 70 }
 
 							blockoverride "progresspie_position" {
-
+								#position = { 0.3 -4.7 }
 							}
 
 							blockoverride "pin_texture"

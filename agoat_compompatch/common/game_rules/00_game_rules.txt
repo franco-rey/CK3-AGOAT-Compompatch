@@ -1,26 +1,4 @@
-﻿difficulty = {
-
-	categories = {
-		difficulty ai
-	}
-
-	default = normal_difficulty
-
-	normal_difficulty = {
-
-	}
-
-	very_easy_difficulty = {
-		apply_modifier = player:very_easy_difficulty
-		flag = blocks_achievements
-	}
-
-	easy_difficulty = {
-		apply_modifier = player:easy_difficulty
-		flag = blocks_achievements
-	}
-}
-
+﻿# AGOAT Compompatch P75 (revised 2026-09-04): the 'difficulty' rule moved to zzzzzz_difficulty_hard_restored.txt, which sorts after Gamerule Gadget's GG_game_rules.txt.
 exclave_independence = {
 
 	categories = {

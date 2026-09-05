@@ -1,0 +1,27 @@
+﻿# AGOAT Compompatch N06 (2026-09-04): Gamerule Gadget's GG_game_rules.txt redefines 'difficulty' without Hard and Very Hard,
+# so AGOT's scripted modifiers that test has_game_rule = hard_difficulty / very_hard_difficulty failed to compile (516 error lines per boot).
+# Gadget's categories kept; the five settings are AGOT 0.5.2.1's. Sorts after GG_ so it wins the key.
+difficulty = {
+	categories = {
+		vanilla difficulty ai
+	}
+	default = normal_difficulty
+	normal_difficulty = {
+	}
+	hard_difficulty = {
+		apply_modifier = ai:hard_difficulty
+		apply_modifier = player:hard_difficulty_player
+	}
+	very_hard_difficulty = {
+		apply_modifier = ai:very_hard_difficulty
+		apply_modifier = player:very_hard_difficulty_player
+	}
+	easy_difficulty = {
+		apply_modifier = player:easy_difficulty
+		flag = blocks_achievements
+	}
+	very_easy_difficulty = {
+		apply_modifier = player:very_easy_difficulty
+		flag = blocks_achievements
+	}
+}

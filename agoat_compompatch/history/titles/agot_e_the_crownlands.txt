@@ -5,7 +5,7 @@
 			set_title_name = e_blackwater_bay
 		}
 	}
-	7999.4.1 = {
+	7999.4.1 = { # Aegon I 'the Conqueror'
 		holder = Targaryen_27
 		de_jure_liege = h_the_iron_throne
 		effect = {
@@ -13,61 +13,61 @@
 			set_title_name = e_the_crownlands
 		}
 	}
-	8037.9.9 = {
+	8037.9.9 = { # Aenys I
 		holder = Targaryen_30
 	}
-	8042.3.1 = {
+	8042.3.1 = { # Maegor I 'the Cruel'
 		holder = Targaryen_31
 	}
-	8048.3.7 = {
+	8048.3.7 = { # Jaehaerys I 'the Conciliator'
 		holder = Targaryen_35
 	}
-	8103.10.3 = {
+	8103.10.3 = { # Viserys I
 		holder = Targaryen_60
 	}
-	8129.3.3 = {
+	8129.3.3 = { # Aegon II the Elder
 		holder = Targaryen_65
 	}
-	8131.1.14 = {
+	8131.1.14 = { # Aegon III the Younger
 		holder = Targaryen_78
 	}
-	8157.1.13 = {
+	8157.1.13 = { # Daeron I the Young Dragon
 		holder = Targaryen_81
 	}
-	8161.6.9 = {
+	8161.6.9 = { # Baelor I the Blessed
 		holder = Targaryen_82
 	}
-	8171.1.20 = {
+	8171.1.20 = { # Viserys II
 		holder = Targaryen_79
 	}
-	8172.3.28 = {
+	8172.3.28 = { # Aegon IV the Unworthy
 		holder = Targaryen_88
 	}
-	8184.1.1 = {
+	8184.1.1 = { # Daeron II the Good
 		holder = Targaryen_91
 	}
-	8209.9.1 = {
+	8209.9.1 = { # Aerys I
 		holder = Targaryen_108
 	}
-	8221.1.1 = {
+	8221.1.1 = { # Maekar I
 		holder = Targaryen_110
 	}
-	8233.6.1 = {
+	8233.6.1 = { # Aegon V the Unlikley
 		holder = Targaryen_122
 	}
-	8259.6.1 = {
+	8259.6.1 = { # Jaehaerys II
 		holder = Targaryen_127
 	}
-	8262.1.1 = {
+	8262.1.1 = { # Aerys II the Mad
 		holder = Targaryen_1
 	}
-	8283.9.1 = {
+	8283.9.1 = { # Robert I Baratheon
 		holder = Baratheon_2
 	}
-	8298.10.24 = {
+	8298.10.24 = { # Joffrey I Baratheon
 		holder = Baratheon_5
 	}
-	8300.1.1 = {
+	8300.1.1 = { #  Tommen I Baratheon
 		holder = Baratheon_7
 	}
 }
@@ -77,13 +77,13 @@ k_the_blackwater = {
 		de_jure_liege = e_the_riverlands
 	}
 	3275.1.1 = {
-		holder = Durrandon_22
+		holder = Durrandon_22 	 # Conquered by Monfryd the Mighty
 	}
 	3299.1.1 = {
 		holder = 0
 	}
 	3323.1.1 = {
-		holder = Fisher_riverlands_duplicate_2
+		holder = Fisher_riverlands_duplicate_2 	 # Conquered by Fishers
 	}
 	3331.1.1 = {
 		holder = Fisher_riverlands_duplicate_3
@@ -101,13 +101,13 @@ k_the_blackwater = {
 		holder = 0
 	}
 	3520.1.1 = {
-		holder = Massey_106
+		holder = Massey_106 # Conquered by Masseys
 	}
 	3550.1.1 = {
 		holder = 0
 	}
 	5050.1.1 = {
-		holder = Hook_2
+		holder = Hook_2 	 # Conquered by Hooks
 	}
 	5080.1.1 = {
 		holder = Hook_3
@@ -116,28 +116,28 @@ k_the_blackwater = {
 		holder = Hook_4
 	}
 	5136.1.1 = {
-		holder = Bracken_136
+		holder = Bracken_136 	 # Conquered by Brackens
 	}
 	5180.1.1 = {
-		holder = Blackwood_134
+		holder = Blackwood_134 	 # Taken over by Blackwoods
 	}
 	5200.1.1 = {
 		holder = 0
 	}
 	5753.1.1 = {
-		holder = Mudd_24
+		holder = Mudd_24 	 # Conquered by Mudds
 	}
 	5775.1.1 = {
-		holder = Mudd_25
+		holder = Mudd_25 	 # Addan (nc)
 	}
 	5797.1.1 = {
-		holder = Mudd_26
+		holder = Mudd_26 	 # Tristan (nc)
 	}
 	5835.1.1 = {
-		holder = Bar_Emmon_5
+		holder = Bar_Emmon_5 # Conquered by Togarion Bar Emmon
 	}
 	5840.1.1 = {
-		holder = Darklyn_81
+		holder = Darklyn_81 # Conquered by Darklyns
 	}
 	5860.1.1 = {
 		holder = Darklyn_82
@@ -146,7 +146,7 @@ k_the_blackwater = {
 		holder = 0
 	}
 	6060.1.1 = {
-		holder = Justman_2
+		holder = Justman_2 	 # Conquered by Justmans
 	}
 	6113.1.1 = {
 		holder = Justman_4
@@ -161,43 +161,43 @@ k_the_blackwater = {
 		holder = Justman_8
 	}
 	6183.1.1 = {
-		holder = 0
+		holder = 0 	 # Justman royal line extinct
 	}
 	7500.1.1 = {
-		holder = Durrandon_66
+		holder = Durrandon_66 # Conquered by Arlan I Durrandon
 	}
 	7566.1.1 = {
-		holder = Durrandon_67
+		holder = Durrandon_67 #Cleoden II Durrandon (NC)
 	}
 	7568.1.1 = {
-		holder = Durrandon_68
+		holder = Durrandon_68 #Arlan II Durrandon (NC)
 	}
 	7590.1.1 = {
-		holder = Durrandon_69
+		holder = Durrandon_69 #Arlan III
 	}
 	7609.1.1 = {
-		holder = Durrandon_70
+		holder = Durrandon_70 #Arlan IV
 	}
 	7639.1.1 = {
-		holder = Durrandon_65
+		holder = Durrandon_65 #Alrich Durrandon
 	}
 	7692.1.1 = {
-		holder = Durrandon_71
+		holder = Durrandon_71 #Anrec
 	}
 	7757.1.1 = {
-		holder = Durrandon_72
+		holder = Durrandon_72 #Arcon
 	}
 	7760.1.1 = {
-		holder = Durrandon_73
+		holder = Durrandon_73 #Durran
 	}
 	7803.1.1 = {
-		holder = Durrandon_74
+		holder = Durrandon_74 #Alrec
 	}
 	7840.1.1 = {
-		holder = Durrandon_75
+		holder = Durrandon_75 #Durran
 	}
 	7867.1.1 = {
-		holder = Durrandon_76
+		holder = Durrandon_76 #Angron
 	}
 	7896.1.1 = {
 		holder = Durrandon_77
@@ -223,10 +223,10 @@ k_the_blackwater = {
 		holder = Targaryen_35
 	}
 	8103.10.3 = {
-		holder = Targaryen_60
+		holder = Targaryen_60		#Viserys I
 	}
 	8129.3.3 = {
-		holder = Targaryen_65
+		holder = Targaryen_65	 # Aegon II
 	}
 	8131.1.14 = {
 		holder = Targaryen_78
@@ -285,10 +285,10 @@ d_kings_landing = {
 		holder = Targaryen_35
 	}
 	8103.10.3 = {
-		holder = Targaryen_60
+		holder = Targaryen_60		#Viserys I
 	}
 	8129.3.3 = {
-		holder = Targaryen_65
+		holder = Targaryen_65	 # Aegon II
 	}
 	8131.1.14 = {
 		holder = Targaryen_78
@@ -411,7 +411,7 @@ c_kings_landing = {
 			}
 			title:b_visenyas_hill = {
 				save_title_name_change_data = { TRANSFER_VAR = no }
-				reset_title_name = yes
+				reset_title_name = yes 
 			}
 			title:b_hookmarket = {
 				save_title_name_change_data = { TRANSFER_VAR = no }
@@ -473,7 +473,7 @@ c_kings_landing = {
 				holder = {
 					set_amenity_level = {
 						type = agot_dragonpit_amenities
-						value = 4
+						value = 4 # High
 					}
 				}
 			}
@@ -483,7 +483,7 @@ c_kings_landing = {
 		holder = Targaryen_35
 	}
 	8103.10.3 = {
-		holder = Targaryen_60
+		holder = Targaryen_60		#Viserys I
 	}
 	8104.7.12 = {
 		effect = {
@@ -494,7 +494,7 @@ c_kings_landing = {
 		}
 	}
 	8129.3.3 = {
-		holder = Targaryen_65
+		holder = Targaryen_65	 # Aegon II
 	}
 	8130.6.28 = {
 		holder = Truefyre_1
@@ -552,106 +552,106 @@ c_kings_landing = {
 }
 b_goldguard_heights = {
 	8010.1.1 = {
-		holder = Scales_24
+		holder = Scales_24 # Aethan Scales (nc)
 	}
 	8018.1.1 = {
-		holder = Fell_54
+		holder = Fell_54 # Sarmion Storm (nc)
 	}
 	8025.1.1 = {
-		holder = Keath_27
+		holder = Keath_27 # Kavan Keath (nc)
 	}
 	8033.1.1 = {
-		holder = Varner_25
+		holder = Varner_25 # Erryk Varner (nc)
 	}
 	8041.1.1 = {
-		holder = Manning_22
+		holder = Manning_22 # Manly Manning (m)
 	}
 	8048.3.7 = {
-		holder = Targaryen_35
+		holder = Targaryen_35 # Qarl Corbray (C) is landed
 	}
 	8059.2.1 = {
-		holder = Redwyne_30
+		holder = Redwyne_30 # Robert Redwyne (C)
 	}
 	8090.1.1 = {
-		holder = Conklyn_37
+		holder = Conklyn_37 # Clement Conklyn (nc)
 	}
 	8104.7.12 = {
-		holder = Targaryen_61
+		holder = Targaryen_61 # Daemon Targaryen (C)
 	}
-	8105.9.12 = {
-		holder = Strong_30
+	8105.9.12 = { # Daemon leaves for Stepstones, goes to Harwin
+		holder = Strong_30 # Harwin Strong (C)
 	}
 	8113.8.24 = {
-		holder = Langward_26
+		holder = Langward_26 # Hareth Langward (m)
 	}
 	8129.3.3 = {
-		holder = Largent_1
+		holder = Largent_1 # Luthor Largent
 	}
-	8130.2.28 = {
-		holder = Byrch_18
+	8130.2.28 = { # Luthor gets his own county
+		holder = Byrch_18 # Balon Byrch (C)
 	}
 	8130.10.12 = {
-		holder = Truefyre_hh_1
+		holder = Truefyre_hh_1 # Perkin the Flea (C)
 	}
 	8131.1.28 = {
-		holder = Sunglass_38
+		holder = Sunglass_38 # Petyr Sunglass (m)
 	}
 	8133.2.3 = {
-		holder = Byrne_35
+		holder = Byrne_35 # Braxton Byrne (m)
 	}
 	8133.2.12 = {
-		holder = Targaryen_78
+		holder = Targaryen_78 # UNFILLED
 	}
 	8133.6.2 = {
-		holder = Leygood_28
+		holder = Leygood_28 # Lucas Leygood (C)
 	}
 	8135.11.1 = {
-		holder = Thorne_16
+		holder = Thorne_16 # Adrian Thorne (C)
 	}
 	8150.1.1 = {
-		holder = Harte_19
+		holder = Harte_19 # Richard Harte (sc)
 	}
 	8159.12.27 = {
-		holder = Targaryen_81
+		holder = Targaryen_81 # UNFILLED (sc)
 	}
 	8160.1.13 = {
-		holder = Saltcliffe_26
+		holder = Saltcliffe_26 # Dagur Saltcliffe (sc)
 	}
 	8162.1.4 = {
-		holder = Harte_19
+		holder = Harte_19 # Richard Harte (sc)
 	}
 	8165.1.1 = {
-		holder = Smallwood_30
+		holder = Smallwood_30 # Luthor Rivers (sc)
 	}
 	8188.1.1 = {
-		holder = Dargood_19
+		holder = Dargood_19 # Jeremy Dargood (nc)
 	}
 	8211.1.1 = {
-		holder = Bentley_40
+		holder = Bentley_40 # Byron Bentley (nc)
 	}
 	8246.1.1 = {
-		holder = Wendwater_34
+		holder = Wendwater_34 # Tarell Wendwater (nc)
 	}
 	8265.1.1 = {
-		holder = Stokeworth_2
+		holder = Stokeworth_2 # Manly Stokeworth (C)
 	}
 	8283.9.1 = {
-		holder = Slynt_1
+		holder = Slynt_1 # Janos Slynt (C)
 	}
 	8298.12.23 = {
-		holder = Deem_1
+		holder = Deem_1 # Allar Deem
 	}
 	8299.1.22 = {
-		holder = Bywater_5
+		holder = Bywater_5 # Jacelyn Bywater (C)
 	}
 	8299.9.8 = {
-		holder = Marbrand_4
+		holder = Marbrand_4 # Addam Marbrand (C)
 	}
 	8300.2.7 = {
-		holder = Kettleblack_3
+		holder = Kettleblack_3 # Osfryd Kettleblack (C)
 	}
 	8300.5.17 = {
-		holder = Mallery_25
+		holder = Mallery_25 # Humfrey Waters (C)
 	}
 }
 d_wings_pass = {
@@ -860,7 +860,7 @@ c_blackstripe = {
 		holder = Targaryen_60
 	}
 	8129.3.3 = {
-		holder = Targaryen_65
+		holder = Targaryen_65 # Aegon II
 	}
 	8130.6.28 = {
 		holder = Truefyre_1
@@ -1655,8 +1655,17 @@ c_brownhollow = {
 		liege = d_crackclaw_point
 	}
 	5050.1.1 = {
-		liege = d_crackclaw_point
+		liege = d_brownhollow
 		holder = Brownhollow_5
+	}
+	5086.1.1 = {
+		liege = 0
+	}
+	6600.1.1 = {
+		liege = k_the_claw
+	}
+	6625.1.1 = {
+		liege = 0
 	}
 	7874.1.1 = {
 		holder = Brownhollow_7
@@ -1709,7 +1718,7 @@ c_brownhollow = {
 	8136.1.1 = {
 		holder = Brownhollow_21
 	}
-	8178.1.1 = {
+	8183.1.1 = {
 		holder = Brownhollow_27
 	}
 	8193.1.1 = {
@@ -2234,7 +2243,7 @@ k_duskwashes = {
 	5860.1.1 = {
 		holder = Darklyn_82
 	}
-	5875.1.2 = {
+	5875.1.2 = { # Flavorization bugfix
 		holder = 0
 	}
 	7999.9.15 = {
@@ -2695,7 +2704,7 @@ c_crownback = {
 b_threecrowns = {
 	8277.10.1 = {
 		effect = {
-			set_capital_barony = yes
+			set_capital_barony = yes #Defiance of Duskendale
 		}
 	}
 }
@@ -3547,7 +3556,7 @@ k_the_hook = {
 		holder = Massey_14
 	}
 	5834.1.1 = {
-		holder = Massey_15
+		holder = Massey_15	
 	}
 	5838.1.1 = {
 		holder = 0
@@ -3586,7 +3595,7 @@ k_the_hook = {
 	}
 	7999.9.15 = {
 		de_jure_liege = e_the_crownlands
-		liege = h_the_iron_throne
+		liege = h_the_iron_throne	
 	}
 	8023.1.1 = {
 		holder = Massey_27
@@ -3613,7 +3622,7 @@ k_the_hook = {
 		liege = e_the_crownlands
 	}
 	8164.12.26 = {
-		holder = Scourgeborn_1
+		holder = Scourgeborn_1 # Red Rhys
 		liege = 0
 	}
 	8165.2.13 = {
@@ -3636,7 +3645,7 @@ k_the_hook = {
 		holder = Massey_1
 	}
 	8298.10.24 = {
-		liege = 0
+		liege = e_the_stormlands
 	}
 }
 d_masseys_hook = {
@@ -4870,7 +4879,7 @@ d_rosby = {
 		holder = Rosby_4
 	}
 	8300.5.15 = {
-		holder = Blackwater_1
+		holder = Blackwater_1 # Most probable outcome
 	}
 }
 c_rosby = {
@@ -4930,7 +4939,7 @@ c_rosby = {
 		holder = Rosby_4
 	}
 	8300.5.15 = {
-		holder = Blackwater_1
+		holder = Blackwater_1 # Most probable outcome
 	}
 }
 b_burnwheel = {
@@ -5334,19 +5343,19 @@ b_lambs_hold = {
 }
 c_bentbranch = {
 	7570.1.1 = {
-		holder = Baxter_30
+		holder = Baxter_30 # Baelor
 	}
 	7578.1.1 = {
-		holder = Baxter_29
+		holder = Baxter_29 # Alyn
 	}
 	7621.1.1 = {
-		holder = Baxter_28
+		holder = Baxter_28 # Herman
 	}
 	7638.1.1 = {
-		holder = Baxter_27
+		holder = Baxter_27 # Jate
 	}
 	7670.1.1 = {
-		holder = Baxter_26
+		holder = Baxter_26 # Brannad
 	}
 	7817.1.1 = {
 		holder = Baxter_19
@@ -5400,10 +5409,10 @@ c_bentbranch = {
 		holder = Baxter_53
 	}
 	8257.1.1 = {
-		holder = Baxter_2
+		holder = Baxter_2 # Manly
 	}
 	8296.1.1 = {
-		holder = Baxter_32
+		holder = Baxter_32 # Osmund
 	}
 }
 c_grainside = {
@@ -6027,12 +6036,27 @@ c_redbend = {
 	}
 }
 k_the_blackwater_rush = {
-	1.1.1 = {
-		de_jure_liege = e_the_crownlands
-	}
 	8184.2.1 = {
 		holder = Targaryen_94
+		liege = h_the_iron_throne
+		de_jure_liege = e_the_crownlands
+		effect = {
+			agot_turn_westerosi_kingdom_into_lordship_history_effect = { YEAR = 8184 }
+			set_coa = house_Blackfyre
+		}
+	}
+	8195.3.7 = {
 		liege = 0
+	}
+	8196.11.22 = {
+		holder = 0
+	}
+}
+d_the_blackwater_rush = {
+	8184.2.1 = {
+		holder = Targaryen_94
+		liege = k_the_blackwater_rush
+		de_jure_liege = k_the_blackwater_rush
 		effect = {
 			set_coa = house_Blackfyre
 		}
@@ -6041,7 +6065,7 @@ k_the_blackwater_rush = {
 		holder = 0
 	}
 }
-d_the_blackwater_rush = {
+d_pikemouth = {
 	2550.1.1 = {
 		liege = e_the_reach
 	}
@@ -6114,7 +6138,7 @@ d_the_blackwater_rush = {
 }
 c_pikemouth = {
 	7839.1.1 = {
-		liege = d_the_blackwater_rush
+		liege = d_pikemouth
 	}
 	7853.1.1 = {
 		holder = Bourney_22
@@ -6161,7 +6185,7 @@ c_pikemouth = {
 	8262.1.1 = {
 		holder = Bourney_1
 	}
-
+	
 }
 c_longgrass = {
 	800.1.1 = {
@@ -6173,7 +6197,7 @@ c_longgrass = {
 		}
 	}
 	7839.1.1 = {
-		liege = d_the_blackwater_rush
+		liege = d_pikemouth
 	}
 	7883.1.1 = {
 		holder = Hall_4
@@ -6234,7 +6258,7 @@ c_longgrass = {
 }
 c_briarcrest = {
 	7839.1.1 = {
-		liege = d_the_blackwater_rush
+		liege = d_pikemouth
 	}
 	7881.1.1 = {
 		holder = Greenhill_5
@@ -6457,10 +6481,12 @@ c_great_fork = {
 	}
 	8184.2.1 = {
 		liege = k_the_blackwater_rush
+		de_jure_liege = d_the_blackwater_rush
 		holder = Targaryen_94
 	}
 	8196.11.22 = {
 		liege = d_great_fork
+		de_jure_liege = d_great_fork
 		holder = Cadence_1
 	}
 	8233.1.1 = {
@@ -6598,6 +6624,9 @@ d_wendwater_forest = {
 	}
 	8270.1.1 = {
 		holder = Farring_1
+	}
+	8298.10.24 = {
+		liege = e_the_stormlands
 	}
 }
 c_farring_cross = {
@@ -6905,6 +6934,7 @@ c_noblewood = {
 	}
 }
 
+# AGOAT Compompatch P87: incumbent AGOT blocks dropped by Nobility of Westeros, restored (rebuilt 2026-09-04 on NoW 1.2.9).
 b_kings_mountain = {
 	8199.1.1 = {
 		holder = Kings_Mountain_2

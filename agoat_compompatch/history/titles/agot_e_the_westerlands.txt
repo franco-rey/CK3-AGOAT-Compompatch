@@ -1,116 +1,116 @@
 ﻿e_the_westerlands = {
 	2028.1.1 = {
-		holder = Lannister_29
+		holder = Lannister_29 #Lann the Clever
 		effect = {
 			set_title_name = e_the_rock
 		}
 	}
 	2320.1.1 = {
-		holder = Lannister_30
+		holder = Lannister_30 # Loreon the Lion
 	}
-
+	# Pre-Andal period
 	5912.1.1 = {
-		holder = Lannister_37
+		holder = Lannister_37 # Tybolt Tunderbolt (C)
 	}
 	6132.1.1 = {
-		holder = Lannister_139
+		holder = Lannister_139 # Tyrion I
 	}
 	6191.1.1 = {
-		holder = Lannister_151
+		holder = Lannister_151 # Tyrion II
 	}
 	6202.1.1 = {
-		holder = Lannister_152
+		holder = Lannister_152 # Gerold I
 	}
 	6220.1.1 = {
-		holder = Lannister_38
+		holder = Lannister_38 # Tyrion III (C)
 	}
 	6252.1.1 = {
-		holder = Lannister_39
+		holder = Lannister_39 # Gerold II (C)
 	}
 	6265.1.1 = {
-		holder = Lannister_40
+		holder = Lannister_40 # Gerold III (C)
 	}
-
+	# Post-Andal period
 	6302.1.1 = {
-		holder = Lydden_8
+		holder = Lydden_8 # Joffrey I Lydden (C)
 	}
 	6331.1.1 = {
-		holder = Lannister_42
+		holder = Lannister_42 # Cerion (C)
 	}
 	6340.1.1 = {
-		holder = Lannister_43
+		holder = Lannister_43 # Tommen (I C)
 	}
 	6356.1.1 = {
-		holder = Lannister_44
+		holder = Lannister_44 # Loreon II (C)
 	}
 	6384.1.1 = {
-		holder = Lannister_45
+		holder = Lannister_45 # Lancel I the lion (C)
 	}
 	6402.1.1 = {
-		holder = Lannister_46
+		holder = Lannister_46 # Loreon III the Limp (C)
 	}
 	6429.1.1 = {
-		holder = Lannister_35
+		holder = Lannister_35 # Gerold the Great (C)
 	}
 	6465.1.1 = {
-		holder = Lannister_51
+		holder = Lannister_51 # Tywell I (C)
 	}
 	6473.1.1 = {
-		holder = Lannister_52
+		holder = Lannister_52 # Norwin (C)
 	}
 	6493.1.1 = {
-		holder = Lannister_53
+		holder = Lannister_53 # Tywell II (C)
 	}
 	6520.1.1 = {
-		holder = Lannister_54
+		holder = Lannister_54 # Loreon IV the lackwit (C)
 	}
 	6542.1.1 = {
-		holder = Lannister_56
+		holder = Lannister_56 # Loreon V 'Queen' Lorea (C)
 	}
 	6576.1.1 = {
-		holder = Lannister_57
+		holder = Lannister_57 # Tyrion the Tormentor (C)
 	}
 	6613.1.1 = {
-		holder = Lannister_138
+		holder = Lannister_138 # Lancel II (C)
 	}
 	6627.1.1 = {
-		holder = Lannister_58
+		holder = Lannister_58 # Lancel III (C)
 	}
 	7009.1.1 = {
-		holder = Lannister_59
+		holder = Lannister_59 # Lancel IV (C)
 	}
 	7051.1.1 = {
-		holder = Lannister_60
+		holder = Lannister_60 # Lancel V (C)
 	}
 	7223.1.1 = {
-		holder = Lannister_48
+		holder = Lannister_48 # Jaime I (nc)
 	}
 	7288.1.1 = {
-		holder = Lannister_155
+		holder = Lannister_155 # Tywin I (nc)
 	}
 	7841.1.1 = {
-		holder = Lannister_61
+		holder = Lannister_61 # Jaime II (nc)
 	}
 	7880.1.1 = {
-		holder = Lannister_62
+		holder = Lannister_62 # Tommen II (C)
 	}
 	7901.1.1 = {
-		holder = Lannister_63
+		holder = Lannister_63 # Gerion I (C)
 	}
 	7920.1.1 = {
-		holder = Lannister_66
+		holder = Lannister_66 # Loreon VI (nc)
 	}
 	7942.1.1 = {
-		holder = Lannister_69
+		holder = Lannister_69 # Lancel VI (nc)
 	}
 	7964.1.1 = {
-		holder = Lannister_72
+		holder = Lannister_72 # Damon (nc)
 	}
 	7986.1.1 = {
-		holder = Lannister_75
+		holder = Lannister_75 # Tymond (nc)
 	}
 	7992.1.1 = {
-		holder = Lannister_79
+		holder = Lannister_79 #Loren the Last (C)
 	}
 	8000.5.2 = {
 		liege = h_the_iron_throne
@@ -187,115 +187,115 @@
 
 k_the_rock = {
 	2028.1.1 = {
-		holder = Lannister_29
+		holder = Lannister_29 #Lann the Clever
 		liege = e_the_westerlands
 	}
 	2320.1.1 = {
-		holder = Lannister_30
+		holder = Lannister_30 # Loreon the Lion
 	}
-
+	# Pre-Andal period
 	5912.1.1 = {
-		holder = Lannister_37
+		holder = Lannister_37 # Tybolt Tunderbolt (C)
 	}
 	6132.1.1 = {
-		holder = Lannister_139
+		holder = Lannister_139 # Tyrion I
 	}
 	6191.1.1 = {
-		holder = Lannister_151
+		holder = Lannister_151 # Tyrion II
 	}
 	6202.1.1 = {
-		holder = Lannister_152
+		holder = Lannister_152 # Gerold I
 	}
 	6220.1.1 = {
-		holder = Lannister_38
+		holder = Lannister_38 # Tyrion III (C)
 	}
 	6252.1.1 = {
-		holder = Lannister_39
+		holder = Lannister_39 # Gerold II (C)
 	}
 	6265.1.1 = {
-		holder = Lannister_40
+		holder = Lannister_40 # Gerold III (C)
 	}
-
+	# Post-Andal period
 	6302.1.1 = {
-		holder = Lydden_8
+		holder = Lydden_8 # Joffrey I Lydden (C)
 	}
 	6331.1.1 = {
-		holder = Lannister_42
+		holder = Lannister_42 # Cerion (C)
 	}
 	6340.1.1 = {
-		holder = Lannister_43
+		holder = Lannister_43 # Tommen (I C)
 	}
 	6356.1.1 = {
-		holder = Lannister_44
+		holder = Lannister_44 # Loreon II (C)
 	}
 	6384.1.1 = {
-		holder = Lannister_45
+		holder = Lannister_45 # Lancel I the lion (C)
 	}
 	6402.1.1 = {
-		holder = Lannister_46
+		holder = Lannister_46 # Loreon III the Limp (C)
 	}
 	6429.1.1 = {
-		holder = Lannister_35
+		holder = Lannister_35 # Gerold the Great (C)
 	}
 	6465.1.1 = {
-		holder = Lannister_51
+		holder = Lannister_51 # Tywell I (C)
 	}
 	6473.1.1 = {
-		holder = Lannister_52
+		holder = Lannister_52 # Norwin (C)
 	}
 	6493.1.1 = {
-		holder = Lannister_53
+		holder = Lannister_53 # Tywell II (C)
 	}
 	6520.1.1 = {
-		holder = Lannister_54
+		holder = Lannister_54 # Loreon IV the lackwit (C)
 	}
 	6542.1.1 = {
-		holder = Lannister_56
+		holder = Lannister_56 # Loreon V 'Queen' Lorea (C)
 	}
 	6576.1.1 = {
-		holder = Lannister_57
+		holder = Lannister_57 # Tyrion the Tormentor (C)
 	}
 	6613.1.1 = {
-		holder = Lannister_138
+		holder = Lannister_138 # Lancel II (C)
 	}
 	6627.1.1 = {
-		holder = Lannister_58
+		holder = Lannister_58 # Lancel III (C)
 	}
 	7009.1.1 = {
-		holder = Lannister_59
+		holder = Lannister_59 # Lancel IV (C)
 	}
 	7051.1.1 = {
-		holder = Lannister_60
+		holder = Lannister_60 # Lancel V (C)
 	}
 	7223.1.1 = {
-		holder = Lannister_48
+		holder = Lannister_48 # Jaime I (nc)
 	}
 	7288.1.1 = {
-		holder = Lannister_155
+		holder = Lannister_155 # Tywin I (nc)
 	}
 	7841.1.1 = {
-		holder = Lannister_61
+		holder = Lannister_61 # Jaime II (nc)
 	}
 	7880.1.1 = {
-		holder = Lannister_62
+		holder = Lannister_62 # Tommen II (C)
 	}
 	7901.1.1 = {
-		holder = Lannister_63
+		holder = Lannister_63 # Gerion I (C)
 	}
 	7920.1.1 = {
-		holder = Lannister_66
+		holder = Lannister_66 # Loreon VI (nc)
 	}
 	7942.1.1 = {
-		holder = Lannister_69
+		holder = Lannister_69 # Lancel VI (nc)
 	}
 	7964.1.1 = {
-		holder = Lannister_72
+		holder = Lannister_72 # Damon (nc)
 	}
 	7986.1.1 = {
-		holder = Lannister_75
+		holder = Lannister_75 # Tymond (nc)
 	}
 	7992.1.1 = {
-		holder = Lannister_79
+		holder = Lannister_79 #Loren the Last (C)
 	}
 	8020.1.1 = {
 		holder = Lannister_82
@@ -364,111 +364,111 @@ d_casterly_rock = {
 		holder = Casterly_8
 	}
 	2320.1.1 = {
-		holder = Lannister_30
+		holder = Lannister_30 # Loreon the Lion
 	}
-
+	# Pre-Andal period
 	5912.1.1 = {
-		holder = Lannister_37
+		holder = Lannister_37 # Tybolt Tunderbolt (C)
 	}
 	6132.1.1 = {
-		holder = Lannister_139
+		holder = Lannister_139 # Tyrion I
 	}
 	6191.1.1 = {
-		holder = Lannister_151
+		holder = Lannister_151 # Tyrion II
 	}
 	6202.1.1 = {
-		holder = Lannister_152
+		holder = Lannister_152 # Gerold I
 	}
 	6220.1.1 = {
-		holder = Lannister_38
+		holder = Lannister_38 # Tyrion III (C)
 	}
 	6252.1.1 = {
-		holder = Lannister_39
+		holder = Lannister_39 # Gerold II (C)
 	}
 	6265.1.1 = {
-		holder = Lannister_40
+		holder = Lannister_40 # Gerold III (C)
 	}
-
+	# Post-Andal period
 	6302.1.1 = {
-		holder = Lydden_8
+		holder = Lydden_8 # Joffrey I Lydden (C)
 	}
 	6331.1.1 = {
-		holder = Lannister_42
+		holder = Lannister_42 # Cerion (C)
 	}
 	6340.1.1 = {
-		holder = Lannister_43
+		holder = Lannister_43 # Tommen (I C)
 	}
 	6356.1.1 = {
-		holder = Lannister_44
+		holder = Lannister_44 # Loreon II (C)
 	}
 	6384.1.1 = {
-		holder = Lannister_45
+		holder = Lannister_45 # Lancel I the lion (C)
 	}
 	6402.1.1 = {
-		holder = Lannister_46
+		holder = Lannister_46 # Loreon III the Limp (C)
 	}
 	6429.1.1 = {
-		holder = Lannister_35
+		holder = Lannister_35 # Gerold the Great (C)
 	}
 	6465.1.1 = {
-		holder = Lannister_51
+		holder = Lannister_51 # Tywell I (C)
 	}
 	6473.1.1 = {
-		holder = Lannister_52
+		holder = Lannister_52 # Norwin (C)
 	}
 	6493.1.1 = {
-		holder = Lannister_53
+		holder = Lannister_53 # Tywell II (C)
 	}
 	6520.1.1 = {
-		holder = Lannister_54
+		holder = Lannister_54 # Loreon IV the lackwit (C)
 	}
 	6542.1.1 = {
-		holder = Lannister_56
+		holder = Lannister_56 # Loreon V 'Queen' Lorea (C)
 	}
 	6576.1.1 = {
-		holder = Lannister_57
+		holder = Lannister_57 # Tyrion the Tormentor (C)
 	}
 	6613.1.1 = {
-		holder = Lannister_138
+		holder = Lannister_138 # Lancel II (C)
 	}
 	6627.1.1 = {
-		holder = Lannister_58
+		holder = Lannister_58 # Lancel III (C)
 	}
 	7009.1.1 = {
-		holder = Lannister_59
+		holder = Lannister_59 # Lancel IV (C)
 	}
 	7051.1.1 = {
-		holder = Lannister_60
+		holder = Lannister_60 # Lancel V (C)
 	}
 	7223.1.1 = {
-		holder = Lannister_48
+		holder = Lannister_48 # Jaime I (nc)
 	}
 	7288.1.1 = {
-		holder = Lannister_155
+		holder = Lannister_155 # Tywin I (nc)
 	}
 	7841.1.1 = {
-		holder = Lannister_61
+		holder = Lannister_61 # Jaime II (nc)
 	}
 	7880.1.1 = {
-		holder = Lannister_62
+		holder = Lannister_62 # Tommen II (C)
 	}
 	7901.1.1 = {
-		holder = Lannister_63
+		holder = Lannister_63 # Gerion I (C)
 	}
 	7920.1.1 = {
-		holder = Lannister_66
+		holder = Lannister_66 # Loreon VI (nc)
 	}
 	7942.1.1 = {
-		holder = Lannister_69
+		holder = Lannister_69 # Lancel VI (nc)
 	}
 	7964.1.1 = {
-		holder = Lannister_72
+		holder = Lannister_72 # Damon (nc)
 	}
 	7986.1.1 = {
-		holder = Lannister_75
+		holder = Lannister_75 # Tymond (nc)
 	}
 	7992.1.1 = {
-		holder = Lannister_79
+		holder = Lannister_79 #Loren the Last (C)
 	}
 	8020.1.1 = {
 		holder = Lannister_82
@@ -537,111 +537,111 @@ c_casterly_rock = {
 		holder = Casterly_8
 	}
 	2320.1.1 = {
-		holder = Lannister_30
+		holder = Lannister_30 # Loreon the Lion
 	}
-
+	# Pre-Andal period
 	5912.1.1 = {
-		holder = Lannister_37
+		holder = Lannister_37 # Tybolt Tunderbolt (C)
 	}
 	6132.1.1 = {
-		holder = Lannister_139
+		holder = Lannister_139 # Tyrion I
 	}
 	6191.1.1 = {
-		holder = Lannister_151
+		holder = Lannister_151 # Tyrion II
 	}
 	6202.1.1 = {
-		holder = Lannister_152
+		holder = Lannister_152 # Gerold I
 	}
 	6220.1.1 = {
-		holder = Lannister_38
+		holder = Lannister_38 # Tyrion III (C)
 	}
 	6252.1.1 = {
-		holder = Lannister_39
+		holder = Lannister_39 # Gerold II (C)
 	}
 	6265.1.1 = {
-		holder = Lannister_40
+		holder = Lannister_40 # Gerold III (C)
 	}
-
+	# Post-Andal period
 	6302.1.1 = {
-		holder = Lydden_8
+		holder = Lydden_8 # Joffrey I Lydden (C)
 	}
 	6331.1.1 = {
-		holder = Lannister_42
+		holder = Lannister_42 # Cerion (C)
 	}
 	6340.1.1 = {
-		holder = Lannister_43
+		holder = Lannister_43 # Tommen (I C)
 	}
 	6356.1.1 = {
-		holder = Lannister_44
+		holder = Lannister_44 # Loreon II (C)
 	}
 	6384.1.1 = {
-		holder = Lannister_45
+		holder = Lannister_45 # Lancel I the lion (C)
 	}
 	6402.1.1 = {
-		holder = Lannister_46
+		holder = Lannister_46 # Loreon III the Limp (C)
 	}
 	6429.1.1 = {
-		holder = Lannister_35
+		holder = Lannister_35 # Gerold the Great (C)
 	}
 	6465.1.1 = {
-		holder = Lannister_51
+		holder = Lannister_51 # Tywell I (C)
 	}
 	6473.1.1 = {
-		holder = Lannister_52
+		holder = Lannister_52 # Norwin (C)
 	}
 	6493.1.1 = {
-		holder = Lannister_53
+		holder = Lannister_53 # Tywell II (C)
 	}
 	6520.1.1 = {
-		holder = Lannister_54
+		holder = Lannister_54 # Loreon IV the lackwit (C)
 	}
 	6542.1.1 = {
-		holder = Lannister_56
+		holder = Lannister_56 # Loreon V 'Queen' Lorea (C)
 	}
 	6576.1.1 = {
-		holder = Lannister_57
+		holder = Lannister_57 # Tyrion the Tormentor (C)
 	}
 	6613.1.1 = {
-		holder = Lannister_138
+		holder = Lannister_138 # Lancel II (C)
 	}
 	6627.1.1 = {
-		holder = Lannister_58
+		holder = Lannister_58 # Lancel III (C)
 	}
 	7009.1.1 = {
-		holder = Lannister_59
+		holder = Lannister_59 # Lancel IV (C)
 	}
 	7051.1.1 = {
-		holder = Lannister_60
+		holder = Lannister_60 # Lancel V (C)
 	}
 	7223.1.1 = {
-		holder = Lannister_48
+		holder = Lannister_48 # Jaime I (nc)
 	}
 	7288.1.1 = {
-		holder = Lannister_155
+		holder = Lannister_155 # Tywin I (nc)
 	}
 	7841.1.1 = {
-		holder = Lannister_61
+		holder = Lannister_61 # Jaime II (nc)
 	}
 	7880.1.1 = {
-		holder = Lannister_62
+		holder = Lannister_62 # Tommen II (C)
 	}
 	7901.1.1 = {
-		holder = Lannister_63
+		holder = Lannister_63 # Gerion I (C)
 	}
 	7920.1.1 = {
-		holder = Lannister_66
+		holder = Lannister_66 # Loreon VI (nc)
 	}
 	7942.1.1 = {
-		holder = Lannister_69
+		holder = Lannister_69 # Lancel VI (nc)
 	}
 	7964.1.1 = {
-		holder = Lannister_72
+		holder = Lannister_72 # Damon (nc)
 	}
 	7986.1.1 = {
-		holder = Lannister_75
+		holder = Lannister_75 # Tymond (nc)
 	}
 	7992.1.1 = {
-		holder = Lannister_79
+		holder = Lannister_79 #Loren the Last (C)
 	}
 	8020.1.1 = {
 		holder = Lannister_82
@@ -1162,10 +1162,10 @@ c_lions_harbor = {
 		holder = Lanny_102
 	}
 	8246.1.1 = {
-		holder = Lanny_4
+		holder = Lanny_4 # Dormund
 	}
 	8290.1.1 = {
-		holder = Lanny_2
+		holder = Lanny_2 # Damon
 	}
 }
 c_lannisport = {
@@ -1215,16 +1215,16 @@ c_lannisport = {
 		holder = Lannett_57
 	}
 	8206.1.1 = {
-		holder = Lannett_3
+		holder = Lannett_3 # Tyrek
 	}
 	8260.1.1 = {
-		holder = Lannett_2
+		holder = Lannett_2 # Corlos
 	}
 	8270.1.1 = {
-		holder = Lannett_1
+		holder = Lannett_1 # Jon
 	}
 	8290.1.1 = {
-		holder = Lannett_33
+		holder = Lannett_33 # Damion
 	}
 }
 c_debtors_docks = {
@@ -1274,10 +1274,10 @@ c_debtors_docks = {
 		holder = Lantell_69
 	}
 	8214.1.1 = {
-		holder = Lantell_3
+		holder = Lantell_3 # Tywin
 	}
 	8271.1.1 = {
-		holder = Lantell_1
+		holder = Lantell_1 # Big Joffrey
 	}
 }
 c_fang_hill = {
@@ -1646,16 +1646,16 @@ c_rivermont = {
 		holder = Lanster_64
 	}
 	8180.1.1 = {
-		holder = Lanster_5
+		holder = Lanster_5 # Bryon
 	}
 	8229.1.1 = {
-		holder = Lanster_4
+		holder = Lanster_4 # Alastor
 	}
 	8254.1.1 = {
-		holder = Lanster_3
+		holder = Lanster_3 # Tywald
 	}
 	8275.1.1 = {
-		holder = Lanster_1
+		holder = Lanster_1 # Tyrek
 	}
 }
 c_ruffell = {
@@ -1927,7 +1927,7 @@ c_castamere = {
 b_prides_keep = {
 	8261.1.1 = {
 		effect = {
-			set_capital_barony = yes
+			set_capital_barony = yes #Rains of Castamere
 		}
 	}
 }
@@ -2318,7 +2318,7 @@ c_seven_points = {
 b_beckyng = {
 	8261.10.29 = {
 		effect = {
-			set_capital_barony = yes
+			set_capital_barony = yes #Torching of Tarbeck Hall
 		}
 	}
 }
@@ -2661,10 +2661,10 @@ c_biltmore = {
 		liege = d_crakehall
 	}
 	6375.1.1 = {
-		holder = Hawthorne_28
+		holder = Hawthorne_28 # Hugh
 	}
 	6410.1.1 = {
-		holder = Hawthorne_27
+		holder = Hawthorne_27 # Lorent
 	}
 	7866.1.1 = {
 		holder = Hawthorne_8
@@ -2779,10 +2779,10 @@ d_greenrust = {
 		liege = e_the_westerlands
 	}
 	7500.1.1 = {
-		holder = Moreland_41
+		holder = Moreland_41 # Roger
 	}
 	7525.1.1 = {
-		holder = Moreland_40
+		holder = Moreland_40 # Benedict
 	}
 	7849.1.1 = {
 		holder = Moreland_5
@@ -2844,10 +2844,10 @@ c_greenrust = {
 		liege = d_greenrust
 	}
 	7500.1.1 = {
-		holder = Moreland_41
+		holder = Moreland_41 # Roger
 	}
 	7525.1.1 = {
-		holder = Moreland_40
+		holder = Moreland_40 # Benedict
 	}
 	7849.1.1 = {
 		holder = Moreland_5
@@ -3946,7 +3946,7 @@ k_hooded_coves = {
 	2335.1.1 = {
 		holder = Banefort_7
 	}
-	2358.1.2 = {
+	2358.1.2 = { # Flavorization bugfix
 		holder = 0
 	}
 }
@@ -4137,13 +4137,13 @@ c_fearby = {
 		holder = Ruskyn_75
 	}
 	8267.1.1 = {
-		holder = Ruskyn_3
+		holder = Ruskyn_3 # Loren
 	}
 	8279.1.1 = {
-		holder = Ruskyn_2
+		holder = Ruskyn_2 # Raynald
 	}
 	8281.1.1 = {
-		holder = Ruskyn_1
+		holder = Ruskyn_1 # Addam
 	}
 }
 c_old_ridge = {
@@ -5415,10 +5415,10 @@ c_lansdale = {
 		holder = Lansdale_82
 	}
 	8219.1.1 = {
-		holder = Lansdale_3
+		holder = Lansdale_3 # Addison
 	}
 	8247.1.1 = {
-		holder = Lansdale_2
+		holder = Lansdale_2 # Robert
 	}
 	8272.1.1 = {
 		holder = Lansdale_1
@@ -6154,59 +6154,6 @@ c_cornfield = {
 		holder = Swyft_1
 	}
 }
-b_the_henhouse = {
-	7866.1.1 = {
-		holder = Swyft_8
-	}
-	7879.1.1 = {
-		holder = Swyft_9
-	}
-	7919.1.1 = {
-		holder = Swyft_12
-	}
-	7961.1.1 = {
-		holder = Swyft_16
-	}
-	7973.1.1 = {
-		holder = Swyft_17
-	}
-	8000.1.1 = {
-		holder = Swyft_51
-	}
-	8029.1.1 = {
-		holder = Swyft_58
-	}
-	8058.1.1 = {
-		holder = Swyft_60
-	}
-	8080.1.1 = {
-		holder = Swyft_62
-	}
-	8106.1.1 = {
-		holder = Swyft_18
-	}
-	8130.3.5 = {
-		holder = Swyft_19
-	}
-	8143.1.1 = {
-		holder = Swyft_27
-	}
-	8174.1.1 = {
-		holder = Swyft_40
-	}
-	8194.1.1 = {
-		holder = Swyft_43
-	}
-	8216.1.1 = {
-		holder = Swyft_44
-	}
-	8232.1.1 = {
-		holder = Swyft_46
-	}
-	8257.1.1 = {
-		holder = Swyft_1
-	}
-}
 c_toll_pass = {
 	7856.1.1 = {
 		holder = Tortoll_22
@@ -6263,10 +6210,10 @@ c_toll_pass = {
 		holder = Tortoll_103
 	}
 	8251.1.1 = {
-		holder = Tortoll_3
+		holder = Tortoll_3 # Jothor
 	}
 	8273.1.1 = {
-		holder = Tortoll_1
+		holder = Tortoll_1 # Jason
 	}
 }
 d_the_gold_road = {
@@ -7226,13 +7173,68 @@ c_averill = {
 		holder = Avery_57
 	}
 	8211.1.1 = {
-		holder = Avery_4
+		holder = Avery_4 # Horys
 	}
 	8249.1.1 = {
-		holder = Avery_3
+		holder = Avery_3 # Dunsen
 	}
 	8273.1.1 = {
-		holder = Avery_1
+		holder = Avery_1 # Harrold
+	}
+}
+
+# AGOAT Compompatch P87: incumbent AGOT blocks dropped by Nobility of Westeros, restored (rebuilt 2026-09-04 on NoW 1.2.9).
+b_the_henhouse = {
+	7866.1.1 = {
+		holder = Swyft_8
+	}
+	7879.1.1 = {
+		holder = Swyft_9
+	}
+	7919.1.1 = {
+		holder = Swyft_12
+	}
+	7961.1.1 = {
+		holder = Swyft_16
+	}
+	7973.1.1 = {
+		holder = Swyft_17
+	}
+	8000.1.1 = {
+		holder = Swyft_51
+	}
+	8029.1.1 = {
+		holder = Swyft_58
+	}
+	8058.1.1 = {
+		holder = Swyft_60
+	}
+	8080.1.1 = {
+		holder = Swyft_62
+	}
+	8106.1.1 = {
+		holder = Swyft_18
+	}
+	8130.3.5 = {
+		holder = Swyft_19
+	}
+	8143.1.1 = {
+		holder = Swyft_27
+	}
+	8174.1.1 = {
+		holder = Swyft_40
+	}
+	8194.1.1 = {
+		holder = Swyft_43
+	}
+	8216.1.1 = {
+		holder = Swyft_44
+	}
+	8232.1.1 = {
+		holder = Swyft_46
+	}
+	8257.1.1 = {
+		holder = Swyft_1
 	}
 }
 
@@ -7280,16 +7282,16 @@ b_goldengate = {
 		holder = Lannett_57
 	}
 	8206.1.1 = {
-		holder = Lannett_3
+		holder = Lannett_3 # Tyrek
 	}
 	8260.1.1 = {
-		holder = Lannett_2
+		holder = Lannett_2 # Corlos
 	}
 	8270.1.1 = {
-		holder = Lannett_1
+		holder = Lannett_1 # Jon
 	}
 	8290.1.1 = {
-		holder = Lannett_33
+		holder = Lannett_33 # Damion
 	}
 }
 
@@ -7337,9 +7339,9 @@ b_lanns_hall = {
 		holder = Lantell_69
 	}
 	8214.1.1 = {
-		holder = Lantell_3
+		holder = Lantell_3 # Tywin
 	}
 	8271.1.1 = {
-		holder = Lantell_1
+		holder = Lantell_1 # Big Joffrey
 	}
 }

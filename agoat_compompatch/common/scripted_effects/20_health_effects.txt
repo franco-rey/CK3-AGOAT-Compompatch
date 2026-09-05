@@ -1,11 +1,135 @@
-﻿
+﻿#health effects list#
 
+###################
+# DISEASE EFFECTS #
+###################
+
+### GENERAL CONTRACT/RECOVER EFFECTS ###
+# contract_disease_effect 			- Adds disease trait, sends treatment and notification events etc. NO contraction event. Needs argument DISEASE (trait name) and TREATMENT_EVENT (yes/no).
+# contract_disease_notify_effect	- Sends a "contracted disease" event in 5-15 days. The event checks if the disease is valid and runs contract_disease_effect to apply the disease trait. Needs argument DISEASE (trait name).
+# recover_from_disease_effect 		- Checks if has disease, removes it and sets any immunity, and sends appropriate notifications to other characters. Needs argument DISEASE (trait name). Does not send event to character who contracts disease.
+#recover_from_disease_notify_effect	- Checks if has disease, removes it and sets any immunity in an event for the character in question, and sends appropriate notifications to other characters. Needs argument DISEASE (trait name).
+
+### STD EFFECTS ###
+# contract_lovers_pox_from 	- sends the scoped character "contracted lover's pox" event if argument PARTNER has lover's pox. Uses PARTNER in event.
+# contract_great_pox_from	- sends the scoped character "contracted early lover's pox" event if argument PARTNER has great pox. Uses PARTNER in event.
+# risk_of_std_from_effect 	- 50% chance of running contract_lovers_pox_from effect and 30% chance of running contract_great_pox_from effect
+
+### CONTAGIOUS DISEASE ###
+# create_contagion_list_effect	- Creates a list of characters who might contract contagious disease (smallpox/plague) from scope
+
+### SIDE EFFECTS ###
+# epilepsy_fever_risk_effect
+# epilepsy_brain_trauma_risk_effect
+
+
+
+###############################
+# GAIN/INCREASE WOUND EFFECTS #
+###############################
+
+# increase_wounds_no_death_effect 	- increases wound level without killing
+# increase_wounds_effect 			- increases wound level with chance of death
+# maimed_in_battle_effect
+
+
+########################################
+#EFFECTS FOR WEIGHT GAIN/LOSS			#
+########################################
+
+#target_weight_modifier_effect		- Increases character variable that's used in the weight balancing
+
+
+########################################
+#EFFECTS FOR COURT PHYSICIAN TREATMENT #
+########################################
+
+### COURT PHYSICIAN MANAGEMENT ###
+# set_court_physician_effect
+# fire_court_physician_effect
+# save_court_physician_as
+# invalidate_physician_effect
+
+### COURT PHYSICIAN RANK UP ###
+#physician_level_up_chance_effect
+#mystic_level_up_chance_effect
+#physician_rank_up_tooltip_effect
+
+### DISEASE TREATMENT OPTIONS ###
+# safe_disease_treatment_effect
+# risky_disease_treatment_effect
+# mystic_disease_treatment_effect
+# no_disease_treatment_effect
+# find_court_physician_effect
+# deny_disease_treatment_effect
+
+### WOUND TREATMENT OPTIONS ###
+# safe_wound_treatment_effect
+# risky_wound_treatment_effect
+
+### DISEASE TREATMENT OUTCOMES ###
+# set_worst_disease_effect
+# add_disease_treatment_modifier_effect
+# disease_treatment_results_effect
+# disease_treatment_result_tooltip_effect
+# remove_disease_treatment_effect
+
+### WOUND TREATMENT OUTCOMES ###
+# add_wound_treatment_modifier_effect
+# wound_treatment_result_tooltip_effect
+# wound_treatment_results_effect
+
+### DISEASE TREATMENT LOGIC ###
+# save_health_court_owner_effect
+# pick_own_disease_treatment_effect
+# decide_who_picks_disease_treatment_effect
+# liege_picks_treatment_effect
+
+### WOUND LOGIC ###
+# pick_own_wound_treatment_effect
+# decide_who_picks_wound_treatment_effect
+
+### FAILED TREAMENT EFFECTS ###
+# add_failed_treatment_of_me_opinions_effect
+# add_failed_treatment_of_kin_opinions_effect
+# downgrade_failed_treatment_of_me_opinions_effect
+# downgrade_failed_treatment_of_kin_opinions_effect
+# execute_physician_effect
+# imprison_physician_effect
+# chastise_physician_effect
+# forgive_physician_effect
+
+
+### DISEASE MESSAGES ###
+# inform_liege_about_disease_treatment_effect
+# activate_outbreak_story_effect
+
+### WOUND MESSAGES ###
+# inform_liege_about_wound_treatment_effect
+
+
+######################
+#EFFECTS FOR SUICIDE #
+######################
+# committed_suicide_effect
+# attempted_suicide_effect
+
+
+##############################################################################################
+# LIST ENDS HERE
+
+
+####################
+# DISEASE EFFECTS  #
+####################
+
+#Adds the disease in question and sends notifications to everyone who should know. Checks validity and sends treatment event. Needs the arguments DISEASE (trait name, only exception is early_great_pox - it should be added as great_pox and then the effect will figure out whether the character should have early_great_pox first) and TREATMENT_EVENT (yes/no). Does NOT send an event to the character who gets the disease.
 contract_disease_effect = {
-	if = {
+	if = { #Is the disease valid?
 		limit = { can_contract_disease_trigger = { DISEASE = $DISEASE$ } }
 
 		hidden_effect = {
-
+			#SET SCOPES
 			save_scope_as = sick_character
 
 			save_scope_value_as = {
@@ -19,7 +143,7 @@ contract_disease_effect = {
 			}
 
 			if = {
-				limit = {
+				limit = { #Should I get early great pox instead of great pox?
 					scope:disease_type = flag:great_pox
 					NOR = {
 						has_trait = lovers_pox
@@ -32,10 +156,11 @@ contract_disease_effect = {
 				}
 			}
 
-
+			#Data collection
 			disease_data_save_contraction_effect = { DISEASE = $DISEASE$ }
 
 
+			#TREATMENT EVENT
 			if = {
 				limit = {
 					scope:treatment_event = flag:yes
@@ -47,10 +172,10 @@ contract_disease_effect = {
 				}
 			}
 			else_if = {
-				limit = { scope:treatment_event = flag:no }
+				limit = { scope:treatment_event = flag:no } #This is just here to stop errors
 			}
-
-			if = {
+			
+			if = { # Disease gives xp to Infirm
 				limit = {
 					has_trait = infirm
 					NOT = {
@@ -67,6 +192,7 @@ contract_disease_effect = {
 		}
 
 
+		#NON-CONTAGIOUS DISEASES
 		if = {
 			limit = {
 				OR = {
@@ -79,7 +205,7 @@ contract_disease_effect = {
 				}
 			}
 
-			if = {
+			if = { #Removes ill if progressing to pneumonia
 				limit = {
 					scope:disease_type = flag:pneumonic
 					has_trait = ill
@@ -89,8 +215,8 @@ contract_disease_effect = {
 
 			add_trait_force_tooltip = $DISEASE$
 		}
-
-
+		
+		#CONTAGIOUS DISEASES
 		if = {
 			limit = {
 				OR = {
@@ -106,64 +232,64 @@ contract_disease_effect = {
 			add_trait_force_tooltip = $DISEASE$
 		}
 
-
-		else_if = {
+		#STD DISEASES
+		else_if = { #Lover's pox
 			limit = { scope:disease_type = flag:lovers_pox }
 			add_trait_force_tooltip = lovers_pox
 
 			hidden_effect = {
-
+				#Trigger regular contagion checks
 				trigger_event = {
 					id = health.1200
-					days = { 60 1000 }
+					days = { 60 1000 } #This first one can happen quite fast, the following checks are delayed 250-10000 days depending on traits
 				}
 			}
 		}
-		else_if = {
+		else_if = { #Early great pox
 			limit = { scope:disease_type = flag:early_great_pox }
 			add_trait_force_tooltip = early_great_pox
-
+			
 			hidden_effect = {
 				trigger_event = {
-					id = health.1013
+					id = health.1013 #Reveals the true disease
 					days = { 90 150 }
 				}
 			}
 		}
-		else_if = {
+		else_if = { #Great pox
 			limit = {  scope:disease_type = flag:great_pox }
 
 			hidden_effect = {
-				remove_trait = lovers_pox
+				remove_trait = lovers_pox #If you get Great Pox and already have lover's pox, we pretend that lover's pox was the first symptoms
 				remove_trait = early_great_pox
 			}
 			add_trait_force_tooltip = great_pox
 
 			hidden_effect = {
-
+				#Trigger regular contagion checks
 				trigger_event = {
 					id = health.1201
-					days = { 250 1500 }
+					days = { 250 1500 } #This first one can happen quite fast, the following checks are delayed 350-10000 days depending on traits
 				}
 			}
 		}
 
-
-		if = {
+		#RECOVERY
+		if = { #Ill
 			limit = { scope:disease_type = flag:ill }
 			trigger_event = {
 				id = health.1101
 				days = { ill_recovery_min ill_recovery_max }
 			}
 		}
-		else_if = {
+		else_if = { #Pneumonic
 			limit = { scope:disease_type = flag:pneumonic }
 			trigger_event = {
 				id = health.1102
 				days = { pneumonic_recovery_min pneumonic_recovery_max }
 			}
 		}
-		else_if = {
+		else_if = { #Gout
 			limit = { scope:disease_type = flag:gout_ridden }
 			random = {
 				chance = 25
@@ -177,35 +303,35 @@ contract_disease_effect = {
 				}
 				trigger_event = {
 					id = health.1103
-					days = { gout_ridden_recovery_min gout_ridden_recovery_max }
+					days = { gout_ridden_recovery_min gout_ridden_recovery_max } #1 to 30 years
 				}
 			}
 		}
-		else_if = {
+		else_if = { #Typhus
 			limit = { scope:disease_type = flag:typhus }
 			trigger_event = {
 				id = health.1105
 				days = { 45 150 }
 			}
 		}
-		else_if = {
+		else_if = { #Consumption
 			limit = { scope:disease_type = flag:consumption }
 			trigger_event = {
 				id = health.1106
-				days = { 365 2190 }
+				days = { 365 2190 } #1 to 6 years
 			}
 		}
-		else_if = {
+		else_if = { #Cancer
 			limit = { scope:disease_type = flag:cancer }
 			random = {
 				chance = 1
 				trigger_event = {
 					id = health.1107
-					days = { 365 3650 }
+					days = { 365 3650 } #1 to 10 years
 				}
 			}
 		}
-		else_if = {
+		else_if = { #Great pox
 			limit = {
 				OR = {
 					scope:disease_type = flag:early_great_pox
@@ -214,46 +340,48 @@ contract_disease_effect = {
 			}
 			trigger_event = {
 				id = health.1109
-				days = { 730 5475 }
+				days = { 730 5475 } #2 to 15 years (note that early pox progresses into great pox in 60-150 days and great pox leads to lunacy after 5 to 15 years)
 			}
 		}
-		else_if = {
+		else_if = { #Smallpox
 			limit = { scope:disease_type = flag:smallpox }
 			trigger_event = {
 				id = health.1110
 				days = { smallpox_min_recovery_time smallpox_max_recovery_time }
 			}
 		}
-		else_if = {
+		else_if = { #Bubonic Plague
 			limit = { scope:disease_type = flag:bubonic_plague }
 			trigger_event = {
 				id = health.1111
 				days = { bubonic_plague_min_recovery_time bubonic_plague_max_recovery_time }
 			}
 		}
-		else_if = {
+		else_if = { #Measles
 			limit = { scope:disease_type = flag:measles }
 			trigger_event = {
 				id = health.1112
 				days = { measles_min_recovery_time measles_max_recovery_time }
 			}
 		}
-		else_if = {
+		else_if = { #Dysentery
 			limit = { scope:disease_type = flag:dysentery }
 			trigger_event = {
 				id = health.1113
 				days = { dysentery_min_recovery_time dysentery_max_recovery_time }
 			}
 		}
-		else_if = {
+		else_if = { #Ergotism
 			limit = { scope:disease_type = flag:ergotism }
 			trigger_event = {
 				id = health.1114
 				days = { ergotism_min_recovery_time ergotism_max_recovery_time }
 			}
 		}
+		#No recovery for leper and lover's pox
 
 
+		#EPILEPSY RISK
 		if = {
 			limit = { scope:disease_type = flag:ill }
 			epilepsy_fever_risk_effect = { CHANCE = 1 }
@@ -273,7 +401,10 @@ contract_disease_effect = {
 			epilepsy_fever_risk_effect = { CHANCE = 5 }
 		}
 
+		#NOTIFICATIONS: CONTAGIOUS DISEASE, FAMILY & SEX PARTNER STD, NOTIFICATIONS & LIEGE TREATMENT EVENTS
 
+		#List creation:
+		#Imprisoner/court owner if contagious
 		if = {
 			limit = {
 				OR = {
@@ -285,15 +416,15 @@ contract_disease_effect = {
 					scope:disease_type = flag:consumption
 				}
 				is_ruler = no
-				has_health_court_owner_trigger = yes
+				has_health_court_owner_trigger = yes #Imprisoner or court owner
 			}
-			save_health_court_owner_effect = { SCOPE_NAME = health_court_owner }
+			save_health_court_owner_effect = { SCOPE_NAME = health_court_owner }#Imprisoner or court owner
 
 			scope:health_court_owner = {
 				add_to_temporary_list = disase_notification_list
 			}
 		}
-
+		#Sex partners if STD
 		if = {
 			limit = {
 				OR = {
@@ -310,7 +441,7 @@ contract_disease_effect = {
 				add_to_temporary_list = disase_notification_list
 			}
 		}
-
+		#Family if the disease is somewhat dangerous
 		if = {
 			limit = {
 				sick_enough_for_relative_to_care_trigger = yes
@@ -342,11 +473,11 @@ contract_disease_effect = {
 			}
 		}
 
-
+		#Go through list and send notifications
 		every_in_list = {
 			list = disase_notification_list
 
-
+			#Send a STD warning event
 			if = {
 				limit = {
 					OR = {
@@ -363,33 +494,33 @@ contract_disease_effect = {
 				if = {
 					limit = { scope:disease_type = flag:great_pox }
 					trigger_event = {
-						id = health.2002
+						id = health.2002 #Partner has great pox
 						days = { 7 14 }
 					}
 				}
 				else = {
 					trigger_event = {
-						id = health.2001
+						id = health.2001 #Partner has lover's pox/early great great pox
 						days = { 7 14 }
 					}
 				}
 			}
-
+			#Send a notification/treatment event to family
 			else_if = {
 				limit = {
 					OR = {
-
+						#It's a player heir
 						trigger_if = {
 							limit = { exists = player_heir }
 							player_heir = scope:sick_character
 						}
-
+						#Or a child/spouse who is really sick or this character has to pick their treatment
 						AND = {
-							is_spouse_of = scope:sick_character
+							is_spouse_of = scope:sick_character #we only send you your spouse and primary heir to avoid event spam with plagues
 							OR = {
-
+								#The sick character is dying
 								health < death_chance_dying_health
-
+								#This character gets to pick sick character's treatment
 								trigger_if = {
 									limit = { exists = scope:sick_character.liege }
 									this = scope:sick_character.liege
@@ -400,10 +531,10 @@ contract_disease_effect = {
 					}
 				}
 				trigger_event = {
-					id = health.2201
+					id = health.2201 #Important character is sick
 					days = 3
 				}
-
+				#set a variable, so you are sure to get a follow-up
 				if = {
 					limit = { is_ai = no }
 					scope:sick_character = {
@@ -422,10 +553,10 @@ contract_disease_effect = {
 						target = scope:epidemic
 					}
 				}
-
+				# Don't get spammed by courtiers and guests falling sick during epidemics
 			}
-
-			else = {
+			#Send a feed message
+			else = {	
 				send_interface_message = {
 					type = msg_disease_contraction
 					left_icon = scope:sick_character
@@ -434,7 +565,7 @@ contract_disease_effect = {
 						message_receiver = this
 					}
 					show_as_tooltip = {
-						scope:sick_character = {
+						scope:sick_character = {	
 							if = {
 								limit = { scope:disease_type = flag:early_great_pox }
 								add_trait_force_tooltip = early_great_pox
@@ -446,8 +577,8 @@ contract_disease_effect = {
 					}
 				}
 				if = {
-
-
+					#AGOT Modified
+					#limit = { is_ai = no }
 					limit = {
 						exists = scope:epidemic
 						is_ai = no
@@ -466,7 +597,7 @@ contract_disease_effect = {
 				exists = scope:epidemic
 			}
 			give_epidemic_immunity = { EPIDEMIC = scope:epidemic }
-
+			# Give appropriate memory
 			if = {
 				limit = {
 					scope:disease_type ?= flag:bubonic_plague
@@ -496,13 +627,16 @@ contract_disease_effect = {
 }
 
 
+
+
+#Triggers an event giving you the disease (if you meet the conditions) and notifying everyone who should know. Needs the arguments DISEASE trait name, only exception is early_great_pox - it should be added as great_pox and then the effect will figure out whether the character should have early_great_pox first)
 contract_disease_notify_effect = {
 	save_scope_value_as = {
 		name = disease_type
 		value = flag:$DISEASE$
 	}
-
-
+	
+	#Ill
 	if = {
 		limit = { scope:disease_type = flag:ill }
 		trigger_event = { id = health.1001 days = { 5 15 } }
@@ -561,7 +695,7 @@ contract_disease_notify_effect = {
 	}
 }
 
-
+#Removes the disease in question and sends notifications to everyone who should know. Needs the arguments DISEASE (trait name, only exception is early_great_pox - it should be removed as great_pox). Does NOT send an event to the character who gets the disease.
 recover_from_disease_effect = {
 	hidden_effect = {
 		save_scope_value_as = {
@@ -578,20 +712,20 @@ recover_from_disease_effect = {
 				name = disease_type
 				value = flag:early_great_pox
 			}
-		}
+		}	
 	}
 
-	if = {
+	if = { #They actually have the disease you want to remove
 		limit = { has_trait = $DISEASE$ }
 
 		save_scope_as = sick_character
 
-
+		#Notifications (first, because some notifications need to check health which are changed when traits are removed)
 		hidden_effect = {
 
-
+			#IMPORTANT CHARACTER (add to list)
 			if = {
-				limit = {
+				limit = { #The disease has to be somewhat dangerous
 					OR = {
 						health < death_chance_dying_health
 						NOR = {
@@ -633,7 +767,7 @@ recover_from_disease_effect = {
 				}
 			}
 
-
+			#PARTNERS WHO WANT TO KNOW ABOUT STDS (add to list)
 			if = {
 				limit = {
 					OR = {
@@ -659,7 +793,7 @@ recover_from_disease_effect = {
 				}
 			}
 
-
+			#IMPOTANT CHARACTER NOTIFICATION EVENT
 			every_parent = {
 				limit = {
 					inform_about_relative_recovery_trigger = yes
@@ -689,21 +823,21 @@ recover_from_disease_effect = {
 				}
 			}
 
-
+			#Go through list and send notifications
 			every_in_list = {
 				list = disase_notification_list
-
+				
 				if = {
 					limit = {
 						OR = {
-
+							#This character received an event when
 							scope:sick_character = {
 								is_target_in_variable_list = {
 									name = recovery_event_receivers
 									target = prev
 								}
 							}
-
+							#It's your player heir
 							trigger_if = {
 								limit = { exists = player_heir }
 								player_heir = scope:sick_character
@@ -719,7 +853,7 @@ recover_from_disease_effect = {
 						left_icon = scope:sick_character
 						title = disease_recovery_feed_message.t
 						show_as_tooltip = {
-							scope:sick_character = {
+							scope:sick_character = {	
 								if = {
 									limit = { scope:disease_type = flag:early_great_pox }
 									remove_trait_force_tooltip = early_great_pox
@@ -736,10 +870,10 @@ recover_from_disease_effect = {
 
 		clear_variable_list = recovery_event_receivers
 
-
+		#TRAIT REMOVAL
 		remove_trait = $DISEASE$
 
-
+		#IMMUNITY
 		hidden_effect = {
 			if = {
 				limit = { scope:disease_type = flag:smallpox }
@@ -758,12 +892,14 @@ recover_from_disease_effect = {
 }
 
 
+#Triggers an event removing the disease (if you meet the conditions) and notifying everyone who should know. Needs the arguments DISEASE trait name. No events exist for leper, lovers_pox and early_great_pox.
+
 recover_from_disease_notify_effect = {
 	save_scope_value_as = {
 		name = disease_type
 		value = flag:$DISEASE$
 	}
-
+	
 	if = {
 		limit = { scope:disease_type = flag:ill }
 		trigger_event = { id = health.1101 days = { 5 15 } }
@@ -802,7 +938,7 @@ recover_from_disease_notify_effect = {
 	}
 }
 
-
+#If partner has lover's pox, the character gets it through an event. Needs argument PARTNER
 contract_lovers_pox_from = {
 	$PARTNER$ = { save_scope_as = infecting_partner }
 	if = {
@@ -811,7 +947,7 @@ contract_lovers_pox_from = {
 	}
 }
 
-
+#If partner has great pox, the character gets it through an event. Needs argument PARTNER
 contract_great_pox_from = {
 	$PARTNER$ = { save_scope_as = infecting_partner }
 	if = {
@@ -827,7 +963,7 @@ contract_great_pox_from = {
 	}
 }
 
-
+#50% risk of herpes (if partner has it) and 30% risk of great pox (if partner has it). Added through event. Needs argument PARTNER
 risk_of_std_from_effect = {
 	random = {
 		chance = 50
@@ -851,7 +987,7 @@ risk_of_std_from_effect = {
 	}
 }
 
-
+#Creates a list of characters which might contract a disease from you (for plague and smallpox)
 create_contagion_list_effect = {
 	$CONTAGION_COURT_OWNER$ = {
 		if = {
@@ -900,12 +1036,12 @@ create_contagion_list_effect = {
 	}
 }
 
-
+### SIDE EFFECTS ###
 epilepsy_fever_risk_effect = {
 	hidden_effect = {
 		if = {
 			limit = { age <= 12 }
-			random = {
+			random = { 	
 				chance = $CHANCE$
 				modifier = {
 					age >= 9
@@ -913,7 +1049,7 @@ epilepsy_fever_risk_effect = {
 				}
 				debug_log = "Epilepsy: fever"
 				trigger_event = {
-					id = trait_specific.2001
+					id = trait_specific.2001 #Gain "possessed"
 					days = { 30 300 }
 				}
 			}
@@ -927,7 +1063,7 @@ epilepsy_brain_trauma_risk_effect = {
 			chance = $CHANCE$
 			debug_log = "Epilepsy: brain trauma"
 			trigger_event = {
-				id = trait_specific.2001
+				id = trait_specific.2001 #Gain "possessed"
 				days = { 30 300 }
 			}
 		}
@@ -935,12 +1071,19 @@ epilepsy_brain_trauma_risk_effect = {
 }
 
 
+###############################
+###############################
+# GAIN/INCREASE WOUND EFFECTS #
+###############################
+###############################
+
+
 increase_wounds_no_death_effect = {
 	save_temporary_scope_value_as = {
 		name = treatment_type
 		value = flag:$REASON$
 	}
-
+	
 	if = {
 		limit = {
 			has_trait_xp = { trait = fragile_bones track = fragile_bones value >= 50 }
@@ -969,10 +1112,10 @@ increase_wounds_no_death_effect = {
 		}
 	}
 
-	if = {
+	if = { #Wounds from treatments give no infection and no additional treatment
 		limit = { NOT = { scope:treatment_type = flag:treatment } }
 
-
+		#CHANCE OF INFECTION
 		hidden_effect = {
 			random = {
 				chance = 10
@@ -983,8 +1126,8 @@ increase_wounds_no_death_effect = {
 			}
 		}
 
-
-		if = {
+		#HANDLE TREATMENT
+		if = { #To send notification message or trigger the right event
 			limit = {
 				has_trait_rank = {
 					trait = wounded
@@ -993,7 +1136,7 @@ increase_wounds_no_death_effect = {
 				court_physician_available_trigger = yes
 			}
 			save_scope_as = sick_character
-			safe_wound_treatment_effect = yes
+			safe_wound_treatment_effect = yes #Wounded 1 only gives a "result of treatment" notification" if you have a physician, i.e. you get no events about it.
 		}
 		else_if = {
 			limit = {
@@ -1003,8 +1146,8 @@ increase_wounds_no_death_effect = {
 				}
 				has_recent_wound_treatment_trigger = no
 			}
-
-
+			#A "real" event if you're not receiving treatment
+			#Nothing happens if you're already being treated for wounds
 			trigger_event = {
 				id = health.0102
 				days = { 2 3 }
@@ -1018,19 +1161,20 @@ increase_wounds_no_death_effect = {
 				}
 				has_recent_wound_treatment_trigger = no
 			}
-
-
+			#A "real" event if you're not receiving treatment
+			#Nothing happens if you're already being treated for wounds
 			trigger_event = {
 				id = health.0104
 				days = { 2 3 }
 			}
 
-
+			#Epilepsy risk
 			epilepsy_brain_trauma_risk_effect = { CHANCE = 5 }
 		}
 	}
 
-
+	# To stop the game from complaining about unused character flags since we only specifically check
+	# the treatment reason for risk of further or infection
 	if = {
 		limit = {
 			exists = flag:$REASON$
@@ -1061,7 +1205,7 @@ increase_wounds_children_no_death_effect = {
 	}
 }
 
-
+#increase_wounds_effect
 increase_wounds_effect = {
 	if = {
 		limit = {
@@ -1072,7 +1216,7 @@ increase_wounds_effect = {
 		}
 		increase_wounds_no_death_effect = { REASON = $REASON$ }
 	}
-	else_if = {
+	else_if = { #Using an if because this needs to never go wrong
 		limit = {
 			has_trait_rank = {
 				trait = wounded
@@ -1125,7 +1269,7 @@ maimed_in_battle_effect = {
 			apply_maimed_trait_and_modifier_effect = yes
 			epilepsy_brain_trauma_risk_effect = { CHANCE = 5 }
 		}
-
+		#AGOT Added
 		4 = {
 			trigger = {
 				NOT = {
@@ -1150,6 +1294,10 @@ apply_maimed_trait_and_modifier_effect = {
 }
 
 
+#########################################
+# EFFECTS FOR WEIGHT GAIN/LOSS			#
+#########################################
+
 target_weight_modifier_effect = {
 	if = {
 		limit = {
@@ -1167,11 +1315,19 @@ target_weight_modifier_effect = {
 }
 
 
+#########################################
+# EFFECTS FOR COURT PHYSICIAN TREATMENT #
+#########################################
+
+
+
+### COURT PHYSICIAN MANAGEMENT ###
+
 set_court_physician_effect = {
 	$PHYSICIAN$ = {
 		hidden_effect = {
 			if = {
-				limit = {
+				limit = { 
 					NOT = { liege = $EMPLOYER$ }
 				}
 				$EMPLOYER$ = { add_courtier = $PHYSICIAN$ }
@@ -1179,7 +1335,7 @@ set_court_physician_effect = {
 		}
 	}
 	$EMPLOYER$ = {
-
+		#Replace existing court physician if one exists
 		if = {
 			limit = {
 				employs_court_position = court_physician_court_position
@@ -1210,8 +1366,9 @@ set_court_physician_effect = {
 				}
 			}
 		}
-
-
+		#Else just straight up appoint
+		#AGOT Modified
+		# else = {
 		else_if = {
 			limit = {
 				can_employ_court_position_type = court_physician_court_position
@@ -1261,7 +1418,7 @@ set_court_physician_effect = {
 					}
 				}
 			}
-
+			#Else just straight up appoint
 			else = {
 				appoint_court_position = {
 					recipient = $PHYSICIAN$
@@ -1304,7 +1461,7 @@ set_court_physician_effect = {
 					}
 				}
 			}
-
+			#Else just straight up appoint
 			else = {
 				appoint_court_position = {
 					recipient = $PHYSICIAN$
@@ -1316,15 +1473,16 @@ set_court_physician_effect = {
 				}
 			}
 		}
-
-
+		#AGOT End
+	
+		#Trigger treatments if needed
 		hidden_effect = {
 			if = {
 				limit = {
 					has_treatable_disease_trigger = yes
 					has_recent_treatment_trigger = no
 
-
+					#AGOT Added
 					current_date_is_start_date_trigger = no
 				}
 				save_scope_as = sick_character
@@ -1352,7 +1510,7 @@ set_court_physician_effect = {
 					}
 					set_worst_disease_effect = yes
 					save_scope_as = sick_character
-					decide_who_picks_disease_treatment_effect = yes
+					decide_who_picks_disease_treatment_effect = yes #Sends health.3101 to them or 3102 to liege (you)
 				}
 				else_if = {
 					limit = {
@@ -1369,8 +1527,19 @@ set_court_physician_effect = {
 
 save_court_physician_as_effect = {
 	hidden_effect = {
-
-
+		#AGOT Modified to include Maesters
+		# if = {
+		# 	limit = { exists = court_owner }
+		# 	court_owner = {
+		# 		random_court_position_holder = {
+		# 			type = court_physician_court_position
+		# 			limit = {
+		# 				is_physically_able = yes
+		# 			}
+		# 			save_scope_as = $SCOPE_NAME$
+		# 		}
+		# 	}
+		# }
 		if = {
 			limit = {
 				exists = court_owner
@@ -1417,6 +1586,9 @@ save_court_physician_as_effect = {
 }
 
 
+
+###COURT PHYSICIAN RANK UP###
+
 physician_rank_up_tooltip_effect = {
 	scope:physician = {
 		if = {
@@ -1461,7 +1633,7 @@ physician_rank_up_tooltip_effect = {
 	}
 }
 
-
+#Needs argument CHANCE
 physician_level_up_chance_effect = {
 	if = {
 		limit = {
@@ -1478,16 +1650,16 @@ physician_level_up_chance_effect = {
 			chance = $CHANCE$
 			physician_lifestyle_rank_up_effect = yes
 
-
+			#Used by physician_rank_up_tooltip_effect, to be shown in treatment outcome...
 			set_variable = { name = physician_level_up value = flag:physician days = 15 }
 
-
+			#...or in notification
 			if = {
 				limit = {
 					liege ?= { this != scope:sick_character }
 				}
 				liege = {
-					send_interface_message = {
+					send_interface_message = { #Should be feed message, because it's not hugely important
 						type = event_court_physician_good
 						title = physician_level_up_chance_effect.t
 						left_icon = scope:physician
@@ -1499,11 +1671,11 @@ physician_level_up_chance_effect = {
 	}
 }
 
-
+#Needs argument CHANCE
 mystic_level_up_chance_effect = {
 	if = {
 		limit = {
-			NAND = {
+			NAND = {	
 				has_trait = lifestyle_mystic
 				has_trait_xp = {
 					trait = lifestyle_mystic
@@ -1516,10 +1688,10 @@ mystic_level_up_chance_effect = {
 			chance = $CHANCE$
 			ai_mystic_lifestyle_rank_up_effect = yes
 
-
+			#Used by physician_rank_up_tooltip_effect, to be shown in treatment outcome...
 			set_variable = { name = physician_level_up value = flag:mystic days = 15 }
 
-
+			#...or in notification
 			if = {
 				limit = {
 					liege ?= { this != scope:sick_character }
@@ -1534,7 +1706,7 @@ mystic_level_up_chance_effect = {
 				}
 			}
 
-
+			#Have a tiny chance to become witch
 			hidden_effect = {
 				if = {
 					limit = {
@@ -1551,7 +1723,7 @@ mystic_level_up_chance_effect = {
 						}
 						modifier = {
 							factor = 2
-							ai_zeal <= high_negative_ai_value
+							ai_zeal <= high_negative_ai_value #high and not medium because mystic traits already remove some ai_zeal
 						}
 						chance = 5
 						give_witch_secret_or_trait_effect = yes
@@ -1562,6 +1734,10 @@ mystic_level_up_chance_effect = {
 	}
 }
 
+
+
+
+###DISEASE TREATMENT OPTIONS###
 
 safe_disease_treatment_effect = {
 	$TREATMENT_PICKER$ = { save_scope_as = treatment_picker }
@@ -1576,7 +1752,7 @@ safe_disease_treatment_effect = {
 					NOT = { exists = scope:sick_character }
 				}
 				save_scope_as = sick_character
-			}
+			} #If a sick character was not already saved we save the patient as Sick Character here
 
 			if = {
 				limit = {
@@ -1584,10 +1760,10 @@ safe_disease_treatment_effect = {
 					court_physician_available_trigger = yes
 				}
 
-
+				#Physician skill up
 				scope:physician = {
 					random_list = {
-						90 = {
+						90 = {  #physician
 							trigger = {
 								NAND = {
 									has_trait = lifestyle_physician
@@ -1599,7 +1775,7 @@ safe_disease_treatment_effect = {
 							}
 							physician_level_up_chance_effect = { CHANCE = 10 }
 						}
-						10 = {
+						10 = { #Mystic
 							trigger = {
 								NOR = {
 									AND = {
@@ -1609,7 +1785,7 @@ safe_disease_treatment_effect = {
 											value >= 100
 										}
 									}
-									AND = {
+									AND = { #Because then this would be the only option which is weird
 										has_trait = lifestyle_physician
 										has_trait_xp = {
 											trait = lifestyle_physician
@@ -1618,11 +1794,11 @@ safe_disease_treatment_effect = {
 									}
 								}
 								OR = {
-									NAND = {
+									NAND = { #Either, this is my first rank up
 										has_trait = lifestyle_physician
 										has_trait = lifestyle_mystic
 									}
-									has_trait = lifestyle_mystic
+									has_trait = lifestyle_mystic #I have already chosen this path
 								}
 							}
 							modifier = {
@@ -1638,43 +1814,45 @@ safe_disease_treatment_effect = {
 					}
 				}
 
-
+				# OUTCOME RANDOMIZATION
 				random_list = {
-					70 = {
+					70 = { # Success
 						modifier = {
 							factor = scope:physician.physician_safe_treatment_skill_factor
-
-
+							# 1 for an average learning skill character without traits
+							# 0.2 min for low learning
+							# ~3 for high skill character without traits
+							# ~12 for high skill character with best trait (physician_3)
 						}
-						modifier = {
+						modifier = { # Bump the death numbers a bit
 							$PATIENT$ = { is_ruler = no }
 							factor = 0.8
 						}
-						modifier = {
+						modifier = { # Pool characters should die more
 							$PATIENT$ = { is_pool_character = yes }
 							factor = 0.2
 						}
-						trigger_event = health.3103
+						trigger_event = health.3103 #Safe treatment sucess
 					}
-					30 = {
-						trigger_event = health.3104
+					30 = { # Failure
+						trigger_event = health.3104 #Safe treatment failure
 					}
-					70 = {
+					70 = { # Failure on purpose
 						trigger = {
 							court_physician_can_fail_on_purpose_trigger = yes
 						}
 						opinion_modifier = {
 							who = scope:physician
 							opinion_target = scope:sick_character
-							multiplier = -1
+							multiplier = -1 # Adds 100 for -100 opinion
 						}
 						modifier = {
-							factor = {
+							factor = { #To keep it scaling with success
 								add = scope:physician.physician_safe_treatment_skill_factor
 								divide = 2
 							}
 						}
-						modifier = {
+						modifier = { #Are they already trying to kill you?
 							add = 40
 							scope:sick_character = {
 								any_targeting_scheme = {
@@ -1687,8 +1865,8 @@ safe_disease_treatment_effect = {
 							}
 						}
 
-						trigger_event = health.3104
-					}
+						trigger_event = health.3104 #Safe treatment failure
+					}	
 				}
 			}
 		}
@@ -1717,13 +1895,13 @@ risky_disease_treatment_effect = {
 					court_physician_available_trigger = yes
 				}
 
-
+				#Physician skill up
 				scope:physician = {
 					physician_level_up_chance_effect = { CHANCE = 10 }
 				}
 
 				random_list = {
-					1 = {
+					1 = { #Success
 						modifier = {
 							scope:physician = {
 								learning >= mediocre_skill_rating
@@ -1775,7 +1953,7 @@ risky_disease_treatment_effect = {
 							}
 							factor = 5
 						}
-
+						# Liege Perk bonus
 						modifier = {
 							exists = scope:physician.liege
 							scope:physician.liege = {
@@ -1783,16 +1961,16 @@ risky_disease_treatment_effect = {
 							}
 							factor = 2
 						}
-						modifier = {
+						modifier = { # Bump the death numbers a bit
 							$PATIENT$ = { is_ruler = no }
 							factor = 0.8
 						}
-						modifier = {
+						modifier = { # Pool characters should die more
 							$PATIENT$ = { is_pool_character = yes }
 							factor = 0.2
 						}
 
-
+						#Critical or normal success?
 						random_list = {
 							1 = {
 								modifier = {
@@ -1827,7 +2005,7 @@ risky_disease_treatment_effect = {
 									scope:disease_type = flag:cancer
 									factor = 0.2
 								}
-
+								# Liege Perk bonus
 								modifier = {
 									exists = scope:physician.liege
 									scope:physician.liege = {
@@ -1835,21 +2013,21 @@ risky_disease_treatment_effect = {
 									}
 									factor = 2
 								}
-								trigger_event = health.3105
+								trigger_event = health.3105 #Critical success
 							}
 							5 = {
-								trigger_event = health.3106
+								trigger_event = health.3106 #Normal success
 							}
 						}
 					}
-					10 = {
-						trigger_event = health.3107
+					10 = { #Failure
+						trigger_event = health.3107 #Failure
 					}
-					5 = {
+					5 = { #Failure on purpose
 						trigger = {
 							court_physician_can_fail_on_purpose_trigger = yes
 						}
-						modifier = {
+						modifier = {	
 							OR = {
 								has_relation_rival = scope:physician
 								reverse_opinion = {
@@ -1859,7 +2037,7 @@ risky_disease_treatment_effect = {
 							}
 							factor = 2
 						}
-						modifier = {
+						modifier = { #Are they already trying to kill you?
 							add = 40
 							scope:sick_character = {
 								any_targeting_scheme = {
@@ -1871,7 +2049,7 @@ risky_disease_treatment_effect = {
 								}
 							}
 						}
-						trigger_event = health.3107
+						trigger_event = health.3107 #Risky treatment failure
 					}
 				}
 			}
@@ -1900,7 +2078,7 @@ mystic_disease_treatment_effect = {
 					exists = scope:physician
 					court_physician_available_trigger = yes
 				}
-
+				#Physician skill up
 				scope:physician = {
 					mystic_level_up_chance_effect = { CHANCE = 15 }
 				}
@@ -1910,7 +2088,7 @@ mystic_disease_treatment_effect = {
 			}
 
 			random_list = {
-				1 = {
+				1 = { #Success
 					modifier = {
 						scope:physician = {
 							learning >= mediocre_skill_rating
@@ -1962,23 +2140,23 @@ mystic_disease_treatment_effect = {
 						}
 						factor = 5
 					}
-
+					# Liege Perk bonus
 					modifier = {
 						scope:physician.liege = {
 							has_perk = anatomical_studies_perk
 						}
 						factor = 2
 					}
-					modifier = {
+					modifier = { # Bump the death numbers a bit
 						$PATIENT$ = { is_ruler = no }
 						factor = 0.8
 					}
-					modifier = {
+					modifier = { # Pool characters should die more
 						$PATIENT$ = { is_pool_character = yes }
 						factor = 0.2
 					}
 
-
+					#Critical or normal success?
 					random_list = {
 						1 = {
 							modifier = {
@@ -2016,31 +2194,31 @@ mystic_disease_treatment_effect = {
 							modifier = {
 								scope:disease_type = flag:cancer
 								factor = 0.1
-							}
-
-
+							}	
+							
+							# Liege Perk bonus
 							modifier = {
 								scope:physician.liege = {
 									has_perk = anatomical_studies_perk
 								}
 								factor = 2
 							}
-
-							trigger_event = health.3108
+							
+							trigger_event = health.3108 #Critical success
 						}
 						5 = {
-							trigger_event = health.3109
+							trigger_event = health.3109 #Normal success
 						}
 					}
 				}
-				10 = {
-					trigger_event = health.3110
+				10 = { #Failure
+					trigger_event = health.3110 #Failure
 				}
-				5 = {
+				5 = { #Failure on purpose
 					trigger = {
 						court_physician_can_fail_on_purpose_trigger = yes
 					}
-					modifier = {
+					modifier = {	
 						OR = {
 							has_relation_rival = scope:physician
 							reverse_opinion = {
@@ -2050,7 +2228,7 @@ mystic_disease_treatment_effect = {
 						}
 						factor = 2
 					}
-					modifier = {
+					modifier = { #Are they already trying to kill you?
 						add = 40
 						scope:sick_character = {
 							any_targeting_scheme = {
@@ -2062,8 +2240,8 @@ mystic_disease_treatment_effect = {
 							}
 						}
 					}
-					trigger_event = health.3110
-				}
+					trigger_event = health.3110 #Failure
+				}	
 			}
 		}
 	}
@@ -2076,22 +2254,22 @@ no_disease_treatment_effect = {
 find_court_physician_effect = {
 	custom_tooltip = health.3101.e.tt
 	hidden_effect = {
-
-
+		# Stop AI taking physicians via event, since they've got an AI prioritisation system to work with.
+		## We do this in the effect rather than elsewhere for script hygiene.
 		if = {
-
-
+			#AGOT Modified to account for maesters
+			#limit = { is_ai = no }
 			limit = {
 				NOT = { can_employ_court_position_type = maester_court_position }
 				is_ai = no
 			}
 			add_character_flag = { flag = already_sick days = 30 }
-			add_character_flag = { flag = searching_for_physician days = court_physician_search_max }
+			add_character_flag = { flag = searching_for_physician days = court_physician_search_max } 
 			trigger_event = {
 				id = health.3001 days = { court_physician_search_min court_physician_search_max }
 			}
 		}
-
+		#AGOT Added to account for maesters
 		else_if = {
 			limit = {
 				can_employ_court_position_type = maester_court_position
@@ -2124,6 +2302,8 @@ deny_treatment_effect = {
 }
 
 
+###WOUND TREATMENT OPTIONS###
+
 safe_wound_treatment_effect = {
 	custom_tooltip = safe_wound_treatment.tt
 
@@ -2131,12 +2311,12 @@ safe_wound_treatment_effect = {
 		save_court_physician_as_effect = { SCOPE_NAME = physician }
 
 		if = {
-			limit = {
-				exists = scope:physician
+			limit = { 
+				exists = scope:physician 
 				court_physician_available_trigger = yes
 			}
 
-
+			#Physician skill up
 			scope:physician = {
 				if = {
 					limit = {
@@ -2153,7 +2333,7 @@ safe_wound_treatment_effect = {
 			}
 
 			random_list = {
-				10 = {
+				10 = { #Success
 					modifier = {
 						scope:physician = {
 							learning >= mediocre_skill_rating
@@ -2215,10 +2395,10 @@ safe_wound_treatment_effect = {
 						}
 					}
 					else = {
-						trigger_event = health.4101
+						trigger_event = health.4101 #Safe treatment success
 					}
 				}
-				50 = {
+				50 = { #Failure
 					if = {
 						limit = {
 							has_trait = wounded_1
@@ -2229,9 +2409,9 @@ safe_wound_treatment_effect = {
 						}
 					}
 					else = {
-						trigger_event = health.4102
+						trigger_event = health.4102 #Safe treatment failure
 					}
-				}
+				}	
 			}
 		}
 	}
@@ -2245,18 +2425,18 @@ risky_wound_treatment_effect = {
 		save_court_physician_as_effect = { SCOPE_NAME = physician }
 
 		if = {
-			limit = {
-				exists = scope:physician
+			limit = { 
+				exists = scope:physician 
 				court_physician_available_trigger = yes
 			}
 
-
+			#Physician skill up
 			scope:physician = {
 				physician_level_up_chance_effect = { CHANCE = 10 }
 			}
 
 			random_list = {
-				1 = {
+				1 = { #Success
 					modifier = {
 						scope:physician = {
 							learning >= mediocre_skill_rating
@@ -2309,12 +2489,12 @@ risky_wound_treatment_effect = {
 						factor = 4
 					}
 
-					modifier = {
+					modifier = { #Gangrene! Lower chance of success
 						factor = 0.5
 						has_character_modifier = gangrene_modifier
 					}
 
-
+					#Critical or normal success?
 					random_list = {
 						1 = {
 							modifier = {
@@ -2345,25 +2525,28 @@ risky_wound_treatment_effect = {
 								has_character_modifier = infected_wound_modifier
 								factor = 0.7
 							}
-							modifier = {
+							modifier = { #Gangrene! Lower chance of critical success
 								has_character_modifier = gangrene_modifier
 								factor = 0.7
 							}
-							trigger_event = health.4103
+							trigger_event = health.4103 #Critical success
 						}
 						5 = {
-							trigger_event = health.4104
+							trigger_event = health.4104 #Normal success
 						}
 					}
 				}
-				10 = {
-					trigger_event = health.4105
+				10 = { #Failure
+					trigger_event = health.4105 #Failure
 				}
 			}
 		}
 	}
 }
 
+
+
+###DISEASE TREATMENT OUTCOMES###
 
 set_worst_disease_effect = {
 	if = {
@@ -2459,8 +2642,13 @@ set_worst_disease_effect = {
 	}
 }
 
-add_disease_treatment_modifier_effect = {
-
+add_disease_treatment_modifier_effect = {	
+	#Treatment length depends on whether the disease has a short or long duration
+	#Successful treatments come in two strengths per treatment type, low for diseases with low health penalty and high for diseases with high health penalty
+	#Negative treatments only have one strength per treatment type
+	#Successful safe treatments remove most of the penalty for low -health diseases but only 1/2-1/4 of penalty for high -health diseases
+	#Successful risky/mystic treatments remove almost all of the penalty for all diseases (with plague being the main exception, that penalty is roughly halved)
+	#Safe treatment:success
 
 	save_temporary_scope_value_as = {
 		name = treatment_result_treatment
@@ -2471,7 +2659,7 @@ add_disease_treatment_modifier_effect = {
 		value = flag:$OUTCOME$
 	}
 
-
+	#SAFE TREATMENT: SUCCESS
 	if = {
 		limit = {
 			scope:treatment_result_treatment = flag:safe
@@ -2506,7 +2694,7 @@ add_disease_treatment_modifier_effect = {
 			add_character_modifier = { modifier = safe_disease_treatment_success_low_modifier days = disease_treatment_long_duration }
 		}
 	}
-
+	#SAFE TREATMENT: FAILURE
 	else_if = {
 		limit = {
 			scope:treatment_result_treatment = flag:safe
@@ -2521,17 +2709,17 @@ add_disease_treatment_modifier_effect = {
 			add_character_modifier = { modifier = safe_disease_treatment_failure_modifier days = disease_treatment_long_duration }
 		}
 	}
-
+	#RISKY & MYSTIC TREATMENT: CRITICAL SUCCESS
 	else_if = {
 		limit = {
 			OR = {
 				scope:treatment_result_treatment = flag:risky
-				scope:treatment_result_treatment = flag:mystic
+				scope:treatment_result_treatment = flag:mystic #A succcessful mystic treatment shouldn't be noticeable from the outside, so using same modifiers
 			}
 			scope:treatment_result_outcome = flag:critical_success
 		}
 
-
+		#General cooldown
 		add_character_flag = {
 			flag = contraction_cooldown_general
 			years = 2
@@ -2560,7 +2748,7 @@ add_disease_treatment_modifier_effect = {
 		else_if = {
 			limit = { scope:disease_type = flag:ill }
 			remove_trait_force_tooltip = ill
-
+			#No cooldown, common disease
 		}
 		else_if = {
 			limit = { scope:disease_type = flag:pneumonic }
@@ -2575,7 +2763,7 @@ add_disease_treatment_modifier_effect = {
 		else_if = {
 			limit = { scope:disease_type = flag:measles }
 			remove_trait_force_tooltip = measles
-
+			#No cooldown, immunity
 		}
 		else_if = {
 			limit = { scope:disease_type = flag:dysentery }
@@ -2590,21 +2778,21 @@ add_disease_treatment_modifier_effect = {
 		else_if = {
 			limit = { scope:disease_type = flag:smallpox }
 			remove_trait_force_tooltip = smallpox
-
+			#No cooldown, immunity
 		}
 		else_if = {
 			limit = { scope:disease_type = flag:bubonic_plague }
 			remove_trait_force_tooltip = bubonic_plague
-
+			#No cooldown, immunity
 		}
 	}
 
-
+	#RISKY & MYSTIC TREATMENT: SUCCESS
 	else_if = {
 		limit = {
 			OR = {
 				scope:treatment_result_treatment = flag:risky
-				scope:treatment_result_treatment = flag:mystic
+				scope:treatment_result_treatment = flag:mystic #A succcessful mystic treatment shouldn't be noticeable from the outside, so using same modifiers
 			}
 			scope:treatment_result_outcome = flag:success
 		}
@@ -2637,7 +2825,7 @@ add_disease_treatment_modifier_effect = {
 			add_character_modifier = { modifier = risky_disease_treatment_success_low_modifier days = disease_treatment_long_duration }
 		}
 	}
-
+	# RISKY TREATMENT FAILURE
 	else_if = {
 		limit = {
 			scope:treatment_result_treatment = flag:risky
@@ -2664,7 +2852,7 @@ disease_treatment_result_tooltip_effect = {
 		name = treatment_result_outcome
 		value = flag:$OUTCOME$
 	}
-
+	#Show death or treatment outcome
 	if = {
 		limit = { scope:sick_character = { is_alive = no } }
 		custom_tooltip = health.3200.death.tt
@@ -2674,7 +2862,7 @@ disease_treatment_result_tooltip_effect = {
 			scope:sick_character = {
 				add_disease_treatment_modifier_effect = { TREATMENT = $TREATMENT$ OUTCOME = $OUTCOME$ }
 
-
+				#Risky
 				if = {
 					limit = { has_variable = treatment_strategy }
 					if = {
@@ -2706,7 +2894,7 @@ disease_treatment_result_tooltip_effect = {
 				}
 				if = {
 					limit = { has_variable = mystic_side_effect }
-
+					#Mystic
 					if = {
 						limit = { var:mystic_side_effect = flag:lunatic }
 						add_trait_force_tooltip = lunatic_1
@@ -2747,16 +2935,16 @@ disease_treatment_results_effect = {
 		value = flag:$OUTCOME$
 	}
 
-
+	#APPLY MODIFIERS (OR REMOVE TRAITS)
 	add_disease_treatment_modifier_effect = { TREATMENT = $TREATMENT$ OUTCOME = $OUTCOME$ }
 
-
+	#RISKY TREATMENT: DETERMINING TREATMENT STRATEGY AND REMOVING BODY PART
 	if = {
 		limit = { scope:treatment_result_treatment = flag:risky }
 		random_list = {
-			1 = {
+			1 = { #Medicine
 				trigger = {
-					OR = {
+					OR = { #Only use for cancer if no body part can be removed
 						NOT = { scope:disease_type ?= flag:cancer }
 						AND = {
 							scope:disease_type ?= flag:cancer
@@ -2776,7 +2964,7 @@ disease_treatment_results_effect = {
 					days = 30
 				}
 			}
-			1 = {
+			1 = { #Amputation
 				trigger = {
 					NOT = { has_trait = one_legged }
 					OR = {
@@ -2799,7 +2987,7 @@ disease_treatment_results_effect = {
 					add_character_flag = { flag = physician_used_wrong_method days = 30 }
 				}
 			}
-			1 = {
+			1 = { #Disfigurement
 				trigger = {
 					NOT = { has_trait = disfigured }
 					OR = {
@@ -2822,7 +3010,7 @@ disease_treatment_results_effect = {
 					add_character_flag = { flag = physician_used_wrong_method days = 30 }
 				}
 			}
-			1 = {
+			1 = { #Castration
 				trigger = {
 					is_male = yes
 					is_eunuch_trigger = no
@@ -2843,7 +3031,7 @@ disease_treatment_results_effect = {
 				else = {
 					add_trait_force_tooltip = beardless_eunuch
 				}
-
+				
 				increase_wounds_no_death_effect = { REASON = treatment }
 				set_variable = {
 					name = treatment_strategy
@@ -2855,7 +3043,7 @@ disease_treatment_results_effect = {
 					add_character_flag = { flag = physician_used_wrong_method days = 30 }
 				}
 			}
-			1 = {
+			1 = { #Remove eye
 				trigger = {
 					NOT = { has_trait = one_eyed }
 					OR = {
@@ -2881,7 +3069,7 @@ disease_treatment_results_effect = {
 		}
 	}
 
-
+	#RISKY TREATMENT FAILURE: DEATH?
 	if = {
 		limit = {
 			scope:treatment_result_treatment = flag:risky
@@ -2890,7 +3078,7 @@ disease_treatment_results_effect = {
 		if = {
 			limit = {
 				OR = {
-					AND = {
+					AND = { #Dies from wound upgrading past lvl 3
 						has_trait = wounded_3
 						AND = {
 							has_variable = treatment_strategy
@@ -2912,11 +3100,11 @@ disease_treatment_results_effect = {
 		}
 	}
 
-
+	#MYSTIC TREATMENT: OCCULT OR SIMPLY QUESTIONABLE TREATMENT
 	if = {
 		limit = { scope:treatment_result_treatment = flag:mystic }
 		random_list = {
-			100 = {
+			100 = { #Occult
 				modifier = {
 					scope:physician = {
 						OR = {
@@ -2927,7 +3115,7 @@ disease_treatment_results_effect = {
 					factor = 10
 				}
 				random_list = {
-					10 = {
+					10 = { #Regular occult
 						hidden_effect = {
 							set_variable = {
 								name = treatment_strategy
@@ -2936,7 +3124,7 @@ disease_treatment_results_effect = {
 							}
 						}
 					}
-					2 = {
+					2 = { #Cannibal occult
 						trigger = {
 							NOR = {
 								has_trait = cannibal
@@ -2952,7 +3140,7 @@ disease_treatment_results_effect = {
 						}
 						give_cannibal_secret_or_trait_effect = yes
 					}
-					2 = {
+					2 = { #Deviant occult
 						trigger = {
 							is_adult = yes
 							NOR = {
@@ -2972,7 +3160,7 @@ disease_treatment_results_effect = {
 					}
 				}
 			}
-			50 = {
+			50 = { #Questionable
 				hidden_effect = {
 					set_variable = {
 						name = treatment_strategy
@@ -2980,10 +3168,10 @@ disease_treatment_results_effect = {
 						days = 30
 					}
 				}
-			}
+			}	
 		}
 
-
+	#MYSTIC TREATMENT: SPECIAL EFFECTS
 		if = {
 			limit = { scope:treatment_result_outcome = flag:failure }
 			random_list = {
@@ -3049,7 +3237,7 @@ disease_treatment_results_effect = {
 			}
 		}
 
-
+		#Stress for occult treatments
 		if = {
 			limit = { has_variable = treatment_strategy }
 			if = {
@@ -3075,31 +3263,31 @@ disease_treatment_results_effect = {
 		}
 	}
 
-
+	#RETURN VISIT TO THE DOCTOR!
 	hidden_effect = {
 		if = {
 			limit = {
-				NOT = {
+				NOT = { #Risky/mystic critical success cures completely, no need for another visit
 					scope:treatment_result_outcome = flag:critical_success
 				}
 			}
 			if = {
 				limit = { has_short_disease_type_trigger = yes }
 				trigger_event = {
-					id = health.3100
+					id = health.3100 #Sends health.3101 to me or 3102 to liege
 					days = disease_treatment_short_duration_plus_1
 				}
 			}
 			else = {
 				trigger_event = {
-					id = health.3100
+					id = health.3100 #Sends health.3101 to me or 3102 to liege
 					days = disease_treatment_long_duration_plus_1
 				}
 			}
 		}
 	}
 
-
+	#FAILED TREATMENT OPINIONS
 	if = {
 		limit = {
 			scope:treatment_result_outcome = flag:failure
@@ -3111,11 +3299,16 @@ disease_treatment_results_effect = {
 		add_failed_treatment_of_kin_opinions_effect = yes
 	}
 
-	physician_rank_up_tooltip_effect = yes
+	physician_rank_up_tooltip_effect = yes #Shows trait gain if physician ranked up
 }
 
 
-add_wound_treatment_modifier_effect = {
+
+
+
+###WOUND TREATMENT OUTCOMES###
+
+add_wound_treatment_modifier_effect = {	
 	save_temporary_scope_value_as = {
 		name = treatment_result_treatment
 		value = flag:$TREATMENT$
@@ -3126,6 +3319,7 @@ add_wound_treatment_modifier_effect = {
 	}
 
 
+	###SUCCESS###
 	if = {
 		limit = {
 			OR = {
@@ -3133,7 +3327,7 @@ add_wound_treatment_modifier_effect = {
 				scope:treatment_result_outcome = flag:critical_success
 			}
 		}
-
+		#Infection is always removed
 		if = {
 			limit = { has_character_modifier = infected_wound_modifier }
 			remove_character_modifier = infected_wound_modifier
@@ -3142,7 +3336,7 @@ add_wound_treatment_modifier_effect = {
 				value = yes
 			}
 		}
-
+		#Gangrene is removed if you picked risky
 		else_if = {
 			limit = {
 				has_character_modifier = gangrene_modifier
@@ -3156,14 +3350,15 @@ add_wound_treatment_modifier_effect = {
 		}
 
 
+		#Applying correct modifier or removing correct trait (unless there's still an active treatment, could happen if you got treated for a wound and then got infection/gangrene)
 		if = {
 			limit = { has_recent_wound_treatment_trigger = no }
 
-
+			#Safe treatment
 			if = {
 				limit = { scope:treatment_result_treatment = flag:safe }
 
-
+				#Add modifier or remove wounded_1 trait
 					if = {
 					limit = { has_character_modifier = gangrene_modifier }
 					add_character_modifier = { modifier = safe_wound_treatment_success_high_modifier days = wound_treatment_success_duration }
@@ -3183,20 +3378,20 @@ add_wound_treatment_modifier_effect = {
 				}
 			}
 
-
+			#Risky treatment critical success
 			else_if = {
 				limit = {
 					scope:treatment_result_treatment = flag:risky
 					scope:treatment_result_outcome = flag:critical_success
 				}
-
+				#Remove a trait level
 				if = {
 					limit = { has_trait = wounded_1 }
 					remove_trait = wounded_1
 				}
 				else_if = {
 					limit = { has_trait = wounded_2 }
-					remove_trait = wounded_2
+					remove_trait = wounded_2 #We do it like this so you can see the trait you've lost
 					add_trait = wounded_1
 				}
 				else_if = {
@@ -3206,7 +3401,7 @@ add_wound_treatment_modifier_effect = {
 				}
 			}
 
-
+			#Risky treatment regular success
 			else_if = {
 				limit = {
 					scope:treatment_result_treatment = flag:risky
@@ -3216,11 +3411,11 @@ add_wound_treatment_modifier_effect = {
 			}
 		}
 	}
-
+	###FAILURE###
 	else_if = {
 		limit = { scope:treatment_result_outcome = flag:failure }
 
-
+		#Safe treatment failure
 		if = {
 			limit = { scope:treatment_result_treatment = flag:safe }
 			add_character_modifier = { modifier = safe_wound_treatment_failure_modifier days = wound_treatment_failure_duration }
@@ -3233,6 +3428,7 @@ add_wound_treatment_modifier_effect = {
 }
 
 
+
 wound_treatment_result_tooltip_effect = {
 	save_temporary_scope_value_as = {
 		name = treatment_result_treatment
@@ -3242,7 +3438,7 @@ wound_treatment_result_tooltip_effect = {
 		name = treatment_result_outcome
 		value = flag:$OUTCOME$
 	}
-
+	#Show death or treatment outcome
 	if = {
 		limit = { scope:sick_character = { is_alive = no } }
 		custom_tooltip = health.3200.death.tt
@@ -3267,14 +3463,14 @@ wound_treatment_result_tooltip_effect = {
 						add_trait_force_tooltip = one_eyed
 					}
 					else_if = {
-						limit = {
+						limit = { 
 							var:treatment_strategy = flag:castration
 							age >= 12
 						}
 						add_trait_force_tooltip = eunuch_1
 					}
 					else_if = {
-						limit = {
+						limit = { 
 							var:treatment_strategy = flag:castration
 							age < 12
 						}
@@ -3296,16 +3492,16 @@ wound_treatment_results_effect = {
 		value = flag:$OUTCOME$
 	}
 
-
+	#APPLY MODIFIERS (OR REMOVE TRAITS)
 	add_wound_treatment_modifier_effect = { TREATMENT = $TREATMENT$ OUTCOME = $OUTCOME$ }
 
-
+	#RISKY TREATMENT: DETERMINING TREATMENT STRATEGY AND REMOVING BODY PART
 	if = {
 		limit = { scope:treatment_result_treatment = flag:risky }
 		random_list = {
-			1 = {
+			1 = { #Medicine
 				trigger = {
-					OR = {
+					OR = { #Only use for gangrene if no body part can be removed
 						NOT = { has_character_modifier = gangrene_modifier }
 						AND = {
 							has_character_modifier = gangrene_modifier
@@ -3325,7 +3521,7 @@ wound_treatment_results_effect = {
 					days = 30
 				}
 			}
-			1 = {
+			1 = { #Amputation
 				trigger = {
 					NOT = { has_trait = one_legged }
 					OR = {
@@ -3348,7 +3544,7 @@ wound_treatment_results_effect = {
 					add_character_flag = { flag = physician_used_wrong_method days = 30 }
 				}
 			}
-			1 = {
+			1 = { #Disfigurement
 				trigger = {
 					NOT = { has_trait = disfigured }
 					scope:treatment_result_outcome = flag:failure
@@ -3362,7 +3558,7 @@ wound_treatment_results_effect = {
 					days = 30
 				}
 			}
-			1 = {
+			1 = { #Castration
 				trigger = {
 					is_male = yes
 					is_eunuch_trigger = no
@@ -3394,7 +3590,7 @@ wound_treatment_results_effect = {
 					add_character_flag = { flag = physician_used_wrong_method days = 30 }
 				}
 			}
-			1 = {
+			1 = { #Remove eye
 				trigger = {
 					NOT = { has_trait = one_eyed }
 					OR = {
@@ -3419,7 +3615,7 @@ wound_treatment_results_effect = {
 			}
 		}
 
-
+		#Fallback
 		if = {
 			limit = { NOT = { exists = var:treatment_strategy } }
 			set_variable = {
@@ -3430,13 +3626,13 @@ wound_treatment_results_effect = {
 		}
 	}
 
-
+	#RISKY TREATMENT FAILURE: DEATH?
 	if = {
 		limit = {
 			scope:treatment_result_treatment = flag:risky
 			scope:treatment_result_outcome = flag:failure
 			OR = {
-				AND = {
+				AND = { #Dies from wound upgrading past lvl 3
 					has_trait = wounded_3
 					OR = {
 						var:treatment_strategy = flag:amputation
@@ -3445,7 +3641,7 @@ wound_treatment_results_effect = {
 						var:treatment_strategy = flag:castration
 					}
 				}
-				AND = {
+				AND = { #AIs die immediately if their health is reduced to 0 or below
 					is_ai = yes
 					health <= 0
 				}
@@ -3454,7 +3650,7 @@ wound_treatment_results_effect = {
 		add_character_flag = die_surgery
 	}
 
-
+	#RETURN VISIT TO THE DOCTOR!
 	hidden_effect = {
 		if = {
 			limit = {
@@ -3464,20 +3660,20 @@ wound_treatment_results_effect = {
 			if = {
 				limit = { scope:treatment_result_outcome = flag:failure  }
 				trigger_event = {
-					id = health.4999
+					id = health.4999 #Sends health.4001 to me or 4002 to liege
 					days = wound_treatment_failure_duration_plus_1
 				}
 			}
 			else = {
 				trigger_event = {
-					id = health.4999
+					id = health.4999 #Sends health.4001 to me or 4002 to liege
 					days = wound_treatment_success_duration_plus_1
 				}
 			}
 		}
 	}
 
-
+	#FAILED TREATMENT OPINIONS
 	if = {
 		limit = {
 			scope:treatment_result_outcome = flag:failure
@@ -3489,17 +3685,24 @@ wound_treatment_results_effect = {
 		add_failed_treatment_of_kin_opinions_effect = yes
 	}
 
-	physician_rank_up_tooltip_effect = yes
+	physician_rank_up_tooltip_effect = yes #Shows trait gain if physician ranked up
 }
 
 
-save_health_court_owner_effect = {
+
+
+
+
+
+
+###DISEASE TREATMENT LOGIC###
+save_health_court_owner_effect = { #Should match has_health_court_owner_trigger
 	if = {
 		limit = { exists = imprisoner }
 		imprisoner = { save_scope_as = $SCOPE_NAME$ }
 	}
 	else_if = {
-		limit = { exists = court_owner }
+		limit = { exists = court_owner } #Courtiers: liege. Guest: host. Ruler: themselves.
 		court_owner = { save_scope_as = $SCOPE_NAME$ }
 	}
 }
@@ -3517,11 +3720,11 @@ pick_own_disease_treatment_effect = {
 		trigger_event = {
 			id = health.3101
 			days = { 5 10 }
-		}
+		}	
 	}
 }
 
-
+#Who treats a sick character?
 decide_who_picks_disease_treatment_effect = {
 	if = {
 		limit = {
@@ -3529,14 +3732,14 @@ decide_who_picks_disease_treatment_effect = {
 		}
 		liege = {
 			trigger_event = {
-				id = health.3102
+				id = health.3102 #Liege decides
 				days = { physician_treatment_delay_subject_min physician_treatment_delay_subject_max }
 			}
 		}
 	}
 	else = {
 		trigger_event = {
-			id = health.3101
+			id = health.3101 #I decide
 			days = { physician_treatment_delay_ruler_min physician_treatment_delay_ruler_max }
 		}
 	}
@@ -3549,7 +3752,7 @@ liege_picks_treatment_effect = {
 		}
 		liege = {
 			trigger_event = {
-				id = health.3102
+				id = health.3102 #Liege decides
 				days = { 5 10 }
 			}
 		}
@@ -3573,6 +3776,7 @@ remove_disease_treatment_effect = {
 	}
 }
 
+###WOUNDS TREATMENT LOGIC###
 
 pick_own_wound_treatment_effect = {
 	if = {
@@ -3587,7 +3791,7 @@ pick_own_wound_treatment_effect = {
 		trigger_event = {
 			id = health.4001
 			days = { 5 10 }
-		}
+		}	
 	}
 }
 
@@ -3598,22 +3802,25 @@ decide_who_picks_wound_treatment_effect = {
 		}
 		liege = {
 			trigger_event = {
-				id = health.4002
+				id = health.4002 #Liege decides
 				days = { 10 20 }
 			}
 		}
 	}
 	else = {
 		trigger_event = {
-			id = health.4001
+			id = health.4001 #I decide
 			days = { 5 15 }
 		}
 	}
 }
 
 
-add_failed_treatment_of_me_opinions_effect = {
 
+###FAILED TREAMENT EFFECTS###
+
+add_failed_treatment_of_me_opinions_effect = {
+#Physician scope is set in the events that reference this effect
 	if = {
 		limit = {
 			scope:physician = {
@@ -3669,7 +3876,7 @@ add_failed_treatment_of_me_opinions_effect = {
 }
 
 add_failed_treatment_of_kin_opinions_effect = {
-
+#Physician scope is set in the events that reference this effect
 	hidden_effect = {
 		if = {
 			limit = {
@@ -3722,7 +3929,7 @@ add_failed_treatment_of_kin_opinions_effect = {
 							}
 						}
 					}
-
+					
 					add_opinion = {
 						target = scope:physician
 						modifier = botched_treatment_of_kin_crime_opinion
@@ -3741,7 +3948,7 @@ add_failed_treatment_of_kin_opinions_effect = {
 
 
 downgrade_failed_treatment_of_me_opinions_effect = {
-
+	#Physician scope is set in the events that reference this effect
 	hidden_effect = {
 		if = {
 			limit = {
@@ -3762,7 +3969,7 @@ downgrade_failed_treatment_of_me_opinions_effect = {
 					modifier = botched_my_treatment_crime_opinion
 				}
 				add_opinion = {
-
+					#add nice opinion version
 					target = scope:physician
 					modifier = botched_my_treatment_crime_opinion
 				}
@@ -3801,7 +4008,7 @@ downgrade_failed_treatment_of_kin_opinions_effect = {
 				modifier = botched_treatment_of_kin_crime_opinion
 			}
 			add_opinion = {
-
+				#add nice opinion version
 				target = scope:physician
 				modifier = botched_treatment_of_kin_opinion
 			}
@@ -3832,7 +4039,7 @@ execute_physician_effect = {
 		EXECUTIONER = root
 	}
 
-
+	
 	stress_impact = {
 		compassionate = major_stress_impact_gain
 		just = minor_stress_impact_gain
@@ -3842,7 +4049,7 @@ execute_physician_effect = {
 
 imprison_physician_effect = {
 	custom_tooltip = health.3107.d.tt
-
+		
 	imprison_character_effect = {
 		TARGET = scope:physician
 		IMPRISONER = root
@@ -3869,13 +4076,13 @@ chastise_physician_effect = {
 			exists = scope:sick_character
 			scope:sick_character = { this = root }
 		}
-		downgrade_failed_treatment_of_me_opinions_effect = yes
+		downgrade_failed_treatment_of_me_opinions_effect = yes #You can no longer punish them
 	}
 	else_if = {
 		limit = {
 			exists = scope:sick_character
 		}
-		downgrade_failed_treatment_of_kin_opinions_effect = yes
+		downgrade_failed_treatment_of_kin_opinions_effect = yes #You can no longer punish them
 	}
 
 	stress_impact = {
@@ -3889,13 +4096,13 @@ forgive_physician_effect = {
 			exists = scope:sick_character
 			scope:sick_character = { this = root }
 		}
-		downgrade_failed_treatment_of_me_opinions_effect = yes
+		downgrade_failed_treatment_of_me_opinions_effect = yes #You can no longer punish them
 	}
 	else_if = {
 		limit = {
 			exists = scope:sick_character
 		}
-		downgrade_failed_treatment_of_kin_opinions_effect = yes
+		downgrade_failed_treatment_of_kin_opinions_effect = yes #You can no longer punish them
 	}
 
 	reverse_add_opinion = {
@@ -3903,13 +4110,14 @@ forgive_physician_effect = {
 		modifier = grateful_opinion
 		opinion = 15
 	}
-
+	
 	stress_impact = {
 		vengeful = major_stress_impact_gain
 		wrathful = medium_stress_impact_gain
 	}
 }
 
+###DISEASE MESSAGES###
 
 inform_liege_about_disease_treatment_effect = {
 	hidden_effect = {
@@ -3922,21 +4130,23 @@ inform_liege_about_disease_treatment_effect = {
 			value = flag:$OUTCOME$
 		}
 
-
+		#To save scope for portrait
 		if = {
 			limit = {
 				scope:physician != scope:sick_character
 			}
 			scope:physician = { save_scope_as = portrait }
 		}
-
-
+		
+		#Is liege generally responsible for our treatment?
 		if = {
 			limit = { liege_is_responsible_for_treatment_trigger = yes }
 
+			#Toast messages for success and minor failures: only if liege actually picked the treatment
+			#Event for major failures and death: always
 
 			liege = {
-
+				#CRITICAL SUCCESS & SUCCESS (TOAST)
 				if = {
 					limit = {
 						exists = scope:treatment_picker
@@ -3953,10 +4163,10 @@ inform_liege_about_disease_treatment_effect = {
 						disease_treatment_result_tooltip_effect = { TREATMENT = $TREATMENT$ OUTCOME = $OUTCOME$ }
 					}
 				}
-
+				#FAILURE
 				else_if = {
 					limit = { scope:outcome = flag:failure }
-
+					#SAFE FAILURE (TOAST)
 					if = {
 						limit = {
 							exists = scope:treatment_picker
@@ -3970,7 +4180,7 @@ inform_liege_about_disease_treatment_effect = {
 							wound_treatment_result_tooltip_effect = { TREATMENT = $TREATMENT$ OUTCOME = $OUTCOME$ }
 						}
 					}
-
+					#RISKY FAILURE (EVENT)
 					else_if = {
 						limit = { scope:treatment = flag:risky }
 						save_scope_value_as = {
@@ -3979,19 +4189,19 @@ inform_liege_about_disease_treatment_effect = {
 						}
 						trigger_event = health.3200
 					}
-
+					#MYSTIC FAILURE (EVENT)
 					else_if = {
 						limit = { scope:treatment = flag:mystic }
-						trigger_event = health.3201
-
+						trigger_event = health.3201 
+						#reveal secret in this event
 					}
 				}
-
+				#DEATH (EVENT)
 				else_if = {
 					limit = { scope:outcome = flag:death }
 
 					add_character_flag = {
-						flag = sent_relevant_death_event
+						flag = sent_relevant_death_event #This blocks further death events triggered by death_management.0001
 						days = 5
 					}
 					trigger_event = health.3200
@@ -4001,6 +4211,7 @@ inform_liege_about_disease_treatment_effect = {
 	}
 }
 
+### WOUND MESSAGES ###
 
 inform_liege_about_wound_treatment_effect = {
 	hidden_effect = {
@@ -4012,14 +4223,17 @@ inform_liege_about_wound_treatment_effect = {
 			name = outcome
 			value = flag:$OUTCOME$
 		}
-
-
+		
+		
+		#Is liege generally responsible for our treatment?
 		if = {
 			limit = { liege_is_responsible_for_treatment_trigger = yes }
 
+			#Success and minor failure: no message
+			#Major failure and death: event
 
 			liege = {
-
+				#RISKY FAILURE
 				if = {
 					limit = {
 						scope:outcome = flag:failure
@@ -4031,16 +4245,16 @@ inform_liege_about_wound_treatment_effect = {
 					}
 					trigger_event = health.3200
 				}
-
+				#RISKY DEATH
 				else_if = {
 					limit = { scope:outcome = flag:death }
-
+					
 					save_scope_value_as = {
 						name = disease_or_wound
 						value = flag:wound
 					}
 					add_character_flag = {
-						flag = sent_relevant_death_event
+						flag = sent_relevant_death_event #This blocks further death events triggered by death_management.0001
 						days = 5
 					}
 					trigger_event = health.3200
@@ -4050,7 +4264,10 @@ inform_liege_about_wound_treatment_effect = {
 	}
 }
 
+#Currently no message to liege because liege never picks wound treatment and safe success is not noteworthy
 
+
+#Effect run when you commit suicide
 committed_suicide_effect = {
 	if = {
 		limit = {
@@ -4081,27 +4298,40 @@ committed_suicide_effect = {
 		}
 	}
 	add_piety_level = -1
-	death = {
-		death_reason = death_suicide
+	# AGOT Modified
+	# death = {
+	# 	death_reason = death_suicide
+	# }
+	if = {
+		limit = { exists = scope:dragon_suicide }
+		death = {
+			death_reason = death_dragon_suicide
+			killer = scope:helping_dragon
+		}
+	}
+	else = {
+		death = {
+			death_reason = death_suicide
+		}
 	}
 }
 
-
+#Effect run when you attempt to commit suicide
 attempted_suicide_effect = {
 	add_piety_level = -1
 }
 
-
+# Remove infirm when adding incapable so that the player doesn't just immediately die.
 upgrade_infirm_to_incapable_effect = {
-
+	# Stealthily remove infirm
 	hidden_effect = {
 		if = {
 			limit = { has_trait = infirm }
 			remove_trait = infirm
 		}
 	}
-
+	# And add in capable.
 	add_trait = incapable
-
+	# Logging.
 	log_harm_event_incapability_as_variable_effect = yes
 }
