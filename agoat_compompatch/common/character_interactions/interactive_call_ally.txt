@@ -73,7 +73,6 @@
 
 		}
 
-
 	}
 	has_valid_target = {
 		exists = scope:target
@@ -132,7 +131,6 @@
 			}
 		}
 
-
 	}
 	is_valid_showing_failures_only = {
 		scope:recipient = {
@@ -162,7 +160,7 @@
 
 		scope:actor = {
 			custom_description = {
-				text = cannot_call_same_character_multiple_times
+				text = interactive_cannot_call_same_character
 				subject = scope:recipient
 				any_character_war = {
 					ALL_FALSE = {
@@ -1243,7 +1241,7 @@
 			trigger_else = {
 				has_relation_friend = scope:target.casus_belli.primary_defender
 			}
-			desc = WONT_FIGHT_FRIEND
+			desc = WONT_FIGHT_FRIEND_REASON
 		}
 		modifier = {
 
@@ -1257,7 +1255,7 @@
 			trigger_else = {
 				has_relation_best_friend = scope:target.casus_belli.primary_defender
 			}
-			desc = WONT_FIGHT_BEST_FRIEND
+			desc = WONT_FIGHT_BEST_FRIEND_REASON
 		}
 		modifier = {
 
@@ -1271,7 +1269,7 @@
 			trigger_else = {
 				has_relation_lover = scope:target.casus_belli.primary_defender
 			}
-			desc = WONT_FIGHT_LOVER
+			desc = WONT_FIGHT_LOVER_REASON
 		}
 		modifier = {
 
@@ -1285,7 +1283,7 @@
 			trigger_else = {
 				has_relation_soulmate = scope:target.casus_belli.primary_defender
 			}
-			desc = WONT_FIGHT_SOULMATE
+			desc = WONT_FIGHT_SOULMATE_REASON
 		}
 		modifier = {
 
@@ -1337,7 +1335,7 @@
 			}
 			desc = HOSTAGE_ENEMY_CALL_TO_ARMS_REASON
 		}
-
+		fp3_struggle_resist_allied_wars_modifier = yes
 	}
 
 	ai_will_do = {

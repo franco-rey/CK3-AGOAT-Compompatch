@@ -1,8 +1,6 @@
-﻿
-on_declared_war = {
+﻿on_declared_war = {
 	on_declared_war_play_music = yes
 	miv_vassal_effect = yes
-
 
 	if = {
 		limit = {
@@ -32,7 +30,6 @@ on_declared_war = {
 		}
 	}
 
-
 	if = {
 		limit = {
 			scope:attacker = {
@@ -44,7 +41,6 @@ on_declared_war = {
 			custom_description_no_bullet = {
 				text = attack_breaking_truce_text
 			}
-
 
 			if = {
 				limit = {
@@ -89,7 +85,6 @@ on_declared_war = {
 				modifier = broke_truce
 				years = 3
 			}
-
 
 			if = {
 				limit = {
@@ -419,7 +414,6 @@ on_declared_war = {
 		}
 	}
 
-
 	add_clan_unity_interaction_effect = {
 		CHARACTER = scope:attacker
 		TARGET = scope:defender
@@ -439,6 +433,9 @@ miv_vassal_effect = {
 			}
 			interactive_start_date = current_date
 			has_global_variable = miv_is_loaded
+			NOT = {
+				has_game_rule = bannermen_mode_enabled
+			}
 		}
 		custom_tooltip = start_war_date_tooltip
 	}
@@ -450,8 +447,11 @@ miv_vassal_effect = {
 			scope:attacker = {
 				is_vassal_or_below_of = scope:defender
 			}
-			NOT = {
-				interactive_start_date = current_date
+			OR = {
+				has_game_rule = bannermen_mode_enabled
+				NOT = {
+					interactive_start_date = current_date
+				}
 			}
 		}
 		custom_tooltip = civil_war_tooltip
@@ -466,8 +466,11 @@ miv_vassal_effect = {
 					is_vassal_or_below_of = scope:defender
 				}
 			}
-			NOT = {
-				interactive_start_date = current_date
+			OR = {
+				has_game_rule = bannermen_mode_enabled
+				NOT = {
+					interactive_start_date = current_date
+				}
 			}
 		}
 
@@ -776,6 +779,9 @@ miv_vassal_effect = {
 				NOT = {
 					has_game_rule = vassals_join_claims_disabled
 				}
+				NOT = {
+					has_game_rule = bannermen_mode_enabled
+				}
 				scope:attacker = {
 					is_ai = no
 				}
@@ -796,7 +802,13 @@ miv_vassal_effect = {
 					}
 					add_to_list = interactive_attackers_refuses
 				}
-				else = {
+				else_if = {
+					limit = {
+						NOR = {
+							is_at_war_with = scope:defender
+							is_at_war_with = scope:attacker
+						}
+					}
 					add_to_list = interactive_attackers
 				}
 			}
@@ -813,7 +825,20 @@ miv_vassal_effect = {
 					has_game_rule = vassals_defend_titles_disabled
 				}
 				NOT = {
+					has_game_rule = bannermen_mode_enabled
+				}
+				NOT = {
 					interactive_start_date = current_date
+				}
+				NOT = {
+					scope:defender = {
+						is_vassal_or_below_of = scope:attacker
+					}
+				}
+				NOT = {
+					scope:defender = {
+						is_liege_or_above_of = scope:attacker
+					}
 				}
 				scope:attacker = {
 					is_ai = no
@@ -829,6 +854,9 @@ miv_vassal_effect = {
 							highest_held_title_tier > tier_barony
 
 							is_landed = yes
+							NOT = {
+								is_at_war_with = scope:attacker
+							}
 						}
 					}
 					holder = {
@@ -956,6 +984,14 @@ miv_vassal_effect = {
 					add_to_list = interactive_oathbreakers_attackers
 				}
 			}
+		}
+		if = {
+			limit = {
+				has_game_rule = miv_oathbreakers_enabled
+				NOT = {
+					has_game_rule = bannermen_mode_enabled
+				}
+			}
 
 			scope:attacker = {
 				every_vassal_or_below = {
@@ -1043,6 +1079,21 @@ miv_vassal_effect = {
 			}
 		}
 
+		if = {
+			limit = {
+				has_game_rule = bannermen_mode_enabled
+				NOT = {
+					scope:attacker = {
+						has_character_flag = dont_call_vassals
+					}
+				}
+			}
+			interactive_bannermen_clear_lists_effect = yes
+			scope:attacker = {
+				save_temporary_scope_as = liege
+				interactive_bannermen_preview_effect = yes
+			}
+		}
 		custom_description_no_bullet = {
 			text = interactive_attackers_ui_tooltip_text
 			value = interactive_tooltip_attacking_strength
@@ -1056,7 +1107,6 @@ miv_vassal_effect = {
 			}
 			custom_tooltip = dont_call_vassals_tooltip
 		}
-
 
 		every_in_list = {
 			list = interactive_attackers
@@ -1217,7 +1267,6 @@ miv_vassal_effect = {
 				}
 			}
 		}
-
 
 		every_in_list = {
 			list = interactive_attackers_refuses
@@ -1528,11 +1577,71 @@ miv_vassal_effect = {
 						has_character_flag = dont_call_vassals
 					}
 				}
-				interactive_tooltip_bannermen_mode_count > 0
 			}
-			custom_description_no_bullet = {
-				text = interactive_bannermen_mode_tooltip_text
-				value = interactive_tooltip_bannermen_mode_count
+			if = {
+				limit = {
+					interactive_bannermen_muster_and_accept_count > 0
+				}
+				custom_description_no_bullet = {
+					text = interactive_bannermen_summary_answer_text
+					value = interactive_bannermen_muster_and_accept_count
+				}
+				custom_description_no_bullet = {
+					text = interactive_bannermen_summary_answer_strength_text
+					value = interactive_bannermen_muster_and_accept_strength
+				}
+			}
+			if = {
+				limit = {
+					interactive_bannermen_refuse_count > 0
+				}
+				custom_description_no_bullet = {
+					text = interactive_bannermen_summary_refuse_text
+					value = interactive_bannermen_refuse_count
+				}
+				custom_description_no_bullet = {
+					text = interactive_bannermen_wardec_refuse_strength_text
+					value = interactive_bannermen_refuse_strength
+				}
+			}
+			if = {
+				limit = {
+					interactive_bannermen_betray_count > 0
+				}
+				custom_description_no_bullet = {
+					text = interactive_bannermen_summary_betray_text
+					value = interactive_bannermen_betray_count
+				}
+				custom_description_no_bullet = {
+					text = interactive_bannermen_wardec_betray_strength_text
+					value = interactive_bannermen_betray_strength
+				}
+			}
+			if = {
+				limit = {
+					interactive_bannermen_rebellion_count > 0
+				}
+				custom_description_no_bullet = {
+					text = interactive_bannermen_summary_rebellion_text
+					value = interactive_bannermen_rebellion_count
+				}
+				custom_description_no_bullet = {
+					text = interactive_bannermen_wardec_rebellion_strength_text
+					value = interactive_bannermen_rebellion_strength
+				}
+			}
+			if = {
+				limit = {
+					interactive_bannermen_unavailable_count > 0
+				}
+				custom_description_no_bullet = {
+					text = interactive_bannermen_summary_unavailable_text
+					value = interactive_bannermen_unavailable_count
+				}
+				custom_description_no_bullet = {
+					text = interactive_bannermen_wardec_unavailable_strength_text
+					value = interactive_bannermen_unavailable_strength
+				}
 			}
 		}
 
@@ -1560,6 +1669,21 @@ miv_vassal_effect = {
 			}
 		}
 
+		if = {
+			limit = {
+				has_game_rule = bannermen_mode_enabled
+				NOT = {
+					scope:defender = {
+						has_character_flag = dont_call_vassals
+					}
+				}
+			}
+			interactive_bannermen_clear_lists_effect = yes
+			scope:defender = {
+				save_temporary_scope_as = liege
+				interactive_bannermen_preview_effect = yes
+			}
+		}
 		custom_description_no_bullet = {
 			text = interactive_defenders_ui_tooltip_text
 			value = interactive_tooltip_defending_strength
@@ -1573,7 +1697,6 @@ miv_vassal_effect = {
 			}
 			custom_tooltip = they_dont_call_vassals_tooltip
 		}
-
 
 		every_in_list = {
 			list = interactive_defenders
@@ -1752,7 +1875,6 @@ miv_vassal_effect = {
 				}
 			}
 		}
-
 
 		every_in_list = {
 			list = interactive_defenders_refuses
@@ -2063,11 +2185,71 @@ miv_vassal_effect = {
 						has_character_flag = dont_call_vassals
 					}
 				}
-				interactive_tooltip_bannermen_defender_mode_count > 0
 			}
-			custom_description_no_bullet = {
-				text = interactive_bannermen_mode_tooltip_text
-				value = interactive_tooltip_bannermen_defender_mode_count
+			if = {
+				limit = {
+					interactive_bannermen_muster_and_accept_count > 0
+				}
+				custom_description_no_bullet = {
+					text = interactive_bannermen_summary_answer_text
+					value = interactive_bannermen_muster_and_accept_count
+				}
+				custom_description_no_bullet = {
+					text = interactive_bannermen_summary_answer_strength_text
+					value = interactive_bannermen_muster_and_accept_strength
+				}
+			}
+			if = {
+				limit = {
+					interactive_bannermen_refuse_count > 0
+				}
+				custom_description_no_bullet = {
+					text = interactive_bannermen_summary_refuse_text
+					value = interactive_bannermen_refuse_count
+				}
+				custom_description_no_bullet = {
+					text = interactive_bannermen_wardec_refuse_strength_text
+					value = interactive_bannermen_refuse_strength
+				}
+			}
+			if = {
+				limit = {
+					interactive_bannermen_betray_count > 0
+				}
+				custom_description_no_bullet = {
+					text = interactive_bannermen_summary_betray_text
+					value = interactive_bannermen_betray_count
+				}
+				custom_description_no_bullet = {
+					text = interactive_bannermen_wardec_betray_strength_text
+					value = interactive_bannermen_betray_strength
+				}
+			}
+			if = {
+				limit = {
+					interactive_bannermen_rebellion_count > 0
+				}
+				custom_description_no_bullet = {
+					text = interactive_bannermen_summary_rebellion_text
+					value = interactive_bannermen_rebellion_count
+				}
+				custom_description_no_bullet = {
+					text = interactive_bannermen_wardec_rebellion_strength_text
+					value = interactive_bannermen_rebellion_strength
+				}
+			}
+			if = {
+				limit = {
+					interactive_bannermen_unavailable_count > 0
+				}
+				custom_description_no_bullet = {
+					text = interactive_bannermen_summary_unavailable_text
+					value = interactive_bannermen_unavailable_count
+				}
+				custom_description_no_bullet = {
+					text = interactive_bannermen_wardec_unavailable_strength_text
+					value = interactive_bannermen_unavailable_strength
+				}
 			}
 		}
 
@@ -2114,10 +2296,212 @@ miv_vassal_effect = {
 	}
 }
 
+war_for_imprison_effect = {
+	if = {
+		limit = {
+			OR = {
+				scope:actor = {
+					is_ai = no
+				}
+				scope:recipient = {
+					is_ai = no
+				}
+			}
+		}
+		scope:recipient = {
+			save_scope_value_as = {
+				name = war_for_imprisonment_flavour
+				value = yes
+			}
+			start_war = {
+				casus_belli = refused_liege_demand_war
+				target = scope:actor
+			}
+		}
+		scope:recipient = {
+			add_opinion = {
+				target = scope:actor
+				modifier = attempted_arrest_opinion
+			}
+		}
+	}
+}
+
+war_for_revoke_effect = {
+	if = {
+		limit = {
+			OR = {
+				$REBEL$ = {
+					is_ai = no
+				}
+				$LIEGE$ = {
+					is_ai = no
+				}
+			}
+		}
+		$REBEL$ = {
+			save_scope_value_as = {
+				name = war_for_revocation_flavour
+				value = yes
+			}
+			start_war = {
+				casus_belli = refused_liege_demand_war
+				target = $LIEGE$
+			}
+		}
+		$REBEL$ = {
+			add_opinion = {
+				target = $LIEGE$
+				modifier = attempted_arrest_opinion
+			}
+		}
+	}
+}
+
+war_for_retraction_effect = {
+	if = {
+		limit = {
+			OR = {
+				scope:actor = {
+					is_ai = no
+				}
+				scope:recipient = {
+					is_ai = no
+				}
+			}
+		}
+		scope:recipient = {
+			save_scope_value_as = {
+				name = war_for_retraction_flavour
+				value = yes
+			}
+			start_war = {
+				casus_belli = refused_liege_demand_war
+				target = scope:actor
+			}
+		}
+		scope:recipient = {
+			add_opinion = {
+				target = scope:actor
+				modifier = attempted_arrest_opinion
+			}
+		}
+	}
+}
+
+laamp_as_mercenary_payout_effect = {
+	scope:war = {
+		if = {
+			limit = {
+				any_war_participant = {
+
+					is_landed = no
+					has_character_flag = joined_as_mercenary
+					is_attacker_in_war = scope:war
+					NOT = {
+						is_leader_in_war = scope:war
+					}
+					OR = {
+						has_raised_armies = yes
+						scope:war = {
+							war_contribution = {
+								target = prev
+								value > 0
+							}
+						}
+					}
+				}
+			}
+			every_war_participant = {
+				limit = {
+
+					is_landed = no
+					has_character_flag = joined_as_mercenary
+					is_attacker_in_war = scope:war
+					NOT = {
+						is_leader_in_war = scope:war
+					}
+					OR = {
+						has_raised_armies = yes
+						scope:war = {
+							war_contribution = {
+								target = prev
+								value > 0
+							}
+						}
+					}
+				}
+				add_to_list = laamp_mercenaries
+			}
+			primary_attacker = {
+				save_scope_as = employer
+				trigger_event = {
+					id = ep3_interactions_events.0121
+					days = {
+						3
+						7
+					}
+				}
+			}
+		}
+		if = {
+			limit = {
+				any_war_participant = {
+
+					is_landed = no
+					has_character_flag = joined_as_mercenary
+					is_defender_in_war = scope:war
+					NOT = {
+						is_leader_in_war = scope:war
+					}
+					OR = {
+						has_raised_armies = yes
+						scope:war = {
+							war_contribution = {
+								target = prev
+								value > 0
+							}
+						}
+					}
+				}
+			}
+			every_war_participant = {
+				limit = {
+
+					is_landed = no
+					has_character_flag = joined_as_mercenary
+					is_defender_in_war = scope:war
+					NOT = {
+						is_leader_in_war = scope:war
+					}
+					OR = {
+						has_raised_armies = yes
+						scope:war = {
+							war_contribution = {
+								target = prev
+								value > 0
+							}
+						}
+					}
+				}
+				add_to_list = laamp_mercenaries
+			}
+			primary_defender = {
+				save_scope_as = employer
+				trigger_event = {
+					id = ep3_interactions_events.0121
+					days = {
+						3
+						7
+					}
+				}
+			}
+		}
+	}
+}
 
 fp3_struggle_ending_concession_effects = {
 }
-
 
 ai_chance_to_become_conqueror_effect = {
 	if = {
@@ -2281,14 +2665,6 @@ ai_chance_to_become_conqueror_effect = {
 				if = {
 					limit = {
 						government_has_flag = government_is_administrative
-					}
-					add = -2
-				}
-				if = {
-					limit = {
-						primary_title = {
-							has_title_law = princely_elective_succession_law
-						}
 					}
 					add = -2
 				}

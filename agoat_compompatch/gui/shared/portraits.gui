@@ -1,15 +1,8 @@
-# AGOAT Compompatch N01: AGOT 0.5.2.1 portraits.gui with DireWolves' head-camera macro on the environment_head portraits.
-# Replaces DireWolves' copy, which was derived from AGOT 0.5.1 and references the removed IsCharacterFakeDead function and 0.5.1 GUI templates.
-######################################################
-################## PORTRAIT TYPES ####################
-######################################################
+
 
 types PortraitTypes
 {
 
-	####################################
-	######### MAIN PORTRAITS ###########
-	####################################
 
 	type widget_portrait_frame = widget {
 		size = { 100% 100% }
@@ -41,9 +34,7 @@ types PortraitTypes
 		}
 	}
 
-	# The standard portrait types. CoA, opinion and status icons are included by default; use blockoverride to disable them.
 
-	## Extra small head portrait. These are smaller than we would like, so only use if you really, really have to.
 	type portrait_head_small = widget {
 		size = { 85 90 }
 
@@ -75,7 +66,7 @@ types PortraitTypes
 		}
 
 		portrait_button = {
-			#AGOT Added
+
 			visible = "[Not(IsCharacterDragon)]"
 			parentanchor = bottom|hcenter
 			size = { 80 100 }
@@ -108,7 +99,7 @@ types PortraitTypes
 
 			block "portrait_button" {}
 		}
-		#AGOT Added
+
 		agot_dragons_portrait_head_small = {}
 
 		widget_portrait_frame = {}
@@ -155,7 +146,7 @@ types PortraitTypes
 			direction = vertical
 			margin = { 4 0 }
 			margin_bottom = 5
-			
+
 			block "show_portrait_status_icons" {}
 
 			portrait_status_icons_small = {
@@ -171,7 +162,6 @@ types PortraitTypes
 		}
 
 
-		# Portrait unknown glow
 		highlight_icon = {
 			name = "portrait_unknown_head_small_glow"
 			parentanchor = center
@@ -194,8 +184,7 @@ types PortraitTypes
 		}
 	}
 
-	### Portrait used in the relationship tab
-	# Has extra relationship icon from the view of the current character (not necessarily the player)
+
 	type portrait_head_small_relationship = widget {
 		size = { 85 90 }
 
@@ -227,7 +216,7 @@ types PortraitTypes
 		}
 
 		portrait_button = {
-			#AGOT Added
+
 			visible = "[Not(IsCharacterDragon)]"
 			parentanchor = bottom|hcenter
 			size = { 80 100 }
@@ -260,7 +249,7 @@ types PortraitTypes
 
 			block "portrait_button" {}
 		}
-		#AGOT Added
+
 		agot_dragons_portrait_head_small_relationship = {}
 
 		widget_portrait_frame = {}
@@ -357,7 +346,7 @@ types PortraitTypes
 						margin = { 2 2 }
 					}
 
-					# sorted by priority, highest prio at the bottom
+
 					block "status_icons" {
 
 						icon = {
@@ -580,7 +569,6 @@ types PortraitTypes
 		}
 
 
-		# Portrait unknown glow
 		highlight_icon = {
 			name = "portrait_unknown_head_small_glow"
 			parentanchor = center
@@ -618,9 +606,9 @@ types PortraitTypes
 			using = portrait_base
 
 			shaderfile = "gfx/FX/gui_painterly_portrait.shader"
-			pop_out = yes # Painterly shader override for `pop_out` property, it now means "add outline"
-			pop_out_v = 1.2 # Painterly shader override for `pop_out_v` property, it now means "outline width"
-			grayscale = no # Dead people should be painted non-gray
+			pop_out = yes
+			pop_out_v = 1.2
+			grayscale = no
 
 			block "portrait_texture"
 			{
@@ -707,7 +695,7 @@ types PortraitTypes
 				}
 			}
 		}
-		# Portrait unknown glow
+
 		highlight_icon = {
 			name = "portrait_unknown_head_small_glow"
 			parentanchor = center
@@ -730,7 +718,7 @@ types PortraitTypes
 		}
 	}
 
-	## Standard head portrait
+
 	type portrait_head = widget {
 		size = { 110 120 }
 
@@ -746,7 +734,7 @@ types PortraitTypes
 		}
 
 		portrait_button = {
-			#AGOT Added
+
 			visible = "[Not(IsCharacterDragon)]"
 			parentanchor = bottom|hcenter
 			size = { 100 125 }
@@ -778,7 +766,7 @@ types PortraitTypes
 
 			block "portrait_button" {}
 		}
-		#AGOT Added
+
 		agot_dragons_portrait_head = {}
 
 		widget_portrait_frame = {}
@@ -825,7 +813,6 @@ types PortraitTypes
 		}
 
 
-		#portrait unknown glow
 		button = {
 			name = "portrait_unknown_head_glow"
 			parentanchor = center
@@ -849,7 +836,7 @@ types PortraitTypes
 		}
 	}
 
-	## Standard portrait from shoulders up
+
 	type portrait_shoulders = widget {
 
 		size = { 125 160 }
@@ -863,7 +850,7 @@ types PortraitTypes
 		}
 
 		portrait_button = {
-			#AGOT Added
+
 			visible = "[Not(IsCharacterDragon)]"
 			parentanchor = bottom|hcenter
 
@@ -899,7 +886,7 @@ types PortraitTypes
 
 			block "portrait_button" {}
 		}
-		#AGOT Added
+
 		agot_dragons_portrait_shoulders = {}
 
 		block "portrait_status_icons" {
@@ -907,7 +894,7 @@ types PortraitTypes
 				parentanchor = bottom|right
 				position = { 0 -3 }
 				scale = 0.85
-				#AGOT Added
+
 				visible = "[Not(UsingEventWindow)]"
 
 				background = {
@@ -934,7 +921,7 @@ types PortraitTypes
 			}
 		}
 
-		#portrait unknown glow
+
 		button = {
 			position = { -8 -14 }
 			size = { 141 174 }
@@ -957,7 +944,7 @@ types PortraitTypes
 		}
 	}
 
-	## Standard torso from waist up
+
 	type portrait_torso = widget {
 		size = { 165 200 }
 
@@ -967,7 +954,7 @@ types PortraitTypes
 		}
 
 		portrait_button = {
-			#AGOT Added
+
 			visible = "[Not(IsCharacterDragon)]"
 			parentanchor = bottom|hcenter
 			size = { 195 225 }
@@ -1003,7 +990,7 @@ types PortraitTypes
 
 			block "portrait_button" {}
 		}
-		#AGOT Added
+
 		agot_dragons_portrait_torso = {}
 
 		block "portrait_status_icons" {
@@ -1036,7 +1023,7 @@ types PortraitTypes
 			}
 		}
 
-		#portrait unknown glow
+
 		button = {
 			name = "portrait_unknown_torso_glow"
 			parentanchor = center
@@ -1061,7 +1048,7 @@ types PortraitTypes
 		}
 	}
 
-	## Standard full body portrait
+
 	type portrait_body = widget {
 		size = { 210 300 }
 
@@ -1071,7 +1058,7 @@ types PortraitTypes
 		}
 
 		portrait_button = {
-			#AGOT Added
+
 			visible = "[Not(IsCharacterDragon)]"
 			parentanchor = bottom|hcenter
 			size = { 240 330 }
@@ -1105,7 +1092,7 @@ types PortraitTypes
 
 			block "portrait_button" {}
 		}
-		#AGOT Added
+
 		agot_dragons_portrait_body = {}
 
 		block "portrait_icons" {
@@ -1140,7 +1127,7 @@ types PortraitTypes
 			}
 		}
 
-		#portrait unknown glow
+
 		button = {
 			name = "portrait_unknown_body_glow"
 			parentanchor = center
@@ -1166,7 +1153,7 @@ types PortraitTypes
 		}
 	}
 
-	## Standard full body portrait
+
 	type portrait_body_large = widget {
 		size = { 378 540 }
 
@@ -1176,7 +1163,7 @@ types PortraitTypes
 		}
 
 		portrait_button = {
-			#AGOT Added
+
 			visible = "[Not(IsCharacterDragon)]"
 			parentanchor = bottom|hcenter
 			size = { 432 594 }
@@ -1210,7 +1197,7 @@ types PortraitTypes
 
 			block "portrait_button" {}
 		}
-		#AGOT Added
+
 		agot_dragons_portrait_body_large = {}
 
 		block "portrait_icons" {
@@ -1245,7 +1232,7 @@ types PortraitTypes
 			}
 		}
 
-		#portrait unknown glow
+
 		button = {
 			name = "portrait_unknown_body_glow"
 			parentanchor = center
@@ -1271,9 +1258,6 @@ types PortraitTypes
 		}
 	}
 
-	####################################
-	######## SPECIAL PORTRAITS #########
-	####################################
 
 	type portrait_map = widget {
 		size = { 85 90 }
@@ -1309,8 +1293,8 @@ types PortraitTypes
 			position = { -30 10 }
 			parentanchor = bottom|hcenter
 			using = portrait_base
-			#AGOT Modified
-			# visible = "[Not( And( Character.GetGovernment.IsType( 'herder_government' ), Character.HasLandedTitles) )]"
+
+
 			visible = "[And(Not(And(Character.GetGovernment.IsType('herder_government'), Character.HasLandedTitles)), Not(IsCharacterDragon))]"
 
 			portrait_texture = "[Character.GetAnimatedPortrait(Illustration.GetEnvironment(Character.Self), 'camera_character_view_main', 'idle', PdxGetWidgetScreenSize(PdxGuiWidget.Self))]"
@@ -1347,8 +1331,8 @@ types PortraitTypes
 			portrait_texture = "[Character.GetAnimatedPortrait(Illustration.GetEnvironment(Character.Self), 'camera_character_view_main', 'idle', PdxGetWidgetScreenSize(PdxGuiWidget.Self))]"
 			mask = "gfx/portraits/portrait_mask_character_view.dds"
 			effectname = "NoHighlight"
-			#AGOT Modified
-			# visible = "[And(Character.GetGovernment.IsType( 'herder_government' ), Character.HasLandedTitles)]"
+
+
 			visible = "[And(And(Character.GetGovernment.IsType('herder_government'), Character.HasLandedTitles), Not(IsCharacterDragon))]"
 
 			block "prison_bars" {
@@ -1373,13 +1357,13 @@ types PortraitTypes
 
 			block "portrait_button" {}
 		}
-		#AGOT Added
+
 		agot_dragons_portrait_character_view_main = {}
 
 		portrait_status_icons = {
 			parentanchor = bottom|right
-			#AGOT Modified
-			# position = { -60 0 }
+
+
 			position = { -40 0 }
 
 			block "portrait_status_icons" {}
@@ -1388,8 +1372,8 @@ types PortraitTypes
 		block "opinion_box"
 		{
 			portrait_opinion = {
-				#AGOT Modified
-				# position = { -20 0 }
+
+
 				position = { 50 0 }
 				parentanchor = bottom|hcenter
 
@@ -1408,7 +1392,7 @@ types PortraitTypes
 		}
 
 		portrait_button = {
-			#AGOT Added
+
 			visible = "[Not(IsCharacterDragon)]"
 			size = { 350 338 }
 			position = { 0 10 }
@@ -1442,19 +1426,19 @@ types PortraitTypes
 
 		portrait_status_icons = {
 			parentanchor = bottom|right
-			#AGOT Modified
-			# position = { -53 0 }
+
+
 			position = { -81 0 }
 		}
 
 		coa_realm_small = {
 			visible = "[Character.HasLandedTitles]"
 			parentanchor = bottom|right
-			#AGOT Modified
-			# position = { 0 5 }
+
+
 			position = { -34 -25 }
 		}
-		#AGOT Added; WIP - NOT DONE YET
+
 		agot_dragons_portrait_character_view_spouse = {}
 	}
 
@@ -1495,7 +1479,7 @@ types PortraitTypes
 			portrait_button = {
 				size = { 500 558 }
 				using = portrait_base
-				#AGOT Added
+
 				visible = "[Not(IsCharacterDragon)]"
 				parentanchor = hcenter|bottom
 
@@ -1506,14 +1490,14 @@ types PortraitTypes
 				effectname = "NoHighlight"
 
 				block "portrait_button" {}
-				#AGOT Added
+
 				block "portrait_transformation"
 				{
 					portrait_scale = { 1.0 1.0 }
 					portrait_offset = { 0.0 0.0 }
 				}
 			}
-			#AGOT Added
+
 			agot_dragons_portrait_event_button = {}
 			agot_dragons_portrait_baby_event_button = {}
 		}
@@ -1554,7 +1538,7 @@ types PortraitTypes
 			}
 
 			portrait_button = {
-				#AGOT Added
+
 				visible = "[GetScriptedGui('not_dragon_or_dragonrider').IsShown(GuiScope.SetRoot(Character.MakeScope).End)]"
 				size = { 930 490 }
 				using = portrait_base
@@ -1568,7 +1552,7 @@ types PortraitTypes
 
 				block "portrait_button" {}
 			}
-			#AGOT Added
+
 			agot_dragons_portrait_event_duel_flight_button = {}
 			agot_dragons_portrait_event_duel_land_button = {}
 		}
@@ -1609,7 +1593,7 @@ types PortraitTypes
 			}
 
 			portrait_button = {
-				#AGOT Added
+
 				visible = "[Not(IsCharacterDragon)]"
 				size = { 1150 900 }
 				using = portrait_base
@@ -1634,7 +1618,7 @@ types PortraitTypes
 
 				tooltip = "CHARACTER_DEAD_TOOLTIP"
 			}
-			#AGOT Added; WIP - NOT DONE YET
+
 			agot_dragons_portrait_event_tournament_button = {}
 		}
 	}
@@ -1671,7 +1655,7 @@ types PortraitTypes
 		}
 
 		portrait_shoulders = {
-			#AGOT Added
+
 			visible = "[Not(IsCharacterDragon)]"
 			size = { 100% 100% }
 			blockoverride "portrait_size"
@@ -1681,7 +1665,7 @@ types PortraitTypes
 
 			blockoverride "portrait_glows" {}
 		}
-		#AGOT Added
+
 		agot_dragons_portrait_event_small_button = {}
 	}
 
@@ -1737,7 +1721,7 @@ types PortraitTypes
 			position = { 0 -9 }
 			size = { 90 112 }
 			using = portrait_base
-			#AGOT Added
+
 			visible = "[Not(IsCharacterDragon)]"
 
 			portrait_texture = "[Character.GetPortrait('environment_shoulders', 'camera_scheme_widget_microscopic', 'idle', PdxGetWidgetScreenSize(PdxGuiWidget.Self))]"
@@ -1765,7 +1749,7 @@ types PortraitTypes
 
 			block "portrait_button" {}
 		}
-		#AGOT Added
+
 		agot_dragons_portrait_scheme_hud_button = {}
 	}
 
@@ -1773,7 +1757,7 @@ types PortraitTypes
 		size = { 260 285 }
 
 		portrait_button = {
-			#AGOT Added
+
 			visible = "[Not(IsCharacterDragon)]"
 			block "portrait_size"
 			{
@@ -1790,10 +1774,10 @@ types PortraitTypes
 				mask = "gfx/portraits/portrait_mask_council.dds"
 			}
 		}
-		#AGOT Added
+
 		agot_dragons_portrait_council_button = {}
 
-		#portrait unknown glow
+
 		button = {
 			name = "portrait_unknown_council_glow"
 			visible = "[Not(Character.IsValid)]"
@@ -1826,7 +1810,7 @@ types PortraitTypes
 		}
 
 		portrait_button = {
-			#AGOT Added
+
 			visible = "[Not(IsCharacterDragon)]"
 			position = { 0 4 }
 			block "portrait_size"
@@ -1845,7 +1829,7 @@ types PortraitTypes
 				mask = "gfx/portraits/portrait_mask_council.dds"
 			}
 		}
-		#AGOT Added
+
 		agot_dragons_portrait_regency_button = {}
 
 		portrait_status_icons = {
@@ -1881,7 +1865,7 @@ types PortraitTypes
 
 
 		portrait_button = {
-			#AGOT Added
+
 			visible = "[Not(IsCharacterDragon)]"
 			size = { 420 632 }
 			parentanchor = bottom|hcenter
@@ -1916,11 +1900,11 @@ types PortraitTypes
 				}
 			}
 		}
-		#AGOT Added
+
 		agot_dragons_portrait_war_overview_button = {}
 	}
 
-	### Bottom left HUD portrait
+
 	type portrait_hud = portrait_button {
 		name = "tutorial_highlight_bottom_left_portrait_button"
 		visible = "[Not(GetVariableSystem.Exists( 'lifestyle_open' ))]"
@@ -1984,7 +1968,7 @@ types PortraitTypes
 		}
 
 		using = tooltip_es
-		# tooltip_visible = "[Not(IsInteractionMenuOpenForCharacter(Character.GetID))]"
+
 		tooltip_visible = no
 
 		tooltipwidget = {
@@ -2001,7 +1985,7 @@ types PortraitTypes
 		tooltip_horizontalbehavior = mirror
 	}
 
-	### Lifestyles portrait
+
 	type portrait_lifestyles = portrait_button {
 		size = { 650 1000 }
 
@@ -2037,7 +2021,7 @@ types PortraitTypes
 		}
 	}
 
-	### Intent selection portrait
+
 	type portrait_intent_selection = portrait_button {
 		size = { 450 500 }
 
@@ -2075,7 +2059,7 @@ types PortraitTypes
 		}
 	}
 
-	### Bottom left HUD portrait for the activity planner
+
 	type portrait_activity_planner = portrait_button {
 		size = { 250 500 }
 
@@ -2091,7 +2075,7 @@ types PortraitTypes
 		mask = "gfx/portraits/portrait_mask_blank.dds"
 	}
 
-	### Bottom left HUD portrait for the travel planner (might merge with the activity planner)
+
 	type portrait_travel_planner = portrait_button {
 		size = { 250 500 }
 
@@ -2157,7 +2141,7 @@ types PortraitTypes
 			}
 		}
 
-		#portrait unknown glow
+
 		button = {
 			name = "portrait_unknown_body_glow"
 			parentanchor = center
@@ -2180,15 +2164,11 @@ types PortraitTypes
 		}
 	}
 
-	####################################
-	########### ACCESSORIES ############
-	####################################
 
-	## Opinion box for portraits
 	type portrait_opinion = flowcontainer {
 		name = "tutorial_highlight_portrait_opinion"
-		#AGOT Modified
-		# visible = "[And(Character.IsValid, And(Character.IsAlive, Not(Character.IsLocalPlayer)))]"
+
+
 		visible = "[And(And(Character.IsValid, Not(IsCharacterDragon)), And(Character.IsAlive, Not(Character.IsLocalPlayer)))]"
 		ignoreinvisible = yes
 
@@ -2203,8 +2183,8 @@ types PortraitTypes
 
 		icon = {
 			block "dread_logic" {
-				#AGOT Modified
-				# visible = "[Character.ShouldShowDreadEffectIcon]"
+
+
 				visible = "[And(Not(IsCharacterDragon), Character.ShouldShowDreadEffectIcon)]"
 				frame = "[Character.GetPlayerDreadEffectIconFrame]"
 				tooltip = "[Character.GetPlayerDreadEffectTooltip]"
@@ -2234,7 +2214,7 @@ types PortraitTypes
 			default_format = "#true_white"
 
 			block "opinion_text" {
-				#AGOT Added
+
 				visible = "[Not(IsCharacterDragon)]"
 				text = "[Character.GetOpinionOf( GetPlayer )|=]"
 				fonttintcolor = "[Character.GetOpinionOfTint( GetPlayer )]"
@@ -2243,9 +2223,8 @@ types PortraitTypes
 	}
 
 	type portrait_opinion_small = flowcontainer {
-		#name = "tutorial_highlight_portrait_opinion"
-		#AGOT Modified
-		# visible = "[And(Character.IsValid, And(Character.IsAlive, Not(Character.IsLocalPlayer)))]"
+
+
 		visible = "[And(And(Character.IsValid, Not(IsCharacterDragon)), And(Character.IsAlive, Not(Character.IsLocalPlayer)))]"
 		ignoreinvisible = yes
 		margin_right = 2
@@ -2262,8 +2241,8 @@ types PortraitTypes
 
 		icon = {
 			name = "dread"
-			#AGOT Modified
-			# visible = "[Character.ShouldShowDreadEffectIcon]"
+
+
 			visible = "[And(Not(IsCharacterDragon), Character.ShouldShowDreadEffectIcon)]"
 			size = { 16 16 }
 			texture = "gfx/interface/icons/portraits/dread_values.dds"
@@ -2284,7 +2263,7 @@ types PortraitTypes
 			default_format = "#true_white"
 
 			block "opinion_text" {
-				#AGOT Added
+
 				visible = "[Not(IsCharacterDragon)]"
 				text = "[Character.GetOpinionOf( GetPlayer )|=]"
 				fonttintcolor = "[Character.GetOpinionOfTint( GetPlayer )]"
@@ -2303,12 +2282,12 @@ types PortraitTypes
 	type has_completed_inspiration_status_icon = icon
 	{
 		name = "has_completed_inspiration"
-		visible = "[And( Character.HasCompletedAnInspiration, Not( Character.HasInspiration ) )]" # Has an inspiration takes priority
+		visible = "[And( Character.HasCompletedAnInspiration, Not( Character.HasInspiration ) )]"
 		texture = "gfx/interface/icons/portraits/inspiration_complete.dds"
 		tooltip = "CHARACTER_HAS_COMPLETED_AN_INSPIRATION_TOOLTIP"
 	}
 
-	## Status icons, shown in the bottom right on portraits
+
 	type portrait_status_icons_small = widget {
 		size = { 16 60 }
 		scissor = yes
@@ -2325,7 +2304,7 @@ types PortraitTypes
 				margin = { 2 2 }
 			}
 
-			# sorted by priority, highest prio at the bottom
+
 			block "status_icons" {
 
 				block "scripted_relation_status_icons"
@@ -2598,7 +2577,7 @@ types PortraitTypes
 			direction = vertical
 		}
 
-		# sorted by priority, highest prio at the bottom
+
 		block "status_icons" {
 
 			block "scripted_relation_status_icons"
@@ -2827,11 +2806,6 @@ types PortraitTypes
 	}
 }
 
-######################################################
-##################### TEMPLATES ######################
-######################################################
-
-## BASE TEMPLATE
 
 template portrait_base
 {
@@ -2909,7 +2883,7 @@ template Portrait_Background_Glows
 {
 	block "portrait_glow"
 	{
-		# Is Local Player
+
 		block "glow_local_player"
 		{
 			background = {
@@ -2921,7 +2895,7 @@ template Portrait_Background_Glows
 
 		block "glow_other_player"
 		{
-			# Is Other Player
+
 			background = {
 				visible = "[And(Character.IsOtherPlayer, Not(Character.IsHovered))]"
 				using = Background_Portrait_Glow
@@ -3012,7 +2986,7 @@ types portrait_icons
 		}
 	}
 
-	# Normal size icons
+
 	type lover_relation_icon = icon
 	{
 		name = "lover"
@@ -3153,7 +3127,7 @@ types portrait_icons
 		}
 	}
 
-	# Small size icons
+
 	type lover_relation_icon_small = icon
 	{
 		name = "lover"

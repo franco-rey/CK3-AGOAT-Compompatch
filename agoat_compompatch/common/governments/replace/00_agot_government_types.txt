@@ -261,6 +261,10 @@ the_citadel_government = {
 		government_is_default
 	}
 
+	character_modifier = {
+		knight_limit = -100
+		levy_size = -1
+	}
 	color = hsv{ 0.00 1.00 0.98 }
 }
 
@@ -551,13 +555,11 @@ command_government = {
 		create_cadet_branches = no
 		rulers_should_have_dynasty = no
 		dynasty_named_realms = no
+		allow_accolades = yes
 	}
 
 	primary_holding = castle_holding
-	valid_holdings = {
-		castle_holding
-		city_holding
-	}
+	valid_holdings = { city_holding }
 
 	can_get_government = {
 		OR = {

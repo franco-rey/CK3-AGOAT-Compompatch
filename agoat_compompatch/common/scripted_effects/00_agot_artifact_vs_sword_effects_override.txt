@@ -1,4 +1,4 @@
-﻿# AGOAT Compompatch N03 (2026-09-04): Legacy of the Dragon's sword override retargeted from Valyrian Steel's removed vs_*_template keys to AGOT 0.5.2.1's valyrian_steel_template.
+﻿
 agot_create_artifact_vs_blackfyre_effect = {
 	$OWNER$ = {
 		save_scope_as = owner
@@ -277,8 +277,7 @@ agot_create_artifact_vs_blackfyre_effect = {
 		}
 	}
 }
-# agot_create_artifact_vs_dark_sister_effect deliberately omitted here: AGOT+'s asoiaf_scripted_effects_artifacts.txt defines the same key and,
-# sorting later alphabetically, already won it before this override existed. Keeping a second copy would only re-flag the duplicate.
+
 
 agot_create_artifact_vs_seafoam_effect = {
 	$OWNER$ = {
@@ -434,7 +433,7 @@ agot_create_artifact_vs_pincer_effect = {
 		save_scope_as = owner
 	}
 	set_artifact_rarity_illustrious = yes
-	
+
 		if = {
 		limit = {
 			has_game_rule = extra_visuals

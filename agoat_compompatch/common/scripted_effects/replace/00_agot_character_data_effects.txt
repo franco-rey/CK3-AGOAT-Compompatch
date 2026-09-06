@@ -137,6 +137,57 @@
 
 					else_if = {
 						limit = {
+							$SCOPED_TITLE$ ?= title:h_new_valyria
+							$SCOPED_TITLE$ ?= { holder = $SCOPE$ }
+						}
+
+						set_title_localization_effect = { SCOPE = $SCOPE$ KEY = "new_valyria_emperor_valyrian_male" GENDER = male }
+						set_title_localization_effect = { SCOPE = $SCOPE$ KEY = "new_valyria_emperor_valyrian_female" GENDER = female }
+					}
+
+					else_if = {
+						limit = {
+							$SCOPED_TITLE$ ?= title:k_khalasar_painted_mountains
+							$SCOPED_TITLE$ ?= { holder = $SCOPE$ }
+						}
+
+						set_title_localization_effect = { SCOPE = $SCOPE$ KEY = "khal_king_male" GENDER = male }
+						set_title_localization_effect = { SCOPE = $SCOPE$ KEY = "khal_king_female" GENDER = female }
+					}
+
+					else_if = {
+						limit = {
+							OR = {
+								$SCOPED_TITLE$ ?= title:e_valyria
+								$SCOPED_TITLE$ ?= title:e_old_valyria
+							}
+							$SCOPED_TITLE$ ?= { holder = $SCOPE$ }
+						}
+
+						set_title_localization_effect = { SCOPE = $SCOPE$ KEY = "emperor_valyrian_male" GENDER = male }
+						set_title_localization_effect = { SCOPE = $SCOPE$ KEY = "emperor_valyrian_female" GENDER = female }
+					}
+
+					else_if = {
+						limit = { $SCOPED_TITLE$ ?= title:h_valyrian_freehold }
+
+						if = {
+							limit = {
+								$SCOPED_TITLE$ ?= { holder = $SCOPE$ }
+								$SCOPED_TITLE$ ?= { var:lv_freehold_style ?= flag:imperial }
+							}
+
+							set_title_localization_effect = { SCOPE = $SCOPE$ KEY = "hegemon_valyria_male_imperial" GENDER = male }
+							set_title_localization_effect = { SCOPE = $SCOPE$ KEY = "hegemon_valyria_female_imperial" GENDER = female }
+						}
+						else = {
+							set_title_localization_effect = { SCOPE = $SCOPE$ KEY = "hegemon_valyria_male_fallback" GENDER = male }
+							set_title_localization_effect = { SCOPE = $SCOPE$ KEY = "hegemon_valyria_female_fallback" GENDER = female }
+						}
+					}
+
+					else_if = {
+						limit = {
 							agot_localization_government_trigger = { GOV = lp_feudal SPOUSE_SCOPE = scope:spouse_scope }
 						}
 
@@ -692,8 +743,25 @@
 							}
 							else_if = {
 								limit = {
+									agot_flavour_is_landed_knight_warden_barony_trigger = { CHAR = this }
+								}
+
+								set_title_localization_effect = { SCOPE = $SCOPE$ KEY = "landed_knight_warden" GENDER = male }
+								set_title_localization_effect = { SCOPE = $SCOPE$ KEY = "lady_non_paramount" GENDER = female }
+							}
+							else_if = {
+								limit = {
+									agot_flavour_is_landed_knight_master_barony_trigger = { CHAR = this }
+								}
+
+								set_title_localization_effect = { SCOPE = $SCOPE$ KEY = "landed_knight_master" GENDER = male }
+								set_title_localization_effect = { SCOPE = $SCOPE$ KEY = "lady_non_paramount" GENDER = female }
+							}
+							else_if = {
+								limit = {
 									OR = {
 										agot_flavour_is_landed_knight_in_westeros_trigger = { CHAR = this }
+										agot_flavour_is_landed_knight_ser_barony_trigger = { CHAR = this }
 										AND = {
 											is_agot_knight_trigger = yes
 											any_spouse = {
@@ -805,8 +873,25 @@
 							}
 							else_if = {
 								limit = {
+									agot_flavour_is_landed_knight_warden_barony_trigger = { CHAR = this }
+								}
+
+								set_title_localization_effect = { SCOPE = $SCOPE$ KEY = "landed_knight_warden" GENDER = male }
+								set_title_localization_effect = { SCOPE = $SCOPE$ KEY = "lady_non_paramount" GENDER = female }
+							}
+							else_if = {
+								limit = {
+									agot_flavour_is_landed_knight_master_barony_trigger = { CHAR = this }
+								}
+
+								set_title_localization_effect = { SCOPE = $SCOPE$ KEY = "landed_knight_master" GENDER = male }
+								set_title_localization_effect = { SCOPE = $SCOPE$ KEY = "lady_non_paramount" GENDER = female }
+							}
+							else_if = {
+								limit = {
 									OR = {
 										agot_flavour_is_landed_knight_in_westeros_trigger = { CHAR = this }
+										agot_flavour_is_landed_knight_ser_barony_trigger = { CHAR = this }
 										AND = {
 											is_agot_knight_trigger = yes
 											any_spouse = {
@@ -1435,8 +1520,25 @@
 							}
 							else_if = {
 								limit = {
+									agot_flavour_is_landed_knight_warden_barony_trigger = { CHAR = this }
+								}
+
+								set_title_localization_effect = { SCOPE = $SCOPE$ KEY = "landed_knight_warden" GENDER = male }
+								set_title_localization_effect = { SCOPE = $SCOPE$ KEY = "lady_non_paramount" GENDER = female }
+							}
+							else_if = {
+								limit = {
+									agot_flavour_is_landed_knight_master_barony_trigger = { CHAR = this }
+								}
+
+								set_title_localization_effect = { SCOPE = $SCOPE$ KEY = "landed_knight_master" GENDER = male }
+								set_title_localization_effect = { SCOPE = $SCOPE$ KEY = "lady_non_paramount" GENDER = female }
+							}
+							else_if = {
+								limit = {
 									OR = {
 										agot_flavour_is_landed_knight_in_westeros_trigger = { CHAR = this }
+										agot_flavour_is_landed_knight_ser_barony_trigger = { CHAR = this }
 										AND = {
 											is_agot_knight_trigger = yes
 											any_spouse = {
@@ -1548,8 +1650,25 @@
 							}
 							else_if = {
 								limit = {
+									agot_flavour_is_landed_knight_warden_barony_trigger = { CHAR = this }
+								}
+
+								set_title_localization_effect = { SCOPE = $SCOPE$ KEY = "landed_knight_warden" GENDER = male }
+								set_title_localization_effect = { SCOPE = $SCOPE$ KEY = "lady_non_paramount" GENDER = female }
+							}
+							else_if = {
+								limit = {
+									agot_flavour_is_landed_knight_master_barony_trigger = { CHAR = this }
+								}
+
+								set_title_localization_effect = { SCOPE = $SCOPE$ KEY = "landed_knight_master" GENDER = male }
+								set_title_localization_effect = { SCOPE = $SCOPE$ KEY = "lady_non_paramount" GENDER = female }
+							}
+							else_if = {
+								limit = {
 									OR = {
 										agot_flavour_is_landed_knight_in_westeros_trigger = { CHAR = this }
+										agot_flavour_is_landed_knight_ser_barony_trigger = { CHAR = this }
 										AND = {
 											is_agot_knight_trigger = yes
 											any_spouse = {

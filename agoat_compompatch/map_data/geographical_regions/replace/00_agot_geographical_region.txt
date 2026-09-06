@@ -1,5 +1,4 @@
-﻿# AGOAT Compompatch P80 (rebuilt 2026-09-04 for AGOT 0.5.2.1 / Nobility of Westeros 1.2.9).
-# Union of AGOT's 00_agot_geographical_region.txt and NoW's replace/ copy; NoW's definition wins for shared keys.
+﻿
 
 world_ruins = {
 	duchies = {
@@ -119,7 +118,7 @@ world_westeros_the_wall = {
 	}
 }
 
-world_westeros_the_wall_only = { #need another one for decision
+world_westeros_the_wall_only = {
 	duchies = {
 		d_the_wall
 	}
@@ -298,22 +297,22 @@ world_westeros_the_vale_of_arryn = {
 		d_ninestars
 		d_old_anchor
 		d_strongstone
-		# d_runestone #Partial
-		# d_eastweald #Partial
+
+
 	}
 	counties = {
-		# d_runestone #Partial
+
 		c_runestone
 		c_bronzeguard
 		c_gullview
 		c_the_etchings
-		# c_witch_isle
-		# d_eastweald #Partial
+
+
 		c_longbow_hills
-		# c_ruthermont
+
 		c_sedgemore
-		# c_lyme
-		# c_brackenbrick_point
+
+
 		c_bowlyn
 		c_the_stills
 	}
@@ -331,20 +330,18 @@ world_westeros_the_vale_fingers = {
 	duchies = {
 		d_hearts_home
 		d_the_drainlands
-		# d_eastweald #Partial
-		# d_grimholm #Partial
+
+
 	}
 	counties = {
-		# d_eastweald #Partial
-		# c_longbow_hills
+
+
 		c_ruthermont
-		# c_sedgemore
+
 		c_lyme
 		c_brackenbrick_point
-		# c_bowlyn
-		# c_the_stills
-		# d_grimholm #Partial
-		# c_the_paps
+
+
 		c_midlor_point
 		c_midlor
 		c_brownden
@@ -356,12 +353,12 @@ world_westeros_the_vale_north = {
 	duchies = {
 		d_snakewood_forest
 		d_the_cut
-		# d_northbreach #Partial
+
 	}
 	counties = {
-		# d_northbreach #Partial
+
 		c_hersy
-		# c_pebble
+
 		c_eventide
 		c_portmouth
 		c_reckshaw
@@ -374,41 +371,27 @@ world_westeros_the_vale_north = {
 world_westeros_the_vale_isles = {
 	duchies = {
 		d_the_sisters
-		# d_runestone #Partial
-		# d_northbreach #Partial
-		# d_grimholm #Partial
+
+
 	}
 	counties = {
-		# d_runestone #Partial
-		# c_runestone
-		# c_bronzeguard
-		# c_gullview
-		# c_the_etchings
+
+
 		c_witch_isle
-		# d_northbreach #Partial
-		# c_hersy
+
+
 		c_pebble
-		# c_eventide
-		# c_portmouth
-		# c_reckshaw
-		# c_scorched_vale
-		# c_forgotten_shore
-		# c_strikeguard
-		# d_grimholm #Partial
+
+
 		c_the_paps
-		# c_midlor_point
-		# c_midlor
-		# c_brownden
-		# c_bommenstone
+
+
 	}
 }
 
 world_westeros_moonclans = {
-	#Moonclans yeet
-	# duchies = {
-	# 	d_northern_clans
-	# 	d_southern_clans
-	# }
+
+
 }
 
 world_westeros_the_riverlands = {
@@ -436,28 +419,28 @@ world_westeros_the_riverlands_south = {
 		d_tridents_mouth
 	}
 	counties = {
-		#d_southstone
+
 		c_stone_hedge
 		c_sallydance
 		c_high_heart
 		c_deadsteady
 		c_medway
-		#d_tumblestone
+
 		c_turnbridge
 		c_heathersage
-		#d_maidenpool
+
 		c_werthport
 		c_maidenpool
 	}
 	provinces = {
-		#d_riverrun
-		#d_tumblestone
-		1683 #b_illfieldhold
-		#d_maidenpool
-		#c_oldhonor
-		1920 #b_marble_lake
-		1918 #b_cows_town
-		1917 #b_oldhonor
+
+
+		1683
+
+
+		1920
+		1918
+		1917
 	}
 }
 
@@ -479,7 +462,7 @@ world_westeros_the_riverlands_north = {
 		d_riverbend
 	}
 	counties = {
-		#d_blackwood_vale
+
 		c_raventree
 		c_rutting
 		c_ravensmarch
@@ -488,14 +471,14 @@ world_westeros_the_riverlands_north = {
 		c_honeytree
 	}
 	provinces = {
-		#d_riverrun
-		#c_illfield
-		1685 #b_hemhawk
-		1684 #b_illfieldtown
-		#d_maidenpool
-		#c_oldhonor
-		1919 #b_oldpine_keep
-		7265 #b_misty_isle
+
+
+		1685
+		1684
+
+
+		1919
+		7265
 	}
 }
 
@@ -648,8 +631,8 @@ world_westeros_the_crownlands_riverlander = {
 		d_rooks_rest
 	}
 	counties = {
-		c_kings_landing # d_kings_landing
-		c_blackmark # d_driftmark
+		c_kings_landing
+		c_blackmark
 	}
 }
 
@@ -663,7 +646,7 @@ world_westeros_the_crownlands_stormlander = {
 		d_wings_pass
 	}
 	counties = {
-		c_blackstripe # d_kings_landing
+		c_blackstripe
 	}
 }
 
@@ -781,17 +764,15 @@ world_westeros_lower_mander = {
 		d_the_roseroad
 		d_orchard_way
 		d_cockleswhent
-		# d_brightwater #Partial
+
 	}
 	counties = {
-		# d_brightwater #Partial
-		# c_brightwater
+
+
 		c_denflower
 		c_whitewater_watch
-		# c_islandview
-		# c_bloomfield_hills
-		# c_festune
-		# c_laurelridge
+
+
 		c_greenaway
 	}
 }
@@ -939,7 +920,7 @@ world_westeros_dornish_marches_reach = {
 		d_the_westmarch
 	}
 	counties = {
-		#d_cockscombe
+
 		c_estryck
 		c_grandmercy
 	}
@@ -964,7 +945,7 @@ world_westeros_dornish_marches_dorne = {
 		d_blackmont
 	}
 	counties = {
-		#d_torrentine
+
 		c_radiant_cliffs
 		c_dawnbrink
 		c_starfall
@@ -972,38 +953,38 @@ world_westeros_dornish_marches_dorne = {
 		c_shining_sands
 		c_fields_of_glass
 		c_astermine
-		#d_greenbelt
+
 		c_greenbelt
 		c_wayguard
 		c_yronwood
 	}
 	provinces = {
-		#d_torrentine
-		#c_elbow
-		5274 #b_sunstop
-		5273 #b_sandance
-		5272 #b_winding_dune
-		5271 #b_broken_elbow
-		#d_sandstone
-		#c_stained_sands
-		5221 #b_senter_hall
-		5217 #b_stainwater
-		5218 #b_dunespots
-		5219 #b_basscales
-		#d_sandstone
-		#c_stinging_sands
-		5228 #b_thicktail
-		5227 #b_the_stingseat
-		5232# b_stinging_stones
-		5231 #b_white_hiss
-		#d_sandstone
-		#c_dreadsands
-		5234 #b_brickmounds
-		5233 #b_dreadsands
-		5235 #b_coarse_keep
-		#d_sandstone
-		#c_white_dunes
-		5222 #b_parchwell
+
+
+		5274
+		5273
+		5272
+		5271
+
+
+		5221
+		5217
+		5218
+		5219
+
+
+		5228
+		5227
+		5232
+		5231
+
+
+		5234
+		5233
+		5235
+
+
+		5222
 	}
 }
 
@@ -1035,16 +1016,16 @@ world_westeros_dorne_sea_of_dorne_coast = {
 		d_broken_arm
 	}
 	counties = {
-		#d_ghaston_grey
+
 		c_ghaston_grey
-		#d_the_tor
+
 		c_the_tor
 		c_stedding
 		c_tallor_islands
 		c_murrandy
 		c_dream_dunes
 		c_barberry
-		#d_scourgehead
+
 		c_flatwater
 	}
 }
@@ -1054,9 +1035,9 @@ world_westeros_dorne_greenblood = {
 		d_sunspear
 	}
 	counties = {
-		#d_lemonwood
+
 		c_lemonwood
-		#d_godsgrace
+
 		c_orangewood
 		c_latebloom
 		c_sevensdunes
@@ -1066,10 +1047,10 @@ world_westeros_dorne_greenblood = {
 
 world_westeros_dorne_summer_coast = {
 	counties = {
-		#d_salt_shore
+
 		c_salt_shore
 		c_brackish
-		#d_lemonwood
+
 		c_sourmarket
 		c_sweetwater
 		c_drillwater_islands
@@ -1088,17 +1069,17 @@ world_westeros_dorne_red_dunes = {
 		d_red_dunes
 	}
 	counties = {
-		#d_brimstone
+
 		c_bloodbridge
-		#d_greenbelt
+
 		c_royalmarch
-		#d_scourgehead
+
 		c_the_bramble
 		c_the_scourge
-		#d_godsgrace
+
 		c_goldpeppers
 		c_nerandyn
-		#d_saltshore
+
 		c_white_stones
 		c_saltstone
 	}
@@ -1109,7 +1090,7 @@ world_westeros_dorne_white_dunes = {
 		d_oldwell
 	}
 	counties = {
-		#d_brimestone
+
 		c_steamfall
 		c_willburn
 		c_brimstone
@@ -1117,38 +1098,38 @@ world_westeros_dorne_white_dunes = {
 		c_hellholt
 		c_jackalrun
 		c_sulphur_flats
-		#d_greenbelt
+
 		c_great_dunes
 		c_blood_gulch
-		#d_sandstone
+
 		c_arnight
 		c_sandhorn
 		c_sandstone
 		c_barbmane
 	}
 	provinces = {
-		#d_sandstone
-		#c_white_dunes
-		5225 #b_whitedune_pass
-		5223 #b_rashpit
-		5224 #b_whitedune_flats
-		5226 #b_dustwalk
-		#d_sandstone
-		#c_stained_sands
-		5220 #b_splitgravel
-		#d_sandstone
-		#c_stinging_sands
-		5229 #b_flat_cut
-		5230 #b_burrow_dune
-		#d_sandstone
-		#c_dreadsands
-		5238 #b_scarcrest
-		5237 #b_aurisand
-		5236 #b_silence
-		#d_torrentine
-		#c_the_elbow
-		5276 #b_elbow_cove
-		5275 #b_starryberth
+
+
+		5225
+		5223
+		5224
+		5226
+
+
+		5220
+
+
+		5229
+		5230
+
+
+		5238
+		5237
+		5236
+
+
+		5276
+		5275
 	}
 }
 
@@ -1198,10 +1179,8 @@ world_westeros_dornish_mountains = {
 world_essos = {
 	regions = {
 		world_essos_west
-		# world_essos_south
-		# world_essos_north
-		# world_essos_east
-		# world_essos_beyond_the_east
+
+
 	}
 }
 
@@ -1210,7 +1189,7 @@ world_essos_west = {
 		world_stepstones
 		world_essos_free_cities
 		world_essos_rhoyne
-		# world_essos_valyria
+
 	}
 }
 
@@ -1273,13 +1252,13 @@ world_essos_tyrosh_islands = {
 	duchies = {
 		d_tyrosh
 		d_muricosh
-		# d_quhyrys #Partial
+
 	}
 	counties = {
-		# d_quhyrys #Partial
+
 		c_zernosh
-		# c_uhyrosh_coast
-		# c_tandaynish
+
+
 	}
 }
 
@@ -1287,11 +1266,11 @@ world_essos_tyrosh_mainland = {
 	duchies = {
 		d_ryrys
 		d_great_vilibosh
-		# d_quhyrys #Partial
+
 	}
 	counties = {
-		# d_quhyrys #Partial
-		# c_zernosh
+
+
 		c_uhyrosh_coast
 		c_tandaynish
 	}
@@ -1505,9 +1484,8 @@ world_essos_the_axe_mainland = {
 world_essos_eastern_free_cities = {
 	regions = {
 		world_essos_qohor
-		# world_essos_essaria
-		# world_essos_swamps
-		# world_essos_volantis
+
+
 	}
 }
 
@@ -1526,70 +1504,61 @@ world_essos_qohor_north = {
 		d_orsajks
 		d_clawed_mountains
 		d_hevanavar
-		# d_the_crucible #Partial
+
 		d_darkwash_watch
-		# d_qohor #Partial
-		# d_lumber_road #Partial
+
+
 	}
 	counties = {
-		# d_qohor #Partial
+
 		c_artisans_quarter
-		# c_hunters_quarter
-		# c_foresters_quarter #Partial
-		# d_lumber_road #Partial
+
+
 		c_goatswood
 		c_ajghembar
-		# c_sablewood
-		# c_op_glogjestiri #Partial
-		# d_the_crucible #Partial
-		# c_nomads_encroach
-		# c_shiverness #Partial
+
+
 		c_ghu
 		c_the_perch
 		c_senaghon
 	}
 	provinces = {
-		# c_foresters_quarter #Partial
-		# 8679
+
+
 		8680
 		8681
 		8682
-		# c_op_glogjestiri #Partial
+
 		8701
 		8702
 		8703
 		8704
-		# 8705
-		# c_shiverness #Partial
+
+
 		8969
 		8970
 		8971
 		8972
-		# 8973
+
 		8974
 	}
 }
 
 world_essos_qohor_steppe = {
 	duchies = {
-		# d_the_crucible #Partial
+
 	}
 	counties = {
-		# d_the_crucible #Partial
+
 		c_nomads_encroach
-		# c_shiverness #Partial
-		# c_ghu
-		# c_the_perch
-		# c_senaghon
+
+
 	}
 	provinces = {
-		# c_shiverness #Partial
-		# 8969
-		# 8970
-		# 8971
-		# 8972
+
+
 		8973
-		# 8974
+
 	}
 }
 
@@ -1600,31 +1569,23 @@ world_essos_qohor_south = {
 		d_nazejan
 		d_storskupsqoa
 		d_ziruspakto
-		# d_qohor #Partial
-		# d_lumber_road #Partial
+
+
 	}
 	counties = {
-		# d_qohor #Partial
-		# c_artisans_quarter
+
+
 		c_hunters_quarter
-		# c_foresters_quarter #Partial
-		# d_lumber_road #Partial
-		# c_goatswood
-		# c_ajghembar
+
+
 		c_sablewood
-		# c_op_glogjestiri #Partial
+
 	}
 	provinces = {
-		# c_foresters_quarter #Partial
+
 		8679
-		# 8680
-		# 8681
-		# 8682
-		# c_op_glogjestiri #Partial
-		# 8701
-		# 8702
-		# 8703
-		# 8704
+
+
 		8705
 	}
 }
@@ -1669,14 +1630,14 @@ world_essos_ar_noy = {
 
 world_essos_ar_noy_north = {
 	duchies = {
-		# d_ar_noy #Partial
+
 	}
 	counties = {
-		# d_ar_noy #Partial
-		# c_ar_noy
+
+
 		c_the_spearhead
 		c_dhoylleal
-		# c_lliis
+
 	}
 }
 
@@ -1686,13 +1647,13 @@ world_essos_ar_noy_south = {
 		d_mal_dareas
 		d_rhillupea
 		d_eastern_daggers
-		# d_ar_noy #Partial
+
 	}
 	counties = {
-		# d_ar_noy #Partial
+
 		c_ar_noy
-		# c_the_spearhead
-		# c_dhoylleal
+
+
 		c_lliis
 	}
 }
@@ -1707,14 +1668,13 @@ world_essos_ny_sar = {
 world_essos_ny_sar_north = {
 	duchies = {
 		d_roseate_bank
-		# d_ny_sar #Partial
+
 	}
 	counties = {
-		# d_ny_sar #Partial
+
 		c_ny_sar
-		# c_marble_knife
-		# c_seanhallial
-		# c_quarried_wings
+
+
 	}
 }
 
@@ -1723,11 +1683,11 @@ world_essos_ny_sar_south = {
 		d_rel_gydhal
 		d_golden_fields
 		d_western_daggers
-		# d_ny_sar #Partial
+
 	}
 	counties = {
-		# d_ny_sar #Partial
-		# c_ny_sar
+
+
 		c_marble_knife
 		c_seanhallial
 		c_quarried_wings
@@ -1745,25 +1705,24 @@ world_essos_ghoyan_drohe_north = {
 	duchies = {
 		d_fair_spine
 		d_the_grommet
-		# d_ghoyan_drohe #Partial
+
 	}
 	counties = {
-		# d_ghoyan_drohe #Partial
+
 		c_ghoyan_drohe
 		c_rhusos
-		# c_llounkum
+
 	}
 }
 
 world_essos_ghoyan_drohe_south = {
 	duchies = {
 		d_gamia_noias
-		# d_ghoyan_drohe #Partial
+
 	}
 	counties = {
-		# d_ghoyan_drohe #Partial
-		# c_ghoyan_drohe
-		# c_rhusos
+
+
 		c_llounkum
 	}
 }
@@ -1782,8 +1741,8 @@ world_essos_painted_mountains = {
 
 world_essos_great_grass_sea = {
 	regions = {
-		# world_essos_sarnor
-		# world_essos_dothraki_sea
+
+
 		world_ruins
 	}
 }
@@ -1964,7 +1923,7 @@ world_westeros_summerhall = {
 	}
 }
 
-world_westeros_wilding_raiding_zone = { #Area Wildings camps can move around
+world_westeros_wilding_raiding_zone = {
 	regions = {
 		world_westeros_beyond_the_wall
 		world_westeros_the_wall
@@ -2069,7 +2028,7 @@ divergence_island_regions = {
 	}
 }
 
-world_lands_less_traveled = { # Use for epidemic containment
+world_lands_less_traveled = {
 	duchies = {
 		d_skagos
 		d_lonely_light
@@ -2110,20 +2069,19 @@ coastal_counties = {
 		c_ragmans_harbor
 		c_truth_canals
 		c_braavos
-		# c_hukoford
-		# c_qeloford
+
+
 		c_smiths_bay
-		# c_gonford
-		# c_hukorval
-		# c_rhoford
+
+
 		c_wincoast
 		c_horost
 		c_andal_coast
-		# c_coronyll
+
 		c_myllenios
 		c_kastaraen
-		# c_keldios
-		# c_plush_approach
+
+
 		c_bedrylos
 		c_daarilaro_aajon
 		c_olynos
@@ -2598,7 +2556,7 @@ shivering_sea_coastal_duchies = {
 		d_skagos
 		d_deepdown
 		d_driftwood_hall
-		#SKipping the wall, as both sides touch water, don't want them to wash ashore the wrong side
+
 		d_last_lands
 		d_karhold
 		d_groundpress
@@ -2674,7 +2632,7 @@ sunset_sea_coastal_duchies = {
 		d_pyke
 		d_saltcliffe
 		d_east_wyk
-		d_old_wyk	
+		d_old_wyk
 		d_cradlewatch
 		d_sealskin_point
 		d_shatterstone
@@ -3161,7 +3119,7 @@ great_spring_sickness_init_region = {
 
 hunt_animal_deer_region = {
 	regions = {
-		#general
+
 		world_westeros_beyond_the_wall
 		world_westeros_the_wall_only
 		world_westeros_moonclans
@@ -3210,7 +3168,7 @@ hunt_animal_gazelle_region = {
 
 hunt_animal_boar_region = {
 	regions = {
-		#general
+
 		world_westeros_beyond_the_wall
 		world_westeros_the_wall_only
 		world_westeros_moonclans
@@ -3235,7 +3193,7 @@ hunt_animal_boar_region = {
 
 hunt_animal_bear_region = {
 	regions = {
-		#general
+
 		world_westeros_beyond_the_wall
 		world_westeros_the_wall_only
 		world_westeros_moonclans
@@ -3291,7 +3249,7 @@ hunt_animal_reindeer_region = {
 	}
 }
 
-hunt_animal_elk_region = { #moose
+hunt_animal_elk_region = {
 	regions = {
 		world_westeros_beyond_the_wall
 		world_westeros_the_wall_only
@@ -3316,7 +3274,7 @@ hunt_animal_shadowcat_region = {
 		d_crackclaw_point
 	}
 	counties = {
-		#d_maidenpool
+
 		c_maidenpool
 		c_werthport
 		c_shadowshield
@@ -3324,7 +3282,7 @@ hunt_animal_shadowcat_region = {
 		c_yellowstars
 	}
 	provinces = {
-		#c_oldhonor
+
 		1917
 		1918
 		1920
@@ -3425,7 +3383,7 @@ hunt_animal_saiga_region = {
 
 hunt_animal_big_cat_region = {
 	regions = {
-		#general
+
 		world_westeros_the_westerlands
 	}
 	duchies = {
@@ -4503,9 +4461,8 @@ graphical_mena = {
 graphical_india = {
 	graphical = yes
 	color = { 0 255 0 }
-	# regions = {
 
-	# }
+
 	provinces = {
 		8219
 		8220
@@ -4515,7 +4472,7 @@ graphical_india = {
 
 graphical_mediterranean = {
 	graphical = yes
-	#color = { 0 0 255 }
+
 	color = { 255 0 0 }
 	regions = {
 		world_stepstones
@@ -4557,7 +4514,7 @@ graphical_steppe = {
 
 graphical_siberia = {
 	graphical = yes
-	#color = { 0 0 255 }
+
 	color = { 250 250 250 }
 	regions = {
 		world_westeros_beyond_the_wall
@@ -4625,13 +4582,13 @@ world_westeros_the_crownlands_the_hook = {
 		d_sweetport
 	}
 	counties = {
-		c_gullet_isle # d_driftmark
+		c_gullet_isle
 	}
 }
 
 world_westeros_desert_terrain = {
 	provinces = {
-		# Desert Road
+
 		4939
 		4941
 		4944
@@ -4648,7 +4605,7 @@ world_westeros_desert_terrain = {
 		5320
 		5321
 		5341
-		# Desert
+
 		4947
 		4948
 		4949
@@ -4793,7 +4750,7 @@ world_westeros_oasis_terrain = {
 
 world_westeros_drylands_terrain = {
 	provinces = {
-		# Drylands Road
+
 		4979
 		4983
 		4987
@@ -4816,7 +4773,7 @@ world_westeros_drylands_terrain = {
 		5096
 		5097
 		5098
-		# Drylands
+
 		4938
 		4943
 		4957
@@ -4928,7 +4885,7 @@ world_westeros_drylands_terrain = {
 
 world_westeros_desert_mountains_terrain = {
 	provinces = {
-		# Desert Mountains Roads
+
 		5264
 		5441
 		5443
@@ -4939,7 +4896,7 @@ world_westeros_desert_mountains_terrain = {
 		5450
 		5469
 		5470
-		# Desert Mountains
+
 		5095
 		5174
 		5175
@@ -5001,193 +4958,193 @@ world_westeros_desert_mountains_terrain = {
 
 world_westeros_very_dense_population = {
 	counties = {
-		# King's Landing
+
 		c_kings_landing
-		# Oldtown
+
 		c_oldtown
-		# Lorath
+
 		c_makers_maze
 		c_west_catch
 		c_shivering_port
-		# Norvos
+
 		c_garaktiy
 		c_the_high_city
 		c_the_lower_city
-		# Braavos
+
 		c_braavos
 		c_truth_canals
 		c_ragmans_harbor
-		# Pentos
+
 		c_princes_quarter
 		c_pentos
 		c_artisanal_way
-		# Qohor
+
 		c_foresters_quarter
 		c_artisans_quarter
 		c_hunters_quarter
-		# Tyrosh
+
 		c_tyrosh
 		c_great_hue
 		c_bleeding_bay
-		# Lys
+
 		c_lys
 		c_pleasure_heights
 		c_magisters_avenue
 		c_numys
 		c_whitesands
 		c_kemmaroli
-		# Myr
+
 		c_myr
 		c_myrish_docks
 		c_imeimyr
-		# Chroyane
+
 		c_chroyane
 	}
 }
 
 world_westeros_dense_population = {
 	counties = {
-		# Lannisport
+
 		c_lanniskeep
 		c_lions_harbor
 		c_lannisport
 		c_debtors_docks
-		# Lorath
+
 		c_scoured_seat
 		c_ibewos
 	}
 	provinces = {
-		# Gulltown
-		2433 # b_graftons_holdfast
-		2434 # b_gulltown
-		2435 # b_grafton
-		2437 # b_yellow_rock
-		2438 # b_the_burning_tower
-		2439 # b_osgoods_square
-		2442 # b_port_of_arryn
-		# White Harbor
-		423 # b_new_castle
-		424 # b_white_harbor
-		425 # b_wolfs_den
-		432 # b_sept_of_the_snows
-		# Bigger Walled Towns
-		4242 # b_duskendale
-		1911 # b_maidenpool
-		3967 # b_tumbleton
-		4006 # b_bitterbridge
-		4125 # b_ryamsport
-		4940 # b_the_shadow_city
-		# Lorath
-		8252 # b_aele_labyrinth
-	}	
+
+		2433
+		2434
+		2435
+		2437
+		2438
+		2439
+		2442
+
+		423
+		424
+		425
+		432
+
+		4242
+		1911
+		3967
+		4006
+		4125
+		4940
+
+		8252
+	}
 }
 
 world_westeros_slightly_dense_population = {
 	provinces = {
-		# Winterfell
-		77 # b_winterfell
-		78 # b_winter_town
-		# Sunspear
-		4937 # b_sunspear
-		# Barrowton
-		1121 # b_barrow_hall
-		1122 # b_barrowton
-		# Gulltown
-		2436 # b_gulls_field
-		2440 # b_shettswood
-		2441 # b_goodswell
-		2443 # b_arrynmarket
-		2444 # b_gull_orchard
-		# White Harbor
-		426 # b_seal_rock
-		428 # b_brokersbrook
-		431 # b_pronged_port
-		# Duskendale
-		4241 # b_dun_fort
-		4544 # b_brickelbrun
-		4251 # b_seamill
-		# Maidenpool
-		1910 # b_pools_guard
-		# Hull
-		4419 # b_castle_driftmark
-		4420 # b_hull
-		# Spicetown
-		4425 # b_spicetown
-		# Sisteron
-		2715 # b_breakwater_castle
-		2718 # b_sisterton
-		# Lordsport
-		2727 # b_lordsport_keep
-		2729 # b_lordsport
-		# Pebbleton
-		2740 # b_pebbleton_tower
-		2741 # b_pebbleton
-		# Seagard
-		1729 # b_seagard_keep
-		1730 # b_seagard
-		# Fairmarket
-		2188 # b_fairgate_tower
-		2189 # b_fairmarket
-		# Saltpans
-		1887 # b_saltpans
-		# Lord Harroway's Town
-		1944 # b_harroway_tower
-		1945 # b_lord_harroways_town
-		# Stoney Sept
-		2031 # b_stoney_holdfast
-		2032 # b_stoney_sept
-		# Kayce
-		3205 # b_kayce
-		3206 # b_kayce_keep
-		# Weeping Town
-		4580 # b_weeping_tower
-		4581 # b_weeping_town
-		# Vellum
-		4896 # b_parchments
-		4897 # b_vellum
-		# Tumbleton
-		3966 # b_footly_hall
-		# Bitterbridge
-		4005 # b_caswell_keep
-		# Ashford
-		3293 # b_ashford_castle
-		3294 # b_ashford
-		# Ryamsport
-		4124 # b_wynegarde
-		# Vinetown
-		4136 # b_vinetown
-		4139 # b_fair_point
-		# Cuy
-		3461 # b_sunflower_hall
-		3462 # b_cuy
-		# Plankytown
-		4945 # b_plankytown
+
+		77
+		78
+
+		4937
+
+		1121
+		1122
+
+		2436
+		2440
+		2441
+		2443
+		2444
+
+		426
+		428
+		431
+
+		4241
+		4544
+		4251
+
+		1910
+
+		4419
+		4420
+
+		4425
+
+		2715
+		2718
+
+		2727
+		2729
+
+		2740
+		2741
+
+		1729
+		1730
+
+		2188
+		2189
+
+		1887
+
+		1944
+		1945
+
+		2031
+		2032
+
+		3205
+		3206
+
+		4580
+		4581
+
+		4896
+		4897
+
+		3966
+
+		4005
+
+		3293
+		3294
+
+		4124
+
+		4136
+		4139
+
+		3461
+		3462
+
+		4945
 	}
 }
 
 world_westeros_slightly_sparse_population = {
 	counties = {
-		# Last Hearth
+
 		c_sullen_hills
 		c_lonely_hills
 		c_coldenside
 		c_frostguard
-		# Karhold
+
 		c_dorridge
 		c_sleetwood
 		c_everwood
 		c_the_grey_cliffs
 		c_grey_cliff_point
-		# Torrhen's Square
+
 		c_edgewood_hills
 		c_slowburn
-		# Ironsmith
+
 		c_greyforge_hills
 		c_rillwater_crossing
-		# Barrowton
+
 		c_drumlynn
 		c_spearmouth
-		# The Rills
+
 		c_grailheart
 		c_tackfeld
 		c_two_rivers
@@ -5202,38 +5159,38 @@ world_westeros_sparse_population = {
 		world_westeros_desert_mountains_terrain
 	}
 	counties = {
-		# Northern Mountain Clans
+
 		c_holdwater
 		c_breakstone_hill
-		# Last Hearth
+
 		c_woodhaven
-		c_blackmantle 
+		c_blackmantle
 		c_whitemore
 		c_seal_shore
-		# Bear Island
+
 		c_mormont
 		c_bearstone
-		# The Wolfswood
+
 		c_deepwood
 		c_ironrath
 		c_highpoint
 		c_brans_wood
 		c_darsett
-		# Torrhen's Square
+
 		c_timberwatch
-		# Ironsmith
+
 		c_gravelridge
-		# Barrowton
+
 		c_atwater
-		# The Rills
+
 		c_soddenburn
 		c_witheredheath
 		c_bottom_run
-		# Blackpool
+
 		c_stonebrand
 		c_the_welts
 		c_blue_hills
-		# The Gap
+
 		c_the_gap
 		c_beam_cross
 	}
@@ -5259,7 +5216,7 @@ world_westeros_very_sparse_population = {
 		d_lakelands
 	}
 	counties = {
-		# Northern Mountain Clans
+
 		c_arrendell
 		c_braidmont
 		c_carvestone
@@ -5267,16 +5224,16 @@ world_westeros_very_sparse_population = {
 		c_stoutfast
 		c_trenchstone
 		c_scar_mountain
-		# The Wolfswood
+
 		c_greenwood
 		c_moorwood
 		c_mullroot
-		# Lonely Light
+
 		c_lonely_light
 	}
 }
 
-# Regions defined in AGOT 0.5.1 but absent from 0.5.2.1 and NoW 1.2.9, kept because other mods still reference them (Seasons: world_essos_moraq).
+
 world_essos_moraq = {
 	regions = {
 		world_ruins

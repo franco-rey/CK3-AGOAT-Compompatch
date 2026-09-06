@@ -1,13 +1,10 @@
-# AGOAT Compompatch N02: More Dragon Eggs' portrait GUI with the AGOT 0.5.1-only references removed (IsCharacterFakeDead, visible_if_not_dragon, agot_fake_death_portrait_status_icons_small).
-######################################################
-################## PORTRAIT TYPES ####################
-######################################################
+
 
 types PortraitTypes
 {
 
 	type mde_dragon_portrait_zeroth_size = portrait_button {
-		
+
 		visible = "[Not(GetVariableSystem.Exists( 'lifestyle_open' ))]"
 		size = { 650 350 }
 
@@ -69,7 +66,7 @@ types PortraitTypes
 		}
 
 		using = tooltip_es
-		# tooltip_visible = "[Not(IsInteractionMenuOpenForCharacter(Character.GetID))]"
+
 		tooltip_visible = no
 
 		tooltipwidget = {
@@ -87,7 +84,7 @@ types PortraitTypes
 	}
 
 	type mde_dragon_portrait_first_size = portrait_button {
-		
+
 		visible = "[Not(GetVariableSystem.Exists( 'lifestyle_open' ))]"
 		size = { 650 350 }
 
@@ -149,7 +146,7 @@ types PortraitTypes
 		}
 
 		using = tooltip_es
-		# tooltip_visible = "[Not(IsInteractionMenuOpenForCharacter(Character.GetID))]"
+
 		tooltip_visible = no
 
 		tooltipwidget = {
@@ -167,7 +164,7 @@ types PortraitTypes
 	}
 
 	type mde_dragon_portrait_second_size = portrait_button {
-		
+
 		visible = "[Not(GetVariableSystem.Exists( 'lifestyle_open' ))]"
 		size = { 650 350 }
 
@@ -229,7 +226,7 @@ types PortraitTypes
 		}
 
 		using = tooltip_es
-		# tooltip_visible = "[Not(IsInteractionMenuOpenForCharacter(Character.GetID))]"
+
 		tooltip_visible = no
 
 		tooltipwidget = {
@@ -247,7 +244,7 @@ types PortraitTypes
 	}
 
 	type mde_dragon_portrait_third_size = portrait_button {
-		
+
 		visible = "[Not(GetVariableSystem.Exists( 'lifestyle_open' ))]"
 		size = { 750 450 }
 
@@ -309,7 +306,7 @@ types PortraitTypes
 		}
 
 		using = tooltip_es
-		# tooltip_visible = "[Not(IsInteractionMenuOpenForCharacter(Character.GetID))]"
+
 		tooltip_visible = no
 
 		tooltipwidget = {
@@ -357,7 +354,7 @@ types PortraitTypes
 		}
 
 		portrait_button = {
-			#AGOT Added
+
 			visible = "[Not(IsCharacterDragon)]"
 			parentanchor = bottom|hcenter
 			size = { 80 100 }
@@ -390,9 +387,9 @@ types PortraitTypes
 
 			block "portrait_button" {}
 		}
-		#AGOT Added
+
 		portrait_button = {
-			#AGOT Added
+
 			using = visible_if_dragon
 			parentanchor = bottom|hcenter
 			size = { 80 100 }
@@ -471,7 +468,6 @@ types PortraitTypes
 		}
 
 
-		# Portrait unknown glow
 		highlight_icon = {
 			name = "portrait_unknown_head_small_glow"
 			parentanchor = center
@@ -493,7 +489,7 @@ types PortraitTypes
 			block "onclick" {}
 		}
 	}
-	
+
 	type mde_portrait_status_icons_small = widget {
 		size = { 32 60 }
 		scissor = yes
@@ -505,9 +501,7 @@ types PortraitTypes
 			parentanchor = bottom
 			spacing = 1
 
-			
 
-			# sorted by priority, highest prio at the bottom
 			block "status_icons" {
 
 				block "scripted_relation_status_icons"
@@ -531,15 +525,15 @@ types PortraitTypes
 						using = Background_Area_Dark
 						margin = { 2 2 }
 					}
-					#direction = vertical
+
 					text_single = {
 						name = "character_age"
-						#layoutpolicy_horizontal = expanding
+
 						max_width = 14
 						fontsize_min = 2
 
 						text = "CHARACTER_VIEW_AGE"
-						#default_format = "#low"
+
 						fontsize = 8
 						align = center
 						tooltip = "CHARACTER_VIEW_AGE_TT"
@@ -553,14 +547,12 @@ types PortraitTypes
 						texture = "gfx/interface/icons/character_status/icon_health.dds"
 
 						tooltip = "CHARACTER_VIEW_ALIVE_TT"
-					
+
 					}
 				}
 			}
 		}
-		#AGOT Added
+
 	}
 
 }
-
-	

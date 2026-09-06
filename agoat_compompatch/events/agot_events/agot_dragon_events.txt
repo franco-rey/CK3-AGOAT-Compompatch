@@ -1,12 +1,6 @@
 ﻿namespace = agot_dragon
 
-# This file is for events that are contextually called that relate to dragons. e.g.
-# the death of the rider, the death of the dragon, etc.
-#
-# Events that should be called on standard ticks (i.e. yearly chance) should be in
-# agot_filler/00_agot_filler_events_dragon.txt
 
-# Dragon death handler
 agot_dragon.0001 = {
 	hidden = yes
 
@@ -14,7 +8,7 @@ agot_dragon.0001 = {
 
 	immediate = {
 		save_scope_as = dead_dragon
-		if = { # Is ridden dragon
+		if = {
 			limit = {
 				exists = var:current_rider
 			}
@@ -24,17 +18,17 @@ agot_dragon.0001 = {
 					limit = {
 						is_alive = yes
 					}
-					# Remove flags from the rider
+
 					remove_character_flag = conducting_terror_campaign
-					# Remove modifiers from rider
+
 					remove_character_modifier = agot_contributing_to_dragonlore
 					remove_character_modifier = agot_clearing_woods_with_dragonfire
-					# Add character memory
+
 					create_character_memory = {
 						type = agot_dragon_died
 						participants = { dead_dragon = root }
 					}
-					# Set up event to ensure dragonrider outlived dragon
+
 					trigger_event = {
 						id = agot_dragon_death.0001
 						days = 1
@@ -52,7 +46,7 @@ agot_dragon.0001 = {
 				remove_variable = rebind_count
 			}
 		}
-		else_if = { # Is owned dragon
+		else_if = {
 			limit = {
 				any_relation = {
 					type = agot_dragon
@@ -64,27 +58,27 @@ agot_dragon.0001 = {
 				save_scope_as = bonded_human
 			}
 			scope:bonded_human = {
-				# Add character memory
+
 				create_character_memory = {
 					type = agot_dragon_died
 					participants = { dead_dragon = root }
 				}
-				# Set up event to ensure dragonrider outlived dragon
+
 				trigger_event = {
 					id = agot_dragon_death.0001
 					days = 1
 				}
 			}
 		}
-		else = { # Is wild dragon
+		else = {
 
 		}
 
-		# Remove worshiping if applicable
+
 		var:lair ?= {
 			county = { remove_county_modifier = agot_worshiping_dragon }
 			if = {
-				limit = { # Only if they don't need the variable anymore
+				limit = {
 					NOT = { county = { has_county_modifier = agot_dragon_cult_gone_wrong } }
 				}
 				remove_local_variable = worshiped_dragon
@@ -93,11 +87,11 @@ agot_dragon.0001 = {
 	}
 }
 
-# Dragonrider death handler - called on death of character with current_dragon var. The event fires on their dragon however because disease deaths' order of operations break on_actions.
+
 agot_dragon.0002 = {
 	hidden = yes
 	immediate = {
-		# Manage rider list
+
 		if = {
 			limit = {
 				is_alive = yes
@@ -110,13 +104,13 @@ agot_dragon.0002 = {
 			remove_variable = current_rider
 			clear_variable_list = current_rider_list
 		}
-		# Check if should flee to Valyria / Sothoryos to cull population
+
 		if = {
 			limit = {
 				is_alive = yes
 				NOT = { has_character_flag = in_dragonpit }
 				age > 80
-				location = { # Don't kill last dragon of a location
+				location = {
 					any_character_in_location = {
 						has_trait = dragon
 						NOT = { this = root }
@@ -136,15 +130,15 @@ agot_dragon.0002 = {
 			}
 
 		}
-		# Check if should become wild
+
 		agot_calculate_and_set_dragon_wild_status_effect = yes
 	}
 }
 
-# Wild dragon movement
+
 agot_dragon.0003 = {
 	trigger = {
-		NOT = { has_character_flag = owned_dragon } # We only want wild dragons
+		NOT = { has_character_flag = owned_dragon }
 	}
 	hidden = yes
 	weight_multiplier = {
@@ -162,12 +156,12 @@ agot_dragon.0003 = {
 	}
 	immediate = {
 		save_scope_as = dragon
-		# If it doesn't have a lair, this is now it's lair
+
 		if = {
 			limit = {
 				NOT = { exists = root.var:lair }
 				location ?= {
-					NOR = { # Don't go north of the wall
+					NOR = {
 						geographical_region = world_westeros_the_wall_only
 						geographical_region = world_westeros_beyond_the_wall
 						geographical_region = world_ruins
@@ -179,7 +173,7 @@ agot_dragon.0003 = {
 				value = location
 			}
 		}
-		# If lair is STILL not defined it's for some reason in the north, so set it to dragonstone
+
 		if = {
 			limit = {
 				NOT = { exists = root.var:lair }
@@ -189,7 +183,7 @@ agot_dragon.0003 = {
 				value = title:c_dragonstone.title_province
 			}
 		}
-		# If it doesn't have a last visited location, this is now it's last visited location
+
 		if = {
 			limit = {
 				NOT = { exists = root.var:last_visited_location }
@@ -203,14 +197,14 @@ agot_dragon.0003 = {
 			save_scope_as = lair
 		}
 		random_list = {
-			85 = { # Dragon wants to explore
-				location.county = { # First try neighboring counties
+			85 = {
+				location.county = {
 					every_title_to_title_neighboring_and_across_water_county = {
 						limit = {
-							NOT = { scope:lair.county = this } # Don't go back to your lair
-							NOT = { scope:dragon.var:last_visited_location.county = this } # Don't go back to where you just were
+							NOT = { scope:lair.county = this }
+							NOT = { scope:dragon.var:last_visited_location.county = this }
 							title_province = {
-								NOR = { # Don't go north of the wall
+								NOR = {
 									geographical_region = world_westeros_the_wall_only
 									geographical_region = world_westeros_beyond_the_wall
 									geographical_region = world_ruins
@@ -220,14 +214,14 @@ agot_dragon.0003 = {
 						add_to_list = "possible_destinations"
 					}
 					if = {
-						limit = { NOT = { any_in_list = { list = "possible_destinations" count > 0 } } } # If there are no neighboring counties, try neighboring counties at the duchy level
+						limit = { NOT = { any_in_list = { list = "possible_destinations" count > 0 } } }
 						duchy = {
 							every_title_to_title_neighboring_and_across_water_county = {
 								limit = {
-									NOT = { scope:lair.county = this } # Don't go back to your lair
-									NOT = { scope:dragon.var:last_visited_location.county = this } # Don't go back to where you just were
+									NOT = { scope:lair.county = this }
+									NOT = { scope:dragon.var:last_visited_location.county = this }
 									title_province = {
-										NOR = { # Don't go north of the wall
+										NOR = {
 											geographical_region = world_westeros_the_wall_only
 											geographical_region = world_westeros_beyond_the_wall
 											geographical_region = world_ruins
@@ -238,14 +232,14 @@ agot_dragon.0003 = {
 							}
 						}
 					}
-					random_in_list = { # Pick a random destination - could add weights to this down the line
+					random_in_list = {
 						list = "possible_destinations"
 						save_scope_as = destination
 					}
-					if = { # If it can leave, go there
+					if = {
 						limit = { exists = scope:destination }
-						# Notifications
-						if = { # Send left lair if is leaving lair, or general leaving message if not
+
+						if = {
 							limit = { scope:dragon.location.county.holder = scope:lair.county.holder }
 							scope:dragon.location.county.holder = {
 								send_interface_message = {
@@ -255,7 +249,7 @@ agot_dragon.0003 = {
 									left_icon = scope:dragon
 								}
 							}
-							if = { # If the dragon is leaving a duchy and they've not already been notified, send a message to the duchy holder
+							if = {
 								limit = {
 									exists = scope:dragon.location.duchy.holder
 									NOT = { scope:dragon.location.duchy.holder = scope:dragon.location.county.holder }
@@ -279,10 +273,10 @@ agot_dragon.0003 = {
 									left_icon = scope:dragon
 								}
 							}
-							if = { # If the dragon is leaving a duchy and they've not already been notified, send a message to the duchy holder
+							if = {
 								limit = {
 									exists = scope:dragon.location.duchy.holder
-									NOT = { scope:dragon.location.duchy.holder = scope:dragon.location.county.holder } # If the dragon is leaving a duchy, send a message to the duchy holder
+									NOT = { scope:dragon.location.duchy.holder = scope:dragon.location.county.holder }
 								}
 								scope:dragon.location.duchy.holder = {
 									send_interface_message = {
@@ -294,7 +288,7 @@ agot_dragon.0003 = {
 								}
 							}
 						}
-						scope:destination.county.holder = { # Let the new county know the dragon is coming
+						scope:destination.county.holder = {
 							if = { limit = { NOT = { root.employer = this } }
 								add_courtier = scope:dragon
 							}
@@ -306,7 +300,7 @@ agot_dragon.0003 = {
 								left_icon = scope:dragon
 							}
 						}
-						if = { # If the dragon is arriving at duchy and they've not already been notified, send a message to the duchy holder
+						if = {
 							limit = {
 								exists = scope:destination.duchy.holder
 								NOT = { scope:destination.duchy.holder = scope:dragon.location.duchy.holder }
@@ -321,12 +315,12 @@ agot_dragon.0003 = {
 								}
 							}
 						}
-						scope:dragon = { # Set up a new event to move the dragon again soon
+						scope:dragon = {
 							trigger_event = {
 								id = agot_dragon.0003
-								days = { 14 62 } # Two weeks to two months
+								days = { 14 62 }
 							}
-							random_list = { # Might do something bad while here
+							random_list = {
 								5 = {
 									trigger_event = {
 										id = agot_filler_dragon.0095
@@ -337,9 +331,9 @@ agot_dragon.0003 = {
 							}
 						}
 					}
-					else = { # If it can't leave, go home
+					else = {
 						if = {
-							limit = { NOT = { scope:dragon.location.county.holder = scope:lair.county.holder } } # If it's not already home
+							limit = { NOT = { scope:dragon.location.county.holder = scope:lair.county.holder } }
 							scope:dragon.location.county.holder = {
 								send_interface_message = {
 									type = dragon_roaming_messages
@@ -362,10 +356,10 @@ agot_dragon.0003 = {
 								}
 							}
 						}
-						if = { # If the dragon is arriving at duchy and they've not already been notified, send a message to the duchy holder
+						if = {
 							limit = {
 								exists = scope:location.duchy.holder
-								NOT = { scope:location.duchy.holder = scope:lair.county.holder } # If the dragon is arriving in a duchy, send a message to the duchy holder
+								NOT = { scope:location.duchy.holder = scope:lair.county.holder }
 							}
 							scope:dragon.location.duchy.holder = {
 								send_interface_message = {
@@ -378,21 +372,21 @@ agot_dragon.0003 = {
 							}
 						}
 					}
-					# Remove variables in possible_destinations for next iteration
+
 					every_in_list = {
 						list = "possible_destinations"
 						remove_from_list = "possible_destinations"
 					}
 				}
-				# Dragon scope
+
 				set_variable = {
 					name = last_visited_location
-					value = scope:dragon.location # Set new last visited location
+					value = scope:dragon.location
 				}
 			}
-			15 = { # Dragon wants to go home
+			15 = {
 				if = {
-					limit = { NOT = { location = scope:lair } } # If they're already home no point in messaages
+					limit = { NOT = { location = scope:lair } }
 					location.county.holder = {
 						send_interface_message = {
 							type = dragon_roaming_messages
@@ -420,7 +414,7 @@ agot_dragon.0003 = {
 	}
 }
 
-# Executed! (Player by AI)
+
 agot_dragon.0004 = {
 	type = character_event
 	title = agot_dragon.0004.t
@@ -484,7 +478,7 @@ agot_dragon.0004 = {
 	}
 }
 
-# Executed!
+
 agot_dragon.0005 = {
 	type = character_event
 	title = agot_dragon.0004.t
@@ -523,7 +517,7 @@ agot_dragon.0005 = {
 	}
 }
 
-agot_dragon.0007 = { # Terror campaign
+agot_dragon.0007 = {
 	hidden = yes
 	immediate = {
 		if = {
@@ -538,12 +532,12 @@ agot_dragon.0007 = { # Terror campaign
 			scope:terror_dragonrider.location ?= {
 				if = {
 					limit = {
-						exists = county.holder.top_liege # Don't try to burn the sea
-						exists = root.top_liege # Don't freak out if you're not in a realm
-						county.holder.top_liege = { is_at_war_with = root.top_liege } # Burn enemy holdings
-						county_controller.top_liege = { is_at_war_with = root.top_liege } # Don't burn occupied holdings
+						exists = county.holder.top_liege
+						exists = root.top_liege
+						county.holder.top_liege = { is_at_war_with = root.top_liege }
+						county_controller.top_liege = { is_at_war_with = root.top_liege }
 					}
-					# We're now damaging an enemy, so trigger guilt event if relevant
+
 					scope:terror_dragonrider = {
 						if = {
 							limit = {
@@ -566,11 +560,11 @@ agot_dragon.0007 = { # Terror campaign
 							}
 						}
 					}
-					# Opinion effect
-					# Firstly, owner of county + liege
+
+
 					if = {
 						limit = {
-							county.holder = county.holder.top_liege # Is independent
+							county.holder = county.holder.top_liege
 						}
 						county.holder = {
 							add_opinion = {
@@ -581,7 +575,7 @@ agot_dragon.0007 = { # Terror campaign
 					}
 					else_if = {
 						limit = {
-							county.holder.liege = county.holder.top_liege # Has one direct liege
+							county.holder.liege = county.holder.top_liege
 						}
 						county.holder = {
 							add_opinion = {
@@ -598,7 +592,7 @@ agot_dragon.0007 = { # Terror campaign
 					}
 					else_if = {
 						limit = {
-							county.holder.liege.liege = county.holder.top_liege # Has two direct lieges
+							county.holder.liege.liege = county.holder.top_liege
 						}
 						county.holder = {
 							add_opinion = {
@@ -621,7 +615,7 @@ agot_dragon.0007 = { # Terror campaign
 					}
 					else_if = {
 						limit = {
-							county.holder.liege.liege.liege = county.holder.top_liege # Has three direct lieges
+							county.holder.liege.liege.liege = county.holder.top_liege
 						}
 						county.holder = {
 							add_opinion = {
@@ -648,7 +642,7 @@ agot_dragon.0007 = { # Terror campaign
 							}
 						}
 					}
-					else = { # has four direct lieges - thus is count and can't go lower
+					else = {
 						county.holder = {
 							add_opinion = {
 								target = scope:terror_dragonrider
@@ -680,7 +674,7 @@ agot_dragon.0007 = { # Terror campaign
 							}
 						}
 					}
-					# Have done province owner, now do baron owners
+
 					county = {
 						every_county_province = {
 							limit = {
@@ -700,7 +694,7 @@ agot_dragon.0007 = { # Terror campaign
 							}
 						}
 					}
-					# Now do everyone relevant to the rider if its in the same realm - foreign realms they don't care about (see: Daemon in the stepstones)
+
 					if = {
 						limit = {
 							OR = {
@@ -727,7 +721,7 @@ agot_dragon.0007 = { # Terror campaign
 							}
 						}
 						scope:terror_dragonrider = {
-							every_close_or_extended_family_member = { # Family doesn't respect it
+							every_close_or_extended_family_member = {
 								limit = {
 									NOT = { has_trait = callous }
 									NOT = { has_trait = sadistic }
@@ -738,7 +732,7 @@ agot_dragon.0007 = { # Terror campaign
 									modifier = ran_terror_campaign
 								}
 							}
-							every_close_or_extended_family_member = { # Stack again for honorable and compassionate
+							every_close_or_extended_family_member = {
 								limit = {
 									OR = {
 										has_trait = just
@@ -753,7 +747,7 @@ agot_dragon.0007 = { # Terror campaign
 									modifier = ran_terror_campaign
 								}
 							}
-							# The my court
+
 							every_courtier_or_guest = {
 								limit = {
 									NOT = { has_trait = callous }
@@ -765,7 +759,7 @@ agot_dragon.0007 = { # Terror campaign
 									modifier = ran_terror_campaign
 								}
 							}
-							# Then the realm
+
 							top_liege = {
 								every_vassal_or_below = {
 									limit = {
@@ -781,17 +775,17 @@ agot_dragon.0007 = { # Terror campaign
 							}
 						}
 					}
-					# Damage effect
+
 					county = {
 						agot_dragon_damage_county_effect = yes
 					}
 				}
 			}
-			# Give experience
+
 			var:current_rider ?= {
-				agot_add_dragon_training_xp = { VALUE = 1 } # 100 weeks of terror to max level - seems fair
+				agot_add_dragon_training_xp = { VALUE = 1 }
 			}
-			# If instructed, add instructor opinion
+
 			if = {
 				limit = {
 					scope:terror_dragonrider = { has_character_flag = instructed_terror_campaign }
@@ -799,15 +793,15 @@ agot_dragon.0007 = { # Terror campaign
 				scope:terror_dragonrider.location = {
 					if = {
 						limit = {
-							exists = county.holder.top_liege # Don't try to burn the sea
-							county.holder.top_liege = { is_at_war_with = root.top_liege } # Burn enemy holdings
-							county_controller.top_liege = { is_at_war_with = root.top_liege } # Don't burn occupied holdings
+							exists = county.holder.top_liege
+							county.holder.top_liege = { is_at_war_with = root.top_liege }
+							county_controller.top_liege = { is_at_war_with = root.top_liege }
 						}
-						# Opinion effect
-						# Firstly, owner of county + liege
+
+
 						if = {
 							limit = {
-								county.holder = county.holder.top_liege # Is independent
+								county.holder = county.holder.top_liege
 							}
 							county.holder = {
 								add_opinion = {
@@ -818,7 +812,7 @@ agot_dragon.0007 = { # Terror campaign
 						}
 						else_if = {
 							limit = {
-								county.holder.liege = county.holder.top_liege # Has one direct liege
+								county.holder.liege = county.holder.top_liege
 							}
 							county.holder = {
 								add_opinion = {
@@ -835,7 +829,7 @@ agot_dragon.0007 = { # Terror campaign
 						}
 						else_if = {
 							limit = {
-								county.holder.liege.liege = county.holder.top_liege # Has two direct lieges
+								county.holder.liege.liege = county.holder.top_liege
 							}
 							county.holder = {
 								add_opinion = {
@@ -856,7 +850,7 @@ agot_dragon.0007 = { # Terror campaign
 								}
 							}
 						}
-						else = { # has three direct lieges - thus is count and can't go lower
+						else = {
 							county.holder = {
 								add_opinion = {
 									target = scope:terror_dragonrider.var:terror_campaign_instructor
@@ -882,7 +876,7 @@ agot_dragon.0007 = { # Terror campaign
 								}
 							}
 						}
-						# Have done province owner, now do baron owners
+
 						county = {
 							every_county_province = {
 								limit = {
@@ -902,11 +896,11 @@ agot_dragon.0007 = { # Terror campaign
 								}
 							}
 						}
-						# Now do everyone relevant to the rider if its in the same realm - foreign realms they don't care about (see: Daemon in the stepstones)
+
 						if = {
 							limit = { county = { target_is_de_jure_liege_or_above = scope:terror_dragonrider.top_liege.primary_title } }
 							scope:terror_dragonrider = {
-								every_close_or_extended_family_member = { # Family doesn't respect it
+								every_close_or_extended_family_member = {
 									limit = {
 										NOT = { has_trait = callous }
 										NOT = { has_trait = sadistic }
@@ -917,7 +911,7 @@ agot_dragon.0007 = { # Terror campaign
 										modifier = ran_terror_campaign
 									}
 								}
-								every_close_or_extended_family_member = { # Stack again for honorable and compassionate
+								every_close_or_extended_family_member = {
 									limit = {
 										OR = {
 											has_trait = just
@@ -932,7 +926,7 @@ agot_dragon.0007 = { # Terror campaign
 										modifier = ran_terror_campaign
 									}
 								}
-								# The my court
+
 								every_courtier_or_guest = {
 									limit = {
 										NOT = { has_trait = callous }
@@ -944,7 +938,7 @@ agot_dragon.0007 = { # Terror campaign
 										modifier = ran_terror_campaign
 									}
 								}
-								# Then the realm
+
 								top_liege = {
 									every_vassal_or_below = {
 										limit = {
@@ -963,19 +957,19 @@ agot_dragon.0007 = { # Terror campaign
 					}
 				}
 			}
-			# Tick again
-			trigger_event = { # Weekly tick
+
+			trigger_event = {
 				id = agot_dragon.0007
 				days = 7
 			}
 		}
-		else = { # Terror campaign over
+		else = {
 			remove_character_flag = part_of_terror_campaign
 		}
 	}
 }
 
-agot_dragon.0008 = { # Asked to take up terror campaign event
+agot_dragon.0008 = {
 	type = character_event
 	title = agot_dragon.0008.t
 	desc = {
@@ -1005,7 +999,7 @@ agot_dragon.0008 = { # Asked to take up terror campaign event
 		character = scope:actor
 	}
 
-	option = { # Yes
+	option = {
 		name = agot_dragon.0008.a
 		flavor = agot_dragon.0008.a.f
 		custom_tooltip = {
@@ -1021,7 +1015,7 @@ agot_dragon.0008 = { # Asked to take up terror campaign event
 					var:current_dragon = { NOT = { has_character_flag = part_of_terror_campaign } }
 				}
 				var:current_dragon = {
-					add_character_flag = part_of_terror_campaign # To prevent stacking by re-taking decision
+					add_character_flag = part_of_terror_campaign
 					trigger_event = agot_dragon.0007
 				}
 			}
@@ -1049,7 +1043,7 @@ agot_dragon.0008 = { # Asked to take up terror campaign event
 		}
 	}
 
-	option = { # No
+	option = {
 		name = agot_dragon.0008.b
 		flavor = agot_dragon.0008.b.f
 		add_character_flag = {
@@ -1079,7 +1073,7 @@ agot_dragon.0008 = { # Asked to take up terror campaign event
 	}
 }
 
-agot_dragon.0009 = { # Asked to stop terror campaign event
+agot_dragon.0009 = {
 	type = character_event
 	title = agot_dragon.0009.t
 	desc = {
@@ -1109,7 +1103,7 @@ agot_dragon.0009 = { # Asked to stop terror campaign event
 		character = scope:actor
 	}
 
-	option = { # Yes
+	option = {
 		name = agot_dragon.0009.a
 		custom_tooltip = {
 			text = stop_terror_campaign_tooltip
@@ -1138,7 +1132,7 @@ agot_dragon.0009 = { # Asked to stop terror campaign event
 		}
 	}
 
-	option = { # No
+	option = {
 		name = agot_dragon.0009.b
 		flavor = agot_dragon.0009.b.f
 		scope:actor = {
@@ -1169,7 +1163,7 @@ agot_dragon.0009 = { # Asked to stop terror campaign event
 	}
 }
 
-agot_dragon.0010 = { # Ride Your Dragon (Normal Outcome)
+agot_dragon.0010 = {
 	type = character_event
 	window = agot_dragon_character_event
 	title = agot_dragon.0010.t
@@ -1352,7 +1346,7 @@ agot_dragon.0010 = { # Ride Your Dragon (Normal Outcome)
 			}
 			outfit_tags = { dragonrider dynamic_camera_zoom_0.4 }
 		}
-		#End Dynamic Camera Zoom
+
 	}
 
 	immediate = {
@@ -1364,7 +1358,7 @@ agot_dragon.0010 = { # Ride Your Dragon (Normal Outcome)
 		}
 	}
 
-	option = { # Just relax
+	option = {
 		name = {
 			trigger = {
 				NOT = { has_trait = arrogant }
@@ -1402,7 +1396,7 @@ agot_dragon.0010 = { # Ride Your Dragon (Normal Outcome)
 		}
 	}
 
-	option = { # Spend time with dragon
+	option = {
 		name = agot_dragon.0010.b
 		flavor = agot_dragon.0010.b.f
 		add_stress = minor_stress_loss
@@ -1416,7 +1410,7 @@ agot_dragon.0010 = { # Ride Your Dragon (Normal Outcome)
 		}
 	}
 
-	option = { # Practice combat
+	option = {
 		name = agot_dragon.0010.c
 		flavor = agot_dragon.0010.c.f
 		trigger = {
@@ -1458,7 +1452,7 @@ agot_dragon.0010 = { # Ride Your Dragon (Normal Outcome)
 	}
 }
 
-agot_dragon.0011 = { # Ride dragon decision - drunkard embarrassed outcome
+agot_dragon.0011 = {
 	type = character_event
 	window = agot_dragon_character_event
 	title = agot_dragon.0011.t
@@ -1473,7 +1467,7 @@ agot_dragon.0011 = { # Ride dragon decision - drunkard embarrassed outcome
 		animation = dragon_main
 		camera = camera_dragon_event_standing
 
-		#Add this so dragon fits within event window
+
 		outfit_tags = { linear_camera_zoom }
 	}
 
@@ -1487,7 +1481,7 @@ agot_dragon.0011 = { # Ride dragon decision - drunkard embarrassed outcome
 	}
 }
 
-agot_dragon.0012 = { # Ride dragon decision - drunkard fall outcome
+agot_dragon.0012 = {
 	type = character_event
 	window = agot_dragon_character_event
 	title = agot_dragon.0012.t
@@ -1572,7 +1566,7 @@ agot_dragon.0012 = { # Ride dragon decision - drunkard fall outcome
 			}
 			outfit_tags = { dragonrider dynamic_camera_zoom_0.4 }
 		}
-		#End Dynamic Camera Zoom
+
 	}
 
 	immediate = {
@@ -1589,7 +1583,7 @@ agot_dragon.0012 = { # Ride dragon decision - drunkard fall outcome
 	}
 }
 
-agot_dragon.0013 = { # Regrets terror campaign
+agot_dragon.0013 = {
 	type = character_event
 	title = agot_dragon.0013.t
 	desc = agot_dragon.0013.desc
@@ -1622,11 +1616,11 @@ agot_dragon.0013 = { # Regrets terror campaign
 			has_trait = rakish
 		}
 		remove_short_term_gold = minor_gold_value
-		# Note - this code stolen on 6/11/23 from vanilla rakish_brothel_night_effect without stress loss line
-		# Warn the character about possible negative consequences.
+
+
 		custom_tooltip = stress_threshold.1011.rakish.tt
 
-		# Negative consequences of the night.
+
 		random_list = {
 			50 = {
 				trigger = {
@@ -1649,7 +1643,7 @@ agot_dragon.0013 = { # Regrets terror campaign
 			}
 		}
 		hidden_effect = {
-			#Adultery suspicion
+
 			random = {
 				chance = 5
 				random_spouse = {
@@ -1659,10 +1653,10 @@ agot_dragon.0013 = { # Regrets terror campaign
 				}
 			}
 
-			# Possible STD transmission
+
 			random_list = {
 				75 = {
-					#Nothing
+
 				}
 				20 = {
 					contract_disease_notify_effect = { DISEASE = lovers_pox }
@@ -1672,7 +1666,7 @@ agot_dragon.0013 = { # Regrets terror campaign
 				}
 			}
 
-			#Possibility to start peasant story cycle
+
 			random = {
 				chance = 5
 				if = {
@@ -1711,7 +1705,7 @@ agot_dragon.0013 = { # Regrets terror campaign
 						name = story_peasant_affair_target
 						value = scope:beautiful_peasant
 					}
-					set_variable = { #To save how you met
+					set_variable = {
 						name = rakish_night
 						value = 0
 					}
@@ -1719,7 +1713,7 @@ agot_dragon.0013 = { # Regrets terror campaign
 				}
 			}
 		}
-		# End of stolen code
+
 		add_stress = medium_stress_gain
 	}
 
@@ -1826,7 +1820,7 @@ agot_dragon.0013 = { # Regrets terror campaign
 	}
 }
 
-agot_dragon.0014 = { # Dragon subjugation surrender option event
+agot_dragon.0014 = {
 	type = character_event
 	title = agot_dragon.0014.t
 	desc = agot_dragon.0014.desc
@@ -1843,7 +1837,7 @@ agot_dragon.0014 = { # Dragon subjugation surrender option event
 		animation = war_attacker
 	}
 
-	immediate = { # Scoping needed for script values from interaction base
+	immediate = {
 		scope:attacker = {
 			save_scope_as = actor
 		}
@@ -1852,7 +1846,7 @@ agot_dragon.0014 = { # Dragon subjugation surrender option event
 		}
 	}
 
-	option = { # Yes I surrender
+	option = {
 		name = agot_dragon.0014.a
 		custom_tooltip = agot_dragon.0014.a.tt
 		ai_chance = {
@@ -1860,13 +1854,13 @@ agot_dragon.0014 = { # Dragon subjugation surrender option event
 			ai_value_modifier = {
 				ai_boldness = -0.5
 			}
-			modifier = { # Is the Rightful Liege of recipient
+			modifier = {
 				trigger = {
 					scope:attacker = { is_rightful_liege_of = scope:defender }
 				}
 				add = 20
 			}
-			modifier = { #Is not the Rightful Liege of recipient
+			modifier = {
 				trigger = {
 					NOT = {
 						scope:attacker = { is_rightful_liege_of = scope:defender }
@@ -1874,7 +1868,7 @@ agot_dragon.0014 = { # Dragon subjugation surrender option event
 				}
 				add = -20
 			}
-			modifier = { #Ageism modifier vs kids.
+			modifier = {
 				trigger = {
 					scope:attacker = {
 						age < 12
@@ -1885,7 +1879,7 @@ agot_dragon.0014 = { # Dragon subjugation surrender option event
 				}
 				add = -5
 			}
-			modifier = { #Illegitimacy modifier.
+			modifier = {
 				trigger = {
 					OR = {
 						AND = {
@@ -1920,7 +1914,7 @@ agot_dragon.0014 = { # Dragon subjugation surrender option event
 					}
 				}
 			}
-			opinion_modifier = { #Compare Opinion modifier - Clans care more about opinion
+			opinion_modifier = {
 				trigger = {
 					scope:attacker = {
 						government_has_flag = government_is_clan
@@ -1933,7 +1927,7 @@ agot_dragon.0014 = { # Dragon subjugation surrender option event
 				opinion_target = scope:attacker
 				multiplier = 0.7
 			}
-			opinion_modifier = { #Compare Opinion modifier.
+			opinion_modifier = {
 				trigger = {
 					OR = {
 						scope:attacker = {
@@ -1948,7 +1942,7 @@ agot_dragon.0014 = { # Dragon subjugation surrender option event
 				opinion_target = scope:attacker
 				multiplier = 0.35
 			}
-			modifier = { # Cultural Acceptance
+			modifier = {
 				add = offer_vassalage_acceptance_value
 				trigger = {
 					scope:attacker = {
@@ -1959,10 +1953,10 @@ agot_dragon.0014 = { # Dragon subjugation surrender option event
 					}
 				}
 			}
-			modifier = { #Different faith, no pluralism.
+			modifier = {
 				trigger = {
 					scope:defender = {
-						NOR = { #Of two different faiths AND the potential vassal's faith is not pluralistic.
+						NOR = {
 							faith = scope:attacker.faith
 							faith = { has_doctrine = doctrine_pluralism_pluralistic }
 						}
@@ -1994,7 +1988,7 @@ agot_dragon.0014 = { # Dragon subjugation surrender option event
 					}
 				}
 			}
-			modifier = { #Different faith, pluralism.
+			modifier = {
 				trigger = {
 					scope:defender = {
 						NOT = {
@@ -2032,7 +2026,7 @@ agot_dragon.0014 = { # Dragon subjugation surrender option event
 					}
 				}
 			}
-			modifier = { #Different faith, both have pluralism.
+			modifier = {
 				trigger = {
 					scope:defender = {
 						NOT = {
@@ -2068,7 +2062,7 @@ agot_dragon.0014 = { # Dragon subjugation surrender option event
 					}
 				}
 			}
-			modifier = { #Greater title tier
+			modifier = {
 				trigger = {
 					scope:defender = { highest_held_title_tier > scope:attacker.highest_held_title_tier }
 				}
@@ -2127,7 +2121,7 @@ agot_dragon.0014 = { # Dragon subjugation surrender option event
 		}
 	}
 
-	option = { # No I will fight
+	option = {
 		name = {
 			trigger = {
 				NOT = {
@@ -2154,14 +2148,14 @@ agot_dragon.0014 = { # Dragon subjugation surrender option event
 			modifier = {
 				factor = 2
 				OR = {
-					is_current_dragonrider = yes # I am a dragonrider
-					any_knight = { # I have a dragon
+					is_current_dragonrider = yes
+					any_knight = {
 						has_trait = dragon
 					}
-					any_knight = { # I have a dragonrider
+					any_knight = {
 						is_current_dragonrider = yes
 					}
-					any_vassal = { # Or I could get one
+					any_vassal = {
 						is_current_dragonrider = yes
 					}
 				}
@@ -2177,7 +2171,7 @@ agot_dragon.0014 = { # Dragon subjugation surrender option event
 	}
 }
 
-agot_dragon.0015 = { # Dragon subjugation surrender outcome event
+agot_dragon.0015 = {
 	type = letter_event
 	opening = {
 		desc = agot_dragon.0015.opening
@@ -2209,27 +2203,27 @@ agot_dragon.0015 = { # Dragon subjugation surrender outcome event
 	}
 }
 
-agot_dragon.0016 = { # Generic dragon gender reveal
+agot_dragon.0016 = {
 	type = character_event
 	window = agot_dragon_character_event
 	title = agot_dragon.0016.t
 	desc = {
 		desc = agot_dragon.0016.desc.start
 		first_valid = {
-			triggered_desc = { # My dragon
+			triggered_desc = {
 				trigger = {
 					exists = var:current_dragon
 					var:current_dragon = scope:dragon
 				}
 				desc = agot_dragon.0016.desc.my_dragon
 			}
-			triggered_desc = { # Not my dragon
+			triggered_desc = {
 				trigger = {
 					exists = scope:dragon.var:current_rider
 				}
 				desc = agot_dragon.0016.desc.others_dragon
 			}
-			triggered_desc = { # My owned dragon but not tamed
+			triggered_desc = {
 				trigger = {
 					exists = scope:revealing
 					scope:dragon = {
@@ -2239,7 +2233,7 @@ agot_dragon.0016 = { # Generic dragon gender reveal
 				}
 				desc = agot_dragon.0016.desc.owned_dragon_revealing
 			}
-			triggered_desc = { # My owned dragon but not tamed
+			triggered_desc = {
 				trigger = {
 					scope:dragon = {
 						has_character_flag = owned_dragon
@@ -2248,7 +2242,7 @@ agot_dragon.0016 = { # Generic dragon gender reveal
 				}
 				desc = agot_dragon.0016.desc.owned_dragon
 			}
-			triggered_desc = { # Wild dragon
+			triggered_desc = {
 				trigger = {
 					scope:dragon = {
 						NOT = { has_character_flag = owned_dragon }
@@ -2335,7 +2329,7 @@ agot_dragon.0016 = { # Generic dragon gender reveal
 	}
 }
 
-# Dragons have mates notification
+
 agot_dragon.0019 = {
 	type = character_event
 	window = agot_dragon_character_event
@@ -2397,7 +2391,7 @@ agot_dragon.0019 = {
 	}
 }
 
-agot_dragon.0020 = { # Tamed dragon has gone wild
+agot_dragon.0020 = {
 	type = character_event
 	title = agot_dragon.0020.t
 	desc = {
@@ -2434,7 +2428,7 @@ agot_dragon.0020 = { # Tamed dragon has gone wild
 	}
 }
 
-agot_dragon.0021 = { # Killing myself with dragon - success
+agot_dragon.0021 = {
 	type = character_event
 	title = health.6001.t
 	desc = agot_dragon.0021.desc
@@ -2463,7 +2457,7 @@ agot_dragon.0021 = { # Killing myself with dragon - success
 	}
 }
 
-agot_dragon.0022 = { # Killing myself with dragon - failure
+agot_dragon.0022 = {
 	type = character_event
 	title = health.6001.t
 	desc = {
@@ -2495,7 +2489,7 @@ agot_dragon.0022 = { # Killing myself with dragon - failure
 				limit = {
 					exists = scope:friendly_person
 				}
-				random = { #Check up event
+				random = {
 					chance = 50
 					trigger_event = {
 						id = health.6100
@@ -2507,7 +2501,7 @@ agot_dragon.0022 = { # Killing myself with dragon - failure
 	}
 }
 
-agot_dragon.0023 = { # I get chased by a giant cannibal dragon!
+agot_dragon.0023 = {
 	type = character_event
 	title = agot_dragon.0023.t
 	window = agot_dragon_character_event
@@ -2612,14 +2606,14 @@ agot_dragon.0023 = { # I get chased by a giant cannibal dragon!
 			}
 			outfit_tags = { dragonrider dynamic_camera_zoom_0.4 }
 		}
-		#End Dynamic Camera Zoom
+
 	}
 
 	left_portrait = {
 		character = scope:cannibal_dragon
 		camera = camera_dragon_divebombing_distant_facing_camera
 		animation = dragon_main
-		#outfit_tags = { dragonrider }
+
 	}
 
 	immediate = {
@@ -2761,7 +2755,7 @@ agot_dragon.0023 = { # I get chased by a giant cannibal dragon!
 	}
 }
 
-agot_dragon.0024 = { # Ride Your Dragon (Lifestyle Focused)
+agot_dragon.0024 = {
 	type = character_event
 	window = agot_dragon_character_event
 	title = agot_dragon.0024.t
@@ -2871,7 +2865,7 @@ agot_dragon.0024 = { # Ride Your Dragon (Lifestyle Focused)
 			}
 			outfit_tags = { dragonrider dynamic_camera_zoom_0.4 }
 		}
-		#End Dynamic Camera Zoom
+
 	}
 
 	immediate = {
@@ -2882,7 +2876,7 @@ agot_dragon.0024 = { # Ride Your Dragon (Lifestyle Focused)
 		}
 	}
 
-	option = { # Cool
+	option = {
 		name = {
 			trigger = { has_lifestyle = martial_lifestyle }
 			text = agot_dragon.0024.m
@@ -2947,9 +2941,9 @@ agot_dragon.0024 = { # Ride Your Dragon (Lifestyle Focused)
 	}
 }
 
-# Putting this here to avoid conflicts with others
-agot_dragon.0030 = { # Child reveals bonded dragon's gender
-	# It's pretty much the same as 16, but with more dedicated loc to the child
+
+agot_dragon.0030 = {
+
 	type = character_event
 	window = agot_dragon_character_event
 	title = agot_dragon.0030.t
@@ -3022,7 +3016,7 @@ agot_dragon.0030 = { # Child reveals bonded dragon's gender
 	}
 }
 
-# Child reveals dragon flame color
+
 agot_dragon.0040 = {
 	type = character_event
 	window = agot_dragon_character_event
@@ -3067,7 +3061,7 @@ agot_dragon.0040 = {
 		NOT = { scope:dragon = { has_character_flag = in_dragonpit } }
 	}
 	immediate = {
-		scope:dragon = { add_character_flag = { flag = agot_dragon.0040 years = 5 } } # 5 years should be more than long enough
+		scope:dragon = { add_character_flag = { flag = agot_dragon.0040 years = 5 } }
 		scope:dragon = {
 			agot_clear_dragon_animation_flags = yes
 			agot_set_dragon_animation_flag_effect = { FLAG = dragon_baby_fire RIDING_DRAGON = no }
@@ -3089,7 +3083,7 @@ agot_dragon.0040 = {
 		name = agot_dragon.0040.b
 		agot_change_dragonpit_status_ai = { OWNER = root DRAGON_REC = scope:dragon }
 		if = {
-			limit = { # ai has no choice, should reduce
+			limit = {
 				is_ai = yes
 			}
 			reverse_add_opinion = {
@@ -3111,24 +3105,17 @@ agot_dragon.0040 = {
 	}
 
 	after = {
-		scope:dragon = { agot_clear_dragon_animation_flags = yes } # drop the hatchling fire-breath flag set in immediate
+		scope:dragon = { agot_clear_dragon_animation_flags = yes }
 	}
 }
 
-# # Dragon breathes fire for the first time, color is revealed
-# agot_dragon.0041 = {
-
-# }
-###############################
-# Drink Wildfire
-###############################
 
 agot_dragon.0101 = {
 	type = character_event
 	title = agot_dragon.0101.t
 	desc = {
 		first_valid = {
-			triggered_desc = { # Is Aerion Brightflame dead?
+			triggered_desc = {
 				trigger = {
 					exists = character:Targaryen_119
 					character:Targaryen_119 = {
@@ -3138,7 +3125,7 @@ agot_dragon.0101 = {
 				}
 				desc = agot_dragon.0101.aerion.desc
 			}
-			triggered_desc = { #
+			triggered_desc = {
 				trigger = {
 					always = yes
 				}
@@ -3191,15 +3178,15 @@ agot_dragon.0101 = {
 		}
 	}
 
-	option = { # Drink the wildfire
+	option = {
 		name = agot_dragon.0101.a
 
 		hidden_effect = {
 			random_list = {
-				97 = { # Yeah, you die
+				97 = {
 					drank_wildfire_died_effect = yes
 				}
-				2 = { # My tummy hurt
+				2 = {
 					drank_wildfire_lived_effect = yes
 					add_character_modifier = {
 						modifier = agot_drank_wildfire_health
@@ -3222,16 +3209,13 @@ agot_dragon.0101 = {
 		}
 
 	}
-	option = { # Reconsider
+	option = {
 		name = agot_dragon.0101.b
 	}
 }
 
-#########################
-# Dragon In Territory	#
-#########################
 
-agot_dragon.0200 = { # Opener for dealing with dragon in territory
+agot_dragon.0200 = {
 	type = character_event
 	title = agot_dragon.0200.t
 	desc = agot_dragon.0200.desc
@@ -3349,7 +3333,7 @@ agot_dragon.0200 = { # Opener for dealing with dragon in territory
 		}
 	}
 
-	option = { # I will deal with it myself (brave)
+	option = {
 		trigger = { has_trait = brave }
 		name = agot_dragon.0200.a
 		save_scope_as = dragon_fighter
@@ -3373,7 +3357,7 @@ agot_dragon.0200 = { # Opener for dealing with dragon in territory
 		add_prestige = major_prestige_gain
 	}
 
-	option = { # Send out a call for killers
+	option = {
 		trigger = {
 			NOT = { has_character_flag = rejected_dragon_mercs }
 			short_term_gold >= medium_gold_value
@@ -3385,7 +3369,7 @@ agot_dragon.0200 = { # Opener for dealing with dragon in territory
 		}
 	}
 
-	option = { # Send Master at Arms to deal with it
+	option = {
 		trigger = {
 			exists = scope:court_combatant
 		}
@@ -3398,7 +3382,7 @@ agot_dragon.0200 = { # Opener for dealing with dragon in territory
 		}
 	}
 
-	option = { # I will deal with it myself (not brave)
+	option = {
 		trigger = {
 			NOT = {
 				has_trait = brave
@@ -3416,7 +3400,7 @@ agot_dragon.0200 = { # Opener for dealing with dragon in territory
 		}
 	}
 
-	option = { # Leave it be
+	option = {
 		name = agot_dragon.0200.e
 		if = {
 			limit = { has_trait = brave }
@@ -3451,8 +3435,7 @@ agot_dragon.0200 = { # Opener for dealing with dragon in territory
 	}
 }
 
-# Call for mercineries or pick a courtier to deal with the dragon
-# Not available for ai
+
 agot_dragon.0201 = {
 	type = character_event
 	title = agot_dragon.0201.t
@@ -3577,7 +3560,7 @@ agot_dragon.0201 = {
 		}
 	}
 
-	option = { # Send a trained killer
+	option = {
 		name = agot_dragon.0201.a
 		pay_short_term_gold = {
 			target = scope:candidate_merc
@@ -3588,7 +3571,7 @@ agot_dragon.0201 = {
 		}
 	}
 
-	option = { # Send a knight
+	option = {
 		name = agot_dragon.0201.b
 		pay_short_term_gold = {
 			target = scope:candidate_knight
@@ -3599,14 +3582,14 @@ agot_dragon.0201 = {
 		}
 	}
 
-	option = { # Send a personal knight
+	option = {
 		name = agot_dragon.0201.personal_knight
 		scope:candidate_personal_knight = {
 			save_scope_as = dragon_fighter
 		}
 	}
 
-	option = { # Your Child?
+	option = {
 		trigger = {
 			exists = scope:candidate_child
 		}
@@ -3617,7 +3600,7 @@ agot_dragon.0201 = {
 		}
 	}
 
-	option = { # Too expensive
+	option = {
 		name = agot_dragon.0201.d
 
 		add_character_flag = {
@@ -3627,7 +3610,7 @@ agot_dragon.0201 = {
 		trigger_event = agot_dragon.0200
 	}
 
-	option = { # On second thought
+	option = {
 		name = agot_dragon.0201.e
 	}
 
@@ -3699,7 +3682,7 @@ agot_dragon.0201 = {
 	}
 }
 
-# The dragon has been slain
+
 agot_dragon.0202 = {
 	type = character_event
 	title = agot_dragon.0202.t
@@ -3731,7 +3714,7 @@ agot_dragon.0202 = {
 	}
 }
 
-# The dragon has slain your knight
+
 agot_dragon.0203 = {
 	type = character_event
 	title = agot_dragon.0203.t
@@ -3810,12 +3793,12 @@ scripted_trigger valid_dragonseed_trigger = {
 	NOT = { has_trait_with_flag = can_not_bond_dragon }
 }
 
-#Dragonseed start
+
 agot_dragon.1000 = {
 	hidden = yes
 
 	immediate = {
-		#spawn characters
+
 		create_character = {
 			template = agot_local_dragonseed_template
 			location = root.capital_province
@@ -3846,7 +3829,7 @@ agot_dragon.1000 = {
 			}
 			scope:dragonseed = { add_to_list = final_dragonseeds }
 		}
-		# Easter Egg Dragonseeds.. slot in more than one easter egg character template when they exist, ideally in a random_list within this block.
+
 		random = {
 			chance = 10
 			if = {
@@ -3874,7 +3857,7 @@ agot_dragon.1000 = {
 			add_to_list = potential_dragonseeds
 		}
 
-		# If there is a false dragonseed, add them and keep them
+
 		if = {
 			limit = {
 				var:false_seed ?= {
@@ -4069,10 +4052,10 @@ agot_dragon.1002 = {
 						}
 					}
 				}
-				trigger_event = agot_dragon.1004 # Someone gets a dragon
+				trigger_event = agot_dragon.1004
 			}
 			else = {
-				trigger_event = agot_dragon.1008 # The blower just dies horrendously
+				trigger_event = agot_dragon.1008
 			}
 		}
 		else = {
@@ -4084,7 +4067,7 @@ agot_dragon.1002 = {
 					list = possible_dragons
 					limit = {
 						NOR = {
-							has_variable = current_rider # No rider, no bonder
+							has_variable = current_rider
 							any_relation = {
 								type = agot_dragon
 							}
@@ -4173,7 +4156,7 @@ agot_dragon.1003 = {
 		animation = dragon_main
 		camera = camera_dragon_event_standing
 
-		#Add this so dragon fits within event window
+
 		outfit_tags = { linear_camera_zoom }
 	}
 
@@ -4489,7 +4472,7 @@ agot_dragon.1003 = {
 	}
 }
 
-agot_dragon.1004 = { # Someone has blown the horn and succeeded
+agot_dragon.1004 = {
 	type = character_event
 	title = agot_dragon.1004.t
 	desc = {
@@ -4551,7 +4534,7 @@ agot_dragon.1004 = { # Someone has blown the horn and succeeded
 			}
 		}
 
-		random_in_list = { # First set a random dragon to be bound
+		random_in_list = {
 			list = possible_dragons
 			limit = {
 				NOR = {
@@ -4578,9 +4561,9 @@ agot_dragon.1004 = { # Someone has blown the horn and succeeded
 				dragon_size >= dragon_taming_minimum_size
 				NOT = { is_in_list = bound_dragons }
 			}
-			# Low possibility of more than one being tamed
+
 			if = {
-				limit = { # Always at least one
+				limit = {
 					any_in_list = {
 						list = bound_dragons
 						count = 1
@@ -4600,7 +4583,7 @@ agot_dragon.1004 = { # Someone has blown the horn and succeeded
 			}
 		}
 
-		# Use bound dragons from here on
+
 		every_in_list = {
 			list = bound_dragons
 
@@ -4615,15 +4598,8 @@ agot_dragon.1004 = { # Someone has blown the horn and succeeded
 						DRAGONPIT_COUNTY = scope:freed_dragon.location
 					}
 				}
-				# if = {
-				# 	limit = {
-				# 		exists = scope:freed_dragon.var:pitted_dragon_location
-				# 	}
-				# 	agot_remove_from_dragonpit_no_event = {
-				# 		DRAGON = scope:freed_dragon
-				# 		DRAGONPIT_COUNTY = scope:freed_dragon.var:pitted_dragon_location
-				# 	}
-				# }
+
+
 				agot_free_dragon = yes
 			}
 			agot_set_as_owned_dragon = {
@@ -4737,7 +4713,7 @@ agot_dragon.1004 = { # Someone has blown the horn and succeeded
 	}
 }
 
-agot_dragon.1005 = { # Dragons from false seed event arrive
+agot_dragon.1005 = {
 	type = character_event
 	title = agot_dragon.1005.t
 	theme = dragon
@@ -4897,7 +4873,7 @@ agot_dragon.1005 = { # Dragons from false seed event arrive
 			text = agot_dragon.1005.b
 		}
 		name = {
-			trigger = { # Then there's one dragon here
+			trigger = {
 				NOT = { exists = scope:dragon_two }
 			}
 			text = agot_dragon.1005.c
@@ -4997,7 +4973,7 @@ agot_dragon.1005 = { # Dragons from false seed event arrive
 
 	option = {
 		name = {
-			trigger = { # Should never happen unless they tame a dragon in 30 days
+			trigger = {
 				has_trait = dragonrider
 				any_held_title = {
 					agot_title_is_an_active_dragonpit = yes
@@ -5058,7 +5034,7 @@ agot_dragon.1005 = { # Dragons from false seed event arrive
 	}
 }
 
-agot_dragon.1006 = { # Someone else used false seed and you were the true binder
+agot_dragon.1006 = {
 	type = character_event
 	title = agot_dragon.1006.t
 	theme = dragon
@@ -5230,7 +5206,7 @@ agot_dragon.1006 = { # Someone else used false seed and you were the true binder
 			text = agot_dragon.1006.b
 		}
 		name = {
-			trigger = { # Then there's one dragon here
+			trigger = {
 				NOT = { exists = scope:dragon_two }
 			}
 			text = agot_dragon.1006.c
@@ -5330,7 +5306,7 @@ agot_dragon.1006 = { # Someone else used false seed and you were the true binder
 
 	option = {
 		name = {
-			trigger = { # Should never happen unless they tame a dragon in 30 days
+			trigger = {
 				has_trait = dragonrider
 				any_held_title = {
 					agot_title_is_an_active_dragonpit = yes
@@ -5392,7 +5368,7 @@ agot_dragon.1006 = { # Someone else used false seed and you were the true binder
 	}
 }
 
-agot_dragon.1007 = { # Falseseed: The horn gave dragons to someone else, you're angy
+agot_dragon.1007 = {
 	type = character_event
 	title = agot_dragon.1007.t
 	theme = dragon
@@ -5432,7 +5408,7 @@ agot_dragon.1007 = { # Falseseed: The horn gave dragons to someone else, you're 
 	}
 }
 
-agot_dragon.1008 = { # False seed blew the horn and it failed
+agot_dragon.1008 = {
 	type = character_event
 	title = agot_dragon.1008.t
 	theme = dragon
@@ -5457,7 +5433,7 @@ agot_dragon.1008 = { # False seed blew the horn and it failed
 
 	immediate = {
 
-		# Dragon horn blower dies
+
 		scope:dragon_horn = {
 			set_owner = {
 				target = root
@@ -5504,7 +5480,7 @@ agot_dragon.1008 = { # False seed blew the horn and it failed
 
 	option = {
 		name = agot_dragon.1008.a
-		trigger_event = agot_dragon.1002 # The false seed is dead, we can safely use 1002
+		trigger_event = agot_dragon.1002
 		scope:false_seed_sower = {
 			trigger_event = agot_dragon.1009
 		}
@@ -5537,7 +5513,7 @@ agot_dragon.1008 = { # False seed blew the horn and it failed
 	}
 }
 
-agot_dragon.1009 = { # Your false seed failed
+agot_dragon.1009 = {
 	type = character_event
 	title = agot_dragon.1009.t
 	theme = dragon
@@ -5620,7 +5596,7 @@ agot_dragon.1010 = {
 
 	}
 
-	# Legitimize
+
 	option = {
 		name = agot_dragon.1010.a
 		legitimize_bastard_interaction_opinions_effect = {
@@ -5641,7 +5617,7 @@ agot_dragon.1010 = {
 		}
 	}
 
-	# Grant Bastard Branch
+
 	option = {
 		name = agot_dragon.1010.b
 		custom_tooltip = agot_dragon.1010.b_tt
@@ -5659,7 +5635,7 @@ agot_dragon.1010 = {
 		}
 	}
 
-	# Offer more gold (if root has it, or strong hook)
+
 	option = {
 		name = agot_dragon.1010.c
 
@@ -5773,7 +5749,7 @@ scripted_effect create_dragonrider_and_dragon = {
 			irritable = {}
 			cannibal = {}
 		}
-		random_traits_list = { #Something strong
+		random_traits_list = {
 			strong = {}
 			athletic = {}
 			physique_good_1 = {}
@@ -5903,15 +5879,15 @@ agot_dragon.2000 = {
 			spawn_army = {
 				name = rogue_rider_army
 				men_at_arms = {
-					type = pikemen_unit # 2000
+					type = pikemen_unit
 					stacks = 20
 				}
 				men_at_arms = {
-					type = armored_footmen # 2000
+					type = armored_footmen
 					stacks = 20
 				}
 				men_at_arms = {
-					type = light_horsemen # 1000
+					type = light_horsemen
 					stacks = 10
 				}
 				location = scope:dragon_seed_conqueror.location
@@ -6027,7 +6003,7 @@ agot_dragon.2001 = {
 	}
 }
 
-#Hidden Events
+
 agot_dragon.9000 = {
 	hidden = yes
 

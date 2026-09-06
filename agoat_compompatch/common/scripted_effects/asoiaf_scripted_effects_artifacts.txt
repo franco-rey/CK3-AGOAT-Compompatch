@@ -1,4 +1,4 @@
-﻿# AGOAT Compompatch N03 (2026-09-04): Valyrian Steel 1.4.1 removed its vs_*_template artifact templates; every create_artifact here now uses AGOT 0.5.2.1's valyrian_steel_template. Names, visuals and vs_*_modifier are unchanged.
+﻿
 agot_create_artifact_vs_ice_effect = {
 	$OWNER$ = {
 		save_scope_as = owner

@@ -1,101 +1,107 @@
 ﻿e_the_north = {
 	2020.1.1 = {
-		holder = Stark_12 # Brandon the Builder (C)
-		#law = centralization_2 # AGOT TODO
-		#law = slavery_0 # AGOT TODO
+		holder = Stark_12
+
+
 	}
 	2110.1.1 = {
-		holder = Stark_14 # Brandon II (C)
+		holder = Stark_14
 	}
 	2130.1.1 = {
-		holder = Stark_15 # Brandon the Breaker (C)
+		holder = Stark_15
 	}
 	2590.1.1 = {
-		holder = Stark_151 # Donnor (M)
+		holder = Stark_151
 	}
 	3222.1.1 = {
-		holder = Stark_17 # Brandon IV (M)
+		holder = Stark_17
 	}
 	5643.1.1 = {
-		holder = Stark_18 # Jon (C)
+		holder = Stark_18
 	}
 	5703.1.1 = {
-		holder = Stark_19 # Rickard the Laughing Wolf (C)
+		holder = Stark_19
+	}
+	5731.1.1 = {
+		holder = Stark_155
+	}
+	5769.1.1 = {
+		holder = Stark_156
 	}
 	6249.1.1 = {
-		holder = Stark_21 # Theon the Hungry Wolf (C)
+		holder = Stark_21
 	}
 	6308.1.1 = {
-		holder = Stark_31 # Dorren (C)
+		holder = Stark_31
 	}
 	6342.1.1 = {
-		holder = Stark_23 # Brandon the Daughterless (C)
+		holder = Stark_23
 	}
 	6367.12.12 = {
-		holder = Stark_25 # Brandon VI (M)
+		holder = Stark_25
 	}
 	6398.9.9 = {
-		holder = Stark_26 # Harlon (C)
+		holder = Stark_26
 	}
 	6424.1.1 = {
-		holder = Stark_35 # Rodrik (C)
+		holder = Stark_35
 	}
 	6440.1.1 = {
-		holder = Stark_139 # Brandon VII (M)
+		holder = Stark_139
 	}
 	6443.1.1 = {
-		holder = Stark_37 # Edrick (C)
+		holder = Stark_37
 	}
 	6539.1.1 = {
-		holder = Stark_40 # Brandon Ice Eyes (C)
+		holder = Stark_40
 	}
 	6562.1.1 = {
-		holder = Stark_32 # Brandon IX (C)
+		holder = Stark_32
 	}
 	7221.1.1 = {
-		holder = Stark_28 # Brandon the Shipwright (C)
+		holder = Stark_28
 	}
 	7261.1.1 = {
-		holder = Stark_30 # Brandon the Burner (C)
+		holder = Stark_30
 	}
 	7307.1.1 = {
-		holder = Stark_33 # Brandon XII (nc)
+		holder = Stark_33
 	}
 	7550.1.1 = {
-		holder = Stark_135 # Brandon XIII (nc)
+		holder = Stark_135
 	}
 	7597.1.1 = {
-		holder = Stark_34 # Brandon XV (nc)
+		holder = Stark_34
 	}
 	7710.1.1 = {
-		holder = Stark_41 # Benjen the Bitter (C)
+		holder = Stark_41
 	}
 	7765.1.1 = {
-		holder = Stark_42 # Benjen the Sweet (C)
+		holder = Stark_42
 	}
 	7779.1.1 = {
-		holder = Stark_43 # Eyron (C)
+		holder = Stark_43
 	}
 	7812.1.1 = {
-		holder = Stark_44 # Edderion the Bridegroom (C)
+		holder = Stark_44
 	}
 	7846.1.1 = {
-		holder = Stark_45 # Walton the Moon King (C)
+		holder = Stark_45
 	}
 	7846.2.1 = {
-		holder = Stark_46 # Brandon the Bad (C)
+		holder = Stark_46
 	}
 	7899.1.1 = {
-		holder = Stark_51 # Jorah (C)
+		holder = Stark_51
 	}
 	7919.1.1 = {
-		holder = Stark_60 # Jonos (C)
+		holder = Stark_60
 	}
 	7951.1.1 = {
-		holder = Stark_64 # Edwyn the Spring King (C)
+		holder = Stark_64
 	}
 	7988.1.1 = {
-		holder = Stark_66 # Torrhen (C)
+		holder = Stark_66
 	}
 	8000.12.1 = {
 		liege = h_the_iron_throne
@@ -211,101 +217,107 @@
 
 k_winterfell = {
 	2020.1.1 = {
-		holder = Stark_12 # Brandon the Builder (C)
+		holder = Stark_12
 		liege = e_the_north
 	}
 	2110.1.1 = {
-		holder = Stark_14 # Brandon II (C)
+		holder = Stark_14
 	}
 	2130.1.1 = {
-		holder = Stark_15 # Brandon the Breaker (C)
+		holder = Stark_15
 	}
 	2590.1.1 = {
-		holder = Stark_151 # Donnor (M)
+		holder = Stark_151
 	}
 	3222.1.1 = {
-		holder = Stark_17 # Brandon IV (M)
+		holder = Stark_17
 	}
 	5643.1.1 = {
-		holder = Stark_18 # Jon (C)
+		holder = Stark_18
 	}
 	5703.1.1 = {
-		holder = Stark_19 # Rickard the Laughing Wolf (C)
+		holder = Stark_19
+	}
+	5731.1.1 = {
+		holder = Stark_155
+	}
+	5769.1.1 = {
+		holder = Stark_156
 	}
 	6249.1.1 = {
-		holder = Stark_21 # Theon the Hungry Wolf (C)
+		holder = Stark_21
 	}
 	6308.1.1 = {
-		holder = Stark_31 # Dorren (C)
+		holder = Stark_31
 	}
 	6342.1.1 = {
-		holder = Stark_23 # Brandon the Daughterless (C)
+		holder = Stark_23
 	}
 	6367.12.12 = {
-		holder = Stark_25 # Brandon VI (M)
+		holder = Stark_25
 	}
 	6398.9.9 = {
-		holder = Stark_26 # Harlon (C)
+		holder = Stark_26
 	}
 	6424.1.1 = {
-		holder = Stark_35 # Rodrik (C)
+		holder = Stark_35
 	}
 	6440.1.1 = {
-		holder = Stark_139 # Brandon VII (M)
+		holder = Stark_139
 	}
 	6443.1.1 = {
-		holder = Stark_37 # Edrick (C)
+		holder = Stark_37
 	}
 	6539.1.1 = {
-		holder = Stark_40 # Brandon Ice Eyes (C)
+		holder = Stark_40
 	}
 	6562.1.1 = {
-		holder = Stark_32 # Brandon IX (C)
+		holder = Stark_32
 	}
 	7221.1.1 = {
-		holder = Stark_28 # Brandon the Shipwright (C)
+		holder = Stark_28
 	}
 	7261.1.1 = {
-		holder = Stark_30 # Brandon the Burner (C)
+		holder = Stark_30
 	}
 	7307.1.1 = {
-		holder = Stark_33 # Brandon XII (nc)
+		holder = Stark_33
 	}
 	7550.1.1 = {
-		holder = Stark_135 # Brandon XIII (nc)
+		holder = Stark_135
 	}
 	7597.1.1 = {
-		holder = Stark_34 # Brandon XV (nc)
+		holder = Stark_34
 	}
 	7710.1.1 = {
-		holder = Stark_41 # Benjen the Bitter (C)
+		holder = Stark_41
 	}
 	7765.1.1 = {
-		holder = Stark_42 # Benjen the Sweet (C)
+		holder = Stark_42
 	}
 	7779.1.1 = {
-		holder = Stark_43 # Eyron (C)
+		holder = Stark_43
 	}
 	7812.1.1 = {
-		holder = Stark_44 # Edderion the Bridegroom (C)
+		holder = Stark_44
 	}
 	7846.1.1 = {
-		holder = Stark_45 # Walton the Moon King (C)
+		holder = Stark_45
 	}
 	7846.2.1 = {
-		holder = Stark_46 # Brandon the Bad (C)
+		holder = Stark_46
 	}
 	7899.1.1 = {
-		holder = Stark_51 # Jorah (C)
+		holder = Stark_51
 	}
 	7919.1.1 = {
-		holder = Stark_60 # Jonos (C)
+		holder = Stark_60
 	}
 	7951.1.1 = {
-		holder = Stark_64 # Edwyn the Spring King (C)
+		holder = Stark_64
 	}
 	7988.1.1 = {
-		holder = Stark_66 # Torrhen (C)
+		holder = Stark_66
 	}
 	8014.1.1 = {
 		holder = Stark_68
@@ -380,85 +392,91 @@ d_winterfell = {
 		holder = Stark_12
 	}
 	2110.1.1 = {
-		holder = Stark_14 # Brandon II (C)
+		holder = Stark_14
 	}
 	2130.1.1 = {
-		holder = Stark_15 # Brandon the Breaker (C)
+		holder = Stark_15
 	}
 	2590.1.1 = {
-		holder = Stark_151 # Donnor (M)
+		holder = Stark_151
 	}
 	3222.1.1 = {
-		holder = Stark_17 # Brandon IV (M)
+		holder = Stark_17
 	}
 	5643.1.1 = {
-		holder = Stark_18 # Jon (C)
+		holder = Stark_18
 	}
 	5703.1.1 = {
-		holder = Stark_19 # Rickard the Laughing Wolf (C)
+		holder = Stark_19
+	}
+	5731.1.1 = {
+		holder = Stark_155
+	}
+	5769.1.1 = {
+		holder = Stark_156
 	}
 	6249.1.1 = {
-		holder = Stark_21 # Theon the Hungry Wolf (C)
+		holder = Stark_21
 	}
 	6308.1.1 = {
-		holder = Stark_31 # Dorren (C)
+		holder = Stark_31
 	}
 	6342.1.1 = {
-		holder = Stark_23 # Brandon the Daughterless (C)
+		holder = Stark_23
 	}
 	6367.12.12 = {
-		holder = Stark_25 # Brandon VI (M)
+		holder = Stark_25
 	}
 	6398.9.9 = {
-		holder = Stark_26 # Harlon (C)
+		holder = Stark_26
 	}
 	6424.1.1 = {
-		holder = Stark_35 # Rodrik (C)
+		holder = Stark_35
 	}
 	6440.1.1 = {
-		holder = Stark_139 # Brandon VII (M)
+		holder = Stark_139
 	}
 	6443.1.1 = {
-		holder = Stark_37 # Edrick (C)
+		holder = Stark_37
 	}
 	6539.1.1 = {
-		holder = Stark_40 # Brandon Ice Eyes (C)
+		holder = Stark_40
 	}
 	6562.1.1 = {
-		holder = Stark_32 # Brandon IX (C)
+		holder = Stark_32
 	}
 	7221.1.1 = {
-		holder = Stark_28 # Brandon the Shipwright (C)
+		holder = Stark_28
 	}
 	7261.1.1 = {
-		holder = Stark_30 # Brandon the Burner (C)
+		holder = Stark_30
 	}
 	7307.1.1 = {
-		holder = Stark_33 # Brandon XII (nc)
+		holder = Stark_33
 	}
 	7550.1.1 = {
-		holder = Stark_135 # Brandon XIII (nc)
+		holder = Stark_135
 	}
 	7597.1.1 = {
-		holder = Stark_34 # Brandon XV (nc)
+		holder = Stark_34
 	}
 	7710.1.1 = {
-		holder = Stark_41 # Benjen the Bitter (C)
+		holder = Stark_41
 	}
 	7765.1.1 = {
-		holder = Stark_42 # Benjen the Sweet (C)
+		holder = Stark_42
 	}
 	7779.1.1 = {
-		holder = Stark_43 # Eyron (C)
+		holder = Stark_43
 	}
 	7812.1.1 = {
-		holder = Stark_44 # Edderion the Bridegroom (C)
+		holder = Stark_44
 	}
 	7846.1.1 = {
-		holder = Stark_45 # Walton the Moon King (C)
+		holder = Stark_45
 	}
 	7846.2.1 = {
-		holder = Stark_46 # Brandon the Bad (C)
+		holder = Stark_46
 	}
 	7899.1.1 = {
 		holder = Stark_51
@@ -545,85 +563,91 @@ c_winterfell = {
 		liege = d_winterfell
 	}
 	2110.1.1 = {
-		holder = Stark_14 # Brandon II (C)
+		holder = Stark_14
 	}
 	2130.1.1 = {
-		holder = Stark_15 # Brandon the Breaker (C)
+		holder = Stark_15
 	}
 	2590.1.1 = {
-		holder = Stark_151 # Donnor (M)
+		holder = Stark_151
 	}
 	3222.1.1 = {
-		holder = Stark_17 # Brandon IV (M)
+		holder = Stark_17
 	}
 	5643.1.1 = {
-		holder = Stark_18 # Jon (C)
+		holder = Stark_18
 	}
 	5703.1.1 = {
-		holder = Stark_19 # Rickard the Laughing Wolf (C)
+		holder = Stark_19
+	}
+	5731.1.1 = {
+		holder = Stark_155
+	}
+	5769.1.1 = {
+		holder = Stark_156
 	}
 	6249.1.1 = {
-		holder = Stark_21 # Theon the Hungry Wolf (C)
+		holder = Stark_21
 	}
 	6308.1.1 = {
-		holder = Stark_31 # Dorren (C)
+		holder = Stark_31
 	}
 	6342.1.1 = {
-		holder = Stark_23 # Brandon the Daughterless (C)
+		holder = Stark_23
 	}
 	6367.12.12 = {
-		holder = Stark_25 # Brandon VI (M)
+		holder = Stark_25
 	}
 	6398.9.9 = {
-		holder = Stark_26 # Harlon (C)
+		holder = Stark_26
 	}
 	6424.1.1 = {
-		holder = Stark_35 # Rodrik (C)
+		holder = Stark_35
 	}
 	6440.1.1 = {
-		holder = Stark_139 # Brandon VII (M)
+		holder = Stark_139
 	}
 	6443.1.1 = {
-		holder = Stark_37 # Edrick (C)
+		holder = Stark_37
 	}
 	6539.1.1 = {
-		holder = Stark_40 # Brandon Ice Eyes (C)
+		holder = Stark_40
 	}
 	6562.1.1 = {
-		holder = Stark_32 # Brandon IX (C)
+		holder = Stark_32
 	}
 	7221.1.1 = {
-		holder = Stark_28 # Brandon the Shipwright (C)
+		holder = Stark_28
 	}
 	7261.1.1 = {
-		holder = Stark_30 # Brandon the Burner (C)
+		holder = Stark_30
 	}
 	7307.1.1 = {
-		holder = Stark_33 # Brandon XII (nc)
+		holder = Stark_33
 	}
 	7550.1.1 = {
-		holder = Stark_135 # Brandon XIII (nc)
+		holder = Stark_135
 	}
 	7597.1.1 = {
-		holder = Stark_34 # Brandon XV (nc)
+		holder = Stark_34
 	}
 	7710.1.1 = {
-		holder = Stark_41 # Benjen the Bitter (C)
+		holder = Stark_41
 	}
 	7765.1.1 = {
-		holder = Stark_42 # Benjen the Sweet (C)
+		holder = Stark_42
 	}
 	7779.1.1 = {
-		holder = Stark_43 # Eyron (C)
+		holder = Stark_43
 	}
 	7812.1.1 = {
-		holder = Stark_44 # Edderion the Bridegroom (C)
+		holder = Stark_44
 	}
 	7846.1.1 = {
-		holder = Stark_45 # Walton the Moon King (C)
+		holder = Stark_45
 	}
 	7846.2.1 = {
-		holder = Stark_46 # Brandon the Bad (C)
+		holder = Stark_46
 	}
 	7899.1.1 = {
 		holder = Stark_51
@@ -710,85 +734,85 @@ c_greyward_tower = {
 		liege = d_winterfell
 	}
 	2110.1.1 = {
-		holder = Stark_14 # Brandon II (C)
+		holder = Stark_14
 	}
 	2130.1.1 = {
-		holder = Stark_15 # Brandon the Breaker (C)
+		holder = Stark_15
 	}
 	2590.1.1 = {
-		holder = Stark_151 # Donnor (M)
+		holder = Stark_151
 	}
 	3222.1.1 = {
-		holder = Stark_17 # Brandon IV (M)
+		holder = Stark_17
 	}
 	5643.1.1 = {
-		holder = Stark_18 # Jon (C)
+		holder = Stark_18
 	}
 	5703.1.1 = {
-		holder = Stark_19 # Rickard the Laughing Wolf (C)
+		holder = Stark_19
 	}
 	6249.1.1 = {
-		holder = Stark_21 # Theon the Hungry Wolf (C)
+		holder = Stark_21
 	}
 	6308.1.1 = {
-		holder = Stark_31 # Dorren (C)
+		holder = Stark_31
 	}
 	6342.1.1 = {
-		holder = Stark_23 # Brandon the Daughterless (C)
+		holder = Stark_23
 	}
 	6367.12.12 = {
-		holder = Stark_25 # Brandon VI (M)
+		holder = Stark_25
 	}
 	6398.9.9 = {
-		holder = Stark_26 # Harlon (C)
+		holder = Stark_26
 	}
 	6424.1.1 = {
-		holder = Stark_35 # Rodrik (C)
+		holder = Stark_35
 	}
 	6440.1.1 = {
-		holder = Stark_139 # Brandon VII (M)
+		holder = Stark_139
 	}
 	6443.1.1 = {
-		holder = Stark_37 # Edrick (C)
+		holder = Stark_37
 	}
 	6539.1.1 = {
-		holder = Stark_40 # Brandon Ice Eyes (C)
+		holder = Stark_40
 	}
 	6562.1.1 = {
-		holder = Stark_32 # Brandon IX (C)
+		holder = Stark_32
 	}
 	7221.1.1 = {
-		holder = Stark_28 # Brandon the Shipwright (C)
+		holder = Stark_28
 	}
 	7261.1.1 = {
-		holder = Stark_30 # Brandon the Burner (C)
+		holder = Stark_30
 	}
 	7307.1.1 = {
-		holder = Stark_33 # Brandon XII (nc)
+		holder = Stark_33
 	}
 	7550.1.1 = {
-		holder = Stark_135 # Brandon XIII (nc)
+		holder = Stark_135
 	}
 	7597.1.1 = {
-		holder = Stark_34 # Brandon XV (nc)
+		holder = Stark_34
 	}
 	7710.1.1 = {
-		holder = Stark_41 # Benjen the Bitter (C)
+		holder = Stark_41
 	}
 	7765.1.1 = {
-		holder = Stark_42 # Benjen the Sweet (C)
+		holder = Stark_42
 	}
 	7779.1.1 = {
-		holder = Stark_43 # Eyron (C)
+		holder = Stark_43
 	}
 	7812.1.1 = {
-		holder = Stark_44 # Edderion the Bridegroom (C)
+		holder = Stark_44
 	}
 	7846.1.1 = {
-		holder = Stark_45 # Walton the Moon King (C)
+		holder = Stark_45
 	}
 	7846.2.1 = {
-		holder = Stark_46 # Brandon the Bad (C)
+		holder = Stark_46
 	}
 	7899.1.1 = {
 		holder = Stark_51
@@ -875,85 +899,91 @@ c_brans_wood = {
 		liege = d_winterfell
 	}
 	2110.1.1 = {
-		holder = Stark_14 # Brandon II (C)
+		holder = Stark_14
 	}
 	2130.1.1 = {
-		holder = Stark_15 # Brandon the Breaker (C)
+		holder = Stark_15
 	}
 	2590.1.1 = {
-		holder = Stark_151 # Donnor (M)
+		holder = Stark_151
 	}
 	3222.1.1 = {
-		holder = Stark_17 # Brandon IV (M)
+		holder = Stark_17
 	}
 	5643.1.1 = {
-		holder = Stark_18 # Jon (C)
+		holder = Stark_18
 	}
 	5703.1.1 = {
-		holder = Stark_19 # Rickard the Laughing Wolf (C)
+		holder = Stark_19
+	}
+	5731.1.1 = {
+		holder = Stark_155
+	}
+	5769.1.1 = {
+		holder = Stark_156
 	}
 	6249.1.1 = {
-		holder = Stark_21 # Theon the Hungry Wolf (C)
+		holder = Stark_21
 	}
 	6308.1.1 = {
-		holder = Stark_31 # Dorren (C)
+		holder = Stark_31
 	}
 	6342.1.1 = {
-		holder = Stark_23 # Brandon the Daughterless (C)
+		holder = Stark_23
 	}
 	6367.12.12 = {
-		holder = Stark_25 # Brandon VI (M)
+		holder = Stark_25
 	}
 	6398.9.9 = {
-		holder = Stark_26 # Harlon (C)
+		holder = Stark_26
 	}
 	6424.1.1 = {
-		holder = Stark_35 # Rodrik (C)
+		holder = Stark_35
 	}
 	6440.1.1 = {
-		holder = Stark_139 # Brandon VII (M)
+		holder = Stark_139
 	}
 	6443.1.1 = {
-		holder = Stark_37 # Edrick (C)
+		holder = Stark_37
 	}
 	6539.1.1 = {
-		holder = Stark_40 # Brandon Ice Eyes (C)
+		holder = Stark_40
 	}
 	6562.1.1 = {
-		holder = Stark_32 # Brandon IX (C)
+		holder = Stark_32
 	}
 	7221.1.1 = {
-		holder = Stark_28 # Brandon the Shipwright (C)
+		holder = Stark_28
 	}
 	7261.1.1 = {
-		holder = Stark_30 # Brandon the Burner (C)
+		holder = Stark_30
 	}
 	7307.1.1 = {
-		holder = Stark_33 # Brandon XII (nc)
+		holder = Stark_33
 	}
 	7550.1.1 = {
-		holder = Stark_135 # Brandon XIII (nc)
+		holder = Stark_135
 	}
 	7597.1.1 = {
-		holder = Stark_34 # Brandon XV (nc)
+		holder = Stark_34
 	}
 	7710.1.1 = {
-		holder = Stark_41 # Benjen the Bitter (C)
+		holder = Stark_41
 	}
 	7765.1.1 = {
-		holder = Stark_42 # Benjen the Sweet (C)
+		holder = Stark_42
 	}
 	7779.1.1 = {
-		holder = Stark_43 # Eyron (C)
+		holder = Stark_43
 	}
 	7812.1.1 = {
-		holder = Stark_44 # Edderion the Bridegroom (C)
+		holder = Stark_44
 	}
 	7846.1.1 = {
-		holder = Stark_45 # Walton the Moon King (C)
+		holder = Stark_45
 	}
 	7846.2.1 = {
-		holder = Stark_46 # Brandon the Bad (C)
+		holder = Stark_46
 	}
 	7902.1.1 = {
 		holder = Stark_51
@@ -1251,85 +1281,91 @@ c_wolf_branch = {
 		liege = d_winterfell
 	}
 	2110.1.1 = {
-		holder = Stark_14 # Brandon II (C)
+		holder = Stark_14
 	}
 	2130.1.1 = {
-		holder = Stark_15 # Brandon the Breaker (C)
+		holder = Stark_15
 	}
 	2590.1.1 = {
-		holder = Stark_151 # Donnor (M)
+		holder = Stark_151
 	}
 	3222.1.1 = {
-		holder = Stark_17 # Brandon IV (M)
+		holder = Stark_17
 	}
 	5643.1.1 = {
-		holder = Stark_18 # Jon (C)
+		holder = Stark_18
 	}
 	5703.1.1 = {
-		holder = Stark_19 # Rickard the Laughing Wolf (C)
+		holder = Stark_19
+	}
+	5731.1.1 = {
+		holder = Stark_155
+	}
+	5769.1.1 = {
+		holder = Stark_156
 	}
 	6249.1.1 = {
-		holder = Stark_21 # Theon the Hungry Wolf (C)
+		holder = Stark_21
 	}
 	6308.1.1 = {
-		holder = Stark_31 # Dorren (C)
+		holder = Stark_31
 	}
 	6342.1.1 = {
-		holder = Stark_23 # Brandon the Daughterless (C)
+		holder = Stark_23
 	}
 	6367.12.12 = {
-		holder = Stark_25 # Brandon VI (M)
+		holder = Stark_25
 	}
 	6398.9.9 = {
-		holder = Stark_26 # Harlon (C)
+		holder = Stark_26
 	}
 	6424.1.1 = {
-		holder = Stark_35 # Rodrik (C)
+		holder = Stark_35
 	}
 	6440.1.1 = {
-		holder = Stark_139 # Brandon VII (M)
+		holder = Stark_139
 	}
 	6443.1.1 = {
-		holder = Stark_37 # Edrick (C)
+		holder = Stark_37
 	}
 	6539.1.1 = {
-		holder = Stark_40 # Brandon Ice Eyes (C)
+		holder = Stark_40
 	}
 	6562.1.1 = {
-		holder = Stark_32 # Brandon IX (C)
+		holder = Stark_32
 	}
 	7221.1.1 = {
-		holder = Stark_28 # Brandon the Shipwright (C)
+		holder = Stark_28
 	}
 	7261.1.1 = {
-		holder = Stark_30 # Brandon the Burner (C)
+		holder = Stark_30
 	}
 	7307.1.1 = {
-		holder = Stark_33 # Brandon XII (nc)
+		holder = Stark_33
 	}
 	7550.1.1 = {
-		holder = Stark_135 # Brandon XIII (nc)
+		holder = Stark_135
 	}
 	7597.1.1 = {
-		holder = Stark_34 # Brandon XV (nc)
+		holder = Stark_34
 	}
 	7710.1.1 = {
-		holder = Stark_41 # Benjen the Bitter (C)
+		holder = Stark_41
 	}
 	7765.1.1 = {
-		holder = Stark_42 # Benjen the Sweet (C)
+		holder = Stark_42
 	}
 	7779.1.1 = {
-		holder = Stark_43 # Eyron (C)
+		holder = Stark_43
 	}
 	7812.1.1 = {
-		holder = Stark_44 # Edderion the Bridegroom (C)
+		holder = Stark_44
 	}
 	7846.1.1 = {
-		holder = Stark_45 # Walton the Moon King (C)
+		holder = Stark_45
 	}
 	7846.2.1 = {
-		holder = Stark_46 # Brandon the Bad (C)
+		holder = Stark_46
 	}
 	7899.1.1 = {
 		holder = Stark_51
@@ -6463,7 +6499,7 @@ c_wynmend = {
 }
 k_last_lands = {
 	5950.1.1 = {
-		holder = Umber_110 # The Last Giant
+		holder = Umber_110
 	}
 	6000.1.1 = {
 		liege = e_the_north
@@ -6473,25 +6509,25 @@ k_last_lands = {
 		}
 	}
 	7553.1.1 = {
-		holder = Umber_78 # Gawen
+		holder = Umber_78
 	}
 	7556.1.1 = {
-		holder = Umber_77 # Martyn
+		holder = Umber_77
 	}
 	7586.1.1 = {
-		holder = Umber_76 # Rogar
+		holder = Umber_76
 	}
 	7595.1.1 = {
-		holder = Umber_75 # Daveth
+		holder = Umber_75
 	}
 	7763.1.1 = {
 		holder = Umber_108
 	}
 	7832.1.1 = {
-		holder = Umber_64 # Alwin
+		holder = Umber_64
 	}
 	7864.1.1 = {
-		holder = Umber_27 # Jon
+		holder = Umber_27
 	}
 	7880.1.1 = {
 		holder = Umber_28
@@ -6556,29 +6592,29 @@ k_last_lands = {
 }
 d_last_lands = {
 	5950.1.1 = {
-		holder = Umber_110 # The Last Giant
+		holder = Umber_110
 		liege = k_last_lands
 	}
 	7553.1.1 = {
-		holder = Umber_78 # Gawen
+		holder = Umber_78
 	}
 	7556.1.1 = {
-		holder = Umber_77 # Martyn
+		holder = Umber_77
 	}
 	7586.1.1 = {
-		holder = Umber_76 # Rogar
+		holder = Umber_76
 	}
 	7595.1.1 = {
-		holder = Umber_75 # Daveth
+		holder = Umber_75
 	}
 	7763.1.1 = {
 		holder = Umber_108
 	}
 	7832.1.1 = {
-		holder = Umber_64 # Alwin
+		holder = Umber_64
 	}
 	7864.1.1 = {
-		holder = Umber_27 # Jon
+		holder = Umber_27
 	}
 	7880.1.1 = {
 		holder = Umber_28
@@ -6644,28 +6680,28 @@ d_last_lands = {
 c_last_hearth = {
 	5950.1.1 = {
 		liege = d_last_lands
-		holder = Umber_110 # The Last Giant
+		holder = Umber_110
 	}
 	7553.1.1 = {
-		holder = Umber_78 # Gawen
+		holder = Umber_78
 	}
 	7556.1.1 = {
-		holder = Umber_77 # Martyn
+		holder = Umber_77
 	}
 	7586.1.1 = {
-		holder = Umber_76 # Rogar
+		holder = Umber_76
 	}
 	7595.1.1 = {
-		holder = Umber_75 # Daveth
+		holder = Umber_75
 	}
 	7763.1.1 = {
 		holder = Umber_108
 	}
 	7832.1.1 = {
-		holder = Umber_64 # Alwin
+		holder = Umber_64
 	}
 	7864.1.1 = {
-		holder = Umber_27 # Jon
+		holder = Umber_27
 	}
 	7880.1.1 = {
 		holder = Umber_28
@@ -7017,46 +7053,46 @@ c_moat_cailin = {
 	}
 	6506.1.1 = {
 		liege = e_the_north
-		holder = Stark_37 # Edrick (C)
+		holder = Stark_37
 	}
 	6539.1.1 = {
-		holder = Stark_40 # Brandon Ice Eyes (C)
+		holder = Stark_40
 	}
 	6562.1.1 = {
-		holder = Stark_32 # Brandon IX (C)
+		holder = Stark_32
 	}
 	7221.1.1 = {
-		holder = Stark_28 # Brandon the Shipwright (C)
+		holder = Stark_28
 	}
 	7261.1.1 = {
-		holder = Stark_30 # Brandon the Burner (C)
+		holder = Stark_30
 	}
 	7307.1.1 = {
-		holder = Stark_33 # Brandon XII (nc)
+		holder = Stark_33
 	}
 	7550.1.1 = {
-		holder = Stark_135 # Brandon XIII (nc)
+		holder = Stark_135
 	}
 	7597.1.1 = {
-		holder = Stark_34 # Brandon XV (nc)
+		holder = Stark_34
 	}
 	7710.1.1 = {
-		holder = Stark_41 # Benjen the Bitter (C)
+		holder = Stark_41
 	}
 	7765.1.1 = {
-		holder = Stark_42 # Benjen the Sweet (C)
+		holder = Stark_42
 	}
 	7779.1.1 = {
-		holder = Stark_43 # Eyron (C)
+		holder = Stark_43
 	}
 	7812.1.1 = {
-		holder = Stark_44 # Edderion the Bridegroom (C)
+		holder = Stark_44
 	}
 	7846.1.1 = {
-		holder = Stark_45 # Walton the Moon King (C)
+		holder = Stark_45
 	}
 	7846.2.1 = {
-		holder = Stark_46 # Brandon the Bad (C)
+		holder = Stark_46
 	}
 	7899.1.1 = {
 		holder = Stark_51
@@ -8868,10 +8904,10 @@ k_barrows_and_rills = {
 	3200.1.1 = {
 		holder = Dustin_78
 	}
-	3250.1.2 = { # Flavorization bugfix
+	3250.1.2 = {
 		holder = 0
 	}
-	6500.1.1 = { # Dustin vassalization
+	6500.1.1 = {
 		liege = e_the_north
 		effect = {
 			set_title_name = k_barrowton
@@ -10247,7 +10283,7 @@ k_red_lands = {
 	6256.1.1 = {
 		holder = Bolton_12
 	}
-	6280.1.1 = { # Bolton vassalization
+	6280.1.1 = {
 		liege = e_the_north
 		effect = {
 			agot_turn_westerosi_kingdom_into_lordship_history_effect = { YEAR = 6280 }
@@ -13129,10 +13165,10 @@ k_the_wolfswood = {
 	5126.1.1 = {
 		holder = Glover_54
 	}
-	5140.1.2 = { # Flavorization bugfix
+	5140.1.2 = {
 		holder = 0
 	}
-	7868.1.1 = { # Glover vassalization
+	7868.1.1 = {
 		holder = Glover_8
 		liege = e_the_north
 		effect = {
@@ -13925,6 +13961,12 @@ k_the_white_knife = {
 			reset_title_name = yes
 		}
 	}
+	7415.1.1 = {
+		holder = Manderly_75
+	}
+	7429.1.1 = {
+		holder = Manderly_76
+	}
 	7758.1.1 = {
 		holder = Manderly_68
 	}
@@ -14032,6 +14074,12 @@ d_white_harbor = {
 			reset_title_name = yes
 		}
 	}
+	7415.1.1 = {
+		holder = Manderly_75
+	}
+	7429.1.1 = {
+		holder = Manderly_76
+	}
 	7758.1.1 = {
 		holder = Manderly_68
 	}
@@ -14137,6 +14185,12 @@ c_white_harbor = {
 			reset_title_name = yes
 		}
 	}
+	7415.1.1 = {
+		holder = Manderly_75
+	}
+	7429.1.1 = {
+		holder = Manderly_76
+	}
 	7758.1.1 = {
 		holder = Manderly_68
 	}
@@ -14235,6 +14289,12 @@ b_wolfs_den = {
 	7380.1.1 = {
 		holder = Manderly_17
 	}
+	7415.1.1 = {
+		holder = Manderly_75
+	}
+	7429.1.1 = {
+		holder = Manderly_76
+	}
 	7758.1.1 = {
 		holder = Manderly_68
 	}
@@ -14306,7 +14366,7 @@ b_wolfs_den = {
 	}
 }
 b_whittarkeep = {
-	8000.1.1 = { 
+	8000.1.1 = {
 		holder = Stark_71
 	}
 	8031.1.1 = {
@@ -14782,79 +14842,8 @@ c_woodward = {
 		holder = Mazin_21
 	}
 }
-# c_keane = {
-	# 7853.1.1 = {
-		# holder = Keane_1
-	# }
-	# 7862.1.1 = {
-		# holder = Keane_2
-	# }
-	# 7883.1.1 = {
-		# holder = Keane_11
-	# }
-	# 7888.1.1 = {
-		# holder = Keane_13
-	# }
-	# 7906.1.1 = {
-		# holder = Keane_12
-	# }
-	# 7931.1.1 = {
-		# holder = Keane_15
-	# }
-	# 7984.1.1 = {
-		# holder = Keane_18
-	# }
-	# 7992.1.1 = {
-		# holder = Keane_20
-	# }
-	# 8024.1.1 = {
-		# holder = Keane_25
-	# }
-	# 8030.1.1 = {
-		# holder = Keane_26
-	# }
-	# 8031.1.1 = {
-		# holder = Keane_66
-	# }
-	# 8051.1.1 = {
-		# holder = Keane_67
-	# }
-	# 8069.1.1 = {
-		# holder = Keane_32
-	# }
-	# 8074.1.1 = {
-		# holder = Keane_33
-	# }
-	# 8083.1.1 = {
-		# holder = Keane_68
-	# }
-	# 8121.1.1 = {
-		# holder = Keane_69
-	# }
-	# 8131.1.1 = {
-		# holder = Keane_41
-	# }
-	# 8142.1.1 = {
-		# holder = Keane_42
-	# }
-	# 8165.1.1 = {
-		# holder = Keane_45
-	# }
-	# 8217.1.1 = {
-		# holder = Keane_46
-	# }
-	# 8235.1.1 = {
-		# holder = Keane_47
-	# }
-	# 8243.1.1 = {
-		# holder = Keane_55
-	# }
-	# 8277.1.1 = {
-		# holder = Keane_61
-	# }
-# }
 
-# AGOAT Compompatch P87: incumbent AGOT blocks dropped by Nobility of Westeros, restored (rebuilt 2026-09-04 on NoW 1.2.9).
+
 b_grailmeadow = {
 	8280.1.1 = {
 		holder = Ryswell_8

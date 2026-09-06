@@ -1,7 +1,7 @@
-﻿# AGOAT Compompatch N07 (2026-09-04): House Founders 0.5.2.0.1 lists dynn_Muddle in agothf_agot_dynasties, but AGOT 0.5.2.1 no longer defines that dynasty (9,718 'Failed to fetch a valid dynasty' lines per session). That single line removed; nothing else changed.
+﻿
 agothf_agot_dynasties = {
 	OR = {
-		############################          ANDALOS           ############################
+
 		dynasty = dynasty:dynn_Galliwick
 		dynasty = dynasty:dynn_Ran_Ennox
 		dynasty = dynasty:dynn_Den_Reeve
@@ -10,7 +10,7 @@ agothf_agot_dynasties = {
 		dynasty = dynasty:dynn_Cirrey
 		dynasty = dynasty:dynn_Bar_Voreg
 		dynasty = dynasty:dynn_Kennett
-		############################          BRAAVOS           ############################
+
 		dynasty = dynasty:dynn_Otherys
 		dynasty = dynasty:dynn_Zalyne
 		dynasty = dynasty:dynn_Volentin
@@ -71,7 +71,7 @@ agothf_agot_dynasties = {
 		dynasty = dynasty:dynn_Jamiroqyr
 		dynasty = dynasty:dynn_Demetrys
 		dynasty = dynasty:dynn_Haloris
-		############################       THE CROWNLANDS       ############################
+
 		dynasty = dynasty:dynn_Bar_Emmon
 		dynasty = dynasty:dynn_Bean
 		dynasty = dynasty:dynn_Belgrave
@@ -159,7 +159,7 @@ agothf_agot_dynasties = {
 		dynasty = dynasty:dynn_Ran_Horst
 		dynasty = dynasty:dynn_Cadence
 		dynasty = dynasty:dynn_Asrig
-		############################           DORNE            ############################
+
 		dynasty = dynasty:dynn_Martell
 		dynasty = dynasty:dynn_Briar
 		dynasty = dynasty:dynn_Brook
@@ -251,19 +251,19 @@ agothf_agot_dynasties = {
 		dynasty = dynasty:dynn_Writ
 		dynasty = dynasty:dynn_Zundanar
 		dynasty = dynasty:dynn_Nymeros
-		############################          ESSARIA           ############################
+
 		dynasty = dynasty:dynn_Pahryris
 		dynasty = dynasty:dynn_Naeyor
 		dynasty = dynasty:dynn_Iranoran
 		dynasty = dynasty:dynn_Hestyrion
 		dynasty = dynasty:dynn_Sorrerion
-		############################          GOGOSSOS          ############################
+
 		dynasty = dynasty:dynn_Paenohrin
 		dynasty = dynasty:dynn_Brenaris
 		dynasty = dynasty:dynn_Nahion
 		dynasty = dynasty:dynn_Vhassorlan
 		dynasty = dynasty:dynn_Ennyrion
-		############################        IRON ISLANDS        ############################
+
 		dynasty = dynasty:dynn_Hoare
 		dynasty = dynasty:dynn_Greyjoy
 		dynasty = dynasty:dynn_Greyiron
@@ -298,7 +298,7 @@ agothf_agot_dynasties = {
 		dynasty = dynasty:dynn_Stern
 		dynasty = dynasty:dynn_Ironspite
 		dynasty = dynasty:dynn_Stormdrunk
-		############################          LORATH            ############################
+
 		dynasty = dynasty:dynn_H_ghar
 		dynasty = dynasty:dynn_D_han
 		dynasty = dynasty:dynn_Naylan
@@ -335,7 +335,7 @@ agothf_agot_dynasties = {
 		dynasty = dynasty:dynn_D_hel
 		dynasty = dynasty:dynn_B_ghar
 		dynasty = dynasty:dynn_Dh_rohr
-		############################            LYS             ############################
+
 		dynasty = dynasty:dynn_Rogare
 		dynasty = dynasty:dynn_Haen
 		dynasty = dynasty:dynn_Bazanne
@@ -357,7 +357,7 @@ agothf_agot_dynasties = {
 		dynasty = dynasty:dynn_Eigares
 		dynasty = dynasty:dynn_Taradys
 		dynasty = dynasty:dynn_Hatys
-		############################            MYR             ############################
+
 		dynasty = dynasty:dynn_Drahar
 		dynasty = dynasty:dynn_Rhegan
 		dynasty = dynasty:dynn_Lornel
@@ -401,7 +401,7 @@ agothf_agot_dynasties = {
 		dynasty = dynasty:dynn_Bevilar
 		dynasty = dynasty:dynn_Varkar
 		dynasty = dynasty:dynn_Saidon
-		############################         THE NORTH          ############################
+
 		dynasty = dynasty:dynn_Stark
 		dynasty = dynasty:dynn_Ashwood
 		dynasty = dynasty:dynn_Bolton
@@ -580,7 +580,7 @@ agothf_agot_dynasties = {
 		dynasty = dynasty:dynn_Dronigan
 		dynasty = dynasty:dynn_Arden
 		dynasty = dynasty:dynn_Barker
-		############################          NORVOS            ############################
+
 		dynasty = dynasty:dynn_Golathis
 		dynasty = dynasty:dynn_Hotah
 		dynasty = dynasty:dynn_Nyelossos
@@ -626,7 +626,7 @@ agothf_agot_dynasties = {
 		dynasty = dynasty:dynn_Beovio
 		dynasty = dynasty:dynn_Fathin
 		dynasty = dynasty:dynn_Tyosh
-		############################          OTHERS            ############################
+
 		dynasty = dynasty:dynn_Carian
 		dynasty = dynasty:dynn_Erdtree
 		dynasty = dynasty:dynn_Loux
@@ -647,7 +647,7 @@ agothf_agot_dynasties = {
 		dynasty = dynasty:dynn_Vahar
 		dynasty = dynasty:dynn_Galeras
 		dynasty = dynasty:dynn_Bagarys
-		############################          PENTOS            ############################
+
 		dynasty = dynasty:dynn_Myrakis
 		dynasty = dynasty:dynn_Narratys
 		dynasty = dynasty:dynn_Draz
@@ -700,7 +700,7 @@ agothf_agot_dynasties = {
 		dynasty = dynasty:dynn_Alkalon
 		dynasty = dynasty:dynn_Zavalozaar
 		dynasty = dynasty:dynn_Moravis
-		############################           QOHOR            ############################
+
 		dynasty = dynasty:dynn_Hoat
 		dynasty = dynasty:dynn_Mott
 		dynasty = dynasty:dynn_Zhander
@@ -755,7 +755,7 @@ agothf_agot_dynasties = {
 		dynasty = dynasty:dynn_Thokheil
 		dynasty = dynasty:dynn_Skeygir
 		dynasty = dynasty:dynn_Kir
-		############################         THE REACH          ############################
+
 		dynasty = dynasty:dynn_Gardener
 		dynasty = dynasty:dynn_Tyrell
 		dynasty = dynasty:dynn_Uffering
@@ -924,7 +924,7 @@ agothf_agot_dynasties = {
 		dynasty = dynasty:dynn_Fayard
 		dynasty = dynasty:dynn_Boult
 		dynasty = dynasty:dynn_Garland
-		############################       MOTHER RHOYNE        ############################
+
 		dynasty = dynasty:dynn_Belgyle
 		dynasty = dynasty:dynn_Nymeros
 		dynasty = dynasty:dynn_Chronos
@@ -950,7 +950,7 @@ agothf_agot_dynasties = {
 		dynasty = dynasty:dynn_Keses
 		dynasty = dynasty:dynn_Mygis
 		dynasty = dynasty:dynn_Lunube
-		############################       THE RIVERLANDS       ############################
+
 		dynasty = dynasty:dynn_Tully
 		dynasty = dynasty:dynn_Fisher
 		dynasty = dynasty:dynn_Hook
@@ -1071,12 +1071,12 @@ agothf_agot_dynasties = {
 		dynasty = dynasty:dynn_Fernly
 		dynasty = dynasty:dynn_Leed
 		dynasty = dynasty:dynn_Urgont
-		############################          SPECIAL           ############################
+
 		dynasty = dynasty:dynn_Most_Devout
 		dynasty = dynasty:dynn_High_Septon
 		dynasty = dynasty:dynn_ruins
 		dynasty = dynasty:dynn_Placeholder_Pirate
-		############################       THE STEPSTONES       ############################
+
 		dynasty = dynasty:dynn_Stepstones
 		dynasty = dynasty:dynn_Nine_Eyes
 		dynasty = dynasty:dynn_Butcher
@@ -1118,7 +1118,7 @@ agothf_agot_dynasties = {
 		dynasty = dynasty:dynn_Teerhan
 		dynasty = dynasty:dynn_Westman
 		dynasty = dynasty:dynn_Longsword
-		############################       THE STORMLANDS       ############################
+
 		dynasty = dynasty:dynn_Durrandon
 		dynasty = dynasty:dynn_Brownhill
 		dynasty = dynasty:dynn_Buckler
@@ -1219,10 +1219,10 @@ agothf_agot_dynasties = {
 		dynasty = dynasty:dynn_Venerer
 		dynasty = dynasty:dynn_Wenton
 		dynasty = dynasty:dynn_Yeller
-		############################       SUMMER ISLANDS       ############################
+
 		dynasty = dynasty:dynn_Qhoqua
 		dynasty = dynasty:dynn_Xho
-		############################       		AXE		        ############################
+
 		dynasty = dynasty:dynn_Ran_Valen
 		dynasty = dynasty:dynn_Den_Maith
 		dynasty = dynasty:dynn_Grayne
@@ -1243,7 +1243,7 @@ agothf_agot_dynasties = {
 		dynasty = dynasty:dynn_Eghqod
 		dynasty = dynasty:dynn_In_ik
 		dynasty = dynasty:dynn_Nqi_ej
-		############################           TYROSH           ############################
+
 		dynasty = dynasty:dynn_Ryndoon
 		dynasty = dynasty:dynn_Uhoris
 		dynasty = dynasty:dynn_Adarys
@@ -1266,7 +1266,7 @@ agothf_agot_dynasties = {
 		dynasty = dynasty:dynn_Rohar
 		dynasty = dynasty:dynn_Uthis
 		dynasty = dynasty:dynn_Vysosan
-		############################          THE VALE          ############################
+
 		dynasty = dynasty:dynn_Arryn
 		dynasty = dynasty:dynn_Breakstone
 		dynasty = dynasty:dynn_Corbray
@@ -1374,7 +1374,7 @@ agothf_agot_dynasties = {
 		dynasty = dynasty:dynn_Durress
 		dynasty = dynasty:dynn_Yates
 		dynasty = dynasty:dynn_Midlor
-		############################         VALYRIAN          ############################
+
 		dynasty = dynasty:dynn_Targaryen
 		dynasty = dynasty:dynn_Essos
 		dynasty = dynasty:dynn_Velaryon
@@ -1407,7 +1407,7 @@ agothf_agot_dynasties = {
 		dynasty = dynasty:dynn_Azantone
 		dynasty = dynasty:dynn_Mazemagyr
 		dynasty = dynasty:dynn_Ilvar
-		############################          VOLANTIS          ############################
+
 		dynasty = dynasty:dynn_Maegyr
 		dynasty = dynasty:dynn_Paenymion
 		dynasty = dynasty:dynn_Qhaedar
@@ -1434,7 +1434,7 @@ agothf_agot_dynasties = {
 		dynasty = dynasty:dynn_Nefatis
 		dynasty = dynasty:dynn_Dynion
 		dynasty = dynasty:dynn_Segal
-		############################       THE WESTERLANDS      ############################
+
 		dynasty = dynasty:dynn_Lannister
 		dynasty = dynasty:dynn_Algood
 		dynasty = dynasty:dynn_Banefort
@@ -1512,7 +1512,7 @@ agothf_agot_dynasties = {
 		dynasty = dynasty:dynn_Lender
 		dynasty = dynasty:dynn_Trembley
 		dynasty = dynasty:dynn_Rowe
-		############################       BEYOND THE WALL      ############################
+
 		dynasty = dynasty:dynn_Rayder
 		dynasty = dynasty:dynn_Ruddy_Hall
 		dynasty = dynasty:dynn_Skirling_Pass
@@ -1565,7 +1565,7 @@ agothf_agot_dynasties = {
 		dynasty = dynasty:dynn_Sruthor
 		dynasty = dynasty:dynn_Vardok
 		dynasty = dynasty:dynn_Covehold
-		############################        VANITY HOUSES       ############################
+
 		dynasty = dynasty:dynn_Myshkin
 		dynasty = dynasty:dynn_Golinne
 		dynasty = dynasty:dynn_Lysander
@@ -1619,7 +1619,7 @@ agothf_agot_dynasties = {
 
 agothf_agot_houses = {
 	OR = {
-		# CUSTOMS #
+
 		house = house:house_Amber_dummy
 		house = house:house_Greenwood_dummy
 		house = house:house_Frost_dummy
@@ -1644,7 +1644,7 @@ agothf_agot_houses = {
 		house = house:house_Osgrey_hc_dummy
 		house = house:house_Chronos_hc_dummy
 		house = house:house_Nymeros_hc_dummy
-		# HOUSES #
+
 		house = house:house_ArrynGT
 		house = house:house_ArrynHP
 		house = house:house_ArrynDH
@@ -1746,7 +1746,7 @@ agothf_agot_houses = {
 		house = house:house_Arhe_Meali
 		house = house:house_Arhe_Sar
 		house = house:house_Brelayn
-		#Utility
+
 		house = house:house_Most_Devout
 		house = house:house_Blackwater
 		house = house:house_Essos

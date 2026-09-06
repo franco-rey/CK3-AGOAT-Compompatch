@@ -1,247 +1,247 @@
 ﻿e_the_riverlands = {
-	# House Fisher
+
 	3306.1.1 = {
 		effect = {
 			set_title_name = e_the_trident
 		}
-		holder = Fisher_riverlands_duplicate_1 	 # Ryman (nc) # House Fisher
+		holder = Fisher_riverlands_duplicate_1
 	}
 	3323.1.1 = {
-		holder = Fisher_riverlands_duplicate_2 	 # Patrek (nc)
+		holder = Fisher_riverlands_duplicate_2
 	}
 	3331.1.1 = {
-		holder = Fisher_riverlands_duplicate_3 	 # Addan (nc)
+		holder = Fisher_riverlands_duplicate_3
 	}
 	3390.1.1 = {
-		holder = Fisher_riverlands_duplicate_4 	 # Tristan (nc)
+		holder = Fisher_riverlands_duplicate_4
 	}
 	3408.1.1 = {
-		holder = Fisher_riverlands_duplicate_5 	 # Eyman (nc)
+		holder = Fisher_riverlands_duplicate_5
 	}
 	3442.1.1 = {
-		holder = Fisher_riverlands_duplicate_6 	 # Edmure (nc)
+		holder = Fisher_riverlands_duplicate_6
 	}
-	3456.1.2 = { # Flavorization bugfix
+	3456.1.2 = {
 		holder = 0
 	}
-	# House Bracken
+
 	5136.1.1 = {
-		holder = Bracken_136 # Otho (nc) # House Bracken
+		holder = Bracken_136
 	}
-	# House Blackwood
+
 	5180.1.1 = {
-		holder = Blackwood_134 # Roderick (nc) # House Blackwood
+		holder = Blackwood_134
 	}
 	5200.1.1 = {
-		holder = 0 	 # Civil War
+		holder = 0
 	}
-	# House Mudd
+
 	5240.1.1 = {
-		holder = Mudd_3 	 # Tristan (nc) # House Mudd
+		holder = Mudd_3
 	}
 	5281.1.1 = {
-		holder = Mudd_4 	 # Addam (nc)
+		holder = Mudd_4
 	}
 	5300.1.1 = {
-		holder = Mudd_5 	 # Tristifer (C)
+		holder = Mudd_5
 	}
 	5334.1.1 = {
-		holder = Mudd_6 	 # Tristan (nc)
+		holder = Mudd_6
 	}
 	5372.1.1 = {
-		holder = Mudd_8 	 # Tristifer (C)
+		holder = Mudd_8
 	}
 	5422.1.1 = {
-		holder = Mudd_9 	 # Roslin (nc)
+		holder = Mudd_9
 	}
 	5441.1.1 = {
-		holder = Mudd_11 	 # Tristan (nc)
+		holder = Mudd_11
 	}
 	5450.1.1 = {
-		holder = Mudd_12 	 # Jon (nc)
+		holder = Mudd_12
 	}
 	5465.1.1 = {
-		holder = Mudd_13 	 # Hosteen (nc)
+		holder = Mudd_13
 	}
 	5526.1.1 = {
-		holder = Mudd_14 	 # Addan (nc)
+		holder = Mudd_14
 	}
 	5561.1.1 = {
-		holder = Mudd_16 	 # Tristan (nc)
+		holder = Mudd_16
 	}
 	5566.1.1 = {
-		holder = Mudd_17 	 # Addan (nc)
+		holder = Mudd_17
 	}
 	5591.1.1 = {
-		holder = Mudd_18 	 # Marq (nc)
+		holder = Mudd_18
 	}
 	5618.1.1 = {
-		holder = Mudd_19 	 # Tristifer (C)
+		holder = Mudd_19
 	}
 	5644.1.1 = {
-		holder = Mudd_20 	 # Tyston (nc)
+		holder = Mudd_20
 	}
 	5649.1.1 = {
-		holder = Mudd_21 	 # Brynden (nc)
+		holder = Mudd_21
 	}
 	5690.1.1 = {
-		holder = Mudd_22 	 # Tristan (nc)
+		holder = Mudd_22
 	}
 	5702.1.1 = {
-		holder = Mudd_23 	 # Roslin (nc)
+		holder = Mudd_23
 	}
 	5753.1.1 = {
-		holder = Mudd_24 	 # Brynden (nc)
+		holder = Mudd_24
 	}
 	5775.1.1 = {
-		holder = Mudd_25 	 # Addan (nc)
+		holder = Mudd_25
 	}
 	5797.1.1 = {
-		holder = Mudd_26 	 # Tristan (nc)
+		holder = Mudd_26
 	}
 	5835.1.1 = {
-		holder = Mudd_27 	 # Arson (nc)
+		holder = Mudd_27
 	}
 	5848.1.1 = {
-		holder = Mudd_28 	 # Brynden (nc)
+		holder = Mudd_28
 	}
 	5872.1.1 = {
-		holder = Mudd_29 	 # Tristan (nc)
+		holder = Mudd_29
 	}
 	5880.1.1 = {
-		holder = Mudd_30 	 # Elmar (nc)
+		holder = Mudd_30
 	}
 	5892.1.1 = {
-		holder = Mudd_31 	 # Tristifer (C)
+		holder = Mudd_31
 	}
 	5910.1.1 = {
-		holder = Mudd_32 	 # Tristifer (C)
+		holder = Mudd_32
 	}
-	# House Vance
+
 	5911.1.1 = {
-		holder = Vance_Wayfarers_Rest_11 # Armistead Vance (C) # House Vance
+		holder = Vance_Wayfarers_Rest_11
 	}
 	5950.1.1 = {
-		holder = 0 	 # Civil War
+		holder = 0
 	}
-	# House Justman
+
 	6030.1.1 = {
-		holder = Justman_1 	 # Benedict (C) # House Justman
+		holder = Justman_1
 	}
 	6053.1.1 = {
-		holder = Justman_2 	 # Benedict (C)
+		holder = Justman_2
 	}
 	6113.1.1 = {
-		holder = Justman_4 	 # Bernarr (C)
+		holder = Justman_4
 	}
 	6129.1.1 = {
-		holder = Justman_5 	 # Edwyn (nc)
+		holder = Justman_5
 	}
 	6138.1.1 = {
-		holder = Justman_6 	 # Brynden (nc)
+		holder = Justman_6
 	}
 	6176.1.1 = {
-		holder = Justman_8 	 # Bernarr (C)
+		holder = Justman_8
 	}
 	6183.1.1 = {
-		holder = 0 	 # Justman royal line extinct
+		holder = 0
 	}
-	# House Teague
+
 	6320.1.1 = {
-		holder = Teague_1 	 # Torrence (C) # House Teague
+		holder = Teague_1
 	}
 	6350.1.1 = {
-		holder = Teague_2 	 # Brynden (nc)
+		holder = Teague_2
 	}
 	6371.1.1 = {
-		holder = Teague_3 	 # Petyr (nc)
+		holder = Teague_3
 	}
 	6395.1.1 = {
-		holder = Teague_4 	 # Theo (C)
+		holder = Teague_4
 	}
 	7583.1.1 = {
-		holder = Teague_6 	 # Humfrey (C)
+		holder = Teague_6
 	}
 	7600.1.1 = {
-		holder = Teague_8 	 # Humfrey II (C)
+		holder = Teague_8
 	}
 	7600.1.2 = {
-		holder = Teague_9 	 # Hollis (C)
+		holder = Teague_9
 	}
 	7600.1.3 = {
-		holder = Teague_10 	 # Tyler (C)
+		holder = Teague_10
 	}
 	7600.1.4 = {
-		holder = Teague_7 	 # Damon (C)
+		holder = Teague_7
 	}
-	# Durrandons of the Stormlands
+
 	7600.1.5 = {
-		holder = Durrandon_69 # Arlan III
+		holder = Durrandon_69
 	}
 	7609.1.1 = {
-		holder = Teague_11 # Addam Rivers
+		holder = Teague_11
 	}
 	7609.1.15 = {
-		holder = Durrandon_70 # Arlan IV
+		holder = Durrandon_70
 	}
 	7639.1.1 = {
 		holder = Durrandon_65
 	}
 	7689.1.1 = {
-		holder = Pate_1 # Pate of Fairmarket
+		holder = Pate_1
 	}
 	7690.1.1 = {
 		holder = Durrandon_65
 	}
 	7692.1.1 = {
-		holder = Durrandon_71 # Anrec
+		holder = Durrandon_71
 	}
 	7757.1.1 = {
-		holder = Durrandon_72 # Arcon
+		holder = Durrandon_72
 	}
 	7760.1.1 = {
-		holder = Durrandon_73 # Durran
+		holder = Durrandon_73
 	}
 	7803.1.1 = {
-		holder = Durrandon_74 # Alrec
+		holder = Durrandon_74
 	}
 	7840.1.1 = {
-		holder = Durrandon_75 # Durran
+		holder = Durrandon_75
 	}
 	7842.12.1 = {
-		holder = Mallister_11 # Petyr Mallister
+		holder = Mallister_11
 	}
 	7843.1.1 = {
-		holder = Durrandon_75 # Durran
+		holder = Durrandon_75
 	}
 	7867.1.1 = {
-		holder = Durrandon_76 # Angron
+		holder = Durrandon_76
 	}
 	7896.1.1 = {
-		holder = Durrandon_77 # Erich IX
+		holder = Durrandon_77
 	}
 	7898.1.1 = {
-		holder = Durrandon_81 # Arrec III
+		holder = Durrandon_81
 	}
-	# House Hoare of the Iron Islands conquer Riverlands
+
 	7905.1.1 = {
-		holder = Hoare_28 # Harwyn
+		holder = Hoare_28
 		succession_laws = { male_only_law }
 	}
 	7943.1.1 = {
-		holder = Hoare_30 # Harrock
+		holder = Hoare_30
 	}
 	7960.1.1 = {
-		holder = Hoare_31 # Harren (C)
+		holder = Hoare_31
 	}
-	# House Tully as LP
+
 	7999.8.15 = {
 		holder = Tully_21
 		remove_succession_laws = yes
 		liege = h_the_iron_throne
 		de_jure_liege = h_the_iron_throne
 		effect = {
-			#save_title_name_change_data = yes
+
 			set_title_name = e_the_riverlands
 			agot_turn_westerosi_kingdom_into_lordship_history_effect = { YEAR = 8000 }
 			every_in_de_jure_hierarchy = {
@@ -299,7 +299,7 @@
 		liege = 0
 	}
 	8299.1.16 = {
-		# liege = e_the_north # AGOT TODO
+
 	}
 	8299.11.13 = {
 		holder = Tully_7
@@ -307,7 +307,7 @@
 	8299.12.15 = {
 		liege = 0
 	}
-	# House Baelish as LP
+
 	8300.5.10 = {
 		holder = Baelish_2
 		liege = h_the_iron_throne
@@ -759,7 +759,7 @@ c_stars_ban = {
 	}
 }
 k_harrenhal = {
-	# House Hoare
+
 	7999.1.1 = {
 		holder = Hoare_31
 		liege = e_the_riverlands
@@ -769,18 +769,18 @@ k_harrenhal = {
 			agot_turn_westerosi_kingdom_into_lordship_history_effect = { YEAR = 7999 }
 		}
 	}
-	# House Qoherys
+
 	7999.8.15 = {
 		holder = Qoherys_1
 	}
 	8009.1.1 = {
 		holder = Qoherys_4
 	}
-	# House Harroway
+
 	8037.9.9 = {
 		holder = Harroway_8
 	}
-	# House Towers
+
 	8044.6.1 = {
 		holder = Towers_1
 	}
@@ -793,7 +793,7 @@ k_harrenhal = {
 	8061.1.1 = {
 		holder = Targaryen_32
 	}
-	# House Strong
+
 	8073.7.1 = {
 		holder = Strong_9
 	}
@@ -809,7 +809,7 @@ k_harrenhal = {
 	8131.1.28 = {
 		holder = 0
 	}
-	# House Baelish
+
 	8299.12.15 = {
 		holder = Baelish_2
 		liege = e_the_vale
@@ -819,7 +819,7 @@ k_harrenhal = {
 	}
 }
 k_the_gods_eye = {
-	# House Hook
+
 	5020.1.1 = {
 		holder = Hook_1
 	}
@@ -832,24 +832,24 @@ k_the_gods_eye = {
 	5100.1.1 = {
 		holder = Hook_4
 	}
-	5136.1.2 = { # Flavorization bugfix
+	5136.1.2 = {
 		holder = 0
 	}
-	# House Roote
+
 	5200.1.1 = {
 		holder = Roote_90
 	}
-	5222.1.2 = { # Flavorization bugfix
+	5222.1.2 = {
 		holder = 0
 	}
-	# Houve Vance
+
 	5911.1.1 = {
 		holder = Vance_Wayfarers_Rest_11
 	}
 	5950.1.1 = {
 		holder = Vance_Atranta_78
 	}
-	5951.1.2 = { # Flavorization bugfix
+	5951.1.2 = {
 		holder = 0
 	}
 }
@@ -857,38 +857,38 @@ d_harrenhal = {
 	3306.1.1 = {
 		liege = e_the_riverlands
 	}
-	# House Nutt
+
 	7641.1.1 = {
-		holder = Nutt_54 # Norbert
+		holder = Nutt_54
 		effect = {
-			#save_title_name_change_data = yes
+
 			set_title_name = c_godsfort
 		}
 	}
 	7646.1.1 = {
-		holder = Nutt_53 # Halard
+		holder = Nutt_53
 	}
 	7774.1.1 = {
-		holder = Nutt_52 # Waltyr
+		holder = Nutt_52
 	}
 	7795.1.1 = {
-		holder = Nutt_51 # Alfyn
+		holder = Nutt_51
 	}
 	7818.1.1 = {
-		holder = Nutt_50 # Poul
+		holder = Nutt_50
 	}
 	7853.1.1 = {
-		holder = Nutt_1 # Martyn
+		holder = Nutt_1
 	}
 	7867.1.1 = {
-		holder = Nutt_2 # Jon
+		holder = Nutt_2
 	}
 	7886.1.1 = {
-		holder = Nutt_3 # Jeyne
+		holder = Nutt_3
 	}
-	# House Durrandon
+
 	7888.1.1 = {
-		holder = Durrandon_76 #Angron
+		holder = Durrandon_76
 	}
 	7896.1.1 = {
 		holder = Durrandon_77
@@ -896,7 +896,7 @@ d_harrenhal = {
 	7898.1.1 = {
 		holder = Durrandon_81
 	}
-	# House Hoare
+
 	7905.1.1 = {
 		holder = Hoare_28
 	}
@@ -906,25 +906,25 @@ d_harrenhal = {
 	7960.1.1 = {
 		holder = Hoare_31
 		effect = {
-			#save_title_name_change_data = yes
+
 			reset_title_name = yes
 		}
 	}
 	7999.1.1 = {
 		liege = k_harrenhal
 	}
-	# House Qoherys
+
 	7999.8.15 = {
 		holder = Qoherys_1
 	}
 	8009.1.1 = {
 		holder = Qoherys_4
 	}
-	# House Harroway
+
 	8037.9.9 = {
 		holder = Harroway_8
 	}
-	# House Towers
+
 	8044.6.1 = {
 		holder = Towers_1
 	}
@@ -937,7 +937,7 @@ d_harrenhal = {
 	8061.1.1 = {
 		holder = Targaryen_32
 	}
-	# House Strong
+
 	8073.7.1 = {
 		holder = Strong_9
 	}
@@ -954,7 +954,7 @@ d_harrenhal = {
 		holder = Strong_34
 		liege = 0
 	}
-	# House Lothston
+
 	8151.1.1 = {
 		holder = Lothston_5
 		liege = e_the_riverlands
@@ -971,7 +971,7 @@ d_harrenhal = {
 	8200.1.1 = {
 		holder = Lothston_17
 	}
-	# House Whent
+
 	8229.1.1 = {
 		holder = Whent_15
 	}
@@ -1001,7 +1001,7 @@ d_harrenhal = {
 	8296.1.1 = {
 		holder = Whent_3
 	}
-	# House Slynt
+
 	8298.12.23 = {
 		holder = Slynt_1
 	}
@@ -1011,7 +1011,7 @@ d_harrenhal = {
 	8299.11.13 = {
 		holder = Tully_7
 	}
-	# House Baelish
+
 	8299.12.15 = {
 		holder = Baelish_2
 		liege = k_harrenhal
@@ -1020,20 +1020,20 @@ d_harrenhal = {
 c_harrenhal = {
 	7641.1.1 = {
 		liege = d_harrenhal
-		holder = Nutt_54 # Norbert
+		holder = Nutt_54
 		effect = {
-			#save_title_name_change_data = yes
+
 			set_title_name = c_godsfort
 			title:b_harrenhal = {
-				#save_title_name_change_data = yes
+
 				set_title_name = b_weirgaze
 			}
 			title:b_harrentown = {
-				#save_title_name_change_data = yes
+
 				set_title_name = b_godsroad
 			}
 			title:b_hoarespring = {
-				#save_title_name_change_data = yes
+
 				set_title_name = b_greenspring
 			}
 			if = {
@@ -1045,25 +1045,25 @@ c_harrenhal = {
 		}
 	}
 	7646.1.1 = {
-		holder = Nutt_53 # Halard
+		holder = Nutt_53
 	}
 	7774.1.1 = {
-		holder = Nutt_52 # Waltyr
+		holder = Nutt_52
 	}
 	7795.1.1 = {
-		holder = Nutt_51 # Alfyn
+		holder = Nutt_51
 	}
 	7818.1.1 = {
-		holder = Nutt_50 # Poul
+		holder = Nutt_50
 	}
 	7853.1.1 = {
-		holder = Nutt_1 # Martyn
+		holder = Nutt_1
 	}
 	7867.1.1 = {
-		holder = Nutt_2 # Jon
+		holder = Nutt_2
 	}
 	7886.1.1 = {
-		holder = Nutt_3 # Jeyne
+		holder = Nutt_3
 	}
 	7888.1.1 = {
 		holder = Goodbrook_9
@@ -1082,14 +1082,14 @@ c_harrenhal = {
 	7960.1.1 = {
 		holder = Hoare_31
 		effect = {
-			#save_title_name_change_data = yes
+
 			reset_title_name = yes
 			title:b_harrenhal = {
-				#save_title_name_change_data = yes
+
 				reset_title_name = yes
 			}
 			title:b_hoarespring = {
-				#save_title_name_change_data = yes
+
 				reset_title_name = yes
 			}
 		}
@@ -1097,7 +1097,7 @@ c_harrenhal = {
 	7980.1.1 = {
 		effect = {
 			title:b_harrentown = {
-				#save_title_name_change_data = yes
+
 				reset_title_name = yes
 			}
 		}
@@ -1175,25 +1175,25 @@ c_harrenhal = {
 c_worthriver = {
 	7641.1.1 = {
 		liege = d_harrenhal
-		holder = Nutt_54 # Norbert
+		holder = Nutt_54
 	}
 	7646.1.1 = {
-		holder = Nutt_53 # Halard
+		holder = Nutt_53
 	}
 	7774.1.1 = {
-		holder = Nutt_52 # Waltyr
+		holder = Nutt_52
 	}
 	7795.1.1 = {
-		holder = Nutt_51 # Alfyn
+		holder = Nutt_51
 	}
 	7818.1.1 = {
-		holder = Nutt_50 # Poul
+		holder = Nutt_50
 	}
 	7853.1.1 = {
-		holder = Nutt_1 # Martyn
+		holder = Nutt_1
 	}
 	7867.1.1 = {
-		holder = Nutt_2 # Jon
+		holder = Nutt_2
 	}
 	7876.1.1 = {
 		holder = Terrick_3
@@ -1251,7 +1251,7 @@ c_worthriver = {
 	}
 }
 b_hoarespring = {
-	8151.1.1 = {	
+	8151.1.1 = {
 		holder = Ashlyn_21
 	}
 	8167.1.1 = {
@@ -1273,25 +1273,25 @@ b_hoarespring = {
 c_ferrybridge = {
 	7641.1.1 = {
 		liege = d_harrenhal
-		holder = Nutt_54 # Norbert
+		holder = Nutt_54
 	}
 	7646.1.1 = {
-		holder = Nutt_53 # Halard
+		holder = Nutt_53
 	}
 	7774.1.1 = {
-		holder = Nutt_52 # Waltyr
+		holder = Nutt_52
 	}
 	7795.1.1 = {
-		holder = Nutt_51 # Alfyn
+		holder = Nutt_51
 	}
 	7818.1.1 = {
-		holder = Nutt_50 # Poul
+		holder = Nutt_50
 	}
 	7853.1.1 = {
-		holder = Nutt_1 # Martyn
+		holder = Nutt_1
 	}
 	7867.1.1 = {
-		holder = Nutt_2 # Jon
+		holder = Nutt_2
 	}
 	7873.1.1 = {
 		holder = Wode_5
@@ -2654,7 +2654,7 @@ c_flockshade = {
 		holder = Wallain_49
 	}
 	8283.8.4 = {
-		holder = Wallain_27 # Doreth Wallain
+		holder = Wallain_27
 	}
 }
 c_rutting = {
@@ -2851,114 +2851,114 @@ k_the_tines = {
 			set_coa = dynn_Mudd
 		}
 	}
-	# House Mudd
+
 	5240.1.1 = {
-		holder = Mudd_3 	 # Tristan (nc)
+		holder = Mudd_3
 		liege = e_the_riverlands
 	}
 	5281.1.1 = {
-		holder = Mudd_4 	 # Addam (nc)
+		holder = Mudd_4
 	}
 	5300.1.1 = {
-		holder = Mudd_5 	 # Tristifer (C)
+		holder = Mudd_5
 	}
 	5334.1.1 = {
-		holder = Mudd_6 	 # Tristan (nc)
+		holder = Mudd_6
 	}
 	5372.1.1 = {
-		holder = Mudd_8 	 # Tristifer (C)
+		holder = Mudd_8
 	}
 	5422.1.1 = {
-		holder = Mudd_9 	 # Roslin (nc)
+		holder = Mudd_9
 	}
 	5441.1.1 = {
-		holder = Mudd_11 	 # Tristan (nc)
+		holder = Mudd_11
 	}
 	5450.1.1 = {
-		holder = Mudd_12 	 # Jon (nc)
+		holder = Mudd_12
 	}
 	5465.1.1 = {
-		holder = Mudd_13 	 # Hosteen (nc)
+		holder = Mudd_13
 	}
 	5526.1.1 = {
-		holder = Mudd_14 	 # Addan (nc)
+		holder = Mudd_14
 	}
 	5561.1.1 = {
-		holder = Mudd_16 	 # Tristan (nc)
+		holder = Mudd_16
 	}
 	5566.1.1 = {
-		holder = Mudd_17 	 # Addan (nc)
+		holder = Mudd_17
 	}
 	5591.1.1 = {
-		holder = Mudd_18 	 # Marq (nc)
+		holder = Mudd_18
 	}
 	5618.1.1 = {
-		holder = Mudd_19 	 # Tristifer (C)
+		holder = Mudd_19
 	}
 	5644.1.1 = {
-		holder = Mudd_20 	 # Tyston (nc)
+		holder = Mudd_20
 	}
 	5649.1.1 = {
-		holder = Mudd_21 	 # Brynden (nc)
+		holder = Mudd_21
 	}
 	5690.1.1 = {
-		holder = Mudd_22 	 # Tristan (nc)
+		holder = Mudd_22
 	}
 	5702.1.1 = {
-		holder = Mudd_23 	 # Roslin (nc)
+		holder = Mudd_23
 	}
 	5753.1.1 = {
-		holder = Mudd_24 	 # Brynden (nc)
+		holder = Mudd_24
 	}
 	5775.1.1 = {
-		holder = Mudd_25 	 # Addan (nc)
+		holder = Mudd_25
 	}
 	5797.1.1 = {
-		holder = Mudd_26 	 # Tristan (nc)
+		holder = Mudd_26
 	}
 	5835.1.1 = {
-		holder = Mudd_27 	 # Arson (nc)
+		holder = Mudd_27
 	}
 	5848.1.1 = {
-		holder = Mudd_28 	 # Brynden (nc)
+		holder = Mudd_28
 	}
 	5872.1.1 = {
-		holder = Mudd_29 	 # Tristan (nc)
+		holder = Mudd_29
 	}
 	5880.1.1 = {
-		holder = Mudd_30 	 # Elmar (nc)
+		holder = Mudd_30
 	}
 	5892.1.1 = {
-		holder = Mudd_31 	 # Tristifer (C)
+		holder = Mudd_31
 	}
 	5910.1.1 = {
-		holder = Mudd_32 	 # Tristifer (C)
+		holder = Mudd_32
 	}
-	5911.1.2 = { # Flavorization bugfix
-		holder = 0	 # Mudd royal line extinct
+	5911.1.2 = {
+		holder = 0
 	}
-	# House Justman
+
 	6030.1.1 = {
-		holder = Justman_1 	 # Benedict (C)
+		holder = Justman_1
 		liege = e_the_riverlands
 	}
 	6053.1.1 = {
-		holder = Justman_2 	 # Benedict (C)
+		holder = Justman_2
 	}
 	6113.1.1 = {
-		holder = Justman_4 	 # Bernarr (C)
+		holder = Justman_4
 	}
 	6129.1.1 = {
-		holder = Justman_5 	 # Edwyn (nc)
+		holder = Justman_5
 	}
 	6138.1.1 = {
-		holder = Justman_6 	 # Brynden (nc)
+		holder = Justman_6
 	}
 	6176.1.1 = {
-		holder = Justman_8 	 # Bernarr (C)
+		holder = Justman_8
 	}
-	6183.1.1 = { # Flavorization bugfix
-		holder = 0 	 # Justman royal line extinct
+	6183.1.1 = {
+		holder = 0
 	}
 }
 d_cape_of_eagles = {
@@ -2972,82 +2972,82 @@ d_cape_of_eagles = {
 		holder = Mudd_3
 	}
 	5281.1.1 = {
-		holder = Mudd_4 	 # Addam (nc)
+		holder = Mudd_4
 	}
 	5300.1.1 = {
-		holder = Mudd_5 	 # Tristifer (C)
+		holder = Mudd_5
 	}
 	5334.1.1 = {
-		holder = Mudd_6 	 # Tristan (nc)
+		holder = Mudd_6
 	}
 	5372.1.1 = {
-		holder = Mudd_8 	 # Tristifer (C)
+		holder = Mudd_8
 	}
 	5422.1.1 = {
-		holder = Mudd_9 	 # Roslin (nc)
+		holder = Mudd_9
 	}
 	5441.1.1 = {
-		holder = Mudd_11 	 # Tristan (nc)
+		holder = Mudd_11
 	}
 	5450.1.1 = {
-		holder = Mudd_12 	 # Jon (nc)
+		holder = Mudd_12
 	}
 	5465.1.1 = {
-		holder = Mudd_13 	 # Hosteen (nc)
+		holder = Mudd_13
 	}
 	5526.1.1 = {
-		holder = Mudd_14 	 # Addan (nc)
+		holder = Mudd_14
 	}
 	5561.1.1 = {
-		holder = Mudd_16 	 # Tristan (nc)
+		holder = Mudd_16
 	}
 	5566.1.1 = {
-		holder = Mudd_17 	 # Addan (nc)
+		holder = Mudd_17
 	}
 	5591.1.1 = {
-		holder = Mudd_18 	 # Marq (nc)
+		holder = Mudd_18
 	}
 	5618.1.1 = {
-		holder = Mudd_19 	 # Tristifer (C)
+		holder = Mudd_19
 	}
 	5644.1.1 = {
-		holder = Mudd_20 	 # Tyston (nc)
+		holder = Mudd_20
 	}
 	5649.1.1 = {
-		holder = Mudd_21 	 # Brynden (nc)
+		holder = Mudd_21
 	}
 	5690.1.1 = {
-		holder = Mudd_22 	 # Tristan (nc)
+		holder = Mudd_22
 	}
 	5702.1.1 = {
-		holder = Mudd_23 	 # Roslin (nc)
+		holder = Mudd_23
 	}
 	5753.1.1 = {
-		holder = Mudd_24 	 # Brynden (nc)
+		holder = Mudd_24
 	}
 	5775.1.1 = {
-		holder = Mudd_25 	 # Addan (nc)
+		holder = Mudd_25
 	}
 	5797.1.1 = {
-		holder = Mudd_26 	 # Tristan (nc)
+		holder = Mudd_26
 	}
 	5835.1.1 = {
-		holder = Mudd_27 	 # Arson (nc)
+		holder = Mudd_27
 	}
 	5848.1.1 = {
-		holder = Mudd_28 	 # Brynden (nc)
+		holder = Mudd_28
 	}
 	5872.1.1 = {
-		holder = Mudd_29 	 # Tristan (nc)
+		holder = Mudd_29
 	}
 	5880.1.1 = {
-		holder = Mudd_30 	 # Elmar (nc)
+		holder = Mudd_30
 	}
 	5892.1.1 = {
-		holder = Mudd_31 	 # Tristifer (C)
+		holder = Mudd_31
 	}
 	5910.1.1 = {
-		holder = Mudd_32 	 # Tristifer (C)
+		holder = Mudd_32
 	}
 	7822.1.1 = {
 		holder = Mallister_79
@@ -3122,82 +3122,82 @@ c_seagard = {
 		holder = Mudd_3
 	}
 	5281.1.1 = {
-		holder = Mudd_4 	 # Addam (nc)
+		holder = Mudd_4
 	}
 	5300.1.1 = {
-		holder = Mudd_5 	 # Tristifer (C)
+		holder = Mudd_5
 	}
 	5334.1.1 = {
-		holder = Mudd_6 	 # Tristan (nc)
+		holder = Mudd_6
 	}
 	5372.1.1 = {
-		holder = Mudd_8 	 # Tristifer (C)
+		holder = Mudd_8
 	}
 	5422.1.1 = {
-		holder = Mudd_9 	 # Roslin (nc)
+		holder = Mudd_9
 	}
 	5441.1.1 = {
-		holder = Mudd_11 	 # Tristan (nc)
+		holder = Mudd_11
 	}
 	5450.1.1 = {
-		holder = Mudd_12 	 # Jon (nc)
+		holder = Mudd_12
 	}
 	5465.1.1 = {
-		holder = Mudd_13 	 # Hosteen (nc)
+		holder = Mudd_13
 	}
 	5526.1.1 = {
-		holder = Mudd_14 	 # Addan (nc)
+		holder = Mudd_14
 	}
 	5561.1.1 = {
-		holder = Mudd_16 	 # Tristan (nc)
+		holder = Mudd_16
 	}
 	5566.1.1 = {
-		holder = Mudd_17 	 # Addan (nc)
+		holder = Mudd_17
 	}
 	5591.1.1 = {
-		holder = Mudd_18 	 # Marq (nc)
+		holder = Mudd_18
 	}
 	5618.1.1 = {
-		holder = Mudd_19 	 # Tristifer (C)
+		holder = Mudd_19
 	}
 	5644.1.1 = {
-		holder = Mudd_20 	 # Tyston (nc)
+		holder = Mudd_20
 	}
 	5649.1.1 = {
-		holder = Mudd_21 	 # Brynden (nc)
+		holder = Mudd_21
 	}
 	5690.1.1 = {
-		holder = Mudd_22 	 # Tristan (nc)
+		holder = Mudd_22
 	}
 	5702.1.1 = {
-		holder = Mudd_23 	 # Roslin (nc)
+		holder = Mudd_23
 	}
 	5753.1.1 = {
-		holder = Mudd_24 	 # Brynden (nc)
+		holder = Mudd_24
 	}
 	5775.1.1 = {
-		holder = Mudd_25 	 # Addan (nc)
+		holder = Mudd_25
 	}
 	5797.1.1 = {
-		holder = Mudd_26 	 # Tristan (nc)
+		holder = Mudd_26
 	}
 	5835.1.1 = {
-		holder = Mudd_27 	 # Arson (nc)
+		holder = Mudd_27
 	}
 	5848.1.1 = {
-		holder = Mudd_28 	 # Brynden (nc)
+		holder = Mudd_28
 	}
 	5872.1.1 = {
-		holder = Mudd_29 	 # Tristan (nc)
+		holder = Mudd_29
 	}
 	5880.1.1 = {
-		holder = Mudd_30 	 # Elmar (nc)
+		holder = Mudd_30
 	}
 	5892.1.1 = {
-		holder = Mudd_31 	 # Tristifer (C)
+		holder = Mudd_31
 	}
 	5910.1.1 = {
-		holder = Mudd_32 	 # Tristifer (C)
+		holder = Mudd_32
 	}
 	7822.1.1 = {
 		holder = Mallister_79
@@ -3340,84 +3340,84 @@ c_hammerford = {
 		holder = Mudd_3
 	}
 	5281.1.1 = {
-		holder = Mudd_4 	 # Addam (nc)
+		holder = Mudd_4
 	}
 	5300.1.1 = {
-		holder = Mudd_5 	 # Tristifer (C)
+		holder = Mudd_5
 	}
 	5334.1.1 = {
-		holder = Mudd_6 	 # Tristan (nc)
+		holder = Mudd_6
 	}
 	5372.1.1 = {
-		holder = Mudd_8 	 # Tristifer (C)
+		holder = Mudd_8
 	}
 	5422.1.1 = {
-		holder = Mudd_9 	 # Roslin (nc)
+		holder = Mudd_9
 	}
 	5441.1.1 = {
-		holder = Mudd_11 	 # Tristan (nc)
+		holder = Mudd_11
 	}
 	5450.1.1 = {
-		holder = Mudd_12 	 # Jon (nc)
+		holder = Mudd_12
 	}
 	5465.1.1 = {
-		holder = Mudd_13 	 # Hosteen (nc)
+		holder = Mudd_13
 	}
 	5526.1.1 = {
-		holder = Mudd_14 	 # Addan (nc)
+		holder = Mudd_14
 	}
 	5561.1.1 = {
-		holder = Mudd_16 	 # Tristan (nc)
+		holder = Mudd_16
 	}
 	5566.1.1 = {
-		holder = Mudd_17 	 # Addan (nc)
+		holder = Mudd_17
 	}
 	5591.1.1 = {
-		holder = Mudd_18 	 # Marq (nc)
+		holder = Mudd_18
 	}
 	5618.1.1 = {
-		holder = Mudd_19 	 # Tristifer (C)
+		holder = Mudd_19
 	}
 	5644.1.1 = {
-		holder = Mudd_20 	 # Tyston (nc)
+		holder = Mudd_20
 	}
 	5649.1.1 = {
-		holder = Mudd_21 	 # Brynden (nc)
+		holder = Mudd_21
 	}
 	5690.1.1 = {
-		holder = Mudd_22 	 # Tristan (nc)
+		holder = Mudd_22
 	}
 	5702.1.1 = {
-		holder = Mudd_23 	 # Roslin (nc)
+		holder = Mudd_23
 	}
 	5753.1.1 = {
-		holder = Mudd_24 	 # Brynden (nc)
+		holder = Mudd_24
 	}
 	5775.1.1 = {
-		holder = Mudd_25 	 # Addan (nc)
+		holder = Mudd_25
 	}
 	5797.1.1 = {
-		holder = Mudd_26 	 # Tristan (nc)
+		holder = Mudd_26
 	}
 	5835.1.1 = {
-		holder = Mudd_27 	 # Arson (nc)
+		holder = Mudd_27
 	}
 	5848.1.1 = {
-		holder = Mudd_28 	 # Brynden (nc)
+		holder = Mudd_28
 	}
 	5872.1.1 = {
-		holder = Mudd_29 	 # Tristan (nc)
+		holder = Mudd_29
 	}
 	5880.1.1 = {
-		holder = Mudd_30 	 # Elmar (nc)
+		holder = Mudd_30
 	}
 	5892.1.1 = {
-		holder = Mudd_31 	 # Tristifer (C)
+		holder = Mudd_31
 	}
 	5910.1.1 = {
-		holder = Mudd_32 	 # Tristifer (C)
+		holder = Mudd_32
 	}
-	5911.1.2 = { 
+	5911.1.2 = {
 		effect = {
 			title:b_hammerford = {
 				set_capital_barony = yes
@@ -3662,162 +3662,162 @@ d_fairmarket = {
 	3306.1.1 = {
 		liege = e_the_riverlands
 	}
-	# House Mudd
+
 	5240.1.1 = {
-		holder = Mudd_3 	 # Tristan (nc)
+		holder = Mudd_3
 		liege = k_the_tines
 	}
 	5281.1.1 = {
-		holder = Mudd_4 	 # Addam (nc)
+		holder = Mudd_4
 	}
 	5300.1.1 = {
-		holder = Mudd_5 	 # Tristifer (C)
+		holder = Mudd_5
 	}
 	5334.1.1 = {
-		holder = Mudd_6 	 # Tristan (nc)
+		holder = Mudd_6
 	}
 	5372.1.1 = {
-		holder = Mudd_8 	 # Tristifer (C)
+		holder = Mudd_8
 	}
 	5422.1.1 = {
-		holder = Mudd_9 	 # Roslin (nc)
+		holder = Mudd_9
 	}
 	5441.1.1 = {
-		holder = Mudd_11 	 # Tristan (nc)
+		holder = Mudd_11
 	}
 	5450.1.1 = {
-		holder = Mudd_12 	 # Jon (nc)
+		holder = Mudd_12
 	}
 	5465.1.1 = {
-		holder = Mudd_13 	 # Hosteen (nc)
+		holder = Mudd_13
 	}
 	5526.1.1 = {
-		holder = Mudd_14 	 # Addan (nc)
+		holder = Mudd_14
 	}
 	5561.1.1 = {
-		holder = Mudd_16 	 # Tristan (nc)
+		holder = Mudd_16
 	}
 	5566.1.1 = {
-		holder = Mudd_17 	 # Addan (nc)
+		holder = Mudd_17
 	}
 	5591.1.1 = {
-		holder = Mudd_18 	 # Marq (nc)
+		holder = Mudd_18
 	}
 	5618.1.1 = {
-		holder = Mudd_19 	 # Tristifer (C)
+		holder = Mudd_19
 	}
 	5644.1.1 = {
-		holder = Mudd_20 	 # Tyston (nc)
+		holder = Mudd_20
 	}
 	5649.1.1 = {
-		holder = Mudd_21 	 # Brynden (nc)
+		holder = Mudd_21
 	}
 	5690.1.1 = {
-		holder = Mudd_22 	 # Tristan (nc)
+		holder = Mudd_22
 	}
 	5702.1.1 = {
-		holder = Mudd_23 	 # Roslin (nc)
+		holder = Mudd_23
 	}
 	5753.1.1 = {
-		holder = Mudd_24 	 # Brynden (nc)
+		holder = Mudd_24
 	}
 	5775.1.1 = {
-		holder = Mudd_25 	 # Addan (nc)
+		holder = Mudd_25
 	}
 	5797.1.1 = {
-		holder = Mudd_26 	 # Tristan (nc)
+		holder = Mudd_26
 	}
 	5835.1.1 = {
-		holder = Mudd_27 	 # Arson (nc)
+		holder = Mudd_27
 	}
 	5848.1.1 = {
-		holder = Mudd_28 	 # Brynden (nc)
+		holder = Mudd_28
 	}
 	5872.1.1 = {
-		holder = Mudd_29 	 # Tristan (nc)
+		holder = Mudd_29
 	}
 	5880.1.1 = {
-		holder = Mudd_30 	 # Elmar (nc)
+		holder = Mudd_30
 	}
 	5892.1.1 = {
-		holder = Mudd_31 	 # Tristifer (C)
+		holder = Mudd_31
 	}
 	5910.1.1 = {
-		holder = Mudd_32 	 # Tristifer (C)
+		holder = Mudd_32
 	}
-	5911.1.2 = { # Flavorization bugfix
-		holder = 0	 # Mudd royal line extinct
+	5911.1.2 = {
+		holder = 0
 	}
-	# House Justman
+
 	6030.1.1 = {
-		holder = Justman_1 	 # Benedict (C)
+		holder = Justman_1
 		liege = k_the_tines
 	}
 	6053.1.1 = {
-		holder = Justman_2 	 # Benedict (C)
+		holder = Justman_2
 	}
 	6113.1.1 = {
-		holder = Justman_4 	 # Bernarr (C)
+		holder = Justman_4
 	}
 	6129.1.1 = {
-		holder = Justman_5 	 # Edwyn (nc)
+		holder = Justman_5
 	}
 	6138.1.1 = {
-		holder = Justman_6 	 # Brynden (nc)
+		holder = Justman_6
 	}
 	6176.1.1 = {
-		holder = Justman_8 	 # Bernarr (C)
+		holder = Justman_8
 	}
-	6183.1.1 = { # Flavorization bugfix
-		holder = 0 	 # Justman royal line extinct
+	6183.1.1 = {
+		holder = 0
 	}
-	# House Durrandon
+
 	7600.1.5 = {
-		holder = Durrandon_69 # Arlan III
+		holder = Durrandon_69
 		liege = e_the_riverlands
 	}
 	7609.1.1 = {
-		holder = Teague_11 # Addam Rivers
+		holder = Teague_11
 	}
 	7619.1.15 = {
-		holder = Durrandon_70 # Arlan IV
+		holder = Durrandon_70
 	}
 	7639.1.1 = {
 		holder = Durrandon_65
 	}
 	7689.1.1 = {
-		holder = Pate_1 # Pate of Fairmarket
+		holder = Pate_1
 	}
 	7690.1.1 = {
 		holder = Durrandon_65
 	}
 	7692.1.1 = {
-		holder = Durrandon_71 # Anrec
+		holder = Durrandon_71
 	}
 	7757.1.1 = {
-		holder = Durrandon_72 # Arcon
+		holder = Durrandon_72
 	}
 	7760.1.1 = {
-		holder = Durrandon_73 # Durran
+		holder = Durrandon_73
 	}
 	7803.1.1 = {
-		holder = Durrandon_74 # Alrec
+		holder = Durrandon_74
 	}
 	7840.1.1 = {
-		holder = Durrandon_75 # Durran
+		holder = Durrandon_75
 	}
 	7867.1.1 = {
-		holder = Durrandon_76 # Angron
+		holder = Durrandon_76
 	}
 	7896.1.1 = {
-		holder = Durrandon_77 # Erich IX
+		holder = Durrandon_77
 	}
 	7898.1.1 = {
-		holder = Durrandon_81 # Arrec III
+		holder = Durrandon_81
 	}
-	# House Hoare
+
 	7905.1.1 = {
-		holder = Hoare_28 # Harwyn
+		holder = Hoare_28
 	}
 	7943.1.1 = {
 		holder = Hoare_30
@@ -3828,7 +3828,7 @@ d_fairmarket = {
 	7995.1.1 = {
 		holder = Drumm_58
 	}
-	# House Paege
+
 	7999.8.15 = {
 		holder = Paege_13
 	}
@@ -3866,49 +3866,49 @@ d_fairmarket = {
 c_fairmarket = {
 	7600.1.5 = {
 		liege = d_fairmarket
-		holder = Durrandon_69 #Arlan III
+		holder = Durrandon_69
 	}
 	7609.1.1 = {
-		holder = Teague_11 # Addam Rivers
+		holder = Teague_11
 	}
 	7609.1.15 = {
-		holder = Durrandon_70 # Arlan IV
+		holder = Durrandon_70
 	}
 	7639.1.1 = {
 		holder = Durrandon_65
 	}
 	7689.1.1 = {
-		holder = Pate_1 # Pate of Fairmarket
+		holder = Pate_1
 	}
 	7690.1.1 = {
 		holder = Durrandon_65
 	}
 	7692.1.1 = {
-		holder = Durrandon_71 # Anrec
+		holder = Durrandon_71
 	}
 	7757.1.1 = {
-		holder = Durrandon_72 # Arcon
+		holder = Durrandon_72
 	}
 	7760.1.1 = {
-		holder = Durrandon_73 # Durran
+		holder = Durrandon_73
 	}
 	7803.1.1 = {
-		holder = Durrandon_74 # Alrec
+		holder = Durrandon_74
 	}
 	7840.1.1 = {
-		holder = Durrandon_75 # Durran
+		holder = Durrandon_75
 	}
 	7867.1.1 = {
-		holder = Durrandon_76 # Angron
+		holder = Durrandon_76
 	}
 	7896.1.1 = {
-		holder = Durrandon_77 # Erich IX
+		holder = Durrandon_77
 	}
 	7898.1.1 = {
-		holder = Durrandon_81 # Arrec III
+		holder = Durrandon_81
 	}
 	7905.1.1 = {
-		holder = Hoare_28 # Harwyn
+		holder = Hoare_28
 	}
 	7943.1.1 = {
 		holder = Hoare_30
@@ -3967,88 +3967,88 @@ c_mudgrave = {
 		liege = d_blackwood_vale
 	}
 	5240.1.1 = {
-		holder = Mudd_3 	 # Tristan (nc)
+		holder = Mudd_3
 		liege = d_fairmarket
 	}
 	5281.1.1 = {
-		holder = Mudd_4 	 # Addam (nc)
+		holder = Mudd_4
 	}
 	5300.1.1 = {
-		holder = Mudd_5 	 # Tristifer (C)
+		holder = Mudd_5
 	}
 	5334.1.1 = {
-		holder = Mudd_6 	 # Tristan (nc)
+		holder = Mudd_6
 	}
 	5372.1.1 = {
-		holder = Mudd_8 	 # Tristifer (C)
+		holder = Mudd_8
 	}
 	5422.1.1 = {
-		holder = Mudd_9 	 # Roslin (nc)
+		holder = Mudd_9
 	}
 	5441.1.1 = {
-		holder = Mudd_11 	 # Tristan (nc)
+		holder = Mudd_11
 	}
 	5450.1.1 = {
-		holder = Mudd_12 	 # Jon (nc)
+		holder = Mudd_12
 	}
 	5465.1.1 = {
-		holder = Mudd_13 	 # Hosteen (nc)
+		holder = Mudd_13
 	}
 	5526.1.1 = {
-		holder = Mudd_14 	 # Addan (nc)
+		holder = Mudd_14
 	}
 	5561.1.1 = {
-		holder = Mudd_16 	 # Tristan (nc)
+		holder = Mudd_16
 	}
 	5566.1.1 = {
-		holder = Mudd_17 	 # Addan (nc)
+		holder = Mudd_17
 	}
 	5591.1.1 = {
-		holder = Mudd_18 	 # Marq (nc)
+		holder = Mudd_18
 	}
 	5618.1.1 = {
-		holder = Mudd_19 	 # Tristifer (C)
+		holder = Mudd_19
 	}
 	5644.1.1 = {
-		holder = Mudd_20 	 # Tyston (nc)
+		holder = Mudd_20
 	}
 	5649.1.1 = {
-		holder = Mudd_21 	 # Brynden (nc)
+		holder = Mudd_21
 	}
 	5690.1.1 = {
-		holder = Mudd_22 	 # Tristan (nc)
+		holder = Mudd_22
 	}
 	5702.1.1 = {
-		holder = Mudd_23 	 # Roslin (nc)
+		holder = Mudd_23
 	}
 	5753.1.1 = {
-		holder = Mudd_24 	 # Brynden (nc)
+		holder = Mudd_24
 	}
 	5775.1.1 = {
-		holder = Mudd_25 	 # Addan (nc)
+		holder = Mudd_25
 	}
 	5797.1.1 = {
-		holder = Mudd_26 	 # Tristan (nc)
+		holder = Mudd_26
 	}
 	5835.1.1 = {
-		holder = Mudd_27 	 # Arson (nc)
+		holder = Mudd_27
 	}
 	5848.1.1 = {
-		holder = Mudd_28 	 # Brynden (nc)
+		holder = Mudd_28
 	}
 	5872.1.1 = {
-		holder = Mudd_29 	 # Tristan (nc)
+		holder = Mudd_29
 	}
 	5880.1.1 = {
-		holder = Mudd_30 	 # Elmar (nc)
+		holder = Mudd_30
 	}
 	5892.1.1 = {
-		holder = Mudd_31 	 # Tristifer (C)
+		holder = Mudd_31
 	}
 	5910.1.1 = {
-		holder = Mudd_32 	 # Tristifer (C)
+		holder = Mudd_32
 	}
-	5911.1.2 = { 
+	5911.1.2 = {
 		effect = {
 			title:b_sollbrush = {
 				set_capital_barony = yes
@@ -4305,7 +4305,7 @@ d_harroway = {
 			dynasty:dynn_Harroway ?= {
 				set_coa = dynn_Harroway_Old
 			}
-			#save_title_name_change_data = yes
+
 			set_title_name = c_claybend
 		}
 	}
@@ -4313,7 +4313,7 @@ d_harroway = {
 		liege = e_the_riverlands
 	}
 	7776.1.1 = {
-		holder = Nutt_47 # Barion
+		holder = Nutt_47
 	}
 	7797.1.1 = {
 		holder = Nutt_6
@@ -4333,11 +4333,11 @@ d_harroway = {
 	7907.1.1 = {
 		holder = Nutt_72
 	}
-	# House Harroway
+
 	7969.1.1 = {
 		holder = Harroway_5
 		effect = {
-			#save_title_name_change_data = yes
+
 			reset_title_name = yes
 		}
 	}
@@ -4358,12 +4358,12 @@ d_harroway = {
 	8032.1.1 = {
 		holder = Harroway_8
 	}
-	# House Butterwell
+
 	8044.6.1 = {
 		holder = Butterwell_13
 		liege = e_the_riverlands
 	}
-	# House Roote
+
 	8048.3.7 = {
 		holder = Roote_48
 		liege = k_harrenhal
@@ -4402,14 +4402,14 @@ c_harroway = {
 			dynasty:dynn_Harroway ?= {
 				set_coa = dynn_Harroway_Old
 			}
-			#save_title_name_change_data = yes
+
 			set_title_name = c_claybend
 			title:b_lord_harroways_town = {
-				#save_title_name_change_data = yes
+
 				set_title_name = b_little_claybend
 			}
 			title:b_harroway_tower = {
-				#save_title_name_change_data = yes
+
 				set_title_name = b_claybend_keep
 			}
 		}
@@ -4418,7 +4418,7 @@ c_harroway = {
 		liege = d_harrenhal
 	}
 	7776.1.1 = {
-		holder = Nutt_47 # Barion
+		holder = Nutt_47
 	}
 	7797.1.1 = {
 		holder = Nutt_6
@@ -4438,18 +4438,18 @@ c_harroway = {
 	7907.1.1 = {
 		holder = Nutt_72
 	}
-	### House Harroway
+
 	7969.1.1 = {
 		holder = Harroway_5
 		effect = {
-			#save_title_name_change_data = yes
+
 			reset_title_name = yes
 			title:b_lord_harroways_town = {
-				#save_title_name_change_data = yes
+
 				reset_title_name = yes
 			}
 			title:b_harroway_tower = {
-				#save_title_name_change_data = yes
+
 				reset_title_name = yes
 			}
 		}
@@ -4826,7 +4826,7 @@ c_briarwhite = {
 	}
 	8289.1.1 = {
 		holder = Atell_11
-	}	
+	}
 }
 c_shorehedge = {
 	7641.1.1 = {
@@ -4885,7 +4885,7 @@ c_shorehedge = {
 	}
 	8289.1.1 = {
 		holder = Atell_11
-	}	
+	}
 }
 c_rippledown_rill = {
 	5200.1.1 = {
@@ -6232,24 +6232,24 @@ k_fishers_haft = {
 		}
 	}
 	3306.1.1 = {
-		holder = Fisher_riverlands_duplicate_1 	 # Ryman (nc) # House Fisher
+		holder = Fisher_riverlands_duplicate_1
 	}
 	3323.1.1 = {
-		holder = Fisher_riverlands_duplicate_2 	 # Patrek (nc)
+		holder = Fisher_riverlands_duplicate_2
 	}
 	3331.1.1 = {
-		holder = Fisher_riverlands_duplicate_3 	 # Addan (nc)
+		holder = Fisher_riverlands_duplicate_3
 	}
 	3390.1.1 = {
-		holder = Fisher_riverlands_duplicate_4 	 # Tristan (nc)
+		holder = Fisher_riverlands_duplicate_4
 	}
 	3408.1.1 = {
-		holder = Fisher_riverlands_duplicate_5 	 # Eyman (nc)
+		holder = Fisher_riverlands_duplicate_5
 	}
 	3442.1.1 = {
-		holder = Fisher_riverlands_duplicate_6 	 # Edmure (nc)
+		holder = Fisher_riverlands_duplicate_6
 	}
-	3456.1.2 = { # Flavorization bugfix
+	3456.1.2 = {
 		holder = 0
 		liege = 0
 	}
@@ -6271,39 +6271,39 @@ k_fishers_haft = {
 	5908.1.1 = {
 		holder = Mooton_12
 	}
-	5912.1.2 = { # Flavorization bugfix
+	5912.1.2 = {
 		holder = 0
 	}
 	6320.1.1 = {
-		holder = Teague_1 	 # Torrence (C) # House Teague
+		holder = Teague_1
 		liege = e_the_riverlands
 		effect = {
 			set_coa = dynn_Teague
 		}
 	}
 	6350.1.1 = {
-		holder = Teague_2 	 # Brynden (nc)
+		holder = Teague_2
 	}
 	6371.1.1 = {
-		holder = Teague_3 	 # Petyr (nc)
+		holder = Teague_3
 	}
 	6395.1.1 = {
-		holder = Teague_4 	 # Theo (C)
+		holder = Teague_4
 	}
 	7583.1.1 = {
-		holder = Teague_6 	 # Humfrey (C)
+		holder = Teague_6
 	}
 	7600.1.1 = {
-		holder = Teague_8 	 # Humfrey II (C)
+		holder = Teague_8
 	}
 	7600.1.2 = {
-		holder = Teague_9 	 # Hollis (C)
+		holder = Teague_9
 	}
 	7600.1.3 = {
-		holder = Teague_10 	 # Tyler (C)
+		holder = Teague_10
 	}
 	7600.1.4 = {
-		holder = Teague_7 	 # Damon (C)
+		holder = Teague_7
 	}
 	7600.1.5 = {
 		holder = 0
@@ -7327,10 +7327,10 @@ d_southstone = {
 		liege = e_the_riverlands
 	}
 	7523.1.1 = {
-		holder = Bracken_87 # Robin
+		holder = Bracken_87
 	}
 	7541.1.1 = {
-		holder = Bracken_85 # Axel
+		holder = Bracken_85
 	}
 	7569.1.1 = {
 		holder = Bracken_90
@@ -7446,10 +7446,10 @@ c_stone_hedge = {
 		holder = Bracken_133
 	}
 	7523.1.1 = {
-		holder = Bracken_87 # Robin
+		holder = Bracken_87
 	}
 	7541.1.1 = {
-		holder = Bracken_85 # Axel
+		holder = Bracken_85
 	}
 	7569.1.1 = {
 		holder = Bracken_90
@@ -8032,51 +8032,51 @@ d_the_crossing = {
 		liege = e_the_riverlands
 	}
 	7595.1.1 = {
-		holder = Charlton_40 # Jonos
+		holder = Charlton_40
 	}
 	7599.1.1 = {
-		holder = Charlton_39 # Mathis
+		holder = Charlton_39
 	}
 	7608.1.1 = {
-		holder = Charlton_38 # Iris
+		holder = Charlton_38
 	}
 	7656.1.1 = {
-		holder = Charlton_37 # Utherydes
+		holder = Charlton_37
 	}
 	7663.1.1 = {
-		holder = Charlton_36 # Hubert
+		holder = Charlton_36
 	}
 	7696.1.1 = {
-		holder = Charlton_35 # Lothar
+		holder = Charlton_35
 	}
 	7715.1.1 = {
-		holder = Charlton_34 # Wynafrei
+		holder = Charlton_34
 	}
 	7734.1.1 = {
-		holder = Charlton_33 # Davos
+		holder = Charlton_33
 	}
 	7753.1.1 = {
-		holder = Charlton_32 # Bywin
+		holder = Charlton_32
 	}
 	7786.1.1 = {
-		holder = Charlton_31 # Willamen
+		holder = Charlton_31
 	}
 	7797.1.1 = {
-		holder = Charlton_30 # Harys
+		holder = Charlton_30
 	}
 	7818.1.1 = {
-		holder = Charlton_29 # Ambrose
+		holder = Charlton_29
 	}
 	7863.1.1 = {
-		holder = Charlton_28 # Pyron
+		holder = Charlton_28
 	}
 	7870.1.1 = {
-		holder = Charlton_6 # Walder
+		holder = Charlton_6
 	}
 	7899.1.1 = {
 		holder = Charlton_7
 	}
-	### House Frey
+
 	7907.1.1 = {
 		holder = Frey_108
 	}
@@ -8553,46 +8553,46 @@ d_ironwater = {
 		liege = e_the_riverlands
 	}
 	7595.1.1 = {
-		holder = Charlton_40 # Jonos
+		holder = Charlton_40
 	}
 	7599.1.1 = {
-		holder = Charlton_39 # Mathis
+		holder = Charlton_39
 	}
 	7608.1.1 = {
-		holder = Charlton_38 # Iris
+		holder = Charlton_38
 	}
 	7656.1.1 = {
-		holder = Charlton_37 # Utherydes
+		holder = Charlton_37
 	}
 	7663.1.1 = {
-		holder = Charlton_36 # Hubert
+		holder = Charlton_36
 	}
 	7696.1.1 = {
-		holder = Charlton_35 # Lothar
+		holder = Charlton_35
 	}
 	7715.1.1 = {
-		holder = Charlton_34 # Wynafrei
+		holder = Charlton_34
 	}
 	7734.1.1 = {
-		holder = Charlton_33 # Davos
+		holder = Charlton_33
 	}
 	7753.1.1 = {
-		holder = Charlton_32 # Bywin
+		holder = Charlton_32
 	}
 	7786.1.1 = {
-		holder = Charlton_31 # Willamen
+		holder = Charlton_31
 	}
 	7797.1.1 = {
-		holder = Charlton_30 # Harys
+		holder = Charlton_30
 	}
 	7818.1.1 = {
-		holder = Charlton_29 # Ambrose
+		holder = Charlton_29
 	}
 	7863.1.1 = {
-		holder = Charlton_28 # Pyron
+		holder = Charlton_28
 	}
 	7870.1.1 = {
-		holder = Charlton_6 # Walder
+		holder = Charlton_6
 	}
 	7899.1.1 = {
 		holder = Charlton_7
@@ -8654,43 +8654,43 @@ c_ironwater = {
 		liege = d_ironwater
 	}
 	7595.1.1 = {
-		holder = Charlton_40 # Jonos
+		holder = Charlton_40
 	}
 	7599.1.1 = {
-		holder = Charlton_39 # Mathis
+		holder = Charlton_39
 	}
 	7608.1.1 = {
-		holder = Charlton_38 # Iris
+		holder = Charlton_38
 	}
 	7656.1.1 = {
-		holder = Charlton_37 # Utherydes
+		holder = Charlton_37
 	}
 	7663.1.1 = {
-		holder = Charlton_36 # Hubert
+		holder = Charlton_36
 	}
 	7696.1.1 = {
-		holder = Charlton_35 # Lothar
+		holder = Charlton_35
 	}
 	7715.1.1 = {
-		holder = Charlton_34 # Wynafrei
+		holder = Charlton_34
 	}
 	7734.1.1 = {
-		holder = Charlton_33 # Davos
+		holder = Charlton_33
 	}
 	7753.1.1 = {
-		holder = Charlton_32 # Bywin
+		holder = Charlton_32
 	}
 	7786.1.1 = {
-		holder = Charlton_31 # Willamen
+		holder = Charlton_31
 	}
 	7797.1.1 = {
-		holder = Charlton_30 # Harys
+		holder = Charlton_30
 	}
 	7818.1.1 = {
-		holder = Charlton_29 # Ambrose
+		holder = Charlton_29
 	}
 	7863.1.1 = {
-		holder = Charlton_28 # Pyron
+		holder = Charlton_28
 	}
 	7870.1.1 = {
 		holder = Charlton_6
@@ -9345,31 +9345,31 @@ d_tridents_mouth = {
 		holder = Darry_12
 	}
 	6320.1.1 = {
-		holder = Teague_1 # Torrence
+		holder = Teague_1
 	}
 	6350.1.1 = {
-		holder = Teague_2 # Addam
+		holder = Teague_2
 	}
 	6371.1.1 = {
-		holder = Teague_3 # Petyr
+		holder = Teague_3
 	}
 	6395.1.1 = {
-		holder = Teague_4 # Theo
+		holder = Teague_4
 	}
 	7583.1.1 = {
-		holder = Teague_6 	 # Humfrey (C)
+		holder = Teague_6
 	}
 	7600.1.1 = {
-		holder = Teague_8 	 # Humfrey II (C)
+		holder = Teague_8
 	}
 	7600.1.2 = {
-		holder = Teague_9 	 # Hollis (C)
+		holder = Teague_9
 	}
 	7600.1.3 = {
-		holder = Teague_10 	 # Tyler (C)
+		holder = Teague_10
 	}
 	7600.1.4 = {
-		holder = Teague_7 	 # Damon (C)
+		holder = Teague_7
 	}
 	7600.1.5 = {
 		holder = 0
@@ -9783,20 +9783,20 @@ d_riverbend = {
 	100.1.1 = {
 		effect = {
 			title:b_ruby_ford = {
-				#save_title_name_change_data = yes
+
 				set_title_name = b_lightford
 			}
 		}
 	}
 	7611.1.1 = {
 		liege = e_the_riverlands
-		holder = Nutt_54 # Norbert
+		holder = Nutt_54
 	}
 	7641.1.1 = {
-		holder = Nutt_48 # Hoster
+		holder = Nutt_48
 	}
 	7776.1.1 = {
-		holder = Nutt_47 # Barion
+		holder = Nutt_47
 	}
 	7797.1.1 = {
 		holder = Nutt_6
@@ -9861,7 +9861,7 @@ d_riverbend = {
 	8283.8.4 = {
 		effect = {
 			title:b_ruby_ford = {
-				#save_title_name_change_data = yes
+
 				reset_title_name = yes
 			}
 		}
@@ -9874,49 +9874,49 @@ c_riverbend = {
 	100.1.1 = {
 		effect = {
 			title:b_ruby_ford = {
-				#save_title_name_change_data = yes
+
 				set_title_name = b_lightford
 			}
 		}
 	}
-	### House Teague
+
 	6320.1.1 = {
-		holder = Teague_1 # Torrence
+		holder = Teague_1
 	}
 	6350.1.1 = {
-		holder = Teague_2 # Addam
+		holder = Teague_2
 	}
 	6371.1.1 = {
-		holder = Teague_3 # Petyr
+		holder = Teague_3
 	}
 	6395.1.1 = {
-		holder = Teague_4 # Theo
+		holder = Teague_4
 	}
 	7583.1.1 = {
-		holder = Teague_6 	 # Humfrey (C)
+		holder = Teague_6
 	}
 	7600.1.1 = {
-		holder = Teague_8 	 # Humfrey II (C)
+		holder = Teague_8
 	}
 	7600.1.2 = {
-		holder = Teague_9 	 # Hollis (C)
+		holder = Teague_9
 	}
 	7600.1.3 = {
-		holder = Teague_10 	 # Tyler (C)
+		holder = Teague_10
 	}
 	7600.1.4 = {
-		holder = Teague_7 	 # Damon (C)
+		holder = Teague_7
 	}
-	### House Nutt
+
 	7611.1.1 = {
 		liege = d_riverbend
-		holder = Nutt_54 # Norbert
+		holder = Nutt_54
 	}
 	7641.1.1 = {
-		holder = Nutt_48 # Hoster
+		holder = Nutt_48
 	}
 	7776.1.1 = {
-		holder = Nutt_47 # Barion
+		holder = Nutt_47
 	}
 	7797.1.1 = {
 		holder = Nutt_6
@@ -9981,7 +9981,7 @@ c_riverbend = {
 	8283.8.4 = {
 		effect = {
 			title:b_ruby_ford = {
-				#save_title_name_change_data = yes
+
 				reset_title_name = yes
 			}
 		}
@@ -11676,10 +11676,10 @@ c_helmesmont = {
 		holder = Vypren_22
 	}
 	8145.1.1 = {
-		holder = Tullison_9 # Joston
+		holder = Tullison_9
 	}
 	8163.1.1 = {
-		holder = Tullison_8 # Theo
+		holder = Tullison_8
 	}
 	8208.1.1 = {
 		holder = Tullison_4
@@ -11691,10 +11691,10 @@ c_helmesmont = {
 		holder = Tullison_6
 	}
 	8271.1.1 = {
-		holder = Tullison_3 # Sterl
+		holder = Tullison_3
 	}
 	8283.8.4 = {
-		holder = Tullison_1 # Dunstan
+		holder = Tullison_1
 	}
 }
 b_stenchpool = {
@@ -11813,7 +11813,7 @@ c_seasorrow = {
 	}
 }
 
-# AGOAT Compompatch P87: incumbent AGOT blocks dropped by Nobility of Westeros, restored (rebuilt 2026-09-04 on NoW 1.2.9).
+
 b_tristonkeep = {
 	7866.1.1 = {
 		holder = Dreck_1

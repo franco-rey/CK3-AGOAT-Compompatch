@@ -1,0 +1,47 @@
+﻿
+
+agot_unknown_culture_conversion = {
+	if = {
+		limit = {
+			culture = culture:unknown_culture
+			NOT = { agot_is_dummy_character = yes }
+		}
+		if = {
+			limit = {
+				exists = capital_county
+				exists = capital_county.culture
+				NOT = { capital_county.culture = culture:unknown_culture }
+			}
+			set_culture = capital_county.culture
+		}
+		else_if = {
+			limit = {
+				exists = liege_or_court_owner
+				exists = liege_or_court_owner.culture
+				NOT = { liege_or_court_owner.culture = culture:unknown_culture }
+			}
+			set_culture = liege_or_court_owner.culture
+		}
+		else = {
+			random_ruler = {
+				limit = {
+					NOT = { agot_is_dummy_character = yes }
+					exists = culture
+					NOT = { culture = culture:unknown_culture }
+				}
+				save_temporary_scope_as = agoat_unknown_culture_donor
+			}
+			if = {
+				limit = {
+					exists = scope:agoat_unknown_culture_donor
+					exists = scope:agoat_unknown_culture_donor.culture
+				}
+				set_culture = scope:agoat_unknown_culture_donor.culture
+			}
+		}
+		add_character_flag = {
+			flag = converted_unknown_culture
+			days = 1
+		}
+	}
+}

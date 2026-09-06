@@ -1,0 +1,528 @@
+﻿Brownhollow_87 = {
+	name = Edgar
+	dynasty = dynn_Brune
+
+	prowess = 5
+
+	religion = fots_seven
+	culture = clawman
+
+	father = Brownhollow_24
+	mother = Smithe_61
+
+	trait = vengeful
+	trait = paranoid
+
+	8149.1.1 = {
+		birth = yes
+		add_character_flag = canon_status_semicanon
+	}
+	8161.12.20 = {
+		effect = {
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:Crakehall_63 }
+		}
+	}
+	8165.1.1 = {
+		trait = knight
+		effect = {
+			agot_knighted_char_history_effect = { KNIGHT = character:Crakehall_63 }
+		}
+		employer = Crakehall_29
+	}
+	8173.1.1 = { employer = Crakehall_37 }
+	8185.1.1 = { employer = Crakehall_42 }
+	8195.1.1 = { death = yes }
+}
+
+Hardy_83 = {
+	name = Tomas
+	dynasty = dynn_Hardy
+
+	religion = fots_seven
+	culture = clawman
+
+	father = Hardy_42
+	mother = Brune_35
+
+	8141.1.1 = {
+		birth = yes
+		add_character_flag = canon_status_semicanon
+	}
+	8160.1.1 = { trait = knight }
+	8178.2.22 = {
+		death = {
+			death_reason = death_duel
+			killer = Bracken_69
+		}
+	}
+}
+
+Cave_92 = {
+	name = Joramun
+	dynasty = dynn_Cave
+
+	religion = fots_seven
+	culture = clawman
+
+	father = Cave_76
+	mother = Smithe_58
+
+	8131.1.1 = {
+		birth = yes
+		add_character_flag = canon_status_semicanon
+	}
+	8147.1.1 = { trait = knight }
+	8192.1.1 = {
+		death = { death_reason = death_natural_causes }
+	}
+}
+
+Cave_93 = {
+	name = Ludd
+	dynasty = dynn_Cave
+
+	religion = fots_seven
+	culture = clawman
+
+	father = Cave_76
+	mother = Smithe_58
+
+	8141.1.1 = {
+		birth = yes
+		add_character_flag = canon_status_semicanon
+	}
+	8157.1.1 = { trait = knight }
+	8178.2.22 = {
+		death = {
+			death_reason = death_duel
+			killer = Prester_38
+		}
+	}
+}
+
+Stark_155 = {
+	name = Benjen
+	dynasty = dynn_Stark
+
+	religion = old_gods_wnw
+	culture = northman
+
+	father = Stark_19
+	mother = Marsh_King_2
+
+	5708.1.1 = {
+		birth = yes
+		make_trait_inactive = grey_eyes
+		make_trait_inactive = dark_brown_hair
+	}
+	5769.1.1 = { death = yes }
+}
+
+Stark_156 = {
+	name = Rodwell
+	dynasty = dynn_Stark
+
+	religion = old_gods_wnw
+	culture = northman
+
+	father = Stark_155
+
+	5730.1.1 = {
+		birth = yes
+		make_trait_inactive = grey_eyes
+		make_trait_inactive = dark_brown_hair
+	}
+	5772.1.1 = { death = yes }
+}
+
+Stark_154 = {
+	name = Brandon
+	dynasty = dynn_Stark
+
+	religion = old_gods_wnw
+	culture = northman
+
+	father = Stark_155
+
+	trait = education_martial_2
+	trait = education_martial_prowess_3
+	trait = just
+	trait = honest
+	trait = stubborn
+	trait = wrathful
+	trait = rowdy
+
+	disallow_random_traits = yes
+
+	5735.1.1 = {
+		birth = yes
+		make_trait_inactive = grey_eyes
+		make_trait_inactive = dark_brown_hair
+		add_character_flag = canon_status_mentioned
+	}
+	5746.1.1 = {
+		trait = nightswatch_historical
+		effect = {
+			agot_join_nightswatch_history_effect = {
+				ORDER = ranger
+				CASTLE = title:c_castle_black
+				NW_JOIN_AGE = 11
+			}
+		}
+	}
+	5778.1.1 = { death = { death_reason = death_disappeared_on_ranging } }
+}
+
+Greystark_21 = {
+	name = Aron
+	dynasty_house = house_Greystark
+
+	religion = old_gods_wnw
+	culture = northman
+
+	father = Greystark_8
+
+	trait = bastard
+
+	trait = education_martial_3
+	trait = education_martial_prowess_2
+	trait = diligent
+	trait = generous
+	trait = brave
+	trait = sadistic
+	trait = charming
+
+	disallow_random_traits = yes
+
+	6950.1.1 = {
+		birth = yes
+		make_trait_inactive = grey_eyes
+		make_trait_inactive = dark_brown_hair
+		make_trait_inactive = surname_snow
+	}
+	6969.1.1 = {
+		trait = nightswatch_historical
+		effect = {
+			agot_join_nightswatch_history_effect = {
+				ORDER = ranger
+				CASTLE = title:c_eastwatch
+				NW_JOIN_AGE = 19
+			}
+		}
+	}
+	7004.1.1 = { death = { death_reason = death_vanished } }
+}
+
+Manderly_75 = {
+	name = Mervyn
+	dynasty = dynn_Manderly
+
+	religion = fots_seven
+	culture = harborman
+
+	father = Manderly_17
+
+	7368.1.1 = { birth = yes }
+	7384.1.1 = { trait = knight }
+	7429.1.1 = { death = yes }
+}
+
+Manderly_74 = {
+	name = Mallon
+	dynasty = dynn_Manderly
+
+	religion = fots_seven
+	culture = harborman
+
+	father = Manderly_75
+
+	trait = education_martial_3
+	trait = education_martial_prowess_1
+	trait = wrathful
+	trait = diligent
+	trait = gregarious
+	trait = deceitful
+	trait = rowdy
+
+	disallow_random_traits = yes
+
+	7399.1.1 = { birth = yes }
+	7422.1.1 = {
+		trait = gallivanter
+		trait = nightswatch_historical
+		effect = {
+			agot_join_nightswatch_history_effect = {
+				ORDER = ranger
+				CASTLE = title:c_eastwatch
+				NW_JOIN_AGE = 23
+			}
+		}
+	}
+	7430.1.1 = {
+		death = {
+			death_reason = death_duel
+			killer = Peake_130
+		}
+	}
+}
+
+Manderly_76 = {
+	name = Martyn
+	dynasty = dynn_Manderly
+
+	religion = fots_seven
+	culture = harborman
+
+	father = Manderly_75
+
+	7400.1.1 = { birth = yes }
+	7416.1.1 = { trait = knight }
+	7455.1.1 = { death = yes }
+}
+
+Frost_2 = {
+	name = Rodwell
+	dynasty = dynn_Frost
+
+	religion = old_gods_wnw
+	culture = northman
+
+	father = Frost_1
+
+	3005.1.1 = { birth = yes }
+	3039.1.1 = { death = { death_reason = death_execution } }
+}
+
+Frost_3 = {
+	name = Rodwell
+	dynasty = dynn_Frost
+
+	religion = old_gods_wnw
+	culture = northman
+
+	father = Frost_1
+
+	trait = education_stewardship_3
+	trait = compassionate
+	trait = diligent
+	trait = shy
+	trait = paranoid
+	trait = pensive
+
+	disallow_random_traits = yes
+
+	3007.1.1 = { birth = yes }
+	3029.1.1 = {
+		trait = nightswatch_historical
+		effect = {
+			agot_join_nightswatch_history_effect = {
+				ORDER = builder
+				CASTLE = title:c_castle_black
+				NW_JOIN_AGE = 22
+			}
+		}
+	}
+	3040.1.1 = { death = { death_reason = death_suicide } }
+}
+
+Frost_4 = {
+	name = Robard
+	dynasty = dynn_Frost
+
+	religion = old_gods_wnw
+	culture = northman
+
+	father = Frost_2
+
+	3030.1.1 = { birth = yes }
+	3039.1.1 = { death = { death_reason = death_execution } }
+}
+
+Peake_128 = {
+	name = Lucantine
+	dynasty = dynn_Peake
+
+	religion = fots_seven
+	culture = marcher
+
+	father = Peake_126
+
+	7327.1.1 = {
+		birth = yes
+	}
+	7345.1.1 = { trait = knight }
+	7402.1.1 = { death = { death_reason = death_feast_accident } }
+}
+
+Peake_129 = {
+	name = Lymond
+	dynasty = dynn_Peake
+
+	religion = fots_seven
+	culture = marcher
+
+	father = Peake_128
+
+	7350.1.1 = {
+		birth = yes
+	}
+	7400.1.1 = { death = { death_reason = death_feast_accident } }
+}
+
+Peake_130 = {
+	name = Mervyn
+	dynasty = dynn_Peake
+
+	religion = fots_seven
+	culture = marcher
+
+	father = Peake_129
+
+	trait = education_martial_1
+	trait = education_martial_prowess_3
+	trait = diligent
+	trait = trusting
+	trait = brave
+	trait = vengeful
+	trait = loyal
+	trait = pensive
+
+	disallow_random_traits = yes
+
+	7385.1.1 = {
+		birth = yes
+	}
+	7406.1.1 = {
+		trait = knight
+	}
+	7415.1.1 = {
+		effect = {
+			add_trait = nightswatch_historical
+			agot_join_nightswatch_history_effect = {
+				ORDER = ranger
+				CASTLE = title:c_the_shadow_tower
+				NW_JOIN_AGE = 30
+			}
+		}
+	}
+	7430.1.2 = {
+		effect = {
+			remove_trait = nightswatch_historical
+		}
+		trait = deserter
+	}
+	7431.1.1 = { death = { death_reason = death_battle } }
+}
+
+Corbray_69 = {
+	name = Joryn
+	dynasty = dynn_Corbray
+
+	religion = fots_seven
+	culture = andal
+
+	father = Corbray_6
+	mother = Shell_Vale_rs_1
+
+	trait = education_stewardship_2
+	trait = shy
+	trait = diligent
+	trait = honest
+	trait = callous
+	trait = curious
+
+	trait = legitimized_bastard
+
+	disallow_random_traits = yes
+
+	5743.1.1 = {
+		birth = yes
+		add_character_flag = unlegitimize_on_load
+		make_trait_inactive = surname_stone
+	}
+	5760.1.1 = {
+		trait = knight
+		effect = {
+			agot_knighted_char_history_effect = { KNIGHT = character:Corbray_6 }
+		}
+		remove_character_flag = unlegitimize_on_load
+	}
+	5783.1.1 = { death = yes }
+}
+
+Redfort_47 = {
+	name = Rence
+	dynasty = dynn_Redfort
+
+	religion = old_gods_wnw
+	culture = first_man
+
+	father = Redfort_6
+
+	5782.1.1 = {
+		birth = yes
+	}
+	5822.1.1 = {
+		trait = ill
+		death = {
+			death_reason = death_ill
+		}
+	}
+}
+
+Redfort_43 = {
+	name = Rollyn
+	dynasty = dynn_Redfort
+
+	religion = old_gods_wnw
+	culture = first_man
+
+	father = Redfort_6
+
+	5785.1.1 = {
+		birth = yes
+	}
+	5830.1.1 = {
+		death = {
+			death_reason = death_battle
+		}
+	}
+}
+
+Redfort_45 = {
+	name = Raymar
+	dynasty = dynn_Redfort
+
+	religion = old_gods_wnw
+	culture = first_man
+
+	father = Redfort_43
+
+	trait = education_stewardship_2
+	trait = shy
+	trait = callous
+	trait = diligent
+	trait = stubborn
+	trait = pensive
+
+	disallow_random_traits = yes
+
+	5806.1.1 = {
+		birth = yes
+	}
+	5829.1.1 = {
+		trait = nightswatch_historical
+		effect = {
+			agot_join_nightswatch_history_effect = {
+				ORDER = builder
+				CASTLE = title:c_eastwatch
+				NW_JOIN_AGE = 23
+			}
+		}
+	}
+	5859.1.1 = {
+		death = {
+			death_reason = death_training_accident
+		}
+	}
+}
