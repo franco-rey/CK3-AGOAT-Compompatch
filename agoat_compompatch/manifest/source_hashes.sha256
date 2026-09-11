@@ -42,6 +42,10 @@ c17e3341c2b01db1d4efcc177d7da4507e3b9535b5ccfc7356a5843c17054234  BUILT/common/c
 98470232a23d52a08708a9e3fe3a16d366254b36c2ff656f896bbd4342cfaa46  3457401824/common/character_interactions/oathbound_ransom_interaction.txt  # SOURCE (Oathbound)
 ee4149087abf9fbed316af069db2b3dac676f2dc10c4394d1c2c3d9bc57d3009  BUILT/common/character_interactions/oathbound_ransom_interaction.txt
 
+# common/character_interactions/zzzzzz_wlbol_baie_agot_education_merge.txt
+fcea52bfc08fd3d7f0a3a4392a9a4a504e675f283ce862f1c1bd993ebe64fe5a  3788024743/common/character_interactions/yy_baie_agot_education_interactions.txt  # SOURCE (Better AI Education – AGoT Patch)
+4085495ff543bded89a58c7541b9ceec1eb034978a19e2c6bd3381586f3327e8  BUILT/common/character_interactions/zzzzzz_wlbol_baie_agot_education_merge.txt
+
 # common/council_positions/00_agot_council_kingsguard.txt
 a77bf99ffe80c315167fb6896c90cd8074701b3334af4f10a1e762182701e8fd  2962333032/common/council_positions/00_agot_council_kingsguard.txt  # SOURCE (A Game of Thrones)
 2f812857584d528950cd33d9516b69fa5b9ed0745b072a578ad23c927312404f  BUILT/common/council_positions/00_agot_council_kingsguard.txt
@@ -146,10 +150,6 @@ ff09bd0a0a46e25676c44ff0bcde6b5543cb676486c1c6cd5f56d517df3ac4e9  BUILT/common/g
 # (no upstream counterpart - additive file)
 2a7fa993c408e0fbb9de91eca7af9679cee9ca0e66e43c50799e3985d218b365  BUILT/common/game_rules/zzzzzz_difficulty_hard_restored.txt
 
-# common/governments/replace/00_agot_government_types.txt
-88b75bf3e0d3bcf7652837acfd14af9f6f40ef5240c8aa78c8c55bcd7b4848a4  3664900993/common/governments/replace/00_agot_government_types.txt  # SOURCE (AGOT Nobility of Westeros)
-5f10c86b8ac68c971b185ddb9a0431277da8ce08250f62b2b329b5aef7b8dbfe  BUILT/common/governments/replace/00_agot_government_types.txt
-
 # common/men_at_arms_types/01_agotkb_reach_maa_types.txt
 2db08af526bc20d4a2e23d57a1b1ffc183d09cc49cf9b9feb182fd218a627cbb  3496313878/common/men_at_arms_types/01_agotkb_reach_maa_types.txt  # SOURCE ([AGOT] Knights & Banners)
 1b1984b991facd57633862f838217e97aea11d1c9783bdc9ec7e2f130f366030  BUILT/common/men_at_arms_types/01_agotkb_reach_maa_types.txt
@@ -179,7 +179,7 @@ b9034ea37a1d18a7894c01f4fe728aa63c48c370be19b41b911f848c927a3f2c  BUILT/common/m
 7f944979b7faaf4332b35db9ea1ec7d044e3cce218decef1404fa0f7ee628bc6  BUILT/common/modifier_definition_formats/zz_observer_stack_culture_opinion_definitions.txt
 
 # common/on_action/05_agot_queensguard_on_actions.txt
-db487fe565ee07abb705c7d5de21a3adedb01b557474d2a2ba095ea0ed794af4  3733779333/common/on_action/05_agot_queensguard_on_actions.txt  # SOURCE (AGOT: Royal Guards)
+fd24292010e890c3eed9791d6a5a6f86685e2bb5e84802567ed6e70e9bf8dc20  3733779333/common/on_action/05_agot_queensguard_on_actions.txt  # SOURCE (AGOT: Royal Guards)
 8f7e09b38953b3dedf9d7ef902d90c2224a6a3dc0d2a12e4294562b88b726bea  BUILT/common/on_action/05_agot_queensguard_on_actions.txt
 
 # common/on_action/asoiaf_yearly_on_actions.txt
@@ -267,8 +267,8 @@ c73619a7cdffb194f870aa71ab74dfb0ebe73aa056da1e35ca8e35f7b551ec4c  2962333032/com
 9dc723b1e2843f01d27523959e08c94fd9d2d93dd27742063e21a7b58bf43e50  BUILT/common/scripted_effects/asoiaf_assign_inactive_traits_effects.txt
 
 # common/scripted_effects/asoiaf_canon_children_effects.txt
-080981232f0708671afd71203df3466158d5d90ae0085381ae8c36e5446b747d  2950245430/common/scripted_effects/asoiaf_canon_children_effects.txt  # SOURCE (AGOT+)  KNOWN-STALE: override predates upstream 2026-09-09 - NOT rebased, see README
-3b5eed4d37931999adb40daeaf4b788189931c73633005b7ea2ec089d22dc3b4  BUILT/common/scripted_effects/asoiaf_canon_children_effects.txt
+919d83ff542167e0e2af695ed4ff8ef97d9d8e4f088ddfee34a36823e91a71db  2950245430/common/scripted_effects/asoiaf_canon_children_effects.txt  # SOURCE (2950245430)
+cca11d4fd2224fb8ac6be35082ee98ab4138887637ba0255356bdab7dca3dae0  BUILT/common/scripted_effects/asoiaf_canon_children_effects.txt
 
 # common/scripted_effects/asoiaf_scripted_effects_artifacts.txt
 42c5da841ddb36017f8418637fb4438f344c100807334cf7d889b329bb90a8a7  2950245430/common/scripted_effects/asoiaf_scripted_effects_artifacts.txt  # SOURCE (2950245430)
@@ -279,8 +279,8 @@ ed0e50b84a6bd5cc0c09e75235bfd02d761ab8ec9eb9c735ca4f46ad26804cff  BUILT/common/s
 7a616e4c113e34726c6ee32ac892e1f80da1c22b889a57277873da72ad10240e  BUILT/common/scripted_effects/asoiaf_scripted_effects_strong_seed.txt
 
 # common/scripted_effects/asoiaf_setup_effects.txt
-60daa8eaa60ab1bf44c24a6065e31019fca5a621c7876e9a96634b20c6a7bbd7  2950245430/common/scripted_effects/asoiaf_setup_effects.txt  # SOURCE (AGOT+)  KNOWN-STALE: override predates upstream 2026-09-09 - NOT rebased, see README
-199feec81c3e12fe670c6bbbba927f76cc84d8676155463ee3a1b780c653686e  BUILT/common/scripted_effects/asoiaf_setup_effects.txt
+02d7650b6d706312b3259c91d484729b3b5452d5eb3ab14033bcb5442b401671  2950245430/common/scripted_effects/asoiaf_setup_effects.txt  # SOURCE (2950245430)
+4b7060a6063c559579f15b1b59a2802fa84c7033193763d13adb2c3307f923e3  BUILT/common/scripted_effects/asoiaf_setup_effects.txt
 
 # common/scripted_effects/asoiaf_targaryen_invasion_claimants_effects.txt
 d4f006bb9434f0975828df61854904213124a3168d45c67a53ab533a681b96bb  2950245430/common/scripted_effects/asoiaf_targaryen_invasion_claimants_effects.txt  # SOURCE (2950245430)
@@ -301,6 +301,10 @@ dd5ea0b9310869deb815fbea63fc2f45d010dfbd25eea3e74ab5ff5f16c40063  BUILT/common/s
 # common/scripted_effects/mpd_xp_calculator.txt
 fe8e6eea7b7b74e3573065aaf446c37f61c39da345f22915e56bcc1364ebb081  3717990443/common/scripted_effects/mpd_xp_calculator.txt  # SOURCE (AGOT - More Personality Depth)
 cff7413ff52b2a8829c4d272d21de3d14c744e1de522d4ae44ce70b35dd24e3f  BUILT/common/scripted_effects/mpd_xp_calculator.txt
+
+# common/scripted_effects/zzzzzz_agoat_p02_crownlands_effect.txt
+c5d8c4ed2a7e7d74c3ce69b813a59b79f2f9ba7a9051b986d8be9b8da6d3c909  2950245430/common/on_action/agot_on_actions/test_title_on_actions.txt  # SOURCE (2950245430)
+0de71e3a70b55e7466ea533670e354a72d9e19ad8e48e6fc35b154169db3e7e3  BUILT/common/scripted_effects/zzzzzz_agoat_p02_crownlands_effect.txt
 
 # common/scripted_effects/zzzzzz_agot_unknown_culture_guard.txt
 # (no upstream counterpart - additive file)
@@ -414,6 +418,10 @@ d741ebcc8aaa36c29888f47aee504562624e51479e58fa79197d9b14ee18c2a8  BUILT/common/s
 3a252a0ff70619be73d40b6ed3ce1ee46e0fadde10ae13ec8ab3a8838be42abe  2962333032/common/story_cycles/agot_story_cycle_naming_and_title_gui.txt  # SOURCE (A Game of Thrones)
 a0aa5ecf5bb5a2d34fd08dfc1210ebfac55e9a20c50ff1746985d05524495642  BUILT/common/story_cycles/agot_story_cycle_naming_and_title_gui.txt
 
+# common/traits/zzzzzz_petty_mayham_traits_merge.txt
+f6e10e711be10ca02e80f284a7a085920e402cfe30d0e6f8ef0a2522091de422  3352171144/common/traits/00_traits.txt  # SOURCE ([AGOT] Mayham)
+521d6de5dcd5dc20bf43b18f224316dcedc0cc4943a68d8ec24cd52ef032d494  BUILT/common/traits/zzzzzz_petty_mayham_traits_merge.txt
+
 # events/agot_mw_revolt_succession_fix_crown_events.txt
 # (no upstream counterpart - additive file)
 10ae5566972c797952336de3f08cfa8b2eb839b491992fb221c616bcff26b294  BUILT/events/agot_mw_revolt_succession_fix_crown_events.txt
@@ -452,7 +460,7 @@ db1acf3a8035e85dd4a9b3a0b2c45ddebeb98c7d8545b4c28b21bdf12b9fe6b4  BUILT/events/a
 
 # events/agot_events/agot_kingsguard_events.txt
 1613adbcd250e993feba27b136a89d980d56830054cb2b88519a4ebcce769d9f  3788296332/events/agot_events/agot_kingsguard_events.txt  # SOURCE (Legacy of Valyria - AGOT 0.5.2.1 Compatch (Beta))  [+1 other providers]
-a99560fb38856282df98154527c42de9f27faacb51faaeccc5f83772b391ebd4  BUILT/events/agot_events/agot_kingsguard_events.txt
+b00df84520915ccfdc26f9639ba6d03a9805ba641ab7dbf838bd6710cb7555ff  BUILT/events/agot_events/agot_kingsguard_events.txt
 
 # events/decisions_events/rediscover_events.txt
 19ca2e563b805321ca9a63779edf6ec23ef98c0f85bcd5432a9e902cdc8056fa  3101422928/events/decisions_events/rediscover_events.txt  # SOURCE (3101422928)
@@ -484,31 +492,35 @@ a434d6166b669d043868a8aa6f4dcfdfd93840aa7854eea70ee2f491905655c7  3788296332/gfx
 
 # gfx/map/map_object_data/activities.txt
 0883021a80405815288e2fef1477e9315e34a00b8b2679bf1fa4dfaabb2b1ae3  3664900993/gfx/map/map_object_data/activities.txt  # SOURCE (AGOT Nobility of Westeros)  [+3 other providers]
-29319745b65d5d2b4b69427a82791a356712ad55482743fbed7d67cfb82025f1  BUILT/gfx/map/map_object_data/activities.txt
+57ee7d19144093f76d8bed31c9cd9d66ff01cf9c084f81f491fba48016cd7d9a  BUILT/gfx/map/map_object_data/activities.txt
 
 # gfx/map/map_object_data/building_locators.txt
 44b29f4c1d814a084ec9be2976d19224722ad094253e0975552f5e4dd31057c5  3742055253/gfx/map/map_object_data/building_locators.txt  # SOURCE (COW-AGOT: Nobility of Westeros Compatch)  [+4 other providers]
-491ad10bb2f2ffa40db37515c26f5461cbed50c0857b9be791e93c5dcc78da2c  BUILT/gfx/map/map_object_data/building_locators.txt
+3311833570e20d0e99f3e86af55cf58d31128653d216c5276ac3d809e83d11e4  BUILT/gfx/map/map_object_data/building_locators.txt
 
 # gfx/map/map_object_data/combat_locators.txt
 649d9c7555162b5589b4fe1c7ce295c1f875ef6fa14461b515a28780b440b23f  3664900993/gfx/map/map_object_data/combat_locators.txt  # SOURCE (AGOT Nobility of Westeros)  [+3 other providers]
-5119fd6840808544c6b96d3a80d1f7a8af3a059134259142914ab364af5a76eb  BUILT/gfx/map/map_object_data/combat_locators.txt
+70295e7a2d09544973450697c8a45b1b8edad71045385f50661f2ab65b4c39da  BUILT/gfx/map/map_object_data/combat_locators.txt
 
 # gfx/map/map_object_data/player_stack_locators.txt
 2fd634105a4ba19cd1022458fc0d4717aaa0a01006ba05df244b1e4190d5838c  3664900993/gfx/map/map_object_data/player_stack_locators.txt  # SOURCE (AGOT Nobility of Westeros)  [+3 other providers]
-7022ce9bc832a65a722dc5e5bea69164124c8c54dd357baba8c3318626a861bd  BUILT/gfx/map/map_object_data/player_stack_locators.txt
+db3c30a6d4d60396c3f41fe43f5d8940a0e5b0ce4c3fe2c81a7e7b960dd31d29  BUILT/gfx/map/map_object_data/player_stack_locators.txt
 
 # gfx/map/map_object_data/siege_locators.txt
 4b025a8c932f4dbcf1065aec3dbbc17f15aa01f83369c6edb3789d134fa8c1a6  3664900993/gfx/map/map_object_data/siege_locators.txt  # SOURCE (AGOT Nobility of Westeros)  [+3 other providers]
-ab4e4efcea3aa4035e5125788e41964e27095aab52dc7e801bcc156f3a571be5  BUILT/gfx/map/map_object_data/siege_locators.txt
+7b48d910c64a84ea0306f0d78662bde88e66b5591c16ca8c42548850e1d7b45a  BUILT/gfx/map/map_object_data/siege_locators.txt
 
 # gfx/map/map_object_data/special_building_locators.txt
 9d16ffe5ac91f029654cedf2f8dba5c5120a1253d485116a3f0d7ed2fc72a207  3742055253/gfx/map/map_object_data/special_building_locators.txt  # SOURCE (COW-AGOT: Nobility of Westeros Compatch)  [+4 other providers]
-da0a0a136a217d5bc7da98bb578863e8f7a651a3de4688933055583f00da6afa  BUILT/gfx/map/map_object_data/special_building_locators.txt
+b1cfccf9d1027c890adf33457b62a5ac664ce91416dc05771ed159ca7c1b8cac  BUILT/gfx/map/map_object_data/special_building_locators.txt
 
 # gui/00_agot_compat_character_relation.gui
 # (no upstream counterpart - additive file)
 3563ca141f05102845eee350f625ef468763975d4fc0cbad7867e65eec8c564e  BUILT/gui/00_agot_compat_character_relation.gui
+
+# gui/00_player_opinion_portraits.gui
+f89060859fcaad275dc12249e187dcc7a6cab7b3b01380017cd1e758c11e4fb6  3340687327/gui/00_player_opinion_portraits.gui  # SOURCE (Show Player Opinion)
+2be444b5c2413687a2fd0493eea0c04d0515ab722d29a2958731d0e1bf31635a  BUILT/gui/00_player_opinion_portraits.gui
 
 # gui/dragon_management_buttons_widget.gui
 2cbe30f64540580cbbff0cc34b7e9f6e10d3bbc4ab11a92839974e6f8fd9c918  3388366564/gui/dragon_management_buttons_widget.gui  # SOURCE (AGOT More Dragon Eggs)
@@ -519,12 +531,12 @@ da0a0a136a217d5bc7da98bb578863e8f7a651a3de4688933055583f00da6afa  BUILT/gfx/map/
 2e6fb3dbe9b3bf88e8b9a93370722238d4a8c1b9ce2854eb4810d317963ab0cf  BUILT/gui/gr_chronicle_window.gui
 
 # gui/guard_academy_button_widget.gui
-44aec66cc1b41593d8d8c50d833d5fe1237da0157a149d030d2b40ef72c99b3f  3733779333/gui/guard_academy_button_widget.gui  # SOURCE (AGOT: Royal Guards)
+ca15544c60b8b7a770fe1e88a15d13e77fd4e7d0df6071c29bdafbaeddb3c86f  3733779333/gui/guard_academy_button_widget.gui  # SOURCE (AGOT: Royal Guards)
 96c012289eb2012b76c1b8a033e1206fddd8756ba0d94c946aa5985cbb509afa  BUILT/gui/guard_academy_button_widget.gui
 
 # gui/hud.gui
 5e3bc9b08bcc26e54192f7dd73330a0cebb384aa5ddd22f088f63f8e5535d9bc  3388366564/gui/hud.gui  # SOURCE (AGOT More Dragon Eggs)  [+3 other providers]
-f25c2cedab96f053d203ca12c53d7f274498d1ba9ca5ec52846c3e7287c7784c  BUILT/gui/hud.gui
+729724d40220f45dd95681719c70534074ef9d1d63faac1609dacdb8b8106140  BUILT/gui/hud.gui
 
 # gui/interaction_menu_window.gui
 9708d98acd65e036575af26421ab9c362b93bea64e77c30e45009123a94939b3  2625307328/gui/interaction_menu_window.gui  # SOURCE (In My Humble Opinion)  [+3 other providers]
@@ -532,11 +544,11 @@ dc7c966515d9d55faefa9e608cd948b04def7f4c829dbdd3710251718d162cd5  BUILT/gui/inte
 
 # gui/map_icon_layer.gui
 4fc1d880121db0e5f2c933d47f747992037c413af6156fe851a5f1a91d6d3201  3788296332/gui/map_icon_layer.gui  # SOURCE (Legacy of Valyria - AGOT 0.5.2.1 Compatch (Beta))  [+3 other providers]
-5f8af0d25411ad57035630e49ecbba4b5f63bfa35da66ab823df7519ef038636  BUILT/gui/map_icon_layer.gui
+aa151ea3ad897896599efcb7826f32a73aeb5e66a6c83fc072140548658b75eb  BUILT/gui/map_icon_layer.gui
 
 # gui/window_character.gui
 c1581244d472eedd9e8ce75ddc2fb98eed6fedb5f292312cbd7b3101fd56e46d  2625307328/gui/window_character.gui  # SOURCE (In My Humble Opinion)  [+4 other providers]
-b62b526b8b77009c30fee4ae467a32a4f5a6e6b4183522ab6b7375061edee519  BUILT/gui/window_character.gui
+04311bebf1b9ea2a75195be2e15f86b3eb2c10d66b532c8081263f03098e035f  BUILT/gui/window_character.gui
 
 # gui/window_character_bddates.gui
 # (no upstream counterpart - additive file)
@@ -564,31 +576,31 @@ cb8c0ebd4120a5f7ad54541aec67d5677c5289cd20df988016e11a585bcfb23c  BUILT/gui/wind
 
 # gui/shared/portraits.gui
 db94697e76e2f7000b997a0e139a4e3683ffbc438bc39c46f8272ac9a4dacb54  3766320609/gui/shared/portraits.gui  # SOURCE (DireWolves)  [+1 other providers]
-f6b67d5e9fb045a8858f0e9f8395f918edd4ae3531b6dc76b7b44f474522e15c  BUILT/gui/shared/portraits.gui
+894ebcacb19ef524b037a64f2b6eafc5a9798be836fad0863415a30d6eb20e1f  BUILT/gui/shared/portraits.gui
 
 # history/characters/zz_agoat_agot_0521_characters_hidden_by_now.txt
 # (no upstream counterpart - additive file)
-9d3120bfa1bd252bfd86ce97d6410377bc8b8e6de348347fb476ede78a7ce30d  BUILT/history/characters/zz_agoat_agot_0521_characters_hidden_by_now.txt
+e2a75f930bd64a956c2af0ae54915385094c475a63f5e246b77efcbefc9abd1f  BUILT/history/characters/zz_agoat_agot_0521_characters_hidden_by_now.txt
 
 # history/titles/agot_e_the_crownlands.txt
 e74f79517e12a5eaf5be33666a82e1a0fd88bb69d2378aeab7417018089cf8b5  3664900993/history/titles/agot_e_the_crownlands.txt  # SOURCE (AGOT Nobility of Westeros)  [+2 other providers]
-2ea1dcd204e527382d1b0f81bd58b0810717c4315df240c4df9518468b6d7399  BUILT/history/titles/agot_e_the_crownlands.txt
+a277a4e38ae44f011cee87d3c15f709d2d4eedcd90d1ec85774b5f29e82fdfab  BUILT/history/titles/agot_e_the_crownlands.txt
 
 # history/titles/agot_e_the_north.txt
 327f6f3a34606e55a5171843ce86c99e7e66cb958fdee423056035f0fafb0bd8  3664900993/history/titles/agot_e_the_north.txt  # SOURCE (AGOT Nobility of Westeros)  [+1 other providers]
-bd7fa2d1d8382226cea3358726f59ea7415ccf297fca3a6f8e6ee84e26b32147  BUILT/history/titles/agot_e_the_north.txt
+f740d9c8ff93cfdfc5bf5b2ecd4c701897f26c0b5c8579a96ddb78fd6f1a4b03  BUILT/history/titles/agot_e_the_north.txt
 
 # history/titles/agot_e_the_riverlands.txt
 f9f1758bd22e63bc4c1d0135b2f9d32aeaae2e8692bd34817c76081b5f4d5004  3664900993/history/titles/agot_e_the_riverlands.txt  # SOURCE (AGOT Nobility of Westeros)  [+1 other providers]
-b9e2444f5491959845e5a02a4bf94d2702824085e7fa8b596a899e82af0561bd  BUILT/history/titles/agot_e_the_riverlands.txt
+8aa7f936d3f86870ce1da1437db2d1d517e30818950190e23da0d8fd610058f7  BUILT/history/titles/agot_e_the_riverlands.txt
 
 # history/titles/agot_e_the_vale.txt
 868af619b1667c495bd1d53dd44b7b255a8ee18faf86cbe4b014ef3949371af8  3664900993/history/titles/agot_e_the_vale.txt  # SOURCE (AGOT Nobility of Westeros)  [+1 other providers]
-19c816e6f85e4f076dabc36dca22c7122b2d8c4c7bf07d434ab9f70f88f2d206  BUILT/history/titles/agot_e_the_vale.txt
+3e2515145a19c4e9753b1f9b59bb913f62612d0e3dc71b442d26ae0ce6ba58a6  BUILT/history/titles/agot_e_the_vale.txt
 
 # history/titles/agot_e_the_westerlands.txt
 017d498915d489e5ab68e77327543f66af66fe3670ef24c4ba184dfc83b497a7  3664900993/history/titles/agot_e_the_westerlands.txt  # SOURCE (AGOT Nobility of Westeros)  [+1 other providers]
-8ce4cfa9a3176335d690b6bc2bc1703082c14d9644b05457a53de272e06777d0  BUILT/history/titles/agot_e_the_westerlands.txt
+92f90c0538fa8079fa35fb89f79f8158bfa83c68f7be068980bc8f83a9bb0fca  BUILT/history/titles/agot_e_the_westerlands.txt
 
 # localization/english/agot_mw_revolt_succession_fix_l_english.yml
 # (no upstream counterpart - additive file)
@@ -616,12 +628,12 @@ b57a7cc72c30f4958a5ab955ef38f1891c93231db3ffaf54699295b6debc3e35  BUILT/localiza
 
 # map_data/definition.csv
 e56f24368b67939e538a29bdf0a2c522cb013a82dbb6f6c9d83cc3ff02e8a77b  3664900993/map_data/definition.csv  # SOURCE (AGOT Nobility of Westeros)  [+3 other providers]
-d2933ce9c1a28cfb063b4f04b10bb80b0da62c7727fda0a924416bcba971295d  BUILT/map_data/definition.csv
+053facf787f525faec1d836c72f1651e32a5e0c8f78455584c7023b2c574bcf4  BUILT/map_data/definition.csv
 
 # map_data/island_region.txt
 a9b855ba9aeed67252fb827b49394dbb3263082739291456ae2accdf76a8d20c  3664900993/map_data/island_region.txt  # SOURCE (AGOT Nobility of Westeros)  [+2 other providers]
-7a2fab13960ada199dd5d9e08b774a6e8c1013bf48fe54c232981d93f40f21ee  BUILT/map_data/island_region.txt
+477f30180b062a2adc8824bdca696b8f4e17c0966bc2ee518bd902d235dd988f  BUILT/map_data/island_region.txt
 
 # map_data/geographical_regions/replace/00_agot_geographical_region.txt
 199904f814091fee499a41ffe7ec9b21eb4cf3c2523eb7d1f924b694b1bd095f  3664900993/map_data/geographical_regions/replace/00_agot_geographical_region.txt  # SOURCE (AGOT Nobility of Westeros)
-d71af30782ea2a5d79d85c362c8c55993e851310f103f437fbd2295932a643d1  BUILT/map_data/geographical_regions/replace/00_agot_geographical_region.txt
+bb87d3d4c377c0de2a46cc221a6993a3c7fa4f05f5b757329789d3537ba9e99e  BUILT/map_data/geographical_regions/replace/00_agot_geographical_region.txt

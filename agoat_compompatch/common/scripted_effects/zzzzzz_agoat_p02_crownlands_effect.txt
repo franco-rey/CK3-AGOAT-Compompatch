@@ -1,0 +1,5 @@
+﻿# AGOAT (P02): AGOT+ calls asoiaf_destroy_crownlands_title_effect from test_title_on_actions.txt (asoiaf_young_griff_victory)
+# but its definition is commented out upstream, so taking the Iron Throne left the auto-created Crownlands empire in place.
+asoiaf_destroy_crownlands_title_effect = {
+	destroy_title = title:e_the_crownlands
+}

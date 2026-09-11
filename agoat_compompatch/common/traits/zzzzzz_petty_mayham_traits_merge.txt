@@ -1,0 +1,223 @@
+﻿# AGOAT: Petty Inheritable Traits x [AGOT] Mayham. Both redefine these seven congenital traits; Petty (loads later) won with its
+# vanilla-based copies, erasing Mayham's harsher opinion values. Blocks below are Mayham's verbatim + Petty's `opposites` (the
+# only thing Petty changes). zzzzzz_ sorts after both p_traits.txt and 00_traits.txt.
+
+bleeder = { #Haemophilia
+	opposites = {
+		pt_balanced_humors
+	}
+	physical = yes
+	health = -1.5
+	
+	#inherit_chance = 50 # 100 for male, 50 for female, recessive
+	genetic = yes
+	enables_inbred = yes
+	birth = 0.5
+	random_creation = 0.5
+	
+	vassal_opinion = -30
+	
+	ruler_designer_cost = -20
+	
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					NOT = { exists = this }
+				}
+				desc = trait_bleeder_desc
+			}
+			desc = trait_bleeder_character_desc
+		}
+	}
+
+	ai_energy = -15
+}
+clubfooted = {
+	opposites = {
+		surefooted
+	}
+	prowess = -2
+	
+	#inherit_chance = 15
+	genetic = yes
+	enables_inbred = yes
+	birth = 0.5
+	random_creation = 0.5
+	
+	attraction_opinion = -30
+	same_opinion = 10
+	physical = yes
+	
+	ruler_designer_cost = 0
+
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					NOT = { exists = this }
+				}
+				desc = trait_clubfooted_desc
+			}
+			desc = trait_clubfooted_character_desc
+		}
+	}
+}
+hunchbacked = {
+	opposites = {
+		regal_bearing
+	}
+	prowess = -2
+
+	#inherit_chance = 15
+	genetic = yes
+	physical = yes
+	enables_inbred = yes
+	birth = 0.5
+	random_creation = 0.5
+	
+	attraction_opinion = -60
+	same_opinion = 30
+	vassal_opinion = -30
+	
+	ruler_designer_cost = -10
+
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					NOT = { exists = this }
+				}
+				desc = trait_hunchbacked_desc
+			}
+			desc = trait_hunchbacked_character_desc
+		}
+	}
+}
+lisping = {
+	opposites = {
+		silver_tongued
+	}
+	diplomacy = -2
+	
+	#inherit_chance = 15
+	genetic = yes
+	physical = yes
+
+	birth = 0.5
+	random_creation = 0.5
+	
+	same_opinion = 10
+	
+	ruler_designer_cost = -5
+	
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					NOT = { exists = this }
+				}
+				desc = trait_lisping_desc
+			}
+			desc = trait_lisping_character_desc
+		}
+	}
+
+	ai_sociability = low_negative_ai_value
+}
+scaly = {
+	opposites = {
+		glowing
+	}
+	fertility = -0.2
+	
+	#inherit_chance = 100 # dominant
+	genetic = yes
+	physical = yes
+	enables_inbred = yes
+
+	birth = 0.5
+	random_creation = 0.5
+	
+	attraction_opinion = -90
+	vassal_opinion = -30
+	same_opinion = 10
+	
+	dread_baseline_add = 10
+	
+	ruler_designer_cost = 0
+
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					NOT = { exists = this }
+				}
+				desc = trait_scaly_desc
+			}
+			desc = trait_scaly_character_desc
+		}
+	}
+}
+stuttering = {
+	opposites = {
+		silver_tongued
+	}
+	diplomacy = -2
+
+	#inherit_chance = 15
+	genetic = yes
+	physical = yes
+
+	birth = 0.5
+	random_creation = 0.5
+	
+	same_opinion = 10
+	
+	ruler_designer_cost = -5
+	
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					NOT = { exists = this }
+				}
+				desc = trait_stuttering_desc
+			}
+			desc = trait_stuttering_character_desc
+		}
+	}
+
+	ai_sociability = low_negative_ai_value
+}
+wheezing = { #asthma
+	opposites = {
+		hardy_lung
+	}
+	physical = yes
+	health = -0.15
+	
+	#inherit_chance = 100 # recessive
+	genetic = yes
+	enables_inbred = yes
+	birth = 0.5
+	random_creation = 0.5
+	
+	vassal_opinion = -30
+	
+	ruler_designer_cost = -10
+	
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					NOT = { exists = this }
+				}
+				desc = trait_wheezing_desc
+			}
+			desc = trait_wheezing_character_desc
+		}
+	}
+
+	ai_energy = -15
+}

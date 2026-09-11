@@ -4241,6 +4241,9 @@ widget = {
 	}
 
 
+	bottom_left_dragon_portrait = { # More Dragon Eggs
+		parentanchor = bottom|left
+	}
 	bottom_left_portrait = {
 		parentanchor = bottom|left
 	}
@@ -6766,6 +6769,76 @@ types HUD
 		}
 	}
 
+
+	# AGOAT: More Dragon Eggs' HUD dragon portrait (its hud.gui is otherwise a stale AGOT copy)
+	type bottom_left_dragon_portrait = container { # MDE Modified
+		datacontext = "[GetPlayer]"
+		visible = "[And(And( Not(IsGameViewOpen('barbershop')) , And(GetPlayer.IsValid, Not(GetVariableSystem.Exists( 'hide_bottom_left_HUD')))), Not( GreaterThan_CFixedPoint( GetPlayer.MakeScope.Var('hide_ui_character_model').GetValue, '(CFixedPoint)0' ) ))]"
+		visible_at_creation = no
+
+
+		state = {
+			name = _show
+			using = Animation_Curve_Default
+			duration = 0.15
+
+			position = { 0 0 }
+			alpha = 1
+		}
+
+		state = {
+			name = _hide
+			using = Animation_Curve_Default
+			duration = 0.15
+
+			position = { 0 50 }
+			alpha = 0
+		}
+
+		mde_dragon_portrait_zeroth_size = {
+			scale = 1.3
+			parentanchor = center
+			position = { 0 -50 }
+			datacontext = "[GetPlayer]"
+			visible = "[GetScriptedGui('mde_dragon_portrait_size_zero').IsShown(GuiScope.SetRoot(Character.MakeScope).End)]"
+		}
+
+		mde_dragon_portrait_first_size = {
+			scale = 1.3
+			parentanchor = center
+			position = { 0 -15 }
+			datacontext = "[GetPlayer]"
+			visible = "[GetScriptedGui('mde_dragon_portrait_size_one').IsShown(GuiScope.SetRoot(Character.MakeScope).End)]"
+		}
+
+		mde_dragon_portrait_second_size = {
+			scale = 1.3
+			parentanchor = center
+			position = { -75 130 }
+			datacontext = "[GetPlayer]"
+			visible = "[GetScriptedGui('mde_dragon_portrait_size_two').IsShown(GuiScope.SetRoot(Character.MakeScope).End)]"
+		}
+
+		mde_dragon_portrait_third_size = {
+			scale = 1.3
+			parentanchor = center
+			position = { -175 150 }
+			datacontext = "[GetPlayer]"
+			visible = "[GetScriptedGui('mde_dragon_portrait_size_three').IsShown(GuiScope.SetRoot(Character.MakeScope).End)]"
+		}
+
+		icon = {
+			texture = "gfx/interface/hud/bottom_left_portrait_fade.dds"
+			parentanchor = bottom|left
+			color = { 0.12 0.12 0.12 1 }
+		}
+
+		icon = {
+			texture = "gfx/interface/hud/bottom_left_portrait_fade.dds"
+			parentanchor = bottom|left
+			color = { 0.15 0.15 0.15 0.3 }
+		}
+	}
 
 	type bottom_left_portrait = container {
 		datacontext = "[GetPlayer]"

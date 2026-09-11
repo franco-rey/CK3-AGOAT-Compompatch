@@ -1,0 +1,176 @@
+﻿# AGOAT: Show Player Opinion's file verbatim + the dragon guards AGOT puts on its own portrait_opinion types. CK3 keeps the
+# FIRST registered GUI type, and this 00_ file registers before AGOT's shared/portraits.gui, so without these guards every dragon
+# portrait carried an opinion box. Same path as SPO's file, so this copy replaces it; SPO's two extra opinion texts are untouched.
+######################################################
+################## PORTRAIT TYPES ####################
+######################################################
+
+types PlayerOpinionPortraitTypes
+{
+	## Opinion box for portraits
+	type portrait_opinion = flowcontainer {
+		name = "tutorial_highlight_portrait_opinion"
+		visible = "[And(And(Character.IsValid, Not(IsCharacterDragon)), And(Character.IsAlive, Not(Character.IsLocalPlayer)))]" # AGOAT: AGOT hides opinion boxes on dragons
+		ignoreinvisible = yes
+
+		background = {
+			name = "portrait_opinion_bg"
+			texture = "gfx/interface/component_tiles/solid_black_label.dds"
+			spritetype = Corneredtiled
+			spriteborder = { 20 20 }
+			margin = { 3 1 }
+			texture_density = 2
+		}
+
+		icon = {
+			block "dread_logic" {
+				visible = "[And(Not(IsCharacterDragon), Character.ShouldShowDreadEffectIcon)]"
+				frame = "[Character.GetPlayerDreadEffectIconFrame]"
+				tooltip = "[Character.GetPlayerDreadEffectTooltip]"
+			}
+			name = "dread"
+			size = { 20 20 }
+			texture = "gfx/interface/icons/portraits/dread_values.dds"
+			framesize = { 40 40 }
+		}
+
+		icon = {
+			name = "historical_info_widget"
+			visible = "[GreaterThan_CFixedPoint( Character.MakeScope.Var('show_historical_gui').GetValue, '(CFixedPoint)0' )]"
+			size = { 20 20 }
+			texture = "gfx/interface/icons/historical_character.dds"
+			tooltip = "HISTORICAL_CHARACTER_TOOLTIP"
+		}
+
+		text_single = {
+			name = "tutorial_highlight_character_view_opinion"
+			visible = "[Character.IsValid]"
+			max_width = 45
+			align = nobaseline
+			margin = { 3 0 }
+			tooltipwidget = character_opinion_tooltip
+			using = tooltip_es
+			default_format = "#true_white"
+
+			block "opinion_text" {
+				visible = "[Not(IsCharacterDragon)]"
+				text = "[Character.GetOpinionOf( GetPlayer )|=]"
+				fonttintcolor = "[Character.GetOpinionOfTint( GetPlayer )]"
+			}
+		}
+
+		text_single = {
+			name = "tutorial_highlight_character_view_opinion_player"
+			visible = "[And(Character.IsValid, Or(Not(GetPlayer.MakeScope.Var('SPO').IsSet), Not(GetPlayer.MakeScope.Var('SPO').Char.IsAlive)))]"
+			max_width = 45
+			align = nobaseline
+			margin = { 3 0 }
+			tooltipwidget = character_opinion_tooltip_player
+			using = tooltip_es
+			default_format = "#true_white"
+
+			block "player_opinion_text" {
+				visible = "[Not(IsCharacterDragon)]"
+				text = "[GetPlayer.GetOpinionOf(Character.Self)|=]"
+				fonttintcolor = "[GetPlayer.GetOpinionOfTint(Character.Self)]"
+			}
+		}
+
+		text_single = {
+			name = "tutorial_highlight_character_view_opinion_nonplayer"
+			visible = "[And(GetPlayer.MakeScope.Var('SPO').Char.IsAlive, GetPlayer.MakeScope.Var('SPO').IsSet)]"
+			max_width = 45
+			align = nobaseline
+			margin = { 3 0 }
+			tooltipwidget = character_opinion_tooltip_nonplayer
+			using = tooltip_es
+			default_format = "#true_white"
+
+			block "nonplayer_opinion_text" {
+				visible = "[Not(IsCharacterDragon)]"
+				text = "[GetPlayer.MakeScope.Var('SPO').Char.GetOpinionOf( Character.Self )|=]"
+				fonttintcolor = "[GetPlayer.MakeScope.Var('SPO').Char.GetOpinionOfTint( Character.Self )]"
+			}
+		}
+	}
+
+	type portrait_opinion_small = flowcontainer {
+		#name = "tutorial_highlight_portrait_opinion"
+		visible = "[And(And(Character.IsValid, Not(IsCharacterDragon)), And(Character.IsAlive, Not(Character.IsLocalPlayer)))]" # AGOAT: AGOT hides opinion boxes on dragons
+		ignoreinvisible = yes
+		margin_right = 2
+
+		background = {
+			name = "portrait_opinion_bg"
+			texture = "gfx/interface/component_tiles/solid_black_label.dds"
+			spritetype = Corneredtiled
+			spriteborder = { 20 20 }
+			margin = { 2 2 }
+			texture_density = 2
+		}
+
+		icon = {
+			name = "dread"
+			visible = "[And(Not(IsCharacterDragon), Character.ShouldShowDreadEffectIcon)]"
+			size = { 16 16 }
+			texture = "gfx/interface/icons/portraits/dread_values.dds"
+			framesize = { 40 40 }
+			frame = "[Character.GetPlayerDreadEffectIconFrame]"
+			tooltip = "[Character.GetPlayerDreadEffectTooltip]"
+		}
+
+		text_single = {
+			visible = "[Character.IsValid]"
+			max_width = 45
+			align = nobaseline
+			fontsize = 13
+			margin = { 3 0 }
+
+			tooltipwidget = character_opinion_tooltip
+			using = tooltip_es
+			default_format = "#true_white"
+
+			block "opinion_text" {
+				visible = "[Not(IsCharacterDragon)]"
+				text = "[Character.GetOpinionOf( GetPlayer )|=]"
+				fonttintcolor = "[Character.GetOpinionOfTint( GetPlayer )]"
+			}
+		}
+
+		text_single = {
+			visible = "[And(Character.IsValid, Or(Not(GetPlayer.MakeScope.Var('SPO').IsSet), Not(GetPlayer.MakeScope.Var('SPO').Char.IsAlive)))]"
+			max_width = 45
+			align = nobaseline
+			fontsize = 13
+			margin = { 3 0 }
+
+			tooltipwidget = character_opinion_tooltip_player
+			using = tooltip_es
+			default_format = "#true_white"
+
+			block "player_opinion_text" {
+				visible = "[Not(IsCharacterDragon)]"
+				text = "[GetPlayer.GetOpinionOf(Character.Self)|=]"
+				fonttintcolor = "[GetPlayer.GetOpinionOfTint(Character.Self)]"
+			}
+		}
+
+		text_single = {
+			visible = "[And(GetPlayer.MakeScope.Var('SPO').Char.IsAlive, GetPlayer.MakeScope.Var('SPO').IsSet)]"
+			max_width = 45
+			align = nobaseline
+			fontsize = 13
+			margin = { 3 0 }
+
+			tooltipwidget = character_opinion_tooltip_nonplayer
+			using = tooltip_es
+			default_format = "#true_white"
+
+			block "nonplayer_opinion_text" {
+				visible = "[Not(IsCharacterDragon)]"
+				text = "[GetPlayer.MakeScope.Var('SPO').Char.GetOpinionOf( Character.Self )|=]"
+				fonttintcolor = "[GetPlayer.MakeScope.Var('SPO').Char.GetOpinionOfTint( Character.Self )]"
+			}
+		}
+	}
+}

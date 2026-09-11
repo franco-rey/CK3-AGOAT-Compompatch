@@ -2220,6 +2220,21 @@ types PortraitTypes
 				fonttintcolor = "[Character.GetOpinionOfTint( GetPlayer )]"
 			}
 		}
+		block "IMHO_player_opinion" { # AGOAT: In My Humble Opinion (its IMHO_portraits.gui types are CK3 1.15 copies)
+			text_single = {
+				name = "tutorial_highlight_character_view_opinion_player"
+				visible = "[And(IMHOIsLoaded, And(Character.IsValid, Not(IsCharacterDragon)))]"
+				max_width = 45
+				align = nobaseline
+				margin = { 3 0 }
+				tooltipwidget = character_opinion_tooltip_player
+				using = tooltip_es
+				block "IMHO_opinion_text_player" {
+					text = "[GetPlayer.GetOpinionOf( Character.Self )|=]"
+					fonttintcolor = "[GetPlayer.GetOpinionOfTint( Character.Self )]"
+				}
+			}
+		}
 	}
 
 	type portrait_opinion_small = flowcontainer {
@@ -2267,6 +2282,21 @@ types PortraitTypes
 				visible = "[Not(IsCharacterDragon)]"
 				text = "[Character.GetOpinionOf( GetPlayer )|=]"
 				fonttintcolor = "[Character.GetOpinionOfTint( GetPlayer )]"
+			}
+		}
+		block "IMHO_player_opinion" { # AGOAT: In My Humble Opinion (its IMHO_portraits.gui types are CK3 1.15 copies)
+			text_single = {
+				visible = "[And(IMHOIsLoaded, And(Character.IsValid, Not(IsCharacterDragon)))]"
+				max_width = 45
+				align = bottom
+				fontsize = 10
+				margin = { 3 0 }
+				tooltipwidget = character_opinion_tooltip_player
+				using = tooltip_es
+				block "IMHO_opinion_text_player" {
+					text = "[GetPlayer.GetOpinionOf( Character.Self )|=]"
+					fonttintcolor = "[GetPlayer.GetOpinionOfTint( Character.Self )]"
+				}
 			}
 		}
 	}
