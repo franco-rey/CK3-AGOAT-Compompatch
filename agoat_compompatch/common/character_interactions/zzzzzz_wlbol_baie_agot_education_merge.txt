@@ -1,8 +1,4 @@
-﻿# AGOAT: Ward Limit Based On Learning x Better AI Education - AGoT Patch. Both redefine the five education interactions and
-# Ward Limit (loads later) won, erasing BAE-AGoT's AI guardian scoring and AGOT's own education changes. This file is BAE-AGoT's
-# yy_baie_agot_education_interactions.txt with Ward Limit's rule applied: every `num_of_relation_ward < 2` (and the equivalent
-# `<= 1`) becomes `< wlbol_ward_limit` (Ward Limit's script value, learning-based). zzzzzz_ sorts after both source files.
-# vgl. game > common > character_interactions > 00_education_interactions.txt
+﻿# vgl. game > common > character_interactions > 00_education_interactions.txt
 # vgl. 1158310 > 2753934263 > common > character_interactions > xx_baie_education_interactions.txt
 
 # Interactions relating to the education of children
@@ -854,7 +850,7 @@ educate_child_interaction = {
 		# Learning gives half as much of a buff as the primary skill, give a buff accordingly.
 		modifier = {
 			scope:secondary_recipient = {
-				NOT = { has_focus = education_learning } # AGOAT: has_focus is a simple-assign trigger; BAE-AGoT wrote != (engine logged it every AI pass)
+				NOT = { has_focus = education_learning }
 			}
 			add = {
 				value = scope:secondary_actor.learning

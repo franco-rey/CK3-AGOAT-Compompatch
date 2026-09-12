@@ -2220,7 +2220,7 @@ types PortraitTypes
 				fonttintcolor = "[Character.GetOpinionOfTint( GetPlayer )]"
 			}
 		}
-		block "IMHO_player_opinion" { # AGOAT: In My Humble Opinion (its IMHO_portraits.gui types are CK3 1.15 copies)
+		block "IMHO_player_opinion" {
 			text_single = {
 				name = "tutorial_highlight_character_view_opinion_player"
 				visible = "[And(IMHOIsLoaded, And(Character.IsValid, Not(IsCharacterDragon)))]"
@@ -2284,7 +2284,7 @@ types PortraitTypes
 				fonttintcolor = "[Character.GetOpinionOfTint( GetPlayer )]"
 			}
 		}
-		block "IMHO_player_opinion" { # AGOAT: In My Humble Opinion (its IMHO_portraits.gui types are CK3 1.15 copies)
+		block "IMHO_player_opinion" {
 			text_single = {
 				visible = "[And(IMHOIsLoaded, And(Character.IsValid, Not(IsCharacterDragon)))]"
 				max_width = 45

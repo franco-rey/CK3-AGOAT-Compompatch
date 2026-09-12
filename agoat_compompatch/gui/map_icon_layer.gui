@@ -3753,7 +3753,6 @@ types MapIcons
 			button_round = {
 				size = { 50 50 }
 				name = "find_elder_decision"
-				# AGOAT: LoV compatch removes GetDecisionWithKey('find_elder_interaction') - it is an interaction, not a decision (error-log spam)
 				visible = "[Character.IsPlayerInteractionShown('find_elder_interaction') ]"
 
 				enabled = "[Character.GetTopLiege.IsPlayerInteractionValid('find_elder_interaction' ) ]"

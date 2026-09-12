@@ -1,8 +1,4 @@
-﻿# AGOAT: verbatim copy of Nobility of Westeros' current replace/ region file (NoW rewrote it 2026-09-10 as a 73-key delta).
-# The old full-copy we shipped loaded last (replace/ subfolders load after zz_ files) and re-imposed AGOT's original
-# graphical_mena/graphical_mediterranean over the LoV compatch's versions -> 1,648 'has no visual geographical region' errors.
-# Keep this byte-equal to NoW's file; it exists only so a future full-copy upstream cannot silently return.
-# THE MARCHES
+﻿# THE MARCHES
 world_westeros_dornish_marches_stormlands = {
 	duchies = {
 		d_nightsong

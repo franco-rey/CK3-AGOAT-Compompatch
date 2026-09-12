@@ -72,7 +72,7 @@
     },
     {
       "virtual_path": "common/character_interactions/interactive_request_vassal_support.txt",
-      "built_sha256": "5f27108b84af66a446a6c54ed67bac689f913e51cf2b2a47c3e21d7cf3d742be",
+      "built_sha256": "60fefd8f0cea18448879a3dcb2bbfe81caabf5bc7384d2c4dc41d6d65711116f",
       "provider_workshop_id": "2712590542",
       "provider_name": "More Interactive Vassals",
       "source_sha256": "d8d8f44c6a5c2e3c18160b9855c49f0b28489e8a335db6df2275ce984ccd5cb3"
@@ -86,7 +86,7 @@
     },
     {
       "virtual_path": "common/character_interactions/zzzzzz_wlbol_baie_agot_education_merge.txt",
-      "built_sha256": "4085495ff543bded89a58c7541b9ceec1eb034978a19e2c6bd3381586f3327e8",
+      "built_sha256": "e1c93cd665e8423a5ee6f0af747b95cb6170c2eeb77ac8cdf890cdcaca26d7cd",
       "provider_workshop_id": "3788024743",
       "provider_name": "Better AI Education \u2013 AGoT Patch",
       "source_sha256": "fcea52bfc08fd3d7f0a3a4392a9a4a504e675f283ce862f1c1bd993ebe64fe5a"
@@ -100,21 +100,21 @@
     },
     {
       "virtual_path": "common/court_positions/types/00_exp_court_herbalist_position.txt",
-      "built_sha256": "9a6593e12e19c746fb6f15da8c67a239b34ee8f5a11e19cc723d10264d89c4a2",
+      "built_sha256": "cb92b2bdecd07d8863c36245c4f53f8044f197e35875ed363933e78b4a7a9609",
       "provider_workshop_id": "2754449789",
       "provider_name": "Court Positions Expanded 1.19",
       "source_sha256": "529ac04096dad6c5a35ae333f372a5a7c98ca04d0d25354134b959e92296cd0b"
     },
     {
       "virtual_path": "common/court_positions/types/00_exp_grand_vizier_position.txt",
-      "built_sha256": "455ae6f6de2975e267b2618898f0011fba56c7ed3e67bfaae7ff8f31fc381618",
+      "built_sha256": "ea3a5707f434fbf0d33d37279646eab4c4a4733342c41a6e686082086bce2863",
       "provider_workshop_id": "2754449789",
       "provider_name": "Court Positions Expanded 1.19",
       "source_sha256": "d9504bb512ab6c11f4b5ee54c22134202f8dc6de062e5150f13a7091e067a027"
     },
     {
       "virtual_path": "common/culture/traditions/00_agot_realm_traditions.txt",
-      "built_sha256": "4e5d8878fe5ba8e412add768bf93cd41e6190a3f244de8f6cb5d496601079ee5",
+      "built_sha256": "9ba9f996852dd57868222204919041a69cd02db9fda389459aee6674d2c6978d",
       "provider_workshop_id": "3352171144",
       "provider_name": "[AGOT] Mayham",
       "source_sha256": "4f07a9a19202ebbe2c12499394b2a5c1f30a8f625d7476a4059d6c8d72bf70ee",
@@ -125,7 +125,7 @@
     },
     {
       "virtual_path": "common/culture/traditions/00_agot_regional_traditions.txt",
-      "built_sha256": "3f1ff3f77b542a751363c802cd55267d615cff3d14ff99ac180a6420b57ee683",
+      "built_sha256": "12394c76b2be86806f924427a8e94fdc0be56c871ceb0c54f9922853d85b5cfd",
       "provider_workshop_id": "3352171144",
       "provider_name": "[AGOT] Mayham",
       "source_sha256": "039e725b36342ccfb77ed85859435f3ef103d3bcbb9e3ca45958b32f3e7780a3",
@@ -136,7 +136,7 @@
     },
     {
       "virtual_path": "common/culture/traditions/00_agot_unique_traditions.txt",
-      "built_sha256": "256d60d3ecc5b1d75648380eaf2215d14a1b49e69e6d01eb7d72e9fccc6d97bb",
+      "built_sha256": "6c1cc892a9078708c46014eea3e02e3a2882bd9b02555298c96954327e4864a4",
       "provider_workshop_id": "3352171144",
       "provider_name": "[AGOT] Mayham",
       "source_sha256": "4b0ed728c31e04df6b226b1d8dd9dde6fe423230c301910c876678d98850cd3a",
@@ -378,7 +378,7 @@
     },
     {
       "virtual_path": "common/modifiers/zzzzzz_agot_unbound_missing_modifiers.txt",
-      "built_sha256": "c55224ccf9ec128bb7fae413f96fafa7a47488f5b17e089d7a6db92468631365",
+      "built_sha256": "21b4991c998c2f3a73619a144b7efa21080d2b62fca5d85983426c296cdf2e7e",
       "provider_workshop_id": null
     },
     {
@@ -430,7 +430,7 @@
     },
     {
       "virtual_path": "common/on_action/on_add_vet_modifer.txt",
-      "built_sha256": "9f253aba61c2ed30a2555ae07c2d171be1c25b37e28f4698a831eb12f3f10817",
+      "built_sha256": "2a0eccf0c95dada2b9a47e33556def2938b105de5a6d748ab5395f285e4412ba",
       "provider_workshop_id": "3361162762",
       "provider_name": "A Landed Knights Mod",
       "source_sha256": "3ef399703bc2b6f4028ae6f99a7daae3bd97f19abfe3975093563f5ea95a772b"
@@ -567,7 +567,7 @@
     },
     {
       "virtual_path": "common/scripted_effects/asoiaf_canon_children_effects.txt",
-      "built_sha256": "cca11d4fd2224fb8ac6be35082ee98ab4138887637ba0255356bdab7dca3dae0",
+      "built_sha256": "cf7fc5ec5b7bceb78075b7f533c1411110eb14fe08917a512c49d9e3ab09e5f0",
       "provider_workshop_id": "2950245430",
       "provider_name": "2950245430",
       "source_sha256": "919d83ff542167e0e2af695ed4ff8ef97d9d8e4f088ddfee34a36823e91a71db"
@@ -581,14 +581,14 @@
     },
     {
       "virtual_path": "common/scripted_effects/asoiaf_scripted_effects_strong_seed.txt",
-      "built_sha256": "7a616e4c113e34726c6ee32ac892e1f80da1c22b889a57277873da72ad10240e",
+      "built_sha256": "b68590ef7159c02317b69f7890ad5f190aa34df25ba8f67543c1b81797e65df6",
       "provider_workshop_id": "2950245430",
       "provider_name": "2950245430",
       "source_sha256": "66047de3db0b82acf206caa15d576a69e25580314bc656256c1330c24da0e866"
     },
     {
       "virtual_path": "common/scripted_effects/asoiaf_setup_effects.txt",
-      "built_sha256": "4b7060a6063c559579f15b1b59a2802fa84c7033193763d13adb2c3307f923e3",
+      "built_sha256": "327ebb8f81edf7efebf12c0850df899ce3cda682a12046941b8c06032ad4c88b",
       "provider_workshop_id": "2950245430",
       "provider_name": "2950245430",
       "source_sha256": "02d7650b6d706312b3259c91d484729b3b5452d5eb3ab14033bcb5442b401671"
@@ -652,14 +652,14 @@
     },
     {
       "virtual_path": "common/scripted_effects/zzz_agot_dragon_transfer_vars_fix.txt",
-      "built_sha256": "b196950cfb442d945a2761d2a2bcd686a6a5fdc72ba6c12a7d1e02e69d5e8376",
+      "built_sha256": "603e8410a184a832be0b28aaaeeb152f64d8dcaa068ca21b80ddd9e976ec4210",
       "provider_workshop_id": "2962333032",
       "provider_name": "A Game of Thrones",
       "source_sha256": "23470b227bde04d955c13ba2bf8e4f67a8b03ed3b7aecd239d4cf243b306f525"
     },
     {
       "virtual_path": "common/scripted_effects/zzzzzz_agoat_p02_crownlands_effect.txt",
-      "built_sha256": "0de71e3a70b55e7466ea533670e354a72d9e19ad8e48e6fc35b154169db3e7e3",
+      "built_sha256": "77ea1942760f16193cd4ba5eada429ca28feb3c120c5207627a2419e3e7012a1",
       "provider_workshop_id": "2950245430",
       "provider_name": "2950245430",
       "source_sha256": "c5d8c4ed2a7e7d74c3ce69b813a59b79f2f9ba7a9051b986d8be9b8da6d3c909"
@@ -751,7 +751,7 @@
     },
     {
       "virtual_path": "common/scripted_triggers/naval_combat_triggers.txt",
-      "built_sha256": "1cc69f4ffc1887de8160d48918c181fb599fc9dbc96de8069e418b4dbd9cbcf5",
+      "built_sha256": "c097c0671b78ea6b67430c85837dc05dbaab83ce1003531df4f146e8e6b4971b",
       "provider_workshop_id": "3772178688",
       "provider_name": "CK3 Naval Combat",
       "source_sha256": "72996d1454ec1a7056912400739ccd2c8263179601700363deea19f1564359bc"
@@ -768,7 +768,7 @@
     },
     {
       "virtual_path": "common/scripted_triggers/zzzzzz_00_religious_triggers.txt",
-      "built_sha256": "6a0bd6d8262fce8a58684d304c0d5ffb04a5eac7fc1f3e00dd2a9d701548e5c9",
+      "built_sha256": "53d1bcd61515352588cd8a44ee73f0ab5b1dfeb17b163c79b550162dff8644e3",
       "provider_workshop_id": "3616413111",
       "provider_name": "Female Knight and Councillor (Unofficial)",
       "source_sha256": "2c81bda3cbaf82a8bbdf3a1cb0f333d15d58d2f5a6662fe016d40b5d89174e68"
@@ -806,7 +806,7 @@
     },
     {
       "virtual_path": "common/traits/zzzzzz_petty_mayham_traits_merge.txt",
-      "built_sha256": "521d6de5dcd5dc20bf43b18f224316dcedc0cc4943a68d8ec24cd52ef032d494",
+      "built_sha256": "09952b6364dc1bfc745bc7805a70c4723a87571ffd730b12e0e09e43164c8599",
       "provider_workshop_id": "3352171144",
       "provider_name": "[AGOT] Mayham",
       "source_sha256": "f6e10e711be10ca02e80f284a7a085920e402cfe30d0e6f8ef0a2522091de422"
@@ -820,7 +820,7 @@
     },
     {
       "virtual_path": "events/agot_events/agot_kingsguard_events.txt",
-      "built_sha256": "b00df84520915ccfdc26f9639ba6d03a9805ba641ab7dbf838bd6710cb7555ff",
+      "built_sha256": "aa3b97fc22bd7f5d0a86eda09b7c3f71949bf6c622ef6eff813778722b0ed9e0",
       "provider_workshop_id": "3788296332",
       "provider_name": "Legacy of Valyria - AGOT 0.5.2.1 Compatch (Beta)",
       "source_sha256": "1613adbcd250e993feba27b136a89d980d56830054cb2b88519a4ebcce769d9f",
@@ -1034,7 +1034,7 @@
     },
     {
       "virtual_path": "gui/00_player_opinion_portraits.gui",
-      "built_sha256": "2be444b5c2413687a2fd0493eea0c04d0515ab722d29a2958731d0e1bf31635a",
+      "built_sha256": "5e6f019f60488c3e1eea37344f1f9006dbebdab911a844b782d06365ba7d9d99",
       "provider_workshop_id": "3340687327",
       "provider_name": "Show Player Opinion",
       "source_sha256": "f89060859fcaad275dc12249e187dcc7a6cab7b3b01380017cd1e758c11e4fb6"
@@ -1058,7 +1058,7 @@
     },
     {
       "virtual_path": "gui/hud.gui",
-      "built_sha256": "b7d60cae7117b0949f8b8e05b2cc91ef61d4a126c18046e53e0c9a3c20449a47",
+      "built_sha256": "779542f652a6daa855aac238970682c75dad693a856e00da51435f9a7830cff3",
       "provider_workshop_id": "3388366564",
       "provider_name": "AGOT More Dragon Eggs",
       "source_sha256": "5e3bc9b08bcc26e54192f7dd73330a0cebb384aa5ddd22f088f63f8e5535d9bc",
@@ -1082,7 +1082,7 @@
     },
     {
       "virtual_path": "gui/map_icon_layer.gui",
-      "built_sha256": "aa151ea3ad897896599efcb7826f32a73aeb5e66a6c83fc072140548658b75eb",
+      "built_sha256": "6fcea6976d51d52aa8964e3d626c427c456c1dca00d08b83b4743856d403bedf",
       "provider_workshop_id": "3788296332",
       "provider_name": "Legacy of Valyria - AGOT 0.5.2.1 Compatch (Beta)",
       "source_sha256": "4fc1d880121db0e5f2c933d47f747992037c413af6156fe851a5f1a91d6d3201",
@@ -1101,7 +1101,7 @@
     },
     {
       "virtual_path": "gui/shared/portraits.gui",
-      "built_sha256": "894ebcacb19ef524b037a64f2b6eafc5a9798be836fad0863415a30d6eb20e1f",
+      "built_sha256": "7576edddcf0ddc589c1746708b273c6b1d4cc6fd3254727522cd1475b57968fd",
       "provider_workshop_id": "3766320609",
       "provider_name": "DireWolves",
       "source_sha256": "db94697e76e2f7000b997a0e139a4e3683ffbc438bc39c46f8272ac9a4dacb54",
@@ -1111,7 +1111,7 @@
     },
     {
       "virtual_path": "gui/window_character.gui",
-      "built_sha256": "04311bebf1b9ea2a75195be2e15f86b3eb2c10d66b532c8081263f03098e035f",
+      "built_sha256": "5101dba3235e518b8fd8d7f74262546818c7f8fb617e6afec820c27951a622b0",
       "provider_workshop_id": "2625307328",
       "provider_name": "In My Humble Opinion",
       "source_sha256": "c1581244d472eedd9e8ce75ddc2fb98eed6fedb5f292312cbd7b3101fd56e46d",
@@ -1160,12 +1160,12 @@
     },
     {
       "virtual_path": "history/characters/zz_agoat_agot_0521_characters_hidden_by_now.txt",
-      "built_sha256": "e2a75f930bd64a956c2af0ae54915385094c475a63f5e246b77efcbefc9abd1f",
+      "built_sha256": "4f14e8db8a594ad86f788793d1436d9b7ffb9dc33de0ddceacc9f86182f04917",
       "provider_workshop_id": null
     },
     {
       "virtual_path": "history/titles/agot_e_the_crownlands.txt",
-      "built_sha256": "a277a4e38ae44f011cee87d3c15f709d2d4eedcd90d1ec85774b5f29e82fdfab",
+      "built_sha256": "2c902e05556d7c213f815db61fe89b4fbca7c1895fbfea37014c5bfe5c3e5afc",
       "provider_workshop_id": "3664900993",
       "provider_name": "AGOT Nobility of Westeros",
       "source_sha256": "e74f79517e12a5eaf5be33666a82e1a0fd88bb69d2378aeab7417018089cf8b5",
@@ -1176,7 +1176,7 @@
     },
     {
       "virtual_path": "history/titles/agot_e_the_north.txt",
-      "built_sha256": "f740d9c8ff93cfdfc5bf5b2ecd4c701897f26c0b5c8579a96ddb78fd6f1a4b03",
+      "built_sha256": "6fb845c3ec26cd6ba2f0365bc8af7376936bc65767735c9679fa2dba85c12cf8",
       "provider_workshop_id": "3664900993",
       "provider_name": "AGOT Nobility of Westeros",
       "source_sha256": "327f6f3a34606e55a5171843ce86c99e7e66cb958fdee423056035f0fafb0bd8",
@@ -1186,7 +1186,7 @@
     },
     {
       "virtual_path": "history/titles/agot_e_the_riverlands.txt",
-      "built_sha256": "8aa7f936d3f86870ce1da1437db2d1d517e30818950190e23da0d8fd610058f7",
+      "built_sha256": "0031a86fe7bfe5bd037b473caa98a77af0386f0ef2d4459e218db6e095f4e25e",
       "provider_workshop_id": "3664900993",
       "provider_name": "AGOT Nobility of Westeros",
       "source_sha256": "f9f1758bd22e63bc4c1d0135b2f9d32aeaae2e8692bd34817c76081b5f4d5004",
@@ -1196,7 +1196,7 @@
     },
     {
       "virtual_path": "history/titles/agot_e_the_vale.txt",
-      "built_sha256": "3e2515145a19c4e9753b1f9b59bb913f62612d0e3dc71b442d26ae0ce6ba58a6",
+      "built_sha256": "87ff77b5ef60d3b5d7b50015824e54f847ea44648433769c67809a0163848e28",
       "provider_workshop_id": "3664900993",
       "provider_name": "AGOT Nobility of Westeros",
       "source_sha256": "868af619b1667c495bd1d53dd44b7b255a8ee18faf86cbe4b014ef3949371af8",
@@ -1206,7 +1206,7 @@
     },
     {
       "virtual_path": "history/titles/agot_e_the_westerlands.txt",
-      "built_sha256": "92f90c0538fa8079fa35fb89f79f8158bfa83c68f7be068980bc8f83a9bb0fca",
+      "built_sha256": "22ffd9ce2d3bb2d268c17bade7781c6997440ee8c2327b68d4659e059f220f1c",
       "provider_workshop_id": "3664900993",
       "provider_name": "AGOT Nobility of Westeros",
       "source_sha256": "017d498915d489e5ab68e77327543f66af66fe3670ef24c4ba184dfc83b497a7",
@@ -1263,14 +1263,14 @@
     },
     {
       "virtual_path": "map_data/geographical_regions/replace/00_agot_geographical_region.txt",
-      "built_sha256": "bb87d3d4c377c0de2a46cc221a6993a3c7fa4f05f5b757329789d3537ba9e99e",
+      "built_sha256": "79f093f9d84081127bf29ff5cd5e6d13d5689e89dc148477155c0ce956de4c4a",
       "provider_workshop_id": "3664900993",
       "provider_name": "AGOT Nobility of Westeros",
       "source_sha256": "199904f814091fee499a41ffe7ec9b21eb4cf3c2523eb7d1f924b694b1bd095f"
     },
     {
       "virtual_path": "map_data/island_region.txt",
-      "built_sha256": "477f30180b062a2adc8824bdca696b8f4e17c0966bc2ee518bd902d235dd988f",
+      "built_sha256": "6afe374c13ef61b78ea37152d8ef7d4ba087dbc9fe64c26f893daccbe3c18ec7",
       "provider_workshop_id": "3664900993",
       "provider_name": "AGOT Nobility of Westeros",
       "source_sha256": "a9b855ba9aeed67252fb827b49394dbb3263082739291456ae2accdf76a8d20c",

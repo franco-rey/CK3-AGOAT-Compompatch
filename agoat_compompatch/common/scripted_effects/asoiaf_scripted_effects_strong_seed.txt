@@ -1,10 +1,4 @@
-﻿# AGOAT Compompatch  P51 - AGOT+ strong-seed: nonexistent dynasty/house references made soft.
-# PROVENANCE: AGOT+ (2950245430) asoiaf_scripted_effects_strong_seed.txt VERBATIM (upstream 2026-09-10),
-# rebased 2026-09-11. Only change: hard 'dynasty = dynasty:X' / 'house = house:X' where X is not defined
-# by any loaded mod becomes '?=' so the branch evaluates false instead of throwing. Upstream's own
-# Baratheon-of-King's-Landing exception and Varezys/house-customizer branches are preserved as shipped.
-
-agot_assign_strong_seed_traits_effect = {
+﻿agot_assign_strong_seed_traits_effect = {
 	#save scripted appearance flag so it stays after death
 	if = {
 		limit = {
@@ -232,7 +226,7 @@ agot_assign_strong_seed_hair_traits_effect = {
 			OR = {
 				scope:gene_donor = { dynasty = dynasty:dynn_Targaryen }
 				scope:gene_donor = { dynasty = dynasty:dynn_Velaryon }
-				#scope:gene_donor = { dynasty ?= dynasty:dynn_Aranys } #AGOT+ added   # P51: target does not exist in this playset - soft scope
+				#scope:gene_donor = { dynasty ?= dynasty:dynn_Aranys } #AGOT+ added
 				scope:gene_donor = { dynasty = dynasty:dynn_Varezys }
 				scope:gene_donor = { dynasty = dynasty:dynn_Mataeryon }
 				scope:gene_donor = { dynasty = dynasty:dynn_Belaerys }
@@ -365,7 +359,7 @@ agot_assign_strong_seed_hair_traits_effect = {
 			NOR = {
 				scope:gene_donor = { dynasty = dynasty:dynn_Targaryen }
 				scope:gene_donor = { dynasty = dynasty:dynn_Velaryon }
-				#scope:gene_donor = { dynasty ?= dynasty:dynn_Aranys } #AGOT+ added   # P51: target does not exist in this playset - soft scope
+				#scope:gene_donor = { dynasty ?= dynasty:dynn_Aranys } #AGOT+ added
 				scope:gene_donor = { dynasty = dynasty:dynn_Dayne }
 				scope:gene_donor = { dynasty = dynasty:dynn_Varezys }
 				scope:gene_donor = { dynasty = dynasty:dynn_Mataeryon }
@@ -380,7 +374,7 @@ agot_assign_strong_seed_hair_traits_effect = {
 			NOR = {
 				scope:gene_donor = { dynasty = dynasty:dynn_Targaryen }
 				scope:gene_donor = { dynasty = dynasty:dynn_Velaryon }
-				#scope:gene_donor = { dynasty ?= dynasty:dynn_Aranys } #AGOT+ added   # P51: target does not exist in this playset - soft scope
+				#scope:gene_donor = { dynasty ?= dynasty:dynn_Aranys } #AGOT+ added
 				scope:gene_donor = { dynasty = dynasty:dynn_Dayne }
 				scope:gene_donor = { dynasty = dynasty:dynn_Varezys }
 				scope:gene_donor = { dynasty = dynasty:dynn_Mataeryon }
@@ -395,7 +389,7 @@ agot_assign_strong_seed_hair_traits_effect = {
 			NOR = {
 				scope:gene_donor = { dynasty = dynasty:dynn_Targaryen }
 				scope:gene_donor = { dynasty = dynasty:dynn_Velaryon }
-				#scope:gene_donor = { dynasty ?= dynasty:dynn_Aranys } #AGOT+ added   # P51: target does not exist in this playset - soft scope
+				#scope:gene_donor = { dynasty ?= dynasty:dynn_Aranys } #AGOT+ added
 				scope:gene_donor = { dynasty = dynasty:dynn_Dayne }
 				scope:gene_donor = { dynasty = dynasty:dynn_Varezys }
 				scope:gene_donor = { dynasty = dynasty:dynn_Mataeryon }
@@ -410,7 +404,7 @@ agot_assign_strong_seed_hair_traits_effect = {
 			NOR = {
 				scope:gene_donor = { dynasty = dynasty:dynn_Targaryen }
 				scope:gene_donor = { dynasty = dynasty:dynn_Velaryon }
-				#scope:gene_donor = { dynasty ?= dynasty:dynn_Aranys } #AGOT+ added   # P51: target does not exist in this playset - soft scope
+				#scope:gene_donor = { dynasty ?= dynasty:dynn_Aranys } #AGOT+ added
 				scope:gene_donor = { dynasty = dynasty:dynn_Dayne }
 				scope:gene_donor = { dynasty = dynasty:dynn_Varezys }
 				scope:gene_donor = { dynasty = dynasty:dynn_Mataeryon }
@@ -425,7 +419,7 @@ agot_assign_strong_seed_hair_traits_effect = {
 			NOR = {
 				scope:gene_donor = { dynasty = dynasty:dynn_Targaryen }
 				scope:gene_donor = { dynasty = dynasty:dynn_Velaryon }
-				#scope:gene_donor = { dynasty ?= dynasty:dynn_Aranys } #AGOT+ added   # P51: target does not exist in this playset - soft scope
+				#scope:gene_donor = { dynasty ?= dynasty:dynn_Aranys } #AGOT+ added
 				scope:gene_donor = { dynasty = dynasty:dynn_Dayne }
 				scope:gene_donor = { dynasty = dynasty:dynn_Varezys }
 				scope:gene_donor = { dynasty = dynasty:dynn_Mataeryon }

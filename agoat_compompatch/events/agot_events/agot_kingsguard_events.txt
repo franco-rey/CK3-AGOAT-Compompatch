@@ -1,6 +1,4 @@
-﻿# AGOAT: Legacy of Valyria AGOT 0.5.2.1 compatch's kingsguard events (religion-based checks, cp: slot guards, relation-trigger guards)
-# + this patch's observer-mode guards: every `scope:kingsguard_candidate = {` softened to `?=` and the recruit option wrapped in exists.
-namespace = agot_kingsguard
+﻿namespace = agot_kingsguard
 
 ################################
 # Kingsguard Maintenance and Appointment Events

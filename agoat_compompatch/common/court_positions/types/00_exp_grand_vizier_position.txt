@@ -6,7 +6,7 @@
 
 	court_position_asset = {
 		trigger = {
-			always = no # AGOAT: vanilla MENA-heritage scripted trigger does not exist in AGOT (unknown trigger); default asset applies
+			always = no
 		}
 		animation = stewardship_lifestyle
 		background = "gfx/interface/illustrations/event_scenes/market_east.dds"
@@ -342,7 +342,7 @@
 
 
 	modifier = {
-		monthly_prestige = 0.3 # AGOAT: CPE put a script value in a static modifier ("named value or literal" error); base of major_court_position_prestige_salary
+		monthly_prestige = 0.3
 		diplomacy = 2
 		monthly_prestige_gain_mult = 0.20
 		monthly_diplomacy_lifestyle_xp_gain_mult = 0.20

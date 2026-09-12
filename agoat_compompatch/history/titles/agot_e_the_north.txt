@@ -1,5 +1,4 @@
-﻿# AGOAT: Nobility of Westeros' current file (2026-09-10) + AGOT-canon title histories NoW's rewrite dropped.
-e_the_north = {
+﻿e_the_north = {
 	2020.1.1 = {
 		holder = Stark_12 # Brandon the Builder (C)
 		#law = centralization_2 # AGOT TODO
@@ -24,10 +23,10 @@ e_the_north = {
 		holder = Stark_19 # Rickard the Laughing Wolf (C)
 	}
 	5731.1.1 = {
-		holder = Stark_155 # Benjen (nc) - AGOT canon, restored
+		holder = Stark_155
 	}
 	5769.1.1 = {
-		holder = Stark_156 # Rodwell (nc) - AGOT canon, restored
+		holder = Stark_156
 	}
 	6249.1.1 = {
 		holder = Stark_21 # Theon the Hungry Wolf (C)
@@ -240,10 +239,10 @@ k_winterfell = {
 		holder = Stark_19 # Rickard the Laughing Wolf (C)
 	}
 	5731.1.1 = {
-		holder = Stark_155 # Benjen (nc) - AGOT canon, restored
+		holder = Stark_155
 	}
 	5769.1.1 = {
-		holder = Stark_156 # Rodwell (nc) - AGOT canon, restored
+		holder = Stark_156
 	}
 	6249.1.1 = {
 		holder = Stark_21 # Theon the Hungry Wolf (C)
@@ -411,10 +410,10 @@ d_winterfell = {
 		holder = Stark_19 # Rickard the Laughing Wolf (C)
 	}
 	5731.1.1 = {
-		holder = Stark_155 # Benjen (nc) - AGOT canon, restored
+		holder = Stark_155
 	}
 	5769.1.1 = {
-		holder = Stark_156 # Rodwell (nc) - AGOT canon, restored
+		holder = Stark_156
 	}
 	6249.1.1 = {
 		holder = Stark_21 # Theon the Hungry Wolf (C)
@@ -582,10 +581,10 @@ c_winterfell = {
 		holder = Stark_19 # Rickard the Laughing Wolf (C)
 	}
 	5731.1.1 = {
-		holder = Stark_155 # Benjen (nc) - AGOT canon, restored
+		holder = Stark_155
 	}
 	5769.1.1 = {
-		holder = Stark_156 # Rodwell (nc) - AGOT canon, restored
+		holder = Stark_156
 	}
 	6249.1.1 = {
 		holder = Stark_21 # Theon the Hungry Wolf (C)
@@ -1020,10 +1019,10 @@ c_wolf_branch = {
 		holder = Stark_19 # Rickard the Laughing Wolf (C)
 	}
 	5731.1.1 = {
-		holder = Stark_155 # Benjen (nc) - AGOT canon, restored
+		holder = Stark_155
 	}
 	5769.1.1 = {
-		holder = Stark_156 # Rodwell (nc) - AGOT canon, restored
+		holder = Stark_156
 	}
 	6249.1.1 = {
 		holder = Stark_21 # Theon the Hungry Wolf (C)
@@ -1198,10 +1197,10 @@ c_brans_wood = {
 		holder = Stark_19 # Rickard the Laughing Wolf (C)
 	}
 	5731.1.1 = {
-		holder = Stark_155 # Benjen (nc) - AGOT canon, restored
+		holder = Stark_155
 	}
 	5769.1.1 = {
-		holder = Stark_156 # Rodwell (nc) - AGOT canon, restored
+		holder = Stark_156
 	}
 	6249.1.1 = {
 		holder = Stark_21 # Theon the Hungry Wolf (C)

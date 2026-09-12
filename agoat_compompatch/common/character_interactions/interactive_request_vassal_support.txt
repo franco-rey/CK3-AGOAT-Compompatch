@@ -1,6 +1,4 @@
-﻿# AGOAT: More Interactive Vassals' file verbatim minus `fp3_struggle_resist_allied_wars_modifier = yes` in ai_accept - AGOT disables that
-# scripted modifier (05_fp3_scripted_modifiers.txt), so the engine logged 'unknown command for MTTH' on every AI evaluation.
-request_vassal_support = {
+﻿request_vassal_support = {
 	common_interaction = yes
 	interface_priority = 66
 	category = interaction_category_diplomacy

@@ -1,5 +1,4 @@
-﻿# AGOAT: Nobility of Westeros' current file (2026-09-10) + AGOT-canon title histories NoW's rewrite dropped.
-e_the_vale = {
+﻿e_the_vale = {
 	5800.1.1 = {
 		holder = Arryn_15 	 # Artys I Arryn
 		effect = {

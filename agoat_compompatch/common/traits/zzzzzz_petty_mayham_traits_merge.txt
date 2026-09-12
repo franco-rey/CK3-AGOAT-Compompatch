@@ -1,8 +1,4 @@
-﻿# AGOAT: Petty Inheritable Traits x [AGOT] Mayham. Both redefine these seven congenital traits; Petty (loads later) won with its
-# vanilla-based copies, erasing Mayham's harsher opinion values. Blocks below are Mayham's verbatim + Petty's `opposites` (the
-# only thing Petty changes). zzzzzz_ sorts after both p_traits.txt and 00_traits.txt.
-
-bleeder = { #Haemophilia
+﻿bleeder = { #Haemophilia
 	opposites = {
 		pt_balanced_humors
 	}

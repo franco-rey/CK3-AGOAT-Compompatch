@@ -1,5 +1,4 @@
-﻿# AGOAT: Court Positions Expanded's file verbatim with the vanilla-only asset trigger neutralised (same fix as the grand vizier).
-# Court Positions Expanded - Court Herbalist
+﻿# Court Positions Expanded - Court Herbalist
 # Adapted for CK3 1.19 framework
 # court_herbalist_court_position
 
@@ -12,7 +11,7 @@ court_herbalist_court_position = {
 
 	court_position_asset = {
 		trigger = {
-			always = no # AGOAT: vanilla MENA-heritage scripted trigger does not exist in AGOT (unknown trigger); default asset applies
+			always = no
 		}
 		animation = physician
 		background = "gfx/interface/illustrations/event_scenes/fp4_study_physician_mena.dds"
@@ -20,7 +19,7 @@ court_herbalist_court_position = {
 
 	court_position_asset = {
 		trigger = {
-			always = no # AGOAT: vanilla heritage scripted trigger does not exist in AGOT (unknown trigger); default asset applies
+			always = no
 		}
 		animation = physician
 		background = "gfx/interface/illustrations/event_scenes/fp4_study_physician_indian.dds"

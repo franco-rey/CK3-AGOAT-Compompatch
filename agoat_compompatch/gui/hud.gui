@@ -4241,7 +4241,7 @@ widget = {
 	}
 
 
-	bottom_left_dragon_portrait = { # More Dragon Eggs
+	bottom_left_dragon_portrait = {
 		parentanchor = bottom|left
 	}
 	bottom_left_portrait = {
@@ -6770,7 +6770,6 @@ types HUD
 	}
 
 
-	# AGOAT: More Dragon Eggs' HUD dragon portrait (its hud.gui is otherwise a stale AGOT copy)
 	type bottom_left_dragon_portrait = container { # MDE Modified
 		datacontext = "[GetPlayer]"
 		visible = "[And(And( Not(IsGameViewOpen('barbershop')) , And(GetPlayer.IsValid, Not(GetVariableSystem.Exists( 'hide_bottom_left_HUD')))), Not( GreaterThan_CFixedPoint( GetPlayer.MakeScope.Var('hide_ui_character_model').GetValue, '(CFixedPoint)0' ) ))]"
@@ -8862,7 +8861,7 @@ types HUD
 
 									blockoverride "gold_income"
 									{
-										vbox = { # AGOAT: player-gated wrapper (see gold panel note)
+										vbox = {
 											visible = "[GetPlayer.IsValid]"
 											layoutpolicy_horizontal = expanding
 											vbox = {
@@ -8965,8 +8964,6 @@ types HUD
 										}
 
 										container = {
-											# AGOAT: no player in observer mode -> Naval Combat's finance scripted GUI / script values below would run on an invalid
-											# scope every frame (7,000 log lines a second). Hidden parents are not evaluated; And() is eager, so the gate lives here.
 											visible = "[GetPlayer.IsValid]"
 											text_single = {
 												name = "balance_positive"

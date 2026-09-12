@@ -1,19 +1,4 @@
-﻿# AGOAT Compompatch  P59 - restore AGOT's current dragon transfer effect definition.
-#
-# WHY: scripted effects are database keys - the last mod loaded wins. AGOT More Dragon Eggs
-# (3388366564) ships a stale full-file copy of 00_agot_dragon_effects.txt whose version of this
-# effect uses 44 $PARAM$ tokens against AGOT's 57. When it wins the key, all 72 of AGOT's call
-# sites fail to compile ("failed for unknown arguments: ..." naming exactly the 13 missing params)
-# and the dragon appearance story cycles never populate.
-#
-# FIX: AGOT's CURRENT definition, verbatim, so this patch (loading last) wins the key back.
-# SAFE IF IRRELEVANT: byte-identical to AGOT's own definition when nothing overrides it.
-#
-# PROVENANCE: A Game of Thrones (2962333032) 0.5.2.1
-#             common/scripted_effects/00_agot_dragon_effects.txt lines 2305-2678, refreshed 2026-09-11
-#             (AGOT 0.5.2.1 changed only comments in this block vs the 0.5.1 copy we shipped).
-
-agot_historical_dragon_transfer_vars_to_story_cycle_effect = {
+﻿agot_historical_dragon_transfer_vars_to_story_cycle_effect = {
 	$DRAGON$ = { save_scope_as = dragon }
 	create_character = {
 		name = Aegon

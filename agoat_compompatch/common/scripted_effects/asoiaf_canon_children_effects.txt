@@ -1,10 +1,4 @@
-﻿# AGOAT (P01): AGOT+ 2026-09-09 verbatim (dragon-bond schemes adopted) + repairs of that rewrite's script errors, all confirmed by
-# ck3-tiger and by the engine (202 'PostValidate of effect create_character returned false' at game start, followed by a crash):
-# upstream's employer= next to location= in every create_character is dropped (courtier placement restored below instead),
-# start_scheme target= -> target_character=, every_dynasty_member in triggers -> any_dynasty_member, trait= outside
-# create_character -> add_trait, any_spouse.house -> any_spouse = { house }, nick_the_imp -> nick_agot_historical_the_imp,
-# + exists guards around set_house/set_character_faith/set_culture on parent scopes (lowborn/cultureless parents logged scope errors).
-### MISC EFFECTS ###
+﻿### MISC EFFECTS ###
 
 asoiaf_canon_children_male_1_pregnancy_effect = {
 	scope:mother = {
@@ -115,8 +109,6 @@ asoiaf_canon_children_parentage_assignment_effect = { #effect to assign proper H
 		add_trait = bastard
 		agot_add_custom_bastard_nickname_effect = yes
 	}
-	# AGOAT: AGOT+ 09-09 set employer = scope:mother.employer inside every create_character (invalid next to location =,
-	# and empty when the mother is a ruler); place the child at the mother's court here instead
 	if = {
 		limit = {
 			exists = scope:child

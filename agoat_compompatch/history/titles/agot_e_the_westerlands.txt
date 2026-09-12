@@ -1,5 +1,4 @@
-﻿# AGOAT: Nobility of Westeros' current file (2026-09-10) + AGOT-canon title histories NoW's rewrite dropped.
-e_the_westerlands = {
+﻿e_the_westerlands = {
 	2028.1.1 = {
 		holder = Lannister_29 #Lann the Clever
 		effect = {

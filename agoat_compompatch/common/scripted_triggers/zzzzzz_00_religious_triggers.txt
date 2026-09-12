@@ -1,7 +1,4 @@
-﻿# AGOAT: Female Knight and Councillor (Unofficial) overrides can_be_combatant_based_on_gender_trigger with a pre-0.5.2.1 AGOT copy that
-# also references $COURT_OWNER$, a parameter no caller passes (650 call sites pass ARMY_OWNER only) -> 85 'missing arguments: COURT_OWNER'
-# compile failures per session. This file replaces FKC's (same path) with AGOT's current trigger plus FKC's one real change.
-can_be_combatant_based_on_gender_trigger = {
+﻿can_be_combatant_based_on_gender_trigger = {
 	custom_description = {
 		text = "can_be_combatant_based_on_gender"
 		object = this
@@ -99,7 +96,6 @@ can_be_combatant_based_on_gender_trigger = {
 					prowess >= high_skill_rating
 				}
 			}
-			# Female Knight and Councillor (Unofficial): a player's army ignores gender restrictions
 			$ARMY_OWNER$ = { is_ai = no }
 			has_trait = dragon
 			is_current_dragonrider_warfare = yes

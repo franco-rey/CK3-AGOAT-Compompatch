@@ -1,12 +1,4 @@
-﻿# AGOAT Compompatch  P03 - character window: AGOT x DireWolves x More Personality Depth (three-way).
-# PROVENANCE: base = AGOT (2962333032) 0.5.2.1 gui/window_character.gui VERBATIM; DireWolves (3766320609,
-#   2026-09-11) delta and More Personality Depth (3717990443) delta re-applied on top. Rebased 2026-09-11 -
-#   the previous copy was built on pre-0.5.2.1 AGOT and dropped six 0.5.2.1 widgets (liege_portrait,
-#   char_view_house_area, character_relation_to_you, other_player_name, ai_personality, char_view_titles).
-# WHY THIS FILE EXISTS: MPD loads after DireWolves and would otherwise erase dw_direwolf_character_view,
-#   dw_direwolf_relationship_row and the IsCharacterDirewolf guard on main_content. Delete if either mod goes.
-
-######################################################
+﻿######################################################
 ################# CHARACTER WINDOW ###################
 ######################################################
 
@@ -691,7 +683,6 @@ window = {
 						{
 							text = "[Character.GetOpinionBreakdownText( CharacterWindow.GetCharacter.GetLiege )]"
 						}
-						# [UniUI] [IMHO] AGOAT: In My Humble Opinion liege-opinion hook (its own window_character.gui is a CK3 1.15 copy that would erase AGOT's window)
 						blockoverride "IMHO_opinion_text_player" {
 							text = "[Character.GetLiege.GetOpinionOf( Character.Self )|=]"
 							fonttintcolor = "[GetPlayer.GetOpinionOfTint( Character.Self )]"
@@ -4720,7 +4711,6 @@ types CharacterWindow
 			text_single = {
 				maximumsize = { 149 -1 }
 				name = "ai_personality"
-				# More Personality Depth wanted this visible for everyone; In My Humble Opinion gates it by its game rule (default: enabled) - AGOAT keeps the rule so it stays toggleable
 				using = IMHO_player_personality_enabled
 
 				raw_text = " • #L [Character.GetAIPersonalityNoTooltip]#!"

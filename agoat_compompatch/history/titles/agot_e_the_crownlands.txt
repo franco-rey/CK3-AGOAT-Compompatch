@@ -1,5 +1,4 @@
-﻿# AGOAT: Nobility of Westeros' current file (2026-09-10) + AGOT-canon title histories NoW's rewrite dropped.
-e_the_crownlands = {
+﻿e_the_crownlands = {
 	30.1.1 = {
 		effect = {
 			save_title_name_change_data = { TRANSFER_VAR = no }

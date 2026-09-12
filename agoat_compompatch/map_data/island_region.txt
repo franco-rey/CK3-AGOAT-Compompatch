@@ -1,5 +1,4 @@
-﻿# AGOAT: Legacy of Valyria AGOT compatch island regions + Nobility of Westeros' Iron Islands/Sisters/Wrathrock blocks (NoW 2026-09-10).
-# Island regions - no land path from the continent
+﻿# Island regions - no land path from the continent
 # The AI needs these to optimize path finding
 #
 # NOTE: do not add any regions here that are NOT islands

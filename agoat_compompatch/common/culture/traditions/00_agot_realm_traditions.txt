@@ -1,8 +1,4 @@
-﻿# AGOAT: three-way merge of AGOT 0.5.2.1's 00_agot_realm_traditions.txt with Armies of Westeros (unit-unlock parameters, rebalanced
-# regional traditions) and [AGOT] Mayham (opinion tweaks). Mayham ships this file as a near-verbatim AGOT copy and loads after AoW,
-# which erased every AoW tradition change and 45 unlock_maa_* parameters (AoW/REMASTERED regiments were unrecruitable).
-# Blocks only one mod touched are taken from it; the 0 blocks both touched keep AoW's structure with Mayham's value changes.
-tradition_agot_insular_marriage = {
+﻿tradition_agot_insular_marriage = {
 	category = realm
 
 	layers = {

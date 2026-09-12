@@ -1,6 +1,4 @@
-﻿# AGOAT: AGOT 0.5.2.1 characters that Nobility of Westeros' character files still omit (NoW's 2026-09-10 update re-added the other 17).
-
-Hardy_83 = {
+﻿Hardy_83 = {
 	name = Tomas
 	dynasty = dynn_Hardy
 

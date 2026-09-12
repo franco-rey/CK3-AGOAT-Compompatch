@@ -1,7 +1,4 @@
-﻿# AGOAT: Show Player Opinion's file verbatim + the dragon guards AGOT puts on its own portrait_opinion types. CK3 keeps the
-# FIRST registered GUI type, and this 00_ file registers before AGOT's shared/portraits.gui, so without these guards every dragon
-# portrait carried an opinion box. Same path as SPO's file, so this copy replaces it; SPO's two extra opinion texts are untouched.
-######################################################
+﻿######################################################
 ################## PORTRAIT TYPES ####################
 ######################################################
 
@@ -10,7 +7,7 @@ types PlayerOpinionPortraitTypes
 	## Opinion box for portraits
 	type portrait_opinion = flowcontainer {
 		name = "tutorial_highlight_portrait_opinion"
-		visible = "[And(And(Character.IsValid, Not(IsCharacterDragon)), And(Character.IsAlive, Not(Character.IsLocalPlayer)))]" # AGOAT: AGOT hides opinion boxes on dragons
+		visible = "[And(And(Character.IsValid, Not(IsCharacterDragon)), And(Character.IsAlive, Not(Character.IsLocalPlayer)))]"
 		ignoreinvisible = yes
 
 		background = {
@@ -96,7 +93,7 @@ types PlayerOpinionPortraitTypes
 
 	type portrait_opinion_small = flowcontainer {
 		#name = "tutorial_highlight_portrait_opinion"
-		visible = "[And(And(Character.IsValid, Not(IsCharacterDragon)), And(Character.IsAlive, Not(Character.IsLocalPlayer)))]" # AGOAT: AGOT hides opinion boxes on dragons
+		visible = "[And(And(Character.IsValid, Not(IsCharacterDragon)), And(Character.IsAlive, Not(Character.IsLocalPlayer)))]"
 		ignoreinvisible = yes
 		margin_right = 2
 

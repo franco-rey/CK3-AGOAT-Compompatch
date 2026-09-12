@@ -16,8 +16,6 @@ on_add_vet_modifier = {
             if = {
                 limit = {
                     is_ruler = no
-                    # AGOAT: upstream's `NOT = { father = { is_army_owner = root.army_owner } }` uses a trigger that does not exist, which made the
-                    # engine reject this on_action ("Unknown trigger: is_army_owner"), so no knight ever received the veteran modifier. Dropped.
                 }
                 add_character_modifier = veteran_modifier
             }

@@ -1,8 +1,4 @@
-﻿# AGOAT: three-way merge of AGOT 0.5.2.1's 00_agot_unique_traditions.txt with Armies of Westeros (unit-unlock parameters, rebalanced
-# regional traditions) and [AGOT] Mayham (opinion tweaks). Mayham ships this file as a near-verbatim AGOT copy and loads after AoW,
-# which erased every AoW tradition change and 45 unlock_maa_* parameters (AoW/REMASTERED regiments were unrecruitable).
-# Blocks only one mod touched are taken from it; the 13 blocks both touched keep AoW's structure with Mayham's value changes.
-### Essos
+﻿### Essos
 
 tradition_agot_essosi_valyrian = {
 	category = regional
@@ -3220,7 +3216,7 @@ tradition_agot_arbormen = {
 		unlock_maa_arbor_marines = yes
 		next_level_trade_ports = yes
 		reveler_traits_increased_opinion = yes
-		reveler_traits_more_valued = yes # AGOAT: upstream wrote the parameter name without `= yes` (loose value, rejected by the parser)
+		reveler_traits_more_valued = yes
 		unlock_maa_arbor_marines = yes
 	}
 

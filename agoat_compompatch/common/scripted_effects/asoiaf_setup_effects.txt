@@ -1,7 +1,4 @@
-﻿# AGOAT (P02): AGOT+ 2026-09-09 verbatim + three validity fixes upstream's rewrite introduced: `has_claim =` -> `has_claim_on =`,
-# bare `asoiaf_underaged ?=` -> `scope:asoiaf_underaged ?=` (the scope is saved with save_scope_as), `is_dead = yes` -> `is_alive = no`.
-# asoiaf_destroy_crownlands_title_effect (still called from test_title_on_actions.txt, definition dropped upstream) lives in zzzzzz_agoat_p02_crownlands_effect.txt.
-#Setup
+﻿#Setup
 #asoiaf_destroy_crownlands_title_effect = {
 #	destroy_title = title:e_the_crownlands
 #}
@@ -1386,7 +1383,7 @@ asoiaf_setup_characters_effect = {
 			set_court_language = language_agot_westeros
 		}
 	}
-	if = { # AGOAT: AGOT+ 09-09 wrote bare `exists =` triggers in effect context; guarded properly
+	if = {
 		limit = {
 			exists = character:Strong_30
 		}
@@ -1394,7 +1391,7 @@ asoiaf_setup_characters_effect = {
 		character:Targaryen_76 ?= { set_real_father = character:Strong_30 }
 		character:Targaryen_77 ?= { set_real_father = character:Strong_30 }
 	}
-	if = { # AGOAT: AGOT+ 09-09 wrote bare `exists =` triggers in effect context; guarded properly
+	if = {
 		limit = {
 			exists = character:Stark_5
 		}
@@ -2178,7 +2175,7 @@ asoiaf_setup_characters_effect = {
 			add_trait = whole_of_body
 		}
 	}
-	if = { # AGOAT: AGOT+ 09-09 wrote bare `exists =` triggers in effect context; guarded properly
+	if = {
 		limit = {
 			exists = character:Lannister_1
 		}
@@ -2442,7 +2439,7 @@ asoiaf_setup_characters_effect = {
 			remove_trait = zealous
 		}
 	}
-	if = { # AGOAT: AGOT+ 09-09 wrote bare `exists =` triggers in effect context; guarded properly
+	if = {
 		limit = {
 			exists = character:Seaworth_1
 			exists = character:Melisandre_1
@@ -2509,7 +2506,7 @@ asoiaf_setup_characters_effect = {
 	character:Melisandre_1 ?= {
 		create_artifact_asoiaf_red_priest_necklace_effect = { OWNER = this }
 	}
-	if = { # AGOAT: AGOT+ 09-09 wrote bare `exists =` triggers in effect context; guarded properly
+	if = {
 		limit = {
 			exists = character:Tyrell_13
 		}
@@ -2518,7 +2515,7 @@ asoiaf_setup_characters_effect = {
 			set_relation_friend = character:Tyrell_13 #Loras
 		}
 	}
-	if = { # AGOAT: AGOT+ 09-09 wrote bare `exists =` triggers in effect context; guarded properly
+	if = {
 		limit = {
 			exists = character:Baratheon_4
 		}
@@ -2659,7 +2656,7 @@ asoiaf_setup_characters_effect = {
 			remove_trait = vengeful
 		}
 	}
-	if = { # AGOAT: AGOT+ 09-09 wrote bare `exists =` triggers in effect context; guarded properly
+	if = {
 		limit = {
 			exists = character:Lannister_135
 		}
@@ -11564,7 +11561,7 @@ asoiaf_new_dnas_effect = {
 		character:Lowborn_Kings_Landing_1 ?= { copy_inheritable_appearance_from = character:Shae_asoiaf_1 }
 		character:Saan_2 ?= {
 			copy_inheritable_appearance_from = character:Saan_asoiaf_2
-			if = { # AGOAT: bare `exists =` trigger in effect context (AGOT+ 09-09); guarded properly
+			if = {
 				limit = { exists = character:Saan_asoiaf_2_mother }
 				set_mother = character:Saan_asoiaf_2_mother #Salladhor's Summer Islander mother
 			}
