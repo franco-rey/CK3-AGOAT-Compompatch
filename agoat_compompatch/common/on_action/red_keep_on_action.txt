@@ -1,0 +1,1002 @@
+﻿
+#Red Keep on actions
+########################################################################################################################################################################
+quarterly_playable_pulse = {
+	 on_actions = {
+		rk_on_kings_landing_envent
+		rk_on_gk_loyalty
+		rk_recreate_red_keep
+		rk_on_wildifire_production_event
+	 }
+}
+five_year_playable_pulse = {
+	 on_actions = {
+		rk_on_reduce_food_supplies
+		rk_on_remove_famine_modifiers
+		rk_on_custom_courtier
+		rk_nightswatch_petition 
+		rk_crime_events
+		rk_gc_corruption_events
+	 }
+}
+
+three_year_playable_pulse = {
+	on_actions = {
+		#rk_crime_events
+		rk_kingsguard_traits_on_actions
+	}
+}
+
+yearly_playable_pulse = {
+	 on_actions = {
+		rk_on_wildifire_storage_event
+		#rk_on_wildifire_production_event		#Might Want to add later
+	 }
+}
+
+hold_court_event_selection = {
+	on_actions = {
+		rk_hold_court_events
+	}
+}
+
+on_army_enter_province = {
+	on_actions = {
+		rk_army_wildfire
+	}
+}
+
+
+travel_events_on_action = {
+	on_actions = {
+		rk_travel_events
+	}
+}
+
+on_death = {
+	on_actions = {
+		rk_notify_vassal_death
+		on_king_death
+		on_king_death_kingsguard
+	}
+}
+
+on_title_gain = {
+	on_actions = {
+		rk_on_coin_title_gain 
+		rk_on_iron_throne_succession
+		rk_on_kingsguard_title_gain
+	}
+}
+
+####### EVENTS #####
+
+on_yearly_events = { # These compete with most of the standard events in the game. Some of my events will go here and in their own pool.
+
+	random_events = {
+		100 = rk_filler.0001 #A Late Night Stroll 
+		100 = rk_filler.0002 #The Iron Scent
+		100 = rk_filler.0003 #A Border Dispute
+		100 = rk_filler.0004 #The Unspoken Truth
+		100 = rk_filler.0005 #Steel in the Yard
+		100 = rk_filler.0006 #A Small Scuffle
+		100 = rk_filler.0007 #Maester's Herbs
+		100 = rk_filler.0008 #The Minor Customs Breach
+		100 = rk_filler.0009 #A Shift Change
+		100 = rk_filler.0010 #The Morning After	
+		100 = rk_nw.0002
+	}
+}
+
+rk_on_iron_throne_succession = {
+	trigger = {
+		has_title = title:c_kings_landing
+	}
+	random_events = {    #****REVISE, ENABLE WHEN I HAVE MORE
+		100 = rk_small_council.0002
+	}
+}
+
+rk_travel_events = {
+	trigger = {
+		is_ai = no
+		has_title = title:c_kings_landing
+	}
+	random_events = {
+		100 = rk_travel.0001
+		100 = rk_travel.0006
+	}	
+}
+
+rk_hold_court_events = {
+	trigger = {
+		is_ai = no
+		has_title = title:c_kings_landing
+	}
+	random_events = {
+		100 = rk_hold_court.0002
+		100 = rk_hold_court.0001
+		100 = rk_lps.0001
+		100 = rk_lps.0002
+		100 = rk_lps.0003
+	}
+}
+
+rk_army_wildfire = {
+	trigger = {
+		is_ai = yes
+	}
+	events = {
+		rk_wildfire.0005
+	}
+}
+
+
+
+#Starting King's Landing event
+###############################
+
+rk_on_kings_landing_envent = { #Starting event firing ##Revise Pulse!*
+	effect = {
+		if = {
+			limit = {
+				is_ai = no
+				has_title = title:c_kings_landing
+				NOT = {
+					has_global_variable = rk_player_famines
+				}
+			}
+			trigger_event = rk_kings_landing.0001
+		}
+	}
+}
+
+#Famine on Actions
+###################
+
+rk_on_reduce_food_supplies = { #Event to lower the food supplies ##REVISE PULSE!!! THIS IS JUST FOR TESTING!*
+	effect = {
+		if = { 
+			limit = {			
+				has_global_variable = rk_player_famines	##Revise
+                #is_ai = no	###REVISE!!! THIS IS JUST FOR TESTING,REMOVE THE HASH#
+                has_title = title:c_kings_landing				
+			}
+			trigger_event = rk_famine.0001  			
+		}
+	}
+}
+
+rk_on_remove_famine_modifiers = { #Event to remove the famine modifiers for the AI ##Revise Pulse!*
+	effect = {
+		if = {
+			limit = {
+				is_ai = yes
+				has_title = title:c_kings_landing
+				has_global_variable = rk_player_famines
+			}
+			trigger_event = rk_famine.0002
+		}
+	}
+}		
+
+##### Crime ####
+################
+
+rk_on_gk_loyalty = {
+	effect = {
+		if = {
+			limit = {
+				is_ai = no
+				has_title = title:c_kings_landing
+				title:b_goldguard_heights.holder = {
+					opinion = {
+						target = root
+						value >= 50
+					}
+				}	
+				NOT = {
+					has_title = title:b_goldguard_heights	
+					has_variable = rk_loyal_commander					
+				}	
+			}
+			trigger_event = rk_crime.0001
+			set_variable = rk_loyal_commander
+			remove_variable = rk_disloyal_commander
+			remove_variable = rk_neutral_commander
+		}
+		else_if = { 
+			limit = {
+				is_ai = no
+				has_title = title:c_kings_landing
+				NOT = {
+					title:b_goldguard_heights.holder = {
+						opinion = {
+							target = root
+							value >= 0
+						}
+					}	
+				}
+				NOT = {
+					has_title = title:b_goldguard_heights
+					has_variable = rk_disloyal_commander					
+				}					
+			}
+			trigger_event = rk_crime.0002	
+			set_variable = rk_disloyal_commander
+			remove_variable = rk_loyal_commander		
+			remove_variable = rk_neutral_commander			
+		}
+		else_if = { 
+			limit = {
+				is_ai = no
+				has_title = title:c_kings_landing
+				title:b_goldguard_heights.holder = {
+					opinion = {
+						target = root
+						value = { 1 49 }
+					}	
+				}
+				NOT = {
+					has_title = title:b_goldguard_heights
+					has_variable = rk_neutral_commander
+				}					
+			}
+			trigger_event = rk_crime.0003	
+			remove_variable = rk_disloyal_commander
+			remove_variable = rk_loyal_commander
+			set_variable = rk_neutral_commander
+		}	
+		else_if = { 
+			limit = {
+				is_ai = no
+				NOT = {
+					has_title = title:c_kings_landing				
+				}
+				OR = {
+					has_variable = rk_disloyal_commander
+					has_variable = rk_neutral_commander
+					has_variable = rk_loyal_commander					
+				}					
+			}
+			trigger_event = rk_crime.0004	
+		}			
+	}
+}
+
+# Red Keep Domicile On Actions - When Losing the red keep, the domicile is destroyed.
+#####################################################################################
+
+
+on_title_lost = {
+	on_actions = {
+		rk_on_title_lost
+		rk_coin_title_lost 
+		rk_on_kingsguard_title_lost
+	}
+}
+
+rk_on_title_lost = {
+	trigger = {
+		OR = {
+			is_landless_adventurer = yes
+			is_playable_character = no
+		}
+	}
+	effect = {
+		every_held_title = {
+			root = {
+				destroy_title = prev
+			}
+		}
+	}
+}
+
+
+rk_recreate_red_keep = {
+	trigger = {
+		has_title = title:b_the_red_keep
+		NOT = {
+			has_title = title:b_the_red_keep.var:rk_domicile_title
+		}
+	}
+	effect = {
+		 if = {
+			limit = {
+				has_title = title:b_the_red_keep
+			}	
+			trigger_event = rk_kings_landing.0002 
+		 }	
+	}
+}
+
+##### Wildfire on actions
+
+rk_on_wildifire_storage_event = { #Wildfire Sotrage Risks and accidents
+	trigger = {
+		has_title = title:b_the_red_keep
+		is_available = yes
+		title:c_kings_landing = {
+			OR = {
+				has_county_modifier = rk_small_wildfire_stockpile	
+				has_county_modifier = rk_medium_wildfire_stockpile
+				has_county_modifier = rk_large_wildfire_stockpile
+				has_county_modifier = rk_full_wildfire_stockpile								
+			}					
+		}		
+	}
+	effect = {	
+		if = { #Small Risk, a little wildfire
+			limit = {			
+				title:c_kings_landing = {
+					OR = {
+						has_county_modifier = rk_small_wildfire_stockpile									
+					}					
+				}			
+			}
+			random_list = {
+				2 = {
+					trigger_event = {
+						id = rk_wildfire.0020
+						days = { 6 8 }
+					}
+				}
+				1 = {
+					trigger_event = {
+						id = rk_wildfire.0021
+						days = { 6 8 }
+					}				
+				}
+				97 = {
+				}
+			}
+		}
+		else_if = { #Moderate Risk, moderate wildifre
+			limit = {			
+				title:c_kings_landing = {
+					OR = {	
+						has_county_modifier = rk_medium_wildfire_stockpile							
+					}					
+				}			
+			}
+			random_list = {
+				4 = {
+					trigger_event = {
+						id = rk_wildfire.0020
+						days = { 6 8 }
+					}
+				}
+				2 = {
+					trigger_event = {
+						id = rk_wildfire.0021
+						days = { 6 8 }
+					}				
+				}
+				94 = {
+				}
+			}
+		}
+		else_if = { #Big Risk, a lot wildfire
+			limit = {			
+				title:c_kings_landing = {
+					OR = {	
+						has_county_modifier = rk_large_wildfire_stockpile						
+					}					
+				}
+            is_ai = no
+			has_title = title:c_kings_landing				
+			}
+			random_list = {
+				10 = {
+					trigger_event = {
+						id = rk_wildfire.0020
+						days = { 6 8 }
+					}
+				}
+				5 = {
+					trigger_event = {
+						id = rk_wildfire.0021
+						days = { 6 8 }
+					}				
+				}
+				85 = {
+				}
+			}
+		}
+		else_if = { #Huge Risk, too much wildifire
+			limit = {			
+				title:c_kings_landing = {
+					OR = {	
+						has_county_modifier = rk_full_wildfire_stockpile						
+					}					
+				}
+            is_ai = no
+			has_title = title:c_kings_landing				
+			}
+			random_list = {
+				15 = {
+					trigger_event = {
+						id = rk_wildfire.0020
+						days = { 6 8 }
+					}
+				}
+				15 = {
+					trigger_event = {
+						id = rk_wildfire.0021
+						days = { 6 8 }
+					}				
+				}
+				70 = {
+				}
+			}
+		}		
+	}
+}
+
+rk_on_wildifire_production_event = { #Wildfire Production Events
+	trigger = {
+		has_title = title:b_the_red_keep
+		is_ai = no			
+	}
+	effect = {
+		if = { 
+			limit = {			
+				has_character_modifier = rk_wildfire_patron_danger			
+			}
+			random_list = {
+				40 = {
+					trigger_event = rk_wildfire.0002				
+				}
+				10 = {
+					trigger_event = rk_wildfire.0022
+				}
+				10 = {
+					trigger_event = rk_wildfire.0023
+				}
+				10 = {
+					trigger_event = rk_wildfire.0024
+				}
+				10 = {
+					trigger_event = rk_wildfire.0025
+				}	
+				10 = {
+					trigger_event = rk_wildfire.0026
+				}	
+				10 = {
+					trigger_event = rk_wildfire.0027
+				}					
+			}
+		}
+	}
+}
+
+rk_on_custom_courtier = {
+	trigger = {
+		has_title = title:b_the_red_keep
+		is_ai = no			
+	}
+	effect = {
+		random_list = {
+			3 = {
+				trigger_event = rk_court.0008
+			}
+			3 = {
+				trigger_event = rk_court.0009
+			}
+			2 = {
+				trigger_event = rk_court.0010
+			}			
+			
+			82 = {
+			}
+		}
+	}
+}
+
+rk_notify_vassal_death = {
+	trigger = {
+		exists = title:h_the_iron_throne.holder
+		is_vassal_of = title:h_the_iron_throne.holder	
+		highest_held_title_tier = tier_empire
+	}
+	effect = {
+		save_scope_as = rk_dead_lord
+		primary_heir = {
+			save_scope_as = rk_heir
+		}
+		title:h_the_iron_throne.holder = {
+			trigger_event = rk_death_notification.0001
+		}
+	}
+}
+
+
+rk_nightswatch_petition = {
+	trigger = {
+		is_imprisoned = no
+		is_incapable = no
+		is_ai = no
+		has_title = title:c_kings_landing	
+		is_at_war = no
+		is_available_adult = yes
+	}
+	effect = {
+		random_list = {
+			90 = {}
+			10 = {
+				trigger_event = rk_nw.0001	
+			}
+		}
+	}
+}
+
+
+
+######### CRIME AND GOLDCLOACKS
+
+
+rk_crime_events = {
+	trigger = {
+		is_ai = no
+		has_title = title:c_kings_landing	
+		title:c_kings_landing = {
+			NOT = {
+				has_county_modifier = rk_gc_crackdown
+			}
+		}	
+		
+	}
+	effect = {
+		random_list = {
+			0 = {}
+			100 = {
+				random_list = {
+					10 = {
+						trigger_event = {
+							id = rk_gc.0002
+							days = 20
+						}
+					}
+					10 = {
+						trigger_event = {
+							id = rk_gc.0003
+							days = 20
+						}
+					}
+					10 = {
+						trigger_event = {
+							id = rk_gc.0004
+							days = 20
+						}
+					}
+					
+					10 = {
+						trigger_event = {
+							id = rk_gc.0005
+							days = 20
+						}
+					}
+					
+					10 = {
+						trigger_event = {
+							id = rk_gc.0006
+							days = 20
+						}
+					}
+					
+					10 = {
+						trigger_event = {
+							id = rk_gc.0007
+							days = 20
+						}
+					}
+					
+					10 = {
+						trigger_event = {
+							id = rk_gc.0008
+							days = 20
+						}
+					}
+					
+					10 = {
+						trigger_event = {
+							id = rk_gc.0009
+							days = 20
+						}
+					}
+					
+					10 = {
+						trigger_event = {
+							id = rk_gc.0010
+							days = 20
+						}
+					}
+					
+					10 = {
+						trigger_event = {
+							id = rk_gc.0011
+							days = 20
+						}
+					}
+					
+					10 = {
+						trigger_event = {
+							id = rk_gc.0012
+							days = 20
+						}
+					}
+					
+					10 = {
+						trigger_event = {
+							id = rk_gc.0013
+							days = 20
+						}
+					}
+					10 = {
+						trigger_event = {
+							id = rk_gc.0014
+							days = 20
+						}
+					}
+					10 = {
+						trigger_event = {
+							id = rk_gc.0015
+							days = 20
+						}
+					}
+					10 = {
+						trigger_event = {
+							id = rk_gc.0016
+							days = 20
+						}
+					}
+					10 = {
+						trigger_event = {
+							id = rk_gc.0017
+							days = 20
+						}
+					}
+					10 = {
+						trigger_event = {
+							id = rk_gc.0018
+							days = 20
+						}
+					}
+					10 = {
+						trigger_event = {
+							id = rk_gc.0019
+							days = 20
+						}
+					}
+					10 = {
+						trigger_event = {
+							id = rk_gc.0020
+							days = 20
+						}
+					}				
+				}				
+			}	
+		}
+	}	
+}
+
+rk_gc_corruption_events = {
+	trigger = {
+		is_ai = no
+		has_title = title:c_kings_landing
+	}
+	effect = {
+		random_list = {
+			40 = {
+				trigger_event = {
+					id = rk_gc.0021	
+					days = 100
+				}
+			}
+			60 = {
+			}		
+		}	
+	}
+}
+
+on_king_death_kingsguard = {
+	trigger = {
+		OR = {
+			has_character_modifier = rk_kingsguard_honor_1
+			has_character_modifier = rk_kingsguard_honor_2
+			has_character_modifier = rk_kingsguard_honor_3
+			has_character_modifier = rk_kingsguard_honor_4
+			has_character_modifier = rk_kingsguard_honor_5		
+		}
+		exists = player_heir	
+		has_title = title:c_kings_landing
+	}
+
+	effect = {
+		if = {
+			limit = {
+				has_character_modifier = rk_kingsguard_honor_1
+			}
+			player_heir = {				
+				add_character_modifier = rk_kingsguard_honor_1					
+			}			
+		}
+		else_if = {
+			limit = {
+				has_character_modifier = rk_kingsguard_honor_2
+			}
+			player_heir = {				
+				add_character_modifier = rk_kingsguard_honor_2					
+			}			
+		}
+		else_if = {
+			limit = {
+				has_character_modifier = rk_kingsguard_honor_3
+			}
+			player_heir = {				
+				add_character_modifier = rk_kingsguard_honor_3					
+			}			
+		}
+		else_if = {
+			limit = {
+				has_character_modifier = rk_kingsguard_honor_4
+			}
+			player_heir = {				
+				add_character_modifier = rk_kingsguard_honor_4					
+			}			
+		}
+		else_if = {
+			limit = {
+				has_character_modifier = rk_kingsguard_honor_5
+			}
+			player_heir = {				
+				add_character_modifier = rk_kingsguard_honor_5					
+			}			
+		}
+		else = {
+			player_heir = {				
+				add_character_modifier = rk_kingsguard_honor_3				
+			}		
+		}
+	}
+}
+
+on_king_death = {
+	trigger = {
+		OR = {
+			has_character_modifier = rk_seignorage_profits	
+			has_character_modifier = rk_pure_coinage
+			has_character_modifier = rk_strong_coinage
+			has_character_modifier = rk_common_coinage
+			has_character_modifier = rk_debased_coinage
+			has_character_modifier = rk_worthless_coinage		
+		}
+		exists = player_heir	
+		has_title = title:c_kings_landing
+	}
+
+	effect = {
+			player_heir = {				
+				add_character_modifier = rk_seignorage_profits					
+			}	
+		if = {
+			limit = {
+				has_character_modifier = rk_pure_coinage
+			}
+			player_heir = {				
+				add_character_modifier = rk_pure_coinage					
+			}			
+		}
+		else_if = {
+			limit = {
+				has_character_modifier = rk_strong_coinage
+			}
+			player_heir = {				
+				add_character_modifier = rk_strong_coinage					
+			}			
+		}
+		else_if = {
+			limit = {
+				has_character_modifier = rk_common_coinage
+			}
+			player_heir = {				
+				add_character_modifier = rk_common_coinage					
+			}			
+		}
+		else_if = {
+			limit = {
+				has_character_modifier = rk_debased_coinage
+			}
+			player_heir = {				
+				add_character_modifier = rk_debased_coinage					
+			}			
+		}
+		else_if = {
+			limit = {
+				has_character_modifier = rk_worthless_coinage
+			}
+			player_heir = {				
+				add_character_modifier = rk_worthless_coinage					
+			}			
+		}		
+	}
+}
+
+
+rk_coin_title_lost = {
+	trigger = {
+		OR = {
+			has_character_modifier = rk_seignorage_profits	
+			has_character_modifier = rk_pure_coinage
+			has_character_modifier = rk_strong_coinage
+			has_character_modifier = rk_common_coinage
+			has_character_modifier = rk_debased_coinage
+			has_character_modifier = rk_worthless_coinage		
+		}	
+		NOT = {
+			has_title = title:c_kings_landing
+		}
+	}
+	effect = {
+		remove_character_modifier = rk_seignorage_profits
+		remove_character_modifier = rk_pure_coinage
+		remove_character_modifier = rk_strong_coinage
+		remove_character_modifier = rk_common_coinage
+		remove_character_modifier = rk_debased_coinage
+		remove_character_modifier = rk_worthless_coinage			
+	}
+}
+
+rk_on_coin_title_gain = {
+	trigger = {
+		NOT = {
+			OR = {
+				has_character_modifier = rk_seignorage_profits	
+				has_character_modifier = rk_pure_coinage
+				has_character_modifier = rk_strong_coinage
+				has_character_modifier = rk_common_coinage
+				has_character_modifier = rk_debased_coinage
+				has_character_modifier = rk_worthless_coinage			
+			}		
+		}	
+		has_title = title:c_kings_landing
+		is_ai = no
+		has_global_variable = rk_created_royal_mint
+	}
+	effect = {
+		add_character_modifier = rk_seignorage_profits
+		add_character_modifier = rk_common_coinage			
+	}
+}
+
+rk_on_kingsguard_title_gain = {
+	trigger = {
+		NOT = {
+			OR = {
+				has_character_modifier = rk_kingsguard_honor_1
+				has_character_modifier = rk_kingsguard_honor_2
+				has_character_modifier = rk_kingsguard_honor_3
+				has_character_modifier = rk_kingsguard_honor_4
+				has_character_modifier = rk_kingsguard_honor_5			
+			}		
+		}	
+		has_title = title:c_kings_landing
+		is_ai = no
+	}
+	effect = {
+		add_character_modifier = rk_kingsguard_honor_3			
+	}
+}
+
+rk_on_kingsguard_title_lost = {
+	trigger = {
+		OR = {
+			has_character_modifier = rk_kingsguard_honor_1	
+			has_character_modifier = rk_kingsguard_honor_2
+			has_character_modifier = rk_kingsguard_honor_3
+			has_character_modifier = rk_kingsguard_honor_4
+			has_character_modifier = rk_kingsguard_honor_5		
+		}	
+		NOT = {
+			has_title = title:c_kings_landing
+		}
+	}
+	effect = {
+		remove_character_modifier = rk_kingsguard_honor_1
+		remove_character_modifier = rk_kingsguard_honor_2
+		remove_character_modifier = rk_kingsguard_honor_3
+		remove_character_modifier = rk_kingsguard_honor_4
+		remove_character_modifier = rk_kingsguard_honor_5		
+	}
+}
+
+
+rk_kingsguard_traits_on_actions = {
+	trigger = {
+		is_ai = no
+		has_title = title:c_kings_landing
+	}
+	random_events = {
+		100 = rk_kg.0001 #	
+		100 = rk_kg.0002 #	
+		100 = rk_kg.0003 #	
+		100 = rk_kg.0004 #	
+		100 = rk_kg.0005 #	
+		100 = rk_kg.0006 #	
+		100 = rk_kg.0007 #	
+		100 = rk_kg.0008 #	
+		100 = rk_kg.0009 #	
+		100 = rk_kg.0010 #	
+		100 = rk_kg.0011 #	
+		100 = rk_kg.0012 #	
+		100 = rk_kg.0013 #	
+		100 = rk_kg.0014 #	
+		100 = rk_kg.0015 #	
+		100 = rk_kg.0016 #	
+		100 = rk_kg.0017 #	
+		100 = rk_kg.0018 #	
+		100 = rk_kg.0019 #	
+		100 = rk_kg.0020 #	
+		100 = rk_kg.0021 #	
+		100 = rk_kg.0022 #	
+		100 = rk_kg.0023 #	
+		100 = rk_kg.0024 #	
+		100 = rk_kg.0025 #	
+		100 = rk_kg.0026 #	
+		100 = rk_kg.0027 #	
+		100 = rk_kg.0028 #	
+		100 = rk_kg.0029 #	
+		100 = rk_kg.0030 #	
+		100 = rk_kg.0030 #	
+		100 = rk_kg.0031 #	
+		100 = rk_kg.0032 #	
+		100 = rk_kg.0033 #	
+		100 = rk_kg.0034 #	
+		100 = rk_kg.0035 #	
+		100 = rk_kg.0036 #	
+		100 = rk_kg.0037 #	
+		100 = rk_kg.0038 #		
+		100 = rk_kg.0039 #		
+		100 = rk_kg.0040 #
+		100 = rk_kg.0041 #	
+		100 = rk_kg.0042 #	
+		100 = rk_kg.0043 #	
+		100 = rk_kg.0044 #	
+		100 = rk_kg.0045 #	
+		100 = rk_kg.0046 #	
+		100 = rk_kg.0047 #	
+		100 = rk_kg.0048 #	
+		100 = rk_kg.0049 #	
+		100 = rk_kg.0050 #	
+		100 = rk_kg.0051 #
+		100 = rk_kg.0052 #
+		100 = rk_kg.0053 #
+		100 = rk_kg.0054 #
+		100 = rk_kg.0055 #
+		100 = rk_kg.0056 #
+		100 = rk_kg.0057 #
+		100 = rk_kg.0058 #
+		100 = rk_kg.0059 #
+		100 = rk_kg.0060 #	
+		100 = rk_kg.0061 #	
+		100 = rk_kg.0062 #	
+		100 = rk_kg.0063 #	
+		100 = rk_kg.0064 #	
+		100 = rk_kg.0065 #	
+		100 = rk_kg.0066 #	
+		100 = rk_kg.0067 #	
+		100 = rk_kg.0068 #	
+		100 = rk_kg.0069 #	
+		100 = rk_kg.0070 #	
+		100 = rk_kg.0071 #
+		100 = rk_kg.0072 #
+		100 = rk_kg.0073 #
+		100 = rk_kg.0074 #
+		100 = rk_kg.0075 #
+		100 = rk_kg.0076 #
+		100 = rk_kg.0077 #
+		100 = rk_kg.0078 #
+		100 = rk_kg.0079 #
+		100 = rk_kg.0080 #		
+	}
+}

@@ -1,0 +1,10 @@
+﻿map_table_style_tgc= {
+
+	is_shown = {
+		exists = title:d_laamp_merc_golden_company.holder
+		this = title:d_laamp_merc_golden_company.holder
+	}
+
+	environment = "gfx/map/environment/environment_tgc_table.txt"
+	priority = 1
+}
