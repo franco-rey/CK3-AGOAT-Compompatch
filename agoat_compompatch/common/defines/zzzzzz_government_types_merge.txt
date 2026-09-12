@@ -38,5 +38,7 @@
 		"wight_government"
 		"host_government"
 		"oligarchic_government"
+		"iron_throne_government"
+		"dragonlord_oligarchy_government"
 	}
 }
