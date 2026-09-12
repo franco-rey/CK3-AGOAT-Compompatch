@@ -62,6 +62,10 @@ cb92b2bdecd07d8863c36245c4f53f8044f197e35875ed363933e78b4a7a9609  BUILT/common/c
 d9504bb512ab6c11f4b5ee54c22134202f8dc6de062e5150f13a7091e067a027  2754449789/common/court_positions/types/00_exp_grand_vizier_position.txt  # SOURCE (Court Positions Expanded 1.19)
 ea3a5707f434fbf0d33d37279646eab4c4a4733342c41a6e686082086bce2863  BUILT/common/court_positions/types/00_exp_grand_vizier_position.txt
 
+# common/culture/name_lists/zzzzzz_agoat_name_lists_restored.txt
+f07eecfad2f7272abde850deb7fd7dabb87519ee7f309ae09ec101a31eb69afc  2962333032/common/culture/name_lists/00_agot_name_lists_first_man.txt  # SOURCE (A Game of Thrones)
+08c0f22b8baa7cd886c2edebf830fe171a37b22d0e58d8cf7b9a410709068e8c  BUILT/common/culture/name_lists/zzzzzz_agoat_name_lists_restored.txt
+
 # common/culture/traditions/00_agot_realm_traditions.txt
 4f07a9a19202ebbe2c12499394b2a5c1f30a8f625d7476a4059d6c8d72bf70ee  3352171144/common/culture/traditions/00_agot_realm_traditions.txt  # SOURCE ([AGOT] Mayham)  [+2 other providers]
 9ba9f996852dd57868222204919041a69cd02db9fda389459aee6674d2c6978d  BUILT/common/culture/traditions/00_agot_realm_traditions.txt

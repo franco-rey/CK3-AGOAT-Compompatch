@@ -6,7 +6,7 @@
   "agot_version": "0.5.2.1",
   "ledger_rebuilt": "2026-09-11",
   "load_position": "FINAL - last entry in the playset.",
-  "file_count": 164,
+  "file_count": 165,
   "files": [
     {
       "virtual_path": "AGOAT.json",
@@ -111,6 +111,13 @@
       "provider_workshop_id": "2754449789",
       "provider_name": "Court Positions Expanded 1.19",
       "source_sha256": "d9504bb512ab6c11f4b5ee54c22134202f8dc6de062e5150f13a7091e067a027"
+    },
+    {
+      "virtual_path": "common/culture/name_lists/zzzzzz_agoat_name_lists_restored.txt",
+      "built_sha256": "08c0f22b8baa7cd886c2edebf830fe171a37b22d0e58d8cf7b9a410709068e8c",
+      "provider_workshop_id": "2962333032",
+      "provider_name": "A Game of Thrones",
+      "source_sha256": "f07eecfad2f7272abde850deb7fd7dabb87519ee7f309ae09ec101a31eb69afc"
     },
     {
       "virtual_path": "common/culture/traditions/00_agot_realm_traditions.txt",
