@@ -1335,7 +1335,6 @@
 			}
 			desc = HOSTAGE_ENEMY_CALL_TO_ARMS_REASON
 		}
-		fp3_struggle_resist_allied_wars_modifier = yes
 	}
 
 	ai_will_do = {

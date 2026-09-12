@@ -1,99 +1,94 @@
-﻿grand_vizier_court_position = {
-	sort_order = 325
-	skill = stewardship
+﻿# AGOAT: Court Positions Expanded's file verbatim with the vanilla-only asset trigger neutralised (same fix as the grand vizier).
+# Court Positions Expanded - Court Herbalist
+# Adapted for CK3 1.19 framework
+# court_herbalist_court_position
+
+### Common Court Positions ###
+
+court_herbalist_court_position = {
+	sort_order = 286 
+	skill = learning
 	max_available_positions = 1
-	minimum_rank = kingdom
 
 	court_position_asset = {
 		trigger = {
 			always = no # AGOAT: vanilla MENA-heritage scripted trigger does not exist in AGOT (unknown trigger); default asset applies
 		}
-		animation = stewardship_lifestyle
-		background = "gfx/interface/illustrations/event_scenes/market_east.dds"
+		animation = physician
+		background = "gfx/interface/illustrations/event_scenes/fp4_study_physician_mena.dds"
 	}
 
 	court_position_asset = {
-		animation = stewardship_lifestyle
-		background = "gfx/interface/illustrations/event_scenes/market_west.dds"
+		trigger = {
+			always = no # AGOAT: vanilla heritage scripted trigger does not exist in AGOT (unknown trigger); default asset applies
+		}
+		animation = physician
+		background = "gfx/interface/illustrations/event_scenes/fp4_study_physician_indian.dds"
+	}
+
+	court_position_asset = {
+		animation = physician
+		background = "gfx/interface/illustrations/event_scenes/study_physician.dds"
 	}
 
 	opinion = {
-		value = 20
+		value = regular_court_position_opinion
 	}
 
-
+	# How high the aptitude has to be to reach the 5 different modifier levels
 	aptitude_level_breakpoints = { 20 40 60 80 }
 
-
+	# How good is this character in this position? root scope is the holder of the court position
 	aptitude = {
-		value = 10
+		value = 20
 		add = {
-			value = stewardship
-			multiply = 3.25
-			max = 65
-			desc = court_position_skill_stewardship
+			value = learning
+			multiply = 1.5
+			max = 50
+			desc = court_position_skill_learning
 		}
 		if = {
 			limit = {
-				has_trait = administrator
+				has_trait = lifestyle_herbalist
 			}
 			add = {
 				value = 20
-				desc = court_position_administrator_trait
+				desc = court_position_herbalist_trait
 			}
 		}
 		if = {
 			limit = {
-				has_trait = diligent
+				is_witch_trigger = yes
+			}
+			add = {
+				value = 20
+				desc = court_position_witch_trait
+			}
+		}
+		if = {
+			limit = {
+				has_trait = lifestyle_physician
 			}
 			add = {
 				value = 10
-				desc = court_position_diligent_trait
+				desc = court_position_physician_trait
 			}
 		}
 		if = {
 			limit = {
-				has_trait = just
+				has_trait = curious
 			}
 			add = {
-				value = 10
-				desc = court_position_just_trait
-			}
-		}
-		if = {
-			limit = {
-				has_trait = arbitrary
-			}
-			add = {
-				value = -5
-				desc = court_position_arbitrary_trait
-			}
-		}
-		if = {
-			limit = {
-				has_trait = profligate
-			}
-			add = {
-				value = -5
-				desc = court_position_profligate_trait
-			}
-		}
-		if = {
-			limit = {
-				has_trait = improvident
-			}
-			add = {
-				value = -5
-				desc = court_position_improvident_trait
+				value = 5
+				desc = court_position_curious_trait
 			}
 		}
 		add = court_position_aptitude_family_business_value
 		add = general_aptitude_bonus
 	}
 
-
+	# Is this an available position for this court? (root is court owner)
 	is_shown = {
-		always = no
 		is_landed_or_landless_administrative = yes
 		trigger_if = {
 			limit = {
@@ -105,9 +100,7 @@
 	}
 
 	valid_position = {
-		always = no
 		is_landed_or_landless_administrative = yes
-		highest_held_title_tier >= tier_kingdom
 	}
 
 	is_shown_character = {
@@ -119,22 +112,9 @@
 	valid_character = {
 		scope:employee = {
 			is_imprisoned = no
-			always = no
-			trigger_if = {
-				limit = {
-					scope:liege.faith = {
-						has_doctrine = doctrine_gender_male_dominated
-					}
-				}
-				is_male = yes
-			}
-			trigger_if = {
-				limit = {
-					scope:liege.faith = {
-						has_doctrine = doctrine_gender_female_dominated
-					}
-				}
-				is_female = yes
+			OR = {
+				has_trait = lifestyle_herbalist
+				is_witch_trigger = yes
 			}
 		}
 	}
@@ -142,21 +122,19 @@
 	revoke_cost = {
 		prestige = {
 			value = major_court_position_prestige_revoke_cost
-
 			if = {
 				limit = {
 					exists = dynasty
 					dynasty = { has_dynasty_perk = fp2_coterie_legacy_1 }
-					employs_court_position = grand_vizier_court_position
+					employs_court_position = court_herbalist_court_position
 					any_court_position_holder = {
-						type = grand_vizier_court_position
+						type = court_herbalist_court_position
 						exists = dynasty
 						house = prev.house
 					}
 				}
 				multiply = 0
 			}
-
 			if = {
 				limit = {
 					exists = this
@@ -164,7 +142,6 @@
 				}
 				multiply = 0
 			}
-
 			if = {
 				limit = {
 					exists = this
@@ -186,16 +163,15 @@
 					}
 				}
 				add = {
-					value = major_court_position_salary
-
+					value = minor_court_position_salary
 					if = {
 						limit = {
 							scope:liege = {
 								exists = dynasty
 								dynasty = { has_dynasty_perk = fp2_coterie_legacy_1 }
-								employs_court_position = grand_vizier_court_position
+								employs_court_position = court_herbalist_court_position
 								any_court_position_holder = {
-									type = grand_vizier_court_position
+									type = court_herbalist_court_position
 									exists = dynasty
 									house = prev.house
 								}
@@ -207,13 +183,12 @@
 							format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
 						}
 					}
-
 					if = {
 						limit = {
 							scope:liege = {
-								employs_court_position = grand_vizier_court_position
+								employs_court_position = court_herbalist_court_position
 								any_court_position_holder = {
-									type = grand_vizier_court_position
+									type = court_herbalist_court_position
 									scope:liege = {
 										has_hook_of_type = {
 											type = obligation_hook
@@ -240,16 +215,15 @@
 					}
 				}
 				add = {
-					value = major_court_position_salary
-
+					value = minor_court_position_salary
 					if = {
 						limit = {
 							scope:liege = {
 								exists = dynasty
 								dynasty = { has_dynasty_perk = fp2_coterie_legacy_1 }
-								employs_court_position = grand_vizier_court_position
+								employs_court_position = court_herbalist_court_position
 								any_court_position_holder = {
-									type = grand_vizier_court_position
+									type = court_herbalist_court_position
 									exists = dynasty
 									house = prev.house
 								}
@@ -261,13 +235,12 @@
 							format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
 						}
 					}
-
 					if = {
 						limit = {
 							scope:liege = {
-								employs_court_position = grand_vizier_court_position
+								employs_court_position = court_herbalist_court_position
 								any_court_position_holder = {
-									type = grand_vizier_court_position
+									type = court_herbalist_court_position
 									scope:liege = {
 										has_hook_of_type = {
 											type = obligation_hook
@@ -286,67 +259,47 @@
 			}
 		}
 		prestige = {
-			value = major_court_position_prestige_salary
+			value = minor_court_position_prestige_salary
 		}
 	}
 
 	received_salary = {
 		gold = {
-			value = major_court_position_salary
+			value = minor_court_position_salary
 		}
 		prestige = {
-			value = major_court_position_prestige_salary
+			value = minor_court_position_prestige_salary
 		}
 		round = no
 	}
 
-
+	# Scaling modifiers based on herbalist aptitude
 	scaling_employer_modifiers = {
 		terrible = {
-			vassal_limit = 3
-			domain_tax_mult = 0.02
-			levy_size = 0.02
-			barons_and_minor_landholders_opinion = 2
-			stress_gain_mult = -0.05
+			negate_health_penalty_add = 0.05
 		}
 		poor = {
-			vassal_limit = 4
-			domain_tax_mult = 0.03
-			levy_size = 0.03
-			barons_and_minor_landholders_opinion = 4
-			stress_gain_mult = -0.05
+			learning = 1
+			negate_health_penalty_add = 0.10
 		}
 		average = {
-			vassal_limit = 8
-			domain_tax_mult = 0.04
-			levy_size = 0.04
-			barons_and_minor_landholders_opinion = 6
-			stress_gain_mult = -0.10
+			learning = 2
+			negate_health_penalty_add = 0.15
 		}
 		good = {
-			vassal_limit = 10
-			domain_tax_mult = 0.05
-			levy_size = 0.05
-			barons_and_minor_landholders_opinion = 8
-			stress_gain_mult = -0.15
+			learning = 2
+			negate_health_penalty_add = 0.25
 		}
 		excellent = {
-			domain_limit = 1
-			vassal_limit = 10
-			domain_tax_mult = 0.06
-			levy_size = 0.06
-			barons_and_minor_landholders_opinion = 10
-			stress_gain_mult = -0.15
+			learning = 2
+			negate_health_penalty_add = 0.50
 		}
 	}
 
-
+	# Modifiers always applied to the Herbalist themselves
 	modifier = {
-		monthly_prestige = 0.3 # AGOAT: CPE put a script value in a static modifier ("named value or literal" error); base of major_court_position_prestige_salary
-		diplomacy = 2
-		monthly_prestige_gain_mult = 0.20
-		monthly_diplomacy_lifestyle_xp_gain_mult = 0.20
-		monthly_stewardship_lifestyle_xp_gain_mult = 0.20
+		monthly_prestige = minor_court_position_prestige_salary
+		learning = 1
 	}
 
 	on_court_position_received = {
@@ -360,31 +313,30 @@
 	}
 	on_court_position_vacated = {
 		court_position_vacated_event_effect = {
-			COURT_POSITION_TYPE = grand_vizier_court_position
+			COURT_POSITION_TYPE = court_herbalist_court_position
 		}
 	}
-
 
 	ai_position_score = {
 		value = 1
 		scope:liege = {
-
+			# More likely if ruler has poor health
 			if = {
 				limit = {
-					vassal_count >= 20
+					health <= 4
 				}
-				add = 25
+				add = 30
 			}
 			if = {
 				limit = {
-					vassal_count >= 40
+					health <= 2
 				}
-				add = 25
+				add = 30
 			}
-
+			# More likely for rulers interested in learning
 			if = {
 				limit = {
-					stewardship <= 8
+					has_lifestyle = learning_lifestyle
 				}
 				add = 20
 			}

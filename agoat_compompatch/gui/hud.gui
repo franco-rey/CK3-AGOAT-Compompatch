@@ -8862,52 +8862,56 @@ types HUD
 
 									blockoverride "gold_income"
 									{
-										vbox = {
-											visible = "[And( GetScriptedGui('naval_combat_finance_active_gui').IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).End ), Not( GetPlayer.ShouldReplaceGoldCostByTreasury ) )]"
+										vbox = { # AGOAT: player-gated wrapper (see gold panel note)
+											visible = "[GetPlayer.IsValid]"
 											layoutpolicy_horizontal = expanding
-											margin_top = 5
-											spacing = 5
-
-											divider_light = {
+											vbox = {
+												visible = "[And( GetScriptedGui('naval_combat_finance_active_gui').IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).End ), Not( GetPlayer.ShouldReplaceGoldCostByTreasury ) )]"
 												layoutpolicy_horizontal = expanding
-											}
-
-											hbox = {
-												layoutpolicy_horizontal = expanding
-
-												text_single = {
+												margin_top = 5
+												spacing = 5
+	
+												divider_light = {
 													layoutpolicy_horizontal = expanding
-													text = "NAVAL_COMBAT_TOPBAR_FLEET_UPKEEP"
 												}
-
+	
 												hbox = {
-													spacing = 3
-
-													icon = {
-														size = { 20 20 }
-														texture = "gfx/interface/icons/icon_gold.dds"
-													}
-
-													text_single = {
-														raw_text = "-[GetPlayer.MakeScope.ScriptValue('naval_combat_monthly_maintenance_value')|2]"
-														default_format = "#N"
-													}
-												}
-											}
-
-											hbox = {
-												layoutpolicy_horizontal = expanding
-
-												text_single = {
 													layoutpolicy_horizontal = expanding
-													text = "NAVAL_COMBAT_TOPBAR_ADJUSTED_BALANCE"
-													default_format = "#T"
+	
+													text_single = {
+														layoutpolicy_horizontal = expanding
+														text = "NAVAL_COMBAT_TOPBAR_FLEET_UPKEEP"
+													}
+	
+													hbox = {
+														spacing = 3
+	
+														icon = {
+															size = { 20 20 }
+															texture = "gfx/interface/icons/icon_gold.dds"
+														}
+	
+														text_single = {
+															raw_text = "-[GetPlayer.MakeScope.ScriptValue('naval_combat_monthly_maintenance_value')|2]"
+															default_format = "#N"
+														}
+													}
 												}
-
-											text_single = {
-												text = "[Subtract_CFixedPoint(InGameTopbar.GetGoldBalance, GetPlayer.MakeScope.ScriptValue('naval_combat_monthly_maintenance_value'))|+=2]"
-												default_format = "#high"
-											}
+	
+												hbox = {
+													layoutpolicy_horizontal = expanding
+	
+													text_single = {
+														layoutpolicy_horizontal = expanding
+														text = "NAVAL_COMBAT_TOPBAR_ADJUSTED_BALANCE"
+														default_format = "#T"
+													}
+	
+												text_single = {
+													text = "[Subtract_CFixedPoint(InGameTopbar.GetGoldBalance, GetPlayer.MakeScope.ScriptValue('naval_combat_monthly_maintenance_value'))|+=2]"
+													default_format = "#high"
+												}
+												}
 											}
 										}
 									}
@@ -8961,6 +8965,9 @@ types HUD
 										}
 
 										container = {
+											# AGOAT: no player in observer mode -> Naval Combat's finance scripted GUI / script values below would run on an invalid
+											# scope every frame (7,000 log lines a second). Hidden parents are not evaluated; And() is eager, so the gate lives here.
+											visible = "[GetPlayer.IsValid]"
 											text_single = {
 												name = "balance_positive"
 												visible = "[GreaterThanOrEqualTo_CFixedPoint(Select_CFixedPoint(And(GetScriptedGui('naval_combat_finance_active_gui').IsShown(GuiScope.SetRoot(GetPlayer.MakeScope).End), Not(GetPlayer.ShouldReplaceGoldCostByTreasury)), Subtract_CFixedPoint(InGameTopbar.GetGoldBalance, GetPlayer.MakeScope.ScriptValue('naval_combat_monthly_maintenance_value')), InGameTopbar.GetGoldBalance), '(CFixedPoint)0')]"

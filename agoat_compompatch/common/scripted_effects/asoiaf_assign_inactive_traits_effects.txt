@@ -89,7 +89,6 @@
 	}
 	character:Targaryen_35 ?= {
 		make_trait_inactive = asoiaf_Targaryen_35_trait
-		make_trait_inactive = asoiaf_canon_children_pregnancy_negation_trait
 		if = {
 			limit = {
 				asoiaf_canon_children_enabled_trigger = yes
@@ -1697,7 +1696,6 @@
 		set_global_variable = asoiaf_canon_children_Baratheon_4_born_variable
 	}
 	character:Baratheon_asoiaf_baby ?= {
-		make_trait_inactive = asoiaf_Baratheon_baby_trait
 		if = {
 			limit = {
 				asoiaf_canon_children_enabled_trigger = yes

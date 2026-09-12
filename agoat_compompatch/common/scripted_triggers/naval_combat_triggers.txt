@@ -62,9 +62,9 @@ naval_combat_ai_initial_real_flagship_trigger = {
 	naval_combat_can_manage_navy_trigger = yes
 	NOT = { var:naval_combat_flagship_constructed ?= 1 }
 	OR = {
-		has_title = title:k_norway
-		has_title = title:e_byzantium
-		has_title = title:h_china
+		has_title = title:e_the_iron_islands # AGOAT: vanilla realm remapped to an AGOT naval power
+		has_title = title:k_braavos # AGOAT: vanilla realm remapped to an AGOT naval power
+		has_title = title:k_tyrosh # AGOAT: vanilla realm remapped to an AGOT naval power
 	}
 }
 

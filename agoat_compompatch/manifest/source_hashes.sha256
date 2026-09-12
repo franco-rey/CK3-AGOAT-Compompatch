@@ -36,7 +36,11 @@ b7a36b408a6c0583429ebf81dbe07a794f6af140e91d39e75b9318f77ab162e1  2962333032/com
 
 # common/character_interactions/interactive_call_ally.txt
 4595fc004baa9732b75485c0e2fa4d908e9581cde52d885c0bfc2b02e0d37298  2712590542/common/character_interactions/interactive_call_ally.txt  # SOURCE (More Interactive Vassals)
-c17e3341c2b01db1d4efcc177d7da4507e3b9535b5ccfc7356a5843c17054234  BUILT/common/character_interactions/interactive_call_ally.txt
+3d9d3397a7131e132c1fb62122650cdbcf07b6e48875c32bd26ae08a265d8dbe  BUILT/common/character_interactions/interactive_call_ally.txt
+
+# common/character_interactions/interactive_request_vassal_support.txt
+d8d8f44c6a5c2e3c18160b9855c49f0b28489e8a335db6df2275ce984ccd5cb3  2712590542/common/character_interactions/interactive_request_vassal_support.txt  # SOURCE (More Interactive Vassals)
+5f27108b84af66a446a6c54ed67bac689f913e51cf2b2a47c3e21d7cf3d742be  BUILT/common/character_interactions/interactive_request_vassal_support.txt
 
 # common/character_interactions/oathbound_ransom_interaction.txt
 98470232a23d52a08708a9e3fe3a16d366254b36c2ff656f896bbd4342cfaa46  3457401824/common/character_interactions/oathbound_ransom_interaction.txt  # SOURCE (Oathbound)
@@ -50,9 +54,25 @@ fcea52bfc08fd3d7f0a3a4392a9a4a504e675f283ce862f1c1bd993ebe64fe5a  3788024743/com
 a77bf99ffe80c315167fb6896c90cd8074701b3334af4f10a1e762182701e8fd  2962333032/common/council_positions/00_agot_council_kingsguard.txt  # SOURCE (A Game of Thrones)
 2f812857584d528950cd33d9516b69fa5b9ed0745b072a578ad23c927312404f  BUILT/common/council_positions/00_agot_council_kingsguard.txt
 
+# common/court_positions/types/00_exp_court_herbalist_position.txt
+529ac04096dad6c5a35ae333f372a5a7c98ca04d0d25354134b959e92296cd0b  2754449789/common/court_positions/types/00_exp_court_herbalist_position.txt  # SOURCE (Court Positions Expanded 1.19)
+9a6593e12e19c746fb6f15da8c67a239b34ee8f5a11e19cc723d10264d89c4a2  BUILT/common/court_positions/types/00_exp_court_herbalist_position.txt
+
 # common/court_positions/types/00_exp_grand_vizier_position.txt
 d9504bb512ab6c11f4b5ee54c22134202f8dc6de062e5150f13a7091e067a027  2754449789/common/court_positions/types/00_exp_grand_vizier_position.txt  # SOURCE (Court Positions Expanded 1.19)
-161e4a8c6478a28e0fe12752092ed627c599b3ec9e919f27296a89aefbcc2271  BUILT/common/court_positions/types/00_exp_grand_vizier_position.txt
+455ae6f6de2975e267b2618898f0011fba56c7ed3e67bfaae7ff8f31fc381618  BUILT/common/court_positions/types/00_exp_grand_vizier_position.txt
+
+# common/culture/traditions/00_agot_realm_traditions.txt
+4f07a9a19202ebbe2c12499394b2a5c1f30a8f625d7476a4059d6c8d72bf70ee  3352171144/common/culture/traditions/00_agot_realm_traditions.txt  # SOURCE ([AGOT] Mayham)  [+2 other providers]
+4e5d8878fe5ba8e412add768bf93cd41e6190a3f244de8f6cb5d496601079ee5  BUILT/common/culture/traditions/00_agot_realm_traditions.txt
+
+# common/culture/traditions/00_agot_regional_traditions.txt
+039e725b36342ccfb77ed85859435f3ef103d3bcbb9e3ca45958b32f3e7780a3  3352171144/common/culture/traditions/00_agot_regional_traditions.txt  # SOURCE ([AGOT] Mayham)  [+2 other providers]
+3f1ff3f77b542a751363c802cd55267d615cff3d14ff99ac180a6420b57ee683  BUILT/common/culture/traditions/00_agot_regional_traditions.txt
+
+# common/culture/traditions/00_agot_unique_traditions.txt
+4b0ed728c31e04df6b226b1d8dd9dde6fe423230c301910c876678d98850cd3a  3352171144/common/culture/traditions/00_agot_unique_traditions.txt  # SOURCE ([AGOT] Mayham)  [+2 other providers]
+256d60d3ecc5b1d75648380eaf2215d14a1b49e69e6d01eb7d72e9fccc6d97bb  BUILT/common/culture/traditions/00_agot_unique_traditions.txt
 
 # common/customizable_localization/gr_story_custom_loc.txt
 485f0010c2c138a62d68d6a6d603c7d335c6e163bd8e85141a66f3764cd21c37  3678529052/common/customizable_localization/gr_story_custom_loc.txt  # SOURCE (Grand Remembrance)
@@ -166,6 +186,10 @@ b781c7358e4a93e7c980133728bff9de1f077595c0dc26420f2e65e4ea7a894d  2950245430/com
 bef9756f993e237614ecedbd37773f71684c3628ed0706d7bdf03e9933c1fa4f  2995674648/common/modifiers/ntc_artifact_modifiers.txt  # SOURCE (AGOT - Crowns of Westeros)
 3eacbdb3b7259f04710bdedbf457aa9c5e4812c1eb0cd1a7819edf1bc8e901b7  BUILT/common/modifiers/ntc_artifact_modifiers.txt
 
+# common/modifiers/zzzzzz_agot_unbound_missing_modifiers.txt
+# (no upstream counterpart - additive file)
+c55224ccf9ec128bb7fae413f96fafa7a47488f5b17e089d7a6db92468631365  BUILT/common/modifiers/zzzzzz_agot_unbound_missing_modifiers.txt
+
 # common/modifiers/zz_observer_stack_missing_canon_child_modifiers.txt
 # (no upstream counterpart - additive file)
 74c62716c02611bd37e9312d5371c49ac6bbde8bf724822df103fcba031cb153  BUILT/common/modifiers/zz_observer_stack_missing_canon_child_modifiers.txt
@@ -200,7 +224,7 @@ a79dccd9ffe8fc390a8469ce54b7de5ef87376e5723b3a7d4c308857ad70e465  2712590542/com
 
 # common/on_action/on_add_vet_modifer.txt
 3ef399703bc2b6f4028ae6f99a7daae3bd97f19abfe3975093563f5ea95a772b  3361162762/common/on_action/on_add_vet_modifer.txt  # SOURCE (A Landed Knights Mod)
-b856cf2186aa892fa1b05e9944d4b015bbc74227f0335507595de9b85918efcf  BUILT/common/on_action/on_add_vet_modifer.txt
+9f253aba61c2ed30a2555ae07c2d171be1c25b37e28f4698a831eb12f3f10817  BUILT/common/on_action/on_add_vet_modifer.txt
 
 # common/on_action/xx_gptc_on_action_replace.txt
 d45d56ff2f7ad5979e3638785783de3407986dd20f4f700c5daa560ae2fe8219  3360676953/common/on_action/xx_gptc_on_action_replace.txt  # SOURCE (Royal Court Event Pack)
@@ -260,11 +284,11 @@ c73619a7cdffb194f870aa71ab74dfb0ebe73aa056da1e35ca8e35f7b551ec4c  2962333032/com
 
 # common/scripted_effects/asoiaf_agot_overwrite_effects.txt
 04d527edce9813f551bfa06aa69fd0647c5d81b9bfeb0feae82f41bda08b2e6b  2950245430/common/scripted_effects/asoiaf_agot_overwrite_effects.txt  # SOURCE (2950245430)
-296fdf6622dbc093fab0759c42925623c32bd06f39f1f1f9e538db103ea65a40  BUILT/common/scripted_effects/asoiaf_agot_overwrite_effects.txt
+da78699a7634df1477e2051ee507ea6a6218e87c8f903ed83dc13f1299bb33ba  BUILT/common/scripted_effects/asoiaf_agot_overwrite_effects.txt
 
 # common/scripted_effects/asoiaf_assign_inactive_traits_effects.txt
 4786ed9b37b34d4382dcbaea41132ced9958f06e6f5af6a04ec3688a2262416b  2950245430/common/scripted_effects/asoiaf_assign_inactive_traits_effects.txt  # SOURCE (2950245430)
-9dc723b1e2843f01d27523959e08c94fd9d2d93dd27742063e21a7b58bf43e50  BUILT/common/scripted_effects/asoiaf_assign_inactive_traits_effects.txt
+3cb1f2b572473610d587ab3b493cd427569c5156254f3102e39e3e6c3aa1b146  BUILT/common/scripted_effects/asoiaf_assign_inactive_traits_effects.txt
 
 # common/scripted_effects/asoiaf_canon_children_effects.txt
 919d83ff542167e0e2af695ed4ff8ef97d9d8e4f088ddfee34a36823e91a71db  2950245430/common/scripted_effects/asoiaf_canon_children_effects.txt  # SOURCE (2950245430)
@@ -380,7 +404,11 @@ d7242aba688a30277313fe2ca99079636cbbaff80d2be63c358518fbab9231cc  BUILT/common/s
 
 # common/scripted_triggers/naval_combat_triggers.txt
 72996d1454ec1a7056912400739ccd2c8263179601700363deea19f1564359bc  3772178688/common/scripted_triggers/naval_combat_triggers.txt  # SOURCE (CK3 Naval Combat)
-7cc39ceddb08b0b1bb3a46ebdd419a38fa21a068a276cfd76f31df5830045363  BUILT/common/scripted_triggers/naval_combat_triggers.txt
+1cc69f4ffc1887de8160d48918c181fb599fc9dbc96de8069e418b4dbd9cbcf5  BUILT/common/scripted_triggers/naval_combat_triggers.txt
+
+# common/scripted_triggers/zzzzzz_00_religious_triggers.txt
+2c81bda3cbaf82a8bbdf3a1cb0f333d15d58d2f5a6662fe016d40b5d89174e68  3616413111/common/scripted_triggers/zzzzzz_00_religious_triggers.txt  # SOURCE (Female Knight and Councillor (Unofficial))
+6a0bd6d8262fce8a58684d304c0d5ffb04a5eac7fc1f3e00dd2a9d701548e5c9  BUILT/common/scripted_triggers/zzzzzz_00_religious_triggers.txt
 
 # common/scripted_triggers/zzzzzz_agot_councillor_triggers_merge.txt
 0206d80e8c5f65c5e59c40e70de1f33258a5d18c0de9e0537d765d327d78e6a4  2962333032/common/scripted_triggers/00_councillor_triggers.txt  # SOURCE (A Game of Thrones)
@@ -522,21 +550,13 @@ b1cfccf9d1027c890adf33457b62a5ac664ce91416dc05771ed159ca7c1b8cac  BUILT/gfx/map/
 f89060859fcaad275dc12249e187dcc7a6cab7b3b01380017cd1e758c11e4fb6  3340687327/gui/00_player_opinion_portraits.gui  # SOURCE (Show Player Opinion)
 2be444b5c2413687a2fd0493eea0c04d0515ab722d29a2958731d0e1bf31635a  BUILT/gui/00_player_opinion_portraits.gui
 
-# gui/dragon_management_buttons_widget.gui
-2cbe30f64540580cbbff0cc34b7e9f6e10d3bbc4ab11a92839974e6f8fd9c918  3388366564/gui/dragon_management_buttons_widget.gui  # SOURCE (AGOT More Dragon Eggs)
-2954e3ffbe3def7f73ea760879b0d299fe23a90b3cb7ea1caa6bd2d6360856a7  BUILT/gui/dragon_management_buttons_widget.gui
-
 # gui/gr_chronicle_window.gui
 6d6a69c4eda29ab0d1d6cfde452bf4d3db173dfc0f068859ea70ba9d1209fa4a  3678529052/gui/gr_chronicle_window.gui  # SOURCE (Grand Remembrance)
 2e6fb3dbe9b3bf88e8b9a93370722238d4a8c1b9ce2854eb4810d317963ab0cf  BUILT/gui/gr_chronicle_window.gui
 
-# gui/guard_academy_button_widget.gui
-ca15544c60b8b7a770fe1e88a15d13e77fd4e7d0df6071c29bdafbaeddb3c86f  3733779333/gui/guard_academy_button_widget.gui  # SOURCE (AGOT: Royal Guards)
-96c012289eb2012b76c1b8a033e1206fddd8756ba0d94c946aa5985cbb509afa  BUILT/gui/guard_academy_button_widget.gui
-
 # gui/hud.gui
 5e3bc9b08bcc26e54192f7dd73330a0cebb384aa5ddd22f088f63f8e5535d9bc  3388366564/gui/hud.gui  # SOURCE (AGOT More Dragon Eggs)  [+3 other providers]
-729724d40220f45dd95681719c70534074ef9d1d63faac1609dacdb8b8106140  BUILT/gui/hud.gui
+b7d60cae7117b0949f8b8e05b2cc91ef61d4a126c18046e53e0c9a3c20449a47  BUILT/gui/hud.gui
 
 # gui/interaction_menu_window.gui
 9708d98acd65e036575af26421ab9c362b93bea64e77c30e45009123a94939b3  2625307328/gui/interaction_menu_window.gui  # SOURCE (In My Humble Opinion)  [+3 other providers]

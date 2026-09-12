@@ -46,7 +46,6 @@
 			set_real_mother = character:Stark_5
 			make_trait_inactive = dark_brown_hair
 			make_trait_inactive = grey_eyes
-			make_trait_inactive = is_stark_7
 		}
 		title:h_the_iron_throne = {
 			set_variable = {

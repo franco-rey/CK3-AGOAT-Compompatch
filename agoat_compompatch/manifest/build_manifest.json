@@ -6,7 +6,7 @@
   "agot_version": "0.5.2.1",
   "ledger_rebuilt": "2026-09-11",
   "load_position": "FINAL - last entry in the playset.",
-  "file_count": 159,
+  "file_count": 164,
   "files": [
     {
       "virtual_path": "AGOAT.json",
@@ -65,10 +65,17 @@
     },
     {
       "virtual_path": "common/character_interactions/interactive_call_ally.txt",
-      "built_sha256": "c17e3341c2b01db1d4efcc177d7da4507e3b9535b5ccfc7356a5843c17054234",
+      "built_sha256": "3d9d3397a7131e132c1fb62122650cdbcf07b6e48875c32bd26ae08a265d8dbe",
       "provider_workshop_id": "2712590542",
       "provider_name": "More Interactive Vassals",
       "source_sha256": "4595fc004baa9732b75485c0e2fa4d908e9581cde52d885c0bfc2b02e0d37298"
+    },
+    {
+      "virtual_path": "common/character_interactions/interactive_request_vassal_support.txt",
+      "built_sha256": "5f27108b84af66a446a6c54ed67bac689f913e51cf2b2a47c3e21d7cf3d742be",
+      "provider_workshop_id": "2712590542",
+      "provider_name": "More Interactive Vassals",
+      "source_sha256": "d8d8f44c6a5c2e3c18160b9855c49f0b28489e8a335db6df2275ce984ccd5cb3"
     },
     {
       "virtual_path": "common/character_interactions/oathbound_ransom_interaction.txt",
@@ -92,11 +99,51 @@
       "source_sha256": "a77bf99ffe80c315167fb6896c90cd8074701b3334af4f10a1e762182701e8fd"
     },
     {
+      "virtual_path": "common/court_positions/types/00_exp_court_herbalist_position.txt",
+      "built_sha256": "9a6593e12e19c746fb6f15da8c67a239b34ee8f5a11e19cc723d10264d89c4a2",
+      "provider_workshop_id": "2754449789",
+      "provider_name": "Court Positions Expanded 1.19",
+      "source_sha256": "529ac04096dad6c5a35ae333f372a5a7c98ca04d0d25354134b959e92296cd0b"
+    },
+    {
       "virtual_path": "common/court_positions/types/00_exp_grand_vizier_position.txt",
-      "built_sha256": "161e4a8c6478a28e0fe12752092ed627c599b3ec9e919f27296a89aefbcc2271",
+      "built_sha256": "455ae6f6de2975e267b2618898f0011fba56c7ed3e67bfaae7ff8f31fc381618",
       "provider_workshop_id": "2754449789",
       "provider_name": "Court Positions Expanded 1.19",
       "source_sha256": "d9504bb512ab6c11f4b5ee54c22134202f8dc6de062e5150f13a7091e067a027"
+    },
+    {
+      "virtual_path": "common/culture/traditions/00_agot_realm_traditions.txt",
+      "built_sha256": "4e5d8878fe5ba8e412add768bf93cd41e6190a3f244de8f6cb5d496601079ee5",
+      "provider_workshop_id": "3352171144",
+      "provider_name": "[AGOT] Mayham",
+      "source_sha256": "4f07a9a19202ebbe2c12499394b2a5c1f30a8f625d7476a4059d6c8d72bf70ee",
+      "other_providers": [
+        "A Game of Thrones",
+        "AGOT - Armies of Westeros"
+      ]
+    },
+    {
+      "virtual_path": "common/culture/traditions/00_agot_regional_traditions.txt",
+      "built_sha256": "3f1ff3f77b542a751363c802cd55267d615cff3d14ff99ac180a6420b57ee683",
+      "provider_workshop_id": "3352171144",
+      "provider_name": "[AGOT] Mayham",
+      "source_sha256": "039e725b36342ccfb77ed85859435f3ef103d3bcbb9e3ca45958b32f3e7780a3",
+      "other_providers": [
+        "A Game of Thrones",
+        "AGOT - Armies of Westeros"
+      ]
+    },
+    {
+      "virtual_path": "common/culture/traditions/00_agot_unique_traditions.txt",
+      "built_sha256": "256d60d3ecc5b1d75648380eaf2215d14a1b49e69e6d01eb7d72e9fccc6d97bb",
+      "provider_workshop_id": "3352171144",
+      "provider_name": "[AGOT] Mayham",
+      "source_sha256": "4b0ed728c31e04df6b226b1d8dd9dde6fe423230c301910c876678d98850cd3a",
+      "other_providers": [
+        "A Game of Thrones",
+        "AGOT - Armies of Westeros"
+      ]
     },
     {
       "virtual_path": "common/customizable_localization/gr_story_custom_loc.txt",
@@ -330,6 +377,11 @@
       "provider_workshop_id": null
     },
     {
+      "virtual_path": "common/modifiers/zzzzzz_agot_unbound_missing_modifiers.txt",
+      "built_sha256": "c55224ccf9ec128bb7fae413f96fafa7a47488f5b17e089d7a6db92468631365",
+      "provider_workshop_id": null
+    },
+    {
       "virtual_path": "common/on_action/05_agot_queensguard_on_actions.txt",
       "built_sha256": "8f7e09b38953b3dedf9d7ef902d90c2224a6a3dc0d2a12e4294562b88b726bea",
       "provider_workshop_id": "3733779333",
@@ -378,7 +430,7 @@
     },
     {
       "virtual_path": "common/on_action/on_add_vet_modifer.txt",
-      "built_sha256": "b856cf2186aa892fa1b05e9944d4b015bbc74227f0335507595de9b85918efcf",
+      "built_sha256": "9f253aba61c2ed30a2555ae07c2d171be1c25b37e28f4698a831eb12f3f10817",
       "provider_workshop_id": "3361162762",
       "provider_name": "A Landed Knights Mod",
       "source_sha256": "3ef399703bc2b6f4028ae6f99a7daae3bd97f19abfe3975093563f5ea95a772b"
@@ -501,14 +553,14 @@
     },
     {
       "virtual_path": "common/scripted_effects/asoiaf_agot_overwrite_effects.txt",
-      "built_sha256": "296fdf6622dbc093fab0759c42925623c32bd06f39f1f1f9e538db103ea65a40",
+      "built_sha256": "da78699a7634df1477e2051ee507ea6a6218e87c8f903ed83dc13f1299bb33ba",
       "provider_workshop_id": "2950245430",
       "provider_name": "2950245430",
       "source_sha256": "04d527edce9813f551bfa06aa69fd0647c5d81b9bfeb0feae82f41bda08b2e6b"
     },
     {
       "virtual_path": "common/scripted_effects/asoiaf_assign_inactive_traits_effects.txt",
-      "built_sha256": "9dc723b1e2843f01d27523959e08c94fd9d2d93dd27742063e21a7b58bf43e50",
+      "built_sha256": "3cb1f2b572473610d587ab3b493cd427569c5156254f3102e39e3e6c3aa1b146",
       "provider_workshop_id": "2950245430",
       "provider_name": "2950245430",
       "source_sha256": "4786ed9b37b34d4382dcbaea41132ced9958f06e6f5af6a04ec3688a2262416b"
@@ -699,7 +751,7 @@
     },
     {
       "virtual_path": "common/scripted_triggers/naval_combat_triggers.txt",
-      "built_sha256": "7cc39ceddb08b0b1bb3a46ebdd419a38fa21a068a276cfd76f31df5830045363",
+      "built_sha256": "1cc69f4ffc1887de8160d48918c181fb599fc9dbc96de8069e418b4dbd9cbcf5",
       "provider_workshop_id": "3772178688",
       "provider_name": "CK3 Naval Combat",
       "source_sha256": "72996d1454ec1a7056912400739ccd2c8263179601700363deea19f1564359bc"
@@ -713,6 +765,13 @@
       "virtual_path": "common/scripted_triggers/zz_restore_canon_dragon_triggers.txt",
       "built_sha256": "8f629f23007d42538899c2a09cf3c37b745303bf0ffa49cdc519eb48b614173f",
       "provider_workshop_id": null
+    },
+    {
+      "virtual_path": "common/scripted_triggers/zzzzzz_00_religious_triggers.txt",
+      "built_sha256": "6a0bd6d8262fce8a58684d304c0d5ffb04a5eac7fc1f3e00dd2a9d701548e5c9",
+      "provider_workshop_id": "3616413111",
+      "provider_name": "Female Knight and Councillor (Unofficial)",
+      "source_sha256": "2c81bda3cbaf82a8bbdf3a1cb0f333d15d58d2f5a6662fe016d40b5d89174e68"
     },
     {
       "virtual_path": "common/scripted_triggers/zzzzzz_agot_councillor_triggers_merge.txt",
@@ -981,13 +1040,6 @@
       "source_sha256": "f89060859fcaad275dc12249e187dcc7a6cab7b3b01380017cd1e758c11e4fb6"
     },
     {
-      "virtual_path": "gui/dragon_management_buttons_widget.gui",
-      "built_sha256": "2954e3ffbe3def7f73ea760879b0d299fe23a90b3cb7ea1caa6bd2d6360856a7",
-      "provider_workshop_id": "3388366564",
-      "provider_name": "AGOT More Dragon Eggs",
-      "source_sha256": "2cbe30f64540580cbbff0cc34b7e9f6e10d3bbc4ab11a92839974e6f8fd9c918"
-    },
-    {
       "virtual_path": "gui/event_windows/duel_event.gui",
       "built_sha256": "7642be5c2086baa1a1d89d3bca30546aff70ae60c92e45fa8c7f9c904344b48e",
       "provider_workshop_id": "2636170225",
@@ -1005,15 +1057,8 @@
       "source_sha256": "6d6a69c4eda29ab0d1d6cfde452bf4d3db173dfc0f068859ea70ba9d1209fa4a"
     },
     {
-      "virtual_path": "gui/guard_academy_button_widget.gui",
-      "built_sha256": "96c012289eb2012b76c1b8a033e1206fddd8756ba0d94c946aa5985cbb509afa",
-      "provider_workshop_id": "3733779333",
-      "provider_name": "AGOT: Royal Guards",
-      "source_sha256": "ca15544c60b8b7a770fe1e88a15d13e77fd4e7d0df6071c29bdafbaeddb3c86f"
-    },
-    {
       "virtual_path": "gui/hud.gui",
-      "built_sha256": "729724d40220f45dd95681719c70534074ef9d1d63faac1609dacdb8b8106140",
+      "built_sha256": "b7d60cae7117b0949f8b8e05b2cc91ef61d4a126c18046e53e0c9a3c20449a47",
       "provider_workshop_id": "3388366564",
       "provider_name": "AGOT More Dragon Eggs",
       "source_sha256": "5e3bc9b08bcc26e54192f7dd73330a0cebb384aa5ddd22f088f63f8e5535d9bc",
