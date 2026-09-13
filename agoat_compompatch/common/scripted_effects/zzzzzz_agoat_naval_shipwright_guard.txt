@@ -1,0 +1,48 @@
+﻿naval_combat_shipwright_roll_quality_effect = {
+	set_variable = { name = naval_combat_shipwright_discovery value = $DISCOVERY$ }
+	if = { limit = { NOT = { exists = var:$UNLOCK_VARIABLE$ } } set_variable = { name = $UNLOCK_VARIABLE$ value = 0 } }
+	random_list = {
+		100 = {
+			trigger = { NOR = { var:$UNLOCK_VARIABLE$ ?= 1 var:$UNLOCK_VARIABLE$ ?= 3 var:$UNLOCK_VARIABLE$ ?= 5 var:$UNLOCK_VARIABLE$ ?= 7 var:$UNLOCK_VARIABLE$ ?= 9 var:$UNLOCK_VARIABLE$ ?= 11 var:$UNLOCK_VARIABLE$ ?= 13 var:$UNLOCK_VARIABLE$ ?= 15 } }
+			change_variable = { name = $UNLOCK_VARIABLE$ add = 1 }
+			set_variable = { name = naval_combat_shipwright_discovery_quality value = 1 }
+		}
+		40 = {
+			trigger = { NOR = { var:$UNLOCK_VARIABLE$ ?= 2 var:$UNLOCK_VARIABLE$ ?= 3 var:$UNLOCK_VARIABLE$ ?= 6 var:$UNLOCK_VARIABLE$ ?= 7 var:$UNLOCK_VARIABLE$ ?= 10 var:$UNLOCK_VARIABLE$ ?= 11 var:$UNLOCK_VARIABLE$ ?= 14 var:$UNLOCK_VARIABLE$ ?= 15 } }
+			change_variable = { name = $UNLOCK_VARIABLE$ add = 2 }
+			set_variable = { name = naval_combat_shipwright_discovery_quality value = 2 }
+		}
+		12 = {
+			trigger = { NOR = { var:$UNLOCK_VARIABLE$ ?= 4 var:$UNLOCK_VARIABLE$ ?= 5 var:$UNLOCK_VARIABLE$ ?= 6 var:$UNLOCK_VARIABLE$ ?= 7 var:$UNLOCK_VARIABLE$ ?= 12 var:$UNLOCK_VARIABLE$ ?= 13 var:$UNLOCK_VARIABLE$ ?= 14 var:$UNLOCK_VARIABLE$ ?= 15 } }
+			change_variable = { name = $UNLOCK_VARIABLE$ add = 4 }
+			set_variable = { name = naval_combat_shipwright_discovery_quality value = 3 }
+		}
+		3 = {
+			trigger = { trigger_if = { limit = { has_variable = $UNLOCK_VARIABLE$ } var:$UNLOCK_VARIABLE$ < 8 } trigger_else = { always = yes } }
+			change_variable = { name = $UNLOCK_VARIABLE$ add = 8 }
+			set_variable = { name = naval_combat_shipwright_discovery_quality value = 4 }
+		}
+	}
+}
+
+naval_combat_shipwright_roll_greek_fire_quality_effect = {
+	set_variable = { name = naval_combat_shipwright_discovery value = 2 }
+	if = { limit = { NOT = { exists = var:naval_combat_flagship_unlock_bow_greek_fire } } set_variable = { name = naval_combat_flagship_unlock_bow_greek_fire value = 0 } }
+	random_list = {
+		40 = {
+			trigger = { NOR = { var:naval_combat_flagship_unlock_bow_greek_fire ?= 2 var:naval_combat_flagship_unlock_bow_greek_fire ?= 3 var:naval_combat_flagship_unlock_bow_greek_fire ?= 6 var:naval_combat_flagship_unlock_bow_greek_fire ?= 7 var:naval_combat_flagship_unlock_bow_greek_fire ?= 10 var:naval_combat_flagship_unlock_bow_greek_fire ?= 11 var:naval_combat_flagship_unlock_bow_greek_fire ?= 14 var:naval_combat_flagship_unlock_bow_greek_fire ?= 15 } }
+			change_variable = { name = naval_combat_flagship_unlock_bow_greek_fire add = 2 }
+			set_variable = { name = naval_combat_shipwright_discovery_quality value = 2 }
+		}
+		12 = {
+			trigger = { NOR = { var:naval_combat_flagship_unlock_bow_greek_fire ?= 4 var:naval_combat_flagship_unlock_bow_greek_fire ?= 5 var:naval_combat_flagship_unlock_bow_greek_fire ?= 6 var:naval_combat_flagship_unlock_bow_greek_fire ?= 7 var:naval_combat_flagship_unlock_bow_greek_fire ?= 12 var:naval_combat_flagship_unlock_bow_greek_fire ?= 13 var:naval_combat_flagship_unlock_bow_greek_fire ?= 14 var:naval_combat_flagship_unlock_bow_greek_fire ?= 15 } }
+			change_variable = { name = naval_combat_flagship_unlock_bow_greek_fire add = 4 }
+			set_variable = { name = naval_combat_shipwright_discovery_quality value = 3 }
+		}
+		3 = {
+			trigger = { trigger_if = { limit = { has_variable = naval_combat_flagship_unlock_bow_greek_fire } var:naval_combat_flagship_unlock_bow_greek_fire < 8 } trigger_else = { always = yes } }
+			change_variable = { name = naval_combat_flagship_unlock_bow_greek_fire add = 8 }
+			set_variable = { name = naval_combat_shipwright_discovery_quality value = 4 }
+		}
+	}
+}

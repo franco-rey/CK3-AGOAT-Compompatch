@@ -1,0 +1,1217 @@
+﻿
+gptip_add_flags_effect = {
+	if = {
+		limit = {
+			is_at_war = yes
+			is_adult = yes
+			is_landed = yes
+			any_character_war = {
+				OR = {
+					primary_attacker = { this = root }
+					primary_defender = { this = root }
+				}
+			}
+		}
+		add_character_flag = single_combat_duel_armor
+	}
+	if = {
+		limit = {
+			is_at_war = no
+			is_adult = yes
+			is_landed = yes
+			has_character_flag = single_combat_duel_armor
+		}
+		remove_character_flag = single_combat_duel_armor
+	}
+	if = {
+		limit = { age < 12 }
+		random_list = {
+			1 = {
+				modifier = { add = 10 is_healthy = no }
+				modifier = { 
+					add = 1
+					OR = {
+						has_trait = compassionate has_trait = callous has_trait = sadistic
+						has_trait = just has_trait = arbitrary
+						has_trait = generous has_trait = greedy 
+						has_trait = brave has_trait = craven
+						has_trait = forgiving has_trait = vengeful
+						has_trait = gregarious has_trait = shy
+						has_trait = zealous has_trait = cynical
+					}
+				}
+			}
+			0 = { modifier = { add = 1 age > 3 age < 12 } add_character_flag = gpt_child_clutching_ball_entry }
+			0 = { modifier = { add = 2 age > 3 age < 12 stress_level >= 1 } add_character_flag = gpt_cry_entry }
+			0 = { modifier = { add = 3 age > 3 age < 12 stress_level >= 2 } add_character_flag = gpt_cry_entry }
+
+			0 = { modifier = { add = 1 age > 3 age < 12 is_male = yes } add_character_flag = gpt_child_hobby_horse_entry }
+			0 = { modifier = { add = 1 age > 3 age < 12 is_male = yes } add_character_flag = gpt_wooden_sword_yield_entry }
+
+			0 = { modifier = { add = 1 age > 3 age < 12 is_female = yes } add_character_flag = gpt_child_clutching_doll_entry }
+			0 = { modifier = { add = 1 age > 3 age < 12 is_female = yes } add_character_flag = gpt_newborn_peekaboo_entry }
+
+			0 = { modifier = { add = 1 has_trait = bossy } add_character_flag = gpt_wooden_sword_coup_degrace_entry }
+			0 = { modifier = { add = 1 has_trait = charming } add_character_flag = gpt_storytelling_entry }
+			0 = { modifier = { add = 1 has_trait = curious } add_character_flag = gpt_throne_room_applaud_entry }
+			0 = { modifier = { add = 1 has_trait = rowdy } add_character_flag = gpt_hunting_carcass_start_entry }
+			0 = { modifier = { add = 1 has_trait = pensive } add_character_flag = reading_loop }
+		}
+	}
+	else = {
+		random_list = {
+			1 = {
+				modifier = { add = 10 is_healthy = no }
+				modifier = { add = 5 has_trait = pregnant }
+				modifier = { 
+					add = 1
+					OR = {
+						has_trait = compassionate has_trait = callous has_trait = sadistic
+						has_trait = just has_trait = arbitrary
+						has_trait = generous has_trait = greedy 
+						has_trait = brave has_trait = craven
+						has_trait = forgiving has_trait = vengeful
+						has_trait = gregarious has_trait = shy
+						has_trait = zealous has_trait = cynical
+					}
+				}
+				modifier = { 
+					add = 1000
+					is_travelling = no
+					is_commanding_army = no
+					is_at_war = yes
+				}
+			}
+
+			0 = { modifier = { add = 1 has_trait = bossy } add_character_flag = gpt_wooden_sword_coup_degrace_entry }
+			0 = { modifier = { add = 1 has_trait = charming } add_character_flag = gpt_storytelling_entry }
+			0 = { modifier = { add = 1 has_trait = curious } add_character_flag = gpt_throne_room_applaud_entry }
+			0 = { modifier = { add = 1 has_trait = rowdy } add_character_flag = gpt_hunting_carcass_start_entry }
+			0 = { modifier = { add = 1 has_trait = pensive } add_character_flag = reading_loop }
+
+			0 = { modifier = { add = 1 prowess >= 20 NOT = { government_has_flag = government_is_tribal } NOT = { government_has_flag = government_is_nomadic } } add_character_flag = gpt_one_handed_passive_sword_entry }
+			0 = { modifier = { add = 1 prowess >= 20 government_has_flag = government_is_tribal } add_character_flag = gpt_one_handed_passive_axe_entry }
+			0 = { modifier = { add = 1 prowess >= 20 government_has_flag = government_is_nomadic } add_character_flag = gpt_hunting_shortbow_aim_arrow_entry }
+
+			0 = { modifier = {
+				add = 1
+				any_targeting_faction = {
+					OR = {
+						faction_power >= root.current_military_strength
+						faction_can_press_demands = yes
+						faction_power >= 75
+					}
+				}
+			} add_character_flag = gpt_worry_entry }
+
+			0 = { modifier = { add = 5 any_child = { age < 1 } is_female = yes } add_character_flag = gpt_newborn_entry }
+			0 = { modifier = { add = 5 any_child = { age < 1 } is_female = yes is_ai = yes } add_character_flag = gpt_newborn_entry }
+
+			0 = { modifier = { add = 1 has_council_position = councillor_court_chaplain } add_character_flag = council_chaplain }
+			0 = { modifier = { add = 1 has_council_position = councillor_spymaster } add_character_flag = council_spymaster }
+			0 = { modifier = { add = 1 has_council_position = councillor_chancellor } add_character_flag = council_chancellor }
+			0 = { modifier = { add = 1 has_council_position = councillor_marshal } add_character_flag = council_marshal }
+			0 = { modifier = { add = 1 has_council_position = councillor_steward } add_character_flag = council_steward }
+			
+			0 = { modifier = { add = 1 has_trait = compassionate OR = { is_female = yes ai_vengefulness < -20 } } add_character_flag = gpt_wedding_happy_cry_entry }
+			0 = { modifier = { add = 0.2 has_trait = fickle } add_character_flag = gpt_alto_flute_idle_entry }
+			0 = { modifier = { add = 0.2 has_trait = fickle } add_character_flag = gpt_alto_flute_active_entry }
+			0 = { modifier = { add = 0.2 has_trait = fickle } add_character_flag = lute_idle }
+			0 = { modifier = { add = 0.2 has_trait = fickle } add_character_flag = chifonie_active }
+			0 = { modifier = { add = 0.2 has_trait = fickle } add_character_flag = chifonie_idle }
+			0 = { modifier = { add = 1 has_trait = content government_has_flag = government_has_treasury is_male = yes } add_character_flag = gpt_child_clutching_ball_entry }
+			0 = { modifier = { add = 1 has_trait = content government_has_flag = government_has_treasury is_female = yes } add_character_flag = gpt_child_clutching_doll_entry }
+			0 = { modifier = { add = 1 has_trait = content NOT = { government_has_flag = government_has_treasury } is_male = yes } add_character_flag = holding_staff_loop }
+			0 = { modifier = { add = 1 has_trait = content NOT = { government_has_flag = government_has_treasury } is_female = yes } add_character_flag = gpt_serving_tray_entry }
+			0 = { modifier = { add = 1 has_trait = lazy } add_character_flag = emotion_boredom_entry }
+			0 = { modifier = { add = 1 has_trait = wrathful } add_character_flag = gpt_anger_entry }
+			0 = { modifier = { add = 1 has_trait = calm } add_character_flag = gpt_pondering_entry }
+			0 = { modifier = { add = 1 has_trait = patient } add_character_flag = throneRoom_conversation2_entry }
+			0 = { modifier = { add = 1 has_trait = honest } add_character_flag = throneRoom_conversation4_entry }
+			0 = { modifier = { add = 1 has_trait = just } add_character_flag = shawm_idle }
+			0 = { modifier = { add = 1 has_trait = deceitful } add_character_flag = gpt_schadenfreude_entry }
+			0 = { modifier = { add = 1 has_trait = gluttonous } add_character_flag = gpt_drink_entry }
+			0 = { modifier = { add = 1 has_trait = gregarious } add_character_flag = gpt_storytelling_entry }
+			0 = { modifier = { add = 1 has_trait = stubborn } add_character_flag = gpt_eyeroll_entry }
+			0 = { modifier = { add = 1 has_trait = shy } add_character_flag = emotion_shame_entry }
+			0 = { modifier = { add = 1 has_trait = craven } add_character_flag = gpt_nervous_entry }
+			0 = { modifier = { add = 1 has_trait = brave } add_character_flag = gpt_hero_flex_entry }
+			0 = { modifier = { add = 1 has_trait = trusting } add_character_flag = interested_start }
+			0 = { modifier = { add = 1 has_trait = paranoid } add_character_flag = gpt_paranoia_entry }
+			0 = { modifier = { add = 1 has_trait = eccentric } add_character_flag = gpt_eccentric_entry }
+
+			0 = { modifier = { add = 1 has_trait = sadistic } add_character_flag = gpt_manic_entry }
+			0 = { modifier = { add = 1 OR = { has_trait = deviant has_trait = sodomite } } add_character_flag = gpt_fanning_coyly_entry }
+			0 = { modifier = { add = 1 OR = { has_trait = eunuch has_trait = beardless_eunuch } } add_character_flag = gpt_fanning_entry }
+			0 = { modifier = { add = 1 has_trait = lustful is_female = yes } add_character_flag = gpt_fanning_coyly_entry }
+			0 = { modifier = { add = 1 has_trait = chaste } add_character_flag = page_flipping }
+
+			0 = { modifier = { add = 1 has_trait = ambitious } add_character_flag = frontEnd_middle_entry }
+			0 = { modifier = { add = 1 has_trait = ambitious government_has_flag = government_is_japan_administrative } add_character_flag = gpt_japanese_war_fan_entry }
+			0 = { modifier = { add = 1 has_trait = ambitious government_has_flag = government_is_japan_feudal } add_character_flag = gpt_hasso_no_kamae_entry }
+			0 = { modifier = { add = 1 has_trait = ambitious government_has_flag = government_has_merit is_male = yes } add_character_flag = gpt_wu_shu_bao_quan_li_entry }
+			0 = { modifier = { add = 1 has_trait = ambitious government_has_flag = government_has_merit is_female = yes } add_character_flag = gpt_gongshou_entry }
+
+			0 = { modifier = { add = 1 has_trait = diligent } add_character_flag = writing }
+			0 = { modifier = { add = 1 has_trait = diligent government_has_flag = government_is_japan_administrative } add_character_flag = gpt_japanese_war_fan_entry }
+			0 = { modifier = { add = 1 has_trait = diligent government_has_flag = government_is_japan_feudal } add_character_flag = gpt_hasso_no_kamae_entry }
+
+			0 = { modifier = { add = 1 has_trait = humble is_male = yes } add_character_flag = council_chaplain }
+			0 = { modifier = { add = 1 has_trait = humble is_female = yes } add_character_flag = gpt_serving_tray_entry }
+
+			0 = { modifier = { add = 1 is_female = yes ai_sociability > 0 government_has_flag = government_has_treasury } add_character_flag = gpt_fanning_entry }
+			0 = { modifier = { add = 1 has_trait = arrogant government_has_flag = government_has_merit } add_character_flag = gpt_fanning_entry }
+			0 = { modifier = { add = 1 has_trait = arrogant NOT = { government_has_flag = government_has_merit } } add_character_flag = gpt_dismissal_entry }
+			0 = { modifier = { add = 1 OR = { has_trait = intellect_bad has_trait = dull } } add_character_flag = ai_irrational_entry }
+			0 = { modifier = { add = 1 OR = { has_trait = intellect_good has_trait = shrewd } } add_character_flag = emotion_thinking_entry }
+			0 = { modifier = { add = 1 has_trait = beauty_good is_female = yes } add_character_flag = gpt_fanning_coyly_entry }
+			0 = { modifier = { add = 1 OR = { has_trait = beauty_bad has_trait = scaly } ai_sociability <= 0 } add_character_flag = emotion_shame_entry }
+
+			0 = { modifier = { add = 1 dread >= 50 } add_character_flag = menacing }
+			0 = { modifier = { add = 1 dread >= 80 } add_character_flag = gpt_threatening_entry }
+
+			0 = { modifier = { add = 1 has_focus_or_focus_trait_trigger = { FOCUS = learning_medicine_focus } } add_character_flag = gpt_physician_entry }
+			0 = { modifier = { add = 1 has_focus_or_focus_trait_trigger = { FOCUS = learning_scholarship_focus } } add_character_flag = reading_loop  }
+			0 = { modifier = { add = 1 has_focus_or_focus_trait_trigger = { FOCUS = learning_theology_focus } } add_character_flag = gpt_praying_entry }
+			0 = { modifier = { add = 1 has_focus_or_focus_trait_trigger = { FOCUS = diplomacy_family_focus } } add_character_flag = gpt_child_clutching_ball_entry }
+			0 = { modifier = { add = 1 has_focus_or_focus_trait_trigger = { FOCUS = diplomacy_foreign_affairs_focus } } add_character_flag = gpt_debating_entry  }
+			0 = { modifier = { add = 1 has_focus_or_focus_trait_trigger = { FOCUS = diplomacy_majesty_focus } } add_character_flag = frontEnd_middle_entry  }
+			0 = { modifier = { add = 1 has_focus_or_focus_trait_trigger = { FOCUS = martial_strategy_focus } } add_character_flag = gpt_chess_cocky_entry  }
+			0 = { modifier = { add = 1 has_focus_or_focus_trait_trigger = { FOCUS = martial_authority_focus } } add_character_flag = frontEnd_right_entry }
+			0 = { modifier = { add = 1 has_focus_or_focus_trait_trigger = { FOCUS = martial_chivalry_focus } } add_character_flag = gpt_one_handed_passive_sword_entry }
+			0 = { modifier = { add = 1 has_focus_or_focus_trait_trigger = { FOCUS = stewardship_domain_focus } } add_character_flag = gpt_travelling_entry }
+			0 = { modifier = { add = 1 has_focus_or_focus_trait_trigger = { FOCUS = stewardship_duty_focus } } add_character_flag = reading_loop  }
+			0 = { modifier = { add = 1 has_focus_or_focus_trait_trigger = { FOCUS = stewardship_wealth_focus } } add_character_flag = gpt_bribing_entry }
+			0 = { modifier = { add = 1 has_focus_or_focus_trait_trigger = { FOCUS = intrigue_skulduggery_focus } } add_character_flag = gpt_eavesdrop_entry }
+			0 = { modifier = { add = 1 has_focus_or_focus_trait_trigger = { FOCUS = intrigue_temptation_focus } } add_character_flag = gpt_flirtation_left_entry }
+			0 = { modifier = { add = 1 has_focus_or_focus_trait_trigger = { FOCUS = intrigue_intimidation_focus } } add_character_flag = council_spymaster }
+			
+			0 = { modifier = { add = 1 has_trait = witch } add_character_flag = gpt_physician_entry }
+			0 = { modifier = { add = 1 has_trait = lifestyle_herbalist } add_character_flag = gpt_physician_entry }
+			0 = { modifier = { add = 1 has_trait = lifestyle_physician } add_character_flag = gpt_physician_entry }
+			0 = { modifier = { add = 1 has_trait = lifestyle_blademaster } add_character_flag = gpt_chudan_no_kamae_entry }
+			0 = { modifier = { add = 1 has_trait = knight_errant } add_character_flag = gpt_one_handed_passive_sword_entry }
+			0 = { modifier = { add = 1 has_trait = lifestyle_hunter } add_character_flag = gpt_hunting_knife_entry }
+			0 = { modifier = { add = 1 has_trait = lifestyle_reveler } add_character_flag = gpt_drink_entry }
+			0 = { modifier = { add = 1 has_trait = peasant_leader } add_character_flag = gpt_hunting_knife_entry }
+			0 = { modifier = { add = 1 has_trait = nomadic_philosophy } add_character_flag = bow_idle }
+			0 = { modifier = { add = 1 has_trait = lifestyle_mystic } add_character_flag = gpt_stunned_entry }
+			0 = { modifier = { add = 1 has_trait = lifestyle_poet } add_character_flag = gpt_storytelling_entry }
+			0 = { modifier = { add = 1 OR = { has_trait = adventurer has_trait = shieldmaiden } } add_character_flag = marshal_shield }
+
+			0 = {
+				modifier = {
+					add = 1
+					has_trait = journaller
+				}
+				add_character_flag = gpt_throneroom_writer_entry
+			}
+			0 = {
+				modifier = {
+					add = 1
+					OR = {
+						has_trait = athletic
+						has_trait = physique_good
+						has_trait = strong
+					}
+				}
+				add_character_flag = gpt_hero_flex_entry
+			}
+			0 = {
+				modifier = {
+					add = 1
+					OR = {
+						has_trait = physique_bad
+						has_trait = weak
+					}
+				}
+				add_character_flag = gpt_pain_entry
+			}
+			
+
+
+
+			0 = {
+				modifier = {
+					add = 1
+					has_trait = drunkard
+				}
+				add_character_flag = gpt_wedding_drunk_entry 
+			}
+			0 = {
+				modifier = {
+					add = 1
+					OR = {
+						has_trait = improvident
+						has_trait = profligate
+					}
+				}
+				add_character_flag = gpt_betting_entry 
+			}
+			0 = {
+				modifier = {
+					add = 1
+					OR = {
+						has_trait = possessed
+						has_trait = lunatic
+					}
+				}
+				add_character_flag = delirium 
+			}
+			0 = {
+				modifier = {
+					add = 1
+					has_trait = irritable
+				}
+				add_character_flag = gpt_rage_entry 
+			}
+			0 = {
+				modifier = {
+					add = 1
+					OR = {
+						has_trait = reclusive
+						has_trait = flagellant
+						has_trait = comfort_eater
+					}
+				}
+				add_character_flag = emotion_sadness_entry 
+			}
+			0 = {
+				modifier = {
+					add = 1
+					OR = {
+						has_trait = contrite
+					}
+				}
+				add_character_flag = emotion_shame_entry
+			}
+			0 = {
+				modifier = {
+					add = 1
+					OR = {
+						has_trait = inappetetic
+					}
+				}
+				add_character_flag = gpt_disgust_entry
+			}
+			0 = {
+				modifier = {
+					add = 1
+					OR = {
+						has_trait = rakish
+					}
+				}
+				add_character_flag = gpt_flirtation_entry
+			}
+			0 = {
+				modifier = {
+					add = 1
+					OR = {
+						has_trait = depressed
+						has_trait = burdened
+					}
+				}
+				add_character_flag = gpt_grief_entry
+			}
+
+			0 = {
+				modifier = {
+					add = 1
+					is_travelling = no
+					ai_boldness <= -20
+					num_of_relation_rival >= 1
+				}
+				add_character_flag = gpt_worry_entry
+			}
+			0 = {
+				modifier = {
+					add = 1
+					is_travelling = no
+					AND = { ai_rationality <= -20 OR = { num_of_relation_ward >= 1 num_of_relation_guardian >= 1 } }
+				}
+				add_character_flag = gpt_stressed_teacher_entry
+			}
+			0 = {
+				modifier = {
+					add = 1
+					is_travelling = no
+					AND = { ai_rationality >= 20 OR = { num_of_relation_ward >= 1 num_of_relation_guardian >= 1 } }
+				}
+				add_character_flag = gpt_happy_teacher_entry 
+			}
+
+
+
+			0 = {
+				modifier = {
+					add = 10
+					piety_level >= 5
+				}
+				add_character_flag = gpt_praying_entry
+			}
+			0 = {
+				modifier = {
+					add = 10
+					stress_level >= 2
+					ai_compassion <= 20
+				}
+				add_character_flag = emotion_stressed_entry 
+			}
+			0 = {
+				modifier = {
+					add = 10
+					stress_level >= 2
+					ai_compassion > 20
+				}
+				add_character_flag = gpt_cry_entry
+			}
+			0 = {
+				modifier = {
+					add = 10
+					is_travelling = yes
+				}
+				add_character_flag = gpt_travelling_entry
+			}
+
+
+
+
+			0 = {
+				modifier = {
+					add = 100
+					has_trait = wounded
+					is_travelling = no
+				}
+				add_character_flag = gpt_severelywounded_entry 
+			}
+			0 = {
+				modifier = {
+					add = 100
+					is_landed = yes
+					is_travelling = no
+					any_scheme = {
+						OR = {
+							scheme_type = murder
+							scheme_type = abduct
+							scheme_type = claim_throne
+							scheme_type = fabricate_hook
+							scheme_type = steal_back_artifact
+							scheme_type = raid_estate
+							scheme_type = steal_herd
+						}
+					}
+				}
+				add_character_flag = council_spymaster 
+			}
+			0 = {
+				modifier = {
+					add = 100
+					is_landed = yes
+					is_travelling = no
+					any_scheme = {
+						OR = {
+							scheme_type = depose
+							scheme_type = overthrow_regent
+							scheme_type = damage_legitimacy_scheme
+							scheme_type = disbelieve_mandala
+							scheme_type = dispute_border
+							scheme_type = found_despotate
+							scheme_type = ingratiate_family
+							scheme_type = prepare_fire_dromons_scheme
+							scheme_type = raid_estate
+							scheme_type = subsume_province
+							scheme_type = expand_power_base
+							scheme_type = generate_claim
+							scheme_type = seize_realm
+							scheme_type = slander
+
+							scheme_type = coup_ceremonial_liege
+							scheme_type = celestial_siphon_treasury
+							scheme_type = celestial_movement_power_slander
+							scheme_type = celestial_minister_find_secrets_scheme
+						}
+					}
+				}
+				add_character_flag = gpt_stressed_teacher_entry 
+			}
+			0 = {
+				modifier = {
+					add = 100
+					is_landed = yes
+					is_travelling = no
+					any_scheme = {
+						OR = {
+							scheme_type = foster_legitimacy_scheme
+							scheme_type = learn_language
+							scheme_type = leverage_contribution
+							scheme_type = promote
+							scheme_type = celestial_siphon_treasury
+							scheme_type = celestial_movement_power_promote
+						}
+					}
+				}
+				add_character_flag = page_flipping 
+			}
+			0 = {
+				modifier = {
+					add = 100
+					is_landed = yes
+					is_travelling = no
+					any_scheme = {
+						OR = {
+							scheme_type = study_confucian_classics
+						}
+					}
+				}
+				add_character_flag = gpt_holding_scrolls_entry 
+			}
+			0 = {
+				modifier = {
+					add = 100
+					is_landed = yes
+					is_travelling = no
+					any_scheme = {
+						OR = {
+							scheme_type = teach_governor
+							scheme_type = mentoring
+						}
+					}
+				}
+				add_character_flag = gpt_happy_teacher_entry 
+			}
+			0 = {
+				modifier = {
+					add = 100
+					is_landed = yes
+					is_travelling = no
+					any_scheme = {
+						OR = {
+							scheme_type = seduce
+							scheme_type = elope
+							scheme_type = courting
+						}
+					}
+				}
+				add_character_flag = gpt_love_entry 
+			}
+
+
+
+
+
+			0 = {
+				modifier = {
+					add = 1000
+					is_landed = yes
+					is_at_war = no
+					is_commanding_army = yes
+					any_army = {
+						is_raid_army = yes
+					}
+					ai_compassion > -20
+				}
+				add_character_flag = menacing 
+			}
+			0 = {
+				modifier = {
+					add = 1000
+					is_landed = yes
+					is_at_war = no
+					is_commanding_army = yes
+					any_army = {
+						is_raid_army = yes
+					}
+					ai_compassion <= -20
+				}
+				add_character_flag = gpt_threatening_entry 
+			}
+			
+			0 = {
+				modifier = {
+					add = 1000
+					is_landed = yes
+					is_travelling = no
+					is_commanding_army = no
+					is_at_war = yes
+					any_character_war = {
+						OR = {
+							primary_attacker = { this = root }
+							primary_defender = { this = root }
+						}
+					}
+					ai_boldness >= 20
+				}
+				add_character_flag = council_marshal 
+			}
+			0 = {
+				modifier = {
+					add = 1000
+					is_landed = yes
+					is_travelling = no
+					is_commanding_army = no
+					is_at_war = yes
+					any_character_war = {
+						OR = {
+							primary_attacker = { this = root }
+							primary_defender = { this = root }
+						}
+					}
+					ai_boldness <= -20
+				}
+				add_character_flag = gpt_nervous_entry
+			}
+			0 = {
+				modifier = {
+					add = 1000
+					is_landed = yes
+					is_travelling = no
+					is_commanding_army = no
+					is_at_war = yes
+					any_character_war = {
+						OR = {
+							primary_attacker = { this = root }
+							primary_defender = { this = root }
+						}
+					}
+					ai_energy >= 20
+				}
+				add_character_flag = writing
+			}
+			0 = {
+				modifier = {
+					add = 1000
+					is_landed = yes
+					is_travelling = no
+					is_commanding_army = no
+					is_at_war = yes
+					any_character_war = {
+						OR = {
+							primary_attacker = { this = root }
+							primary_defender = { this = root }
+						}
+					}
+					ai_energy <= -20
+				}
+				add_character_flag = gpt_stunned_entry
+			}
+			0 = {
+				modifier = {
+					add = 1000
+					is_landed = yes
+					is_travelling = no
+					is_commanding_army = no
+					is_at_war = yes
+					any_character_war = {
+						OR = {
+							primary_attacker = { this = root }
+							primary_defender = { this = root }
+						}
+					}
+					ai_compassion >= 20
+				}
+				add_character_flag = gpt_disapproval_entry
+			}
+			0 = {
+				modifier = {
+					add = 1000
+					is_landed = yes
+					is_travelling = no
+					is_commanding_army = no
+					is_at_war = yes
+					any_character_war = {
+						OR = {
+							primary_attacker = { this = root }
+							primary_defender = { this = root }
+						}
+					}
+					ai_compassion <= -20
+				}
+				add_character_flag = gpt_dismissal_entry
+			}
+			0 = {
+				modifier = {
+					add = 1000
+					is_landed = yes
+					is_travelling = no
+					is_commanding_army = no
+					is_at_war = yes
+					any_character_war = {
+						OR = {
+							primary_attacker = { this = root }
+							primary_defender = { this = root }
+						}
+					}
+					ai_rationality <= -20
+				}
+				add_character_flag = gpt_paranoia_entry
+			}
+			0 = {
+				modifier = {
+					add = 1000
+					is_landed = yes
+					is_travelling = no
+					is_commanding_army = no
+					is_at_war = yes
+					any_character_war = {
+						OR = {
+							primary_attacker = { this = root }
+							primary_defender = { this = root }
+						}
+					}
+					ai_rationality >= 20
+				}
+				add_character_flag = gpt_debating_entry
+			}
+			0 = {
+				modifier = {
+					add = 1000
+					is_landed = yes
+					is_travelling = no
+					is_commanding_army = no
+					is_at_war = yes
+					any_character_war = {
+						OR = {
+							primary_attacker = { this = root }
+							primary_defender = { this = root }
+						}
+					}
+					ai_vengefulness <= -20
+				}
+				add_character_flag = gpt_eyeroll_entry
+			}
+			0 = {
+				modifier = {
+					add = 1000
+					is_landed = yes
+					is_travelling = no
+					is_commanding_army = no
+					is_at_war = yes
+					any_character_war = {
+						OR = {
+							primary_attacker = { this = root }
+							primary_defender = { this = root }
+						}
+					}
+					ai_vengefulness >= 20
+				}
+				add_character_flag = gpt_stayback_entry
+			}
+			0 = {
+				modifier = {
+					add = 1000
+					is_landed = yes
+					is_travelling = no
+					is_commanding_army = no
+					is_at_war = yes
+					any_character_war = {
+						OR = {
+							primary_attacker = { this = root }
+							primary_defender = { this = root }
+						}
+					}
+					ai_sociability <= -20
+				}
+				add_character_flag = throneRoom_conversation3_entry
+			}
+			0 = {
+				modifier = {
+					add = 1000
+					is_landed = yes
+					is_travelling = no
+					is_commanding_army = no
+					is_at_war = yes
+					any_character_war = {
+						OR = {
+							primary_attacker = { this = root }
+							primary_defender = { this = root }
+						}
+					}
+					ai_sociability >= 20
+				}
+				add_character_flag = throneRoom_conversation1_entry
+			}
+			0 = {
+				modifier = {
+					add = 1000
+					is_landed = yes
+					is_travelling = no
+					is_commanding_army = no
+					is_at_war = yes
+					any_character_war = {
+						OR = {
+							primary_attacker = { this = root }
+							primary_defender = { this = root }
+						}
+					}
+					ai_greed <= -20
+				}
+				add_character_flag = gpt_wedding_drunk_entry
+			}
+			0 = {
+				modifier = {
+					add = 1000
+					is_landed = yes
+					is_travelling = no
+					is_commanding_army = no
+					is_at_war = yes
+					any_character_war = {
+						OR = {
+							primary_attacker = { this = root }
+							primary_defender = { this = root }
+						}
+					}
+					ai_greed >= 20
+				}
+				add_character_flag = council_steward
+			}
+			0 = {
+				modifier = {
+					add = 1000
+					is_landed = yes
+					is_travelling = no
+					is_commanding_army = no
+					is_at_war = yes
+					any_character_war = {
+						OR = {
+							primary_attacker = { this = root }
+							primary_defender = { this = root }
+						}
+					}
+					ai_honor <= -20
+				}
+				add_character_flag = council_spymaster
+			}
+			0 = {
+				modifier = {
+					add = 1000
+					is_landed = yes
+					is_travelling = no
+					is_commanding_army = no
+					is_at_war = yes
+					any_character_war = {
+						OR = {
+							primary_attacker = { this = root }
+							primary_defender = { this = root }
+						}
+					}
+					ai_honor >= 20
+				}
+				add_character_flag = council_chancellor
+			}
+			0 = {
+				modifier = {
+					add = 1000
+					is_landed = yes
+					is_travelling = no
+					is_commanding_army = no
+					is_at_war = yes
+					any_character_war = {
+						OR = {
+							primary_attacker = { this = root }
+							primary_defender = { this = root }
+						}
+					}
+					ai_zeal <= -20
+				}
+				add_character_flag = interested_start
+			}
+			0 = {
+				modifier = {
+					add = 1000
+					is_landed = yes
+					is_travelling = no
+					is_commanding_army = no
+					is_at_war = yes
+					any_character_war = {
+						OR = {
+							primary_attacker = { this = root }
+							primary_defender = { this = root }
+						}
+					}
+					ai_zeal >= 20
+				}
+				add_character_flag = gpt_praying_entry
+			}
+
+			0 = {
+				modifier = {
+					add = 5000
+					is_landed = yes
+					is_travelling = no
+					is_commanding_army = no
+					is_at_war = yes
+					any_character_war = {
+						OR = {
+							AND = {
+								primary_attacker = { this = root }
+								attacker_war_score >= 20
+								attacker_war_score < 50
+							}
+							AND = {
+								primary_defender = { this = root }
+								defender_war_score >= 20
+								defender_war_score < 50
+							}
+						}
+					}
+				}
+				add_character_flag = gpt_chess_certain_win_entry
+			}
+			0 = {
+				modifier = {
+					add = 5000
+					is_landed = yes
+					is_travelling = no
+					is_commanding_army = no
+					is_at_war = yes
+					any_character_war = {
+						OR = {
+							AND = {
+								primary_attacker = { this = root }
+								attacker_war_score >= 50
+								attacker_war_score < 85
+							}
+							AND = {
+								primary_defender = { this = root }
+								defender_war_score >= 50
+								defender_war_score < 85
+							}
+						}
+					}
+				}
+				add_character_flag = gpt_toast_entry 
+			}
+			0 = {
+				modifier = {
+					add = 5000
+					is_landed = yes
+					is_travelling = no
+					is_commanding_army = no
+					is_at_war = yes
+					any_character_war = {
+						OR = {
+							AND = {
+								primary_attacker = { this = root }
+								attacker_war_score >= 90
+							}
+							AND = {
+								primary_defender = { this = root }
+								defender_war_score >= 90
+							}
+						}
+					}
+				}
+				add_character_flag = gpt_wrestling_victory_entry 
+			}
+			0 = {
+				modifier = {
+					add = 5000
+					is_landed = yes
+					is_travelling = no
+					is_commanding_army = no
+					is_at_war = yes
+					any_character_war = {
+						OR = {
+							AND = {
+								primary_attacker = { this = root }
+								attacker_war_score <= -20
+								attacker_war_score > -50
+							}
+							AND = {
+								primary_defender = { this = root }
+								defender_war_score <= -20
+								defender_war_score > -50
+							}
+						}
+					}
+				}
+				add_character_flag = gpt_disbelief_entry 
+			}
+			0 = {
+				modifier = {
+					add = 5000
+					is_landed = yes
+					is_travelling = no
+					is_commanding_army = no
+					is_at_war = yes
+					any_character_war = {
+						OR = {
+							AND = {
+								primary_attacker = { this = root }
+								attacker_war_score <= -50
+								attacker_war_score > -90
+							}
+							AND = {
+								primary_defender = { this = root }
+								defender_war_score <= -50
+								defender_war_score > -90
+							}
+						}
+					}
+				}
+				add_character_flag = gpt_worry_entry
+			}
+			0 = {
+				modifier = {
+					add = 5000
+					is_landed = yes
+					is_travelling = no
+					is_commanding_army = no
+					is_at_war = yes
+					any_character_war = {
+						OR = {
+							AND = {
+								primary_attacker = { this = root }
+								attacker_war_score <= -90
+							}
+							AND = {
+								primary_defender = { this = root }
+								defender_war_score <= -90
+							}
+						}
+					}
+				}
+				add_character_flag = gpt_shock_entry 
+			}
+
+
+
+
+
+
+
+
+			0 = {
+				modifier = {
+					add = 10000
+					is_at_war = yes
+					is_commanding_army = yes
+					ai_rationality < -20
+					NOT = { government_has_flag = government_is_nomadic }
+					NOT = { government_has_flag = government_is_tribal }
+				}
+				add_character_flag = gpt_agressive_entry
+			}
+			0 = {
+				modifier = {
+					add = 10000
+					is_at_war = yes
+					is_commanding_army = yes
+					ai_rationality > 20
+					NOT = { government_has_flag = government_is_nomadic }
+				}
+				add_character_flag = gpt_inspect_entry
+			}
+			0 = {
+				modifier = {
+					add = 10000
+					is_at_war = yes
+					is_commanding_army = yes
+					ai_rationality >= -20
+					ai_rationality <= 20
+					NOT = { government_has_flag = government_is_nomadic }
+					NOT = { government_has_flag = government_is_tribal }
+				}
+				add_character_flag = council_marshal
+			}
+			0 = {
+				modifier = {
+					add = 10000
+					is_at_war = yes
+					is_commanding_army = yes
+					ai_rationality < -20
+					NOT = { government_has_flag = government_is_nomadic }
+					government_has_flag = government_is_tribal
+				}
+				add_character_flag = gpt_agressive_axe_entry
+			}
+			0 = {
+				modifier = {
+					add = 10000
+					is_at_war = yes
+					is_commanding_army = yes
+					ai_rationality > -20
+					ai_rationality <= 20
+					NOT = { government_has_flag = government_is_nomadic }
+					government_has_flag = government_is_tribal
+				}
+				add_character_flag = marshal_axe
+			}
+			0 = {
+				modifier = {
+					add = 10000
+					is_at_war = yes
+					is_commanding_army = yes
+					ai_boldness < -20
+					government_has_flag = government_is_nomadic
+				}
+				add_character_flag = gpt_hunting_shortbow_rest_arrow_entry
+			}
+			0 = {
+				modifier = {
+					add = 10000
+					is_at_war = yes
+					is_commanding_army = yes
+					ai_boldness > 20
+					government_has_flag = government_is_nomadic
+				}
+				add_character_flag = gpt_hunting_shortbow_aim_arrow_entry
+			}
+			0 = {
+				modifier = {
+					add = 10000
+					is_at_war = yes
+					is_commanding_army = yes
+					ai_boldness >= -20
+					ai_boldness <= 20
+					government_has_flag = government_is_nomadic
+				}
+				add_character_flag = bow_idle
+			}
+		}
+	}
+}
+
+
+gptip_remove_flags_effect = {
+	remove_character_flag = AI_honorable_entry
+	remove_character_flag = AI_dishonorable_entry
+	remove_character_flag = AI_bold_entry
+	remove_character_flag = AI_coward_entry
+	remove_character_flag = AI_greedy_entry
+	remove_character_flag = AI_content_entry
+	remove_character_flag = AI_vengeful_entry
+	remove_character_flag = AI_forgiving_entry
+	remove_character_flag = AI_rational_entry
+	remove_character_flag = AI_irrational_entry
+	remove_character_flag = AI_compassionate_entry
+	remove_character_flag = AI_callous_entry
+	remove_character_flag = AI_zealous_entry
+	remove_character_flag = AI_cynical_entry
+	remove_character_flag = council_chancellor
+	remove_character_flag = council_steward
+	remove_character_flag = council_spymaster
+	remove_character_flag = council_chaplain
+	remove_character_flag = council_marshal
+	remove_character_flag = marshal_axe
+	remove_character_flag = marshal_dagger
+	remove_character_flag = marshal_mace
+	remove_character_flag = marshal_shield
+	remove_character_flag = idle_emperor
+	remove_character_flag = emotion_thinking_entry
+	remove_character_flag = idle_entry
+	remove_character_flag = delirium
+	remove_character_flag = interested_start
+	remove_character_flag = emotion_beg_entry
+	remove_character_flag = emotion_boredom_entry
+	remove_character_flag = emotion_sadness_entry
+	remove_character_flag = emotion_shame_entry
+	remove_character_flag = emotion_stressed_entry
+	remove_character_flag = throneRoom_conversation1_entry
+	remove_character_flag = throneRoom_conversation2_entry
+	remove_character_flag = throneRoom_conversation3_entry
+	remove_character_flag = throneRoom_conversation4_entry
+	remove_character_flag = menacing
+	remove_character_flag = bow_idle
+	remove_character_flag = holding_staff_loop
+	remove_character_flag = scepter
+	remove_character_flag = page_flipping
+	remove_character_flag = writing
+	remove_character_flag = reading_loop
+	remove_character_flag = holding_hu_2
+	remove_character_flag = shawm_active
+	remove_character_flag = shawm_idle
+	remove_character_flag = lute_active
+	remove_character_flag = lute_idle
+	remove_character_flag = chifonie_active
+	remove_character_flag = chifonie_idle
+	remove_character_flag = frontEnd_middle_entry
+	remove_character_flag = frontEnd_left_entry
+	remove_character_flag = frontEnd_right_entry
+	remove_character_flag = misc_arrest
+	remove_character_flag = war_attacker
+	remove_character_flag = war_defender
+
+	remove_character_flag = gpt_severelywounded_entry
+	remove_character_flag = gpt_worry_entry
+	remove_character_flag = gpt_agressive_entry
+	remove_character_flag = gpt_inspect_entry
+	remove_character_flag = gpt_cry_entry
+	remove_character_flag = gpt_anger_entry
+	remove_character_flag = gpt_travelling_entry
+	remove_character_flag = gpt_drink_entry
+	remove_character_flag = gpt_betting_entry
+	remove_character_flag = gpt_praying_entry
+
+	remove_character_flag = gpt_physician_entry
+	remove_character_flag = gpt_happy_teacher_entry
+	remove_character_flag = gpt_stressed_teacher_entry
+	remove_character_flag = gpt_fanning_entry
+	remove_character_flag = gpt_chess_cocky_entry
+	remove_character_flag = gpt_disappointed_entry
+	remove_character_flag = gpt_disbelief_entry
+	remove_character_flag = gpt_disgust_entry
+	remove_character_flag = gpt_eccentric_entry
+	remove_character_flag = gpt_grief_entry
+	remove_character_flag = gpt_happiness_entry
+	remove_character_flag = gpt_love_entry
+	remove_character_flag = gpt_manic_entry
+	remove_character_flag = gpt_nervous_entry
+	remove_character_flag = gpt_paranoia_entry
+	remove_character_flag = gpt_schadenfreude_entry
+	remove_character_flag = gpt_newborn_entry #holding
+	remove_character_flag = gpt_throneroom_writer_entry
+	remove_character_flag = gpt_pondering_entry
+	remove_character_flag = gpt_wedding_drunk_entry
+	remove_character_flag = gpt_debating_entry
+	remove_character_flag = gpt_fanning_coyly_entry
+	remove_character_flag = gpt_hero_flex_entry
+	remove_character_flag = gpt_stayback_entry
+	remove_character_flag = gpt_hunting_falcon_entry
+	remove_character_flag = gpt_wrestling_victory_entry
+	remove_character_flag = gpt_shock_entry
+	remove_character_flag = gpt_threatening_entry
+	remove_character_flag = gpt_one_handed_passive_sword_entry
+	remove_character_flag = gpt_one_handed_passive_axe_entry
+	remove_character_flag = gpt_hasso_no_kamae_entry
+	remove_character_flag = gpt_holding_scrolls_entry
+	remove_character_flag = gpt_throne_room_applaud_entry
+	remove_character_flag = gpt_gongshou_entry
+	remove_character_flag = gpt_wu_shu_bao_quan_li_entry
+	remove_character_flag = gpt_admiration_entry
+	remove_character_flag = gpt_disapproval_entry
+	remove_character_flag = gpt_japanese_war_fan_entry
+	remove_character_flag = gpt_child_clutching_doll_entry
+	remove_character_flag = gpt_child_clutching_ball_entry
+	remove_character_flag = gpt_child_hobby_horse_entry
+	remove_character_flag = gpt_pain_entry
+	remove_character_flag = gpt_hunting_shortbow_rest_arrow_entry
+	remove_character_flag = gpt_agressive_axe_entry
+	remove_character_flag = gpt_flirtation_entry
+	remove_character_flag = gpt_flirtation_left_entry
+	remove_character_flag = gpt_bribing_entry
+	remove_character_flag = gpt_chess_certain_win_entry
+	remove_character_flag = gpt_eavesdrop_entry
+	remove_character_flag = gpt_eyeroll_entry
+	remove_character_flag = gpt_scheme_entry
+	remove_character_flag = gpt_rage_entry
+	remove_character_flag = gpt_wedding_happy_cry_entry
+	remove_character_flag = gpt_stunned_entry
+	remove_character_flag = gpt_serving_tray_entry
+	remove_character_flag = gpt_obsequious_bow_entry
+	remove_character_flag = gpt_storytelling_entry
+	remove_character_flag = gpt_shepherd_with_sheep_entry
+	remove_character_flag = gpt_reception_groom_left_entry
+	remove_character_flag = gpt_chudan_no_kamae_entry
+	remove_character_flag = gpt_alto_flute_idle_entry
+	remove_character_flag = gpt_alto_flute_active_entry
+	remove_character_flag = gpt_dismissal_entry
+	remove_character_flag = gpt_lantern_entry
+	remove_character_flag = gpt_hunting_shortbow_aim_arrow_entry
+	remove_character_flag = gpt_hunting_knife_entry
+	remove_character_flag = gpt_toast_entry
+	remove_character_flag = gpt_newborn_peekaboo_entry
+	remove_character_flag = gpt_hunting_carcass_start_entry
+	remove_character_flag = gpt_wooden_sword_yield_entry
+	remove_character_flag = gpt_wooden_sword_coup_degrace_entry
+}

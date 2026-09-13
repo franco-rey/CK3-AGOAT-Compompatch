@@ -1,0 +1,14 @@
+﻿agot_guard_positions_update_specialisation_effect = {
+	agot_guard_positions_initialize_experience_effect = yes
+	if = {
+		limit = { NOT = { agot_guard_positions_has_specialisation_trigger = yes } }
+		if = { limit = { trigger_if = { limit = { has_variable = agot_guard_positions_protection_experience } var:agot_guard_positions_protection_experience >= 3 } trigger_else = { always = no } } add_trait = agot_guard_specialist_royal_protector }
+		else_if = { limit = { trigger_if = { limit = { has_variable = agot_guard_positions_pursuit_experience } var:agot_guard_positions_pursuit_experience >= 3 } trigger_else = { always = no } } add_trait = agot_guard_specialist_pursuer }
+		else_if = { limit = { trigger_if = { limit = { has_variable = agot_guard_positions_investigation_experience } var:agot_guard_positions_investigation_experience >= 3 } trigger_else = { always = no } } add_trait = agot_guard_specialist_investigator }
+		else_if = { limit = { trigger_if = { limit = { has_variable = agot_guard_positions_infiltration_experience } var:agot_guard_positions_infiltration_experience >= 3 } trigger_else = { always = no } } add_trait = agot_guard_specialist_infiltrator }
+		else_if = { limit = { trigger_if = { limit = { has_variable = agot_guard_positions_ward_experience } var:agot_guard_positions_ward_experience >= 3 } trigger_else = { always = no } } add_trait = agot_guard_specialist_ward_protector }
+		else_if = { limit = { trigger_if = { limit = { has_variable = agot_guard_positions_battle_experience } var:agot_guard_positions_battle_experience >= 3 } trigger_else = { always = no } } add_trait = agot_guard_specialist_battlefield_champion }
+		else_if = { limit = { trigger_if = { limit = { has_variable = agot_guard_positions_instruction_experience } var:agot_guard_positions_instruction_experience >= 3 } trigger_else = { always = no } } add_trait = agot_guard_specialist_academy_instructor add_trait = agot_guard_academy_instructor }
+		else_if = { limit = { trigger_if = { limit = { has_variable = agot_guard_positions_training_experience } var:agot_guard_positions_training_experience >= 3 } trigger_else = { always = no } } add_trait = agot_guard_specialist_master_at_arms }
+	}
+}

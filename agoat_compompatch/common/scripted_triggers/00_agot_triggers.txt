@@ -187,56 +187,71 @@ agot_flavour_is_living_in_westerosi_realm_trigger = {
 		is_landed = yes
 
 		trigger_if = {
-			limit = {
-				top_liege = { has_variable = agot_pwl_direct }
-			}
-			top_liege.var:agot_pwl_direct = {
+			limit = { exists = top_liege }
+			trigger_if = {
+				limit = {
+					top_liege ?= { has_variable = agot_pwl_direct }
+				}
+				top_liege.var:agot_pwl_direct ?= {
 
-				trigger_if = {
-					limit = {
-						top_liege = { has_variable = agot_pwl_direct }
-					}
-					top_liege.var:agot_pwl_direct = {
-
+					trigger_if = {
+						limit = { exists = top_liege }
 						trigger_if = {
 							limit = {
-								top_liege = { has_variable = agot_pwl_direct }
+								top_liege ?= { has_variable = agot_pwl_direct }
 							}
-							top_liege.var:agot_pwl_direct = {
+							top_liege.var:agot_pwl_direct ?= {
 
 								trigger_if = {
-									limit = {
-										top_liege = { has_variable = agot_pwl_direct }
-									}
-									top_liege.var:agot_pwl_direct = {
-
-										trigger_if = {
-											limit = {
-												top_liege = { has_variable = agot_pwl_direct }
-											}
+									limit = { exists = top_liege }
+									trigger_if = {
+										limit = {
+											top_liege ?= { has_variable = agot_pwl_direct }
 										}
-										trigger_else = {
-											top_liege = { agot_flavour_capital_is_in_westerosi_trigger = yes }
+										top_liege.var:agot_pwl_direct ?= {
+
+											trigger_if = {
+												limit = { exists = top_liege }
+												trigger_if = {
+													limit = {
+														top_liege ?= { has_variable = agot_pwl_direct }
+													}
+													top_liege.var:agot_pwl_direct ?= {
+
+														trigger_if = {
+															limit = { exists = top_liege }
+															trigger_if = {
+																limit = {
+																	top_liege ?= { has_variable = agot_pwl_direct }
+																}
+															}
+														}
+														trigger_else = {
+															top_liege ?= { agot_flavour_capital_is_in_westerosi_trigger = yes }
+														}
+													}
+												}
+											}
+											trigger_else = {
+												top_liege ?= { agot_flavour_capital_is_in_westerosi_trigger = yes }
+											}
 										}
 									}
 								}
 								trigger_else = {
-									top_liege = { agot_flavour_capital_is_in_westerosi_trigger = yes }
+									top_liege ?= { agot_flavour_capital_is_in_westerosi_trigger = yes }
 								}
 							}
 						}
-						trigger_else = {
-							top_liege = { agot_flavour_capital_is_in_westerosi_trigger = yes }
-						}
 					}
-				}
-				trigger_else = {
-					top_liege = { agot_flavour_capital_is_in_westerosi_trigger = yes }
+					trigger_else = {
+						top_liege ?= { agot_flavour_capital_is_in_westerosi_trigger = yes }
+					}
 				}
 			}
 		}
 		trigger_else = {
-			top_liege = { agot_flavour_capital_is_in_westerosi_trigger = yes }
+			top_liege ?= { agot_flavour_capital_is_in_westerosi_trigger = yes }
 		}
 	}
 }
