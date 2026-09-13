@@ -1014,7 +1014,6 @@ widget = {
 						align = center|nobaseline
 					}
 					hbox = {
-						align = center
 						text_single = {
 							size = { 42 22 }
 							text = "[GetPlayer.MakeScope.ScriptValue('naval_combat_used_capacity_value')|0]"
@@ -1050,7 +1049,6 @@ widget = {
 						align = center|nobaseline
 					}
 					hbox = {
-						align = center
 						text_single = {
 							size = { 48 22 }
 							text = "[GetPlayer.MakeScope.Var('naval_combat_readiness').GetValue|0]"
@@ -1080,7 +1078,6 @@ widget = {
 						align = center|nobaseline
 					}
 					hbox = {
-						align = center
 						text_single = {
 							size = { 48 22 }
 							text = "[GetPlayer.MakeScope.ScriptValue('naval_combat_drill_value')|0]"
@@ -1110,7 +1107,6 @@ widget = {
 						align = center|nobaseline
 					}
 					hbox = {
-						align = center
 						icon = {
 							texture = "gfx/interface/icons/icon_gold.dds"
 							size = { 18 18 }
@@ -1207,7 +1203,6 @@ widget = {
 
 								vbox = {
 									layoutpolicy_horizontal = expanding
-									align = center
 									spacing = 5
 									text_single = {
 										visible = "[Not( GetPlayer.GetCharacterEmployedAs('naval_minister_court_position').IsValid )]"
@@ -1404,7 +1399,6 @@ widget = {
 								tooltip = "NAVAL_COMBAT_SHIP_STATS_TT"
 
 								vbox = {
-									align = center
 									size = { 495 46 }
 									spacing = 0
 
@@ -1423,7 +1417,6 @@ widget = {
 								}
 
 								vbox = {
-									align = center
 									size = { 495 46 }
 									spacing = 0
 
