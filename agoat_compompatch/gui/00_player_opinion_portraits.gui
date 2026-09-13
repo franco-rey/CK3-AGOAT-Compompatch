@@ -1,10 +1,6 @@
-﻿######################################################
-################## PORTRAIT TYPES ####################
-######################################################
-
+﻿
 types PlayerOpinionPortraitTypes
 {
-	## Opinion box for portraits
 	type portrait_opinion = flowcontainer {
 		name = "tutorial_highlight_portrait_opinion"
 		visible = "[And(And(Character.IsValid, Not(IsCharacterDragon)), And(Character.IsAlive, Not(Character.IsLocalPlayer)))]"
@@ -92,7 +88,6 @@ types PlayerOpinionPortraitTypes
 	}
 
 	type portrait_opinion_small = flowcontainer {
-		#name = "tutorial_highlight_portrait_opinion"
 		visible = "[And(And(Character.IsValid, Not(IsCharacterDragon)), And(Character.IsAlive, Not(Character.IsLocalPlayer)))]"
 		ignoreinvisible = yes
 		margin_right = 2

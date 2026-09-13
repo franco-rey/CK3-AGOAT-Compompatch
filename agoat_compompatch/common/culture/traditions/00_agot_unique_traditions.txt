@@ -1,5 +1,4 @@
-﻿### Essos
-
+﻿
 tradition_agot_essosi_valyrian = {
 	category = regional
 
@@ -1016,9 +1015,6 @@ tradition_agot_sarar = {
 	}
 }
 
-##############################################
-##############################################
-#Dreams of Essos - Culture Specific Traditions
 
 tradition_agot_axemen = {
 	category = regional
@@ -1114,7 +1110,6 @@ tradition_agot_noynar = {
 	}
 
 	parameters = {
-		# unlock_maa_wild_wardens = yes
 	}
 
 	character_modifier = {
@@ -1155,8 +1150,6 @@ tradition_agot_valyrian_original = {
 
 	parameters = {
 		unlock_maa_slave_legion = yes
-		#AGOT TODO
-		# more_likely_to_accept_vassalization_from_dragonrider = yes
 	}
 
 	character_modifier = {
@@ -1222,7 +1215,6 @@ tradition_agot_nonteloshi = {
 	}
 }
 
-#Ib
 tradition_agot_ibbenese = {
 	category = regional
 

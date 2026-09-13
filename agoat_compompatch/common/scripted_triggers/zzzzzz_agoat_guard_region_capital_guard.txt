@@ -1,0 +1,22 @@
+﻿agot_guard_positions_potential_guard_region_trigger = {
+	OR = {
+		primary_title ?= { target_is_de_jure_liege_or_above = title:$TITLE$ }
+		trigger_if = {
+			limit = { exists = capital_county }
+			capital_county ?= { target_is_de_jure_liege_or_above = title:$TITLE$ }
+		}
+		trigger_else = { always = no }
+		liege ?= {
+			OR = {
+				primary_title ?= { target_is_de_jure_liege_or_above = title:$TITLE$ }
+				capital_county ?= { target_is_de_jure_liege_or_above = title:$TITLE$ }
+			}
+		}
+		top_liege ?= {
+			OR = {
+				primary_title ?= { target_is_de_jure_liege_or_above = title:$TITLE$ }
+				capital_county ?= { target_is_de_jure_liege_or_above = title:$TITLE$ }
+			}
+		}
+	}
+}

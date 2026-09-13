@@ -31,10 +31,6 @@ agot_choose_dragonpit_event.0001 = {
 	}
 
 	immediate = {
-		# Always rebuild the destination list inside the event.  The previous
-		# implementation passed the Topless Towers into this list from the
-		# calling effect, which could leave the picker with neither that estate
-		# nor AGOT's ordinary dragonpits when the event scopes changed.
 		remove_variable = selected_title
 		remove_variable = dragonlord_topless_towers_picker_title
 		remove_variable = dragonlord_topless_towers_choice
@@ -51,11 +47,6 @@ agot_choose_dragonpit_event.0001 = {
 			}
 		}
 
-		# A title is only a GUI proxy for the estate domicile. Prefer the family's
-		# noble title, but fall back to the primary title so an old-save family
-		# whose registration marker has not yet been repaired can still use its
-		# estate. The chosen proxy is recorded explicitly; its title type is never
-		# used to decide which physical dragonpit was selected.
 		if = {
 			limit = { dragonlord_has_topless_towers_dragonpit = yes }
 			if = {
@@ -112,8 +103,6 @@ agot_choose_dragonpit_event.0001 = {
 			}
 		}
 
-		# Ordinary Dragonpits remain restricted to counties held personally by
-		# the event recipient, matching AGOT's ownership rule.
 		every_held_county = {
 			limit = { dragonlord_title_is_conventional_active_dragonpit = yes }
 			root = {
@@ -133,8 +122,6 @@ agot_choose_dragonpit_event.0001 = {
 			}
 			save_scope_as = selected_title
 		}
-		# The custom list callback keeps this explicit choice marker in sync.
-		# Initialize it for the default highlighted entry as well.
 		if = {
 			limit = {
 				exists = var:selected_title
@@ -145,7 +132,6 @@ agot_choose_dragonpit_event.0001 = {
 		}
 	}
 
-	# Choose where to house the dragon.
 	option = {
 		name = agot_choose_dragonpit_event.0001.a
 		trigger = { exists = var:selected_title }
@@ -172,9 +158,6 @@ agot_choose_dragonpit_event.0001 = {
 		}
 		if = {
 			limit = { exists = var:selected_title }
-			# Map the estate proxy to the actual domicile county. This is what makes
-			# estate-only and landless Dragonlord families work; capital_county is
-			# neither guaranteed to exist nor guaranteed to contain their estate.
 			if = {
 				limit = {
 					has_variable = dragonlord_topless_towers_choice

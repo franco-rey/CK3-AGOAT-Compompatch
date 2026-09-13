@@ -1,10 +1,6 @@
-﻿# vgl. game > common > character_interactions > 00_education_interactions.txt
-# vgl. 1158310 > 2753934263 > common > character_interactions > xx_baie_education_interactions.txt
-
-# Interactions relating to the education of children
+﻿
 
 
-# Designate guardian and ward in your own court
 educate_child_interaction = {
 	category = interaction_category_friendly
 	common_interaction = yes
@@ -13,10 +9,6 @@ educate_child_interaction = {
 	send_name = SEND_PROPOSAL
 	desc = educate_child_interaction_desc
 
-	# secondary_actor = guardian
-	# actor = guardian.liege - can be same as guardian
-	# secondary_recipient = ward
-	# recipient = ward.liege - can be same as ward
 
 	redirect = {
 		if = {
@@ -24,7 +16,6 @@ educate_child_interaction = {
 				scope:actor = { is_ai = no }
 			}
 			scope:actor = {
-				#If the character performing the action is a child, let's set ourselves as the ward
 				if = {
 					limit = {
 						is_adult = no
@@ -33,7 +24,6 @@ educate_child_interaction = {
 					}
 					save_scope_as = secondary_recipient
 				}
-				#If the character peforming the action is an adult, let's set ourselves as the guardian
 				else_if = {
 					limit = {
 						is_physically_able_adult = yes
@@ -42,7 +32,6 @@ educate_child_interaction = {
 					}
 					save_scope_as = secondary_actor
 				}
-				#Otherwise just pick whoever chum for the guardian position
 				else = {
 					random_courtier = {
 						limit = {
@@ -112,9 +101,7 @@ educate_child_interaction = {
 						exists = employer
 						employer != scope:recipient
 
-						# Code added by 'A Game of Thrones' Total Conversion mod
-						#AGOT Added
-						is_human = yes # Prevent redirect on dragon
+						is_human = yes
 					}
 
 					employer = {
@@ -141,7 +128,6 @@ educate_child_interaction = {
 				}
 				add_to_list = characters
 			}
-			# Begin code added by 'Better AI Education'
 			every_vassal = {
 				limit = {
 					is_physically_able_adult = yes
@@ -149,7 +135,6 @@ educate_child_interaction = {
 				}
 				add_to_list = characters
 			}
-			# End code added by 'Better AI Education'
 		}
 	}
 
@@ -171,7 +156,7 @@ educate_child_interaction = {
 					trigger_else = {
 						is_available_allow_travelling = yes
 					}
-					trigger_if = { #If a hostage then only if scope:actor is the hostage taker
+					trigger_if = {
 						limit = {
 							is_hostage = yes
 						}
@@ -204,16 +189,12 @@ educate_child_interaction = {
 						limit = {
 							scope:actor = { is_ai = yes }
 						}
-						# Begin code modified by 'A Game of Thrones' Total Conversion mod
-						#AGOT Modified so NW children get educated
-						#is_close_family_of = scope:actor
 						OR = {
 						is_close_family_of = scope:actor
 							scope:actor = { has_trait = nightswatch }
 						}
-						# End code modified by 'A Game of Thrones' Total Conversion mod
 					}
-					trigger_if = { #If a hostage then only if scope:actor is the hostage taker
+					trigger_if = {
 						limit = {
 							is_hostage = yes
 						}
@@ -299,8 +280,6 @@ educate_child_interaction = {
 			}
 		}
 
-		# Begin code added by 'A Game of Thrones' Total Conversion mod
-		#AGOT Added, no non-human interactions
 		scope:actor = { is_human = yes }
 		scope:recipient = { is_human = yes }
 		trigger_if = {
@@ -319,7 +298,6 @@ educate_child_interaction = {
 				is_human = yes
 			}
 		}
-		# End code added by 'A Game of Thrones' Total Conversion mod
 	}
 
 	is_valid_showing_failures_only = {
@@ -355,7 +333,7 @@ educate_child_interaction = {
 							is_landless_adventurer = no
 						}
 					}
-					is_travelling = no #The child in question should not already have a travel plan
+					is_travelling = no
 				}
 				NOT = { has_trait = incapable }
 				NOT = { exists = var:hostage_travelling_to_warden }
@@ -405,7 +383,7 @@ educate_child_interaction = {
 				}
 			}
 		}
-		trigger_if = { # Ward
+		trigger_if = {
 			limit = { exists = scope:secondary_recipient }
 			scope:secondary_recipient = {
 				custom_tooltip = {
@@ -416,7 +394,6 @@ educate_child_interaction = {
 					text = hostage_travelling_tt
 					NOT = { exists = var:hostage_travelling_to_warden }
 				}
-				# Structured this way for tooltip purposes
 				trigger_if = {
 					limit = { exists = var:ward_waiting_for_guardian }
 					var:ward_waiting_for_guardian = {
@@ -428,7 +405,7 @@ educate_child_interaction = {
 				}
 			}
 		}
-		trigger_if = { # Guardian
+		trigger_if = {
 			limit = { exists = scope:secondary_actor }
 			scope:secondary_actor = {
 				custom_tooltip = {
@@ -439,7 +416,6 @@ educate_child_interaction = {
 					text = hostage_travelling_tt
 					NOT = { exists = var:hostage_travelling_to_warden }
 				}
-				# Structured this way for tooltip purposes
 				trigger_if = {
 					limit = { exists = var:guardian_waiting_for_ward }
 					var:guardian_waiting_for_ward = {
@@ -451,21 +427,17 @@ educate_child_interaction = {
 				}
 			}
 		}
-		#limit range for landless adventurers
 		trigger_if = {
 			limit = {
 				scope:actor = {
 					has_government = landless_adventurer_government
 				}
 			}
-			#Has to be used instead of diplo range checks in laamp to landed interactions
 			ep3_laamp_diplo_range_trigger = {
 				TARGET = scope:recipient
 				LAAMP = scope:actor
 			}
 		}
-		# Begin code added by 'A Game of Thrones' Total Conversion mod
-		#AGOT Added
 		scope:recipient = {
 			agot_is_available_for_anything = yes
 		}
@@ -478,12 +450,10 @@ educate_child_interaction = {
 			}
 		}
 
-		#AGOT Added so canon children with canon guardians can only get guardians through players
 		agot_canon_children_should_allow_guardian_trigger = yes
-		# End code added by 'A Game of Thrones' Total Conversion mod
 	}
 
-	can_be_picked = { #Potential Issue: This is only evaluated if both secondary recipient/actor are unselected TIT-49632
+	can_be_picked = {
 		trigger_if = {
 			limit = {
 				OR = {
@@ -505,7 +475,6 @@ educate_child_interaction = {
 			is_available_allow_travelling = yes
 		}
 		is_at_home = yes
-		# Under offer
 		custom_tooltip = {
 			text = ward_already_offered_awaiting_response_tt
 			NOT = { has_character_flag = under_offer_as_ward_flag }
@@ -514,7 +483,6 @@ educate_child_interaction = {
 			text = guardian_already_offered_awaiting_response_tt
 			NOT = { has_character_flag = under_offer_as_guardian_flag }
 		}
-		# Already offered
 		custom_tooltip = {
 			text = ward_already_offered_awaiting_travel_tt
 			NOR = {
@@ -532,12 +500,10 @@ educate_child_interaction = {
 				}
 			}
 		}
-		# Hostage
 		custom_tooltip = {
 			text = hostage_travelling_tt
 			NOT = { exists = var:hostage_travelling_to_warden }
 		}
-		# Guardian has too many students
 		num_of_relation_ward <= 2
 		trigger_if = {
 			limit = { exists = var:character_requested_as_educator }
@@ -585,14 +551,11 @@ educate_child_interaction = {
 				}
 			}
 		}
-		#to see the "becomes guardian of x" effect in the interaction confirmation window
 		show_as_tooltip = {
 			scope:guardian  = { set_relation_ward = scope:ward }
 		}
 		accolade_ward_education_notification_effect = yes
 
-		# Begin code added by 'A Game of Thrones' Total Conversion mod
-		#AGOT Added
 		if = {
 			limit = {
 				exists = scope:guardian_liege.house
@@ -608,7 +571,6 @@ educate_child_interaction = {
 				}
 			}
 		}
-		# End code added by 'A Game of Thrones' Total Conversion mod
 	}
 
 	auto_accept = yes
@@ -623,16 +585,12 @@ educate_child_interaction = {
 			exists = scope:secondary_recipient
 			scope:secondary_actor.culture != scope:secondary_recipient.culture
 
-			# Code added by 'A Game of Thrones' Total Conversion mod
-			#AGOT Added
 			agot_can_convert_ward_culture = yes
 		}
 		flag = convert_culture
 		localization = EDUCATE_CHILD_OPTION_CONVERT_CULTURE
 		current_description = {
 			first_valid = {
-				# Begin code added by 'A Game of Thrones' Total Conversion mod
-				#AGOT Added for correct tooltips wrt HV conversion rules
 				triggered_desc = {
 					trigger = {
 						scope:secondary_actor = { culture = culture:high_valyrian }
@@ -684,8 +642,6 @@ educate_child_interaction = {
 					}
 					desc = EDUCATE_CHILD_OPTION_CONVERT_CULTURE_TT_TO_ACTOR_EV
 				}
-				#AGOT End
-				# End code added by 'A Game of Thrones' Total Conversion mod
 				triggered_desc = {
 					trigger = {
 						exists = scope:secondary_actor
@@ -730,32 +686,6 @@ educate_child_interaction = {
 			}
 		}
 	}
-	# Begin code disabled by 'A Game of Thrones' Total Conversion mod
-	#AGOT Disabled
-	# send_option = {
-	# 	is_shown = {
-	# 		scope:recipient = {
-	# 			custom_tooltip = {
-	# 				text = activity_education_no_culture_center #needed for error supression
-	# 				OR = {
-	# 					any_realm_province = {
-	# 						is_higher_studies_location = yes
-	# 					}
-	# 					any_realm_county = {
-	# 						has_county_modifier = pandidakterion_university_modifier
-	# 					}
-	# 				}
-	# 			}
-	# 		}
-	# 	}
-	# 	is_valid = {
-	# 		scope:actor.gold >= scope:actor.medium_gold_value
-	# 	}
-	# 	flag = send_to_university
-	# 	localization = EDUCATION_UNIVERSITY
-	# 	current_description = EDUCATION_UNIVERSITY_HIGHLIGHTED
-	# }
-	# End code disabled by 'A Game of Thrones' Total Conversion mod
 	send_option = {
 		is_shown = {
 			exists = scope:actor
@@ -802,14 +732,10 @@ educate_child_interaction = {
 				is_adult = no
 				is_physically_able = yes
 				num_of_relation_guardian = 0
-				# Begin code modified by 'A Game of Thrones' Total Conversion mod
-				#AGOT Modified so NW children get educated
-				#is_close_family_of = root
 				OR = {
 					is_close_family_of = root
 					root = { has_trait = nightswatch }
 				}
-				# End code modified by 'A Game of Thrones' Total Conversion mod
 			}
 		}
 	}
@@ -817,12 +743,10 @@ educate_child_interaction = {
 	ai_will_do = {
 		base = 100
 
-		modifier = { # Slight preference for older heirs
+		modifier = {
 			add = scope:secondary_recipient.age
 		}
 
-		# Begin code added by 'Better AI Education'
-		# Prioritize characters with intellect traits, as it gives the biggest buff to education
 		modifier = {
 			add = 2000
 			scope:secondary_actor = {
@@ -847,7 +771,6 @@ educate_child_interaction = {
 			}
 		}
 
-		# Learning gives half as much of a buff as the primary skill, give a buff accordingly.
 		modifier = {
 			scope:secondary_recipient = {
 				NOT = { has_focus = education_learning }
@@ -858,8 +781,6 @@ educate_child_interaction = {
 			}
 		}
 		
-		# If the child wants a diplomatic education, priortize guardians with
-		# a high diplomacy skill
 		modifier = {
 			scope:secondary_recipient = {
 				has_focus = education_diplomacy
@@ -870,8 +791,6 @@ educate_child_interaction = {
 			}
 			
 		}
-		# If the child wants a martial education, priortize guardians with
-		# a high martial skill
 		modifier = {
 			scope:secondary_recipient = {
 				has_focus = education_martial
@@ -882,8 +801,6 @@ educate_child_interaction = {
 				multiply = 30
 			}
 		}
-		# If the child wants a administrative education, priortize guardians with
-		# a high stewardship skill
 		modifier = {
 			scope:secondary_recipient = {
 				has_focus = education_stewardship
@@ -893,8 +810,6 @@ educate_child_interaction = {
 				multiply = 30
 			}
 		}
-		# If the child wants an intrigue education, prioritize guardians with
-		# a high intrigue skill.
 		modifier = {
 			scope:secondary_recipient = {
 				has_focus = education_intrigue
@@ -905,8 +820,6 @@ educate_child_interaction = {
 			}
 		}
 
-		# IF the child wants a learning education, prioritize guardians with
-		# a high learning skill.
 		modifier = {
 			scope:secondary_recipient = {
 				has_focus = education_learning
@@ -916,24 +829,21 @@ educate_child_interaction = {
 				multiply = 30
 			}
 		}
-		# End code added by 'Better AI Education'
 
-		modifier = { # Prefer to educate your own heirs
-			# Code modified by 'Better AI Education'
-			add = 50	# 900
+		modifier = {
+			add = 50
 			scope:actor = scope:secondary_actor
 			scope:secondary_recipient = {
 				is_heir_of = scope:actor
 			}
 		}
 
-		modifier = { # Otherwise, find a good educator for them
+		modifier = {
 			add = 200
 			scope:secondary_actor = {
 				OR = {
 					has_education_rank_4_trigger = yes
 					has_education_rank_3_trigger = yes
-					# Code added by 'Better AI Education'
 					has_education_rank_2_trigger = yes
 				}
 			}
@@ -942,14 +852,14 @@ educate_child_interaction = {
 			}
 		}
 
-		modifier = { # Generally prefer your own flesh & blood to educate children
+		modifier = {
 			add = 200
 			exists = scope:secondary_actor.dynasty
 			exists = scope:actor.dynasty
 			scope:secondary_actor.dynasty = scope:actor.dynasty
 		}
 
-		modifier = { # Also prefer friends & lovers
+		modifier = {
 			add = 100
 			scope:secondary_actor = {
 				OR = {
@@ -962,7 +872,7 @@ educate_child_interaction = {
 			}
 		}
 
-		modifier = { # The AI shouldn't change culture/faith of their children
+		modifier = {
 			add = -1000
 				scope:secondary_recipient.culture = scope:actor.culture
 				scope:secondary_recipient.faith = scope:actor.faith
@@ -972,14 +882,14 @@ educate_child_interaction = {
 				}
 		}
 
-		modifier = { # The AI should not convert child of vassals with protected religious right
+		modifier = {
 			add = -1000
 			scope:convert_faith = yes
 			scope:recipient = { is_vassal_of = scope:actor }
 			scope:recipient = { vassal_contract_has_flag = religiously_protected }
 		}
 
-		modifier = { # If your kids aren't of your culture/faith, make them so!
+		modifier = {
 			add = 900
 			scope:secondary_actor.culture = scope:actor.culture
 			scope:secondary_actor.faith = scope:actor.faith
@@ -991,21 +901,21 @@ educate_child_interaction = {
 			scope:convert_faith = yes
 		}
 
-		modifier = { # If your kids aren't of your culture/faith, make them so!
+		modifier = {
 			add = 500
 			scope:secondary_actor.culture = scope:actor.culture
 			scope:secondary_recipient.culture != scope:actor.culture
 			scope:convert_culture = yes
 		}
 
-		modifier = { # If your kids aren't of your culture/faith, make them so!
+		modifier = {
 			add = 500
 			scope:secondary_actor.faith = scope:actor.faith
 			scope:secondary_recipient.faith != scope:actor.faith
 			scope:convert_faith = yes
 		}
 
-		modifier = { # Rivals are not welcome
+		modifier = {
 			add = -1000
 			scope:secondary_recipient = {
 				OR = {
@@ -1015,24 +925,7 @@ educate_child_interaction = {
 			}
 		}
 
-		# Begin code disabled by 'Better AI Education'
-		# modifier = { # Random peasants can only dream about educating noble children!
-		# 	add = -1000
-		# 	scope:actor = {
-		# 		is_lowborn = no
-		# 	}
-		# 	scope:secondary_recipient = {
-		# 		is_lowborn = yes
-		# 		NOR = {
-		# 			is_councillor = yes
-		# 			is_knight = yes
-		# 		}
-		# 	}
-		# }
-		# End code disabled by 'Better AI Education'
 
-		# Begin code added by 'A Game of Thrones' Total Conversion mod
-		#AGOT Added, Night's watchmen really want to ward wildling children so they can convert them
 		modifier = {
 			add = 5000
 			scope:actor = { has_trait = nightswatch }
@@ -1040,35 +933,22 @@ educate_child_interaction = {
 			scope:convert_culture = yes
 			scope:convert_faith = yes
 		}
-		# End code added by 'A Game of Thrones' Total Conversion mod
 
-		modifier = { # Don't care about random children
+		modifier = {
 			factor = 0
 			scope:secondary_recipient = {
 				NOR = {
 					is_close_family_of = scope:actor
 					this = scope:actor
-					# Code added by 'A Game of Thrones' Total Conversion mod
-					#AGOT Added
 					has_trait = nightswatch
 				}
 			}
 		}
 
-		# Begin code disabled by 'A Game of Thrones' Total Conversion mod
-		#AGOT Disabled
-		# modifier = { # Don't spend gold on this unless very, very rich
-		# 	factor = 0
-		# 	scope:send_to_university = yes
 
-		# 	scope:actor.short_term_gold < scope:actor.monumental_gold_value
-		# }
-		# End code disabled by 'A Game of Thrones' Total Conversion mod
 	}
 }
 
-#Offer a ward to a landed character
-#This interaction is referenced in code! If it's renamed you have to ping a coder
 offer_ward_interaction = {
 	category = interaction_category_friendly
 	icon = child
@@ -1079,10 +959,6 @@ offer_ward_interaction = {
 	send_name = SEND_PROPOSAL
 
 
-	# secondary_actor = ward
-	# actor = ward.liege - can be same as ward
-	# secondary_recipient = guardian
-	# recipient = guardian.liege - can be same as guardian
 
 	redirect = {
 		scope:recipient = {
@@ -1091,9 +967,7 @@ offer_ward_interaction = {
 					exists = employer
 					employer != scope:recipient
 
-					# Code added by 'A Game of Thrones' Total Conversion mod
-					#AGOT Added
-					is_human = yes # Prevent redirect on dragon
+					is_human = yes
 				}
 				save_scope_as = secondary_recipient
 				employer = {
@@ -1116,7 +990,7 @@ offer_ward_interaction = {
 						}
 					}
 					is_hostage = no
-					is_travelling = no #Can be removed once the can_be_picked is fixed to re-evaluate
+					is_travelling = no
 				}
 				add_to_list = characters
 			}
@@ -1131,7 +1005,7 @@ offer_ward_interaction = {
 						}
 					}
 					is_hostage = no
-					is_travelling = no #Can be removed once the can_be_picked is fixed to re-evaluate
+					is_travelling = no
 				}
 				add_to_list = characters
 			}
@@ -1146,7 +1020,7 @@ offer_ward_interaction = {
 						}
 					}
 					is_hostage = no
-					is_travelling = no #Can be removed once the can_be_picked is fixed to re-evaluate
+					is_travelling = no
 				}
 				add_to_list = characters
 			}
@@ -1157,22 +1031,14 @@ offer_ward_interaction = {
 		scope:recipient = {
 			if = {
 				limit = {
-					# Begin code modified by 'A Game of Thrones' Total Conversion mod
-					#AGOT Modified
-					#is_adult = yes
 					is_physically_able_adult = yes
-					# End code modified by 'A Game of Thrones' Total Conversion mod
 					num_of_relation_ward < wlbol_ward_limit
 				}
 				add_to_list = characters
 			}
 			every_courtier = {
 				limit = {
-					# Begin code modified by 'A Game of Thrones' Total Conversion mod
-					#AGOT Modified
-					#is_adult = yes
 					is_physically_able_adult = yes
-					# End code modified by 'A Game of Thrones' Total Conversion mod
 					num_of_relation_ward < wlbol_ward_limit
 					NOR = {
 						is_theocratic_lessee = yes
@@ -1269,17 +1135,13 @@ offer_ward_interaction = {
 			}
 		}
 
-		# Begin code added by 'A Game of Thrones' Total Conversion mod
-		#AGOT Added, no non-human interactions
 		scope:actor = { is_human = yes }
 		scope:recipient = { is_human = yes }
 
-		#AGOT Added, no warding children at other courts with the NW
 		NOT = {
 			scope:actor = { has_trait = nightswatch }
 			scope:recipient = { has_trait = nightswatch }
 		}
-		# End code added by 'A Game of Thrones' Total Conversion mod
 	}
 
 	is_valid_showing_failures_only = {
@@ -1347,7 +1209,7 @@ offer_ward_interaction = {
 		scope:recipient = {
 			is_imprisoned = no
 		}
-		trigger_if = { # Ward
+		trigger_if = {
 			limit = {
 				exists = scope:secondary_actor
 			}
@@ -1361,7 +1223,6 @@ offer_ward_interaction = {
 					text = hostage_travelling_tt
 					NOT = { exists = var:hostage_travelling_to_warden }
 				}
-				# Structured this way for tooltip purposes
 				trigger_if = {
 					limit = { exists = var:ward_waiting_for_guardian }
 					var:ward_waiting_for_guardian = {
@@ -1373,7 +1234,7 @@ offer_ward_interaction = {
 				}
 			}
 		}
-		trigger_if = { # Guardian
+		trigger_if = {
 			limit = {
 				exists = scope:secondary_recipient
 			}
@@ -1387,7 +1248,6 @@ offer_ward_interaction = {
 					text = hostage_travelling_tt
 					NOT = { exists = var:hostage_travelling_to_warden }
 				}
-				# Structured this way for tooltip purposes
 				trigger_if = {
 					limit = { exists = var:guardian_waiting_for_ward }
 					var:guardian_waiting_for_ward = {
@@ -1399,27 +1259,22 @@ offer_ward_interaction = {
 				}
 			}
 		}
-		#limit range for landless adventurers
 		trigger_if = {
 			limit = {
 				scope:actor = {
 					has_government = landless_adventurer_government
 				}
 			}
-			#Has to be used instead of diplo range checks in laamp to landed interactions
 			ep3_laamp_diplo_range_trigger = {
 				TARGET = scope:recipient
 				LAAMP = scope:actor
 			}
 		}
-		# Code added by 'A Game of Thrones' Total Conversion mod
-		#AGOT Added so canon children with canon guardians can only get guardians through players
 		agot_canon_children_should_allow_guardian_trigger = yes
 	}
 
 	can_be_picked = {
-		is_available = yes #Potential Issue: This is only evaluated if both secondary recipient/actor are unselected TIT-49632
-		# Under offer
+		is_available = yes
 		custom_tooltip = {
 			text = ward_already_offered_awaiting_response_tt
 			NOT = { has_character_flag = under_offer_as_ward_flag }
@@ -1428,7 +1283,6 @@ offer_ward_interaction = {
 			text = guardian_already_offered_awaiting_response_tt
 			NOT = { has_character_flag = under_offer_as_guardian_flag }
 		}
-		# Already offered
 		custom_tooltip = {
 			text = ward_already_offered_awaiting_travel_tt
 			NOR = {
@@ -1446,7 +1300,6 @@ offer_ward_interaction = {
 				}
 			}
 		}
-		# Hostage
 		custom_tooltip = {
 			text = hostage_travelling_tt
 			NOT = { exists = var:hostage_travelling_to_warden }
@@ -1482,7 +1335,6 @@ offer_ward_interaction = {
 			}
 		}
 
-		# Handle existing guardian
 		scope:ward = {
 			if = {
 				limit = {
@@ -1495,7 +1347,6 @@ offer_ward_interaction = {
 					type = guardian
 					save_scope_as = old_guardian
 
-					#Letter event to guardian
 					if = {
 						limit = {
 							scope:old_guardian != scope:actor
@@ -1516,7 +1367,6 @@ offer_ward_interaction = {
 							HIDE_OPINION = no
 						}
 
-						#Was education promised in interaction or in vassal.2001? Then you get an opinion penalty
 						if = {
 							limit = {
 								exists = scope:ward.var:character_requested_as_educator
@@ -1554,7 +1404,6 @@ offer_ward_interaction = {
 				limit = {
 					this != scope:recipient
 					scope:ward = {
-						#num_of_relation_guardian = 0
 						NOR = {
 							any_relation = {
 								type = guardian
@@ -1575,7 +1424,6 @@ offer_ward_interaction = {
 			}
 		}
 
-		# If we're a clan this interaction affects unity
 		add_clan_unity_interaction_effect = {
 			CHARACTER = scope:actor
 			TARGET = scope:recipient
@@ -1586,8 +1434,6 @@ offer_ward_interaction = {
 
 		accolade_ward_education_notification_effect = yes
 
-		# Begin code added by 'A Game of Thrones' Total Conversion mod
-		#AGOT Added
 		scope:recipient.house ?= {
 			change_house_relation_effect = {
 				HOUSE = scope:ward.house
@@ -1598,11 +1444,9 @@ offer_ward_interaction = {
 				TITLE = scope:dummy_gender
 			}
 		}
-		# End code added by 'A Game of Thrones' Total Conversion mod
 	}
 
 	on_decline = {
-		# If we're a clan this interaction affects unity. Conditioned to the opinion modifier to avoid exploit
 		if = {
 			limit = {
 				NOT = {
@@ -1649,8 +1493,6 @@ offer_ward_interaction = {
 	ai_accept = {
 		base = 0
 
-		# AI should always accept children the Player has jurisdiction over
-		# You can always send your own child away
 		modifier = {
 			add = 200
 			scope:secondary_actor = {
@@ -1659,13 +1501,11 @@ offer_ward_interaction = {
 			}
 			desc = AI_YOUR_OWN_CHILD
 		}
-		# Including you
 		modifier = {
 			add = 200
 			scope:secondary_actor = scope:actor
 			desc = AI_EDUCATE_YOU
 		}
-		# You can always send your courtier's child away
 		modifier = {
 			add = 200
 			scope:secondary_actor = {
@@ -1673,7 +1513,6 @@ offer_ward_interaction = {
 				NOT = { is_child_of = scope:actor }
 				is_courtier_of = scope:actor
 			}
-			#But only if you are of interest to the educator. To educate the courtier of a count is of no interest to a foreign emperor.
 			scope:secondary_recipient ?= {
 				OR = {
 					is_of_major_or_minor_interest_trigger = { CHARACTER = scope:actor }
@@ -1684,7 +1523,6 @@ offer_ward_interaction = {
 			desc = AI_YOUR_COURTIER_CHILD
 		}
 
-		#Weak hook: extra points
 		modifier = {
 			scope:education_hook = yes
 			add = 100
@@ -1692,13 +1530,12 @@ offer_ward_interaction = {
 			desc = SCHEME_WEAK_HOOK_USED
 		}
 
-		modifier = { # Respect the liege
+		modifier = {
 			add = 50
 			scope:recipient = { target_is_liege_or_above = scope:actor }
 			desc = EDUCATE_CHILD_ACTOR_IS_MY_LIEGE
 		}
 
-		#If the child is theirs they are more likely to accept
 		modifier = {
 			add = 100
 			scope:secondary_actor = {
@@ -1708,7 +1545,6 @@ offer_ward_interaction = {
 			desc = AI_MY_CHILD
 		}
 
-		#If the child is the educator's child they should be more likely to accept
 		modifier = {
 			add = 100
 			exists = scope:secondary_recipient
@@ -1719,7 +1555,6 @@ offer_ward_interaction = {
 			desc = AI_MY_CHILD
 		}
 
-		#Their opinion of you matters!
 		opinion_modifier = {
 			opinion_target = scope:actor
 			who = scope:recipient
@@ -1727,7 +1562,6 @@ offer_ward_interaction = {
 			desc = AI_OPINION_REASON
 		}
 
-		#Make less likely that they accept if they are of another culture
 		modifier = {
 			add = -10
 			trigger = {
@@ -1749,7 +1583,6 @@ offer_ward_interaction = {
 			desc = AI_NOT_CULTURE
 		}
 
-		#Less likely if they don't like other religion
 		modifier = {
 			add = {
 				value = -5
@@ -1782,7 +1615,6 @@ offer_ward_interaction = {
 			desc = AI_RELIGION
 		}
 
-		#The better the educator is at a skill, the less likely they are to accept
 		compare_modifier = {
 			trigger = {
 				scope:secondary_recipient ?= {
@@ -1859,7 +1691,6 @@ offer_ward_interaction = {
 			desc = AI_GUARDIAN_SKILL_LEARNING
 		}
 
-		#The better you as an educator is at a skill, the more likely they are to accept
 		compare_modifier = {
 			trigger = {
 				AND = {
@@ -1946,7 +1777,6 @@ offer_ward_interaction = {
 			desc = AI_GUARDIAN_SKILL_LEARNING
 		}
 
-		#More/Less likely based on difference in rank between actor and recipient
 		modifier = {
 			add = 20
 			scope:actor = {
@@ -2099,7 +1929,6 @@ offer_ward_interaction = {
 			desc = DIARCH_SHOULD_EDUCATE_LIEGE_TO_DIARCH
 		}
 
-		# Unity modifiers
 		evaluate_action_increasing_house_unity = {
 			VALUE = 100
 		}
@@ -2111,16 +1940,12 @@ offer_ward_interaction = {
 			exists = scope:secondary_recipient
 			scope:secondary_actor.culture != scope:secondary_recipient.culture
 
-			# Code added by 'A Game of Thrones' Total Conversion mod
-			#AGOT Added
 			agot_can_convert_ward_culture = yes
 		}
 		flag = convert_culture
 		localization = EDUCATE_CHILD_OPTION_CONVERT_CULTURE
 		current_description = {
 			first_valid = {
-				# Begin code added by 'A Game of Thrones' Total Conversion mod
-				#AGOT Added for correct tooltips wrt HV conversion rules
 				triggered_desc = {
 					trigger = {
 						scope:secondary_recipient = { culture = culture:high_valyrian }
@@ -2172,8 +1997,6 @@ offer_ward_interaction = {
 					}
 					desc = EDUCATE_CHILD_OPTION_CONVERT_CULTURE_TT_TO_ACTOR_EV
 				}
-				#AGOT End
-				# End code added by 'A Game of Thrones' Total Conversion mod
 				triggered_desc = {
 					trigger = {
 						exists = scope:secondary_actor
@@ -2218,49 +2041,6 @@ offer_ward_interaction = {
 			}
 		}
 	}
-	# Begin code disabled by 'A Game of Thrones' Total Conversion mod
-	#AGOT Disabled
-	# send_option = {
-	# 	is_shown = {
-	# 		OR = {
-	# 			scope:recipient = {
-	# 				custom_tooltip = {
-	# 					text = activity_education_no_culture_center #needed for error supression
-	# 					OR = {
-	# 						any_realm_province = {
-	# 							is_higher_studies_location = yes
-	# 						}
-	# 						any_realm_county = {
-	# 							has_county_modifier = pandidakterion_university_modifier
-	# 						}
-	# 					}
-	# 				}
-	# 			}
-	# 			scope:actor = {
-	# 				this = scope:secondary_actor
-	# 				custom_tooltip = {
-	# 					text = activity_education_no_culture_center #needed for error supression
-	# 					OR = {
-	# 						any_realm_province = {
-	# 							is_higher_studies_location = yes
-	# 						}
-	# 						any_realm_county = {
-	# 							has_county_modifier = pandidakterion_university_modifier
-	# 						}
-	# 					}
-	# 				}
-	# 			}
-	# 		}
-	# 	}
-	# 	is_valid = {
-	# 		scope:actor.gold >= scope:actor.monumental_gold_value
-	# 	}
-	# 	starts_enabled = { always = yes	}
-	# 	flag = send_to_university
-	# 	localization = EDUCATION_UNIVERSITY
-	# 	current_description = EDUCATION_UNIVERSITY_HIGHLIGHTED
-	# }
-	# End code disabled by 'A Game of Thrones' Total Conversion mod
 	send_option = {
 		is_valid = {
 			scope:actor = {
@@ -2279,34 +2059,22 @@ offer_ward_interaction = {
 		OR = {
 			scope:recipient = {
 				custom_tooltip = {
-					text = activity_education_no_culture_center #needed for error supression
+					text = activity_education_no_culture_center
 					OR = {
 						any_realm_province = {
 							is_higher_studies_location = yes
 						}
-						# Begin code disabled by 'A Game of Thrones' Total Conversion mod
-						#AGOT Disabled
-						# any_realm_county = {
-						# 	has_county_modifier = pandidakterion_university_modifier
-						# }
-						# End code disabled by 'A Game of Thrones' Total Conversion mod
 					}
 				}
 			}
 			scope:actor = {
 				this = scope:secondary_actor
 				custom_tooltip = {
-					text = activity_education_no_culture_center #needed for error supression
+					text = activity_education_no_culture_center
 					OR = {
 						any_realm_province = {
 							is_higher_studies_location = yes
 						}
-						# Begin code disabled by 'A Game of Thrones' Total Conversion mod
-						#AGOT Disabled
-						# any_realm_county = {
-						# 	has_county_modifier = pandidakterion_university_modifier
-						# }
-						# End code disabled by 'A Game of Thrones' Total Conversion mod
 					}
 				}
 			}
@@ -2349,7 +2117,7 @@ offer_ward_interaction = {
 	ai_will_do = {
 		base = 0
 
-		modifier = { # The AI wants to use wards to improve opinion with their vassals
+		modifier = {
 			add = 500
 			scope:actor = {
 				NOT = {
@@ -2379,7 +2147,7 @@ offer_ward_interaction = {
 			}
 		}
 
-		modifier = { # Zealous AI's want their head of faith to educate their children
+		modifier = {
 			add = 600
 			scope:actor = {
 				OR = {
@@ -2390,24 +2158,23 @@ offer_ward_interaction = {
 			scope:recipient = scope:secondary_recipient
 			scope:recipient = scope:actor.faith.religious_head
 			scope:recipient = {
-				is_ai = yes # Don't spam players
+				is_ai = yes
 				num_of_relation_ward < wlbol_ward_limit
 			}
 		}
 
-		# Unity modifiers
 		evaluate_action_increasing_house_unity = {
 			VALUE = 100
 		}
 
-		modifier = { # Don't send your primary heir away
+		modifier = {
 			factor = 0
 			scope:secondary_actor = {
 				is_primary_heir_of = scope:actor
 			}
 		}
 
-		modifier = { # The AI shouldn't change culture/faith of their children
+		modifier = {
 			factor = 0
 			OR = {
 				scope:convert_culture = yes
@@ -2415,7 +2182,7 @@ offer_ward_interaction = {
 			}
 		}
 
-		modifier = { # Don't care about random children
+		modifier = {
 			factor = 0
 			scope:secondary_actor = {
 				NOR = {
@@ -2425,17 +2192,17 @@ offer_ward_interaction = {
 			}
 		}
 
-		modifier = { # Don't send children that are in need of a culture conversion
+		modifier = {
 			factor = 0
 			scope:secondary_actor.culture != scope:actor.culture
 		}
 
-		modifier = { # Don't send away yourself
+		modifier = {
 			factor = 0
 			scope:secondary_actor = scope:actor
 		}
 
-		modifier = { # Rivals are not welcome
+		modifier = {
 			factor = 0
 			scope:recipient = {
 				OR = {
@@ -2445,7 +2212,7 @@ offer_ward_interaction = {
 			}
 		}
 
-		modifier = { # Don't backtrack
+		modifier = {
 			factor = 0
 			scope:secondary_actor = {
 				any_relation = {
@@ -2458,26 +2225,17 @@ offer_ward_interaction = {
 			}
 		}
 
-		modifier = { # Don't override players
+		modifier = {
 			factor = 0
 			scope:secondary_actor = {
 				has_character_flag = player_educated
 			}
 		}
 
-		# Begin code disabled by 'A Game of Thrones' Total Conversion mod
-		#AGOT Disabled
-		# modifier = { # Don't spend gold on this unless very, very rich
-		# 	factor = 0
-		# 	scope:send_to_university = yes
 
-		# 	scope:actor.short_term_gold <= scope:actor.monumental_gold_value
-		# }
-		# End code disabled by 'A Game of Thrones' Total Conversion mod
 	}
 }
 
-# Request guardianship
 offer_guardianship_interaction = {
 	category = interaction_category_friendly
 	icon = child
@@ -2485,10 +2243,6 @@ offer_guardianship_interaction = {
 
 	desc = offer_guardianship_interaction_desc
 
-	# secondary_actor = guardian
-	# actor = guardian.liege - can be same as guardian
-	# secondary_recipient = ward
-	# recipient = ward.liege - can be same as ward
 
 	redirect = {
 		if = {
@@ -2501,14 +2255,11 @@ offer_guardianship_interaction = {
 						exists = employer
 						employer != scope:recipient
 
-						# Code added by 'A Game of Thrones' Total Conversion mod
-						#AGOT Added
-						is_human = yes # Prevent redirect on dragon
+						is_human = yes
 					}
 					if = {
 						limit = {
 							is_adult = no
-							#num_of_relation_guardian = 0
 						}
 						save_scope_as = secondary_recipient
 					}
@@ -2542,8 +2293,6 @@ offer_guardianship_interaction = {
 			every_courtier = {
 				limit = {
 					is_adult = yes
-					# Code added by 'A Game of Thrones' Total Conversion mod
-					#AGOT Added
 					is_human = yes
 					num_of_relation_ward < wlbol_ward_limit
 					NOR = {
@@ -2588,7 +2337,6 @@ offer_guardianship_interaction = {
 		first_valid = {
 			triggered_desc = {
 				trigger = {
-					# I assign, myself, to educate not you, but your...
 					scope:actor = scope:secondary_actor
 					scope:recipient != scope:secondary_recipient
 				}
@@ -2596,7 +2344,6 @@ offer_guardianship_interaction = {
 			}
 			triggered_desc = {
 				trigger = {
-					# I assign, myself, to educate you, yourself!
 					scope:actor = scope:secondary_actor
 					scope:recipient = scope:secondary_recipient
 				}
@@ -2604,7 +2351,6 @@ offer_guardianship_interaction = {
 			}
 			triggered_desc = {
 				trigger = {
-				# I assign, not myself, to educate not you, but your...
 					scope:recipient != scope:secondary_recipient
 					scope:actor != scope:secondary_actor
 				}
@@ -2612,7 +2358,6 @@ offer_guardianship_interaction = {
 			}
 			triggered_desc = {
 				trigger = {
-				# I assign, not myself, to educate you, yourself
 					scope:recipient = scope:secondary_recipient
 					scope:actor != scope:secondary_actor
 				}
@@ -2661,22 +2406,17 @@ offer_guardianship_interaction = {
 			}
 		}
 
-		# Begin code added by 'A Game of Thrones' Total Conversion mod
-		#AGOT Added, no non-human interactions
 		scope:actor = { is_human = yes }
 		scope:recipient = { is_human = yes }
 
-		#AGOT Added, no warding children at other courts with the NW
 		NOT = {
 			scope:actor = { has_trait = nightswatch }
 			scope:recipient = { has_trait = nightswatch }
 		}
 
-		#AGOT Added, need to actually be available
 		scope:recipient = {
 			agot_is_available_for_anything = yes
 		}
-		# End code added by 'A Game of Thrones' Total Conversion mod
 	}
 
 	is_valid_showing_failures_only = {
@@ -2687,11 +2427,9 @@ offer_guardianship_interaction = {
 				OR = {
 					any_courtier = {
 						is_adult = no
-						#num_of_relation_guardian = 0
 					}
 					AND = {
 						is_adult = no
-						#num_of_relation_guardian = 0
 					}
 				}
 			}
@@ -2719,7 +2457,7 @@ offer_guardianship_interaction = {
 			is_imprisoned = no
 			bp2_valid_for_standard_interactions_trigger = yes
 		}
-		trigger_if = { # Ward
+		trigger_if = {
 			limit = {
 				exists = scope:secondary_recipient
 			}
@@ -2735,7 +2473,6 @@ offer_guardianship_interaction = {
 					text = hostage_travelling_tt
 					NOT = { exists = var:hostage_travelling_to_warden }
 				}
-				# Structured this way for tooltip purposes
 				trigger_if = {
 					limit = { exists = var:ward_waiting_for_guardian }
 					var:ward_waiting_for_guardian = {
@@ -2747,7 +2484,7 @@ offer_guardianship_interaction = {
 				}
 			}
 		}
-		trigger_if = { # Guardian
+		trigger_if = {
 			limit = {
 				exists = scope:secondary_actor
 			}
@@ -2762,7 +2499,6 @@ offer_guardianship_interaction = {
 					NOT = { exists = var:hostage_travelling_to_warden }
 				}
 
-				# Structured this way for tooltip purposes
 				trigger_if = {
 					limit = { exists = var:guardian_waiting_for_ward }
 					var:guardian_waiting_for_ward = {
@@ -2774,27 +2510,22 @@ offer_guardianship_interaction = {
 				}
 			}
 		}
-		#limit range for landless adventurers
 		trigger_if = {
 			limit = {
 				scope:actor = {
 					has_government = landless_adventurer_government
 				}
 			}
-			#Has to be used instead of diplo range checks in laamp to landed interactions
 			ep3_laamp_diplo_range_trigger = {
 				TARGET = scope:recipient
 				LAAMP = scope:actor
 			}
 		}
-		# Code added by 'A Game of Thrones' Total Conversion mod
-		#AGOT Added so canon children with canon guardians can only get guardians through players
 		agot_canon_children_should_allow_guardian_trigger = yes
 	}
 
-	can_be_picked = { #Potential Issue: This is only evaluated if both secondary recipient/actor are unselected TIT-49632
+	can_be_picked = {
 		is_available = yes
-		# Under offer
 		custom_tooltip = {
 			text = ward_already_offered_awaiting_response_tt
 			NOT = { has_character_flag = under_offer_as_ward_flag }
@@ -2803,7 +2534,6 @@ offer_guardianship_interaction = {
 			text = guardian_already_offered_awaiting_response_tt
 			NOT = { has_character_flag = under_offer_as_guardian_flag }
 		}
-		# Already offered
 		custom_tooltip = {
 			text = ward_already_offered_awaiting_travel_tt
 			NOR = {
@@ -2821,7 +2551,6 @@ offer_guardianship_interaction = {
 				}
 			}
 		}
-		# Hostage
 		custom_tooltip = {
 			text = hostage_travelling_tt
 			NOT = { exists = var:hostage_travelling_to_warden }
@@ -2873,12 +2602,12 @@ offer_guardianship_interaction = {
 			}
 		}
 
-		if = { #To block against too many wards
+		if = {
 			limit = {
 				scope:guardian = { num_of_relation_ward < wlbol_ward_limit	}
 			}
 
-			save_scope_value_as = { #To give right tooltip in char_interaction.0080
+			save_scope_value_as = {
 				name = offer_guardianship_interaction
 				value = yes
 			}
@@ -2890,7 +2619,7 @@ offer_guardianship_interaction = {
 				}
 			}
 		}
-		else = { #Notifications about the relationship being blocked because actor tried to set it with too many
+		else = {
 			scope:recipient = {
 				trigger_event = char_interaction.0078
 			}
@@ -2899,7 +2628,6 @@ offer_guardianship_interaction = {
 			}
 		}
 
-		# If we're a clan this interaction affects unity
 		add_clan_unity_interaction_effect = {
 			CHARACTER = scope:actor
 			TARGET = scope:recipient
@@ -2910,8 +2638,6 @@ offer_guardianship_interaction = {
 
 		accolade_ward_education_notification_effect = yes
 
-		# Begin code added by 'A Game of Thrones' Total Conversion mod
-		#AGOT Added
 		if = {
 			limit = {
 				exists = scope:ward.house
@@ -2927,10 +2653,8 @@ offer_guardianship_interaction = {
 				}
 			}
 		}
-		# End code added by 'A Game of Thrones' Total Conversion mod
 	}
 
-	#AGOT Added
 	on_auto_accept = {
 		scope:recipient = { 
 			trigger_event = agot_char_interaction.0200
@@ -2949,7 +2673,6 @@ offer_guardianship_interaction = {
 					}
 				}
 			}
-			# If we're a clan this interaction affects unity; conditioned by the opinion modifer to avoid exploit
 			add_clan_unity_interaction_effect = {
 				CHARACTER = scope:actor
 				TARGET = scope:recipient
@@ -2993,7 +2716,6 @@ offer_guardianship_interaction = {
 	ai_accept = {
 		base = -50
 
-		#Weak hook: extra points
 		modifier = {
 			scope:education_hook = yes
 			add = 200
@@ -3001,13 +2723,12 @@ offer_guardianship_interaction = {
 			desc = SCHEME_WEAK_HOOK_USED
 		}
 
-		modifier = { # Respect the liege
+		modifier = {
 			add = 100
 			scope:recipient = { target_is_liege_or_above = scope:actor }
 			desc = EDUCATE_CHILD_ACTOR_IS_MY_LIEGE
 		}
 
-		#If the child is the educator's child they should be more likely to accept
 		modifier = {
 			add = 100
 			scope:secondary_recipient ?= {
@@ -3097,7 +2818,6 @@ offer_guardianship_interaction = {
 			desc = AI_YOUR_RIVAL
 		}
 
-		# If the guardian is the child's secret father, the mother is more likely to send them
 		modifier = {
 			add = 100
 			exists = scope:secondary_recipient.mother
@@ -3123,7 +2843,6 @@ offer_guardianship_interaction = {
 			desc = AI_YOU_ARE_THE_FATHER
 		}
 
-		#Their opinion of you matters!
 		opinion_modifier = {
 			opinion_target = scope:actor
 			who = scope:recipient
@@ -3131,7 +2850,6 @@ offer_guardianship_interaction = {
 			desc = AI_OPINION_REASON
 		}
 
-		#Make less likely that they accept you as educator if they are of another culture
 		modifier = {
 			add = -5
 			trigger = {
@@ -3155,7 +2873,6 @@ offer_guardianship_interaction = {
 			desc = AI_NOT_CULTURE
 		}
 
-		#Less likely if they don't like other religion
 		modifier = {
 			add = {
 				value = -5
@@ -3188,7 +2905,6 @@ offer_guardianship_interaction = {
 			desc = AI_RELIGION
 		}
 
-		#The better the educator is at a skill, the more likely they are to accept
 		compare_modifier = {
 			trigger = {
 				scope:secondary_actor = {
@@ -3260,7 +2976,6 @@ offer_guardianship_interaction = {
 			desc = AI_GUARDIAN_SKILL_LEARNING
 		}
 
-		# FP3 Beacon of Learning tradition (it makes a higher education trait more likely)
 		modifier = {
 			add = 15
 			scope:secondary_actor = {
@@ -3269,7 +2984,6 @@ offer_guardianship_interaction = {
 			desc = tradition_fp3_beacon_of_learning_name
 		}
 
-		#More/Less likely based on difference in rank between actor and recipient
 		modifier = {
 			add = 30
 			scope:actor = {
@@ -3371,7 +3085,6 @@ offer_guardianship_interaction = {
 			desc = AI_RANK_DIFF
 		}
 
-		#More likely to accept if you have an alliance
 		modifier = {
 			add = 40
 			scope:actor = { is_allied_to = scope:recipient }
@@ -3464,7 +3177,6 @@ offer_guardianship_interaction = {
 			desc = DIARCH_SHOULD_EDUCATE_DIARCH_TO_LIEGE
 		}
 
-		# Unity modifiers
 		evaluate_action_increasing_house_unity = {
 			VALUE = 100
 		}
@@ -3474,18 +3186,12 @@ offer_guardianship_interaction = {
 		is_shown = {
 			exists = scope:secondary_actor
 			exists = scope:secondary_recipient
-			# Begin code modified by 'A Game of Thrones' Total Conversion mod
-			#AGOT Modified to account for HV conversion rules
-			#scope:secondary_actor.culture != scope:secondary_recipient.culture
 			agot_can_convert_ward_culture = yes
-			# End code modified by 'A Game of Thrones' Total Conversion mod
 		}
 		flag = convert_culture
 		localization = EDUCATE_CHILD_OPTION_CONVERT_CULTURE
 		current_description = {
 			first_valid = {
-				# Begin code added by 'A Game of Thrones' Total Conversion mod
-				#AGOT Added for correct tooltips wrt HV conversion rules
 				triggered_desc = {
 					trigger = {
 						scope:secondary_actor = { culture = culture:high_valyrian }
@@ -3537,8 +3243,6 @@ offer_guardianship_interaction = {
 					}
 					desc = EDUCATE_CHILD_OPTION_CONVERT_CULTURE_TT_TO_ACTOR_EV
 				}
-				#AGOT End
-				# End code added by 'A Game of Thrones' Total Conversion mod
 				triggered_desc = {
 					trigger = {
 						exists = scope:secondary_actor
@@ -3583,32 +3287,6 @@ offer_guardianship_interaction = {
 			}
 		}
 	}
-	# Begin code disabled by 'A Game of Thrones' Total Conversion mod
-	#AGOT Disabled
-	# send_option = {
-	# 	is_shown = {
-	# 		scope:recipient = {
-	# 			custom_tooltip = {
-	# 				text = activity_education_no_culture_center #needed for error supression
-	# 				OR = {
-	# 					any_realm_province = {
-	# 						is_higher_studies_location = yes
-	# 					}
-	# 					any_realm_county = {
-	# 						has_county_modifier = pandidakterion_university_modifier
-	# 					}
-	# 				}
-	# 			}
-	# 		}
-	# 	}
-	# 	is_valid = {
-	# 		scope:actor.gold >= scope:actor.medium_gold_value
-	# 	}
-	# 	starts_enabled = { always = yes	}
-	# 	flag = send_to_university
-	# 	localization = EDUCATION_UNIVERSITY
-	# }
-	# End code disabled by 'A Game of Thrones' Total Conversion mod
 	send_option = {
 		is_valid = {
 			scope:actor = {
@@ -3647,45 +3325,13 @@ offer_guardianship_interaction = {
 	ai_will_do = {
 		base = 0
 
-		# Begin code disabled by 'A Game of Thrones' Total Conversion mod
-		#AGOT Disabled
-		# modifier = { # Liege's should want to culture/faith convert their vassal's children
-		# 	add = 100
 
-		# 	scope:convert_culture = yes
-		# 	scope:convert_faith = yes
 
-		# 	scope:secondary_actor = {
-		# 		culture = scope:actor.culture
-		# 		faith = scope:actor.faith
-		# 	}
-		# 	scope:secondary_recipient = {
-		# 		OR = {
-		# 			is_heir_of = scope:recipient
-		# 			scope:secondary_recipient = scope:recipient
-		# 		}
-		# 	}
-		# }
 
-		#AGOT Disabled
-		# modifier = { # Liege's should want to culture/faith convert their vassal's children
-		# 	add = 95
 
-		# 	scope:convert_culture = yes
 
-		# 	scope:secondary_actor = {
-		# 		culture = scope:actor.culture
-		# 	}
-		# 	scope:secondary_recipient = {
-		# 		OR = {
-		# 			is_heir_of = scope:recipient
-		# 			scope:secondary_recipient = scope:recipient
-		# 		}
-		# 	}
-		# }
-		# End code disabled by 'A Game of Thrones' Total Conversion mod
 
-		modifier = { # Liege's should want to culture/faith convert their vassal's children
+		modifier = {
 			add = 90
 
 			scope:convert_faith = yes
@@ -3701,7 +3347,7 @@ offer_guardianship_interaction = {
 			}
 		}
 
-		modifier = { # Players shouldn't be spammed
+		modifier = {
 			add = -90
 
 			scope:secondary_recipient = {
@@ -3709,12 +3355,11 @@ offer_guardianship_interaction = {
 			}
 		}
 
-		# Unity modifiers
 		evaluate_action_increasing_house_unity = {
 			VALUE = 100
 		}
 
-		modifier = { # Players shouldn't be spammed
+		modifier = {
 			factor = 0
 
 			scope:recipient = {
@@ -3722,7 +3367,7 @@ offer_guardianship_interaction = {
 			}
 		}
 
-		modifier = { # Don't ask to convert faith if that's already a thing
+		modifier = {
 			factor = 0
 
 			scope:convert_faith = yes
@@ -3741,7 +3386,7 @@ offer_guardianship_interaction = {
 			}
 		}
 
-		modifier = { # Don't ask to convert culture if that's already a thing
+		modifier = {
 			factor = 0
 
 			scope:convert_culture = yes
@@ -3760,7 +3405,7 @@ offer_guardianship_interaction = {
 			}
 		}
 
-		modifier = { # Don't ask to convert culture and faith if that's already a thing
+		modifier = {
 			factor = 0
 
 			scope:convert_culture = yes
@@ -3780,25 +3425,14 @@ offer_guardianship_interaction = {
 			}
 		}
 
-		# Begin code disabled by 'A Game of Thrones' Total Conversion mod
-		#AGOT Disabled
-		# modifier = { # Don't spend gold on this unless very, very rich
-		# 	factor = 0
-		# 	scope:send_to_university = yes
 
-		# 	scope:actor.short_term_gold <= scope:actor.monumental_gold_value
-		# }
-		# End code disabled by 'A Game of Thrones' Total Conversion mod
 
-		# Begin code added by 'A Game of Thrones' Total Conversion mod
-		#AGOT Added
-		modifier = { # The AI should not convert child of vassals with protected religious right
+		modifier = {
 			add = -100
 			scope:convert_faith = yes
 			scope:recipient = { is_vassal_of = scope:actor }
 			scope:recipient = { vassal_contract_has_flag = religiously_protected }
 		}
-		# End code added by 'A Game of Thrones' Total Conversion mod
 	}
 }
 
@@ -3830,11 +3464,9 @@ remove_guardian_interaction = {
 
 	is_valid_showing_failures_only = {
 		scope:recipient = {
-			#RECIPIENT = GUARDIAN
 			trigger_if = {
 				limit = { scope:recipient = { is_adult = yes } }
 
-				#Diplo availability/not imprisoned
 
 				any_relation = {
 					type = ward
@@ -3844,16 +3476,13 @@ remove_guardian_interaction = {
 				}
 
 
-				#War blocker
 				NOR = {
 					is_at_war_with = scope:actor
 					any_liege_or_above = { is_at_war_with = scope:actor }
 				}
 			}
-			#RECIPIENT = WARD
 			trigger_else = {
 
-				#Diplo availability
 				remove_guardian_interaction_visible_ward_trigger = yes
 				remove_guardian_interaction_available_ward_trigger = yes
 
@@ -3861,7 +3490,6 @@ remove_guardian_interaction = {
 					type = guardian
 				}
 
-				#War blocker
 				any_relation = {
 					type = guardian
 					NOR = {
@@ -3872,8 +3500,6 @@ remove_guardian_interaction = {
 			}
 		}
 
-		#Misc
-		#scope:actor = { is_imprisoned = no }
 	}
 
 	auto_accept = yes
@@ -3882,7 +3508,6 @@ remove_guardian_interaction = {
 	ai_max_reply_days = 3
 
 	on_accept = {
-		#Save guardian scope
 		if = {
 			limit = { scope:recipient = { is_adult = yes } }
 			scope:recipient = {
@@ -3893,16 +3518,13 @@ remove_guardian_interaction = {
 			scope:recipient = { every_relation = { type = guardian save_scope_as = guardian } }
 		}
 
-		#Save ward(s) scope(s)
 		scope:guardian = {
-			#If the recipient is the ward, always pick them as ward
 			if = {
 				limit = {
 					this != scope:recipient
 				}
 				scope:recipient = { save_scope_as = ward }
 			}
-			#If recipient is the guardian, pick a random ward as ward 1 and if there is an additional one, set is as ward 2
 			else = {
 				random_relation = {
 					type = ward
@@ -3921,7 +3543,7 @@ remove_guardian_interaction = {
 							remove_guardian_interaction_available_ward_trigger = yes
 							NOR = {
 								this = scope:ward
-								scope:ward = scope:recipient #because if we target a specific child, no 2nd ward
+								scope:ward = scope:recipient
 							}
 						}
 					}
@@ -3941,7 +3563,6 @@ remove_guardian_interaction = {
 			}
 		}
 
-		#Letter event to guardian
 		if = {
 			limit = {
 				scope:guardian != scope:actor
@@ -3951,7 +3572,6 @@ remove_guardian_interaction = {
 			}
 		}
 
-		#Handling the wards and feedback to actor
 		scope:actor = {
 			send_interface_message = {
 				type = event_childhood_neutral
@@ -3974,7 +3594,6 @@ remove_guardian_interaction = {
 					}
 				}
 
-				#Was education promised in interaction or in vassal.2001? Then you get an opinion penalty
 				if = {
 					limit = {
 						exists = scope:ward.var:character_requested_as_educator
@@ -4000,10 +3619,8 @@ remove_guardian_interaction = {
 			}
 		}
 
-		#Remove guardian opinion from guardian/guardian's liege
-		#Ward
 		if = {
-			limit = { scope:actor = scope:ward.liege } #Only show if actor is ward's liege
+			limit = { scope:actor = scope:ward.liege }
 			guardian_remove_opinion_effect = {
 				GUARDIAN = scope:guardian
 				WARD = scope:ward
@@ -4011,7 +3628,7 @@ remove_guardian_interaction = {
 			}
 		}
 		else = {
-			hidden_effect = { #Else hide it
+			hidden_effect = {
 				guardian_remove_opinion_effect = {
 					GUARDIAN = scope:guardian
 					WARD = scope:ward
@@ -4019,12 +3636,11 @@ remove_guardian_interaction = {
 				}
 			}
 		}
-		#Ward_2
 		if = {
 			limit = {
 				exists = scope:ward_2
-				scope:actor = scope:ward_2.liege #Only show guardian opinion removed if actor is ward_2's liege
-				scope:actor != scope:ward.liege #also don't show it twice if both wards' are actor's
+				scope:actor = scope:ward_2.liege
+				scope:actor != scope:ward.liege
 			}
 			guardian_remove_opinion_effect = {
 				GUARDIAN = scope:guardian
@@ -4036,7 +3652,7 @@ remove_guardian_interaction = {
 			limit = {
 				exists = scope:ward_2
 			}
-			hidden_effect = { #Else hide it
+			hidden_effect = {
 				guardian_remove_opinion_effect = {
 					GUARDIAN = scope:guardian
 					WARD = scope:ward_2
@@ -4045,7 +3661,6 @@ remove_guardian_interaction = {
 			}
 		}
 
-		#Make the liege of the ward(s) insulted if actor is not the liege of the ward
 		if = {
 			limit = {
 				NOR = {
@@ -4087,7 +3702,6 @@ remove_guardian_interaction = {
 					}
 				}
 			}
-			# If we're a clan this interaction affects unity
 			add_clan_unity_interaction_effect = {
 				CHARACTER = scope:actor
 				TARGET = scope:recipient
@@ -4109,8 +3723,6 @@ remove_guardian_interaction = {
 			}
 		}
 
-		# Begin code added by 'A Game of Thrones' Total Conversion mod
-		#AGOT Added
 		if = {
 			limit = {
 				NOT = {
@@ -4131,7 +3743,6 @@ remove_guardian_interaction = {
 				}
 			}
 		}
-		# End code added by 'A Game of Thrones' Total Conversion mod
 	}
 }
 
@@ -4298,8 +3909,6 @@ make_child_learn_language_interaction = {
 			}
 		}
 		
-		# Begin code added by 'A Game of Thrones' Total Conversion mod
-		#AGOT Added, no non-human interactions
 		scope:actor = { is_human = yes }
 		scope:recipient = { is_human = yes }
 		trigger_if = {
@@ -4318,7 +3927,6 @@ make_child_learn_language_interaction = {
 				is_human = yes
 			}
 		}
-		# End code added by 'A Game of Thrones' Total Conversion mod
 	}
 
 	is_valid = {
@@ -4326,11 +3934,8 @@ make_child_learn_language_interaction = {
 			OR = {
 				employs_court_position = court_tutor_court_position
 				employs_court_position = court_guru_court_position
-				# Begin code added by 'A Game of Thrones' Total Conversion mod
-				#AGOT Added
 				employs_court_position = septa_court_position
 				employs_court_position = maester_court_position
-				# End code added by 'A Game of Thrones' Total Conversion mod
 			}
 		}
 	}
@@ -4399,8 +4004,6 @@ make_child_learn_language_interaction = {
 				}
 			}
 		}
-		# Begin code added by 'A Game of Thrones' Total Conversion mod
-		#AGOT Added
 		scope:recipient = {
 			agot_is_available_for_anything = yes
 		}
@@ -4412,7 +4015,6 @@ make_child_learn_language_interaction = {
 				agot_is_available_for_anything = yes
 			}
 		}
-		# End code added by 'A Game of Thrones' Total Conversion mod
 	}
 
 	can_be_picked = {
@@ -4440,14 +4042,12 @@ make_child_learn_language_interaction = {
 									AND = {
 										exists = court_position:court_tutor_court_position
 										court_position:court_tutor_court_position = {
-											# Code modified by 'Better AI Education'
 											aptitude:court_tutor_court_position = 1
 										}
 									}
 									AND = {
 										exists = court_position:court_guru_court_position
 										court_position:court_guru_court_position = {
-											# Code modified by 'Better AI Education'
 											aptitude:court_guru_court_position = 1
 										}
 									}
@@ -4471,14 +4071,12 @@ make_child_learn_language_interaction = {
 									AND = {
 										exists = court_position:court_tutor_court_position
 										court_position:court_tutor_court_position = {
-											# Code modified by 'Better AI Education'
 											aptitude:court_tutor_court_position = 2
 										}
 									}
 									AND = {
 										exists = court_position:court_guru_court_position
 										court_position:court_guru_court_position = {
-											# Code modified by 'Better AI Education'
 											aptitude:court_guru_court_position = 2
 										}
 									}
@@ -4502,14 +4100,12 @@ make_child_learn_language_interaction = {
 									AND = {
 										exists = court_position:court_tutor_court_position
 										court_position:court_tutor_court_position = {
-											# Code modified by 'Better AI Education'
 											aptitude:court_tutor_court_position = 3
 										}
 									}
 									AND = {
 										exists = court_position:court_guru_court_position
 										court_position:court_guru_court_position = {
-											# Code modified by 'Better AI Education'
 											aptitude:court_guru_court_position = 3
 										}
 									}
@@ -4533,14 +4129,12 @@ make_child_learn_language_interaction = {
 									AND = {
 										exists = court_position:court_tutor_court_position
 										court_position:court_tutor_court_position = {
-											# Code modified by 'Better AI Education'
 											aptitude:court_tutor_court_position = 4
 										}
 									}
 									AND = {
 										exists = court_position:court_guru_court_position
 										court_position:court_guru_court_position = {
-											# Code modified by 'Better AI Education'
 											aptitude:court_guru_court_position = 4
 										}
 									}
@@ -4564,14 +4158,12 @@ make_child_learn_language_interaction = {
 									AND = {
 										exists = court_position:court_tutor_court_position
 										court_position:court_tutor_court_position = {
-											# Code modified by 'Better AI Education'
 											aptitude:court_tutor_court_position = 5
 										}
 									}
 									AND = {
 										exists = court_position:court_guru_court_position
 										court_position:court_guru_court_position = {
-											# Code modified by 'Better AI Education'
 											aptitude:court_guru_court_position = 5
 										}
 									}
@@ -4588,8 +4180,6 @@ make_child_learn_language_interaction = {
 							}
 						}
 					}
-					# Begin code added by 'A Game of Thrones' Total Conversion mod
-					#AGOT Added, Maester bonuses
 					else_if = {
 						limit = {
 							scope:actor = {
@@ -4695,7 +4285,6 @@ make_child_learn_language_interaction = {
 							}
 						}
 					}
-					#AGOT Added, Septa bonuses
 					else_if = {
 						limit = {
 							scope:actor = {
@@ -4801,7 +4390,6 @@ make_child_learn_language_interaction = {
 							}
 						}
 					}
-					# End code added by 'A Game of Thrones' Total Conversion mod
 				}
 			}
 		}
@@ -4832,11 +4420,8 @@ make_child_learn_language_interaction = {
 		OR = {
 			employs_court_position = court_tutor_court_position
 			employs_court_position = court_guru_court_position
-			# Begin code added by 'A Game of Thrones' Total Conversion mod
-			#AGOT Added
 			employs_court_position = septa_court_position
 			employs_court_position = maester_court_position
-			# End code added by 'A Game of Thrones' Total Conversion mod
 		}
 		primary_title.tier >= tier_county
 	}
@@ -4844,7 +4429,7 @@ make_child_learn_language_interaction = {
 	ai_will_do = {
 		base = 0
 
-		modifier = { # The AI wants to prepare their children for ruling their vassals
+		modifier = {
 			add = 100
 			any_vassal = {
 				primary_title.tier >= tier_county

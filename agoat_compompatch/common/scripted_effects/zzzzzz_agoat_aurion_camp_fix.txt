@@ -1,0 +1,71 @@
+﻿lv_aurion_forsake_hegemony_effect = {
+	save_scope_as = lv_aurion
+
+	if = {
+		limit = { has_title = title:h_valyria }
+		destroy_title = title:h_valyria
+		add_unpressed_claim = title:h_valyria
+	}
+
+	if = {
+		limit = {
+			title:k_qohor.holder ?= {
+				exists = liege
+				NOT = { this = scope:lv_aurion }
+			}
+		}
+		create_title_and_vassal_change = {
+			type = independency
+			save_scope_as = lv_aurion_qohor_change
+		}
+		title:k_qohor.holder ?= {
+			becomes_independent = { change = scope:lv_aurion_qohor_change }
+		}
+		resolve_title_and_vassal_change = scope:lv_aurion_qohor_change
+	}
+
+	if = {
+		limit = {
+			has_title = title:c_artisans_quarter
+			exists = character:Ostorlat_15
+			character:Ostorlat_15 = { is_alive = yes }
+		}
+		character:Ostorlat_15 = { get_title = title:c_artisans_quarter }
+	}
+	else_if = {
+		limit = {
+			has_title = title:c_artisans_quarter
+			exists = title:k_qohor.holder
+			NOT = { title:k_qohor.holder = { this = scope:lv_aurion } }
+		}
+		title:k_qohor.holder ?= { get_title = title:c_artisans_quarter }
+	}
+
+	if = {
+		limit = {
+			any_held_title = { has_variable = adventurer_creation_reason }
+			NOT = { has_government = landless_adventurer_government }
+		}
+		change_government = landless_adventurer_government
+	}
+	if = {
+		limit = { NOT = { any_held_title = { has_variable = adventurer_creation_reason } } }
+		create_landless_adventurer_title_effect = {
+			REASON = flag:voluntary
+			FLAVOR_CHAR = scope:lv_aurion
+		}
+	}
+
+	if = {
+		limit = { exists = title:c_rhoford.title_province }
+		if = {
+			limit = {
+				has_domicile = yes
+				NOT = { domicile.domicile_location = title:c_rhoford.title_province }
+			}
+			domicile ?= {
+				move_domicile = title:c_rhoford.title_province
+			}
+		}
+	}
+}

@@ -1,0 +1,151 @@
+﻿naval_combat_ai_calculated_focus_value = {
+	value = {
+		value = 25
+		desc = naval_combat_ai_focus_base
+	}
+
+	if = {
+		limit = { culture = { has_cultural_tradition = tradition_seafaring } }
+		add = {
+			value = 20
+			desc = naval_combat_ai_focus_tradition_seafaring
+		}
+	}
+	if = {
+		limit = { culture = { has_cultural_tradition = tradition_fp1_coastal_warriors } }
+		add = {
+			value = 20
+			desc = naval_combat_ai_focus_tradition_coastal_warriors
+		}
+	}
+	if = {
+		limit = { culture = { has_cultural_tradition = tradition_maritime_mercantilism } }
+		add = {
+			value = 15
+			desc = naval_combat_ai_focus_tradition_maritime_mercantilism
+		}
+	}
+	if = {
+		limit = { culture = { has_cultural_tradition = tradition_practiced_pirates } }
+		add = {
+			value = 15
+			desc = naval_combat_ai_focus_tradition_practiced_pirates
+		}
+	}
+
+	if = {
+		limit = { has_trait = ambitious }
+		add = {
+			value = 10
+			desc = naval_combat_ai_focus_trait_ambitious
+		}
+	}
+	if = {
+		limit = { has_trait = diligent }
+		add = {
+			value = 10
+			desc = naval_combat_ai_focus_trait_diligent
+		}
+	}
+	if = {
+		limit = { has_trait = brave }
+		add = {
+			value = 5
+			desc = naval_combat_ai_focus_trait_brave
+		}
+	}
+	if = {
+		limit = { has_trait = greedy }
+		add = {
+			value = 5
+			desc = naval_combat_ai_focus_trait_greedy
+		}
+	}
+	if = {
+		limit = { has_trait = content }
+		subtract = {
+			value = 10
+			desc = naval_combat_ai_focus_trait_content
+		}
+	}
+	if = {
+		limit = { has_trait = craven }
+		subtract = {
+			value = 10
+			desc = naval_combat_ai_focus_trait_craven
+		}
+	}
+
+	if = {
+		limit = { monthly_character_income >= 30 }
+		add = {
+			value = 15
+			desc = naval_combat_ai_focus_income_very_high
+		}
+	}
+	else_if = {
+		limit = { monthly_character_income >= 15 }
+		add = {
+			value = 10
+			desc = naval_combat_ai_focus_income_high
+		}
+	}
+	else_if = {
+		limit = { monthly_character_income >= 7 }
+		add = {
+			value = 5
+			desc = naval_combat_ai_focus_income_moderate
+		}
+	}
+	else_if = {
+		limit = { monthly_character_income < 3 }
+		subtract = {
+			value = 10
+			desc = naval_combat_ai_focus_income_low
+		}
+	}
+
+	if = {
+		limit = { capital_county = { is_coastal_county = yes } }
+		add = {
+			value = 10
+			desc = naval_combat_ai_focus_coastal_capital
+		}
+	}
+
+	if = {
+		limit = { naval_combat_direct_coastal_county_count_value >= 4 }
+		add = {
+			value = 15
+			desc = naval_combat_ai_focus_four_coastal_counties
+		}
+	}
+	else_if = {
+		limit = { naval_combat_direct_coastal_county_count_value >= 2 }
+		add = {
+			value = 10
+			desc = naval_combat_ai_focus_two_coastal_counties
+		}
+	}
+	else_if = {
+		limit = { naval_combat_direct_coastal_county_count_value >= 1 }
+		add = {
+			value = 5
+			desc = naval_combat_ai_focus_one_coastal_county
+		}
+	}
+
+	if = {
+		limit = {
+			naval_combat_direct_county_count_value >= 2
+			naval_combat_direct_coastal_share_value >= 0.50
+		}
+		add = {
+			value = 15
+			desc = naval_combat_ai_focus_coastal_domain_majority
+		}
+	}
+
+	min = 0
+	max = 100
+}

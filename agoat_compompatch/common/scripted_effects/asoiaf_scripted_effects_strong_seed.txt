@@ -1,5 +1,4 @@
 ﻿agot_assign_strong_seed_traits_effect = {
-	#save scripted appearance flag so it stays after death
 	if = {
 		limit = {
 			has_character_flag = has_scripted_appearance
@@ -11,24 +10,20 @@
 		limit = {
 			has_character_flag = do_not_assign_strong_seed
 		}
-		#Nothing
 	}
 	else_if = {
 		limit = { dynasty ?= dynasty:dynn_Stark }
-		#make_trait_inactive = grey_eyes #AGOT+ change
 		make_trait_inactive = dark_brown_hair
 	}
 	else_if = {
-		limit = { dynasty ?= dynasty:dynn_Baratheon NOT = { house ?= house:house_BaratheonKL } } #added exception for BaratheonKL
+		limit = { dynasty ?= dynasty:dynn_Baratheon NOT = { house ?= house:house_BaratheonKL } }
 		make_trait_inactive = blue_eyes
 		make_trait_inactive = black_hair
-		#make_trait_inactive = smol_tol #AGOT+ change
 	}
 	else_if = {
 		limit = { dynasty ?= dynasty:dynn_Durrandon }
 		make_trait_inactive = blue_eyes
 		make_trait_inactive = black_hair
-		#make_trait_inactive = smol_tol #AGOT+ change
 	}
 	else_if = {
 		limit = { dynasty ?= dynasty:dynn_Lannister }
@@ -36,7 +31,7 @@
 		make_trait_inactive = gold_hair
 	}
 	else_if = {
-		limit = { house ?= house:house_BaratheonKL } #AGOT+ added; Baratheon of King's Landing
+		limit = { house ?= house:house_BaratheonKL }
 		make_trait_inactive = emerald_eyes
 		make_trait_inactive = gold_hair
 	}
@@ -55,14 +50,6 @@
 		make_trait_inactive = light_blue_eyes
 		make_trait_inactive = light_blonde_hair
 	}
-	#else_if = { #AGOT+ change
-	#	limit = { dynasty ?= dynasty:dynn_Umber }
-	#	make_trait_inactive = tol
-	#}
-	#else_if = { #AGOT+ change
-	#	limit = { dynasty ?= dynasty:dynn_Clegane }
-	#	make_trait_inactive = tol
-	#}
 	else_if = {
 		limit = { dynasty ?= dynasty:dynn_Rowan }
 		make_trait_inactive = gold_eyes
@@ -78,32 +65,27 @@
 	}
 	else_if  = {
 		limit = { dynasty ?= dynasty:dynn_Toland }
-		make_trait_inactive = dark_brown_hair #AGOT+ change
+		make_trait_inactive = dark_brown_hair
 	}
 	else_if  = {
 		limit = { dynasty ?= dynasty:dynn_Blackwood }
 		make_trait_inactive = black_hair
 	}
-	#else_if  = { #AGOT+ change
-	#	limit = { dynasty ?= dynasty:dynn_Florent }
-	#	make_trait_inactive = dumbo_ears
-	#}
 	else_if = {
 		limit = { dynasty ?= dynasty:dynn_Tyrell }
-		make_trait_inactive = light_blue_eyes #AGOT+ change
+		make_trait_inactive = light_blue_eyes
 		make_trait_inactive = brown_hair
 	}
 	else_if = {
 		limit = { dynasty ?= dynasty:dynn_Greyjoy }
-		make_trait_inactive = dark_brown_hair #AGOT+ change
-		make_trait_inactive = light_blue_eyes #AGOT+ change
-		#make_trait_inactive = smol_tol #AGOT+ change
+		make_trait_inactive = dark_brown_hair
+		make_trait_inactive = light_blue_eyes
 	}
 	else_if  = {
 		limit = { dynasty ?= dynasty:dynn_Connington }
 		make_trait_inactive = red_hair
 	}
-	else_if  = { #AGOT+ changed
+	else_if  = {
 		limit = { dynasty ?= dynasty:dynn_Velaryon }
 		random_list = {
 			1 = { make_trait_inactive = cool_silver_hair }
@@ -127,17 +109,15 @@
 			1 = { make_trait_inactive = purple_eyes_10 }
 			1 = { make_trait_inactive = purple_eyes_11 }
 			1 = { make_trait_inactive = purple_eyes_12 }
-			#AGOT+ changed; removed eyes 13–16 for Velaryons
 		}
 	}
 	else_if  = {
 		limit = {
 			OR = {
 				dynasty ?= dynasty:dynn_Targaryen
-				#dynasty ?= dynasty:dynn_Aranys #AGOT+ added
-				dynasty ?= dynasty:dynn_Varezys # House Customizer
-				dynasty ?= dynasty:dynn_Mataeryon # House Customizer
-				dynasty ?= dynasty:dynn_Belaerys # House Customizer
+				dynasty ?= dynasty:dynn_Varezys
+				dynasty ?= dynasty:dynn_Mataeryon
+				dynasty ?= dynasty:dynn_Belaerys
 				has_character_flag = silver_spouse
 			}
 		}
@@ -175,8 +155,7 @@
 		limit = { dynasty ?= dynasty:dynn_Dayne }
 		random_list = {
 			60 = {
-				#make_trait_inactive = cool_neutral_silver_hair #AGOT+ change
-				make_trait_inactive = neutral_silver_hair #AGOT+ change
+				make_trait_inactive = neutral_silver_hair
 			}
 			40 = {
 				make_trait_inactive = black_hair
@@ -198,9 +177,6 @@
 			1 = { make_trait_inactive = purple_eyes_11 }
 			1 = { make_trait_inactive = purple_eyes_12 }
 			1 = { make_trait_inactive = purple_eyes_13 }
-			#1 = { make_trait_inactive = purple_eyes_14 }
-			#1 = { make_trait_inactive = purple_eyes_15 }
-			#1 = { make_trait_inactive = purple_eyes_16 }
 		}
 	}
 	else_if = {
@@ -226,7 +202,6 @@ agot_assign_strong_seed_hair_traits_effect = {
 			OR = {
 				scope:gene_donor = { dynasty = dynasty:dynn_Targaryen }
 				scope:gene_donor = { dynasty = dynasty:dynn_Velaryon }
-				#scope:gene_donor = { dynasty ?= dynasty:dynn_Aranys } #AGOT+ added
 				scope:gene_donor = { dynasty = dynasty:dynn_Varezys }
 				scope:gene_donor = { dynasty = dynasty:dynn_Mataeryon }
 				scope:gene_donor = { dynasty = dynasty:dynn_Belaerys }
@@ -258,8 +233,7 @@ agot_assign_strong_seed_hair_traits_effect = {
 				make_trait_inactive = black_hair
 			}
 			25 = {
-				make_trait_inactive = neutral_silver_hair #AGOT+ change
-				#make_trait_inactive = cool_neutral_silver_hair #AGOT+ change
+				make_trait_inactive = neutral_silver_hair
 			}
 		}
 	}
@@ -273,8 +247,7 @@ agot_assign_strong_seed_hair_traits_effect = {
 				make_trait_inactive = black_hair
 			}
 			25 = {
-				make_trait_inactive = neutral_silver_hair #AGOT+ change
-				#make_trait_inactive = cool_neutral_silver_hair #AGOT+ change
+				make_trait_inactive = neutral_silver_hair
 			}
 		}
 	}
@@ -285,8 +258,7 @@ agot_assign_strong_seed_hair_traits_effect = {
 		}
 		random_list = {
 			75 = {
-				make_trait_inactive = neutral_silver_hair #AGOT+ change
-				#make_trait_inactive = cool_neutral_silver_hair #AGOT+ change
+				make_trait_inactive = neutral_silver_hair
 			}
 			25 = {
 				make_trait_inactive = black_hair
@@ -359,7 +331,6 @@ agot_assign_strong_seed_hair_traits_effect = {
 			NOR = {
 				scope:gene_donor = { dynasty = dynasty:dynn_Targaryen }
 				scope:gene_donor = { dynasty = dynasty:dynn_Velaryon }
-				#scope:gene_donor = { dynasty ?= dynasty:dynn_Aranys } #AGOT+ added
 				scope:gene_donor = { dynasty = dynasty:dynn_Dayne }
 				scope:gene_donor = { dynasty = dynasty:dynn_Varezys }
 				scope:gene_donor = { dynasty = dynasty:dynn_Mataeryon }
@@ -374,7 +345,6 @@ agot_assign_strong_seed_hair_traits_effect = {
 			NOR = {
 				scope:gene_donor = { dynasty = dynasty:dynn_Targaryen }
 				scope:gene_donor = { dynasty = dynasty:dynn_Velaryon }
-				#scope:gene_donor = { dynasty ?= dynasty:dynn_Aranys } #AGOT+ added
 				scope:gene_donor = { dynasty = dynasty:dynn_Dayne }
 				scope:gene_donor = { dynasty = dynasty:dynn_Varezys }
 				scope:gene_donor = { dynasty = dynasty:dynn_Mataeryon }
@@ -389,7 +359,6 @@ agot_assign_strong_seed_hair_traits_effect = {
 			NOR = {
 				scope:gene_donor = { dynasty = dynasty:dynn_Targaryen }
 				scope:gene_donor = { dynasty = dynasty:dynn_Velaryon }
-				#scope:gene_donor = { dynasty ?= dynasty:dynn_Aranys } #AGOT+ added
 				scope:gene_donor = { dynasty = dynasty:dynn_Dayne }
 				scope:gene_donor = { dynasty = dynasty:dynn_Varezys }
 				scope:gene_donor = { dynasty = dynasty:dynn_Mataeryon }
@@ -404,7 +373,6 @@ agot_assign_strong_seed_hair_traits_effect = {
 			NOR = {
 				scope:gene_donor = { dynasty = dynasty:dynn_Targaryen }
 				scope:gene_donor = { dynasty = dynasty:dynn_Velaryon }
-				#scope:gene_donor = { dynasty ?= dynasty:dynn_Aranys } #AGOT+ added
 				scope:gene_donor = { dynasty = dynasty:dynn_Dayne }
 				scope:gene_donor = { dynasty = dynasty:dynn_Varezys }
 				scope:gene_donor = { dynasty = dynasty:dynn_Mataeryon }
@@ -419,7 +387,6 @@ agot_assign_strong_seed_hair_traits_effect = {
 			NOR = {
 				scope:gene_donor = { dynasty = dynasty:dynn_Targaryen }
 				scope:gene_donor = { dynasty = dynasty:dynn_Velaryon }
-				#scope:gene_donor = { dynasty ?= dynasty:dynn_Aranys } #AGOT+ added
 				scope:gene_donor = { dynasty = dynasty:dynn_Dayne }
 				scope:gene_donor = { dynasty = dynasty:dynn_Varezys }
 				scope:gene_donor = { dynasty = dynasty:dynn_Mataeryon }

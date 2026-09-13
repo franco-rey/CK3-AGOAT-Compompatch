@@ -35,7 +35,6 @@
 			}
 		}
 		on_pass = {
-			## Set cooldown
 			set_variable = {
 				name = admin_law_cooldown
 				years = 25

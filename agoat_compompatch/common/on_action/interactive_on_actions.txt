@@ -7,12 +7,7 @@
 
 on_war_started = {
 	on_actions = {
-		interactive_civil_wars
-		interactive_claims
-		interactive_title_holders
-		interactive_external_wars
-		interactive_oathbreakers
-		interactive_call_player
+		interactive_war_started
 	}
 }
 
@@ -33,8 +28,7 @@ interactive_map_generation = {
 			}
 			every_ruler = {
 				limit = {
-					is_landed = yes
-					highest_held_title_tier >= tier_county
+					interactive_map_generation_ruler_trigger = yes
 				}
 				save_scope_as = ruler_to_update
 				if = {
@@ -107,10 +101,10 @@ interactive_map_generation = {
 				has_game_rule = diverse_world_miv_enabled
 				has_game_rule = shattered_world_miv_enabled
 			}
+			game_rule_random_ruler_placement_effect = yes
 			every_ruler = {
 				limit = {
-					is_landed = yes
-					highest_held_title_tier >= tier_county
+					interactive_map_generation_ruler_trigger = yes
 				}
 				every_held_title = {
 					limit = {
@@ -127,8 +121,7 @@ interactive_map_generation = {
 			}
 			every_ruler = {
 				limit = {
-					is_landed = yes
-					highest_held_title_tier >= tier_county
+					interactive_map_generation_ruler_trigger = yes
 					NOR = {
 						has_government = republic_government
 						has_government = theocracy_government
@@ -164,7 +157,7 @@ interactive_map_generation = {
 	}
 }
 
-interactive_civil_wars = {
+interactive_war_started = {
 	effect = {
 		if = {
 			limit = {
@@ -177,7 +170,9 @@ interactive_civil_wars = {
 					}
 				}
 				scope:attacker = {
-					is_vassal_of = scope:defender
+					interactive_bannermen_is_rebel_trigger = {
+						LIEGE = scope:defender
+					}
 					is_landed = yes
 				}
 				OR = {
@@ -207,7 +202,10 @@ interactive_civil_wars = {
 						}
 						trigger_event = {
 							id = interactive.0007
-							days = 0
+							days = {
+								10
+								30
+							}
 						}
 					}
 					else = {
@@ -232,13 +230,17 @@ interactive_civil_wars = {
 				scope:war = {
 					every_war_attacker = {
 						limit = {
-							is_vassal_of = scope:defender
+							interactive_bannermen_is_rebel_trigger = {
+								LIEGE = scope:defender
+							}
 						}
 						interactive_bannermen_civilwar_core_cascade_effect = yes
 					}
 					every_war_defender = {
 						limit = {
-							is_vassal_of = scope:defender
+							interactive_bannermen_is_rebel_trigger = {
+								LIEGE = scope:defender
+							}
 						}
 						interactive_bannermen_civilwar_core_cascade_effect = yes
 					}
@@ -248,10 +250,20 @@ interactive_civil_wars = {
 				limit = {
 					has_game_rule = bannermen_mode_enabled
 				}
+				scope:attacker = {
+					save_scope_as = VASSAL
+					set_variable = {
+						name = miv_fellow_rebels
+						value = 0
+						days = 30
+					}
+				}
 				scope:war = {
 					every_war_attacker = {
 						limit = {
-							is_vassal_of = scope:defender
+							interactive_bannermen_is_rebel_trigger = {
+								LIEGE = scope:defender
+							}
 						}
 						save_temporary_scope_as = miv_rebel
 						interactive_bannermen_brand_oathbreaker_effect = {
@@ -260,8 +272,23 @@ interactive_civil_wars = {
 						}
 						if = {
 							limit = {
+								NOT = {
+									this = scope:VASSAL
+								}
+							}
+							scope:VASSAL = {
+								change_variable = {
+									name = miv_fellow_rebels
+									add = 1
+								}
+							}
+						}
+						if = {
+							limit = {
 								exists = scope:war.primary_attacker.joined_faction
-								is_vassal_of = scope:war.primary_defender
+								interactive_bannermen_is_rebel_trigger = {
+									LIEGE = scope:war.primary_defender
+								}
 							}
 							if = {
 								limit = {
@@ -276,8 +303,33 @@ interactive_civil_wars = {
 						}
 					}
 				}
+				if = {
+					limit = {
+						scope:VASSAL = {
+							exists = var:miv_fellow_rebels
+							var:miv_fellow_rebels >= 1
+						}
+					}
+					interactive_bannermen_toast_war_effect = {
+						WAR = scope:war
+						SIDE_OF = scope:defender
+						VASSAL = scope:VASSAL
+						TYPE = msg_war_oathbreaker
+						TITLE = miv_toast_rebel_many
+						TOOLTIP = miv_toast_rebel_many_desc
+					}
+				}
+				else = {
+					interactive_bannermen_toast_war_effect = {
+						WAR = scope:war
+						SIDE_OF = scope:defender
+						VASSAL = scope:VASSAL
+						TYPE = msg_war_oathbreaker
+						TITLE = miv_toast_rebel_one
+						TOOLTIP = miv_toast_rebel_one_desc
+					}
+				}
 			}
-
 			if = {
 				limit = {
 					has_game_rule = civil_war_indirect_vassals_enabled
@@ -286,7 +338,9 @@ interactive_civil_wars = {
 					primary_attacker = {
 						if = {
 							limit = {
-								is_vassal_of = scope:defender
+								interactive_bannermen_is_rebel_trigger = {
+									LIEGE = scope:defender
+								}
 								NOT = {
 									has_game_rule = bannermen_mode_enabled
 								}
@@ -294,7 +348,7 @@ interactive_civil_wars = {
 							save_temporary_scope_as = vassal_liege_to_join
 							every_vassal = {
 								limit = {
-									max_military_strength > 200
+									max_military_strength > interactive_minimum_vassal_strength
 									highest_held_title_tier >= tier_county
 									is_landed = yes
 									NOT = {
@@ -340,7 +394,13 @@ interactive_civil_wars = {
 												AND = {
 													exists = joined_faction
 													joined_faction = {
-														faction_is_type = crown_loyalist_faction
+														OR = {
+															faction_is_type = crown_loyalist_faction
+															AND = {
+																has_global_variable = AGOT_is_loaded
+																faction_is_type = agot_loyalist_faction
+															}
+														}
 													}
 												}
 												is_heir_of = scope:vassal_liege_to_join
@@ -374,7 +434,9 @@ interactive_civil_wars = {
 					}
 					every_war_attacker = {
 						limit = {
-							is_vassal_of = scope:defender
+							interactive_bannermen_is_rebel_trigger = {
+								LIEGE = scope:defender
+							}
 							NOT = {
 								has_game_rule = bannermen_mode_enabled
 							}
@@ -382,7 +444,7 @@ interactive_civil_wars = {
 						save_temporary_scope_as = vassal_liege_to_join
 						every_vassal = {
 							limit = {
-								max_military_strength > 200
+								max_military_strength > interactive_minimum_vassal_strength
 								highest_held_title_tier >= tier_county
 								is_landed = yes
 								NOT = {
@@ -428,7 +490,13 @@ interactive_civil_wars = {
 											AND = {
 												exists = joined_faction
 												joined_faction = {
-													faction_is_type = crown_loyalist_faction
+													OR = {
+														faction_is_type = crown_loyalist_faction
+														AND = {
+															has_global_variable = AGOT_is_loaded
+															faction_is_type = agot_loyalist_faction
+														}
+													}
 												}
 											}
 											is_heir_of = scope:vassal_liege_to_join
@@ -453,10 +521,18 @@ interactive_civil_wars = {
 												}
 											}
 										}
-										add_attacker = scope:vassals_vassal
+										scope:vassals_vassal = {
+											add_to_list = miv_join_offmode
+										}
 									}
 								}
 							}
+						}
+					}
+					every_in_list = {
+						list = miv_join_offmode
+						scope:war = {
+							add_attacker = prev
 						}
 					}
 					if = {
@@ -466,7 +542,9 @@ interactive_civil_wars = {
 						primary_attacker.joined_faction = {
 							every_faction_member = {
 								limit = {
-									is_vassal_of = scope:defender
+									interactive_bannermen_is_rebel_trigger = {
+										LIEGE = scope:defender
+									}
 									NOT = {
 										has_game_rule = bannermen_mode_enabled
 									}
@@ -474,7 +552,7 @@ interactive_civil_wars = {
 								save_temporary_scope_as = vassal_liege_to_join
 								every_vassal = {
 									limit = {
-										max_military_strength > 200
+										max_military_strength > interactive_minimum_vassal_strength
 										highest_held_title_tier >= tier_county
 										is_landed = yes
 										NOT = {
@@ -520,7 +598,13 @@ interactive_civil_wars = {
 													AND = {
 														exists = joined_faction
 														joined_faction = {
-															faction_is_type = crown_loyalist_faction
+															OR = {
+																faction_is_type = crown_loyalist_faction
+																AND = {
+																	has_global_variable = AGOT_is_loaded
+																	faction_is_type = agot_loyalist_faction
+																}
+															}
 														}
 													}
 													is_heir_of = scope:vassal_liege_to_join
@@ -555,27 +639,39 @@ interactive_civil_wars = {
 					}
 				}
 			}
-
 			if = {
 				limit = {
 					has_game_rule = internal_turmoil_enabled
 				}
 				scope:defender = {
 					every_vassal = {
+						limit = {
+							highest_held_title_tier > tier_barony
+						}
 						add_opinion = {
 							target = scope:defender
 							modifier = internal_turmoil_vassal_opinion
 							opinion = -10
 						}
+						if = {
+							limit = {
+								has_game_rule = civil_war_indirect_vassals_enabled
+							}
+							every_vassal = {
+								limit = {
+									highest_held_title_tier > tier_barony
+								}
+								add_opinion = {
+									target = liege
+									modifier = internal_turmoil_vassal_opinion
+									opinion = -10
+								}
+							}
+						}
 					}
 				}
 			}
 		}
-	}
-}
-
-interactive_claims = {
-	effect = {
 		if = {
 			limit = {
 				NOT = {
@@ -600,9 +696,6 @@ interactive_claims = {
 				}
 				NOT = {
 					interactive_start_date = current_date
-				}
-				scope:war = {
-					using_cb = claim_cb
 				}
 				exists = scope:claimant
 				scope:claimant = {
@@ -636,11 +729,6 @@ interactive_claims = {
 				}
 			}
 		}
-	}
-}
-
-interactive_title_holders = {
-	effect = {
 		if = {
 			limit = {
 				NOT = {
@@ -686,7 +774,6 @@ interactive_title_holders = {
 							holder = {
 								is_vassal_or_below_of = scope:defender
 								highest_held_title_tier > tier_barony
-
 								is_landed = yes
 								NOT = {
 									is_at_war_with = scope:attacker
@@ -721,11 +808,6 @@ interactive_title_holders = {
 				}
 			}
 		}
-	}
-}
-
-interactive_external_wars = {
-	effect = {
 		if = {
 			limit = {
 				NOT = {
@@ -749,38 +831,23 @@ interactive_external_wars = {
 				war = {
 					is_civil_war = no
 				}
-				war = {
-					NOR = {
-						always = no
-						using_cb = nomadic_war
-					}
-				}
 				NOT = {
 					scope:attacker = {
 						is_vassal_or_below_of = scope:defender
 					}
 				}
 			}
-
 			scope:defender = {
 				every_vassal_or_below = {
 					if = {
 						limit = {
 							NOT = {
 								scope:defender = {
-									government_has_flag = government_has_influence
-								}
-							}
-							NOT = {
-								government_has_flag = government_has_influence
-							}
-							NOT = {
-								scope:defender = {
 									has_character_flag = dont_call_vassals
 								}
 							}
 							highest_held_title_tier > tier_barony
-							max_military_strength > 200
+							max_military_strength > interactive_minimum_vassal_strength
 							any_sub_realm_county = {
 								any_neighboring_county = {
 									holder = {
@@ -813,10 +880,15 @@ interactive_external_wars = {
 								}
 							}
 							OR = {
-								is_vassal_of = scope:defender
+								interactive_bannermen_is_rebel_trigger = {
+									LIEGE = scope:defender
+								}
+								has_game_rule = defiant_vassals_disabled
 								AND = {
 									NOT = {
-										is_vassal_of = scope:defender
+										interactive_bannermen_is_rebel_trigger = {
+											LIEGE = scope:defender
+										}
 									}
 									liege = {
 										OR = {
@@ -865,19 +937,11 @@ interactive_external_wars = {
 						limit = {
 							NOT = {
 								scope:attacker = {
-									government_has_flag = government_has_influence
-								}
-							}
-							NOT = {
-								government_has_flag = government_has_influence
-							}
-							NOT = {
-								scope:attacker = {
 									has_character_flag = dont_call_vassals
 								}
 							}
 							highest_held_title_tier > tier_barony
-							max_military_strength > 200
+							max_military_strength > interactive_minimum_vassal_strength
 							any_sub_realm_county = {
 								any_neighboring_county = {
 									holder = {
@@ -911,6 +975,7 @@ interactive_external_wars = {
 							}
 							OR = {
 								is_vassal_of = scope:attacker
+								has_game_rule = defiant_vassals_disabled
 								AND = {
 									NOT = {
 										is_vassal_of = scope:attacker
@@ -957,15 +1022,9 @@ interactive_external_wars = {
 				}
 			}
 		}
-	}
-}
-
-interactive_bannermen = {
-	effect = {
 		if = {
 			limit = {
-				always = no
-
+				has_game_rule = miv_oathbreakers_enabled
 				NOT = {
 					has_game_rule = bannermen_mode_enabled
 				}
@@ -984,11 +1043,227 @@ interactive_bannermen = {
 				war = {
 					is_civil_war = no
 				}
-				war = {
-					NOR = {
-						always = no
-						using_cb = nomadic_war
+				NOT = {
+					scope:attacker = {
+						is_vassal_or_below_of = scope:defender
 					}
+				}
+			}
+			scope:attacker = {
+				every_vassal_or_below = {
+					limit = {
+						is_ai = yes
+						is_capable_adult = yes
+						is_imprisoned = no
+						NOT = {
+							is_allied_to = scope:defender
+						}
+						NOT = {
+							is_allied_to = scope:attacker
+						}
+						OR = {
+							has_relation_rival = scope:attacker
+							has_relation_nemesis = scope:attacker
+						}
+						is_landed = yes
+						max_military_strength > interactive_minimum_vassal_strength
+						highest_held_title_tier > tier_barony
+						NOT = {
+							is_at_war_with = scope:attacker
+						}
+						NOT = {
+							is_at_war_with = scope:defender
+						}
+					}
+					save_temporary_scope_as = oathbreaker
+					scope:attacker = {
+						add_opinion = {
+							target = scope:oathbreaker
+							modifier = miv_oathbreaker
+						}
+					}
+					scope:war = {
+						add_defender = scope:oathbreaker
+					}
+					scope:war = {
+						interactive_bannermen_batch_toast_effect = {
+							KEY = defect_enemy
+							EVENT = 0013
+							HOLDER = scope:attacker
+							WAR = scope:war
+							SIDE_OF = scope:attacker
+							VASSAL = scope:oathbreaker
+						}
+						interactive_bannermen_batch_toast_effect = {
+							KEY = defect_us
+							EVENT = 0019
+							HOLDER = scope:attacker
+							WAR = scope:war
+							SIDE_OF = scope:oathbreaker
+							VASSAL = scope:oathbreaker
+						}
+					}
+				}
+			}
+			scope:defender = {
+				every_vassal_or_below = {
+					limit = {
+						is_ai = yes
+						is_capable_adult = yes
+						is_imprisoned = no
+						NOT = {
+							is_allied_to = scope:defender
+						}
+						NOT = {
+							is_allied_to = scope:attacker
+						}
+						OR = {
+							has_relation_rival = scope:defender
+							has_relation_nemesis = scope:defender
+						}
+						is_landed = yes
+						max_military_strength > interactive_minimum_vassal_strength
+						highest_held_title_tier > tier_barony
+						NOT = {
+							is_at_war_with = scope:attacker
+						}
+						NOT = {
+							is_at_war_with = scope:defender
+						}
+					}
+					save_temporary_scope_as = oathbreaker
+					scope:defender = {
+						add_opinion = {
+							target = scope:oathbreaker
+							modifier = miv_oathbreaker
+						}
+					}
+					scope:war = {
+						add_attacker = scope:oathbreaker
+					}
+					scope:war = {
+						interactive_bannermen_batch_toast_effect = {
+							KEY = defect_enemy
+							EVENT = 0013
+							HOLDER = scope:defender
+							WAR = scope:war
+							SIDE_OF = scope:defender
+							VASSAL = scope:oathbreaker
+						}
+						interactive_bannermen_batch_toast_effect = {
+							KEY = defect_us
+							EVENT = 0019
+							HOLDER = scope:defender
+							WAR = scope:war
+							SIDE_OF = scope:oathbreaker
+							VASSAL = scope:oathbreaker
+						}
+					}
+				}
+			}
+		}
+		every_player = {
+			limit = {
+				is_landed = yes
+				NOT = {
+					is_at_war_with_liege = yes
+				}
+				NOT = {
+					interactive_start_date = current_date
+				}
+				is_independent_ruler = no
+				OR = {
+					is_vassal_or_below_of = scope:attacker
+					is_vassal_or_below_of = scope:defender
+				}
+				NOT = {
+					scope:war = {
+						prev = scope:attacker
+					}
+				}
+				NOT = {
+					scope:war = {
+						prev = scope:defender
+					}
+				}
+				scope:war = {
+					is_civil_war = no
+				}
+			}
+			save_temporary_scope_as = player
+			if = {
+				limit = {
+					scope:war = {
+						any_war_participant = {
+							this = scope:player
+						}
+					}
+				}
+				scope:war = {
+					remove_participant = scope:player
+				}
+			}
+			if = {
+				limit = {
+					liege = {
+						is_at_war = yes
+					}
+					is_landed = yes
+					max_military_strength > interactive_minimum_vassal_strength
+					highest_held_title_tier > tier_barony
+					NOT = {
+						has_global_variable = AGOT_is_loaded
+					}
+					is_capable_adult = yes
+					NOT = {
+						liege = {
+							has_opinion_modifier = {
+								modifier = miv_oathbreaker
+								target = scope:player
+							}
+						}
+					}
+					NOT = {
+						is_at_war_with_liege = yes
+					}
+					OR = {
+						is_vassal_of = scope:attacker
+						interactive_bannermen_is_rebel_trigger = {
+							LIEGE = scope:defender
+						}
+					}
+				}
+				trigger_event = interactive.0001
+			}
+		}
+	}
+}
+
+
+
+
+interactive_bannermen = {
+	effect = {
+		if = {
+			limit = {
+				always = no
+				NOT = {
+					has_game_rule = bannermen_mode_enabled
+				}
+				OR = {
+					debug_only = yes
+					any_player = {
+						OR = {
+							in_diplomatic_range = scope:defender
+							in_diplomatic_range = scope:attacker
+						}
+					}
+				}
+				NOT = {
+					interactive_start_date = current_date
+				}
+				war = {
+					is_civil_war = no
 				}
 				NOT = {
 					scope:attacker = {
@@ -996,7 +1271,6 @@ interactive_bannermen = {
 					}
 				}
 			}
-
 			scope:defender = {
 				every_vassal = {
 					limit = {
@@ -1022,7 +1296,7 @@ interactive_bannermen = {
 							}
 							highest_held_title_tier > tier_county
 						}
-						max_military_strength > 200
+						max_military_strength > interactive_minimum_vassal_strength
 						is_landed = yes
 					}
 					if = {
@@ -1081,7 +1355,7 @@ interactive_bannermen = {
 							}
 							highest_held_title_tier > tier_county
 						}
-						max_military_strength > 200
+						max_military_strength > interactive_minimum_vassal_strength
 						is_landed = yes
 					}
 					if = {
@@ -1119,245 +1393,13 @@ interactive_bannermen = {
 	}
 }
 
-interactive_oathbreakers = {
-	effect = {
-		if = {
-			limit = {
-				has_game_rule = miv_oathbreakers_enabled
-				NOT = {
-					has_game_rule = bannermen_mode_enabled
-				}
-				OR = {
-					debug_only = yes
-					any_player = {
-						OR = {
-							in_diplomatic_range = scope:defender
-							in_diplomatic_range = scope:attacker
-						}
-					}
-				}
-				NOT = {
-					interactive_start_date = current_date
-				}
-				war = {
-					is_civil_war = no
-				}
-				war = {
-					NOR = {
-						always = no
-						using_cb = nomadic_war
-					}
-				}
-				NOT = {
-					scope:attacker = {
-						is_vassal_or_below_of = scope:defender
-					}
-				}
-			}
-			scope:attacker = {
-				every_vassal_or_below = {
-					limit = {
-						is_ai = yes
-						is_capable_adult = yes
-						is_imprisoned = no
-						NOT = {
-							is_allied_to = scope:defender
-						}
-						NOT = {
-							is_allied_to = scope:attacker
-						}
-						OR = {
-							has_relation_rival = scope:attacker
-							has_relation_nemesis = scope:attacker
-						}
-						is_landed = yes
-						max_military_strength > 200
-						highest_held_title_tier > tier_barony
-						NOT = {
-							is_at_war_with = scope:attacker
-						}
-						NOT = {
-							is_at_war_with = scope:defender
-						}
-					}
-					save_temporary_scope_as = oathbreaker
-					scope:attacker = {
-						add_opinion = {
-							target = scope:oathbreaker
-							modifier = miv_oathbreaker
-						}
-					}
-					scope:war = {
-						add_defender = scope:oathbreaker
-					}
 
-					scope:war = {
-						every_war_participant = {
-							limit = {
-								is_ai = no
-							}
-							hidden_effect = {
-								scope:oathbreaker = {
-									save_scope_as = VASSAL
-								}
-								send_interface_toast = {
-									type = msg_war_oathbreaker
-									title = miv_oathbreaker_defects
-									left_icon = scope:VASSAL
-									custom_tooltip = interactive_oathbreaker_notification
-								}
-							}
-						}
-					}
-				}
-			}
-			scope:defender = {
-				every_vassal_or_below = {
-					limit = {
-						is_ai = yes
-						is_capable_adult = yes
-						is_imprisoned = no
-						NOT = {
-							is_allied_to = scope:defender
-						}
-						NOT = {
-							is_allied_to = scope:attacker
-						}
-						OR = {
-							has_relation_rival = scope:defender
-							has_relation_nemesis = scope:defender
-						}
-						is_landed = yes
-						max_military_strength > 200
-						highest_held_title_tier > tier_barony
-						NOT = {
-							is_at_war_with = scope:attacker
-						}
-						NOT = {
-							is_at_war_with = scope:defender
-						}
-					}
-					save_temporary_scope_as = oathbreaker
-					scope:defender = {
-						add_opinion = {
-							target = scope:oathbreaker
-							modifier = miv_oathbreaker
-						}
-					}
-					scope:war = {
-						add_attacker = scope:oathbreaker
-					}
-
-					scope:war = {
-						every_war_participant = {
-							limit = {
-								is_ai = no
-							}
-							hidden_effect = {
-								scope:oathbreaker = {
-									save_scope_as = VASSAL
-								}
-								send_interface_toast = {
-									type = msg_war_oathbreaker
-									title = miv_oathbreaker_defects
-									left_icon = scope:VASSAL
-									custom_tooltip = interactive_oathbreaker_notification
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-	}
-}
-
-interactive_call_player = {
-	effect = {
-		every_player = {
-			limit = {
-				is_landed = yes
-				NOT = {
-					is_at_war_with_liege = yes
-				}
-				NOT = {
-					interactive_start_date = current_date
-				}
-				is_independent_ruler = no
-				OR = {
-					is_vassal_or_below_of = scope:attacker
-					is_vassal_or_below_of = scope:defender
-				}
-				NOT = {
-					scope:war = {
-						prev = scope:attacker
-					}
-				}
-				NOT = {
-					scope:war = {
-						prev = scope:defender
-					}
-				}
-				scope:war = {
-					NOR = {
-						always = no
-						using_cb = nomadic_war
-					}
-				}
-			}
-			save_temporary_scope_as = player
-			if = {
-				limit = {
-					scope:war = {
-						any_war_participant = {
-							this = scope:player
-						}
-					}
-				}
-				scope:war = {
-					remove_participant = scope:player
-				}
-			}
-			if = {
-				limit = {
-					liege = {
-						is_at_war = yes
-					}
-					is_landed = yes
-					max_military_strength > 200
-					highest_held_title_tier > tier_barony
-					NOT = {
-						has_global_variable = AGOT_is_loaded
-					}
-					is_capable_adult = yes
-					NOT = {
-						liege = {
-							has_opinion_modifier = {
-								modifier = miv_oathbreaker
-								target = scope:player
-							}
-						}
-					}
-					NOT = {
-						is_at_war_with_liege = yes
-					}
-					OR = {
-						is_vassal_of = scope:attacker
-						is_vassal_of = scope:defender
-					}
-				}
-				trigger_event = interactive.0001
-			}
-		}
-	}
-}
 
 interactive_war_participants = {
 	effect = {
 		if = {
 			limit = {
 				always = no
-
 				OR = {
 					has_game_rule = bannermen_mode_enabled
 					debug_only = yes
@@ -1370,12 +1412,6 @@ interactive_war_participants = {
 				}
 				scope:war = {
 					is_civil_war = no
-				}
-				scope:war = {
-					NOR = {
-						always = no
-						using_cb = nomadic_war
-					}
 				}
 				NOT = {
 					scope:war.primary_attacker = {
@@ -1391,7 +1427,9 @@ interactive_war_participants = {
 					limit = {
 						OR = {
 							is_vassal_of = scope:war.primary_attacker
-							is_vassal_of = scope:war.primary_defender
+							interactive_bannermen_is_rebel_trigger = {
+								LIEGE = scope:war.primary_defender
+							}
 						}
 					}
 					save_scope_as = participant
@@ -1405,7 +1443,7 @@ interactive_war_participants = {
 									}
 								}
 								highest_held_title_tier > tier_barony
-								max_military_strength > 200
+								max_military_strength > interactive_minimum_vassal_strength
 								is_landed = yes
 								opinion = {
 									target = scope:participant
@@ -1429,9 +1467,7 @@ interactive_war_participants = {
 											}
 										}
 									}
-									scope:war = {
-										add_defender = prev
-									}
+									add_to_list = miv_join_defender
 									if = {
 										limit = {
 											NOT = {
@@ -1453,9 +1489,7 @@ interactive_war_participants = {
 											}
 										}
 									}
-									scope:war = {
-										add_attacker = prev
-									}
+									add_to_list = miv_join_attacker
 									if = {
 										limit = {
 											NOT = {
@@ -1472,6 +1506,18 @@ interactive_war_participants = {
 							}
 						}
 					}
+				}
+			}
+			every_in_list = {
+				list = miv_join_defender
+				scope:war = {
+					add_defender = prev
+				}
+			}
+			every_in_list = {
+				list = miv_join_attacker
+				scope:war = {
+					add_attacker = prev
 				}
 			}
 		}

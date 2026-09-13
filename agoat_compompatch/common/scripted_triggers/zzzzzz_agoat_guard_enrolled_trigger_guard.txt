@@ -1,0 +1,17 @@
+﻿agot_guard_positions_is_actively_enrolled_in_any_academy_trigger = {
+	agot_guard_positions_is_academy_student_trigger = yes
+	has_variable = agot_guard_positions_training_owner
+	trigger_if = {
+		limit = { has_variable = agot_guard_positions_training_owner }
+		OR = {
+			AND = { has_character_modifier = training_for_kingsguard var:agot_guard_positions_training_owner = { ruler_has_kingsguard_trigger = yes } }
+			AND = { has_character_modifier = training_for_battleguard var:agot_guard_positions_training_owner = { has_character_flag = has_battleguard } }
+			AND = { has_character_modifier = training_for_winged_knights var:agot_guard_positions_training_owner = { has_character_flag = has_winged_knights } }
+			AND = { has_character_modifier = training_for_swords_of_braavos var:agot_guard_positions_training_owner = { has_character_flag = has_swords_of_braavos } }
+			AND = { has_character_modifier = training_for_rainbow_guard var:agot_guard_positions_training_owner = { has_character_flag = has_rainbow_guard } }
+			AND = { has_character_modifier = training_for_kingsmen var:agot_guard_positions_training_owner = { has_character_flag = has_kingsmen } }
+			AND = { has_character_modifier = training_for_queensguard var:agot_guard_positions_training_owner = { has_character_flag = has_queensguard } }
+			AND = { has_character_modifier = training_for_greenhand var:agot_guard_positions_training_owner = { agot_guard_positions_has_greenhand_trigger = yes } }
+		}
+	}
+}

@@ -24,10 +24,10 @@
 				scope:recipient = {
 					government_has_flag = government_has_influence
 				}
+				has_game_rule = bannermen_mode_disabled
 			}
 		}
 		scope:actor = {
-			is_at_war = yes
 			OR ={
 				has_game_rule = bannermen_mode_enabled
 
@@ -44,7 +44,7 @@
 
 		}
 		scope:recipient = {
-			max_military_strength > 200
+			max_military_strength > interactive_minimum_vassal_strength
 			is_vassal_of = scope:actor
 			trigger_if = {
 				limit = {
@@ -62,6 +62,9 @@
 		exists = scope:target
 	}
 	is_valid_showing_failures_only = {
+		scope:actor = {
+			is_at_war = yes
+		}
 		scope:recipient = {
 			is_ruler = yes
 		}
@@ -80,7 +83,6 @@
 				}
 			}
 		}
-		# Only War Leaders can call allies
 		OR = {
 			has_game_rule = bannermen_mode_enabled
 			scope:actor = {
@@ -131,7 +133,6 @@
 					was_called = scope:recipient
 				}
 			}
-			# not already in target war
 			custom_description = {
 				text = join_war_interaction_already_in_target_war
 				NOR = {
@@ -161,7 +162,6 @@
 			has_game_rule = bannermen_mode_enabled
 			
 			scope:target = {
-				# not a civil war
 				custom_description = {
 					text = ASK_VASSAL_MILITARY_SUPPORT_IS_CIVIL_WAR_TEXT
 					NOT = {
@@ -178,9 +178,6 @@
 			hidden_effect = {
 				set_called_to = scope:recipient
 			}
-			#scope:actor = {
-			#	trigger_event = interactive.0002
-			#}
 			if = {
 				limit = {
 					NOT = {
@@ -323,7 +320,6 @@
 			NOT = {
 				has_game_rule = bannermen_mode_enabled
 			}
-			# Refuse call against Heir
 			add = -1000
 			exists = scope:recipient.player_heir
 			trigger_if = {
@@ -341,7 +337,6 @@
 			NOT = {
 				has_game_rule = bannermen_mode_enabled
 			}
-			# Refuse call against Spouse
 			add = -1000
 			scope:recipient = {
 				trigger_if = {
@@ -375,7 +370,6 @@
 			NOT = {
 				has_game_rule = bannermen_mode_enabled
 			}
-			# Reluctant to attack another ally
 			add = -50
 			scope:target.casus_belli.primary_attacker = scope:actor
 			scope:recipient = {
@@ -387,7 +381,6 @@
 			NOT = {
 				has_game_rule = bannermen_mode_enabled
 			}
-			# Reluctant to defend against another ally
 			add = -50
 			scope:target.casus_belli.primary_defender = scope:actor
 			scope:recipient = {
@@ -399,7 +392,6 @@
 			NOT = {
 				has_game_rule = bannermen_mode_enabled
 			}
-			# Reluctant to join against Friends
 			add = -50
 			trigger_if = {
 				limit = {
@@ -416,7 +408,6 @@
 			NOT = {
 				has_game_rule = bannermen_mode_enabled
 			}
-			# Reluctant to join against Best Friends
 			add = -50
 			trigger_if = {
 				limit = {
@@ -433,7 +424,6 @@
 			NOT = {
 				has_game_rule = bannermen_mode_enabled
 			}
-			# Reluctant to join against Lovers
 			add = -50
 			trigger_if = {
 				limit = {
@@ -450,7 +440,6 @@
 			NOT = {
 				has_game_rule = bannermen_mode_enabled
 			}
-			# Reluctant to join against Soulmate
 			add = -50
 			trigger_if = {
 				limit = {
@@ -467,7 +456,6 @@
 			NOT = {
 				has_game_rule = bannermen_mode_enabled
 			}
-			# Refuse call for hostages' safety
 			any_home_court_hostage = {
 				warden = {
 					OR = {

@@ -813,7 +813,6 @@ tradition_agot_harsh_laws = {
 	}
 }
 
-#Essos
 
 tradition_agot_andalos = {
 	category = regional
@@ -1179,7 +1178,6 @@ tradition_agot_ghis = {
 	}
 }
 
-#can have up to 2 Concubines
 tradition_agot_rhoynar = {
 	category = regional
 
@@ -1238,8 +1236,6 @@ tradition_agot_ib = {
 	parameters = {
 		bossy_trait_more_common = yes
 		forest_trait_bonuses = yes
-		# Unyielding Defender Trait is more common
-		# Arrogant Trait is looked down more than other cultures
 		patient_trait_more_common = yes
 		wanderers_gain_extra_economic_skills = yes
 	}
@@ -1264,7 +1260,7 @@ tradition_agot_ib = {
 	}
 }
 
-tradition_agot_candling = { #silly mode candlings
+tradition_agot_candling = {
 	category = regional
 
 	layers = {
@@ -1715,7 +1711,7 @@ tradition_agot_westerlands = {
 						any_councillor = {
 							NOR = {
 								culture = scope:character.culture
-								is_spouse_of = scope:character # Might be hard to have the right culture for the Spouse; but we can remove this helper if needed
+								is_spouse_of = scope:character
 							}
 						}
 					}

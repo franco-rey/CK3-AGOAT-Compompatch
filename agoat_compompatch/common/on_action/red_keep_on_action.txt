@@ -1,6 +1,4 @@
 ﻿
-#Red Keep on actions
-########################################################################################################################################################################
 quarterly_playable_pulse = {
 	 on_actions = {
 		rk_on_kings_landing_envent
@@ -22,7 +20,6 @@ five_year_playable_pulse = {
 
 three_year_playable_pulse = {
 	on_actions = {
-		#rk_crime_events
 		rk_kingsguard_traits_on_actions
 	}
 }
@@ -30,7 +27,6 @@ three_year_playable_pulse = {
 yearly_playable_pulse = {
 	 on_actions = {
 		rk_on_wildifire_storage_event
-		#rk_on_wildifire_production_event		#Might Want to add later
 	 }
 }
 
@@ -69,21 +65,20 @@ on_title_gain = {
 	}
 }
 
-####### EVENTS #####
 
-on_yearly_events = { # These compete with most of the standard events in the game. Some of my events will go here and in their own pool.
+on_yearly_events = {
 
 	random_events = {
-		100 = rk_filler.0001 #A Late Night Stroll 
-		100 = rk_filler.0002 #The Iron Scent
-		100 = rk_filler.0003 #A Border Dispute
-		100 = rk_filler.0004 #The Unspoken Truth
-		100 = rk_filler.0005 #Steel in the Yard
-		100 = rk_filler.0006 #A Small Scuffle
-		100 = rk_filler.0007 #Maester's Herbs
-		100 = rk_filler.0008 #The Minor Customs Breach
-		100 = rk_filler.0009 #A Shift Change
-		100 = rk_filler.0010 #The Morning After	
+		100 = rk_filler.0001
+		100 = rk_filler.0002
+		100 = rk_filler.0003
+		100 = rk_filler.0004
+		100 = rk_filler.0005
+		100 = rk_filler.0006
+		100 = rk_filler.0007
+		100 = rk_filler.0008
+		100 = rk_filler.0009
+		100 = rk_filler.0010
 		100 = rk_nw.0002
 	}
 }
@@ -92,7 +87,7 @@ rk_on_iron_throne_succession = {
 	trigger = {
 		has_title = title:c_kings_landing
 	}
-	random_events = {    #****REVISE, ENABLE WHEN I HAVE MORE
+	random_events = {
 		100 = rk_small_council.0002
 	}
 }
@@ -133,10 +128,8 @@ rk_army_wildfire = {
 
 
 
-#Starting King's Landing event
-###############################
 
-rk_on_kings_landing_envent = { #Starting event firing ##Revise Pulse!*
+rk_on_kings_landing_envent = {
 	effect = {
 		if = {
 			limit = {
@@ -151,15 +144,12 @@ rk_on_kings_landing_envent = { #Starting event firing ##Revise Pulse!*
 	}
 }
 
-#Famine on Actions
-###################
 
-rk_on_reduce_food_supplies = { #Event to lower the food supplies ##REVISE PULSE!!! THIS IS JUST FOR TESTING!*
+rk_on_reduce_food_supplies = {
 	effect = {
 		if = { 
 			limit = {			
-				has_global_variable = rk_player_famines	##Revise
-                #is_ai = no	###REVISE!!! THIS IS JUST FOR TESTING,REMOVE THE HASH#
+				has_global_variable = rk_player_famines
                 has_title = title:c_kings_landing				
 			}
 			trigger_event = rk_famine.0001  			
@@ -167,7 +157,7 @@ rk_on_reduce_food_supplies = { #Event to lower the food supplies ##REVISE PULSE!
 	}
 }
 
-rk_on_remove_famine_modifiers = { #Event to remove the famine modifiers for the AI ##Revise Pulse!*
+rk_on_remove_famine_modifiers = {
 	effect = {
 		if = {
 			limit = {
@@ -180,8 +170,6 @@ rk_on_remove_famine_modifiers = { #Event to remove the famine modifiers for the 
 	}
 }		
 
-##### Crime ####
-################
 
 rk_on_gk_loyalty = {
 	effect = {
@@ -264,8 +252,6 @@ rk_on_gk_loyalty = {
 	}
 }
 
-# Red Keep Domicile On Actions - When Losing the red keep, the domicile is destroyed.
-#####################################################################################
 
 
 on_title_lost = {
@@ -310,9 +296,8 @@ rk_recreate_red_keep = {
 	}
 }
 
-##### Wildfire on actions
 
-rk_on_wildifire_storage_event = { #Wildfire Sotrage Risks and accidents
+rk_on_wildifire_storage_event = {
 	trigger = {
 		has_title = title:b_the_red_keep
 		is_available = yes
@@ -326,7 +311,7 @@ rk_on_wildifire_storage_event = { #Wildfire Sotrage Risks and accidents
 		}		
 	}
 	effect = {	
-		if = { #Small Risk, a little wildfire
+		if = {
 			limit = {			
 				title:c_kings_landing = {
 					OR = {
@@ -351,7 +336,7 @@ rk_on_wildifire_storage_event = { #Wildfire Sotrage Risks and accidents
 				}
 			}
 		}
-		else_if = { #Moderate Risk, moderate wildifre
+		else_if = {
 			limit = {			
 				title:c_kings_landing = {
 					OR = {	
@@ -376,7 +361,7 @@ rk_on_wildifire_storage_event = { #Wildfire Sotrage Risks and accidents
 				}
 			}
 		}
-		else_if = { #Big Risk, a lot wildfire
+		else_if = {
 			limit = {			
 				title:c_kings_landing = {
 					OR = {	
@@ -403,7 +388,7 @@ rk_on_wildifire_storage_event = { #Wildfire Sotrage Risks and accidents
 				}
 			}
 		}
-		else_if = { #Huge Risk, too much wildifire
+		else_if = {
 			limit = {			
 				title:c_kings_landing = {
 					OR = {	
@@ -433,7 +418,7 @@ rk_on_wildifire_storage_event = { #Wildfire Sotrage Risks and accidents
 	}
 }
 
-rk_on_wildifire_production_event = { #Wildfire Production Events
+rk_on_wildifire_production_event = {
 	trigger = {
 		has_title = title:b_the_red_keep
 		is_ai = no			
@@ -532,7 +517,6 @@ rk_nightswatch_petition = {
 
 
 
-######### CRIME AND GOLDCLOACKS
 
 
 rk_crime_events = {
@@ -917,86 +901,86 @@ rk_kingsguard_traits_on_actions = {
 		has_title = title:c_kings_landing
 	}
 	random_events = {
-		100 = rk_kg.0001 #	
-		100 = rk_kg.0002 #	
-		100 = rk_kg.0003 #	
-		100 = rk_kg.0004 #	
-		100 = rk_kg.0005 #	
-		100 = rk_kg.0006 #	
-		100 = rk_kg.0007 #	
-		100 = rk_kg.0008 #	
-		100 = rk_kg.0009 #	
-		100 = rk_kg.0010 #	
-		100 = rk_kg.0011 #	
-		100 = rk_kg.0012 #	
-		100 = rk_kg.0013 #	
-		100 = rk_kg.0014 #	
-		100 = rk_kg.0015 #	
-		100 = rk_kg.0016 #	
-		100 = rk_kg.0017 #	
-		100 = rk_kg.0018 #	
-		100 = rk_kg.0019 #	
-		100 = rk_kg.0020 #	
-		100 = rk_kg.0021 #	
-		100 = rk_kg.0022 #	
-		100 = rk_kg.0023 #	
-		100 = rk_kg.0024 #	
-		100 = rk_kg.0025 #	
-		100 = rk_kg.0026 #	
-		100 = rk_kg.0027 #	
-		100 = rk_kg.0028 #	
-		100 = rk_kg.0029 #	
-		100 = rk_kg.0030 #	
-		100 = rk_kg.0030 #	
-		100 = rk_kg.0031 #	
-		100 = rk_kg.0032 #	
-		100 = rk_kg.0033 #	
-		100 = rk_kg.0034 #	
-		100 = rk_kg.0035 #	
-		100 = rk_kg.0036 #	
-		100 = rk_kg.0037 #	
-		100 = rk_kg.0038 #		
-		100 = rk_kg.0039 #		
-		100 = rk_kg.0040 #
-		100 = rk_kg.0041 #	
-		100 = rk_kg.0042 #	
-		100 = rk_kg.0043 #	
-		100 = rk_kg.0044 #	
-		100 = rk_kg.0045 #	
-		100 = rk_kg.0046 #	
-		100 = rk_kg.0047 #	
-		100 = rk_kg.0048 #	
-		100 = rk_kg.0049 #	
-		100 = rk_kg.0050 #	
-		100 = rk_kg.0051 #
-		100 = rk_kg.0052 #
-		100 = rk_kg.0053 #
-		100 = rk_kg.0054 #
-		100 = rk_kg.0055 #
-		100 = rk_kg.0056 #
-		100 = rk_kg.0057 #
-		100 = rk_kg.0058 #
-		100 = rk_kg.0059 #
-		100 = rk_kg.0060 #	
-		100 = rk_kg.0061 #	
-		100 = rk_kg.0062 #	
-		100 = rk_kg.0063 #	
-		100 = rk_kg.0064 #	
-		100 = rk_kg.0065 #	
-		100 = rk_kg.0066 #	
-		100 = rk_kg.0067 #	
-		100 = rk_kg.0068 #	
-		100 = rk_kg.0069 #	
-		100 = rk_kg.0070 #	
-		100 = rk_kg.0071 #
-		100 = rk_kg.0072 #
-		100 = rk_kg.0073 #
-		100 = rk_kg.0074 #
-		100 = rk_kg.0075 #
-		100 = rk_kg.0076 #
-		100 = rk_kg.0077 #
-		100 = rk_kg.0078 #
-		100 = rk_kg.0079 #
-		100 = rk_kg.0080 #		
+		100 = rk_kg.0001
+		100 = rk_kg.0002
+		100 = rk_kg.0003
+		100 = rk_kg.0004
+		100 = rk_kg.0005
+		100 = rk_kg.0006
+		100 = rk_kg.0007
+		100 = rk_kg.0008
+		100 = rk_kg.0009
+		100 = rk_kg.0010
+		100 = rk_kg.0011
+		100 = rk_kg.0012
+		100 = rk_kg.0013
+		100 = rk_kg.0014
+		100 = rk_kg.0015
+		100 = rk_kg.0016
+		100 = rk_kg.0017
+		100 = rk_kg.0018
+		100 = rk_kg.0019
+		100 = rk_kg.0020
+		100 = rk_kg.0021
+		100 = rk_kg.0022
+		100 = rk_kg.0023
+		100 = rk_kg.0024
+		100 = rk_kg.0025
+		100 = rk_kg.0026
+		100 = rk_kg.0027
+		100 = rk_kg.0028
+		100 = rk_kg.0029
+		100 = rk_kg.0030
+		100 = rk_kg.0030
+		100 = rk_kg.0031
+		100 = rk_kg.0032
+		100 = rk_kg.0033
+		100 = rk_kg.0034
+		100 = rk_kg.0035
+		100 = rk_kg.0036
+		100 = rk_kg.0037
+		100 = rk_kg.0038
+		100 = rk_kg.0039
+		100 = rk_kg.0040
+		100 = rk_kg.0041
+		100 = rk_kg.0042
+		100 = rk_kg.0043
+		100 = rk_kg.0044
+		100 = rk_kg.0045
+		100 = rk_kg.0046
+		100 = rk_kg.0047
+		100 = rk_kg.0048
+		100 = rk_kg.0049
+		100 = rk_kg.0050
+		100 = rk_kg.0051
+		100 = rk_kg.0052
+		100 = rk_kg.0053
+		100 = rk_kg.0054
+		100 = rk_kg.0055
+		100 = rk_kg.0056
+		100 = rk_kg.0057
+		100 = rk_kg.0058
+		100 = rk_kg.0059
+		100 = rk_kg.0060
+		100 = rk_kg.0061
+		100 = rk_kg.0062
+		100 = rk_kg.0063
+		100 = rk_kg.0064
+		100 = rk_kg.0065
+		100 = rk_kg.0066
+		100 = rk_kg.0067
+		100 = rk_kg.0068
+		100 = rk_kg.0069
+		100 = rk_kg.0070
+		100 = rk_kg.0071
+		100 = rk_kg.0072
+		100 = rk_kg.0073
+		100 = rk_kg.0074
+		100 = rk_kg.0075
+		100 = rk_kg.0076
+		100 = rk_kg.0077
+		100 = rk_kg.0078
+		100 = rk_kg.0079
+		100 = rk_kg.0080
 	}
 }

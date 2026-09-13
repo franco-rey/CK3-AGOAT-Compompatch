@@ -1,0 +1,532 @@
+﻿on_entered_diarchy = {
+	effect = {
+		diarch ?= { save_scope_as = diarch }
+		trigger_event = {
+			id = diarchy.0101
+			months = { 3 9 }
+		}
+		if = {
+			limit = { NOT = { has_character_flag = agoat_vizierate_cycle_armed } }
+			add_character_flag = agoat_vizierate_cycle_armed
+			trigger_event = {
+				on_action = cycle_vizierate_politicking_events_on_action
+				months = { 6 18 }
+			}
+		}
+		trigger_event = {
+			id = vizierate.0501
+			months = { 6 18 }
+		}
+		if = {
+			limit = {
+				has_diarchy_type = grand_secretariat
+			}
+			diarch = {
+				trigger_event = diarchy.0102
+			}
+		}
+
+		every_vassal_or_below = {
+			send_interface_message = {
+				type = msg_mandate_results_neutral_text
+				title = {
+					first_valid = {
+						triggered_desc = {
+							trigger = { this.liege = root }
+							desc = on_entered_diarchy.notification.vassal.t
+						}
+						desc = on_entered_diarchy.notification.vassal.t.higher_liege
+					}
+				}
+				left_icon = root
+				right_icon = root.diarch
+				desc = {
+					desc = on_entered_diarchy.notification.vassal.desc
+					first_valid = {
+						triggered_desc = {
+							trigger = {
+								root = { is_adult = no }
+							}
+							desc = on_entered_diarchy.notification.vassal.desc.outro.child
+						}
+						triggered_desc = {
+							trigger = {
+								root = { is_incapable = yes }
+							}
+							desc = on_entered_diarchy.notification.vassal.desc.outro.incapable
+						}
+						triggered_desc = {
+							trigger = {
+								root = { is_imprisoned = yes }
+							}
+							desc = on_entered_diarchy.notification.vassal.desc.outro.imprisonment
+						}
+						triggered_desc = {
+							trigger = {
+								root = { is_travelling = yes }
+							}
+							desc = on_entered_diarchy.notification.vassal.desc.outro.travel
+						}
+					}
+				}
+			}
+		}
+		diarch ?= {
+			if = {
+				limit = {
+					NOT = { has_character_flag = has_had_diarch_intro_event_flag }
+				}
+				trigger_event = diarchy.0021
+			}
+		}
+
+		trigger_event = {
+			id = diarchy.0023
+			days = 1
+		}
+
+		if = {
+			limit = { always = no }
+			if = {
+				limit = { highest_held_title_tier = tier_empire }
+				add_to_global_variable_list = {
+					name = current_empire_regencies
+					target = primary_title
+				}
+			}
+			if = {
+				limit = { highest_held_title_tier = tier_kingdom }
+				add_to_global_variable_list = {
+					name = current_kingdom_regencies
+					target = primary_title
+				}
+			}
+			if = {
+				limit = { highest_held_title_tier = tier_duchy }
+				add_to_global_variable_list = {
+					name = current_duchy_regencies
+					target = primary_title
+				}
+			}
+			if = {
+				limit = { highest_held_title_tier = tier_county }
+				add_to_global_variable_list = {
+					name = current_county_regencies
+					target = primary_title
+				}
+			}
+		}
+		invalidate_diarch_grand_wedding_effect = yes
+	}
+}
+
+on_left_diarchy = {
+	effect = {
+		every_vassal_or_below = {
+			send_interface_message = {
+				type = msg_mandate_results_neutral_text
+				title = on_left_diarchy.notification.vassal.t
+				left_icon = root
+				right_icon = scope:old_diarch
+				desc = on_left_diarchy.notification.vassal.desc
+			}
+		}
+		scope:old_diarch ?= {
+			diarch_clean_up_conspiracy_variables_effect = yes
+			if = {
+				limit = { is_alive = yes }
+				trigger_event = {
+					id = diarchy.0022
+					days = 1
+				}
+			}
+			vizierate_remove_extravagance_modifiers_effect = yes
+			if = {
+				limit = { has_variable = use_co_ruler_title }
+				remove_variable = use_co_ruler_title
+				root = {
+					set_variable = {
+						name = co_ruler_to_transfer
+						value = scope:old_diarch
+						days = 7
+					}
+					if = {
+						limit = {
+							scope:old_diarch = { has_variable = diarchy_transfer_type_duumvirate }
+						}
+						set_variable = {
+							name = diarchy_transfer_type_duumvirate
+							value = yes
+							days = 7
+						}
+					}
+				}
+				remove_variable = diarchy_transfer_type_duumvirate
+			}
+		}
+		remove_variable = my_vizier
+
+		if = {
+			limit = { always = no }
+			if = {
+				limit = { highest_held_title_tier = tier_empire }
+				every_held_title = {
+					remove_list_global_variable = {
+						name = current_empire_regencies
+						target = prev
+					}
+				}
+			}
+			if = {
+				limit = { highest_held_title_tier = tier_kingdom }
+				every_held_title = {
+					remove_list_global_variable = {
+						name = current_kingdom_regencies
+						target = prev
+					}
+				}
+			}
+			if = {
+				limit = { highest_held_title_tier = tier_duchy }
+				every_held_title = {
+					remove_list_global_variable = {
+						name = current_duchy_regencies
+						target = prev
+					}
+				}
+			}
+			if = {
+				limit = { highest_held_title_tier = tier_county }
+				every_held_title = {
+					remove_list_global_variable = {
+						name = current_county_regencies
+						target = prev
+					}
+				}
+			}
+		}
+	}
+}
+
+on_diarch_change = {
+	effect = {
+		save_scope_as = liege
+		diarch ?= {
+			save_scope_as = diarch
+			if = {
+				limit = {
+					this != scope:old_diarch
+				}
+				trigger_event = diarchy.0021
+				trigger_event = {
+					id = diarchy.0023
+					days = 1
+				}
+			}
+		}
+		if = {
+			limit = { scope:reason = flag:death }
+			send_interface_message = {
+				type = msg_mandate_results_neutral_text
+				title = on_diarch_change.notification.liege.death.t
+				left_icon = root.diarch
+				desc = {
+					first_valid = {
+						triggered_desc = {
+							trigger = {
+								scope:old_diarch.primary_title = title:d_norvos_high_priesthood
+							}
+							desc = on_norvos_diarch_change.notification.liege.death.desc
+						}
+						desc = on_diarch_change.notification.liege.death.desc
+					}
+				}
+			}
+			every_vassal_or_below = {
+				send_interface_message = {
+					type = msg_mandate_results_neutral_text
+					title = on_diarch_change.notification.vassal.death.t
+					left_icon = root.diarch
+					desc = {
+						first_valid = {
+							triggered_desc = {
+								trigger = {
+									scope:old_diarch.primary_title = title:d_norvos_high_priesthood
+								}
+								desc = on_norvos_diarch_change.notification.vassal.death.desc
+							}
+							desc = on_diarch_change.notification.vassal.death.desc
+						}
+					}
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:reason = flag:depose }
+			send_interface_message = {
+				type = msg_mandate_results_neutral_text
+				title = on_diarch_change.notification.liege.deposition.t
+				left_icon = root.diarch
+				desc = on_diarch_change.notification.liege.deposition.desc
+			}
+			every_vassal_or_below = {
+				send_interface_message = {
+					type = msg_mandate_results_neutral_text
+					title = on_diarch_change.notification.vassal.deposition.t
+					left_icon = root.diarch
+					desc = on_diarch_change.notification.vassal.deposition.desc
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:reason = flag:invalid }
+			send_interface_message = {
+				type = msg_mandate_results_neutral_text
+				title = on_diarch_change.notification.liege.invalidation.t
+				left_icon = root.diarch
+				desc = on_diarch_change.notification.liege.invalidation.desc
+			}
+			every_vassal_or_below = {
+				send_interface_message = {
+					type = msg_mandate_results_neutral_text
+					title = on_diarch_change.notification.vassal.invalidation.t
+					left_icon = root.diarch
+					desc = on_diarch_change.notification.vassal.invalidation.desc
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:reason = flag:inheritance }
+			send_interface_message = {
+				type = msg_mandate_results_neutral_text
+				title = on_diarch_change.notification.liege.inheritance.t
+				left_icon = root.diarch
+				desc = on_diarch_change.notification.liege.inheritance.desc
+			}
+			every_vassal_or_below = {
+				send_interface_message = {
+					type = msg_mandate_results_neutral_text
+					title = on_diarch_change.notification.vassal.inheritance.t
+					left_icon = root.diarch
+					desc = on_diarch_change.notification.vassal.inheritance.desc
+				}
+			}
+		}
+		else = {
+			send_interface_message = {
+				type = msg_mandate_results_neutral_text
+				title = on_diarch_change.notification.liege.fallback.t
+				left_icon = root.diarch
+				desc = on_diarch_change.notification.liege.fallback.desc
+			}
+			every_vassal_or_below = {
+				send_interface_message = {
+					type = msg_mandate_results_neutral_text
+					title = on_diarch_change.notification.vassal.fallback.t
+					left_icon = root.diarch
+					desc = on_diarch_change.notification.vassal.fallback.desc
+				}
+			}
+		}
+		scope:old_diarch ?= {
+			diarch_clean_up_conspiracy_variables_effect = yes
+			if = {
+				limit = { is_alive = yes }
+				trigger_event = {
+					id = diarchy.0022
+					days = 1
+				}
+				vizierate_remove_extravagance_modifiers_effect = yes
+				remove_variable = use_co_ruler_title
+			}
+		}
+		invalidate_diarch_grand_wedding_effect = yes
+	}
+}
+
+on_diarch_designation = {
+	effect = {
+		reverse_add_opinion = {
+			target = root.designated_diarch
+			modifier = designated_me_regent_opinion
+		}
+		if = {
+			limit = {
+				any_diarchy_succession_character = { diarchy_regent_succession_score_value > root.designated_diarch.diarchy_regent_succession_score_value }
+			}
+			every_diarchy_succession_character = {
+				limit = { diarchy_regent_succession_score_value > root.designated_diarch.diarchy_regent_succession_score_value }
+				set_variable = {
+					name = degree_of_upset
+					value = {
+						value = diarchy_regent_succession_score_value
+						subtract = root.designated_diarch.diarchy_regent_succession_score_value
+						add = 10
+						max = 40
+						multiply = -1
+					}
+				}
+				add_opinion = {
+					target = root
+					modifier = passed_me_over_for_regent_opinion
+					opinion = var:degree_of_upset
+				}
+			}
+			if = {
+				limit = {
+					root.designated_diarch = {
+						is_lowborn = yes
+						NOT = {
+							any_close_or_extended_family_member = { this = root }
+						}
+					}
+				}
+				every_vassal = {
+					vassal_stance = courtly
+					limit = {
+						this != root.designated_diarch
+					}
+					save_scope_value_as = {
+						name = degree_of_upset
+						value = {
+							value = courtly_offence_scandalise_value
+							if = {
+								limit = { has_variable = degree_of_upset }
+								subtract = var:degree_of_upset
+							}
+						}
+					}
+					if = {
+						limit = { scope:degree_of_upset <= -1 }
+						add_opinion = {
+							target = root
+							modifier = designated_bad_regent_opinion
+							opinion = scope:degree_of_upset
+						}
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					root.designated_diarch = { is_lowborn = yes }
+				}
+				every_vassal = {
+					vassal_stance = courtly
+					limit = {
+						this != root.designated_diarch
+					}
+					save_scope_value_as = {
+						name = degree_of_upset
+						value = {
+							value = courtly_offence_greatly_offend_value
+							if = {
+								limit = { has_variable = degree_of_upset }
+								subtract = var:degree_of_upset
+							}
+						}
+					}
+					if = {
+						limit = { scope:degree_of_upset <= -1 }
+						add_opinion = {
+							target = root
+							modifier = designated_bad_regent_opinion
+							opinion = scope:degree_of_upset
+						}
+					}
+				}
+			}
+			else_if = {
+				limit = { root.designated_diarch.diarchy_regent_succession_score_value <= courtly_offence_at_succession_threshold_low }
+				every_vassal = {
+					vassal_stance = courtly
+					limit = {
+						this != root.designated_diarch
+					}
+					save_scope_value_as = {
+						name = degree_of_upset
+						value = {
+							value = courtly_offence_offend_value
+							if = {
+								limit = { has_variable = degree_of_upset }
+								subtract = var:degree_of_upset
+							}
+						}
+					}
+					if = {
+						limit = { scope:degree_of_upset <= -1 }
+						add_opinion = {
+							target = root
+							modifier = designated_bad_regent_opinion
+							opinion = scope:degree_of_upset
+						}
+					}
+				}
+			}
+			else_if = {
+				limit = { root.designated_diarch.diarchy_regent_succession_score_value <= courtly_offence_at_succession_threshold_medium }
+				every_vassal = {
+					vassal_stance = courtly
+					limit = {
+						this != root.designated_diarch
+					}
+					save_scope_value_as = {
+						name = degree_of_upset
+						value = {
+							value = courtly_offence_somewhat_offend_value
+							if = {
+								limit = { has_variable = degree_of_upset }
+								subtract = var:degree_of_upset
+							}
+						}
+					}
+					if = {
+						limit = { scope:degree_of_upset <= -1 }
+						add_opinion = {
+							target = root
+							modifier = designated_bad_regent_opinion
+							opinion = scope:degree_of_upset
+						}
+					}
+				}
+			}
+			else_if = {
+				limit = { root.designated_diarch.diarchy_regent_succession_score_value <= courtly_offence_at_succession_threshold_high }
+				every_vassal = {
+					vassal_stance = courtly
+					limit = {
+						this != root.designated_diarch
+					}
+					save_scope_value_as = {
+						name = degree_of_upset
+						value = {
+							value = courtly_offence_lightly_offend_value
+							if = {
+								limit = { has_variable = degree_of_upset }
+								subtract = var:degree_of_upset
+							}
+						}
+					}
+					if = {
+						limit = { scope:degree_of_upset <= -1 }
+						add_opinion = {
+							target = root
+							modifier = designated_bad_regent_opinion
+							opinion = scope:degree_of_upset
+						}
+					}
+				}
+			}
+			every_diarchy_succession_character = { remove_variable = degree_of_upset }
+		}
+	}
+}
+
+cycle_vizierate_politicking_events_on_action = {
+	random_events = {
+		500 = vizierate.0051
+		250 = vizierate.0001
+		100 = vizierate.0031
+		100 = vizierate.0041
+		20 = vizierate.1001
+	}
+}

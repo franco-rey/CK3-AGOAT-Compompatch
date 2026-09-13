@@ -4,18 +4,12 @@
 	visible = "[IsDefaultGUIMode]"
 	layer = bottom
 
-	# The engine needs the host-detail data context before it can construct an
-	# activity planner.  Agenda confirmation opens that context; this state
-	# immediately advances our pending Dragonlord Council into planning once the
-	# context exists, so the player never has to press the redundant Plan button.
 	state = {
 		name = dragonlord_council_open_planner_when_detail_ready
 		trigger_when = "[And(GetPlayer.MakeScope.Var('dragonlord_council_pending_agenda').IsSet, IsGameViewDataShown('activity_list_detail_host_window', GetActivityType('activity_dragonlord_council').Self))]"
 		on_start = "[ActivityListDetailHostView.Confirm]"
 	}
 
-	# Remember only a planner that was actually opened.  This prevents the
-	# detail-view hand-off from being mistaken for a cancellation.
 	state = {
 		name = dragonlord_council_remember_open_planner
 		trigger_when = "[And(GetPlayer.MakeScope.Var('dragonlord_council_pending_agenda').IsSet, IsGameViewOpen('activity_planner'))]"
@@ -23,8 +17,6 @@
 		on_start = "[GetVariableSystem.Clear('dragonlord_council_planner_launching')]"
 	}
 
-	# Exiting the planner without creating the activity abandons the proposal.
-	# The scripted GUI clears it and restores the agenda selector.
 	state = {
 		name = dragonlord_council_cancel_abandoned_planning
 		trigger_when = "[And(GetVariableSystem.Exists('dragonlord_council_planner_was_open'), And(Not(IsGameViewOpen('activity_planner')), Not(IsGameViewDataShown('activity_list_detail_host_window', GetActivityType('activity_dragonlord_council').Self))))]"
@@ -32,11 +24,9 @@
 		on_start = "[GetVariableSystem.Clear('dragonlord_council_planner_was_open')]"
 	}
 
-	# Recover proposals left behind in saves made with the old broken planner
-	# bridge.  The command refuses to run once a real council activity exists.
 	state = {
 		name = dragonlord_council_recover_legacy_abandoned_planning
-		trigger_when = "[And(GetScriptedGui('dragonlord_council_cancel_pending_planning').IsValid(GuiScope.SetRoot(GetPlayer.MakeScope).End), And(Not(GetVariableSystem.Exists('dragonlord_council_planner_launching')), And(Not(GetVariableSystem.Exists('dragonlord_council_planner_was_open')), And(Not(IsGameViewOpen('activity_planner')), Not(IsGameViewDataShown('activity_list_detail_host_window', GetActivityType('activity_dragonlord_council').Self))))))]"
+		trigger_when = "[And(GetPlayer.MakeScope.Var('dragonlord_council_pending_agenda').IsSet, And(Not(GetVariableSystem.Exists('dragonlord_council_planner_launching')), And(Not(GetVariableSystem.Exists('dragonlord_council_planner_was_open')), And(Not(IsGameViewOpen('activity_planner')), Not(IsGameViewDataShown('activity_list_detail_host_window', GetActivityType('activity_dragonlord_council').Self))))))]"
 		on_start = "[GetScriptedGui('dragonlord_council_cancel_pending_planning').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
 	}
 
@@ -6828,7 +6818,7 @@ types HUD
 	}
 
 
-	type bottom_left_dragon_portrait = container { # MDE Modified
+	type bottom_left_dragon_portrait = container {
 		datacontext = "[GetPlayer]"
 		visible = "[And(And( Not(IsGameViewOpen('barbershop')) , And(GetPlayer.IsValid, Not(GetVariableSystem.Exists( 'hide_bottom_left_HUD')))), Not( GreaterThan_CFixedPoint( GetPlayer.MakeScope.Var('hide_ui_character_model').GetValue, '(CFixedPoint)0' ) ))]"
 		visible_at_creation = no
@@ -6919,12 +6909,9 @@ types HUD
             alpha = 0
         }
 
-        ### HEIR PORTRAIT (Scenario A: Spouse Exists) ###
-        # Position: Far Right (Behind Spouse)
         widget = {
             datacontext = "[GetPlayer.GetPlayerHeir]"
             
-            # VISIBLE IF: Heir Valid AND Child of Player AND Age > 1 AND Spouse IS Valid
             visible = "[And( GetPlayer.GetPrimarySpouse.IsValid, And( Character.IsValid, And( GreaterThan_int32( Character.GetAge, '(int32)1' ), Or( ObjectsEqual( Character.GetFather, GetPlayer ), ObjectsEqual( Character.GetMother, GetPlayer ) ) ) ) )]"
             
             parentanchor = bottom|left
@@ -6939,18 +6926,14 @@ types HUD
             }
         }
 
-        ### HEIR PORTRAIT (Scenario B: No Spouse) ###
-        # Position: Closer (Takes Spouse's spot)
         widget = {
             datacontext = "[GetPlayer.GetPlayerHeir]"
             
-            # VISIBLE IF: Heir Valid AND Child of Player AND Age > 1 AND Spouse is NOT Valid
             visible = "[And( Not(GetPlayer.GetPrimarySpouse.IsValid), And( Character.IsValid, And( GreaterThan_int32( Character.GetAge, '(int32)1' ), Or( ObjectsEqual( Character.GetFather, GetPlayer ), ObjectsEqual( Character.GetMother, GetPlayer ) ) ) ) )]"
             
             parentanchor = bottom|left
             position = { 225 0 } 
             size = { 400 450 }
-            # Scale is normal here since they are closer
             scale = 1.0 
 
             portrait_hud_heir = {
@@ -6960,13 +6943,10 @@ types HUD
             }
         }
 
-        ### SPOUSE PORTRAIT ###
-        # Rendered second (middle depth)
         widget = {
             datacontext = "[GetPlayer.GetPrimarySpouse]"
             visible = "[Character.IsValid]"
             parentanchor = bottom|left
-            # Positioned to the right of the player
             position = { 225 0 } 
             size = { 400 450 }
 
@@ -6977,8 +6957,6 @@ types HUD
             }
         }
 
-        ### PLAYER PORTRAIT ###
-        # Rendered last (Front)
         portrait_hud = {
             scale = 1.0
             parentanchor = center
@@ -6986,19 +6964,18 @@ types HUD
 			size = { 400 450 }
         }
 
-        # Dark fade at the bottom
         icon = {
             texture = "gfx/interface/hud/bottom_left_portrait_fade.dds"
             parentanchor = bottom|left
             color = { 0.12 0.12 0.12 1 }
-            size = { 650 200 } # Increased width to cover spouse and heir
+            size = { 650 200 }
         }
 
         icon = {
             texture = "gfx/interface/hud/bottom_left_portrait_fade.dds"
             parentanchor = bottom|left
             color = { 0.15 0.15 0.15 0.3 }
-            size = { 650 200 } # Increased width to cover spouse and heir
+            size = { 650 200 }
         }
     }
 

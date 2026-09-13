@@ -16,14 +16,12 @@
 @mandala_decree_piety_cost = 1000
 @mandala_decree_prestige_cost = 500
 
-#AGOT Added
 @god_kings_crown_authority_cooldown_years = 3
 
 crown_authority = {
 	default = crown_authority_1
 	cumulative = yes
 	flag = realm_law
-	#AGOT Added
 	flag = all_realm_law
 	
 	crown_authority_0 = {
@@ -48,7 +46,6 @@ crown_authority = {
 		}
 
 		on_pass = {
-			# Remove modifiers.
 			remove_law_related_modifiers_effect = yes
 		}
 	}
@@ -111,17 +108,13 @@ crown_authority = {
 		}
 		
 		on_pass = {
-			# Increment cooldown breaker tally, if appropriate.
 			calculate_authority_cooldown_break_effect = yes
-			# Set regular cooldown.
 			set_variable = {
 				name = crown_authority_cooldown
 				years = @crown_authority_cooldown_years
 			}
-			# Remove modifiers.
 			remove_law_related_modifiers_effect = yes
 
-			#AGOT Added
 			if = {
 				limit = {
 					faith = { has_doctrine_parameter = can_change_realm_authority_frequently }
@@ -156,7 +149,7 @@ crown_authority = {
 		flag = vassal_internal_wars_banned
 		flag = vassal_refusal_is_treason
 		flag = can_change_succession_laws
-		flag = titles_cannot_leave_realm_on_succession # Hardcoded flag
+		flag = titles_cannot_leave_realm_on_succession
 		
 		can_keep = {
 			realm_law_use_crown_authority = yes
@@ -205,17 +198,13 @@ crown_authority = {
 		}
 		
 		on_pass = {
-			# Increment cooldown breaker tally, if appropriate.
 			calculate_authority_cooldown_break_effect = yes
-			# Set regular cooldown.
 			set_variable = {
 				name = crown_authority_cooldown
 				years = @crown_authority_cooldown_years
 			}
-			# Remove modifiers.
 			remove_law_related_modifiers_effect = yes
 
-			#AGOT Added
 			if = {
 				limit = {
 					faith = { has_doctrine_parameter = can_change_realm_authority_frequently }
@@ -245,8 +234,6 @@ crown_authority = {
 			zealot_opinion = -40
 			minority_opinion = -60
 			vassal_tax_contribution_mult = 0.25
-			#AGOT Modified
-			#vassal_levy_contribution_mult = 0.25
 			vassal_levy_contribution_mult = 0.2
 		}
 		flag = vassal_all_wars_banned
@@ -299,17 +286,13 @@ crown_authority = {
 		}
 		
 		on_pass = {
-			# Increment cooldown breaker tally, if appropriate.
 			calculate_authority_cooldown_break_effect = yes
-			# Set regular cooldown.
 			set_variable = {
 				name = crown_authority_cooldown
 				years = @crown_authority_cooldown_years
 			}
-			# Remove modifiers.
 			remove_law_related_modifiers_effect = yes
 
-			#AGOT Added
 			if = {
 				limit = {
 					faith = { has_doctrine_parameter = can_change_realm_authority_frequently }
@@ -339,10 +322,8 @@ tribal_authority = {
 		flag = imprisonment_toggle_enable
 
 		can_keep = { realm_law_use_tribal_authority = yes }
-		#Imprisonment is disabled if you have this law. Script is in the interaction, currently in 00_prison_interactions.
 
 		on_pass = {
-			# Remove modifiers.
 			remove_law_related_modifiers_effect = yes
 		}
 	}
@@ -394,17 +375,13 @@ tribal_authority = {
 		}
 		
 		on_pass = {
-			# Increment cooldown breaker tally, if appropriate.
 			calculate_authority_cooldown_break_effect = yes
-			# Set regular cooldown.
 			set_variable = {
 				name = tribal_authority_cooldown
 				years = @tribal_authority_cooldown_years
 			}
-			# Remove modifiers.
 			remove_law_related_modifiers_effect = yes
 
-			#AGOT Added
 			if = {
 				limit = {
 					faith = { has_doctrine_parameter = can_change_realm_authority_frequently }
@@ -484,17 +461,13 @@ tribal_authority = {
 		}
 		
 		on_pass = {
-			# Increment cooldown breaker tally, if appropriate.
 			calculate_authority_cooldown_break_effect = yes
-			# Set regular cooldown.
 			set_variable = {
 				name = tribal_authority_cooldown
 				years = @tribal_authority_cooldown_years
 			}
-			# Remove modifiers.
 			remove_law_related_modifiers_effect = yes
 
-			#AGOT Added
 			if = {
 				limit = {
 					faith = { has_doctrine_parameter = can_change_realm_authority_frequently }
@@ -524,8 +497,6 @@ tribal_authority = {
 			belligerent_opinion = 40
 		}
 		flag = max_authority_level
-		#Settling is disabled unless you have this law. Script is in the decisions, currently in 80_major_decisions.
-		#Reforming pagan religions (but not creating other faiths) is disabled unless you have this law. Script is in the reformation prereqs, currently in 00_rules.
 		
 		can_keep = {
 			realm_law_use_tribal_authority = yes
@@ -560,17 +531,13 @@ tribal_authority = {
 		pass_cost = { prestige = increase_tribal_authority_prestige_cost }
 		
 		on_pass = {
-			# Increment cooldown breaker tally, if appropriate.
 			calculate_authority_cooldown_break_effect = yes
-			# Set regular cooldown.
 			set_variable = {
 				name = tribal_authority_cooldown
 				years = @tribal_authority_cooldown_years
 			}
-			# Remove modifiers.
 			remove_law_related_modifiers_effect = yes
 
-			#AGOT Added
 			if = {
 				limit = {
 					faith = { has_doctrine_parameter = can_change_realm_authority_frequently }
@@ -587,11 +554,6 @@ tribal_authority = {
 				limit = { has_realm_law = tribal_authority_2 }
 				value = 1
 			}
-			#AGOT Disabled
-			# if = { # Genghis is fundamentally uninterested in settling as feudal, and doesn't care for the additional -20 vassal opinion!
-			# 	limit = { has_title = title:e_mongol_empire }
-			# 	value = -10
-			# }
 		}
 	}
 }
@@ -617,11 +579,8 @@ camp_purpose = {
 		}
 		
 		on_pass = {
-			# Remove modifiers.
 			remove_law_related_modifiers_effect = yes
-			# Remove inappropriate buildings.
 			laamp_clear_inappropriate_buildings_effect = yes
-			# Adjust flavourisation.
 			remove_camp_purpose_flavourisation_variables_effect = yes
 			set_variable = flavourise_camp_purpose_wanderers
 			local_arbitration_boon_set_purpose_effect = {
@@ -644,7 +603,6 @@ camp_purpose = {
 		flag = laamp_contracts_weight_up_prowess
 		flag = martial_camp_purpose
 
-		# Camp unlocks.
 		flag = unlocks_baggage_train_siege_engineers
 		flag = unlocks_proving_grounds_lockwagon
 		flag = unlocks_camp_perimeter_palisade
@@ -670,11 +628,8 @@ camp_purpose = {
 		}
 		
 		on_pass = {
-			# Remove modifiers.
 			remove_law_related_modifiers_effect = yes
-			# Remove inappropriate buildings.
 			laamp_clear_inappropriate_buildings_effect = yes
-			# Adjust flavourisation.
 			remove_camp_purpose_flavourisation_variables_effect = yes
 			set_variable = flavourise_camp_purpose_mercenaries
 			local_arbitration_boon_set_purpose_effect = {
@@ -683,7 +638,6 @@ camp_purpose = {
 		}
 
 		ai_will_do = {
-			# If we've picked a purpose, don't change it.
 			if = {
 				limit = {
 					NOT = { has_realm_law = camp_purpose_wanderers }
@@ -691,14 +645,10 @@ camp_purpose = {
 				value = 0
 			}
 			else = {
-			# Traits.
-			## Education.
 			if = {
 				limit = { has_trait = education_martial }
 				add = @camp_purpose_ai_will_do_bonus_t3
 			}
-			## Personality.
-			### Cultural traditions
 			if = {
 				limit = {
 					culture = {
@@ -710,37 +660,30 @@ camp_purpose = {
 				}
 				add = @camp_purpose_ai_will_do_bonus_t3
 			}
-			### Wrathful
 			if = {
 				limit = { has_trait = wrathful }
 				add = @camp_purpose_ai_will_do_bonus_t3
 			}
-			### Calm
 			if = {
 				limit = { has_trait = calm }
 				add = @camp_purpose_ai_will_do_malus_t3
 			}
-			### Callous
 			if = {
 				limit = { has_trait = callous }
 				add = @camp_purpose_ai_will_do_bonus_t3
 			}
-			### Sadistic
 			if = {
 				limit = { has_trait = sadistic }
 				add = @camp_purpose_ai_will_do_bonus_t3
 			}
-			### Compassionate
 			if = {
 				limit = { has_trait = compassionate }
 				add = @camp_purpose_ai_will_do_malus_t3
 			}
-			### Brave
 			if = {
 				limit = { has_trait = brave }
 				add = @camp_purpose_ai_will_do_bonus_t3
 			}
-			### Craven
 			if = {
 				limit = { has_trait = craven }
 				add = @camp_purpose_ai_will_do_malus_t3
@@ -764,7 +707,6 @@ camp_purpose = {
 		flag = laamp_contracts_weight_up_diplomacy_slight
 		flag = nerd_camp_purpose
 
-		# Camp unlocks.
 		flag = unlocks_baggage_train_siege_engineers
 		flag = unlocks_barber_tent_reference_corpus
 		flag = unlocks_barber_tent_morticians_tools
@@ -787,11 +729,8 @@ camp_purpose = {
 		}
 		
 		on_pass = {
-			# Remove modifiers.
 			remove_law_related_modifiers_effect = yes
-			# Remove inappropriate buildings.
 			laamp_clear_inappropriate_buildings_effect = yes
-			# Adjust flavourisation.
 			remove_camp_purpose_flavourisation_variables_effect = yes
 			set_variable = flavourise_camp_purpose_scholars
 			local_arbitration_boon_set_purpose_effect = {
@@ -800,7 +739,6 @@ camp_purpose = {
 		}
 
 		ai_will_do = {
-			# If we've picked a purpose, don't change it.
 			if = {
 				limit = {
 					NOT = { has_realm_law = camp_purpose_wanderers }
@@ -808,8 +746,6 @@ camp_purpose = {
 				value = 0
 			}
 			else = {
-			# Traits.
-			## Education.
 			if = {
 				limit = { has_trait = education_learning }
 				add = @camp_purpose_ai_will_do_bonus_t3
@@ -818,48 +754,38 @@ camp_purpose = {
 				limit = { has_trait = education_stewardship }
 				add = @camp_purpose_ai_will_do_bonus_t1
 			}
-			## Personality.
-			### Honest
 			if = {
 				limit = { has_trait = honest }
 				add = @camp_purpose_ai_will_do_bonus_t1
 			}
-			### Generous
 			if = {
 				limit = { has_trait = generous }
 				add = @camp_purpose_ai_will_do_bonus_t2
 			}
-			### Calm
 			if = {
 				limit = { has_trait = calm }
 				add = @camp_purpose_ai_will_do_bonus_t2
 			}
-			### Wrathful
 			if = {
 				limit = { has_trait = wrathful }
 				add = @camp_purpose_ai_will_do_malus_t2
 			}
-			### Eccentric
 			if = {
 				limit = { has_trait = eccentric }
 				add = @camp_purpose_ai_will_do_bonus_t3
 			}
-			### Patient
 			if = {
 				limit = { has_trait = patient }
 				add = @camp_purpose_ai_will_do_bonus_t3
 			}
-			### Impatient
 			if = {
 				limit = { has_trait = impatient }
 				add = @camp_purpose_ai_will_do_malus_t3
 			}
-			### Shy
 			if = {
 				limit = { has_trait = shy }
 				add = @camp_purpose_ai_will_do_bonus_t1
 			}
-			### Gregarious
 			if = {
 				limit = { has_trait = gregarious }
 				add = @camp_purpose_ai_will_do_malus_t1
@@ -885,7 +811,6 @@ camp_purpose = {
 		flag = laamp_contracts_weight_up_intrigue
 		flag = laamp_contracts_weight_up_martial_slight
 
-		# Camp unlocks.
 		flag = unlocks_supply_tent_reserve_provisions
 		flag = unlocks_supply_tent_reserve_water
 		flag = unlocks_supply_tent_climbing_gear
@@ -906,11 +831,8 @@ camp_purpose = {
 		}
 		
 		on_pass = {
-			# Remove modifiers.
 			remove_law_related_modifiers_effect = yes
-			# Remove inappropriate buildings.
 			laamp_clear_inappropriate_buildings_effect = yes
-			# Adjust flavourisation.
 			remove_camp_purpose_flavourisation_variables_effect = yes
 			set_variable = flavourise_camp_purpose_explorers
 			local_arbitration_boon_set_purpose_effect = {
@@ -919,7 +841,6 @@ camp_purpose = {
 		}
 
 		ai_will_do = {
-			# If we've picked a purpose, don't change it.
 			if = {
 				limit = {
 					NOT = { has_realm_law = camp_purpose_wanderers }
@@ -927,8 +848,6 @@ camp_purpose = {
 				value = 0
 			}
 			else = {
-			# Traits.
-			## Education.
 			if = {
 				limit = { has_trait = education_diplomacy }
 				add = @camp_purpose_ai_will_do_bonus_t3
@@ -937,53 +856,42 @@ camp_purpose = {
 				limit = { has_trait = education_stewardship }
 				add = @camp_purpose_ai_will_do_bonus_t2
 			}
-			## Personality.
-			### Diligent
 			if = {
 				limit = { has_trait = diligent }
 				add = @camp_purpose_ai_will_do_bonus_t2
 			}
-			### Lazy
 			if = {
 				limit = { has_trait = lazy }
 				add = @camp_purpose_ai_will_do_malus_t2
 			}
-			### Athletic
 			if = {
 				limit = { has_trait = athletic }
 				add = @camp_purpose_ai_will_do_bonus_t3
 			}
-			### Brave
 			if = {
 				limit = { has_trait = brave }
 				add = @camp_purpose_ai_will_do_bonus_t2
 			}
-			### Craven
 			if = {
 				limit = { has_trait = craven }
 				add = @camp_purpose_ai_will_do_malus_t2
 			}
-			### Eccentric
 			if = {
 				limit = { has_trait = eccentric }
 				add = @camp_purpose_ai_will_do_bonus_t2
 			}
-			### Stubborn
 			if = {
 				limit = { has_trait = stubborn }
 				add = @camp_purpose_ai_will_do_bonus_t1
 			}
-			### Fickle
 			if = {
 				limit = { has_trait = fickle }
 				add = @camp_purpose_ai_will_do_bonus_t2
 			}
-			### Humble
 			if = {
 				limit = { has_trait = humble }
 				add = @camp_purpose_ai_will_do_bonus_t2
 			}
-			### Arrogant
 			if = {
 				limit = { has_trait = arrogant }
 				add = @camp_purpose_ai_will_do_malus_t2
@@ -1004,7 +912,6 @@ camp_purpose = {
 		flag = laamp_contracts_weight_up_intrigue
 		flag = martial_camp_purpose
 
-		# Camp unlocks.
 		flag = unlocks_proving_grounds_lockwagon
 		flag = unlocks_barber_tent_morticians_tools
 		flag = unlocks_supply_tent_subdued_gear
@@ -1027,11 +934,8 @@ camp_purpose = {
 		}
 		
 		on_pass = {
-			# Remove modifiers.
 			remove_law_related_modifiers_effect = yes
-			# Remove inappropriate buildings.
 			laamp_clear_inappropriate_buildings_effect = yes
-			# Adjust flavourisation.
 			remove_camp_purpose_flavourisation_variables_effect = yes
 			set_variable = flavourise_camp_purpose_brigands
 			local_arbitration_boon_set_purpose_effect = {
@@ -1045,7 +949,6 @@ camp_purpose = {
 		}
 
 		ai_will_do = {
-			# If we've picked a purpose, don't change it.
 			if = {
 				limit = {
 					NOT = { has_realm_law = camp_purpose_wanderers }
@@ -1053,13 +956,10 @@ camp_purpose = {
 				value = 0
 			}
 			else = {
-			# Traits.
-			## Education.
 			if = {
 				limit = { has_trait = education_intrigue }
 				add = @camp_purpose_ai_will_do_bonus_t3
 			}
-			### Cultural traditions
 			if = {
 				limit = {
 					culture = {
@@ -1071,28 +971,22 @@ camp_purpose = {
 				}
 				add = @camp_purpose_ai_will_do_bonus_t3
 			}
-			## Personality.
-			### Deceitful.
 			if = {
 				limit = { has_trait = deceitful }
 				add = @camp_purpose_ai_will_do_bonus_t3
 			}
-			### Honest.
 			if = {
 				limit = { has_trait = honest }
 				add = @camp_purpose_ai_will_do_malus_t3
 			}
-			### Arbitrary.
 			if = {
 				limit = { has_trait = arbitrary }
 				add = @camp_purpose_ai_will_do_bonus_t3
 			}
-			### Just,
 			if = {
 				limit = { has_trait = just }
 				add = @camp_purpose_ai_will_do_malus_t3
 			}
-			### Greedy + either Humble or Content.
 			if = {
 				limit = {
 					has_trait = greedy
@@ -1103,42 +997,34 @@ camp_purpose = {
 				}
 				add = @camp_purpose_ai_will_do_bonus_t2
 			}
-			### Generous.
 			if = {
 				limit = { has_trait = generous }
 				add = @camp_purpose_ai_will_do_malus_t2
 			}
-			### Arrogant.
 			if = {
 				limit = { has_trait = arrogant }
 				add = @camp_purpose_ai_will_do_malus_t2
 			}
-			### Ambitious.
 			if = {
 				limit = { has_trait = ambitious }
 				add = @camp_purpose_ai_will_do_malus_t2
 			}
-			### Wrathful.
 			if = {
 				limit = { has_trait = wrathful }
 				add = @camp_purpose_ai_will_do_bonus_t1
 			}
-			### Calm.
 			if = {
 				limit = { has_trait = calm }
 				add = @camp_purpose_ai_will_do_malus_t1
 			}
-			### Sadistic.
 			if = {
 				limit = { has_trait = sadistic }
 				add = @camp_purpose_ai_will_do_bonus_t2
 			}
-			### Callous.
 			if = {
 				limit = { has_trait = callous }
 				add = @camp_purpose_ai_will_do_bonus_t2
 			}
-			### Compassionate.
 			if = {
 				limit = { has_trait = compassionate }
 				add = @camp_purpose_ai_will_do_malus_t2
@@ -1156,7 +1042,6 @@ camp_purpose = {
 		flag = can_change_succession_laws
 		flag = martial_camp_purpose
 
-		# Camp unlocks.
 		flag = unlocks_baggage_train_scribes
 		flag = unlocks_proving_grounds_martial_study
 		flag = unlocks_baggage_train_proof_of_claims
@@ -1182,11 +1067,8 @@ camp_purpose = {
 		}
 		
 		on_pass = {
-			# Remove modifiers.
 			remove_law_related_modifiers_effect = yes
-			# Remove inappropriate buildings.
 			laamp_clear_inappropriate_buildings_effect = yes
-			# Adjust flavourisation.
 			remove_camp_purpose_flavourisation_variables_effect = yes
 			set_variable = flavourise_camp_purpose_legitimists
 			local_arbitration_boon_set_purpose_effect = {
@@ -1200,9 +1082,7 @@ camp_purpose = {
 		}
 
 		ai_will_do = {
-			# Weight up legitimists inherently.
 			value = 100
-			# If we've picked a purpose, don't change it.
 			if = {
 				limit = {
 					NOT = { has_realm_law = camp_purpose_wanderers }
@@ -1210,8 +1090,6 @@ camp_purpose = {
 				value = 0
 			}
 			else = {
-			# Traits.
-			## Education.
 			if = {
 				limit = {
 					OR = {
@@ -1221,33 +1099,26 @@ camp_purpose = {
 				}
 				add = @camp_purpose_ai_will_do_bonus_t3
 			}
-			## Personality.
-			### Ambitious
 			if = {
 				limit = { has_trait = ambitious }
 				add = @camp_purpose_ai_will_do_bonus_t3
 			}
-			### Content
 			if = {
 				limit = { has_trait = content }
 				add = @camp_purpose_ai_will_do_malus_t3
 			}
-			### Arrogant
 			if = {
 				limit = { has_trait = arrogant }
 				add = @camp_purpose_ai_will_do_bonus_t3
 			}
-			### Humble
 			if = {
 				limit = { has_trait = humble }
 				add = @camp_purpose_ai_will_do_malus_t3
 			}
-			### Vengeful
 			if = {
 				limit = { has_trait = vengeful }
 				add = @camp_purpose_ai_will_do_bonus_t3
 			}
-			### Forgiving
 			if = {
 				limit = { has_trait = forgiving }
 				add = @camp_purpose_ai_will_do_malus_t3
@@ -1257,9 +1128,6 @@ camp_purpose = {
 	}
 }
 
-# Dragonlord-only authority law. The visible law is independent, while each
-# tier silently mirrors the matching Imperial Bureaucracy tier so vanilla and
-# AGOT mechanics which check the old database keys continue to work.
 
 dragonlord_imperial_bureaucracy = {
 	default = dragonlord_imperial_bureaucracy_1
@@ -1300,8 +1168,6 @@ dragonlord_imperial_bureaucracy = {
 	}
 
 	dragonlord_imperial_bureaucracy_1 = {
-		# The hidden original tier supplies its normal effects. These are the
-		# Dragonlord-only differences required for the intended x3 penalties.
 		modifier = {
 			belligerent_opinion = -10
 			barons_and_minor_landholders_opinion = -20
@@ -1372,7 +1238,6 @@ dragonlord_imperial_bureaucracy = {
 	}
 
 	dragonlord_imperial_bureaucracy_2 = {
-		# Additional difference needed for x4 cumulative negative opinions.
 		modifier = {
 			barons_and_minor_landholders_opinion = -60
 			glory_hound_opinion = -45
@@ -1442,7 +1307,6 @@ dragonlord_imperial_bureaucracy = {
 	}
 
 	dragonlord_imperial_bureaucracy_3 = {
-		# Additional difference needed for x4 cumulative negative opinions.
 		modifier = {
 			barons_and_minor_landholders_opinion = -120
 			glory_hound_opinion = -120
@@ -1521,7 +1385,7 @@ imperial_bureaucracy = {
 		}
 		flag = uses_imperial_bureaucracy
 		flag = can_have_tributaries
-		flag = titles_cannot_leave_realm_on_succession # Hardcoded flag
+		flag = titles_cannot_leave_realm_on_succession
 
 		can_keep = {
 			realm_law_use_imperial_bureaucracy = yes
@@ -1548,7 +1412,6 @@ imperial_bureaucracy = {
 		}
 
 		on_pass = {
-			# Remove modifiers.
 			remove_law_related_modifiers_effect = yes
 		}
 	}
@@ -1626,16 +1489,12 @@ imperial_bureaucracy = {
 		}
 		
 		on_pass = {
-			# Increment cooldown breaker tally, if appropriate.
 			calculate_authority_cooldown_break_effect = yes
-			# Set regular cooldown.
 			set_variable = {
 				name = imperial_bureaucracy_cooldown
 				years = @imperial_bureaucracy_cooldown_years_1
 			}
-			# Remove modifiers.
 			remove_law_related_modifiers_effect = yes
-			#AGOT Added
 			if = {
 				limit = {
 					faith = { has_doctrine_parameter = can_change_realm_authority_frequently }
@@ -1727,16 +1586,12 @@ imperial_bureaucracy = {
 		}
 		
 		on_pass = {
-			# Increment cooldown breaker tally, if appropriate.
 			calculate_authority_cooldown_break_effect = yes
-			# Set regular cooldown.
 			set_variable = {
 				name = imperial_bureaucracy_cooldown
 				years = @imperial_bureaucracy_cooldown_years_2
 			}
-			# Remove modifiers.
 			remove_law_related_modifiers_effect = yes
-			#AGOT Added
 			if = {
 				limit = {
 					faith = { has_doctrine_parameter = can_change_realm_authority_frequently }
@@ -1825,16 +1680,12 @@ imperial_bureaucracy = {
 		}
 		
 		on_pass = {
-			# Increment cooldown breaker tally, if appropriate.
 			calculate_authority_cooldown_break_effect = yes
-			# Set regular cooldown.
 			set_variable = {
 				name = imperial_bureaucracy_cooldown
 				years = @imperial_bureaucracy_cooldown_years_3
 			}
-			# Remove modifiers.
 			remove_law_related_modifiers_effect = yes
-			#AGOT Added
 			if = {
 				limit = {
 					faith = { has_doctrine_parameter = can_change_realm_authority_frequently }
@@ -1878,10 +1729,8 @@ nomadic_authority = {
 		}
 
 		can_keep = { realm_law_use_nomadic_authority = yes }
-		#Imprisonment is disabled if you have this law. Script is in the interaction, currently in 00_prison_interactions.
 
 		on_pass = {
-			# Remove modifiers.
 			remove_law_related_modifiers_effect = yes
 		}
 	}
@@ -1898,7 +1747,7 @@ nomadic_authority = {
 			domain_limit_min = 1
 			domain_limit_max = 1
 			vassal_limit_min = 1
-			vassal_limit_max = 2 # 3
+			vassal_limit_max = 2
 		}
 		flag = can_change_succession_laws
 		flag = imprisonment_toggle_on
@@ -1947,16 +1796,12 @@ nomadic_authority = {
 		}
 		
 		on_pass = {
-			# Increment cooldown breaker tally, if appropriate.
 			calculate_authority_cooldown_break_effect = yes
-			# Set regular cooldown.
 			set_variable = {
 				name = nomadic_authority_cooldown
 				years = @nomadic_authority_cooldown_years
 			}
-			# Remove modifiers.
 			remove_law_related_modifiers_effect = yes
-			#AGOT Added
 			if = {
 				limit = {
 					faith = { has_doctrine_parameter = can_change_realm_authority_frequently }
@@ -1988,7 +1833,7 @@ nomadic_authority = {
 			domain_limit_min = 2
 			domain_limit_max = 3
 			vassal_limit_min = 8
-			vassal_limit_max = 12 # 15
+			vassal_limit_max = 12
 		}
 		flag = vassal_retraction_allowed
 		flag = diarchs_want_to_subsidise_without_this_flag
@@ -2047,16 +1892,12 @@ nomadic_authority = {
 		}
 		
 		on_pass = {
-			# Increment cooldown breaker tally, if appropriate.
 			calculate_authority_cooldown_break_effect = yes
-			# Set regular cooldown.
 			set_variable = {
 				name = nomadic_authority_cooldown
 				years = @nomadic_authority_cooldown_years
 			}
-			# Remove modifiers.
 			remove_law_related_modifiers_effect = yes
-			#AGOT Added
 			if = {
 				limit = {
 					faith = { has_doctrine_parameter = can_change_realm_authority_frequently }
@@ -2090,8 +1931,6 @@ nomadic_authority = {
 			vassal_limit_max = 15
 		}
 		flag = migration_to_empires
-		#Settling is disabled unless you have this law. Script is in the decisions, currently in 80_major_decisions.
-		#Reforming pagan religions (but not creating other faiths) is disabled unless you have this law. Script is in the reformation prereqs, currently in 00_rules.
 		
 		can_keep = {
 			realm_law_use_nomadic_authority = yes
@@ -2145,16 +1984,12 @@ nomadic_authority = {
 		}
 		
 		on_pass = {
-			# Increment cooldown breaker tally, if appropriate.
 			calculate_authority_cooldown_break_effect = yes
-			# Set regular cooldown.
 			set_variable = {
 				name = nomadic_authority_cooldown
 				years = @nomadic_authority_cooldown_years
 			}
-			# Remove modifiers.
 			remove_law_related_modifiers_effect = yes
-			#AGOT Added
 			if = {
 				limit = {
 					faith = { has_doctrine_parameter = can_change_realm_authority_frequently }
@@ -2189,8 +2024,6 @@ nomadic_authority = {
 			vassal_limit_max = 970
 		}
 		flag = max_authority_level
-		#Settling is disabled unless you have this law. Script is in the decisions, currently in 80_major_decisions.
-		#Reforming pagan religions (but not creating other faiths) is disabled unless you have this law. Script is in the reformation prereqs, currently in 00_rules.
 		
 		can_keep = {
 			realm_law_use_nomadic_authority = yes
@@ -2258,17 +2091,13 @@ nomadic_authority = {
 		}
 		
 		on_pass = {
-			# Increment cooldown breaker tally, if appropriate.
 			calculate_authority_cooldown_break_effect = yes
-			# Set regular cooldown.
 			set_variable = {
 				name = nomadic_authority_cooldown
 				years = @nomadic_authority_cooldown_years
 			}
-			# Remove modifiers.
 			remove_law_related_modifiers_effect = yes
 			play_sound_effect = "event:/DLC/CE2/UI/Notifications/ce2_ui_notifications_nomadicAuthority_wolf"
-			#AGOT Added
 			if = {
 				limit = {
 					faith = { has_doctrine_parameter = can_change_realm_authority_frequently }
@@ -2289,18 +2118,15 @@ nomadic_authority = {
 	}
 }
 
-celestial_bureaucracy = { # A variant of Imperial Bureaucracy for Celestial Government
+celestial_bureaucracy = {
 	default = celestial_bureaucracy_1
 	cumulative = yes
 	flag = realm_law
 	
 	celestial_bureaucracy_0 = {
 		modifier = {
-			courtly_opinion = -20 # Pro-hegemon movement
-			#parochial_opinion = 0 # Advancement movement
-			#belligerent_opinion = 0 # Expansion movement
-			glory_hound_opinion = 10 # Conservative movement
-			#zealot_opinion = 0
+			courtly_opinion = -20
+			glory_hound_opinion = 10
 			barons_and_minor_landholders_opinion = 10
 			minority_opinion = 10
 			
@@ -2308,7 +2134,7 @@ celestial_bureaucracy = { # A variant of Imperial Bureaucracy for Celestial Gove
 			republic_government_tax_contribution_add = 0.05
 		}
 		flag = uses_celestial_bureaucracy
-		flag = titles_cannot_leave_realm_on_succession # Hardcoded flag
+		flag = titles_cannot_leave_realm_on_succession
 		flag = can_have_tributaries
 
 		can_keep = {
@@ -2335,18 +2161,16 @@ celestial_bureaucracy = { # A variant of Imperial Bureaucracy for Celestial Gove
 		}
 
 		on_pass = {
-			# Remove modifiers.
 			remove_law_related_modifiers_effect = yes
 		}
 	}
 	
 	celestial_bureaucracy_1 = {
 		modifier = {
-			courtly_opinion = 20 # Pro-hegemon movement
-			parochial_opinion = -5 # Advancement movement
-			belligerent_opinion = -5 # Expansion movement
-			glory_hound_opinion = -10 # Conservative movement
-			#zealot_opinion = 0
+			courtly_opinion = 20
+			parochial_opinion = -5
+			belligerent_opinion = -5
+			glory_hound_opinion = -10
 			barons_and_minor_landholders_opinion = -15
 			minority_opinion = -15
 			
@@ -2416,16 +2240,12 @@ celestial_bureaucracy = { # A variant of Imperial Bureaucracy for Celestial Gove
 		}
 		
 		on_pass = {
-			# Increment cooldown breaker tally, if appropriate.
 			calculate_authority_cooldown_break_effect = yes
-			# Set regular cooldown.
 			set_variable = {
 				name = imperial_bureaucracy_cooldown
 				years = @imperial_bureaucracy_cooldown_years_1
 			}
-			# Remove modifiers.
 			remove_law_related_modifiers_effect = yes
-			#AGOT Added
 			if = {
 				limit = {
 					faith = { has_doctrine_parameter = can_change_realm_authority_frequently }
@@ -2447,10 +2267,10 @@ celestial_bureaucracy = { # A variant of Imperial Bureaucracy for Celestial Gove
 	
 	celestial_bureaucracy_2 = {
 		modifier = {
-			courtly_opinion = 5 # Pro-hegemon movement
-			parochial_opinion = -5 # Advancement movement
-			belligerent_opinion = -5 # Expansion movement
-			glory_hound_opinion = -15 # Conservative movement
+			courtly_opinion = 5
+			parochial_opinion = -5
+			belligerent_opinion = -5
+			glory_hound_opinion = -15
 			zealot_opinion = -5
 			barons_and_minor_landholders_opinion = -15
 			minority_opinion = -15
@@ -2518,16 +2338,12 @@ celestial_bureaucracy = { # A variant of Imperial Bureaucracy for Celestial Gove
 		}
 		
 		on_pass = {
-			# Increment cooldown breaker tally, if appropriate.
 			calculate_authority_cooldown_break_effect = yes
-			# Set regular cooldown.
 			set_variable = {
 				name = imperial_bureaucracy_cooldown
 				years = @imperial_bureaucracy_cooldown_years_2
 			}
-			# Remove modifiers.
 			remove_law_related_modifiers_effect = yes
-			#AGOT Added
 			if = {
 				limit = {
 					faith = { has_doctrine_parameter = can_change_realm_authority_frequently }
@@ -2549,10 +2365,10 @@ celestial_bureaucracy = { # A variant of Imperial Bureaucracy for Celestial Gove
 	
 	celestial_bureaucracy_3 = {
 		modifier = {
-			courtly_opinion = 10 # Pro-hegemon movement
-			parochial_opinion = -10 # Advancement movement
-			belligerent_opinion = -10 # Expansion movement
-			glory_hound_opinion = -15 # Conservative movement
+			courtly_opinion = 10
+			parochial_opinion = -10
+			belligerent_opinion = -10
+			glory_hound_opinion = -15
 			zealot_opinion = -15
 			barons_and_minor_landholders_opinion = -20
 			minority_opinion = -20
@@ -2567,18 +2383,6 @@ celestial_bureaucracy = { # A variant of Imperial Bureaucracy for Celestial Gove
 		
 		can_keep = {
 			realm_law_use_celestial_bureaucracy = yes
-			#AGOT Disabled
-			# trigger_if = {
-			# 	limit = {
-			# 		this = title:h_china.holder
-			# 	}
-			# 	situation:dynastic_cycle ?= {
-			# 		NOR = {
-			# 			situation_current_phase = situation_dynastic_cycle_phase_instability
-			# 			situation_current_phase = situation_dynastic_cycle_phase_instability_conquest
-			# 		}
-			# 	}
-			# }
 			trigger_if = {
 				limit = {
 					is_independent_ruler = no
@@ -2629,16 +2433,12 @@ celestial_bureaucracy = { # A variant of Imperial Bureaucracy for Celestial Gove
 		}
 		
 		on_pass = {
-			# Increment cooldown breaker tally, if appropriate.
 			calculate_authority_cooldown_break_effect = yes
-			# Set regular cooldown.
 			set_variable = {
 				name = imperial_bureaucracy_cooldown
 				years = @imperial_bureaucracy_cooldown_years_3
 			}
-			# Remove modifiers.
 			remove_law_related_modifiers_effect = yes
-			#AGOT Added
 			if = {
 				limit = {
 					faith = { has_doctrine_parameter = can_change_realm_authority_frequently }
@@ -2657,7 +2457,6 @@ mandala_decree = {
 	flag = mandala_law
 
 	mandala_decree_none = {
-		#Standard laws
 		flag = can_have_tributaries
 		flag = title_revocation_allowed
 		flag = vassal_retraction_allowed
@@ -2686,12 +2485,10 @@ mandala_decree = {
 			levy_size = -0.25
 			tributary_opinion = 15
 		}
-		#Standard laws
 		flag = can_have_tributaries
 		flag = title_revocation_allowed
 		flag = vassal_retraction_allowed
 		flag = can_change_succession_laws
-		#Decree specific
 		flag = piety_devotion_from_defensive_wars
 		flag = subjects_appear_more_economical
 		flag = can_use_piety_to_reassert_tributary
@@ -2717,7 +2514,6 @@ mandala_decree = {
 		}
 		
 		on_pass = {
-			#Don't need the alert no more
 			set_variable = {
 				name = has_picked_mandala_decree
 				value = flag:yes
@@ -2726,7 +2522,6 @@ mandala_decree = {
 
 		ai_will_do = {
 			value = 1
-			#Traits
 			if = {
 				limit = { has_trait = greedy }
 				add = 5
@@ -2748,12 +2543,10 @@ mandala_decree = {
 			independent_ruler_opinion = -25
 			tributary_opinion = 25
 		}
-		#Standard laws
 		flag = can_have_tributaries
 		flag = title_revocation_allowed
 		flag = vassal_retraction_allowed
 		flag = can_change_succession_laws
-		#Decree specific
 		flag = piety_devotion_from_offensive_wars
 		flag = piety_for_sieging_capital_temple_complexes
 		flag = can_call_tributaries_for_piety
@@ -2779,7 +2572,6 @@ mandala_decree = {
 		}
 		
 		on_pass = {
-			#Don't need the alert no more
 			set_variable = {
 				name = has_picked_mandala_decree
 				value = flag:yes
@@ -2788,7 +2580,6 @@ mandala_decree = {
 
 		ai_will_do = {
 			value = 1
-			#Traits
 			if = {
 				limit = { has_trait = brave }
 				add = 5
@@ -2807,16 +2598,14 @@ mandala_decree = {
 	mandala_decree_reverence = {
 		modifier = {
 		}
-		#Standard laws
 		flag = can_have_tributaries
 		flag = title_revocation_allowed
 		flag = vassal_retraction_allowed
 		flag = can_change_succession_laws
-		#Decree specific
 		flag = cheaper_pilgrimages
 		flag = vassals_more_inclined_to_convert
 		flag = subjects_appear_more_pious
-		flag = can_convert_all_subjects_to_mandalas #Vassals more likely to accept, can now also ask Tribs
+		flag = can_convert_all_subjects_to_mandalas
 		flag = tributaries_more_likely_to_contribute_to_GPs
 
 		can_keep = { realm_law_is_mandala = yes }
@@ -2839,7 +2628,6 @@ mandala_decree = {
 		}
 		
 		on_pass = {
-			#Don't need the alert no more
 			set_variable = {
 				name = has_picked_mandala_decree
 				value = flag:yes
@@ -2848,7 +2636,6 @@ mandala_decree = {
 
 		ai_will_do = {
 			value = 1
-			#Traits
 			if = {
 				limit = { has_trait = zealous }
 				add = 5
@@ -2865,7 +2652,7 @@ mandala_decree = {
 	}
 }
 
-meritocratic_bureaucracy = { # A variant of Imperial Bureaucracy for Meritocratic Government
+meritocratic_bureaucracy = {
 	default = meritocratic_bureaucracy_1
 	cumulative = yes
 	flag = realm_law
@@ -2879,7 +2666,7 @@ meritocratic_bureaucracy = { # A variant of Imperial Bureaucracy for Meritocrati
 			courtly_opinion = 5
 		}
 		flag = uses_meritocratic_bureaucracy
-		flag = titles_cannot_leave_realm_on_succession # Hardcoded flag
+		flag = titles_cannot_leave_realm_on_succession
 		flag = can_have_tributaries
 
 		can_keep = {
@@ -2906,7 +2693,6 @@ meritocratic_bureaucracy = { # A variant of Imperial Bureaucracy for Meritocrati
 		}
 
 		on_pass = {
-			# Remove modifiers.
 			remove_law_related_modifiers_effect = yes
 		}
 	}
@@ -2985,14 +2771,11 @@ meritocratic_bureaucracy = { # A variant of Imperial Bureaucracy for Meritocrati
 		}
 		
 		on_pass = {
-			# Increment cooldown breaker tally, if appropriate.
 			calculate_authority_cooldown_break_effect = yes
-			# Set regular cooldown.
 			set_variable = {
 				name = imperial_bureaucracy_cooldown
 				years = @imperial_bureaucracy_cooldown_years_1
 			}
-			# Remove modifiers.
 			remove_law_related_modifiers_effect = yes
 		}
 
@@ -3026,18 +2809,6 @@ meritocratic_bureaucracy = { # A variant of Imperial Bureaucracy for Meritocrati
 		
 		can_keep = {
 			realm_law_use_meritocratic_bureaucracy = yes
-			#AGOT Disabled
-			# trigger_if = {
-			# 	limit = {
-			# 		this = title:h_china.holder
-			# 	}
-			# 	situation:dynastic_cycle ?= {
-			# 		NOR = {
-			# 			situation_current_phase = situation_dynastic_cycle_phase_instability
-			# 			situation_current_phase = situation_dynastic_cycle_phase_instability_conquest
-			# 		}
-			# 	}
-			# }
 			trigger_if = {
 				limit = {
 					is_independent_ruler = no
@@ -3089,14 +2860,11 @@ meritocratic_bureaucracy = { # A variant of Imperial Bureaucracy for Meritocrati
 		}
 		
 		on_pass = {
-			# Increment cooldown breaker tally, if appropriate.
 			calculate_authority_cooldown_break_effect = yes
-			# Set regular cooldown.
 			set_variable = {
 				name = imperial_bureaucracy_cooldown
 				years = @imperial_bureaucracy_cooldown_years_2
 			}
-			# Remove modifiers.
 			remove_law_related_modifiers_effect = yes
 		}
 
@@ -3178,20 +2946,17 @@ meritocratic_bureaucracy = { # A variant of Imperial Bureaucracy for Meritocrati
 		}
 		
 		on_pass = {
-			# Increment cooldown breaker tally, if appropriate.
 			calculate_authority_cooldown_break_effect = yes
-			# Set regular cooldown.
 			set_variable = {
 				name = imperial_bureaucracy_cooldown
 				years = @imperial_bureaucracy_cooldown_years_3
 			}
-			# Remove modifiers.
 			remove_law_related_modifiers_effect = yes
 		}
 	}
 }
 
-japanese_bureaucracy = { # A variant of Imperial Bureaucracy for Ritsuryo Government
+japanese_bureaucracy = {
 	default = japanese_bureaucracy_1
 	cumulative = yes
 	flag = realm_law
@@ -3205,7 +2970,7 @@ japanese_bureaucracy = { # A variant of Imperial Bureaucracy for Ritsuryo Govern
 			courtly_opinion = 5
 		}
 		flag = uses_japanese_bureaucracy
-		flag = titles_cannot_leave_realm_on_succession # Hardcoded flag
+		flag = titles_cannot_leave_realm_on_succession
 		flag = can_designate_heirs
 
 		can_keep = {
@@ -3230,7 +2995,6 @@ japanese_bureaucracy = { # A variant of Imperial Bureaucracy for Ritsuryo Govern
 		}
 
 		on_pass = {
-			# Remove modifiers.
 			remove_law_related_modifiers_effect = yes
 		}
 	}
@@ -3305,14 +3069,11 @@ japanese_bureaucracy = { # A variant of Imperial Bureaucracy for Ritsuryo Govern
 		}
 		
 		on_pass = {
-			# Increment cooldown breaker tally, if appropriate.
 			calculate_authority_cooldown_break_effect = yes
-			# Set regular cooldown.
 			set_variable = {
 				name = imperial_bureaucracy_cooldown
 				years = @imperial_bureaucracy_cooldown_years_1
 			}
-			# Remove modifiers.
 			remove_law_related_modifiers_effect = yes
 		}
 
@@ -3347,18 +3108,6 @@ japanese_bureaucracy = { # A variant of Imperial Bureaucracy for Ritsuryo Govern
 		
 		can_keep = {
 			realm_law_use_japanese_bureaucracy = yes
-			#AGOT Disabled
-			# trigger_if = {
-			# 	limit = {
-			# 		this = title:h_china.holder
-			# 	}
-			# 	situation:dynastic_cycle ?= {
-			# 		NOR = {
-			# 			situation_current_phase = situation_dynastic_cycle_phase_instability
-			# 			situation_current_phase = situation_dynastic_cycle_phase_instability_conquest
-			# 		}
-			# 	}
-			# }
 			trigger_if = {
 				limit = { is_independent_ruler = no }
 				liege = { has_realm_law = japanese_bureaucracy_2 }
@@ -3408,14 +3157,11 @@ japanese_bureaucracy = { # A variant of Imperial Bureaucracy for Ritsuryo Govern
 		}
 		
 		on_pass = {
-			# Increment cooldown breaker tally, if appropriate.
 			calculate_authority_cooldown_break_effect = yes
-			# Set regular cooldown.
 			set_variable = {
 				name = imperial_bureaucracy_cooldown
 				years = @imperial_bureaucracy_cooldown_years_2
 			}
-			# Remove modifiers.
 			remove_law_related_modifiers_effect = yes
 		}
 
@@ -3494,14 +3240,11 @@ japanese_bureaucracy = { # A variant of Imperial Bureaucracy for Ritsuryo Govern
 		}
 		
 		on_pass = {
-			# Increment cooldown breaker tally, if appropriate.
 			calculate_authority_cooldown_break_effect = yes
-			# Set regular cooldown.
 			set_variable = {
 				name = imperial_bureaucracy_cooldown
 				years = @imperial_bureaucracy_cooldown_years_3
 			}
-			# Remove modifiers.
 			remove_law_related_modifiers_effect = yes
 		}
 	}
@@ -3568,12 +3311,10 @@ crowned_laws = {
 			barons_and_minor_landholders_opinion = 5
 		}
 		can_pass = {
-			# If you have a worse Coronation law, we will tell the player they can gain this with a Coronation
 			custom_tooltip = {
 				text = can_only_be_passed_through_coronation
 				NOT = { has_realm_law = uncrowned }
 			}
-			# If you have a better Coronation law, we will tell the player this is pointless for them
 			custom_tooltip = {
 				text = already_better_coronation
 				NOT = { has_realm_law = crowned_emperor }
@@ -3606,7 +3347,6 @@ crowned_laws = {
 			zealot_opinion = 5
 		}
 		can_pass = {
-			# If you have a worse Coronation law, we will tell the player they can gain this with a Coronation
 			custom_tooltip = {
 				text = can_only_be_passed_through_coronation
 				NOR = {

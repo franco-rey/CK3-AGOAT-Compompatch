@@ -1,7 +1,5 @@
-﻿# texture and enviroment should be added in pairs. In code they will be stored in separate arrays, but their index will match up giving each texture correct lighting
-barbershop_background = {
+﻿barbershop_background = {
 	
-	##########################################
 
 	texture = {
 		reference = "main_menu/tgp_frontend_japan.dds"
@@ -10,7 +8,6 @@ barbershop_background = {
 		reference = "environment_tgp_frontend_japan_main"
 	}
 	
-	##########################################
 
 	texture = {
 		reference = "main_menu/mpo_frontend_nomad.dds"
@@ -19,7 +16,6 @@ barbershop_background = {
 		reference = "environment_mpo_frontend_nomad_main"
 	}
 	
-	##########################################
 
 	texture = {
 		reference = "main_menu/ep3_frontend_byzantine.dds"
@@ -28,7 +24,6 @@ barbershop_background = {
 		reference = "environment_ep3_frontend_byzantine_main"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "main_menu/fp3_frontend_iranian.dds"
@@ -37,7 +32,6 @@ barbershop_background = {
 		reference = "environment_fp3_frontend_iranian_main"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "main_menu/fp2_frontend_iberian.dds"
@@ -46,7 +40,6 @@ barbershop_background = {
 		reference = "environment_fp2_frontend_iberian_main"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "main_menu/frontend_tribal.dds"
@@ -55,7 +48,6 @@ barbershop_background = {
 		reference = "environment_cw_tribal_main"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "main_menu/fp1_frontend_tribal.dds"
@@ -64,7 +56,6 @@ barbershop_background = {
 		reference = "environment_fp1_frontend_tribal_main"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "main_menu/fp1_frontend_nontribal.dds"
@@ -73,18 +64,14 @@ barbershop_background = {
 		reference = "environment_fp1_frontend_nontribal_main"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "main_menu/frontend_mediterranean.dds"
 	}
 	environment = {
-		#AGOT Modified
-		#reference = "environment_cw_mediterranean_throneroom_main"
 		reference = "environment_southern_essos_high"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "main_menu/frontend_east.dds"
@@ -93,7 +80,6 @@ barbershop_background = {
 		reference = "environment_cw_east_throneroom_main"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "main_menu/frontend_india.dds"
@@ -102,18 +88,14 @@ barbershop_background = {
 		reference = "environment_cw_india_throneroom_main"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "main_menu/frontend_west.dds"
 	}
 	environment = {
-		#AGOT Modified
-		#reference = "environment_frontend_west_main"
 		reference = "environment_cw_west"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/alley.dds"
@@ -122,7 +104,6 @@ barbershop_background = {
 		reference = "environment_event_alley"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/alley_day.dds"
@@ -131,7 +112,6 @@ barbershop_background = {
 		reference = "city_alley_day_western"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/armory.dds"
@@ -140,7 +120,6 @@ barbershop_background = {
 		reference = "environment_event_armory"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/battlefield.dds"
@@ -149,7 +128,6 @@ barbershop_background = {
 		reference = "environment_event_battlefield"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/fp2_temple.dds"
@@ -158,7 +136,6 @@ barbershop_background = {
 		reference = "environment_event_fp2_temple"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/church.dds"
@@ -167,7 +144,6 @@ barbershop_background = {
 		reference = "environment_event_church"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/mosque.dds"
@@ -176,7 +152,6 @@ barbershop_background = {
 		reference = "environment_event_mosque"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/fp1_tribal_temple.dds"
@@ -185,7 +160,6 @@ barbershop_background = {
 		reference = "environment_event_fp1_tribal_temple"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/temple.dds"
@@ -194,7 +168,6 @@ barbershop_background = {
 		reference = "environment_event_temple"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/fp2_corridor_night.dds"
@@ -203,7 +176,6 @@ barbershop_background = {
 		reference = "environment_event_fp2_corridor_night"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/bp1_corridor_indian_night.dds"
@@ -212,7 +184,6 @@ barbershop_background = {
 		reference = "environment_event_bp1_corridor_indian_night"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/corridor.dds"
@@ -221,7 +192,6 @@ barbershop_background = {
 		reference = "environment_event_corridor"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/fp2_corridor_day.dds"
@@ -230,7 +200,6 @@ barbershop_background = {
 		reference = "environment_event_fp2_corridor_day"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/fp1_tribal_corridor.dds"
@@ -239,7 +208,6 @@ barbershop_background = {
 		reference = "environment_event_fp1_tribal_corridor"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/bp1_corridor_indian_day.dds"
@@ -248,7 +216,6 @@ barbershop_background = {
 		reference = "environment_event_bp1_corridor_indian_day"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/corridor_day.dds"
@@ -257,7 +224,6 @@ barbershop_background = {
 		reference = "environment_event_corridor_day"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/councilchamber.dds"
@@ -266,16 +232,8 @@ barbershop_background = {
 		reference = "environment_event_councilchamber"
 	}
 
-	##########################################
 
-	#texture = {
-	#	reference = "event_scenes/fp2_courtyard.dds"
-	#}
-	#environment = {
-	#	reference = "environment_event_fp2_courtyard"
-	#}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/bp1_courtyard_indian.dds"
@@ -284,7 +242,6 @@ barbershop_background = {
 		reference = "environment_event_bp1_courtyard_indian"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/bp1_courtyard_mena.dds"
@@ -293,7 +250,6 @@ barbershop_background = {
 		reference = "environment_event_bp1_courtyard_mena"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/courtyard.dds"
@@ -302,7 +258,6 @@ barbershop_background = {
 		reference = "environment_event_courtyard"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/fp2_prison.dds"
@@ -311,7 +266,6 @@ barbershop_background = {
 		reference = "environment_event_fp2_prison"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/fp1_tribal_prison.dds"
@@ -320,7 +274,6 @@ barbershop_background = {
 		reference = "environment_event_fp1_tribal_prison"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/dungeon.dds"
@@ -329,7 +282,6 @@ barbershop_background = {
 		reference = "environment_event_dungeon"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/bp1_desert.dds"
@@ -338,7 +290,6 @@ barbershop_background = {
 		reference = "environment_travel_desert"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/ep2_hunt_snowy_forest.dds"
@@ -347,7 +298,6 @@ barbershop_background = {
 		reference = "environment_hunt_snowy_forest"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/forest_pine.dds"
@@ -356,7 +306,6 @@ barbershop_background = {
 		reference = "environment_event_forest_pine"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/forest.dds"
@@ -365,7 +314,6 @@ barbershop_background = {
 		reference = "environment_event_forest"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/mountains.dds"
@@ -374,7 +322,6 @@ barbershop_background = {
 		reference = "environment_event_mountains"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/steppe.dds"
@@ -383,7 +330,6 @@ barbershop_background = {
 		reference = "environment_event_steppe"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/drylands.dds"
@@ -392,7 +338,6 @@ barbershop_background = {
 		reference = "environment_event_desert"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/bp1_wetlands.dds"
@@ -401,7 +346,6 @@ barbershop_background = {
 		reference = "environment_event_bp1_wetlands"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/bp1_jungle.dds"
@@ -410,7 +354,6 @@ barbershop_background = {
 		reference = "environment_event_bp1_jungle"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/bp1_plains.dds"
@@ -419,16 +362,8 @@ barbershop_background = {
 		reference = "environment_event_bp1_plains"
 	}
 
-	##########################################
 
-	#texture = {
-	#	reference = "event_scenes/bp1_hills.dds"
-	#}
-	#environment = {
-	#	reference = "environment_event_bp1_hills"
-	#}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/fp1_ocean_norse.dds"
@@ -437,7 +372,6 @@ barbershop_background = {
 		reference = "environment_event_fp1_ocean"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/fp1_ocean.dds"
@@ -446,7 +380,6 @@ barbershop_background = {
 		reference = "environment_event_fp1_ocean"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/farms.dds"
@@ -455,7 +388,6 @@ barbershop_background = {
 		reference = "environment_event_farms"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/ep2_travel_bridge.dds"
@@ -464,7 +396,6 @@ barbershop_background = {
 		reference = "environment_travel_bridge"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/ep2_travel_farm.dds"
@@ -473,7 +404,6 @@ barbershop_background = {
 		reference = "environment_travel_farmlands"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/desert_settlement.dds"
@@ -482,7 +412,6 @@ barbershop_background = {
 		reference = "environment_travel_desert"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/desert_nomad.dds"
@@ -491,7 +420,6 @@ barbershop_background = {
 		reference = "environment_travel_desert"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/ep2_travel_desert.dds"
@@ -500,7 +428,6 @@ barbershop_background = {
 		reference = "environment_travel_desert"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/ep2_travel_mountains.dds"
@@ -509,7 +436,6 @@ barbershop_background = {
 		reference = "environment_travel_mountain_settlement"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/ep2_travel_steppe.dds"
@@ -518,7 +444,6 @@ barbershop_background = {
 		reference = "environment_travel_steppe_settlement"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/ep2_travel_hills.dds"
@@ -527,7 +452,6 @@ barbershop_background = {
 		reference = "environment_travel_hills_settlement"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/bp1_docks_tribal.dds"
@@ -536,7 +460,6 @@ barbershop_background = {
 		reference = "environment_event_bp1_docks_tribal"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/docks.dds"
@@ -545,7 +468,6 @@ barbershop_background = {
 		reference = "environment_event_docks"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/bp1_bonfire.dds"
@@ -554,7 +476,6 @@ barbershop_background = {
 		reference = "environment_event_bp1_bonfire"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/bp1_kitchen_western.dds"
@@ -563,7 +484,6 @@ barbershop_background = {
 		reference = "environment_event_bp1_kitchen_western"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/fp1_viking_feast.dds"
@@ -572,7 +492,6 @@ barbershop_background = {
 		reference = "environment_event_fp1_viking_feast"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/ep2_feast_indian.dds"
@@ -581,7 +500,6 @@ barbershop_background = {
 		reference = "environment_indian_feast"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/ep2_feast_mena.dds"
@@ -590,7 +508,6 @@ barbershop_background = {
 		reference = "environment_mena_feast"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/ep2_feast_steppe.dds"
@@ -599,7 +516,6 @@ barbershop_background = {
 		reference = "environment_steppe_feast"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/ep2_feast_sub_saharan.dds"
@@ -608,7 +524,6 @@ barbershop_background = {
 		reference = "environment_sub-saharan_feast"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/feast.dds"
@@ -617,7 +532,6 @@ barbershop_background = {
 		reference = "environment_activity_western_feast"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/gallows.dds"
@@ -626,7 +540,6 @@ barbershop_background = {
 		reference = "environment_event_gallows"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/fp2_garden.dds"
@@ -635,7 +548,6 @@ barbershop_background = {
 		reference = "environment_event_fp2_garden"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/garden.dds"
@@ -644,7 +556,6 @@ barbershop_background = {
 		reference = "environment_event_garden"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/market_east.dds"
@@ -653,7 +564,6 @@ barbershop_background = {
 		reference = "environment_event_market_east"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/market_tribal.dds"
@@ -662,7 +572,6 @@ barbershop_background = {
 		reference = "environment_event_market_tribal"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/market_west.dds"
@@ -671,16 +580,8 @@ barbershop_background = {
 		reference = "environment_event_market_west"
 	}
 
-	##########################################
 
-	#texture = {
-	#	reference = "event_scenes/market_india.dds"
-	#}
-	#environment = {
-	#	reference = "environment_event_market_west"
-	#}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/raid_burning.dds"
@@ -689,7 +590,6 @@ barbershop_background = {
 		reference = "environment_event_feast"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/fp2_relaxing_room.dds"
@@ -698,7 +598,6 @@ barbershop_background = {
 		reference = "environment_event_fp2_relaxing_room"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/sittingroom.dds"
@@ -707,7 +606,6 @@ barbershop_background = {
 		reference = "environment_event_sittingroom"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/ep2_wedding_bedroom_indian.dds"
@@ -716,7 +614,6 @@ barbershop_background = {
 		reference = "environment_event_indian_bedchamber"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/ep2_wedding_bedroom_mena.dds"
@@ -725,7 +622,6 @@ barbershop_background = {
 		reference = "environment_event_mena_bedchamber"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/bedchamber.dds"
@@ -734,7 +630,6 @@ barbershop_background = {
 		reference = "environment_event_bedchamber"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/fp1_steward_study.dds"
@@ -743,7 +638,6 @@ barbershop_background = {
 		reference = "environment_event_fp1_steward_study"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/study.dds"
@@ -752,7 +646,6 @@ barbershop_background = {
 		reference = "environment_event_study"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/bp1_relaxing_room_mena.dds"
@@ -761,7 +654,6 @@ barbershop_background = {
 		reference = "environment_event_bp1_relaxing_room_mena"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/bp1_relaxing_room_western.dds"
@@ -770,7 +662,6 @@ barbershop_background = {
 		reference = "environment_event_bp1_relaxing_room_western"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/study_physician.dds"
@@ -779,7 +670,6 @@ barbershop_background = {
 		reference = "environment_event_study_physician"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/tavern.dds"
@@ -788,79 +678,6 @@ barbershop_background = {
 		reference = "environment_event_tavern"
 	}
 
-	###########################################
-	#
-	#texture = {
-	#	reference = "event_scenes/fp2_throneroom.dds"
-	#}
-	#environment = {
-	#	reference = "environment_event_fp2_throneroom"
-	#}
-	#
-	###########################################
-	#
-	#texture = {
-	#	reference = "event_scenes/fp1_throneroom_tribal.dds"
-	#}
-	#environment = {
-	#	reference = "environment_event_fp1_throneroom_tribal"
-	#}
-	#
-	###########################################
-	#
-	#texture = {
-	#	reference = "event_scenes/throneroom_tribal.dds"
-	#}
-	#environment = {
-	#	reference = "environment_frontend_tribal_main"
-	#}
-	#
-	###########################################
-	#
-	#texture = {
-	#	reference = "event_scenes/fp1_throneroom_nontribal.dds"
-	#}
-	#environment = {
-	#	reference = "environment_event_fp1_throneroom_nontribal"
-	#}
-	#
-	###########################################
-	#
-	#texture = {
-	#	reference = "event_scenes/throneroom_east.dds"
-	#}
-	#environment = {
-	#	reference = "environment_frontend_east_main"
-	#}
-	#
-	###########################################
-	#
-	#texture = {
-	#	reference = "event_scenes/throneroom_india.dds"
-	#}
-	#environment = {
-	#	reference = "environment_frontend_india_main"
-	#}
-	#
-	###########################################
-	#
-	#texture = {
-	#	reference = "event_scenes/throneroom_mediterranean.dds"
-	#}
-	#environment = {
-	#	reference = "environment_frontend_mediterranean_main"
-	#}
-	#
-	###########################################
-	#
-	#texture = {
-	#	reference = "event_scenes/throneroom_west.dds"
-	#}
-	#environment = {
-	#	reference = "environment_frontend_west_main"
-	#}
-	#
-	###########################################
 
 	texture = {
 		reference = "event_scenes/genericcamp.dds"
@@ -869,7 +686,6 @@ barbershop_background = {
 		reference = "environment_event_genericcamp"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/fp1_runestone.dds"
@@ -878,7 +694,6 @@ barbershop_background = {
 		reference = "environment_event_fp1_runestone"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/fp1_runestone_circle.dds"
@@ -887,7 +702,6 @@ barbershop_background = {
 		reference = "environment_event_fp1_runestone_circle"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/fp1_beached_longship.dds"
@@ -896,7 +710,6 @@ barbershop_background = {
 		reference = "environment_event_fp1_beached_longship"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/ep2_village_festival_western.dds"
@@ -905,7 +718,6 @@ barbershop_background = {
 		reference = "environment_village_festival"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/ep2_holysite_mena.dds"
@@ -914,7 +726,6 @@ barbershop_background = {
 		reference = "environment_generic_holy_site_mena"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/ep2_holysite_indian.dds"
@@ -923,7 +734,6 @@ barbershop_background = {
 		reference = "environment_indian_holy_site"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/ep2_holysite_western.dds"
@@ -932,7 +742,6 @@ barbershop_background = {
 		reference = "environment_western_holy_site"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/ep2_holysite_tribal.dds"
@@ -941,7 +750,6 @@ barbershop_background = {
 		reference = "environment_event_garden"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/ep2_holysite_jerusalem.dds"
@@ -950,7 +758,6 @@ barbershop_background = {
 		reference = "environment_jerusalem"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/ep2_holysite_mecca.dds"
@@ -959,7 +766,6 @@ barbershop_background = {
 		reference = "environment_mecca"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/ep2_hunt_generic.dds"
@@ -968,7 +774,6 @@ barbershop_background = {
 		reference = "environment_generic_hunt"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/ep2_hunt_forest_managed.dds"
@@ -977,7 +782,6 @@ barbershop_background = {
 		reference = "environment_ep2_forest_managed"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/ep2_hunt_cave_entrance.dds"
@@ -986,7 +790,6 @@ barbershop_background = {
 		reference = "environment_hunt_forest_cave"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/ep2_hunt_falconry_mews.dds"
@@ -995,7 +798,6 @@ barbershop_background = {
 		reference = "environment_hunt_falconry_mews"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/ep2_hunt_foggy_forest.dds"
@@ -1004,7 +806,6 @@ barbershop_background = {
 		reference = "environment_hunt_foggy_forest"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/ep2_hunt_poachers_camp.dds"
@@ -1013,7 +814,6 @@ barbershop_background = {
 		reference = "environment_event_forest_pine"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/ep2_dog_kennels.dds"
@@ -1022,7 +822,6 @@ barbershop_background = {
 		reference = "environment_dog_kennels"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/ep2_wedding_ceremony_mena.dds"
@@ -1031,7 +830,6 @@ barbershop_background = {
 		reference = "environment_mena_wedding"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/ep2_wedding_ceremony_indian.dds"
@@ -1040,7 +838,6 @@ barbershop_background = {
 		reference = "environment_indian_wedding"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/ep2_wedding_ceremony_western.dds"
@@ -1049,7 +846,6 @@ barbershop_background = {
 		reference = "environment_western_wedding"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/ep2_tournament_india.dds"
@@ -1058,7 +854,6 @@ barbershop_background = {
 		reference = "environment_mecca"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/ep2_tournament_mena.dds"
@@ -1067,7 +862,6 @@ barbershop_background = {
 		reference = "environment_event_bp1_desert"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/ep2_tournament_tribal.dds"
@@ -1076,7 +870,6 @@ barbershop_background = {
 		reference = "environment_village_festival"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/ep2_tournament_western.dds"
@@ -1085,7 +878,6 @@ barbershop_background = {
 		reference = "environment_village_festival"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "activity_backgrounds/contest_bg_melee.dds"
@@ -1094,7 +886,6 @@ barbershop_background = {
 		reference = "environment_ep2_melee"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "activity_backgrounds/contest_bg_horseracing.dds"
@@ -1103,7 +894,6 @@ barbershop_background = {
 		reference = "environment_ep2_horse_racing"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "activity_backgrounds/contest_bg_boardgames.dds"
@@ -1112,7 +902,6 @@ barbershop_background = {
 		reference = "environment_ep2_boardgames"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "activity_backgrounds/contest_bg_archery.dds"
@@ -1121,7 +910,6 @@ barbershop_background = {
 		reference = "environment_ep2_archery"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/bp2_courtyard.dds"
@@ -1130,7 +918,6 @@ barbershop_background = {
 		reference = "environment_bp2_courtyard"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/bp2_study_indian.dds"
@@ -1139,7 +926,6 @@ barbershop_background = {
 		reference = "environment_bp2_study_indian"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/bp2_indian_garden.dds"
@@ -1148,7 +934,6 @@ barbershop_background = {
 		reference = "environment_bp2_garden_india_day"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/bp2_tavern_mena.dds"
@@ -1157,7 +942,6 @@ barbershop_background = {
 		reference = "environment_bp2_tavern_mena"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/bp2_university.dds"
@@ -1166,7 +950,6 @@ barbershop_background = {
 		reference = "environment_bp2_university"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/bp2_nursery.dds"
@@ -1175,7 +958,6 @@ barbershop_background = {
 		reference = "environment_bp2_nursery"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/bp2_university_mena.dds"
@@ -1184,7 +966,6 @@ barbershop_background = {
 		reference = "environment_bp2_university_mena"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/fp3_bathhouse.dds"
@@ -1193,7 +974,6 @@ barbershop_background = {
 		reference = "environment_event_fp3_bathhouse"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/fp3_cave.dds"
@@ -1202,7 +982,6 @@ barbershop_background = {
 		reference = "environment_event_sittingroom"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/fp3_temple.dds"
@@ -1211,7 +990,6 @@ barbershop_background = {
 		reference = "environment_event_fp3_temple"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/fp3_docks.dds"
@@ -1220,7 +998,6 @@ barbershop_background = {
 		reference = "environment_event_fp3_docks"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/fp3_courtyard_night.dds"
@@ -1229,7 +1006,6 @@ barbershop_background = {
 		reference = "environment_event_fp3_courtyard_night"
 	}
 
-	##########################################
 	
 	texture = {
 		reference = "event_scenes/fp4_catacombs.dds"
@@ -1238,7 +1014,6 @@ barbershop_background = {
 		reference = "environment_ce1_catacombs"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/fp4_condemned_village.dds"
@@ -1247,7 +1022,6 @@ barbershop_background = {
 		reference = "environment_ce1_condemned_village"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/fp4_funeral_pyre.dds"
@@ -1256,7 +1030,6 @@ barbershop_background = {
 		reference = "environment_ce1_funeral_pyre"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/fp4_legendary_battlefield.dds"
@@ -1265,7 +1038,6 @@ barbershop_background = {
 		reference = "environment_ce1_legendary_battlefield"
 	}
 
-	##########################################
 	texture = {
 		reference = "event_scenes/fp4_legendary_oasis.dds"
 	}
@@ -1273,7 +1045,6 @@ barbershop_background = {
 		reference = "environment_ce1_legendary_oasis"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/fp4_physician_tribal.dds"
@@ -1282,7 +1053,6 @@ barbershop_background = {
 		reference = "environment_ce1_physician_tribal"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/fp4_study_physician_indian.dds"
@@ -1291,7 +1061,6 @@ barbershop_background = {
 		reference = "environment_ce1_study_physician_indian"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/fp4_study_physician_mena.dds"
@@ -1300,7 +1069,6 @@ barbershop_background = {
 		reference = "environment_ce1_study_physician_mena"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/fp4_legendary_spring.dds"
@@ -1309,7 +1077,6 @@ barbershop_background = {
 		reference = "environment_legendary_spring"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/ep3_holysite_orthodox.dds"
@@ -1318,7 +1085,6 @@ barbershop_background = {
 		reference = "environment_ep3_holysite_orthodox"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/ep3_constantinople.dds"
@@ -1327,7 +1093,6 @@ barbershop_background = {
 		reference = "environment_ep3_constantinople"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/ep3_constantinople_riot.dds"
@@ -1336,7 +1101,6 @@ barbershop_background = {
 		reference = "environment_ep3_constantinople_on_fire"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/ep3_hippodrome_chariot_race.dds"
@@ -1345,7 +1109,6 @@ barbershop_background = {
 		reference = "environment_ep3_chariot_race"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/ep3_chariots_track.dds"
@@ -1354,7 +1117,6 @@ barbershop_background = {
 		reference = "environment_ep3_chariot_track"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/ep3_hagia_sophia.dds"
@@ -1363,7 +1125,6 @@ barbershop_background = {
 		reference = "environment_ep3_hagia_sophia"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/ep3_feast_byzantine.dds"
@@ -1372,7 +1133,6 @@ barbershop_background = {
 		reference = "environment_ep3_byzantine_feast"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/ep3_city_gate.dds"
@@ -1381,7 +1141,6 @@ barbershop_background = {
 		reference = "environment_ep3_castle_gates"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/ep3_medi_estate.dds"
@@ -1390,7 +1149,6 @@ barbershop_background = {
 		reference = "environment_ep3_family_estate"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/ep3_relaxing_room.dds"
@@ -1399,7 +1157,6 @@ barbershop_background = {
 		reference = "environment_ep3_relaxing_room"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/ep3_relaxing_tent.dds"
@@ -1408,7 +1165,6 @@ barbershop_background = {
 		reference = "environment_ep3_living_tent_interior"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/ep3_medi_market.dds"
@@ -1417,7 +1173,6 @@ barbershop_background = {
 		reference = "environment_ep3_medi_market"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/ep3_camp_arid_terrain.dds"
@@ -1426,7 +1181,6 @@ barbershop_background = {
 		reference = "environment_ep3_arid_camp"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "main_menu/ep3_frontend_adventurer.dds"
@@ -1435,7 +1189,6 @@ barbershop_background = {
 		reference = "environment_ep3_army_camp"
 	}
 	
-	##########################################
 
 	texture = {
 		reference = "event_scenes/ep3_medi_study.dds"
@@ -1444,7 +1197,6 @@ barbershop_background = {
 		reference = "environment_ep3_byzantine_study"
 	}
 	
-	##########################################
 
 	texture = {
 		reference = "event_scenes/ep3_military_tent.dds"
@@ -1453,7 +1205,6 @@ barbershop_background = {
 		reference = "environment_ep3_military_tent_interior"
 	}
 	
-	##########################################
 
 	texture = {
 		reference = "event_scenes/ep3_campfire.dds"
@@ -1462,7 +1213,6 @@ barbershop_background = {
 		reference = "environment_ep3_camp_fire"
 	}
 	
-	##########################################
 
 	texture = {
 		reference = "event_scenes/bp3_coast.dds"
@@ -1471,7 +1221,6 @@ barbershop_background = {
 		reference = "environment_bp3_coast"
 	}
 	
-	##########################################
 
 	texture = {
 		reference = "event_scenes/bp3_hills_winter.dds"
@@ -1480,7 +1229,6 @@ barbershop_background = {
 		reference = "environment_bp3_hills_winter"
 	}
 	
-	##########################################
 
 	texture = {
 		reference = "event_scenes/bp3_mountain_winter.dds"
@@ -1489,7 +1237,6 @@ barbershop_background = {
 		reference = "environment_bp3_mountain_winter"
 	}
 	
-	##########################################
 
 	texture = {
 		reference = "event_scenes/bp3_plains_winter.dds"
@@ -1498,7 +1245,6 @@ barbershop_background = {
 		reference = "environment_bp3_plains_winter"
 	}
 	
-	##########################################
 
 	texture = {
 		reference = "event_scenes/bp3_riverside.dds"
@@ -1507,7 +1253,6 @@ barbershop_background = {
 		reference = "environment_bp3_riverside"
 	}
 	
-	##########################################
 
 	texture = {
 		reference = "event_scenes/bp3_steppe_winter.dds"
@@ -1516,7 +1261,6 @@ barbershop_background = {
 		reference = "environment_bp3_steppe_winter"
 	}
 	
-	##########################################
 
 	texture = {
 		reference = "event_scenes/bp3_wetlands_winter.dds"
@@ -1525,7 +1269,6 @@ barbershop_background = {
 		reference = "environment_bp3_wetlands_winter"
 	}
 	
-	##########################################
 
 	texture = {
 		reference = "event_scenes/mpo_camp_steppe.dds"
@@ -1534,7 +1277,6 @@ barbershop_background = {
 		reference = "environment_mpo_camp_steppe"
 	}
 	
-	##########################################
 
 	texture = {
 		reference = "event_scenes/mpo_campfire_steppe.dds"
@@ -1543,7 +1285,6 @@ barbershop_background = {
 		reference = "environment_mpo_campfire_steppe"
 	}
 	
-	##########################################
 
 	texture = {
 		reference = "event_scenes/mpo_city_steppe.dds"
@@ -1552,7 +1293,6 @@ barbershop_background = {
 		reference = "environment_mpo_city_steppe"
 	}
 	
-	##########################################
 
 	texture = {
 		reference = "event_scenes/mpo_hunt_steppe.dds"
@@ -1561,7 +1301,6 @@ barbershop_background = {
 		reference = "environment_mpo_hunt_steppe"
 	}
 	
-	##########################################
 
 	texture = {
 		reference = "event_scenes/mpo_raid_burning_asian.dds"
@@ -1570,7 +1309,6 @@ barbershop_background = {
 		reference = "environment_mpo_raid_burning_asian"
 	}
 	
-	##########################################
 
 	texture = {
 		reference = "event_scenes/mpo_rural_village_asian.dds"
@@ -1579,7 +1317,6 @@ barbershop_background = {
 		reference = "environment_mpo_rural_village_asian"
 	}
 	
-	##########################################
 
 	texture = {
 		reference = "event_scenes/mpo_steppe_evening.dds"
@@ -1588,7 +1325,6 @@ barbershop_background = {
 		reference = "environment_mpo_steppe_evening"
 	}
 	
-	##########################################
 
 	texture = {
 		reference = "event_scenes/mpo_temple_steppe.dds"
@@ -1597,7 +1333,6 @@ barbershop_background = {
 		reference = "environment_mpo_temple_steppe"
 	}
 	
-	##########################################
 
 	texture = {
 		reference = "event_scenes/mpo_tent_interior_mongol.dds"
@@ -1606,7 +1341,6 @@ barbershop_background = {
 		reference = "environment_mpo_tent_interior_mongol"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/tgp_alley_day_asia.dds"
@@ -1615,7 +1349,6 @@ barbershop_background = {
 		reference = "environment_tgp_alley_day_asia"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/tgp_alley_night_asia.dds"
@@ -1624,7 +1357,6 @@ barbershop_background = {
 		reference = "environment_tgp_alley_night_asia"
 	}
 	
-	##########################################
 
 	texture = {
 		reference = "event_scenes/tgp_asia_estate.dds"
@@ -1633,7 +1365,6 @@ barbershop_background = {
 		reference = "environment_tgp_asia_estate"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/tgp_camp_asia.dds"
@@ -1642,7 +1373,6 @@ barbershop_background = {
 		reference = "environment_tgp_camp_asia"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/tgp_chinese_city.dds"
@@ -1651,7 +1381,6 @@ barbershop_background = {
 		reference = "environment_tgp_chinese_city"
 	}
 	
-	##########################################
 
 	texture = {
 		reference = "event_scenes/tgp_chinese_corridor_day.dds"
@@ -1660,7 +1389,6 @@ barbershop_background = {
 		reference = "environment_tgp_chinese_corridor_day"
 	}
 	
-	##########################################
 
 	texture = {
 		reference = "event_scenes/tgp_chinese_corridor_night.dds"
@@ -1669,7 +1397,6 @@ barbershop_background = {
 		reference = "environment_tgp_chinese_corridor_night"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/tgp_courtyard_asia.dds"
@@ -1678,7 +1405,6 @@ barbershop_background = {
 		reference = "environment_tgp_courtyard_asia"
 	}
 	
-	##########################################
 
 	texture = {
 		reference = "event_scenes/tgp_crossroad_inn_asia.dds"
@@ -1687,7 +1413,6 @@ barbershop_background = {
 		reference = "environment_tgp_crossroad_inn_asia"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/tgp_docks_asia.dds"
@@ -1696,7 +1421,6 @@ barbershop_background = {
 		reference = "environment_tgp_docks_asia"
 	}
 	
-	##########################################
 
 	texture = {
 		reference = "event_scenes/tgp_examination_room.dds"
@@ -1705,7 +1429,6 @@ barbershop_background = {
 		reference = "environment_tgp_examination_room"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/tgp_farm_asia.dds"
@@ -1714,7 +1437,6 @@ barbershop_background = {
 		reference = "environment_tgp_farm_asia"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/tgp_feast_asia.dds"
@@ -1723,7 +1445,6 @@ barbershop_background = {
 		reference = "environment_tgp_feast_asia"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/tgp_festival_ritual_japan.dds"
@@ -1732,7 +1453,6 @@ barbershop_background = {
 		reference = "environment_tgp_festival_ritual_japan"
 	}
 	
-	##########################################
 
 	texture = {
 		reference = "event_scenes/tgp_garden_asia.dds"
@@ -1741,7 +1461,6 @@ barbershop_background = {
 		reference = "environment_tgp_garden_asia"
 	}
 	
-	##########################################
 
 	texture = {
 		reference = "event_scenes/tgp_holysite_asia.dds"
@@ -1750,7 +1469,6 @@ barbershop_background = {
 		reference = "environment_tgp_holysite_asia"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/tgp_hunt_generic_asia.dds"
@@ -1759,7 +1477,6 @@ barbershop_background = {
 		reference = "environment_tgp_hunt_generic_asia"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/tgp_japanese_city.dds"
@@ -1768,7 +1485,6 @@ barbershop_background = {
 		reference = "environment_tgp_japanese_city"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/tgp_japan_throne_room.dds"
@@ -1777,7 +1493,6 @@ barbershop_background = {
 		reference = "environment_tgp_frontend_japan_main" 
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/tgp_asia_throne_room.dds"
@@ -1786,7 +1501,6 @@ barbershop_background = {
 		reference = "environment_tgp_frontend_celestial_main" 
 	}
 	
-	##########################################
 
 	texture = {
 		reference = "event_scenes/tgp_kitchen_asia.dds"
@@ -1795,7 +1509,6 @@ barbershop_background = {
 		reference = "environment_tgp_kitchen_asia"
 	}
 	
-	##########################################
 
 	texture = {
 		reference = "event_scenes/tgp_market_asia.dds"
@@ -1804,7 +1517,6 @@ barbershop_background = {
 		reference = "environment_tgp_market_asia"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/tgp_moon_festival_japan.dds"
@@ -1813,7 +1525,6 @@ barbershop_background = {
 		reference = "environment_tgp_moon_festival_japan"
 	}
 	
-	##########################################
 
 	texture = {
 		reference = "event_scenes/tgp_overflowing_river.dds"
@@ -1822,7 +1533,6 @@ barbershop_background = {
 		reference = "environment_tgp_overflowing_river"
 	}
 	
-	##########################################
 
 	texture = {
 		reference = "event_scenes/tgp_physician_asia.dds"
@@ -1831,7 +1541,6 @@ barbershop_background = {
 		reference = "environment_tgp_physician_asia"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/tgp_relaxing_room_asia.dds"
@@ -1840,7 +1549,6 @@ barbershop_background = {
 		reference = "environment_tgp_relaxing_room_asia"
 	}
 	
-	##########################################
 
 	texture = {
 		reference = "event_scenes/tgp_rice_fields.dds"
@@ -1849,7 +1557,6 @@ barbershop_background = {
 		reference = "environment_tgp_rice_fields"
 	}
 	
-	##########################################
 
 	texture = {
 		reference = "event_scenes/tgp_ruined_holding.dds"
@@ -1858,7 +1565,6 @@ barbershop_background = {
 		reference = "environment_tgp_ruined_holding"
 	}
 	
-	##########################################
 
 	texture = {
 		reference = "event_scenes/tgp_study_asia.dds"
@@ -1867,7 +1573,6 @@ barbershop_background = {
 		reference = "environment_tgp_study_asia"
 	}
 	
-	##########################################
 
 	texture = {
 		reference = "event_scenes/tgp_study_japan.dds"
@@ -1876,7 +1581,6 @@ barbershop_background = {
 		reference = "environment_tgp_study_japan"
 	}
 	
-	##########################################
 
 	texture = {
 		reference = "event_scenes/tgp_tavern_asia.dds"
@@ -1885,7 +1589,6 @@ barbershop_background = {
 		reference = "environment_tgp_tavern_asia"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/tgp_tanabata_festival_japan.dds"
@@ -1894,7 +1597,6 @@ barbershop_background = {
 		reference = "environment_tgp_tanabata_festival_japan"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/tgp_tanabata_festival_night_japan.dds"
@@ -1903,7 +1605,6 @@ barbershop_background = {
 		reference = "environment_tgp_tanabata_festival_night_japan"
 	}
 	
-	##########################################
 
 	texture = {
 		reference = "event_scenes/tgp_temple_asia.dds"
@@ -1912,7 +1613,6 @@ barbershop_background = {
 		reference = "environment_tgp_temple_asia"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/tgp_village_sea.dds"
@@ -1921,7 +1621,6 @@ barbershop_background = {
 		reference = "environment_tgp_village_sea"
 	}
 	
-	##########################################
 
 	texture = {
 		reference = "event_scenes/tgp_wedding_bedroom_asia.dds"
@@ -1930,7 +1629,6 @@ barbershop_background = {
 		reference = "environment_tgp_wedding_bedroom_asia"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/tgp_wedding_ceremony_asia.dds"
@@ -1939,8 +1637,6 @@ barbershop_background = {
 		reference = "environment_tgp_wedding_ceremony_asia"
 	}
 
-	#AGOT Added
-	##########################################
 
 	texture = {
 		reference = "event_scenes/agot_ep3_relaxing_tent_day.dds"
@@ -1949,7 +1645,6 @@ barbershop_background = {
 		reference = "environment_agot_ep3_relaxing_tent_day"
 	}
 	
-	##########################################
 
 	texture = {
 		reference = "event_scenes/frozen_forest.dds"
@@ -1958,7 +1653,6 @@ barbershop_background = {
 		reference = "environment_hunt_snowy_forest"
 	}
 	
-	##########################################
 
 	texture = {
 		reference = "event_scenes/bg_dragon_forest_clearing.dds"
@@ -1967,7 +1661,6 @@ barbershop_background = {
 		reference = "environment_dragon_outside_sun"
 	}
 	
-	##########################################
 
 	texture = {
 		reference = "event_scenes/bg_dragon_forest_clearing.dds"
@@ -1976,7 +1669,6 @@ barbershop_background = {
 		reference = "environment_dragon_outside_sun"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/bg_dragonpit.dds"
@@ -1985,7 +1677,6 @@ barbershop_background = {
 		reference = "environment_dragonpit"
 	}
 	
-	##########################################
 	
 	texture = {
 		reference = "event_scenes/agot_dragonstone_cave.dds"
@@ -1994,7 +1685,6 @@ barbershop_background = {
 		reference = "environment_hunt_forest_cave"
 	}
 	
-	##########################################
 	
 	texture = {
 		reference = "event_scenes/agot_councilchamber_night.dds"
@@ -2003,7 +1693,6 @@ barbershop_background = {
 		reference = "environment_event_fp2_corridor_night"
 	}
 	
-	##########################################
 	
 	texture = {
 		reference = "event_scenes/agot_bp1_crossroads_inn_night.dds"
@@ -2012,7 +1701,6 @@ barbershop_background = {
 		reference = "environment_event_bp1_corridor_indian_night"
 	}
 	
-	##########################################
 	
 	texture = {
 		reference = "event_scenes/agot_forest_night.dds"
@@ -2021,7 +1709,6 @@ barbershop_background = {
 		reference = "environment_event_fp3_courtyard_night"
 	}
 	
-	##########################################
 	
 	texture = {
 		reference = "event_scenes/agot_bedchamber_night.dds"
@@ -2030,7 +1717,6 @@ barbershop_background = {
 		reference = "environment_event_fp2_corridor_night"
 	}
 	
-	##########################################
 	
 	texture = {
 		reference = "event_scenes/the_wall.dds"
@@ -2040,7 +1726,6 @@ barbershop_background = {
 		reference = "environment_hunt_snowy_forest"
 	}
 	
-	##########################################
 
 	texture = {
 		reference = "event_scenes/beyond_the_wall.dds"
@@ -2050,7 +1735,6 @@ barbershop_background = {
 		reference = "environment_hunt_snowy_forest"
 	}
 	
-	##########################################
 
 	texture = {
 		reference = "event_scenes/alley_day_kingslanding.dds"
@@ -2059,7 +1743,6 @@ barbershop_background = {
 		reference = "environment_event_alley"
 	}
 	
-	##########################################
 
 	texture = {
 		reference = "event_scenes/agot_npk_tree_of_crowns.dds"
@@ -2068,7 +1751,6 @@ barbershop_background = {
 		reference = "environment_ce1_funeral_pyre"
 	}
 	
-	##########################################
 
 	texture = {
 		reference = "event_scenes/tower_of_joy.dds"
@@ -2077,7 +1759,6 @@ barbershop_background = {
 		reference = "environment_event_desert"
 	}
 	
-	##########################################
 
 	texture = {
 		reference = "event_scenes/bg_stone_hedge.dds"
@@ -2086,7 +1767,6 @@ barbershop_background = {
 		reference = "environment_hunt_snowy_forest"
 	}
 	
-	##########################################
 
 	texture = {
 		reference = "event_scenes/bg_casterly_rock.dds"
@@ -2095,7 +1775,6 @@ barbershop_background = {
 		reference = "environment_cw_east_main"
 	}
 	
-	##########################################
 
 	texture = {
 		reference = "event_scenes/bg_highgarden.dds"
@@ -2103,7 +1782,6 @@ barbershop_background = {
 	environment = {
 		reference = "environment_event_farms"
 	}
-	##########################################
 
 	texture = {
 		reference = "event_scenes/bg_the_eyrie.dds"
@@ -2112,7 +1790,6 @@ barbershop_background = {
 		reference = "environment_event_mountains"
 	}
 
-	##########################################
 	texture = {
 		reference = "event_scenes/bg_the_trident.dds"
 	}
@@ -2120,7 +1797,6 @@ barbershop_background = {
 		reference = "environment_event_battlefield"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/bg_storms_end.dds"
@@ -2129,7 +1805,6 @@ barbershop_background = {
 		reference = "environment_hunt_forest_cave"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/ironthrone/throneroom_ironthrone.dds"
@@ -2138,7 +1813,6 @@ barbershop_background = {
 		reference = "environment_throneroom_iron_throne"
 	}
 	
-	##########################################
 
 	texture = {
 		reference = "event_scenes/north/throneroom_winterfell.dds"
@@ -2147,7 +1821,6 @@ barbershop_background = {
 		reference = "environment_throneroom_winterfell"
 	}
 	
-	##########################################
 
 	texture = {
 		reference = "event_scenes/vale/agot_eyrie_throneroom.dds"
@@ -2156,7 +1829,6 @@ barbershop_background = {
 		reference = "environment_throneroom_eyrie"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/west/casterly_rock.dds"
@@ -2165,7 +1837,6 @@ barbershop_background = {
 		reference = "environment_throneroom_casterly_rock"
 	}
 	
-	##########################################
 
 	texture = {
 		reference = "event_scenes/ironborn/pyke.dds"
@@ -2174,7 +1845,6 @@ barbershop_background = {
 		reference = "environment_throneroom_pyke"
 	}
 	
-	##########################################
 
 	texture = {
 		reference = "event_scenes/reach/highgarden.dds"
@@ -2183,7 +1853,6 @@ barbershop_background = {
 		reference = "environment_throneroom_highgarden"
 	}
 	
-	##########################################
 
 	texture = {
 		reference = "event_scenes/agot_dragonstone_throneroom.dds"
@@ -2192,7 +1861,6 @@ barbershop_background = {
 		reference = "environment_throneroom_dragonstone"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/the_wall.dds"
@@ -2201,7 +1869,6 @@ barbershop_background = {
 		reference = "environment_the_wall"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/beyondwall/throneroom_beyond_wall_high.dds"
@@ -2210,7 +1877,6 @@ barbershop_background = {
 		reference = "environment_throneroom_beyond_wall_high"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/north/throneroom_north_high.dds"
@@ -2219,7 +1885,6 @@ barbershop_background = {
 		reference = "environment_throneroom_north_high"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/ironborn/throneroom_ironborn_high.dds"
@@ -2228,7 +1893,6 @@ barbershop_background = {
 		reference = "environment_throneroom_ironborn_high"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/riverlands/throneroom_riverlands_high.dds"
@@ -2237,7 +1901,6 @@ barbershop_background = {
 		reference = "environment_throneroom_riverlands_high"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/vale/throneroom_vale_high.dds"
@@ -2246,7 +1909,6 @@ barbershop_background = {
 		reference = "environment_throneroom_vale_high"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/stormlands/throneroom_stormlands_high.dds"
@@ -2255,7 +1917,6 @@ barbershop_background = {
 		reference = "environment_throneroom_stormlands_high"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/crownlands/throneroom_crownlands_low.dds"
@@ -2264,7 +1925,6 @@ barbershop_background = {
 		reference = "environment_throneroom_crownlands_low"
 	}
 	
-	##########################################
 
 	texture = {
 		reference = "event_scenes/crownlands/throneroom_crownlands_mid.dds"
@@ -2273,7 +1933,6 @@ barbershop_background = {
 		reference = "environment_throneroom_crownlands_mid"
 	}
 	
-	##########################################
 
 	texture = {
 		reference = "event_scenes/crownlands/throneroom_crownlands_high.dds"
@@ -2282,7 +1941,6 @@ barbershop_background = {
 		reference = "environment_throneroom_crownlands_high"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/dorne/throneroom_dorne_high.dds"
@@ -2291,7 +1949,6 @@ barbershop_background = {
 		reference = "environment_throneroom_dorne_high"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/reach/throneroom_reach_high.dds"
@@ -2300,7 +1957,6 @@ barbershop_background = {
 		reference = "environment_throneroom_reach_high"
 	}
 
-	##########################################
 
 	texture = {
 		reference = "event_scenes/west/throneroom_west_high.dds"
@@ -2309,193 +1965,138 @@ barbershop_background = {
 		reference = "environment_throneroom_west_high"
 	}
 	
-	##########################################
-	#										 #
-	#			 COW Added Below			 #
-	#										 #
-	##########################################
 
-	##AGOT More Backgrounds ADDED
 	texture = {
 		reference = "event_scenes/throneroom_old_ironthrone.dds"
 	}
-	##AGOT Added
 	environment = {
 		reference = "environment_throneroom_iron_throne"
 	}
 	
-	##########################################
 
-	##AGOT More Backgrounds ADDED
 	texture = {
 		reference = "event_scenes/throneroom_redkeep_door.dds"
 	}
-	##AGOT More Backgrounds ADDED
 	environment = {
 		reference = "environment_throneroom_iron_throne"
 	}
 	
-	##########################################
 
-	##AGOT More Backgrounds ADDED
 	texture = {
 		reference = "event_scenes/throneroom_redkeep_pillars.dds"
 	}
-	##AGOT More Backgrounds ADDED
 	environment = {
 		reference = "environment_throneroom_iron_throne"
 	}
 	
-	##########################################
 
-	##AGOT More Backgrounds ADDED
 	texture = {
 		reference = "event_scenes/throneroom_therock.dds"
 	}
-	##AGOT More Backgrounds ADDED
 	environment = {
 		reference = "environment_cw_east_main"
 	}
 	
-	##########################################
 
-	##AGOT More Backgrounds ADDED
 	texture = {
 		reference = "event_scenes/throneroom_therock_door.dds"
 	}
-	##AGOT More Backgrounds ADDED
 	environment = {
 		reference = "environment_cw_east_main"
 	}
 	
-	##########################################
 
-	##AGOT More Backgrounds ADDED
 	texture = {
 		reference = "event_scenes/throneroom_pyke1.dds"
 	}
-	##AGOT More Backgrounds ADDED
 	environment = {
 		reference = "environment_event_gallows"
 	}
 	
-	##########################################
 
-	##AGOT More Backgrounds ADDED
 	texture = {
 		reference = "event_scenes/throneroom_pyke2.dds"
 	}
-	##AGOT More Backgrounds ADDED
 	environment = {
 		reference = "environment_event_gallows"
 	}
 	
-	##########################################
 
-	##AGOT More Backgrounds ADDED
 	texture = {
 		reference = "event_scenes/throneroom_pyke3.dds"
 	}
-	##AGOT More Backgrounds ADDED
 	environment = {
 		reference = "environment_event_gallows"
 	}
 	
-	##########################################
 
-	##AGOT More Backgrounds ADDED
 	texture = {
 		reference = "event_scenes/throneroom_dragonstone_throne.dds"
 	}
-	##AGOT More Backgrounds ADDED
 	environment = {
 		reference = "environment_frontend_west_main"
 	}
 	
-	##########################################
 
-	##AGOT More Backgrounds ADDED
 	texture = {
 		reference = "event_scenes/throneroom_dragonstone_table1.dds"
 	}
-	##AGOT More Backgrounds ADDED
 	environment = {
 		reference = "environment_frontend_west_main"
 	}
 	
-	##########################################
 
-	##AGOT More Backgrounds ADDED
 	texture = {
 		reference = "event_scenes/throneroom_dragonstone_table2.dds"
 	}
-	##AGOT More Backgrounds ADDED
 	environment = {
 		reference = "environment_frontend_west_main"
 	}
 	
-	##########################################
 
-	##AGOT More Backgrounds ADDED
 	texture = {
 		reference = "event_scenes/throneroom_highgarden_old_1.dds"
 	}
-	##AGOT More Backgrounds ADDED
 	environment = {
 		reference = "environment_throneroom_reach_high"
 	}
 	
-	##########################################
 
-	##AGOT More Backgrounds ADDED
 	texture = {
 		reference = "event_scenes/throneroom_highgarden_new_1.dds"
 	}
-	##AGOT More Backgrounds ADDED
 	environment = {
 		reference = "environment_throneroom_reach_high"
 	}
 	
-	##########################################
 
-	##AGOT More Backgrounds ADDED
 	texture = {
 		reference = "event_scenes/throneroom_highgarden_old_2.dds"
 	}
-	##AGOT More Backgrounds ADDED
 	environment = {
 		reference = "environment_throneroom_reach_high"
 	}
 	
-	##########################################
 
-	##AGOT More Backgrounds ADDED
 	texture = {
 		reference = "event_scenes/throneroom_highgarden_new_2.dds"
 	}
-	##AGOT More Backgrounds ADDED
 	environment = {
 		reference = "environment_throneroom_reach_high"
 	}
 	
-	##########################################
 
-	##AGOT Added
 	texture = {
 		reference = "event_scenes/the_wall.dds"
 	}
-	##AGOT Added
 	environment = {
 		reference = "environment_the_wall"
 	}
 
-	##########################################
 
-	##AGOT Added
 	texture = {
 		reference = "event_scenes/beyondwall/throneroom_beyond_wall_high.dds"
 	}
-	##AGOT Added
 	environment = {
 		reference = "environment_throneroom_beyond_wall_high"
 	}

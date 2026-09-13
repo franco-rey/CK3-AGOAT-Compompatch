@@ -1,12 +1,7 @@
 ﻿namespace = agot_kingsguard
 
-################################
-# Kingsguard Maintenance and Appointment Events
-# 1000 - 1999
-# by Badger
-################################
 
-agot_kingsguard.1000 = { #Kingsguard Death Maintenance Event
+agot_kingsguard.1000 = {
 	hidden = yes
 
 	trigger = {
@@ -28,7 +23,7 @@ agot_kingsguard.1000 = { #Kingsguard Death Maintenance Event
 		top_liege = {
 			ruler_has_kingsguard_trigger = yes
 		}
-		NOT = { #surpress the notification in specific events
+		NOT = {
 			top_liege = {
 				has_character_flag = replacing_kingsguard
 			}
@@ -53,7 +48,7 @@ scripted_trigger new_highborn_kg_trigger = {
 		can_be_kingsguard_trigger = { COURT_OWNER = scope:king }
 	}
 }
-agot_kingsguard.1001 = { # Standard KG Member Death / Removal
+agot_kingsguard.1001 = {
 	type = character_event
 	title = {
 		first_valid = {
@@ -72,7 +67,7 @@ agot_kingsguard.1001 = { # Standard KG Member Death / Removal
 			}
 			desc = agot_kingsguard.1001.fallback.desc.intro
 		}
-		first_valid = { # Comment on Prowess
+		first_valid = {
 			triggered_desc = {
 				trigger = {
 					exists = scope:dead_kingsguard
@@ -156,11 +151,11 @@ agot_kingsguard.1001 = { # Standard KG Member Death / Removal
 			}
 		}
 	}
-	option = { #Bring me the Greatest Knights in all the realm
+	option = {
 		name = agot_kingsguard.1001.a
 		trigger = {
 			custom_tooltip = {
-				text = agot_kingsguard.1001.a.tt # Avoid "consider using a custom_tooltip" warning
+				text = agot_kingsguard.1001.a.tt
 				OR = {
 					any_vassal_or_below = {
 						primary_title = { tier >= tier_county }
@@ -176,11 +171,11 @@ agot_kingsguard.1001 = { # Standard KG Member Death / Removal
 		}
 		custom_tooltip = agot_kingsguard.1001.a.tt
 	}
-	option = { #Bring me the Sons of Powerful Lords
+	option = {
 		name = agot_kingsguard.1001.b
 		trigger = {
 			custom_tooltip = {
-				text = agot_kingsguard.1001.b.tt # Avoid "consider using a custom_tooltip" warning
+				text = agot_kingsguard.1001.b.tt
 				any_vassal_or_below = {
 					primary_title = { tier >= tier_county }
 					is_powerful_vassal = yes
@@ -200,7 +195,7 @@ agot_kingsguard.1001 = { # Standard KG Member Death / Removal
 	}
 }
 
-agot_kingsguard.1002 = { # Greatest Knights
+agot_kingsguard.1002 = {
 	type = character_event
 	title = agot_kingsguard.1002.t
 	desc = {
@@ -248,7 +243,6 @@ agot_kingsguard.1002 = { # Greatest Knights
 			}
 		}
 		any_living_kingsguard = {
-			#Check for the 7 to stop appointing to replace guys in prison
 			top_liege = root
 			count < 7
 		}
@@ -365,7 +359,6 @@ agot_kingsguard.1002 = { # Greatest Knights
 		}
 	}
 	option = {
-		#Never Mind
 		name = agot_kingsguard.1002.d
 		custom_tooltip = agot_kingsguard.1002.d.tt
 	}
@@ -378,7 +371,7 @@ agot_kingsguard.1002 = { # Greatest Knights
 	}
 }
 
-agot_kingsguard.1003 = { # Powerful Lordly Scions who will auto-accept
+agot_kingsguard.1003 = {
 	type = character_event
 	title = agot_kingsguard.1003.t
 	desc = {
@@ -437,7 +430,6 @@ agot_kingsguard.1003 = { # Powerful Lordly Scions who will auto-accept
 			}
 		}
 		any_living_kingsguard = {
-			#Check for the 7 to stop appointing to replace guys in prison
 			top_liege = root
 			count < 7
 		}
@@ -707,17 +699,17 @@ agot_kingsguard.1003 = { # Powerful Lordly Scions who will auto-accept
 	}
 }
 
-agot_kingsguard.1004 = { # interaction to determine KG acceptance
+agot_kingsguard.1004 = {
 	hidden = yes
 	immediate = {
 		root = {
 			save_scope_as = kingsguard_candidate
 		}
 	}
-	option = { #I accept
-		ai_chance = { # Personality Factor
+	option = {
+		ai_chance = {
 			base = 100
-			opinion_modifier = { # Opinion Factor
+			opinion_modifier = {
 				who = this
 				opinion_target = scope:king
 				multiplier = 0.25
@@ -732,7 +724,7 @@ agot_kingsguard.1004 = { # interaction to determine KG acceptance
 				ai_greed = -0.5
 				ai_zeal = 0.5
 			}
-			modifier = { # big honour for a pleb
+			modifier = {
 				is_lowborn = yes
 				add = 50
 			}
@@ -747,41 +739,41 @@ agot_kingsguard.1004 = { # interaction to determine KG acceptance
 			}
 		}
 	}
-	option = { #I refuse
+	option = {
 		ai_chance = {
 			base = 50
-			opinion_modifier = { # Opinion Factor
+			opinion_modifier = {
 				who = this
 				opinion_target = scope:king
 				multiplier = 0.25
 			}
-			ai_value_modifier = { # Personality Factor
+			ai_value_modifier = {
 				ai_honor = -0.5
 				ai_boldness = -0.5
 				ai_greed = 0.5
 				ai_zeal = -0.5
 			}
-			modifier = { #Trained my whole life for this
+			modifier = {
 				factor = 0
 				has_character_modifier = training_for_kingsguard
 			}
-			modifier = { # Doesn't want to go celibate
+			modifier = {
 				add = 50
 				OR = {
 					has_trait = lustful
 					has_trait = lifestyle_reveler
 				}
 			}
-			modifier = { # Different Gods go away
+			modifier = {
 				add = 100
 				AND = {
 					NOT = {
 						religion = scope:king.religion
 					}
-					ai_zeal <= -30 # More cynical characters don't care
+					ai_zeal <= -30
 				}
 			}
-			modifier = { # Heirs will almost never
+			modifier = {
 				add = 150
 				any_heir_title = {
 					exists = this
@@ -811,7 +803,7 @@ agot_kingsguard.1004 = { # interaction to determine KG acceptance
 	}
 }
 
-agot_kingsguard.1005 = { # Candidate Accepts Kingsguard Appointment
+agot_kingsguard.1005 = {
 	type = letter_event
 	opening = {
 		desc = agot_kingsguard.1005.opening
@@ -821,7 +813,7 @@ agot_kingsguard.1005 = { # Candidate Accepts Kingsguard Appointment
 	immediate = {
 		if = {
 			limit = {
-				NOT = {	scope:kingsguard_candidate ?= { employer = root } } # Not already employed by root
+				NOT = {	scope:kingsguard_candidate ?= { employer = root } }
 			}
 			add_courtier = scope:kingsguard_candidate
 		}
@@ -842,7 +834,7 @@ agot_kingsguard.1005 = { # Candidate Accepts Kingsguard Appointment
 			}
 		}
 	}
-	option = { 	#Welcome to the family son
+	option = {
 		name = agot_kingsguard.1005.a
 		scope:kingsguard_candidate ?= {
 			trigger_event = agot_kingsguard.1006
@@ -851,7 +843,7 @@ agot_kingsguard.1005 = { # Candidate Accepts Kingsguard Appointment
 	}
 }
 
-agot_kingsguard.1006 = { # Actually give that loser the KG - recurring event
+agot_kingsguard.1006 = {
 	hidden = yes
 	trigger = {
 		top_liege = {
@@ -1000,14 +992,14 @@ agot_kingsguard.1006 = { # Actually give that loser the KG - recurring event
 	}
 }
 
-agot_kingsguard.1007 = { # Candidate Spurns Kingsguard Appointment
+agot_kingsguard.1007 = {
 	type = letter_event
 	opening = {
 		desc = agot_kingsguard.1007.opening
 	}
 	desc = {
 		desc = agot_kingsguard.1007.opening_desc
-		first_valid = { # rejections based on personality
+		first_valid = {
 			triggered_desc = {
 				trigger = {
 					scope:kingsguard_candidate ?= {
@@ -1065,7 +1057,7 @@ agot_kingsguard.1007 = { # Candidate Spurns Kingsguard Appointment
 		character = scope:kingsguard_candidate
 		animation = dismissal
 	}
-	option = { #I shall look for another!
+	option = {
 		name = agot_kingsguard.1007.a
 		trigger = {
 			exists = scope:removed_kg
@@ -1079,12 +1071,12 @@ agot_kingsguard.1007 = { # Candidate Spurns Kingsguard Appointment
 			}
 		}
 	}
-	option = { #Blast to this, I'll look later
+	option = {
 		name = agot_kingsguard.1007.b
 	}
 }
 
-agot_kingsguard.1008 = { # Bestowing Event
+agot_kingsguard.1008 = {
 	type = character_event
 	title = agot_kingsguard.1008.t
 	desc = agot_kingsguard.1008.desc
@@ -1094,7 +1086,7 @@ agot_kingsguard.1008 = { # Bestowing Event
 	}
 	immediate = {
 		save_scope_as = king
-		if = { #Close Landed Family Take Priority
+		if = {
 			limit = {
 				scope:kingsguard_candidate ?= {
 					any_close_family_member = {
@@ -1112,7 +1104,7 @@ agot_kingsguard.1008 = { # Bestowing Event
 			}
 		}
 		else_if = {
-			limit = { # Then Landed Extended Fam
+			limit = {
 				scope:kingsguard_candidate ?= {
 					any_close_or_extended_family_member = {
 						is_landed = yes
@@ -1128,7 +1120,7 @@ agot_kingsguard.1008 = { # Bestowing Event
 				}
 			}
 		}
-		else_if = { # Then Unlanded General Family
+		else_if = {
 			limit = {
 				scope:kingsguard_candidate ?= {
 					any_close_family_member = {
@@ -1165,7 +1157,7 @@ agot_kingsguard.1008 = { # Bestowing Event
 				days = 1
 			}
 		}
-		if = { 		#Family Reaction
+		if = {
 			limit = {
 				exists = scope:family_member
 				NOT = {
@@ -1174,11 +1166,8 @@ agot_kingsguard.1008 = { # Bestowing Event
 			}
 			trigger_event = agot_kingsguard.1009
 		}
-		# event for appointing foreigner
-		#event for appointing different religion
 	}
 	after = {
-		#Courtly Vassals Upset at Lowborn Appointment
 		if = {
 			limit = {
 				scope:kingsguard_candidate ?= {
@@ -1196,7 +1185,6 @@ agot_kingsguard.1008 = { # Bestowing Event
 				}
 			}
 		}
-		#Zealot Vassals Upset at Heathen Appointment
 		if = {
 			limit = {
 				NOT = {
@@ -1219,7 +1207,7 @@ agot_kingsguard.1008 = { # Bestowing Event
 	}
 }
 
-agot_kingsguard.1009 = { # Relatives' Reaction
+agot_kingsguard.1009 = {
 	type = character_event
 	title = agot_kingsguard.1009.t
 	desc = {
@@ -1260,7 +1248,6 @@ agot_kingsguard.1009 = { # Relatives' Reaction
 	immediate = {
 		random_list = {
 			80 = {
-				#Bigger Weight towards happy due to prestige
 				modifier = {
 					factor = 2
 					scope:family_member = {
@@ -1288,7 +1275,6 @@ agot_kingsguard.1009 = { # Relatives' Reaction
 					}
 					factor = 2
 				}
-				#Happy Relative Flag
 				scope:family_member = {
 					add_character_flag = family_glad
 				}
@@ -1335,13 +1321,11 @@ agot_kingsguard.1009 = { # Relatives' Reaction
 					factor = 2
 				}
 				modifier = {
-					#Probably very pissed you snagged their heir
 					scope:kingsguard_candidate ?= {
 						has_character_flag = was_primary_heir
 					}
 					factor = 5
 				}
-				#Mad Relative Flag
 				scope:family_member = {
 					add_character_flag = family_mad
 				}
@@ -1418,7 +1402,6 @@ agot_kingsguard.1009 = { # Relatives' Reaction
 					has_character_flag = family_mad
 				}
 			}
-			#Tywin was upset at Aerys for Appointing Jaime, harmed their house relations, as it resulted in Tywin having most of House Targaryen killed.
 			if = {
 				limit = {
 					AND = {
@@ -1455,7 +1438,6 @@ agot_kingsguard.1009 = { # Relatives' Reaction
 					has_character_flag = family_glad
 				}
 			}
-			#What an honour to have a family member on the King's Guard
 			if = {
 				limit = {
 					AND = {
@@ -1489,7 +1471,7 @@ agot_kingsguard.1009 = { # Relatives' Reaction
 	}
 }
 
-agot_kingsguard.1010 = { # Lord Commander Death / Removal
+agot_kingsguard.1010 = {
 	type = character_event
 	title = agot_kingsguard.1010.t
 	desc = {
@@ -1526,7 +1508,7 @@ agot_kingsguard.1010 = { # Lord Commander Death / Removal
 		animation = personality_callous
 	}
 	lower_center_portrait = {
-		character = scope:removed_kg # The Lord Commander
+		character = scope:removed_kg
 	}
 	immediate = {
 		if = {
@@ -1601,10 +1583,8 @@ agot_kingsguard.1010 = { # Lord Commander Death / Removal
 		}
 	}
 	option = {
-		#Successor
 		name = agot_kingsguard.1010.a
 		trigger = {
-			#Add an opinion boost here
 			exists = scope:kingsguard_successor
 			scope:kingsguard_successor = { is_alive = yes }
 		}
@@ -1688,7 +1668,6 @@ agot_kingsguard.1010 = { # Lord Commander Death / Removal
 		remove_character_flag = choosing_lord_commander
 	}
 	option = {
-		#Switch
 		name = agot_kingsguard.1010.e
 		trigger = {
 			OR = {
@@ -1719,7 +1698,7 @@ agot_kingsguard.1010 = { # Lord Commander Death / Removal
 	}
 }
 
-agot_kingsguard.1011 = { # Lord Commander Death 2
+agot_kingsguard.1011 = {
 	type = character_event
 	title = agot_kingsguard.1010.t
 	desc = {
@@ -1750,7 +1729,7 @@ agot_kingsguard.1011 = { # Lord Commander Death 2
 		animation = personality_callous
 	}
 	lower_center_portrait = {
-		character = scope:removed_kg # The Lord Commander
+		character = scope:removed_kg
 	}
 	immediate = {
 		if = {
@@ -1828,7 +1807,6 @@ agot_kingsguard.1011 = { # Lord Commander Death 2
 		remove_character_flag = choosing_lord_commander
 	}
 	option = {
-		#Switch
 		name = agot_kingsguard.1010.e
 		trigger = {
 			OR = {
@@ -1862,7 +1840,7 @@ agot_kingsguard.1011 = { # Lord Commander Death 2
 	}
 }
 
-agot_kingsguard.1012 = { #New Kingsguard Set-up. Memory, prestige, knighthood / celibacy
+agot_kingsguard.1012 = {
 	hidden = yes
 	immediate = {
 		add_prestige_level = 1
@@ -1889,14 +1867,12 @@ agot_kingsguard.1012 = { #New Kingsguard Set-up. Memory, prestige, knighthood / 
 			random_list = {
 				95 = {
 					modifier = {
-						#Fuck your Sers
 						add = {
 							value = ai_zeal
 							multiply = -1
 						}
 					}
 					modifier = {
-						# Not Knights more likely to refuse
 						factor = 0.2
 						NOT = {
 							faith = {
@@ -1904,7 +1880,6 @@ agot_kingsguard.1012 = { #New Kingsguard Set-up. Memory, prestige, knighthood / 
 							}
 						}
 					}
-					# Remove the knight relation
 					if = {
 						limit = {
 							any_relation = {
@@ -1931,7 +1906,6 @@ agot_kingsguard.1012 = { #New Kingsguard Set-up. Memory, prestige, knighthood / 
 							}
 						}
 					}
-					# Rejected Knighthood
 				}
 			}
 		}
@@ -1968,9 +1942,7 @@ agot_kingsguard.1012 = { #New Kingsguard Set-up. Memory, prestige, knighthood / 
 					add_trait = celibate
 				}
 				80 = {
-					#No celibacy
 					modifier = {
-						# I ain't banging anyway
 						factor = 0
 						has_trait = eunuch_1
 					}
@@ -1985,11 +1957,10 @@ agot_kingsguard.1012 = { #New Kingsguard Set-up. Memory, prestige, knighthood / 
 		}
 	}
 	option = {
-		#Notify liege eventually
 	}
 }
 
-agot_kingsguard.1013 = { #On get title, remove training for kingsguard and refusing marriage
+agot_kingsguard.1013 = {
 	hidden = yes
 	trigger = {
 		has_trait = refusing_marriage
@@ -2002,13 +1973,12 @@ agot_kingsguard.1013 = { #On get title, remove training for kingsguard and refus
 }
 
 agot_kingsguard.1014 = {
-	#16th Birthday Shit Kingsguard Realises His Dream is Dead
 	hidden = yes
 	trigger = {
 		has_trait = refusing_marriage
 		has_character_modifier = training_for_kingsguard
 		AND = {
-			prowess < 15			#Bad at swordies
+			prowess < 15
 			NOR = {
 				has_trait = education_martial_prowess_2
 				has_trait = education_martial_prowess_3
@@ -2069,11 +2039,6 @@ agot_kingsguard.1014 = {
 	}
 }
 
-################################
-# Kingsguard Councillor & Chain Events
-# 2000 - 2999
-# by Badger
-################################
 agot_kingsguard.2001 = {
 	title = agot_kingsguard.2001.t
 	desc = {
@@ -2145,7 +2110,7 @@ agot_kingsguard.2001 = {
 				valid_kingsguard_bodyguard_target = yes
 			}
 		}
-		name = agot_kingsguard.2001.a # Protect the designated target
+		name = agot_kingsguard.2001.a
 		var:si_selected_character = {
 			save_scope_as = selected_character
 		}
@@ -2159,13 +2124,13 @@ agot_kingsguard.2001 = {
 				valid_kingsguard_bodyguard_target = yes
 			}
 		}
-		name = agot_kingsguard.2001.b # Protect target character
+		name = agot_kingsguard.2001.b
 		agot_start_bodyguarding = {
 			TARGET = scope:target_character
 		}
 	}
 	option = {
-		name = agot_kingsguard.2001.c # Nevermind
+		name = agot_kingsguard.2001.c
 		scope:councillor = {
 			start_default_task = yes
 		}
@@ -2179,7 +2144,6 @@ agot_kingsguard.2001 = {
 	}
 }
 
-#Kingsguard Imprisonment Attempt - Barristan Flees the City
 agot_kingsguard.2002 = {
 	type = character_event
 	title = agot_kingsguard.2002.title
@@ -2193,7 +2157,6 @@ agot_kingsguard.2002 = {
 	lower_center_portrait = scope:goldcloaks
 	immediate = {
 		show_as_tooltip = {
-			#Remove them as guardian for any child
 			if = {
 				limit = {
 					any_in_list = {
@@ -2250,7 +2213,6 @@ agot_kingsguard.2002 = {
 		}
 	}
 	option = {
-		#Send another KG after them
 		name = agot_kingsguard.2002.a
 		scope:kingsguard = {
 			duel = {
@@ -2296,7 +2258,7 @@ agot_kingsguard.2002 = {
 			}
 		}
 	}
-	option = { #Send goldcloaks after them
+	option = {
 		name = agot_kingsguard.2002.b
 		trigger = {
 			any_court_position_holder = {
@@ -2304,7 +2266,7 @@ agot_kingsguard.2002 = {
 			}
 		}
 		random_list = {
-			50 = { #Gets away
+			50 = {
 				modifier = {
 					add = scope:recipient.prowess
 				}
@@ -2320,7 +2282,7 @@ agot_kingsguard.2002 = {
 					}
 				}
 			}
-			30 = { #Gets away and kills commander of the gold cloaks
+			30 = {
 				modifier = {
 					add = scope:recipient.prowess
 				}
@@ -2347,7 +2309,7 @@ agot_kingsguard.2002 = {
 					}
 				}
 			}
-			20 = { #You catch him
+			20 = {
 				modifier = {
 					add = scope:goldcloaks.martial
 				}
@@ -2361,7 +2323,7 @@ agot_kingsguard.2002 = {
 			}
 		}
 	}
-	option = { #Leave them go
+	option = {
 		name = agot_kingsguard.2002.c
 		add_prestige = minor_prestige_loss
 		scope:recipient = {
@@ -2370,7 +2332,7 @@ agot_kingsguard.2002 = {
 	}
 }
 
-agot_kingsguard.2003 = { 	#Fleeing Kingsguard relative helps them
+agot_kingsguard.2003 = {
 	type = character_event
 	title = agot_kingsguard.2003.title
 	desc = agot_kingsguard.2003.desc
@@ -2402,7 +2364,7 @@ agot_kingsguard.2003 = { 	#Fleeing Kingsguard relative helps them
 	}
 	immediate = {
 		add_courtier ?= scope:recipient
-		random_list = { #Chance they were wounded fleeing the capital
+		random_list = {
 			50 = {
 				modifier = {
 					add = scope:fleeing_kingsguard.prowess
@@ -2426,7 +2388,7 @@ agot_kingsguard.2003 = { 	#Fleeing Kingsguard relative helps them
 			}
 		}
 	}
-	option = { #Stay at Court
+	option = {
 		name = agot_kingsguard.2003.a
 		add_prestige_level = -1
 		ai_chance = {
@@ -2439,7 +2401,7 @@ agot_kingsguard.2003 = { 	#Fleeing Kingsguard relative helps them
 			}
 		}
 	}
-	option = { #Flee to the Wall
+	option = {
 		name = agot_kingsguard.2003.b
 		trigger = {
 			agot_valid_potential_nw_member = yes
@@ -2458,14 +2420,14 @@ agot_kingsguard.2003 = { 	#Fleeing Kingsguard relative helps them
 			}
 		}
 	}
-	option = { #Flee to Essos
+	option = {
 		name = agot_kingsguard.2003.c
 		scope:fleeing_kingsguard = { trigger_event = agot_kingsguard.2004 }
 		ai_chance = {
 			base = 90
 		}
 	}
-	option = { #Hand him over to the crown
+	option = {
 		name = agot_kingsguard.2003.d
 		reverse_add_opinion = {
 			target = scope:crown
@@ -2482,7 +2444,7 @@ agot_kingsguard.2003 = { 	#Fleeing Kingsguard relative helps them
 	}
 }
 
-agot_kingsguard.2004 = { # Flee to Essos, KG edition
+agot_kingsguard.2004 = {
 	hidden = yes
 	immediate = {
 		random_county_in_region = {
@@ -2502,15 +2464,6 @@ agot_kingsguard.2004 = { # Flee to Essos, KG edition
 
 
 
-################################
-# Kingsguard Flavour Events
-# 3001 - 3999
-# by Badger
-################################
-##########
-# Child wishes to join Kingsguard
-# Badger
-#########
 scripted_trigger kingsguard_3001_candidate_trigger = {
 	age < 16
 	age > 6
@@ -2519,14 +2472,11 @@ scripted_trigger kingsguard_3001_candidate_trigger = {
 	is_ai = yes
 	valid_kingsguard_gender_trigger = yes
 	has_been_promised_grand_wedding = no
-	#Appropriate personality
 	OR = {
 		childhood_loud_child_trigger = yes
 		childhood_mean_child_trigger = yes
 	}
-	#Good enough to get a fighter trait
 	prowess >= 7
-	#Not very likely to inherit a lot
 	trigger_if = {
 		limit = { is_child_of = root }
 		NOT = {
@@ -2580,9 +2530,9 @@ scripted_trigger kingsguard_3001_candidate_trigger = {
 		has_character_flag = kingsguard_ambition
 	}
 	OR = {
-		is_child_of = root #Either your child
+		is_child_of = root
 		NOT = {
-			any_parent = { #Or their parents are unlanded/dead
+			any_parent = {
 				is_landed = yes
 				is_alive = yes
 			}
@@ -2596,12 +2546,12 @@ scripted_trigger kingsguard_3001_candidate_trigger = {
 			ARMY_OWNER = top_liege
 		}
 	}
-	NOR = { #Physiically unsuited
+	NOR = {
 		has_trait = clubfooted
 		has_trait = physique_bad_3
 		has_trait = crippled
 	}
-	NAND = { #Zealots won't serve
+	NAND = {
 		NOT = { faith = top_liege.faith }
 		ai_zeal >= high_positive_ai_value
 	}
@@ -2663,7 +2613,6 @@ agot_kingsguard.3001 = {
 			}
 		}
 		modifier = {
-			#Less likely for wrong faith types
 			add = -0.8
 			top_liege = {
 				save_temporary_scope_as = king
@@ -2749,7 +2698,7 @@ agot_kingsguard.3001 = {
 			}
 		}
 	}
-	option = { #Yes, begin training
+	option = {
 		name = agot_kingsguard.3001.a
 		scope:child = {
 			add_trait = refusing_marriage
@@ -2783,7 +2732,7 @@ agot_kingsguard.3001 = {
 			base = 80
 		}
 	}
-	option = { 	#I have other plans for you
+	option = {
 		name = agot_kingsguard.3001.b
 		if = {
 			limit = { exists = scope:child scope:child = { NOT = { this = root } } }
@@ -2801,10 +2750,6 @@ agot_kingsguard.3001 = {
 	}
 }
 
-##########
-# Honorable Kingsguard Gains Gallant
-# Badger
-#########
 scripted_trigger kingsguard_3002_candidate_trigger = {
 	is_available_adult = yes
 	is_kingsguard_trigger = yes
@@ -2816,8 +2761,8 @@ scripted_trigger kingsguard_3002_candidate_trigger = {
 	NOT = {
 		has_trait = gallant
 	}
-	ai_honor >= high_positive_honor	#50 Honor
-	prowess >= extremely_high_skill_rating	# ( v = 20 )
+	ai_honor >= high_positive_honor
+	prowess >= extremely_high_skill_rating
 }
 
 agot_kingsguard.3002 = {
@@ -2846,14 +2791,14 @@ agot_kingsguard.3002 = {
 		compare_modifier = {
 			target = scope:councillor
 			value = ai_honor
-			multiplier = 0.01 # At 100 honor, x3 as likely to be picked. At -50 greed, 0% chance of being picked.
+			multiplier = 0.01
 		}
 	}
 	immediate = {
 		set_variable = {
 			name = had_kingsguard_side_effect
 			value = yes
-			days = kingsguard_side_effect_cooldown	# 365 days
+			days = kingsguard_side_effect_cooldown
 		}
 		random_councillor = {
 			limit = {
@@ -2884,15 +2829,10 @@ agot_kingsguard.3002 = {
 	}
 }
 
-##########
-# Kingsguard caught in an affair - Lucamore the Lusty
-# Badger
-#########
 scripted_trigger kingsguard_3003_candidate_trigger = {
 	is_available_adult = yes
 	is_kingsguard_trigger = yes
 	NOR = {
-		#Can't get caught banging if you can't
 		has_trait = eunuch_1
 		has_trait = beardless_eunuch
 		has_trait = celibate
@@ -2963,19 +2903,13 @@ agot_kingsguard.3003 = {
 
 	weight_multiplier = {
 		base = 1
-		#Badger to do, this causes errors about unset scope
-		# compare_modifier = {
-		# 	target = scope:lusty_kingsguard
-		# 	value = intrigue
-		# 	multiplier = -0.05
-		# }
 	}
 
 	immediate = {
 		set_variable = {
 			name = had_kingsguard_side_effect
 			value = yes
-			days = marshal_task_side_effect_cooldown # 365 days
+			days = marshal_task_side_effect_cooldown
 		}
 		random_councillor = {
 			limit = {
@@ -3048,7 +2982,6 @@ agot_kingsguard.3003 = {
 		}
 	}
 	option = {
-		#Imprison them
 		name = agot_kingsguard.3003.a
 		imprison = {
 			target = scope:lusty_kingsguard
@@ -3078,7 +3011,6 @@ agot_kingsguard.3003 = {
 		}
 	}
 	option = {
-		#Goodbye Nuts, hello North
 		name = agot_kingsguard.3003.b
 		trigger = {
 			scope:lusty_kingsguard = {
@@ -3132,7 +3064,6 @@ agot_kingsguard.3003 = {
 		}
 	}
 	option = {
-		#Strip him of the Cloak
 		name = agot_kingsguard.3003.c
 		agot_remove_kingsguard_effect = { KINGSGUARD = scope:lusty_kingsguard }
 		scope:lusty_kingsguard = {
@@ -3157,7 +3088,6 @@ agot_kingsguard.3003 = {
 		}
 	}
 	option = {
-		#This guy fucks for sure
 		name = agot_kingsguard.3003.d
 		reverse_add_opinion = {
 			target = scope:lusty_kingsguard
@@ -3200,7 +3130,6 @@ agot_kingsguard.3003 = {
 		}
 	}
 	option = {
-		#lusty/artbitrary keep your white claok, but I'll have her
 		name = agot_kingsguard.3003.e
 		trigger = {
 			is_attracted_to_gender_of = scope:lusty_lover
@@ -3234,16 +3163,12 @@ agot_kingsguard.3003 = {
 	}
 }
 
-##########
-# MAKE WAY FOR THE KINGSGUARD !
-# Badger
-#########
 scripted_trigger kingsguard_3004_kingsguard_candidate_trigger = {
 	is_available_adult = yes
 	is_kingsguard_trigger = yes
 	OR = {
-		ai_compassion <= high_negative_compassion		# -50
-		ai_honor <= high_negative_honor		# -50
+		ai_compassion <= high_negative_compassion
+		ai_honor <= high_negative_honor
 	}
 	save_temporary_scope_as = kingsguard_temp
 }
@@ -3255,13 +3180,12 @@ scripted_trigger kingsguard_3004_child_candidate_trigger = {
 	}
 	NOR = {
 		is_close_or_extended_family_of = scope:kingsguard_temp
-		#KG would be braindead to march down a prince/princess
 		is_close_or_extended_family_of = root
 		this = root
 	}
 	age < 15
 	age > 3
-	is_human = yes # No marching down dragons
+	is_human = yes
 }
 
 agot_kingsguard.3004 = {
@@ -3292,7 +3216,7 @@ agot_kingsguard.3004 = {
 		set_variable = {
 			name = had_kingsguard_side_effect
 			value = yes
-			days = kingsguard_side_effect_cooldown			# 365 days
+			days = kingsguard_side_effect_cooldown
 		}
 		random_councillor = {
 			limit = {
@@ -3448,10 +3372,6 @@ agot_kingsguard.3004 = {
 	}
 }
 
-##########
-# Powerful Foreign Warrior Offers Service - Sandoq the Shadow
-# Badger
-#########
 agot_kingsguard.3005 = {
 	type = character_event
 	title = agot_kingsguard.3005.t
@@ -3469,7 +3389,6 @@ agot_kingsguard.3005 = {
 		animation = personality_callous
 	}
 	trigger = {
-		#add in KG can be reassigned law when online
 		any_councillor = {
 			exists = yes
 		}
@@ -3495,7 +3414,6 @@ agot_kingsguard.3005 = {
 				}
 			}
 			any_living_kingsguard = {
-				#Check for the 7 to stop appointing to replace guys in prison
 				top_liege = root
 				count < 7
 			}
@@ -3505,7 +3423,7 @@ agot_kingsguard.3005 = {
 		set_variable = {
 			name = had_kingsguard_side_effect
 			value = yes
-			days = kingsguard_side_effect_cooldown			# 365 days
+			days = kingsguard_side_effect_cooldown
 		}
 		create_character = {
 			template = agot_essosi_warrior
@@ -3561,12 +3479,10 @@ agot_kingsguard.3005 = {
 		}
 		trigger_event = agot_kingsguard.1008
 		ai_chance = {
-			#why not its cool
 			base = 100
 		}
 	}
 	option = {
-		#What about another position?
 		name = agot_kingsguard.3005.b
 		custom_tooltip = agot_kingsguard.3005.court_position.tt
 		add_courtier ?= scope:essosi_warrior
@@ -3673,7 +3589,6 @@ agot_kingsguard.3005 = {
 		}
 	}
 	option = {
-		#Piss off
 		name = agot_kingsguard.3005.c
 		scope:sponsor = {
 			add_opinion = {
@@ -3683,7 +3598,6 @@ agot_kingsguard.3005 = {
 			}
 		}
 		scope:essosi_warrior = {
-			#Rare event so should be okay to have him wandering around? Revisit
 			select_and_move_to_pool_effect = yes
 			add_opinion = {
 				target = ROOT
@@ -3694,14 +3608,10 @@ agot_kingsguard.3005 = {
 	}
 }
 
-##########
-# Kingsguard Become Brothers in Arms
-# Badger
-#########
 scripted_trigger kingsguard_3006_candidate_trigger = {
 	is_available_adult = yes
 	is_kingsguard_trigger = yes
-	ai_sociability >= low_positive_ai_value	#An Extrovert
+	ai_sociability >= low_positive_ai_value
 	save_temporary_scope_as = friendly_kingsguard_temp
 	top_liege = {
 		any_councillor = {
@@ -3712,7 +3622,6 @@ scripted_trigger kingsguard_3006_candidate_trigger = {
 				this = scope:friendly_kingsguard_temp
 				has_relation_friend = scope:friendly_kingsguard_temp
 			}
-			#have some compatibility
 			opinion = {
 				target = scope:friendly_kingsguard_temp
 				value > 10
@@ -3751,7 +3660,7 @@ agot_kingsguard.3006 = {
 		set_variable = {
 			name = had_kingsguard_side_effect
 			value = yes
-			days = kingsguard_side_effect_cooldown			# 365 days
+			days = kingsguard_side_effect_cooldown
 		}
 		save_scope_as = king
 		random_councillor = {
@@ -3769,7 +3678,6 @@ agot_kingsguard.3006 = {
 					this = scope:friendly_kingsguard
 					has_relation_friend = scope:friendly_kingsguard
 				}
-				#have some compatibility
 				opinion = {
 					target = scope:friendly_kingsguard
 					value > 10
@@ -3810,10 +3718,6 @@ agot_kingsguard.3006 = {
 	}
 }
 
-##########
-# Kingsguard Improves Swordsmanship
-# Badger
-#########
 scripted_trigger kingsguard_3007_candidate_trigger = {
 	is_available_adult = yes
 	is_kingsguard_trigger = yes
@@ -3844,7 +3748,7 @@ agot_kingsguard.3007 = {
 		set_variable = {
 			name = had_kingsguard_side_effect
 			value = yes
-			days = kingsguard_side_effect_cooldown			# 365 days
+			days = kingsguard_side_effect_cooldown
 		}
 		random_councillor = {
 			limit = {
@@ -3882,10 +3786,6 @@ agot_kingsguard.3007 = {
 	}
 }
 
-##########
-# Training for KG asks to join and can hang out at court until there's a space - Balon Swann
-# Badger
-#########
 agot_kingsguard.3008 = {
 	type = character_event
 	title = agot_kingsguard.3008.t
@@ -3903,7 +3803,6 @@ agot_kingsguard.3008 = {
 		animation = personality_callous
 	}
 	trigger = {
-		#add in KG can be reassigned law when online
 		any_councillor = {
 			exists = yes
 		}
@@ -3921,7 +3820,7 @@ agot_kingsguard.3008 = {
 		set_variable = {
 			name = had_kingsguard_side_effect
 			value = yes
-			days = kingsguard_side_effect_cooldown			# 365 days
+			days = kingsguard_side_effect_cooldown
 		}
 		random_living_character = {
 			limit = {
@@ -3939,7 +3838,6 @@ agot_kingsguard.3008 = {
 			save_scope_as = sponsor
 		}
 		hidden_effect = {
-			#Make him worth having
 			scope:candidate = {
 				agot_prowess_rank_up_effect = yes
 				if = {
@@ -3981,7 +3879,6 @@ agot_kingsguard.3008 = {
 					}
 				}
 				any_living_kingsguard = {
-					#Check for the 7 to stop appointing to replace guys in prison
 					top_liege = root
 					count < 7
 				}
@@ -4011,16 +3908,13 @@ agot_kingsguard.3008 = {
 		}
 		trigger_event = agot_kingsguard.1008
 		ai_chance = {
-			#why not its cool
 			base = 100
 		}
 	}
 	option = {
-		#You may wait until a space opens up
 		name = agot_kingsguard.3005.b
 		custom_tooltip = agot_kingsguard.3008.b.tt
 		scope:candidate = {
-			#Rare event so should be okay to have him wandering around? Revisit
 			add_opinion = {
 				target = root
 				modifier = pleased_opinion
@@ -4033,9 +3927,8 @@ agot_kingsguard.3008 = {
 		}
 	}
 	option = {
-		#Piss off
 		name = agot_kingsguard.3008.c
-		add_prestige = medium_prestige_gain		#get dunked on
+		add_prestige = medium_prestige_gain
 		scope:sponsor = {
 			add_opinion = {
 				target = ROOT
@@ -4044,7 +3937,6 @@ agot_kingsguard.3008 = {
 			}
 		}
 		scope:candidate = {
-			#Rare event so should be okay to have him wandering around? Revisit
 			add_opinion = {
 				target = ROOT
 				modifier = insulted_opinion
@@ -4059,69 +3951,6 @@ agot_kingsguard.3008 = {
 	}
 }
 
-##########
-# Assassinated by a KG whose family you're at war with - Jaime Lannister
-# Badger
-#########
-# scripted_trigger kingsguard_3009_candidate_trigger = {
-# 	is_available_adult = yes
-# 	# any_close_or_extended_family_member = {
-# 	# 	is_at_war_with = root
-# 	# }
-#	is_kingsguard_trigger = yes
-# 	OR = {
-# 		ai_honor <= high_negative_honor #50
-# 		ai_compassion <= high_negative_compassion #40
-# 		ai_vengefulness >= high_positive_vengefulness #50
-# 	}
-# 	opinion = {
-# 		target = root
-# 		value <= medium_negative_opinion
-# 	}
-# }
-# agot_kingsguard.3009 = {
-# 	type = character_event
-# 	title = placeholder #agot_kingsguard.3009.t
-# 	desc = placeholder #agot_kingsguard.3009.desc
-# 	theme = death
-# 	override_background = {
-# 		reference = corridor_night
-# 	}
-# 	orphan = yes
-# 	left_portrait = {
-# 		character = root
-# 		animation = personality_vengeful
-# 	}
-# 	right_portrait = {
-# 		character = scope:traitor_kingsguard
-# 		animation = personality_callous
-# 	}
-# 	trigger = {
-# 		#add in KG can be reassigned law when online
-# 		any_councillor = {
-# 			kingsguard_3009_candidate_trigger = yes
-# 		}
-# 	}
-# 	immediate = {
-# 		set_variable = {
-# 			name = had_kingsguard_side_effect
-# 			value = yes
-# 			days = kingsguard_side_effect_cooldown # 365 days
-# 		}
-# 		random_councillor = {
-# 			limit = {
-# 				kingsguard_3009_candidate_trigger = yes
-# 			}
-# 			save_scope_as = traitor_kingsguard
-# 		}
-# 	}
-# 	option = {
-# 	}
-# }
-##########
-# Kinsgguard training hard gains strong/athletic
-# Badger
-#########
 scripted_trigger kingsguard_3010_candidate_trigger = {
 	is_available_adult = yes
 	is_kingsguard_trigger = yes
@@ -4131,7 +3960,7 @@ scripted_trigger kingsguard_3010_candidate_trigger = {
 		has_trait = gout_ridden
 		has_trait = clubfooted
 	}
-	ai_energy >= low_positive_energy	#15 No lazy bois
+	ai_energy >= low_positive_energy
 }
 
 agot_kingsguard.3010 = {
@@ -4159,7 +3988,7 @@ agot_kingsguard.3010 = {
 		set_variable = {
 			name = had_kingsguard_side_effect
 			value = yes
-			days = kingsguard_side_effect_cooldown			# 365 days
+			days = kingsguard_side_effect_cooldown
 		}
 		random_councillor = {
 			limit = {
@@ -4191,10 +4020,6 @@ agot_kingsguard.3010 = {
 	}
 }
 
-##########
-# A Challenger approaches !
-# Badger
-#########
 scripted_trigger kingsguard_3011_kingsguard_candidate_trigger = {
 	is_available_adult = yes
 	is_kingsguard_trigger = yes
@@ -4217,9 +4042,9 @@ scripted_trigger kingsguard_3011_challenger_candidate_trigger = {
 		has_trait = education_martial_prowess_5
 	}
 	OR = {
-		ai_boldness >= medium_positive_boldness		#25
-		ai_rationality <= medium_negative_rationality		# -25
-		ai_vengefulness >= high_positive_vengefulness		#50
+		ai_boldness >= medium_positive_boldness
+		ai_rationality <= medium_negative_rationality
+		ai_vengefulness >= high_positive_vengefulness
 	}
 }
 
@@ -4251,7 +4076,7 @@ agot_kingsguard.3011 = {
 		set_variable = {
 			name = had_kingsguard_side_effect
 			value = yes
-			days = kingsguard_side_effect_cooldown			# 365 days
+			days = kingsguard_side_effect_cooldown
 		}
 		random_councillor = {
 			limit = {
@@ -4275,7 +4100,6 @@ agot_kingsguard.3011 = {
 				target = scope:unworthy_kingsguard
 				skill = prowess
 				50 = {
-					#challenger wins
 					compare_modifier = {
 						value = scope:duel_value
 						multiplier = 2.5
@@ -4393,10 +4217,6 @@ agot_kingsguard.3011 = {
 	}
 }
 
-##########
-# The Dream is Dead! Bad character training for KG is told to get a real job
-# Badger
-#########
 agot_kingsguard.3012 = {
 	type = character_event
 	title = agot_kingsguard.3012.t
@@ -4416,7 +4236,7 @@ agot_kingsguard.3012 = {
 	trigger = {
 		scope:failed_kingsguard = {
 			AND = {
-				prowess < 15				#Bad at swordies
+				prowess < 15
 				NOR = {
 					has_trait = education_martial_prowess_2
 					has_trait = education_martial_prowess_3
@@ -4430,7 +4250,6 @@ agot_kingsguard.3012 = {
 		top_liege = { save_scope_as = ruler }
 	}
 	option = {
-		#Get a Real job!
 		name = agot_kingsguard.3012.a
 		reverse_add_opinion = {
 			target = scope:failed_kingsguard
@@ -4455,7 +4274,6 @@ agot_kingsguard.3012 = {
 		}
 	}
 	option = {
-		#How about a different order? - Send to Wall
 		name = agot_kingsguard.3012.b
 		trigger = {
 			scope:failed_kingsguard = {
@@ -4471,7 +4289,6 @@ agot_kingsguard.3012 = {
 		}
 	}
 	option = {
-		#I'm sure you'll get better!
 		name = agot_kingsguard.3012.c
 		reverse_add_opinion = {
 			target = scope:failed_kingsguard
@@ -4484,10 +4301,6 @@ agot_kingsguard.3012 = {
 	}
 }
 
-##########
-# A Kingsguard is caught carousing especially hard!
-# Badger
-#########
 scripted_trigger kingsguard_3013_kingsguard_candidate_trigger = {
 	is_available_adult = yes
 	is_kingsguard_trigger = yes
@@ -4524,7 +4337,7 @@ agot_kingsguard.3013 = {
 		set_variable = {
 			name = had_kingsguard_side_effect
 			value = yes
-			days = kingsguard_side_effect_cooldown			# 365 days
+			days = kingsguard_side_effect_cooldown
 		}
 		random_councillor = {
 			limit = {
@@ -4631,10 +4444,6 @@ agot_kingsguard.3013 = {
 	}
 }
 
-##########
-# Kingsguard Gains Blademaster
-# Badger
-#########
 scripted_trigger kingsguard_3014_candidate_trigger = {
 	is_available_adult = yes
 	is_kingsguard_trigger = yes
@@ -4658,7 +4467,7 @@ scripted_trigger kingsguard_3014_candidate_trigger = {
 			hunt_lifestyle_track_greater_equal_trigger = { TRACK = falconer GREATER_EQUAL = 100 }
 		}
 	}
-	ai_energy >= 0	#Has to be going out doing things
+	ai_energy >= 0
 }
 
 agot_kingsguard.3014 = {
@@ -4685,7 +4494,7 @@ agot_kingsguard.3014 = {
 		set_variable = {
 			name = had_kingsguard_side_effect
 			value = yes
-			days = kingsguard_side_effect_cooldown			# 365 days
+			days = kingsguard_side_effect_cooldown
 		}
 		random_councillor = {
 			limit = {
@@ -4728,10 +4537,6 @@ agot_kingsguard.3014 = {
 	}
 }
 
-##########
-# Kingsguard Gains Hunter
-# Badger
-#########
 agot_kingsguard.3015 = {
 	type = character_event
 	title = agot_kingsguard.3015.t
@@ -4760,7 +4565,7 @@ agot_kingsguard.3015 = {
 		set_variable = {
 			name = had_kingsguard_side_effect
 			value = yes
-			days = kingsguard_side_effect_cooldown			# 365 days
+			days = kingsguard_side_effect_cooldown
 		}
 		random_councillor = {
 			limit = {
@@ -4799,10 +4604,6 @@ agot_kingsguard.3015 = {
 	}
 }
 
-##########
-# Kingsguard Gains Falconer
-# Badger
-#########
 agot_kingsguard.3016 = {
 	type = character_event
 	title = agot_kingsguard.3016.t
@@ -4829,7 +4630,7 @@ agot_kingsguard.3016 = {
 		set_variable = {
 			name = had_kingsguard_side_effect
 			value = yes
-			days = kingsguard_side_effect_cooldown			# 365 days
+			days = kingsguard_side_effect_cooldown
 		}
 		random_councillor = {
 			limit = {
@@ -4874,18 +4675,11 @@ agot_kingsguard.3016 = {
 	}
 }
 
-################################
-# AI Kingsguard Maintenance Events
-# 9001 - 9999
-# by Badger
-################################
 agot_kingsguard.9000 = {
-	#Big Maintenance Check
 	hidden = yes
 	trigger = {
 		ruler_has_kingsguard_trigger = yes
 		any_living_kingsguard = {
-			#Check for the 7 to stop appointing to replace guys in prison
 			top_liege = root
 			count < 7
 		}
@@ -4950,9 +4744,7 @@ agot_kingsguard.9000 = {
 	}
 }
 
-# AI Dead Lord Commander
 agot_kingsguard.9001 = {
-	# AI Dead Lord Commander
 	hidden = yes
 	immediate = {
 		if = {
@@ -5013,7 +4805,6 @@ agot_kingsguard.9001 = {
 					multiply = 2
 				}
 				if = {
-					#Extra for important lordly fams
 					limit = {
 						any_close_or_extended_family_member = {
 							is_landed = yes
@@ -5022,7 +4813,6 @@ agot_kingsguard.9001 = {
 					}
 					add = 20
 				}
-				# More Likely to pick a Lord Commander they like
 				if = {
 					limit = {
 						opinion = {
@@ -5082,7 +4872,7 @@ scripted_trigger ai_kg_assignment_trigger = {
 	has_trait = education_martial_prowess
 	NOR = {
 		has_trait = kingsguard
-		any_heir_title = { #AI don't use primary heirs
+		any_heir_title = {
 			exists = this
 			place_in_line_of_succession = {
 				target = prev
@@ -5093,7 +4883,6 @@ scripted_trigger ai_kg_assignment_trigger = {
 }
 
 agot_kingsguard.9002 = {
-	# Dead Kingsguard Member AI
 	hidden = yes
 	trigger = {
 		OR = {
@@ -5126,19 +4915,19 @@ agot_kingsguard.9002 = {
 						COURT_OWNER = scope:king
 					}
 					top_liege = root
-					prowess >= 15 # don't assign complete shitters
-					has_trait = education_martial_prowess # somebody with a sword trait for fuck sake
+					prowess >= 15
+					has_trait = education_martial_prowess
 					NOR = {
 						has_trait = kingsguard
 						AND = {
-							any_heir_title = { #AI don't use primary heirs
+							any_heir_title = {
 								exists = this
 								place_in_line_of_succession = {
 									target = prev
 									value == 1
 								}
 							}
-							NOT = { #Unless they're specifically training for the Kingsguard
+							NOT = {
 								has_character_modifier = training_for_kingsguard
 							}
 						}
@@ -5157,14 +4946,12 @@ agot_kingsguard.9002 = {
 			weight = {
 				base = 1
 				modifier = {
-					#Being good at swords
 					add = {
 						value = prowess
 						multiply = 2
 					}
 				}
 				modifier = {
-					#Grab cool traits plz
 					OR = {
 						has_trait = education_martial_prowess_3
 						has_trait = education_martial_prowess_4
@@ -5173,14 +4960,14 @@ agot_kingsguard.9002 = {
 					}
 					add = 50
 				}
-				modifier = { #Appoint your relatives who are training
+				modifier = {
 					any_close_or_extended_family_member = {
 						this = root
 					}
 					has_character_modifier = training_for_kingsguard
 					add = 300
 				}
-				modifier = { #Appoint your spouse's relatives who are training
+				modifier = {
 					trigger = { exists = root.primary_spouse }
 					any_close_or_extended_family_member = {
 						this = root.primary_spouse
@@ -5189,7 +4976,6 @@ agot_kingsguard.9002 = {
 					add = 300
 				}
 				modifier = {
-					#Important Lordly relatives is a huge plus to grab notable characters
 					any_close_or_extended_family_member = {
 						is_landed = yes
 						primary_title.tier = tier_empire
@@ -5197,7 +4983,6 @@ agot_kingsguard.9002 = {
 					add = 200
 				}
 				modifier = {
-					#Important Lordly relatives is a huge plus to grab notable characters
 					any_close_or_extended_family_member = {
 						is_landed = yes
 						primary_title.tier = tier_kingdom
@@ -5205,7 +4990,6 @@ agot_kingsguard.9002 = {
 					add = 150
 				}
 				modifier = {
-					#Important Lordly relatives is a huge plus to grab notable characters
 					any_close_or_extended_family_member = {
 						is_landed = yes
 						primary_title.tier = tier_duchy
@@ -5213,7 +4997,6 @@ agot_kingsguard.9002 = {
 					add = 100
 				}
 				modifier = {
-					#Important Lordly relatives is a huge plus to grab notable characters
 					any_close_or_extended_family_member = {
 						is_landed = yes
 						primary_title.tier = tier_county
@@ -5221,12 +5004,10 @@ agot_kingsguard.9002 = {
 					add = 50
 				}
 				opinion_modifier = {
-					# More likely to pick someone they like
 					opinion_target = root
 					multiplier = 2
 				}
 				modifier = {
-					#dont pick people you hate
 					OR = {
 						has_relation_rival = root
 						has_relation_nemesis = root
@@ -5235,19 +5016,16 @@ agot_kingsguard.9002 = {
 					factor = 0.1
 				}
 				modifier = {
-					#Less chance of appointing heathens
 					factor = 0.2
 					NOT = {
 						religion = root.religion
 					}
 				}
 				modifier = {
-					#Prejudice against Lowborn - AI should prefer nobles
 					factor = 0.1
 					is_lowborn = yes
 				}
 				modifier = {
-					# Dont appoint randoms when there's a trainee available
 					factor = 0
 					any_in_list = {
 						list = potential_kingsguard
@@ -5258,7 +5036,6 @@ agot_kingsguard.9002 = {
 					}
 				}
 				modifier = {
-					#if they can't be KG don't try and assign them stupid ass AI
 					factor = 0
 					NOT = {
 						can_be_kingsguard_trigger = {
@@ -5284,7 +5061,6 @@ agot_kingsguard.9002 = {
 	}
 }
 agot_kingsguard.9003 = {
-	# Stop moronic KG leaving
 	hidden = yes
 	trigger = {
 		has_trait = kingsguard
@@ -5321,7 +5097,6 @@ agot_kingsguard.9003 = {
 }
 
 agot_kingsguard.9004 = {
-	# Remove KG variables to prevent them rising from the grave if title is recreated
 	hidden = yes
 	trigger = {
 		scope:landed_title = {
@@ -5394,7 +5169,6 @@ agot_kingsguard.9004 = {
 }
 
 agot_kingsguard.9005 = {
-	# Kingsguard on parole now get a job :)
 	hidden = yes
 	trigger = {
 		has_trait = kingsguard
@@ -5417,7 +5191,6 @@ agot_kingsguard.9005 = {
 	}
 }
 
-#Grab lost kingsguard send them home
 agot_kingsguard.9007 = {
 	hidden = yes
 	trigger = {
@@ -5667,7 +5440,6 @@ agot_kingsguard.9007 = {
 				change_government = kingsguard_government
 			}
 		}
-		#Succession Display
 		if = {
 			limit = {
 				exists = cp:kingsguard_lord_commander
@@ -5767,7 +5539,6 @@ agot_kingsguard.9007 = {
 }
 
 agot_kingsguard.9008 = {
-	# agot_on_title_gain_kingsguard = { # This only works if the previous owner has a title to fall back on, and thus, has a court
 	hidden = yes
 
 	trigger = {
@@ -5781,7 +5552,7 @@ agot_kingsguard.9008 = {
 			}
 			save_scope_as = kingsguard_title
 		}
-		if = { #Ensure Kingsguard title is a vassal
+		if = {
 			limit = {
 				has_title = title:h_the_iron_throne
 				NOT = { has_title = title:d_kingsguard }
@@ -6205,18 +5976,13 @@ agot_kingsguard.9101 = {
 	}
 }
 
-##########
-# A Kingsguard is found dead outside a brothel! - Owen Bush
-# Badger
-#########
 scripted_trigger kingsguard_3017_kingsguard_candidate_trigger = {
 	is_available_adult = yes
 	is_kingsguard_trigger = yes
-	is_male = yes #Can't cut off a penis that ain't there
-	OR = { #Would visit a brothel
+	is_male = yes
+	OR = {
 		has_trait = lustful
 		has_trait = rakish
-		#has_trait = lifestyle_reveler - makes sense but EVERYONE ends up with this stupid fucking trait somehow so makes the pool far too wide
 	}
 	NOR = {
 		has_trait = celibate
@@ -6224,10 +5990,10 @@ scripted_trigger kingsguard_3017_kingsguard_candidate_trigger = {
 		has_trait = eunuch
 		has_trait = beardless_eunuch
 	}
-	ai_compassion <= high_negative_compassion #Cruel
+	ai_compassion <= high_negative_compassion
 }
 
-agot_kingsguard.3017 = { # Reddit's favourite event
+agot_kingsguard.3017 = {
 	type = character_event
 	title = agot_kingsguard.3017.t
 	desc = agot_kingsguard.3017.desc
@@ -6253,7 +6019,7 @@ agot_kingsguard.3017 = { # Reddit's favourite event
 		set_variable = {
 			name = had_kingsguard_side_effect
 			value = yes
-			days = kingsguard_side_effect_cooldown			# 365 days
+			days = kingsguard_side_effect_cooldown
 		}
 		random_councillor = {
 			limit = {

@@ -1,0 +1,138 @@
+﻿abduct_setup = {
+	first_valid_on_action = {
+		standard_abduct_method_setup
+	}
+}
+
+
+
+standard_abduct_method_setup = {
+	random_events = {
+		100 = abduct_outcome.1001
+		100 = abduct_outcome.1002
+		100 = abduct_outcome.1003
+	}
+}
+
+abduct_succeeded = {
+	trigger = { exists = scope:scheme }
+	first_valid = {
+		abduct_outcome.2001
+		abduct_outcome.2002
+		abduct_outcome.2003
+	}
+	effect = {
+		if = {
+			limit = { exists = scope:owner }
+			scope:owner = {
+				random = {
+					chance = 2
+					modifier = {
+						factor = accolade_progress
+					}
+					modifier = {
+						NOT = {
+							any_knight = {
+								can_unlock_accolade_attribute_trigger = {
+									ATTRIBUTE = scoundrel
+								}
+							}
+						}
+						factor = 0
+					}
+					save_scope_as = accolade_liege
+					set_variable = {
+						name = accolade_progress
+						value = 0
+					}
+					random_knight = {
+						limit = {
+							can_unlock_accolade_attribute_trigger = {
+								ATTRIBUTE = scoundrel
+							}
+						}
+						weight = {
+							base = 1
+							modifier = {
+								add = 50
+								is_acclaimed = yes
+							}
+						}
+						save_scope_as = accolade_knight
+					}
+					send_interface_message = {
+						type = msg_accolade_eligibility
+						title = accolade_scoundrel_unlock.t
+						left_icon = scope:accolade_knight
+						right_icon = scope:accolade_liege
+						custom_tooltip = accolade_scoundrel_unlock.tt
+						scope:accolade_knight = {
+							set_variable = {
+								name = scoundrel_attribute_unlock
+								value = yes
+							}
+						}	
+					}
+				}
+			}
+		}
+	}
+}
+
+abduct_failed = {
+	trigger = {
+		exists = scope:scheme
+	}
+	first_valid = {
+		abduct_outcome.4001
+		abduct_outcome.4002
+		abduct_outcome.4003
+	}
+}
+
+abduct_ongoing = {
+	trigger = {
+		exists = scope:scheme
+	}
+	
+	random_events = {
+		chance_to_happen = 10
+		300 = 0
+		200 = intrigue_scheme_ongoing.1001
+		200 = intrigue_scheme_ongoing.1002
+		200 = intrigue_scheme_ongoing.1004
+		200 = intrigue_scheme_ongoing.1006
+		30 = intrigue_scheme_ongoing.1007
+		100 = intrigue_scheme_ongoing.1008
+		100 = intrigue_scheme_ongoing.1009
+		100 = intrigue_scheme_ongoing.5019
+		
+		200 = intrigue_scheme_ongoing.2001
+		200 = intrigue_scheme_ongoing.2002
+		50 = intrigue_scheme_ongoing.2003
+		
+		300 = intrigue_scheme_ongoing.4001
+		300 = intrigue_scheme_ongoing.4002
+		200 = intrigue_scheme_ongoing.4003
+
+		100 = intrigue_scheme_ongoing.3003
+		100 = intrigue_scheme_ongoing.3005
+		100 = intrigue_scheme_ongoing.5001
+		100 = intrigue_scheme_ongoing.5009
+
+		100 = intrigue_scheme_ongoing.3010
+		100 = intrigue_scheme_ongoing.3011
+
+
+		1500 = agent_events.9801
+
+		200 = intrigue_scheme_lifestyle.1001
+		100 = intrigue_scheme_lifestyle.1002
+		200 = intrigue_scheme_lifestyle.3001
+		200 = intrigue_scheme_lifestyle.3101
+		100 = intrigue_scheme_lifestyle.3102
+		200 = intrigue_scheme_lifestyle.3201
+		200 = intrigue_scheme_lifestyle.3301
+		200 = intrigue_scheme_lifestyle.3401
+	}
+}

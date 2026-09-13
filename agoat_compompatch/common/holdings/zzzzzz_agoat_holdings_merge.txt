@@ -35,13 +35,7 @@
 		caravanserai_01
 		workshops_01
 		wind_furnace_01
-		#AGOT Disabled
-		# powder_magazine_01
 		common_tradeport_01
-		#AGOT Disabled
-		# hall_of_heroes_01
-		# special_sicilian_parliament_01
-		# special_greenhouse_01
 		qanats_01
 		murex_farm_01
 		waterworks_01
@@ -49,9 +43,8 @@
 		oath_warriors_building_01
 		oath_faithful_building_01
 		oath_poor_building_01
-		monastic_schools_01 # only for the monastic_schools_allowed_in_every_holding_type faith tenet
+		monastic_schools_01
 
-		#AGOT Added, new AGOT buildings
 		building_moat_01
 		apiaries_01
 		godswood_01
@@ -65,10 +58,8 @@
 		agot_steppe_farms_01
 		agot_slave_camps_01
 
-		#AGOT Added base game building
 		breweries_01
 
-		#AGOT Added, only in urban terrain
 		guild_halls_01
 
 		lokirian_barracks_01
@@ -140,9 +131,8 @@ city_holding = {
 		oath_faithful_building_01
 		oath_poor_building_01
 		
-		monastic_schools_01 # only for the monastic_schools_allowed_in_every_holding_type faith tenet
+		monastic_schools_01
 
-		#AGOT Added, new AGOT buildings
 		apiaries_01
 		agot_iron_island_mines_01
 		agot_gold_mines_01
@@ -207,12 +197,8 @@ church_holding = {
 		wind_furnace_01
 		
 		monastic_schools_01
-		#AGOT Disabled
-		# megalith_01
 		
 		common_tradeport_01
-		#AGOT Disabled
-		# hall_of_heroes_01
 		qanats_01
 		waterworks_01
 
@@ -222,7 +208,6 @@ church_holding = {
 		oath_faithful_building_01
 		oath_poor_building_01
 
-		#AGOT Added, new AGOT buildings
 		apiaries_01
 		agot_iron_island_mines_01
 		agot_gold_mines_01
@@ -232,7 +217,6 @@ church_holding = {
 		agot_steppe_farms_01
 		agot_slave_camps_01
 
-		#AGOT Added, only in urban terrain
 		guild_halls_01
 
 		lokirian_barracks_01
@@ -269,20 +253,18 @@ tribal_holding = {
 		warrior_lodges_01
 		horse_pastures_01
 
-		common_tradeport_01 # only for trade_ports_enabled_for_tribals culture parameter
+		common_tradeport_01
 
 		oath_warriors_building_01
 		oath_faithful_building_01
 		oath_poor_building_01
 		
-		monastic_schools_01 # only for the monastic_schools_allowed_in_every_holding_type faith tenet
+		monastic_schools_01
 
-		#AGOT Added, new AGOT building
 		godswood_01
 		agot_slave_camps_01
 		agot_amber_collection_01
 
-		#AGOT Added base game building
 		breweries_01
 
 		lokirian_barracks_01
@@ -346,12 +328,8 @@ temple_citadel_holding = {
 		caravanserai_01
 		workshops_01
 		wind_furnace_01
-		#AGOT Disabled
-		# powder_magazine_01
 		
 		common_tradeport_01
-		#AGOT Disabled
-		# hall_of_heroes_01
 		qanats_01
 
 		breweries_01

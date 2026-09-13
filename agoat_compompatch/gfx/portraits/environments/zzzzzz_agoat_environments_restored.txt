@@ -4,60 +4,48 @@
 	cubemap_intensity = 1.0
 
 	lights = {
-		#########################################################################
-		#								KEY LIGHT								#
-		#########################################################################
 		0 = {
-			type = "spot_light"	# Valid types are "spot_light", "point_light", and "directional_light"
+			type = "spot_light"
 			affected_by_shadow = yes
 
-			color = hsv{ 0.62 0.75 1.7 }	# Hue, saturation, value. Increase value for more intense lights
-			position = cylindrical{ 260 	200 	70 }	# Radius, height, angle
+			color = hsv{ 0.62 0.75 1.7 }
+			position = cylindrical{ 260 	200 	70 }
 
-			# For spot lights and directional lights
 			look_at = { 0 0 0 }
 			look_at_node = {
 				default = camera_torso_look_at
 			}
 
-			# For spot lights and point lights
 			radius = 1000
 			falloff = 10
 
-			# For point lights
 			outer_cone_angle = 30
 			inner_cone_angle = 5
 		}
 
-		#########################################################################
-		#							RIGHT RIM LIGHT								#
-		#########################################################################
 		1 = {
 
-			type = "spot_light"	# Valid types are "spot_light", "point_light", and "directional_light"
+			type = "spot_light"
 			affected_by_shadow = yes
 
-			color = hsv{ 0.65 0.6 1.8 } # Hue, saturation, value. Increase value for more intense lights
-			position = cylindrical{ 200 	150	  120 } # Radius, height, angle
+			color = hsv{ 0.65 0.6 1.8 }
+			position = cylindrical{ 200 	150	  120 }
 
-			# For spot lights and directional lights
 			look_at = { 0 0 0 }
 			look_at_node = {
 				default = camera_torso_look_at
 			}
 
-			# For spot lights and point lights
 			radius = 1000
 			falloff = 10
 
-			# For point lights
 			outer_cone_angle = 55
 			inner_cone_angle = 0
 		}
 	}
 
 	shadow_camera = {
-		position = cylindrical { 260 	200  -70 } # Radius, height, angle
+		position = cylindrical { 260 	200  -70 }
 		look_at = { 0 0	0 }
 		look_at_node = {
 			default = camera_torso_look_at
@@ -73,60 +61,48 @@ environment_event_agot_outside_night_creepy = {
 	cubemap_intensity = 1.0
 
 	lights = {
-		#########################################################################
-		#								KEY LIGHT								#
-		#########################################################################
 		0 = {
-			type = "spot_light"	# Valid types are "spot_light", "point_light", and "directional_light"
+			type = "spot_light"
 			affected_by_shadow = yes
 
-			color = hsv{ 0.68 0.75 1.7 }	# Hue, saturation, value. Increase value for more intense lights
-			position = cylindrical{ 260 	200 	70 }	# Radius, height, angle
+			color = hsv{ 0.68 0.75 1.7 }
+			position = cylindrical{ 260 	200 	70 }
 
-			# For spot lights and directional lights
 			look_at = { 0 0 0 }
 			look_at_node = {
 				default = camera_torso_look_at
 			}
 
-			# For spot lights and point lights
 			radius = 1000
 			falloff = 10
 
-			# For point lights
 			outer_cone_angle = 30
 			inner_cone_angle = 5
 		}
 
-		#########################################################################
-		#							RIGHT RIM LIGHT								#
-		#########################################################################
 		1 = {
 
-			type = "spot_light"	# Valid types are "spot_light", "point_light", and "directional_light"
+			type = "spot_light"
 			affected_by_shadow = yes
 
-			color = hsv{ 0.68 0.6 1.8 } # Hue, saturation, value. Increase value for more intense lights
-			position = cylindrical{ 200 	150	  120 } # Radius, height, angle
+			color = hsv{ 0.68 0.6 1.8 }
+			position = cylindrical{ 200 	150	  120 }
 
-			# For spot lights and directional lights
 			look_at = { 0 0 0 }
 			look_at_node = {
 				default = camera_torso_look_at
 			}
 
-			# For spot lights and point lights
 			radius = 1000
 			falloff = 10
 
-			# For point lights
 			outer_cone_angle = 55
 			inner_cone_angle = 0
 		}
 	}
 
 	shadow_camera = {
-		position = cylindrical { 260 	200  -70 } # Radius, height, angle
+		position = cylindrical { 260 	200  -70 }
 		look_at = { 0 0	0 }
 		look_at_node = {
 			default = camera_torso_look_at
@@ -141,81 +117,48 @@ environment_event_underwater_diving_bell = {
 	cubemap_intensity = 0.2
 
 	lights = {
-		#########################################################################
-		#								KEY LIGHT								#
-		#########################################################################
-		# 0 = {
-		# 	type = "spot_light"
-		# 	affected_by_shadow = yes
-
-		# 	color = hsv{ 0.6 0.5 0.25 }
-		# 	position = cylindrical	{ 110 200 50 } # Radius, height, angle
-
-		# 	look_at = {	0 0 0 }
-		# 	# For spot lights and directional lights
-		# 	look_at = { 0 0 0 }
-		# 	look_at_node = {
-		# 		default = camera_torso_look_at
-		# 	}
-
-		# 	# For spot lights and point lights
-		# 	radius = 1
-		# 	falloff = 10
-
-		# 	# For point lights
-		# 	outer_cone_angle = 45
-		# 	inner_cone_angle = 0
 
 
-		# }
 
-		#########################################################################
-		#							RIGHT RIM LIGHT								#
-		#########################################################################
+
+
+
+
 		1 = {
 
-			type = "spot_light"	# Valid types are "spot_light", "point_light", and "directional_light"
+			type = "spot_light"
 			affected_by_shadow = yes
 
-			color = hsv{ 0.6 0.35 1.0 } # Hue, saturation, value. Increase value for more intense lights
-			position = cylindrical{ 100 340 -50 } # Radius, height, angle
+			color = hsv{ 0.6 0.35 1.0 }
+			position = cylindrical{ 100 340 -50 }
 
-			# For spot lights and directional lights
 			look_at = { 0 0 0 }
 			look_at_node = {
 				default = camera_torso_look_at
 			}
 
-			# For spot lights and point lights
 			radius = 1
 			falloff = 10
 
-			# For point lights
 			outer_cone_angle = 75
 			inner_cone_angle = 0
 		}
 
-		#########################################################################
-		#							LEFT RIM LIGHT								#
-		#########################################################################
 		2 = {
-			type = "spot_light"	# Valid types are "spot_light", "point_light", and "directional_light"
+			type = "spot_light"
 			affected_by_shadow = yes
 
-			color = hsv{ 0.6 0.35 1.50 } # Hue, saturation, value. Increase value for more intense lights
-			position = cylindrical{ 150 180	-50 } # Radius, height, angle
+			color = hsv{ 0.6 0.35 1.50 }
+			position = cylindrical{ 150 180	-50 }
 
-			# For spot lights and directional lights
 			look_at = { 0 0 0 }
 			look_at_node = {
 				default = camera_torso_look_at
 			}
 
-			# For spot lights and point lights
 			radius = 1000
 			falloff = 10
 
-			# For point lights
 			outer_cone_angle = 25
 			inner_cone_angle = 0
 		}

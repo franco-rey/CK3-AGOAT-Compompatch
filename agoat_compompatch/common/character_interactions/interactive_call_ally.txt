@@ -16,13 +16,11 @@
 		scope:actor = {
 			is_at_war = yes
 			trigger_if = {
-
 				limit = {
 					is_ai = yes
 				}
 				scope:recipient.current_military_strength >= 100
 			}
-
 			trigger_if = {
 				limit = {
 					liege = scope:recipient
@@ -70,9 +68,7 @@
 					}
 				}
 			}
-
 		}
-
 	}
 	has_valid_target = {
 		exists = scope:target
@@ -84,7 +80,6 @@
 		scope:actor = {
 			trigger_if = {
 				limit = {
-
 					NOT = {
 						is_allied_to = scope:recipient
 					}
@@ -108,7 +103,6 @@
 					limit = {
 						this = scope:target.casus_belli.primary_attacker
 					}
-
 					custom_description = {
 						text = is_of_wrong_faith_for_holy_war
 						subject = scope:actor
@@ -130,12 +124,10 @@
 				}
 			}
 		}
-
 	}
 	is_valid_showing_failures_only = {
 		scope:recipient = {
 			is_ruler = yes
-
 			custom_tooltip = {
 				text = too_low_rank_to_call_hegemon
 				trigger_if = {
@@ -148,7 +140,6 @@
 				}
 			}
 		}
-
 		scope:actor = {
 			custom_description = {
 				text = must_be_war_leader
@@ -157,7 +148,6 @@
 				}
 			}
 		}
-
 		scope:actor = {
 			custom_description = {
 				text = interactive_cannot_call_same_character
@@ -174,7 +164,6 @@
 			WARRIOR = scope:actor
 			JOINER = scope:recipient
 		}
-
 		scope:actor = {
 			trigger_if = {
 				limit = {
@@ -222,7 +211,6 @@
 		}
 		scope:target = {
 			is_war_leader = scope:actor
-
 			custom_description = {
 				text = join_war_interaction_already_in_target_war
 				NOR = {
@@ -234,7 +222,6 @@
 					}
 				}
 			}
-
 			custom_tooltip = {
 				text = call_ally_interaction.tt.diarchs_called_to_internal_wars
 				trigger_if = {
@@ -246,7 +233,6 @@
 				}
 			}
 		}
-
 		custom_description = {
 			text = "is_already_war_enemy_of_primary_enemy"
 			subject = scope:recipient
@@ -267,7 +253,6 @@
 				}
 			}
 		}
-
 		custom_description = {
 			text = "basic_ally_can_join_because_liege_or_vassals"
 			subject = scope:recipient
@@ -280,7 +265,6 @@
 				}
 			}
 		}
-
 		trigger_if = {
 			limit = {
 				scope:target.casus_belli.primary_defender = scope:actor
@@ -309,7 +293,6 @@
 		}
 		trigger_else = {
 		}
-
 		trigger_if = {
 			limit = {
 				scope:target.casus_belli.primary_defender = scope:actor
@@ -380,7 +363,6 @@
 					add_piety = minor_piety_gain
 				}
 			}
-
 			if = {
 				limit = {
 					has_game_rule = miv_oathbreakers_enabled
@@ -414,21 +396,21 @@
 							modifier = miv_oathbreaker
 						}
 					}
-					every_war_participant = {
-						limit = {
-							is_ai = no
-						}
-						hidden_effect = {
-							scope:recipient = {
-								save_scope_as = VASSAL
-							}
-							send_interface_toast = {
-								type = msg_war_oathbreaker
-								title = miv_oathbreaker_defects
-								left_icon = scope:VASSAL
-								custom_tooltip = interactive_oathbreaker_notification
-							}
-						}
+					interactive_bannermen_batch_toast_effect = {
+						KEY = defect_enemy
+						EVENT = 0013
+						HOLDER = scope:target.casus_belli.primary_attacker
+						WAR = scope:target
+						SIDE_OF = scope:target.casus_belli.primary_attacker
+						VASSAL = scope:recipient
+					}
+					interactive_bannermen_batch_toast_effect = {
+						KEY = defect_us
+						EVENT = 0019
+						HOLDER = scope:target.casus_belli.primary_attacker
+						WAR = scope:target
+						SIDE_OF = scope:recipient
+						VASSAL = scope:recipient
 					}
 				}
 				else_if = {
@@ -446,25 +428,24 @@
 							modifier = miv_oathbreaker
 						}
 					}
-					every_war_participant = {
-						limit = {
-							is_ai = no
-						}
-						hidden_effect = {
-							scope:recipient = {
-								save_scope_as = VASSAL
-							}
-							send_interface_toast = {
-								type = msg_war_oathbreaker
-								title = miv_oathbreaker_defects
-								left_icon = scope:VASSAL
-								custom_tooltip = interactive_oathbreaker_notification
-							}
-						}
+					interactive_bannermen_batch_toast_effect = {
+						KEY = defect_enemy
+						EVENT = 0013
+						HOLDER = scope:target.casus_belli.primary_defender
+						WAR = scope:target
+						SIDE_OF = scope:target.casus_belli.primary_defender
+						VASSAL = scope:recipient
+					}
+					interactive_bannermen_batch_toast_effect = {
+						KEY = defect_us
+						EVENT = 0019
+						HOLDER = scope:target.casus_belli.primary_defender
+						WAR = scope:target
+						SIDE_OF = scope:recipient
+						VASSAL = scope:recipient
 					}
 				}
 			}
-
 			if = {
 				limit = {
 					NOT = {
@@ -492,7 +473,6 @@
 		}
 		scope:actor = {
 			hidden_effect = {
-
 				if = {
 					limit = {
 						NOR = {
@@ -532,7 +512,6 @@
 					add_piety = medium_piety_gain
 				}
 			}
-
 			if = {
 				limit = {
 					has_game_rule = miv_oathbreakers_enabled
@@ -566,21 +545,21 @@
 							modifier = miv_oathbreaker
 						}
 					}
-					every_war_participant = {
-						limit = {
-							is_ai = no
-						}
-						hidden_effect = {
-							scope:recipient = {
-								save_scope_as = VASSAL
-							}
-							send_interface_toast = {
-								type = msg_war_oathbreaker
-								title = miv_oathbreaker_defects
-								left_icon = scope:VASSAL
-								custom_tooltip = interactive_oathbreaker_notification
-							}
-						}
+					interactive_bannermen_batch_toast_effect = {
+						KEY = defect_enemy
+						EVENT = 0013
+						HOLDER = scope:target.casus_belli.primary_attacker
+						WAR = scope:target
+						SIDE_OF = scope:target.casus_belli.primary_attacker
+						VASSAL = scope:recipient
+					}
+					interactive_bannermen_batch_toast_effect = {
+						KEY = defect_us
+						EVENT = 0019
+						HOLDER = scope:target.casus_belli.primary_attacker
+						WAR = scope:target
+						SIDE_OF = scope:recipient
+						VASSAL = scope:recipient
 					}
 				}
 				else_if = {
@@ -598,25 +577,24 @@
 							modifier = miv_oathbreaker
 						}
 					}
-					every_war_participant = {
-						limit = {
-							is_ai = no
-						}
-						hidden_effect = {
-							scope:recipient = {
-								save_scope_as = VASSAL
-							}
-							send_interface_toast = {
-								type = msg_war_oathbreaker
-								title = miv_oathbreaker_defects
-								left_icon = scope:VASSAL
-								custom_tooltip = interactive_oathbreaker_notification
-							}
-						}
+					interactive_bannermen_batch_toast_effect = {
+						KEY = defect_enemy
+						EVENT = 0013
+						HOLDER = scope:target.casus_belli.primary_defender
+						WAR = scope:target
+						SIDE_OF = scope:target.casus_belli.primary_defender
+						VASSAL = scope:recipient
+					}
+					interactive_bannermen_batch_toast_effect = {
+						KEY = defect_us
+						EVENT = 0019
+						HOLDER = scope:target.casus_belli.primary_defender
+						WAR = scope:target
+						SIDE_OF = scope:recipient
+						VASSAL = scope:recipient
 					}
 				}
 			}
-
 			if = {
 				limit = {
 					NOT = {
@@ -637,7 +615,6 @@
 		}
 	}
 	on_decline = {
-
 		if = {
 			limit = {
 				exists = scope:target
@@ -654,7 +631,6 @@
 						}
 					}
 					scope:recipient = {
-
 						if = {
 							limit = {
 								NOT = {
@@ -707,7 +683,6 @@
 						}
 					}
 				}
-
 				if = {
 					limit = {
 						scope:recipient = scope:actor.obedience_target
@@ -752,7 +727,6 @@
 			scope:actor = {
 				trigger_event = call_ally.0101
 			}
-
 			refuse_call_to_arms_add_clan_unity_effect = yes
 			scope:recipient = {
 				if = {
@@ -777,7 +751,6 @@
 	}
 	auto_accept = {
 		OR = {
-
 			custom_description = {
 				text = "recipient_is_spouse"
 				subject = scope:actor
@@ -787,7 +760,6 @@
 					is_ai = yes
 				}
 			}
-
 			custom_description = {
 				text = "is_recipients_player_heir"
 				subject = scope:actor
@@ -799,7 +771,6 @@
 					is_ai = yes
 				}
 			}
-
 			custom_description = {
 				text = "is_player_heir"
 				subject = scope:recipient
@@ -807,7 +778,6 @@
 				exists = scope:actor.player_heir
 				scope:actor.player_heir = scope:recipient
 				scope:actor = {
-
 					is_close_or_extended_family_of = scope:recipient
 				}
 				scope:recipient = {
@@ -819,7 +789,6 @@
 	ai_accept = {
 		base = 20
 		modifier = {
-
 			add = -1000
 			desc = NO_FRIVOLOUS_ACTIVITIES_REASON
 			scope:recipient = {
@@ -827,7 +796,6 @@
 			}
 		}
 		modifier = {
-
 			add = -1000
 			desc = WONT_FIGHT_MEANINGLESS_REASON
 			trigger_if = {
@@ -838,7 +806,6 @@
 					using_cb = fp2_border_raid
 				}
 				scope:recipient = {
-
 					NOR = {
 						has_trait = viking
 						has_trait = reaver
@@ -850,7 +817,6 @@
 			}
 		}
 		modifier = {
-
 			add = -1000
 			exists = scope:recipient.player_heir
 			trigger_if = {
@@ -865,7 +831,6 @@
 			desc = WONT_FIGHT_HEIR_REASON
 		}
 		modifier = {
-
 			add = -1000
 			scope:recipient = {
 				trigger_if = {
@@ -885,7 +850,6 @@
 			desc = WONT_FIGHT_SPOUSE_REASON
 		}
 		modifier = {
-
 			add = -1000
 			trigger_if = {
 				limit = {
@@ -911,26 +875,22 @@
 			desc = WONT_FIGHT_OBEDIENT_REASON
 		}
 		opinion_modifier = {
-
 			who = scope:recipient
 			opinion_target = scope:actor
 			multiplier = 1
 			desc = AI_OPINION_REASON
 		}
-
 		ai_value_modifier = {
 			ai_honor = 1
 			min = -25
 			max = 25
 		}
 		modifier = {
-
 			add = 25
 			scope:target.casus_belli.primary_defender = scope:actor
 			desc = DEFENSIVE_WAR_REASON
 		}
 		modifier = {
-
 			add = 5
 			desc = speaks_same_language_interaction_reason
 			trigger = {
@@ -940,7 +900,6 @@
 			}
 		}
 		modifier = {
-
 			add = 10
 			desc = foreign_realm_court_language_non_spoken_interaction_reason
 			trigger = {
@@ -960,12 +919,10 @@
 							has_royal_court = yes
 						}
 						scope:actor = {
-
 							has_same_court_language = scope:recipient
 						}
 					}
 					scope:recipient = {
-
 						is_independent_ruler = no
 						has_royal_court = no
 						liege = {
@@ -974,7 +931,6 @@
 						}
 					}
 					scope:recipient = {
-
 						is_independent_ruler = no
 						has_royal_court = no
 						exists = liege.liege
@@ -988,7 +944,6 @@
 						}
 					}
 					scope:recipient = {
-
 						is_independent_ruler = no
 						has_royal_court = no
 						exists = liege.liege
@@ -1007,7 +962,6 @@
 						}
 					}
 					scope:recipient = {
-
 						is_independent_ruler = no
 						has_royal_court = no
 						exists = liege.liege
@@ -1034,7 +988,6 @@
 			}
 		}
 		modifier = {
-
 			add = 30
 			desc = foreign_realm_court_language_spoken_interaction_reason
 			trigger = {
@@ -1052,12 +1005,10 @@
 							has_royal_court = yes
 						}
 						scope:actor = {
-
 							has_same_court_language = scope:recipient
 						}
 					}
 					scope:recipient = {
-
 						is_independent_ruler = no
 						has_royal_court = no
 						liege = {
@@ -1066,7 +1017,6 @@
 						}
 					}
 					scope:recipient = {
-
 						is_independent_ruler = no
 						has_royal_court = no
 						exists = liege.liege
@@ -1080,7 +1030,6 @@
 						}
 					}
 					scope:recipient = {
-
 						is_independent_ruler = no
 						has_royal_court = no
 						exists = liege.liege
@@ -1099,7 +1048,6 @@
 						}
 					}
 					scope:recipient = {
-
 						is_independent_ruler = no
 						has_royal_court = no
 						exists = liege.liege
@@ -1126,7 +1074,6 @@
 			}
 		}
 		modifier = {
-
 			add = 50
 			desc = ENTRENCHED_REGENT_WILL_SUPPORT_LIEGE
 			trigger_if = {
@@ -1142,7 +1089,6 @@
 			}
 		}
 		compare_modifier = {
-
 			trigger = {
 				scope:recipient.faith = scope:actor.faith
 				OR = {
@@ -1177,7 +1123,6 @@
 			multiplier = 0.5
 		}
 		modifier = {
-
 			add = -40
 			has_game_rule = miv_oathbreakers_enabled
 			scope:target.casus_belli.primary_defender = scope:actor
@@ -1185,7 +1130,6 @@
 			desc = WILL_BECOME_OATHBREAKER
 		}
 		modifier = {
-
 			add = -40
 			has_game_rule = miv_oathbreakers_enabled
 			scope:target.casus_belli.primary_attacker = scope:actor
@@ -1193,7 +1137,6 @@
 			desc = WILL_BECOME_OATHBREAKER
 		}
 		modifier = {
-
 			add = -50
 			scope:target.casus_belli.primary_attacker = scope:actor
 			scope:recipient = {
@@ -1202,7 +1145,6 @@
 			desc = ATTACK_ON_ALLY_REASON
 		}
 		modifier = {
-
 			add = -25
 			scope:target.casus_belli.primary_defender = scope:actor
 			scope:recipient = {
@@ -1211,7 +1153,6 @@
 			desc = WAR_WITH_ALLY_REASON
 		}
 		modifier = {
-
 			add = -50
 			NOT = {
 				scope:recipient.faith = scope:actor.faith
@@ -1230,7 +1171,6 @@
 			desc = WONT_ATTACK_RELIGIOUS_BRETHREN_REASON
 		}
 		modifier = {
-
 			add = -50
 			trigger_if = {
 				limit = {
@@ -1244,7 +1184,6 @@
 			desc = WONT_FIGHT_FRIEND_REASON
 		}
 		modifier = {
-
 			add = -100
 			trigger_if = {
 				limit = {
@@ -1258,7 +1197,6 @@
 			desc = WONT_FIGHT_BEST_FRIEND_REASON
 		}
 		modifier = {
-
 			add = -100
 			trigger_if = {
 				limit = {
@@ -1272,7 +1210,6 @@
 			desc = WONT_FIGHT_LOVER_REASON
 		}
 		modifier = {
-
 			add = -200
 			trigger_if = {
 				limit = {
@@ -1286,7 +1223,6 @@
 			desc = WONT_FIGHT_SOULMATE_REASON
 		}
 		modifier = {
-
 			add = -200
 			scope:actor = {
 				is_tributary_of = scope:recipient
@@ -1296,7 +1232,6 @@
 					has_relation_lover = scope:actor
 					has_relation_friend = scope:actor
 					is_allied_to = scope:actor
-
 					scope:actor = {
 						subject_contract_has_flag = tributary_contract_suzerain_guarantee_override
 					}
@@ -1305,7 +1240,6 @@
 			desc = WONT_FIGHT_MEANINGLESS_REASON
 		}
 		modifier = {
-
 			any_home_court_hostage = {
 				warden = {
 					OR = {
@@ -1336,11 +1270,9 @@
 			desc = HOSTAGE_ENEMY_CALL_TO_ARMS_REASON
 		}
 	}
-
 	ai_will_do = {
 		base = 100
 		modifier = {
-
 			scope:target.casus_belli.primary_attacker = scope:actor
 			scope:recipient = {
 				is_ai = no
@@ -1351,7 +1283,6 @@
 			factor = 0
 		}
 		modifier = {
-
 			exists = scope:recipient.player_heir
 			scope:recipient = {
 				is_ai = no
@@ -1368,7 +1299,6 @@
 			factor = 0
 		}
 		modifier = {
-
 			scope:recipient = {
 				is_ai = no
 			}
@@ -1388,7 +1318,6 @@
 			factor = 0
 		}
 		modifier = {
-
 			has_variable = delay_calling_recent_ally
 			var:delay_calling_recent_ally = scope:recipient
 			scope:target = {
@@ -1397,14 +1326,12 @@
 			factor = 0
 		}
 		modifier = {
-
 			scope:target.casus_belli.primary_attacker = scope:actor
 			scope:target.casus_belli.primary_defender = {
 				is_allied_to = scope:recipient
 			}
 			factor = 0
 		}
-
 		modifier = {
 			scope:actor = {
 				subject_contract_has_flag = tributary_contract_suzerain_guarantee_override

@@ -3,11 +3,8 @@
 		text = "can_be_combatant_based_on_gender"
 		object = this
 		subject = $ARMY_OWNER$
-		# Priests only fight if faith has war priests
 		trigger_if = {
 			limit = {
-				#AGOT Modified
-				# is_clergy = yes
 				OR = {
 					is_clergy = yes
 					agot_has_clergy_trait = yes
@@ -20,16 +17,14 @@
 					$ARMY_OWNER$.culture = {
 						has_cultural_parameter = high_prowess_ignores_knight_restrictions
 					}
-					#AGOT Modified
-					#prowess >= 10
 					prowess >= 12
 				}
 			}
 		}
 		OR = {
-			trigger_if = { # Has the Royal Court and thus can modify pillars
+			trigger_if = {
 				limit = {
-					has_dlc_feature = diverge_culture # Can modify pillars
+					has_dlc_feature = diverge_culture
 				}
 				trigger_if = {
 					limit = {
@@ -45,7 +40,7 @@
 				}
 				trigger_else = {}
 			}
-			trigger_else = { # Does not have the Royal Court and thus combatant is governed by faith
+			trigger_else = {
 				OR = {
 					$ARMY_OWNER$.faith = { has_doctrine_parameter = combatant_can_be_either_gender_if_no_roco }
 					AND = {
@@ -59,20 +54,16 @@
 				}
 			}
 			AND = {
-				# No need to gender diversify this: if they're a right-gender shieldperson of the culture, then they've already got permission to fight from the previous AND conditions.
 				has_trait = shieldmaiden
 				$ARMY_OWNER$ = {
 					culture = { has_cultural_parameter = has_access_to_shieldmaidens }
 				}
 			}
-			# Event-based special exceptions
 			OR = {
 				has_character_modifier = ignores_gender_army_rules
 				has_character_modifier = mpo_destined_leader_modifier
 			}
 			AND = {
-				#AGOT Modified
-				#prowess >= 10
 				prowess >= 12
 				$ARMY_OWNER$.culture = { has_cultural_parameter = high_prowess_ignores_knight_restrictions }
 				NOT = { $ARMY_OWNER$.culture = { has_cultural_parameter = minimum_prowess_for_knights } }
@@ -84,7 +75,6 @@
 					has_cultural_parameter = minimum_prowess_for_knights
 				}
 			}
-			#AGOT Added
 			trigger_if = {
 				limit = {
 					$ARMY_OWNER$ = { culture = { has_cultural_parameter = martial_custom_male_only_combatant } }
@@ -109,7 +99,6 @@
 				}
 			}
 		}
-		#AGOT Added
 		trigger_if = {
 			limit = {
 				$ARMY_OWNER$ = { faith = { has_doctrine_parameter = men_cannot_fight } }

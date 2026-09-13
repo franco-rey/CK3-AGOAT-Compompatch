@@ -1,8 +1,4 @@
-﻿# Court Positions Expanded - Court Herbalist
-# Adapted for CK3 1.19 framework
-# court_herbalist_court_position
-
-### Common Court Positions ###
+﻿
 
 court_herbalist_court_position = {
 	sort_order = 286 
@@ -34,10 +30,8 @@ court_herbalist_court_position = {
 		value = regular_court_position_opinion
 	}
 
-	# How high the aptitude has to be to reach the 5 different modifier levels
 	aptitude_level_breakpoints = { 20 40 60 80 }
 
-	# How good is this character in this position? root scope is the holder of the court position
 	aptitude = {
 		value = 20
 		add = {
@@ -86,7 +80,6 @@ court_herbalist_court_position = {
 		add = general_aptitude_bonus
 	}
 
-	# Is this an available position for this court? (root is court owner)
 	is_shown = {
 		is_landed_or_landless_administrative = yes
 		trigger_if = {
@@ -272,7 +265,6 @@ court_herbalist_court_position = {
 		round = no
 	}
 
-	# Scaling modifiers based on herbalist aptitude
 	scaling_employer_modifiers = {
 		terrible = {
 			negate_health_penalty_add = 0.05
@@ -295,7 +287,6 @@ court_herbalist_court_position = {
 		}
 	}
 
-	# Modifiers always applied to the Herbalist themselves
 	modifier = {
 		monthly_prestige = minor_court_position_prestige_salary
 		learning = 1
@@ -319,7 +310,6 @@ court_herbalist_court_position = {
 	ai_position_score = {
 		value = 1
 		scope:liege = {
-			# More likely if ruler has poor health
 			if = {
 				limit = {
 					health <= 4
@@ -332,7 +322,6 @@ court_herbalist_court_position = {
 				}
 				add = 30
 			}
-			# More likely for rulers interested in learning
 			if = {
 				limit = {
 					has_lifestyle = learning_lifestyle

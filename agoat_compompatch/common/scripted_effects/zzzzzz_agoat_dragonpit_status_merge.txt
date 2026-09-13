@@ -7,7 +7,7 @@
 			}
 			trigger_event = agot_choose_dragonpit_event.0001
 		}
-		else = { # If not, assume default AGOT logic
+		else = {
 			random_held_county = {
 				limit = {
 					OR = {
@@ -17,9 +17,9 @@
 						}
 						any_county_province = {
 							OR = {
-								has_building_or_higher = dragonpit_01 # Historical Version
-								has_building_or_higher = dragonpit_ruins_03 # Fully Restored Ruin Version
-								has_building_or_higher = agot_dragonmont_01 # Dragonmont Version
+								has_building_or_higher = dragonpit_01
+								has_building_or_higher = dragonpit_ruins_03
+								has_building_or_higher = agot_dragonmont_01
 							}
 						}
 						any_county_province = {
@@ -79,9 +79,9 @@ agot_change_dragonpit_status_ai = {
 					}
 					any_county_province = {
 						OR = {
-							has_building_or_higher = dragonpit_01 # Historical Version
-							has_building_or_higher = dragonpit_ruins_03 # Fully Restored Ruin Version
-							has_building_or_higher = agot_dragonmont_01 # Dragonmont Version
+							has_building_or_higher = dragonpit_01
+							has_building_or_higher = dragonpit_ruins_03
+							has_building_or_higher = agot_dragonmont_01
 						}
 					}
 					any_county_province = {

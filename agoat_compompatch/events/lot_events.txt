@@ -1,0 +1,546 @@
+﻿
+namespace = lot
+
+
+lot.001 = {
+    type = character_event
+    hidden = yes
+	scope = none
+
+    trigger = {
+		current_month = 1
+	}
+
+    immediate = {
+        every_ruler = {
+            limit = {
+                is_valid_for_legitimacy_change = yes
+                is_ruler = yes
+                days_as_ruler > 0
+                NOT = { 
+                    any_owned_story = {
+                        story_type = lot_years_as_ruler_for_legitimacy_gain_story_cycle
+                    }
+                }
+            }
+            if = {
+                limit = {
+                    NOT = {
+                        has_character_flag = lot_underage_not_eligible_message_prompt_flag
+                    }
+                    age < lot_legitimacy_min_eligible_age
+                }
+                trigger_event = lot.004
+            }
+            create_story = lot_years_as_ruler_for_legitimacy_gain_story_cycle
+            
+        }
+    }
+}
+
+lot.002 = {
+    type = character_event
+    scope = root
+    hidden = yes
+
+    immediate = {
+        if = {
+            limit = {
+                primary_title.tier = tier_county
+            }
+
+            set_variable = {
+                name = legitimacy_multiplier_level
+                value = lot_legitimacy_multiplier_level_1
+            }
+            set_variable = {
+                name = lot_ruler_years_tier
+                value = root.var:lot_years_as_ruler_count
+            }
+            
+            calculate_legitimacy = yes
+            if = {
+            	limit = { has_legitimacy = yes }
+            	add_legitimacy = root.var:received_legitimacy
+            }
+
+            if = {
+                limit = { has_character_flag = positive_percentage_from_powerful_vassals_flag }
+                send_legitimacy_gain_message = { 
+                    POSITIVE_FLAG_TYPE = yes
+                    NEGATIVE_FLAG_TYPE = no
+                    CRITICAL_FLAG_TYPE = no
+                    TITLE = lot_im.002.t
+                    DESC = lot_count_im.002.good.desc
+                }
+            }
+            else_if = {
+                limit = { has_character_flag = negative_percentage_from_powerful_vassals_flag }
+                send_legitimacy_gain_message = { 
+                    POSITIVE_FLAG_TYPE = no
+                    NEGATIVE_FLAG_TYPE = yes
+                    CRITICAL_FLAG_TYPE = no
+                    TITLE = lot_im.002.bad.t
+                    DESC = lot_count_im.002.bad.desc
+                }
+            }
+            else_if = {
+                limit = { 
+                    has_character_flag = critical_bad_percentage_from_powerful_vassals_flag
+                    root.var:lot_amount_of_negative_powerful_vassal > 1
+                }
+                send_legitimacy_gain_message = { 
+                    POSITIVE_FLAG_TYPE = no
+                    NEGATIVE_FLAG_TYPE = no
+                    CRITICAL_FLAG_TYPE = yes
+                    TITLE = lot_im.002.critical.bad.t
+                    DESC = lot_im.002.critical.bad.many.desc
+                }
+            }
+            else_if = {
+                limit = { 
+                    has_character_flag = critical_bad_percentage_from_powerful_vassals_flag
+                    root.var:lot_amount_of_negative_powerful_vassal = 1
+                }
+                send_legitimacy_gain_message = { 
+                    POSITIVE_FLAG_TYPE = no
+                    NEGATIVE_FLAG_TYPE = no
+                    CRITICAL_FLAG_TYPE = yes
+                    TITLE = lot_im.002.critical.bad.t
+                    DESC = lot_im.002.critical.bad.single.desc
+                }
+            }
+            else = {
+                send_legitimacy_gain_message = {
+                    POSITIVE_FLAG_TYPE = no
+                    NEGATIVE_FLAG_TYPE = no
+                    CRITICAL_FLAG_TYPE = no
+                    TITLE = lot_im.002.t
+                    DESC = lot_count_im.002.neutral.desc
+                }
+            }
+        }
+
+        else_if = {
+            limit = {
+                primary_title.tier = tier_duchy
+            }
+
+            set_variable = {
+                name = legitimacy_multiplier_level
+                value = lot_legitimacy_multiplier_level_2
+            }
+            set_variable = {
+                name = lot_ruler_years_tier
+                value = root.var:lot_years_as_ruler_duke
+            }
+            
+            calculate_legitimacy = yes
+            if = {
+            	limit = { has_legitimacy = yes }
+            	add_legitimacy = root.var:received_legitimacy
+            }
+            if = {
+                limit = { has_character_flag = positive_percentage_from_powerful_vassals_flag }
+                send_legitimacy_gain_message = { 
+                    POSITIVE_FLAG_TYPE = yes
+                    NEGATIVE_FLAG_TYPE = no
+                    CRITICAL_FLAG_TYPE = no
+                    TITLE = lot_im.002.t
+                    DESC = lot_duke_im.002.good.desc
+                }
+            }
+            else_if = {
+                limit = { has_character_flag = negative_percentage_from_powerful_vassals_flag }
+                send_legitimacy_gain_message = { 
+                    POSITIVE_FLAG_TYPE = no
+                    NEGATIVE_FLAG_TYPE = yes
+                    CRITICAL_FLAG_TYPE = no
+                    TITLE = lot_im.002.bad.t
+                    DESC = lot_duke_im.002.bad.desc
+                }
+            }
+            else_if = {
+                limit = { 
+                    has_character_flag = critical_bad_percentage_from_powerful_vassals_flag
+                    root.var:lot_amount_of_negative_powerful_vassal > 1
+                }
+                send_legitimacy_gain_message = { 
+                    POSITIVE_FLAG_TYPE = no
+                    NEGATIVE_FLAG_TYPE = no
+                    CRITICAL_FLAG_TYPE = yes
+                    TITLE = lot_im.002.critical.bad.t
+                    DESC = lot_im.002.critical.bad.many.desc
+                }
+            }
+            else_if = {
+                limit = { 
+                    has_character_flag = critical_bad_percentage_from_powerful_vassals_flag
+                    root.var:lot_amount_of_negative_powerful_vassal = 1
+                }
+                send_legitimacy_gain_message = { 
+                    POSITIVE_FLAG_TYPE = no
+                    NEGATIVE_FLAG_TYPE = no
+                    CRITICAL_FLAG_TYPE = yes
+                    TITLE = lot_im.002.critical.bad.t
+                    DESC = lot_im.002.critical.bad.single.desc
+                }
+            }
+            else = {
+                send_legitimacy_gain_message = {
+                    POSITIVE_FLAG_TYPE = no
+                    NEGATIVE_FLAG_TYPE = no
+                    CRITICAL_FLAG_TYPE = no
+                    TITLE = lot_im.002.t
+                    DESC = lot_duke_im.002.neutral.desc
+                }
+            }
+        }
+
+        else_if = {
+            limit = {
+                primary_title.tier = tier_kingdom
+            }
+
+            set_variable = {
+                name = legitimacy_multiplier_level
+                value = lot_legitimacy_multiplier_level_3
+            }
+            set_variable = {
+                name = lot_ruler_years_tier
+                value = root.var:lot_years_as_ruler_king
+            }
+
+            calculate_legitimacy = yes
+            if = {
+            	limit = { has_legitimacy = yes }
+            	add_legitimacy = root.var:received_legitimacy
+            }
+            if = {
+                limit = { has_character_flag = positive_percentage_from_powerful_vassals_flag }
+                send_legitimacy_gain_message = { 
+                    POSITIVE_FLAG_TYPE = yes
+                    NEGATIVE_FLAG_TYPE = no
+                    CRITICAL_FLAG_TYPE = no
+                    TITLE = lot_im.002.t
+                    DESC = lot_king_im.002.good.desc
+                }
+            }
+            else_if = {
+                limit = { has_character_flag = negative_percentage_from_powerful_vassals_flag }
+                send_legitimacy_gain_message = { 
+                    NEGATIVE_FLAG_TYPE = yes
+                    POSITIVE_FLAG_TYPE = no
+                    CRITICAL_FLAG_TYPE = no
+                    TITLE = lot_im.002.bad.t
+                    DESC = lot_king_im.002.bad.desc
+                }
+            }
+            else_if = {
+                limit = { 
+                    has_character_flag = critical_bad_percentage_from_powerful_vassals_flag
+                    root.var:lot_amount_of_negative_powerful_vassal > 1
+                }
+                send_legitimacy_gain_message = { 
+                    POSITIVE_FLAG_TYPE = no
+                    NEGATIVE_FLAG_TYPE = no
+                    CRITICAL_FLAG_TYPE = yes
+                    TITLE = lot_im.002.critical.bad.t
+                    DESC = lot_im.002.critical.bad.many.desc
+                }
+            }
+            else_if = {
+                limit = { 
+                    has_character_flag = critical_bad_percentage_from_powerful_vassals_flag
+                    root.var:lot_amount_of_negative_powerful_vassal = 1
+                }
+                send_legitimacy_gain_message = { 
+                    POSITIVE_FLAG_TYPE = no
+                    NEGATIVE_FLAG_TYPE = no
+                    CRITICAL_FLAG_TYPE = yes
+                    TITLE = lot_im.002.critical.bad.t
+                    DESC = lot_im.002.critical.bad.single.desc
+                }
+            }
+            else = {
+                send_legitimacy_gain_message = {
+                    POSITIVE_FLAG_TYPE = no
+                    NEGATIVE_FLAG_TYPE = no
+                    CRITICAL_FLAG_TYPE = no
+                    TITLE = lot_im.002.t
+                    DESC = lot_king_im.002.neutral.desc
+                }
+            }
+        }
+
+        else_if = {
+            limit = {
+                OR = {
+                    primary_title.tier = tier_empire
+                    primary_title.tier = tier_hegemony
+                }
+            }
+
+            set_variable = {
+                name = legitimacy_multiplier_level
+                value = lot_legitimacy_multiplier_level_4
+            }
+            set_variable = {
+                name = lot_ruler_years_tier
+                value = root.var:lot_years_as_ruler_emperor
+            }
+
+            calculate_legitimacy = yes
+            if = {
+            	limit = { has_legitimacy = yes }
+            	add_legitimacy = root.var:received_legitimacy
+            }
+            if = {
+                limit = { has_character_flag = positive_percentage_from_powerful_vassals_flag }
+                send_legitimacy_gain_message = { 
+                    POSITIVE_FLAG_TYPE = yes
+                    NEGATIVE_FLAG_TYPE = no
+                    CRITICAL_FLAG_TYPE = no
+                    TITLE = lot_im.002.t
+                    DESC = lot_emperor_im.002.good.desc
+                }
+            }
+            else_if = {
+                limit = { has_character_flag = negative_percentage_from_powerful_vassals_flag }
+                send_legitimacy_gain_message = { 
+                    POSITIVE_FLAG_TYPE = no
+                    NEGATIVE_FLAG_TYPE = yes
+                    CRITICAL_FLAG_TYPE = no
+                    TITLE = lot_im.002.bad.t
+                    DESC = lot_emperor_im.002.bad.desc
+                }
+            }
+            else_if = {
+                limit = { 
+                    has_character_flag = critical_bad_percentage_from_powerful_vassals_flag
+                    root.var:lot_amount_of_negative_powerful_vassal > 1
+                }
+                send_legitimacy_gain_message = { 
+                    POSITIVE_FLAG_TYPE = no
+                    NEGATIVE_FLAG_TYPE = no
+                    CRITICAL_FLAG_TYPE = yes
+                    TITLE = lot_im.002.critical.bad.t
+                    DESC = lot_im.002.critical.bad.many.desc
+                }
+            }
+            else_if = {
+                limit = { 
+                    has_character_flag = critical_bad_percentage_from_powerful_vassals_flag
+                    root.var:lot_amount_of_negative_powerful_vassal = 1
+                }
+                send_legitimacy_gain_message = { 
+                    POSITIVE_FLAG_TYPE = no
+                    NEGATIVE_FLAG_TYPE = no
+                    CRITICAL_FLAG_TYPE = yes
+                    TITLE = lot_im.002.critical.bad.t
+                    DESC = lot_im.002.critical.bad.single.desc
+                }
+            }
+            else = {
+                send_legitimacy_gain_message = {
+                    POSITIVE_FLAG_TYPE = no
+                    NEGATIVE_FLAG_TYPE = no
+                    CRITICAL_FLAG_TYPE = no
+                    TITLE = lot_im.002.t
+                    DESC = lot_emperor_im.002.neutral.desc
+                }
+            }
+        }
+
+        remove_variable = temp_legitimacy_extra_amount
+    }
+}
+
+lot.003 = {
+    type = character_event
+    scope = root
+    hidden = yes
+
+    immediate = {
+        if = {
+            limit = { number_of_powerful_vassals > 0 }
+            set_variable = {
+                name = lot_amount_of_positive_powerful_vassal
+                value = 0
+            }
+            set_variable = {
+                name = lot_amount_of_negative_powerful_vassal
+                value = 0
+            }
+            every_powerful_vassal = {
+                limit = {
+                    highest_held_title_tier >= tier_barony
+                }
+                if = {
+                    limit = {
+                        opinion = {
+                            target = root
+                            value >= 0
+                        }
+                    }
+                    root = {
+                        increment_amount_of_powerful_vassals = { ADD = 1  POSITIVE = yes }
+                        change_variable = {
+                            name = lot_amount_of_positive_powerful_vassal
+                            add = root.var:temp_lot_amount_of_positive_powerful_vassal
+                        }
+                    } 
+                }
+                else = {
+                    root = {
+                        increment_amount_of_powerful_vassals = { ADD = 1 POSITIVE = no }
+                        change_variable = {
+                            name = lot_amount_of_negative_powerful_vassal
+                            add = root.var:temp_lot_amount_of_negative_powerful_vassal
+                        }
+                    }
+                }
+            }
+
+            calculate_percentage_of_powerful_vassals_with_positive_opinion = { 
+                NUMBER_OF_POWERFUL_VASSALS = number_of_powerful_vassals 
+                AMOUNT_OF_POSITIVE_POWERFUL_VASSAL = root.var:lot_amount_of_positive_powerful_vassal 
+            }
+            set_variable = {
+                name = lot_percentage_of_powerful_vassals_with_positive_opinion
+                value = root.var:temp_lot_percentage_of_powerful_vassals_with_positive_opinion
+            }
+
+            if = {
+                limit = {
+                    root.var:lot_percentage_of_powerful_vassals_with_positive_opinion >= lot_min_percentage_for_powerful_vassal_mod
+                }
+                add_character_flag = {
+                    flag = positive_percentage_from_powerful_vassals_flag
+                    days = 30
+                }
+                calculate_consecutive_years_for_opinion_modifier = { CALCULATION_TYPE = 1 }
+            }
+            else_if = {
+                limit = {
+                    root.var:lot_percentage_of_powerful_vassals_with_positive_opinion = lot_critical_bad_percentage_for_powerful_vassal_mod
+                }
+                add_character_flag = {
+                    flag = critical_bad_percentage_from_powerful_vassals_flag
+                    days = 30
+                }
+                calculate_consecutive_years_for_opinion_modifier = { CALCULATION_TYPE = 2 }
+            }
+            else = {
+                add_character_flag = {
+                    flag = negative_percentage_from_powerful_vassals_flag
+                    days = 30
+                }
+                calculate_consecutive_years_for_opinion_modifier = { CALCULATION_TYPE = 3 }
+            }
+
+            remove_variable = lot_percentage_of_powerful_vassals_with_positive_opinion
+            remove_variable = temp_lot_amount_of_positive_powerful_vassal
+            remove_variable = temp_lot_amount_of_negative_powerful_vassal
+            remove_variable = temp_lot_percentage_of_powerful_vassals_with_positive_opinion
+        }
+        else = {
+            if = {
+                limit = {
+                    exists = var:lot_amount_of_positive_powerful_vassal
+                }
+                remove_variable = lot_amount_of_positive_powerful_vassal
+            }
+            if = {
+                limit = {
+                    exists = var:lot_amount_of_negative_powerful_vassal
+                }
+                remove_variable = lot_amount_of_negative_powerful_vassal
+            }
+            if = {
+                limit = {
+                    has_character_flag = positive_percentage_from_powerful_vassals_flag
+                }
+                remove_character_flag = positive_percentage_from_powerful_vassals_flag
+            }
+            else_if = {
+                limit = {
+                    has_character_flag = negative_percentage_from_powerful_vassals_flag
+                }
+                remove_character_flag = negative_percentage_from_powerful_vassals_flag
+            }
+            else_if = {
+                limit = {
+                    has_character_flag = critical_bad_percentage_from_powerful_vassals_flag
+                }
+                remove_character_flag = critical_bad_percentage_from_powerful_vassals_flag
+            }
+        }
+    }
+}
+
+lot.004 = {
+    type = character_event
+    scope = root
+    hidden = yes
+
+    immediate = {
+        if = {
+            limit = {
+                NOT = {
+                    has_character_flag = lot_underage_not_eligible_message_prompt_flag
+                }
+                age < lot_legitimacy_min_eligible_age
+            }
+            send_interface_message = {
+                type = event_generic_neutral_text
+                right_icon = root
+                title = lot_not_enough_age_im.004.t
+                desc = lot_not_enough_age_im.004.desc
+            }
+            add_character_flag = {
+                flag = lot_underage_not_eligible_message_prompt_flag
+                days = 1095
+            }
+        }
+    }
+}
+
+lot.005 = {
+    type = character_event
+    scope = root
+    hidden = yes
+
+    immediate = {
+        if = {
+            limit = {
+                legitimacy >= legitimacy_max
+            }
+            send_interface_message = {
+                type = lot_neutral_msg_legitimacy_gain
+                right_icon = root
+                title = lot_im.max.legitimacy.sc.t
+                desc = lot_im.max.legitimacy.sc.desc
+            }
+        }
+        else = {
+            send_interface_message = {
+                type = lot_legitimacy_loss
+                right_icon = root
+                title = lot_im.zero.legitimacy.sc.t
+                desc = lot_im.zero.legitimacy.sc.desc
+            }
+        }
+        
+    }
+}
+
+lot.006 = {
+    type = character_event
+    scope = root
+    hidden = yes
+
+    immediate = {
+        add_character_modifier_opinion_by_consecutive_years = yes
+    }
+}

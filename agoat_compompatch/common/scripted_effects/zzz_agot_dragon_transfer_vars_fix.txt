@@ -24,7 +24,6 @@
 		}
 	}
 	scope:story = {
-		# Dragon Genes
 		set_variable = {
 			name = dragon_age
 			value = $dragon_age$
@@ -253,7 +252,6 @@
 			name = gene_dragon_outer_brow_height
 			value = $gene_dragon_outer_brow_height$
 		}
-		# Generate the dragons historical size Effect
 		set_local_variable = { name = count value = 0 }
 		while = {
 			limit = {
@@ -304,18 +302,16 @@
 				add = 1
 			}
 		}
-		set_variable = { # This is identical to the the dragon_size scripted value, save for the scope:dragon = ... reference. Why it needs to be like this instead of scope:dragon.dragon_size...idk.
+		set_variable = {
 			name = dragon_size
 			value = {
 				value = scope:story.var:dragon_size_base
-				# Dragon trait
 				if = {
 					limit = { scope:dragon = { has_trait = dragon} }
 					add = {
 						value = dragon_base_dragon_size_value
 					}
 				}
-				# Physical
 				if = {
 					limit = { scope:dragon = { has_trait = dragon_physique_good_3} }
 					multiply = {

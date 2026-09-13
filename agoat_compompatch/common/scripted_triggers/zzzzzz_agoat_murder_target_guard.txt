@@ -1,0 +1,6 @@
+﻿murder_requires_grounded_location_trigger = {
+	scope:target ?= {
+		is_travelling = no
+		location = { is_sea_province = no }
+	}
+}

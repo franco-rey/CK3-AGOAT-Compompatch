@@ -1,0 +1,336 @@
+﻿murder_ongoing = {
+	trigger = {
+		exists = scope:scheme
+	}
+	effect = {
+		trigger_event = murder_ongoing.3302
+	}
+	
+	random_events = {
+		chance_to_happen = 10
+		200 = 0
+		200 = intrigue_scheme_ongoing.1001
+		100 = intrigue_scheme_ongoing.1002
+		100 = intrigue_scheme_ongoing.1004
+		100 = intrigue_scheme_ongoing.1006
+		30 = intrigue_scheme_ongoing.1007
+		50 = intrigue_scheme_ongoing.1008
+		50 = intrigue_scheme_ongoing.1009
+		50 = intrigue_scheme_ongoing.2003
+		50 = murder_ongoing.3010
+		100 = intrigue_scheme_ongoing.5019
+		100 = intrigue_scheme_ongoing.5026
+		
+		100 = intrigue_scheme_ongoing.2001
+		100 = intrigue_scheme_ongoing.2002
+		50 = intrigue_scheme_ongoing.3001
+		50 = intrigue_scheme_ongoing.3002
+		200 = intrigue_scheme_ongoing.4001
+		200 = intrigue_scheme_ongoing.4002
+		150 = intrigue_scheme_ongoing.4003
+		100 = intrigue_scheme_ongoing.5001
+		100 = intrigue_scheme_ongoing.5002
+		100 = intrigue_scheme_ongoing.5005
+		100 = intrigue_scheme_ongoing.5009
+		10 = intrigue_scheme_ongoing.5011
+		50 = intrigue_scheme_ongoing.5014
+		100 = intrigue_scheme_ongoing.5016
+		50 = intrigue_scheme_ongoing.5017
+		100 = intrigue_scheme_ongoing.5018
+		100 = intrigue_scheme_ongoing.5024
+		50 = murder_ongoing.3301
+		100 = intrigue_scheme_ongoing.3005
+		100 = intrigue_scheme_ongoing.3003
+
+		100 = intrigue_scheme_ongoing.3010
+		100 = intrigue_scheme_ongoing.3011
+		
+
+		2000 = agent_events.9801
+
+		100 = intrigue_scheme_lifestyle.1001
+		50 = intrigue_scheme_lifestyle.1002
+		100 = intrigue_scheme_lifestyle.3001
+		100 = intrigue_scheme_lifestyle.3101
+		50 = intrigue_scheme_lifestyle.3102
+		100 = intrigue_scheme_lifestyle.3201
+		100 = intrigue_scheme_lifestyle.3301
+		100 = intrigue_scheme_lifestyle.3401
+
+		100 = assassination_ongoing.0001
+		100 = assassination_ongoing.0002
+		100 = assassination_ongoing.0003
+		100 = assassination_ongoing.0004
+		100 = assassination_ongoing.0005
+		100 = assassination_ongoing.0006
+		250 = assassination_ongoing.0007
+	}
+}
+
+
+murder_success_pre_filter_on_action = {
+	effect = {
+		if = {
+			limit = { exists = scope:owner }
+			scope:owner = {
+				if = {
+					limit = {
+						scope:target = { is_incapable = yes }
+					}
+					trigger_event = { on_action = murder_success_incapable_event_list_on_action }
+				}
+				else_if = {
+					limit = {
+						scope:target = { is_imprisoned = yes }
+					}
+					trigger_event = { on_action = murder_success_imprisoned_event_list_on_action }
+				}
+				else_if = {
+					limit = {
+						scope:target = { is_adult = no }
+					}
+					trigger_event = { on_action = murder_success_child_event_list_on_action }
+				}
+				else = {
+					trigger_event = { on_action = murder_success_standard_event_list_on_action }
+				}
+				play_music_cue = "mx_cue_murder"
+				every_scheme = {
+					type = murder
+					if = {
+						limit = {
+							scheme_target_character ?= {
+								any_spouse = {
+									any_relation = {
+										type = lover
+										this = scope:owner
+									}
+								}
+							}
+						}
+						scope:owner = {
+							add_achievement_flag_effect = { FLAG = achievement_the_things_we_do_for_love_flag }
+						}
+					}
+					if = {
+						limit = {
+							scheme_target_character = {
+								save_temporary_scope_as = murder_target
+								scope:owner = { is_heir_of = scope:murder_target }
+							}
+						}
+						scope:owner = {
+							add_achievement_flag_effect = { FLAG = achievement_an_unfortunate_accident_flag }
+						}
+					}
+					if = {
+						limit = {
+							scheme_target_character = {
+								any_spouse = { this = scope:owner }
+							}
+						}
+						scope:owner = {
+							add_achievement_flag_effect = { FLAG = achievement_death_did_us_part_flag }
+						}
+					}
+				}
+				if = {
+					limit = { var:imaginary_friend_murder_target ?= scope:scheme.scheme_target_character }
+					if = {
+						limit = {
+							has_variable = imaginary_friend_murder_count
+							var:imaginary_friend_murder_count >= 4
+						}
+						trigger_event = {
+							id = bp2_yearly.2025
+							days = 1
+						}
+					}
+					else = {
+						trigger_event = {
+							id = bp2_yearly.2022
+							days = 1
+						}
+					}
+				}
+				create_character_memory = {
+					type = successful_murder
+					participants = {
+						victim = scope:scheme.scheme_target_character
+					}
+				}
+	            random = {
+	                chance = 2
+	                modifier = {
+	                    factor = accolade_progress
+	                }
+	                modifier = {
+	                    NOT = {
+	                        any_knight = {
+								can_unlock_accolade_attribute_trigger = {
+									ATTRIBUTE = manipulator
+								}
+	                        }
+	                    }
+	                    factor = 0
+	                }
+	                save_scope_as = accolade_liege
+	                set_variable = {
+	                    name = accolade_progress
+	                    value = 0
+	                }
+	                random_knight = {
+						limit = {
+							can_unlock_accolade_attribute_trigger = {
+								ATTRIBUTE = manipulator
+							}
+						}
+						weight = {
+							base = 1
+							modifier = {
+								add = 50
+								is_acclaimed = yes
+							}
+						}
+	                    save_scope_as = accolade_knight
+	                }
+	                send_interface_message = {
+	                    type = msg_accolade_eligibility
+	                    title = accolade_manipulator_unlock.t
+	                    left_icon = scope:accolade_knight
+	                    right_icon = scope:accolade_liege
+	                    custom_tooltip = accolade_manipulator_unlock.tt
+	                    scope:accolade_knight = {
+	                        set_variable = {
+	                            name = manipulator_attribute_unlock
+	                            value = yes
+	                        }
+	                    }   
+	                }
+	            }
+			}
+		}
+	}
+}
+
+murder_success_incapable_event_list_on_action = {
+	random_events = {
+		100 = murder_outcome_reworked.8001
+	}
+}
+murder_success_imprisoned_event_list_on_action = {
+	random_events = {
+		100 = murder_outcome_reworked.7001
+		100 = murder_outcome_reworked.7011
+	}
+}
+murder_success_child_event_list_on_action = {
+	random_events = {
+		100 = murder_outcome_reworked.4001
+		100 = murder_outcome_reworked.4011
+		100 = murder_outcome_reworked.4021
+		100 = murder_outcome_reworked.4031
+		100 = murder_outcome_reworked.4041
+	}
+}
+murder_success_standard_event_list_on_action = {
+	random_events = {
+		300 = murder_outcome_reworked.0001
+		100 = murder_outcome_reworked.0011
+		100 = murder_outcome_reworked.0021
+		100 = murder_outcome_reworked.0031
+		100 = murder_outcome_reworked.0041
+		100 = murder_outcome_reworked.0051
+		100 = murder_outcome_reworked.0061
+		100 = murder_outcome_reworked.0071
+	}
+}
+
+murder_failure_pre_filter_on_action = {
+	effect = {
+		scope:owner = {
+			if = {
+				limit = {
+					scope:target = { is_incapable = yes }
+				}
+				trigger_event = { on_action = murder_failure_incapable_event_list_on_action }
+			}
+			else_if = {
+				limit = {
+					scope:target = { is_imprisoned = yes }
+				}
+				trigger_event = { on_action = murder_failure_imprisoned_event_list_on_action }
+			}
+			else_if = {
+				limit = {
+					scope:target = { is_adult = no }
+				}
+				trigger_event = { on_action = murder_failure_child_event_list_on_action }
+			}
+			else = {
+				trigger_event = { on_action = murder_failure_standard_event_list_on_action }
+			}
+		}
+	}
+}
+
+murder_failure_incapable_event_list_on_action = {
+	random_events = {
+		100 = murder_outcome_reworked.8003
+	}
+}
+murder_failure_imprisoned_event_list_on_action = {
+	random_events = {
+		100 = murder_outcome_reworked.7003
+		100 = murder_outcome_reworked.7013
+	}
+}
+murder_failure_child_event_list_on_action = {
+	random_events = {
+		100 = murder_outcome_reworked.4003
+		100 = murder_outcome_reworked.4013
+		100 = murder_outcome_reworked.4023
+		100 = murder_outcome_reworked.4033
+		100 = murder_outcome_reworked.4043
+	}
+}
+murder_failure_standard_event_list_on_action = {
+	random_events = {
+		300 = murder_outcome_reworked.0003
+		100 = murder_outcome_reworked.0013
+		100 = murder_outcome_reworked.0023
+		100 = murder_outcome_reworked.0033
+		100 = murder_outcome_reworked.0043
+		100 = murder_outcome_reworked.0053
+		100 = murder_outcome_reworked.0063
+		100 = murder_outcome_reworked.0073
+	}
+}
+
+pick_unique_murder_intercept_on_action = {
+	first_valid = {
+		murder_save.0001
+		murder_save.0002
+		murder_save.0003
+		murder_save.0004
+		murder_save.0005
+		murder_save.0007
+		murder_save.0008
+		murder_save.0009
+		murder_save.0011
+		murder_save.0012
+		murder_save.0014
+		murder_save.0015
+	}
+}
+
+pick_repeatable_murder_intercept_on_action = {
+	random_events = {
+		100 = murder_save.0006
+		100 = court_position.9001
+		50 = court_position.9011
+		5 = murder_save.0013
+		100 = court_position.9021
+		600 = fp1_shieldmaiden.0021
+	}
+}

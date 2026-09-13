@@ -1,11 +1,10 @@
-﻿bleeder = { #Haemophilia
+﻿bleeder = {
 	opposites = {
 		pt_balanced_humors
 	}
 	physical = yes
 	health = -1.5
 	
-	#inherit_chance = 50 # 100 for male, 50 for female, recessive
 	genetic = yes
 	enables_inbred = yes
 	birth = 0.5
@@ -35,7 +34,6 @@ clubfooted = {
 	}
 	prowess = -2
 	
-	#inherit_chance = 15
 	genetic = yes
 	enables_inbred = yes
 	birth = 0.5
@@ -65,7 +63,6 @@ hunchbacked = {
 	}
 	prowess = -2
 
-	#inherit_chance = 15
 	genetic = yes
 	physical = yes
 	enables_inbred = yes
@@ -96,7 +93,6 @@ lisping = {
 	}
 	diplomacy = -2
 	
-	#inherit_chance = 15
 	genetic = yes
 	physical = yes
 
@@ -127,7 +123,6 @@ scaly = {
 	}
 	fertility = -0.2
 	
-	#inherit_chance = 100 # dominant
 	genetic = yes
 	physical = yes
 	enables_inbred = yes
@@ -161,7 +156,6 @@ stuttering = {
 	}
 	diplomacy = -2
 
-	#inherit_chance = 15
 	genetic = yes
 	physical = yes
 
@@ -186,14 +180,13 @@ stuttering = {
 
 	ai_sociability = low_negative_ai_value
 }
-wheezing = { #asthma
+wheezing = {
 	opposites = {
 		hardy_lung
 	}
 	physical = yes
 	health = -0.15
 	
-	#inherit_chance = 100 # recessive
 	genetic = yes
 	enables_inbred = yes
 	birth = 0.5

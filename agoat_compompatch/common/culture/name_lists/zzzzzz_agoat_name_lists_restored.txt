@@ -132,12 +132,10 @@
 	}
 	dynasty_of_location_prefix = "dynnp_of"
 
-	# Chance of male children being named after their paternal or maternal grandfather, or their father. Sum must not exceed 100.
 	pat_grf_name_chance = 15
 	mat_grf_name_chance = 5
 	father_name_chance = 5
 
-	# Chance of female children being named after their paternal or maternal grandmother, or their mother. Sum must not exceed 100.
 	pat_grm_name_chance = 10
 	mat_grm_name_chance = 15
 	mother_name_chance = 5
@@ -145,7 +143,6 @@
 
 
 	mercenary_names = {
-		#{ name = "mercenary_company_teutonic_brotherhood" }
 	}
 }
 
@@ -168,7 +165,6 @@ name_list_high_valyrian_targ_dominance = {
 
 	male_names = {
 		50 = {
-			# Targaryen Canon Names
 			Aegon Aegon_Hash Aegor Aelor Aelyx Aemon Aemond Aenar Aenys Aerion Aerys
 			Baelon Baelor
 			Daemion Daemon Daeron
@@ -179,7 +175,6 @@ name_list_high_valyrian_targ_dominance = {
 			Rhaegar Rhaegel
 			Vaegon Valarr Valerion Viserys
 
-			# Semi Canon and Targaryen-esque
 			Aeryn Aelar Aelon Aelys Aenor Amaerys
 			Baelar Baenor
 			Daemarr Daelor Daemarys Daenor Daerion
@@ -222,7 +217,6 @@ name_list_high_valyrian_targ_dominance = {
 
 	female_names = {
 		50 = {
-			# Targaryen Canon Names
 			Aelora Aerea
 			Daella Daena Daenerys Daenora Daenys
 			Elaena
@@ -235,7 +229,6 @@ name_list_high_valyrian_targ_dominance = {
 			Saera Shaena Shaera Shiera
 			Vaella Visenya Viserra
 
-			# Semi Canon and Targaryen-esque
 			Aeriana Aegella Aegelle Aela Aemaella Aenora Aerella Alaerys Amaenerys
 			Baelara Baelora Baelyssa Balaerys
 			Daeryssa Daelora Daemyra Daenelle Daerella Daeressa Daerys Daera
@@ -278,18 +271,15 @@ name_list_high_valyrian_targ_dominance = {
 
 	dynasty_of_location_prefix = "dynnp_of"
 
-	# Chance of male children being named after their paternal or maternal grandfather, or their father. Sum must not exceed 100.
 	pat_grf_name_chance = 10
 	mat_grf_name_chance = 5
 	father_name_chance = 5
 
-	# Chance of female children being named after their paternal or maternal grandmother, or their mother. Sum must not exceed 100.
 	pat_grm_name_chance = 10
 	mat_grm_name_chance = 5
 	mother_name_chance = 5
 
 	mercenary_names = {
-		#{ name = "mercenary_company_teutonic_brotherhood" }
 	}
 }
 
@@ -312,7 +302,6 @@ name_list_high_valyrian_targ_influence = {
 
 	male_names = {
 		25 = {
-			# Targaryen Canon Names
 			Aegon Aegon_Hash Aegor Aelor Aelyx Aemon Aemond Aenar Aenys Aerion Aerys
 			Baelon Baelor
 			Daemion Daemon Daeron
@@ -323,7 +312,6 @@ name_list_high_valyrian_targ_influence = {
 			Rhaegar Rhaegel
 			Vaegon Valarr Valerion Viserys
 
-			# Semi Canon and Targaryen-esque
 			Aeryn Aelar Aelon Aelys Aenor Amaerys
 			Baelar Baenor
 			Daemarr Daelor Daemarys Daenor Daerion
@@ -366,7 +354,6 @@ name_list_high_valyrian_targ_influence = {
 
 	female_names = {
 		25 = {
-			# Targaryen Canon Names
 			Aelora Aerea
 			Daella Daena Daenerys Daenora Daenys
 			Elaena
@@ -379,7 +366,6 @@ name_list_high_valyrian_targ_influence = {
 			Saera Shaena Shaera Shiera
 			Vaella Visenya Viserra
 
-			# Semi Canon and Targaryen-esque
 			Aeriana Aegella Aegelle Aela Aemaella Aenora Aerella Alaerys Amaenerys
 			Baelara Baelora Baelyssa Balaerys
 			Daeryssa Daelora Daemyra Daenelle Daerella Daeressa Daerys Daera
@@ -422,17 +408,14 @@ name_list_high_valyrian_targ_influence = {
 
 	dynasty_of_location_prefix = "dynnp_of"
 
-	# Chance of male children being named after their paternal or maternal grandfather, or their father. Sum must not exceed 100.
 	pat_grf_name_chance = 10
 	mat_grf_name_chance = 5
 	father_name_chance = 5
 
-	# Chance of female children being named after their paternal or maternal grandmother, or their mother. Sum must not exceed 100.
 	pat_grm_name_chance = 10
 	mat_grm_name_chance = 5
 	mother_name_chance = 5
 
 	mercenary_names = {
-		#{ name = "mercenary_company_teutonic_brotherhood" }
 	}
 }
