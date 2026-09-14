@@ -65,7 +65,6 @@ fp1_adventure_legacy_1 = {
 	}
 
 	can_be_picked = {
-		agot_fp1_adventure_legacy_track_trigger = yes
 		hth_adventure_3_legacy_trigger = yes
 	}
 	effect = {

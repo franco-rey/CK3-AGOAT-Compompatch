@@ -1122,51 +1122,51 @@ zzz_great_councils_event.0003 = {
 										ai_zeal <= -150
 										any_secret ?= { is_shunned_or_criminal_for = root }
 										AND = {
-											trait_is_shunned_or_criminal_in_faith_trigger = { FAITH = faith TRAIT = adulterer GENDER_CHARACTER = root }
+											trait_is_shunned_or_criminal_in_faith_trigger = { FAITH = faith TRAIT = trait:adulterer GENDER_CHARACTER = root }
 											has_trait = adulterer
 										}
 										AND = {
-											trait_is_shunned_or_criminal_in_faith_trigger = { FAITH = faith TRAIT = fornicator GENDER_CHARACTER = root }
+											trait_is_shunned_or_criminal_in_faith_trigger = { FAITH = faith TRAIT = trait:fornicator GENDER_CHARACTER = root }
 											has_trait = fornicator
 										}
 										AND = {
-											trait_is_shunned_or_criminal_in_faith_trigger = { FAITH = faith TRAIT = deviant GENDER_CHARACTER = root }
+											trait_is_shunned_or_criminal_in_faith_trigger = { FAITH = faith TRAIT = trait:deviant GENDER_CHARACTER = root }
 											has_trait = deviant
 										}
 										AND = {
-											trait_is_shunned_or_criminal_in_faith_trigger = { FAITH = faith TRAIT = accidental_kinslayer GENDER_CHARACTER = root }
+											trait_is_shunned_or_criminal_in_faith_trigger = { FAITH = faith TRAIT = trait:accidental_kinslayer GENDER_CHARACTER = root }
 											has_trait = accidental_kinslayer
 										}
 										AND = {
-											trait_is_shunned_or_criminal_in_faith_trigger = { FAITH = faith TRAIT = kinslayer_1 GENDER_CHARACTER = root }
+											trait_is_shunned_or_criminal_in_faith_trigger = { FAITH = faith TRAIT = trait:kinslayer_1 GENDER_CHARACTER = root }
 											has_trait = kinslayer_1
 										}
 										AND = {
-											trait_is_shunned_or_criminal_in_faith_trigger = { FAITH = faith TRAIT = kinslayer_2 GENDER_CHARACTER = root }
+											trait_is_shunned_or_criminal_in_faith_trigger = { FAITH = faith TRAIT = trait:kinslayer_2 GENDER_CHARACTER = root }
 											has_trait = kinslayer_2
 										}
 										AND = {
-											trait_is_shunned_or_criminal_in_faith_trigger = { FAITH = faith TRAIT = kinslayer_3 GENDER_CHARACTER = root }
+											trait_is_shunned_or_criminal_in_faith_trigger = { FAITH = faith TRAIT = trait:kinslayer_3 GENDER_CHARACTER = root }
 											has_trait = kinslayer_3
 										}
 										AND = {
-											trait_is_shunned_or_criminal_in_faith_trigger = { FAITH = faith TRAIT = incestuous GENDER_CHARACTER = root }
+											trait_is_shunned_or_criminal_in_faith_trigger = { FAITH = faith TRAIT = trait:incestuous GENDER_CHARACTER = root }
 											has_trait = incestuous
 										}
 										AND = {
-											trait_is_shunned_or_criminal_in_faith_trigger = { FAITH = faith TRAIT = sodomite GENDER_CHARACTER = root }
+											trait_is_shunned_or_criminal_in_faith_trigger = { FAITH = faith TRAIT = trait:sodomite GENDER_CHARACTER = root }
 											has_trait = sodomite
 										}
 										AND = {
-											trait_is_shunned_or_criminal_in_faith_trigger = { FAITH = faith TRAIT = witch GENDER_CHARACTER = root }
+											trait_is_shunned_or_criminal_in_faith_trigger = { FAITH = faith TRAIT = trait:witch GENDER_CHARACTER = root }
 											has_trait = witch
 										}
 										AND = {
-											trait_is_shunned_or_criminal_in_faith_trigger = { FAITH = faith TRAIT = cannibal GENDER_CHARACTER = root }
+											trait_is_shunned_or_criminal_in_faith_trigger = { FAITH = faith TRAIT = trait:cannibal GENDER_CHARACTER = root }
 											has_trait = cannibal
 										}
 										AND = {
-											trait_is_shunned_or_criminal_in_faith_trigger = { FAITH = faith TRAIT = murderer GENDER_CHARACTER = root }
+											trait_is_shunned_or_criminal_in_faith_trigger = { FAITH = faith TRAIT = trait:murderer GENDER_CHARACTER = root }
 											has_trait = murderer
 										}
 									}
@@ -1176,51 +1176,51 @@ zzz_great_councils_event.0003 = {
 								has_trait = gallowsbait
 								has_trait = excommunicated
 								AND = {
-									trait_is_shunned_or_criminal_in_faith_trigger = { FAITH = root.faith TRAIT = adulterer GENDER_CHARACTER = this }
+									trait_is_shunned_or_criminal_in_faith_trigger = { FAITH = root.faith TRAIT = trait:adulterer GENDER_CHARACTER = this }
 									has_trait = adulterer
 								}
 								AND = {
-									trait_is_shunned_or_criminal_in_faith_trigger = { FAITH = root.faith TRAIT = fornicator GENDER_CHARACTER = this }
+									trait_is_shunned_or_criminal_in_faith_trigger = { FAITH = root.faith TRAIT = trait:fornicator GENDER_CHARACTER = this }
 									has_trait = fornicator
 								}
 								AND = {
-									trait_is_shunned_or_criminal_in_faith_trigger = { FAITH = root.faith TRAIT = deviant GENDER_CHARACTER = this }
+									trait_is_shunned_or_criminal_in_faith_trigger = { FAITH = root.faith TRAIT = trait:deviant GENDER_CHARACTER = this }
 									has_trait = deviant
 								}
 								AND = {
-									trait_is_shunned_or_criminal_in_faith_trigger = { FAITH = root.faith TRAIT = accidental_kinslayer GENDER_CHARACTER = this }
+									trait_is_shunned_or_criminal_in_faith_trigger = { FAITH = root.faith TRAIT = trait:accidental_kinslayer GENDER_CHARACTER = this }
 									has_trait = accidental_kinslayer
 								}
 								AND = {
-									trait_is_shunned_or_criminal_in_faith_trigger = { FAITH = root.faith TRAIT = kinslayer_1 GENDER_CHARACTER = this }
+									trait_is_shunned_or_criminal_in_faith_trigger = { FAITH = root.faith TRAIT = trait:kinslayer_1 GENDER_CHARACTER = this }
 									has_trait = kinslayer_1
 								}
 								AND = {
-									trait_is_shunned_or_criminal_in_faith_trigger = { FAITH = root.faith TRAIT = kinslayer_2 GENDER_CHARACTER = this }
+									trait_is_shunned_or_criminal_in_faith_trigger = { FAITH = root.faith TRAIT = trait:kinslayer_2 GENDER_CHARACTER = this }
 									has_trait = kinslayer_2
 								}
 								AND = {
-									trait_is_shunned_or_criminal_in_faith_trigger = { FAITH = root.faith TRAIT = kinslayer_3 GENDER_CHARACTER = this }
+									trait_is_shunned_or_criminal_in_faith_trigger = { FAITH = root.faith TRAIT = trait:kinslayer_3 GENDER_CHARACTER = this }
 									has_trait = kinslayer_3
 								}
 								AND = {
-									trait_is_shunned_or_criminal_in_faith_trigger = { FAITH = root.faith TRAIT = incestuous GENDER_CHARACTER = this }
+									trait_is_shunned_or_criminal_in_faith_trigger = { FAITH = root.faith TRAIT = trait:incestuous GENDER_CHARACTER = this }
 									has_trait = incestuous
 								}
 								AND = {
-									trait_is_shunned_or_criminal_in_faith_trigger = { FAITH = root.faith TRAIT = sodomite GENDER_CHARACTER = this }
+									trait_is_shunned_or_criminal_in_faith_trigger = { FAITH = root.faith TRAIT = trait:sodomite GENDER_CHARACTER = this }
 									has_trait = sodomite
 								}
 								AND = {
-									trait_is_shunned_or_criminal_in_faith_trigger = { FAITH = root.faith TRAIT = witch GENDER_CHARACTER = this }
+									trait_is_shunned_or_criminal_in_faith_trigger = { FAITH = root.faith TRAIT = trait:witch GENDER_CHARACTER = this }
 									has_trait = witch
 								}
 								AND = {
-									trait_is_shunned_or_criminal_in_faith_trigger = { FAITH = root.faith TRAIT = cannibal GENDER_CHARACTER = this }
+									trait_is_shunned_or_criminal_in_faith_trigger = { FAITH = root.faith TRAIT = trait:cannibal GENDER_CHARACTER = this }
 									has_trait = cannibal
 								}
 								AND = {
-									trait_is_shunned_or_criminal_in_faith_trigger = { FAITH = root.faith TRAIT = murderer GENDER_CHARACTER = this }
+									trait_is_shunned_or_criminal_in_faith_trigger = { FAITH = root.faith TRAIT = trait:murderer GENDER_CHARACTER = this }
 									has_trait = murderer
 								}
 							}
@@ -1366,19 +1366,19 @@ zzz_great_councils_event.0003 = {
 											}
 										}
 										AND = {
-											trait_is_shunned_or_criminal_in_faith_trigger = { FAITH = faith TRAIT = accidental_kinslayer GENDER_CHARACTER = root }
+											trait_is_shunned_or_criminal_in_faith_trigger = { FAITH = faith TRAIT = trait:accidental_kinslayer GENDER_CHARACTER = root }
 											has_trait = accidental_kinslayer
 										}
 										AND = {
-											trait_is_shunned_or_criminal_in_faith_trigger = { FAITH = faith TRAIT = kinslayer_1 GENDER_CHARACTER = root }
+											trait_is_shunned_or_criminal_in_faith_trigger = { FAITH = faith TRAIT = trait:kinslayer_1 GENDER_CHARACTER = root }
 											has_trait = kinslayer_1
 										}
 										AND = {
-											trait_is_shunned_or_criminal_in_faith_trigger = { FAITH = faith TRAIT = kinslayer_2 GENDER_CHARACTER = root }
+											trait_is_shunned_or_criminal_in_faith_trigger = { FAITH = faith TRAIT = trait:kinslayer_2 GENDER_CHARACTER = root }
 											has_trait = kinslayer_2
 										}
 										AND = {
-											trait_is_shunned_or_criminal_in_faith_trigger = { FAITH = faith TRAIT = kinslayer_3 GENDER_CHARACTER = root }
+											trait_is_shunned_or_criminal_in_faith_trigger = { FAITH = faith TRAIT = trait:kinslayer_3 GENDER_CHARACTER = root }
 											has_trait = kinslayer_3
 										}
 									}
@@ -1386,19 +1386,19 @@ zzz_great_councils_event.0003 = {
 							}
 							OR = {
 								AND = {
-									trait_is_shunned_or_criminal_in_faith_trigger = { FAITH = root.faith TRAIT = accidental_kinslayer GENDER_CHARACTER = this }
+									trait_is_shunned_or_criminal_in_faith_trigger = { FAITH = root.faith TRAIT = trait:accidental_kinslayer GENDER_CHARACTER = this }
 									has_trait = accidental_kinslayer
 								}
 								AND = {
-									trait_is_shunned_or_criminal_in_faith_trigger = { FAITH = root.faith TRAIT = kinslayer_1 GENDER_CHARACTER = this }
+									trait_is_shunned_or_criminal_in_faith_trigger = { FAITH = root.faith TRAIT = trait:kinslayer_1 GENDER_CHARACTER = this }
 									has_trait = kinslayer_1
 								}
 								AND = {
-									trait_is_shunned_or_criminal_in_faith_trigger = { FAITH = root.faith TRAIT = kinslayer_2 GENDER_CHARACTER = this }
+									trait_is_shunned_or_criminal_in_faith_trigger = { FAITH = root.faith TRAIT = trait:kinslayer_2 GENDER_CHARACTER = this }
 									has_trait = kinslayer_2
 								}
 								AND = {
-									trait_is_shunned_or_criminal_in_faith_trigger = { FAITH = root.faith TRAIT = kinslayer_3 GENDER_CHARACTER = this }
+									trait_is_shunned_or_criminal_in_faith_trigger = { FAITH = root.faith TRAIT = trait:kinslayer_3 GENDER_CHARACTER = this }
 									has_trait = kinslayer_3
 								}
 							}

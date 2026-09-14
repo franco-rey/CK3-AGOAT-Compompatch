@@ -1,0 +1,42 @@
+ab_reach_crown_template = {
+	can_equip = {
+		always = yes
+	}
+	can_benefit = {
+		is_capable_adult = yes
+	}
+	fallback = {
+	}
+	unique = yes
+	ai_score = {
+		value = 100
+	}
+}
+silvervalyrian_ring_template = {
+	can_equip = {
+		always = yes
+	}
+	can_benefit = {
+		is_capable_adult = yes
+	}
+	fallback = {
+	}
+	unique = yes
+	ai_score = {
+		value = 100
+	}
+}
+west_crown_template = {
+	can_equip = {
+		always = yes
+	}
+	can_benefit = {
+		is_capable_adult = yes
+	}
+	fallback = {
+	}
+	unique = yes
+	ai_score = {
+		value = 100
+	}
+}

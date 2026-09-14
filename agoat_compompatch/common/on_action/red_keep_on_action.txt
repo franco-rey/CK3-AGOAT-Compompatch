@@ -120,6 +120,8 @@ rk_hold_court_events = {
 rk_army_wildfire = {
 	trigger = {
 		is_ai = yes
+		exists = scope:army
+		exists = scope:army.location
 	}
 	events = {
 		rk_wildfire.0005

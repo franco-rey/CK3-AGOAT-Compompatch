@@ -1138,7 +1138,6 @@ add_au1_au_courtier_interaction = {
     			remove_trait = sadistic
     			remove_trait = eccentric
 
-			remove_trait = lifestyle_blademaster_3_history
 			remove_trait = lifestyle_blademaster
 			remove_trait = lifestyle_hunter
 			remove_trait = diplomat

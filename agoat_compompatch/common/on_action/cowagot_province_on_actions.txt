@@ -192,7 +192,7 @@ set_provinces_on_actions = {
 				set_holding_type = castle_holding
 				add_building = castle_02
 				add_building = smiths_04
-				add_building = common_trade_03
+				add_building = common_tradeport_03
 			}
 
 			title:c_lordsport.holder = {
@@ -244,7 +244,7 @@ set_provinces_on_actions = {
 			}
 
 			title:b_ironrath.title_province = {
-				remove_building = ironwood_01
+				remove_building = agot_ironwood_01
 				if = {
 					limit = { NOT = { has_special_building = yes } }
 					add_special_building_slot = ironwrath_01

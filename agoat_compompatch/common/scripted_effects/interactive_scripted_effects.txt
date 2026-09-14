@@ -2904,6 +2904,68 @@ ai_chance_to_become_conqueror_effect = {
 	}
 }
 
+interactive_bannermen_toll_commit_effect = {
+	set_variable = {
+		name = miv_toll
+		value = $RUNG$
+		days = 400
+	}
+	set_variable = {
+		name = miv_toll_war
+		value = $WAR$
+		days = 400
+	}
+}
+
+interactive_bannermen_toll_pay_effect = {
+	if = {
+		limit = {
+			interactive_bannermen_tolled_trigger = {
+				WAR = $WAR$
+			}
+		}
+		if = {
+			limit = {
+				var:miv_toll = 0
+			}
+			add_opinion = {
+				target = $LIEGE$
+				modifier = war_exhaustion_vassal_opinion
+				opinion = -5
+			}
+		}
+		else_if = {
+			limit = {
+				var:miv_toll = 1
+			}
+			add_opinion = {
+				target = $LIEGE$
+				modifier = war_exhaustion_vassal_opinion
+				opinion = -10
+			}
+		}
+		else_if = {
+			limit = {
+				var:miv_toll = 2
+			}
+			add_opinion = {
+				target = $LIEGE$
+				modifier = war_exhaustion_vassal_opinion
+				opinion = -15
+			}
+		}
+		else = {
+			add_opinion = {
+				target = $LIEGE$
+				modifier = war_exhaustion_vassal_opinion
+				opinion = -20
+			}
+		}
+		remove_variable = miv_toll
+		remove_variable = miv_toll_war
+	}
+}
+
 interactive_bannermen_summon_effect = {
 	if = {
 		limit = {
@@ -3575,6 +3637,30 @@ interactive_bannermen_widget_list_effect = {
 				name = $WIDGET$
 				target = scope:vassal
 			}
+		}
+	}
+}
+
+interactive_bannermen_civilwar_commit_effect = {
+	if = {
+		limit = {
+			NOT = {
+				interactive_bannermen_civilwar_answered_trigger = yes
+			}
+		}
+		save_temporary_scope_value_as = {
+			name = miv_score
+			value = interactive_bannermen_muster_score
+		}
+		set_variable = {
+			name = miv_cw_answer
+			value = miv_bannermen_civilwar_verdict
+			days = 120
+		}
+		set_variable = {
+			name = miv_cw_answer_war
+			value = scope:miv_cw_war
+			days = 120
 		}
 	}
 }
