@@ -28,12 +28,12 @@ gptip_add_flags_effect = {
 		random_list = {
 			1 = {
 				modifier = { add = 10 is_healthy = no }
-				modifier = { 
+				modifier = {
 					add = 1
 					OR = {
 						has_trait = compassionate has_trait = callous has_trait = sadistic
 						has_trait = just has_trait = arbitrary
-						has_trait = generous has_trait = greedy 
+						has_trait = generous has_trait = greedy
 						has_trait = brave has_trait = craven
 						has_trait = forgiving has_trait = vengeful
 						has_trait = gregarious has_trait = shy
@@ -63,19 +63,19 @@ gptip_add_flags_effect = {
 			1 = {
 				modifier = { add = 10 is_healthy = no }
 				modifier = { add = 5 has_trait = pregnant }
-				modifier = { 
+				modifier = {
 					add = 1
 					OR = {
 						has_trait = compassionate has_trait = callous has_trait = sadistic
 						has_trait = just has_trait = arbitrary
-						has_trait = generous has_trait = greedy 
+						has_trait = generous has_trait = greedy
 						has_trait = brave has_trait = craven
 						has_trait = forgiving has_trait = vengeful
 						has_trait = gregarious has_trait = shy
 						has_trait = zealous has_trait = cynical
 					}
 				}
-				modifier = { 
+				modifier = {
 					add = 1000
 					is_travelling = no
 					is_commanding_army = no
@@ -112,7 +112,7 @@ gptip_add_flags_effect = {
 			0 = { modifier = { add = 1 has_council_position = councillor_chancellor } add_character_flag = council_chancellor }
 			0 = { modifier = { add = 1 has_council_position = councillor_marshal } add_character_flag = council_marshal }
 			0 = { modifier = { add = 1 has_council_position = councillor_steward } add_character_flag = council_steward }
-			
+
 			0 = { modifier = { add = 1 has_trait = compassionate OR = { is_female = yes ai_vengefulness < -20 } } add_character_flag = gpt_wedding_happy_cry_entry }
 			0 = { modifier = { add = 0.2 has_trait = fickle } add_character_flag = gpt_alto_flute_idle_entry }
 			0 = { modifier = { add = 0.2 has_trait = fickle } add_character_flag = gpt_alto_flute_active_entry }
@@ -185,7 +185,7 @@ gptip_add_flags_effect = {
 			0 = { modifier = { add = 1 has_focus_or_focus_trait_trigger = { FOCUS = intrigue_skulduggery_focus } } add_character_flag = gpt_eavesdrop_entry }
 			0 = { modifier = { add = 1 has_focus_or_focus_trait_trigger = { FOCUS = intrigue_temptation_focus } } add_character_flag = gpt_flirtation_left_entry }
 			0 = { modifier = { add = 1 has_focus_or_focus_trait_trigger = { FOCUS = intrigue_intimidation_focus } } add_character_flag = council_spymaster }
-			
+
 			0 = { modifier = { add = 1 has_trait = witch } add_character_flag = gpt_physician_entry }
 			0 = { modifier = { add = 1 has_trait = lifestyle_herbalist } add_character_flag = gpt_physician_entry }
 			0 = { modifier = { add = 1 has_trait = lifestyle_physician } add_character_flag = gpt_physician_entry }
@@ -227,7 +227,7 @@ gptip_add_flags_effect = {
 				}
 				add_character_flag = gpt_pain_entry
 			}
-			
+
 
 
 
@@ -236,7 +236,7 @@ gptip_add_flags_effect = {
 					add = 1
 					has_trait = drunkard
 				}
-				add_character_flag = gpt_wedding_drunk_entry 
+				add_character_flag = gpt_wedding_drunk_entry
 			}
 			0 = {
 				modifier = {
@@ -246,7 +246,7 @@ gptip_add_flags_effect = {
 						has_trait = profligate
 					}
 				}
-				add_character_flag = gpt_betting_entry 
+				add_character_flag = gpt_betting_entry
 			}
 			0 = {
 				modifier = {
@@ -256,14 +256,14 @@ gptip_add_flags_effect = {
 						has_trait = lunatic
 					}
 				}
-				add_character_flag = delirium 
+				add_character_flag = delirium
 			}
 			0 = {
 				modifier = {
 					add = 1
 					has_trait = irritable
 				}
-				add_character_flag = gpt_rage_entry 
+				add_character_flag = gpt_rage_entry
 			}
 			0 = {
 				modifier = {
@@ -274,7 +274,7 @@ gptip_add_flags_effect = {
 						has_trait = comfort_eater
 					}
 				}
-				add_character_flag = emotion_sadness_entry 
+				add_character_flag = emotion_sadness_entry
 			}
 			0 = {
 				modifier = {
@@ -337,7 +337,7 @@ gptip_add_flags_effect = {
 					is_travelling = no
 					AND = { ai_rationality >= 20 OR = { num_of_relation_ward >= 1 num_of_relation_guardian >= 1 } }
 				}
-				add_character_flag = gpt_happy_teacher_entry 
+				add_character_flag = gpt_happy_teacher_entry
 			}
 
 
@@ -355,7 +355,7 @@ gptip_add_flags_effect = {
 					stress_level >= 2
 					ai_compassion <= 20
 				}
-				add_character_flag = emotion_stressed_entry 
+				add_character_flag = emotion_stressed_entry
 			}
 			0 = {
 				modifier = {
@@ -382,7 +382,7 @@ gptip_add_flags_effect = {
 					has_trait = wounded
 					is_travelling = no
 				}
-				add_character_flag = gpt_severelywounded_entry 
+				add_character_flag = gpt_severelywounded_entry
 			}
 			0 = {
 				modifier = {
@@ -401,7 +401,7 @@ gptip_add_flags_effect = {
 						}
 					}
 				}
-				add_character_flag = council_spymaster 
+				add_character_flag = council_spymaster
 			}
 			0 = {
 				modifier = {
@@ -432,7 +432,7 @@ gptip_add_flags_effect = {
 						}
 					}
 				}
-				add_character_flag = gpt_stressed_teacher_entry 
+				add_character_flag = gpt_stressed_teacher_entry
 			}
 			0 = {
 				modifier = {
@@ -450,7 +450,7 @@ gptip_add_flags_effect = {
 						}
 					}
 				}
-				add_character_flag = page_flipping 
+				add_character_flag = page_flipping
 			}
 			0 = {
 				modifier = {
@@ -463,7 +463,7 @@ gptip_add_flags_effect = {
 						}
 					}
 				}
-				add_character_flag = gpt_holding_scrolls_entry 
+				add_character_flag = gpt_holding_scrolls_entry
 			}
 			0 = {
 				modifier = {
@@ -477,7 +477,7 @@ gptip_add_flags_effect = {
 						}
 					}
 				}
-				add_character_flag = gpt_happy_teacher_entry 
+				add_character_flag = gpt_happy_teacher_entry
 			}
 			0 = {
 				modifier = {
@@ -492,7 +492,7 @@ gptip_add_flags_effect = {
 						}
 					}
 				}
-				add_character_flag = gpt_love_entry 
+				add_character_flag = gpt_love_entry
 			}
 
 
@@ -510,7 +510,7 @@ gptip_add_flags_effect = {
 					}
 					ai_compassion > -20
 				}
-				add_character_flag = menacing 
+				add_character_flag = menacing
 			}
 			0 = {
 				modifier = {
@@ -523,9 +523,9 @@ gptip_add_flags_effect = {
 					}
 					ai_compassion <= -20
 				}
-				add_character_flag = gpt_threatening_entry 
+				add_character_flag = gpt_threatening_entry
 			}
-			
+
 			0 = {
 				modifier = {
 					add = 1000
@@ -541,7 +541,7 @@ gptip_add_flags_effect = {
 					}
 					ai_boldness >= 20
 				}
-				add_character_flag = council_marshal 
+				add_character_flag = council_marshal
 			}
 			0 = {
 				modifier = {
@@ -879,7 +879,7 @@ gptip_add_flags_effect = {
 						}
 					}
 				}
-				add_character_flag = gpt_toast_entry 
+				add_character_flag = gpt_toast_entry
 			}
 			0 = {
 				modifier = {
@@ -901,7 +901,7 @@ gptip_add_flags_effect = {
 						}
 					}
 				}
-				add_character_flag = gpt_wrestling_victory_entry 
+				add_character_flag = gpt_wrestling_victory_entry
 			}
 			0 = {
 				modifier = {
@@ -925,7 +925,7 @@ gptip_add_flags_effect = {
 						}
 					}
 				}
-				add_character_flag = gpt_disbelief_entry 
+				add_character_flag = gpt_disbelief_entry
 			}
 			0 = {
 				modifier = {
@@ -971,7 +971,7 @@ gptip_add_flags_effect = {
 						}
 					}
 				}
-				add_character_flag = gpt_shock_entry 
+				add_character_flag = gpt_shock_entry
 			}
 
 
@@ -1159,7 +1159,7 @@ gptip_remove_flags_effect = {
 	remove_character_flag = gpt_nervous_entry
 	remove_character_flag = gpt_paranoia_entry
 	remove_character_flag = gpt_schadenfreude_entry
-	remove_character_flag = gpt_newborn_entry #holding
+	remove_character_flag = gpt_newborn_entry
 	remove_character_flag = gpt_throneroom_writer_entry
 	remove_character_flag = gpt_pondering_entry
 	remove_character_flag = gpt_wedding_drunk_entry

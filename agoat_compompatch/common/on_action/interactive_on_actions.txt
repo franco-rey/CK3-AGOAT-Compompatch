@@ -11,6 +11,8 @@ on_war_started = {
 	}
 }
 
+
+
 interactive_game_start = {
 	effect = {
 		set_global_variable = {
@@ -101,7 +103,7 @@ interactive_map_generation = {
 				has_game_rule = diverse_world_miv_enabled
 				has_game_rule = shattered_world_miv_enabled
 			}
-			game_rule_random_ruler_placement_effect = yes
+			interactive_random_ruler_placement_effect = yes
 			every_ruler = {
 				limit = {
 					interactive_map_generation_ruler_trigger = yes
@@ -330,6 +332,7 @@ interactive_war_started = {
 					}
 				}
 			}
+
 			if = {
 				limit = {
 					has_game_rule = civil_war_indirect_vassals_enabled
@@ -639,6 +642,7 @@ interactive_war_started = {
 					}
 				}
 			}
+
 			if = {
 				limit = {
 					has_game_rule = internal_turmoil_enabled
@@ -774,6 +778,7 @@ interactive_war_started = {
 							holder = {
 								is_vassal_or_below_of = scope:defender
 								highest_held_title_tier > tier_barony
+
 								is_landed = yes
 								NOT = {
 									is_at_war_with = scope:attacker
@@ -837,6 +842,7 @@ interactive_war_started = {
 					}
 				}
 			}
+
 			scope:defender = {
 				every_vassal_or_below = {
 					if = {
@@ -1085,6 +1091,7 @@ interactive_war_started = {
 					scope:war = {
 						add_defender = scope:oathbreaker
 					}
+
 					scope:war = {
 						interactive_bannermen_batch_toast_effect = {
 							KEY = defect_enemy
@@ -1141,6 +1148,7 @@ interactive_war_started = {
 					scope:war = {
 						add_attacker = scope:oathbreaker
 					}
+
 					scope:war = {
 						interactive_bannermen_batch_toast_effect = {
 							KEY = defect_enemy
@@ -1247,6 +1255,7 @@ interactive_bannermen = {
 		if = {
 			limit = {
 				always = no
+
 				NOT = {
 					has_game_rule = bannermen_mode_enabled
 				}
@@ -1271,6 +1280,7 @@ interactive_bannermen = {
 					}
 				}
 			}
+
 			scope:defender = {
 				every_vassal = {
 					limit = {
@@ -1400,6 +1410,7 @@ interactive_war_participants = {
 		if = {
 			limit = {
 				always = no
+
 				OR = {
 					has_game_rule = bannermen_mode_enabled
 					debug_only = yes

@@ -1,0 +1,1924 @@
+﻿
+au1_hatch_dragon_egg_interaction = {
+	category = interaction_category_diplomacy
+	common_interaction = yes
+	interface_priority = 3
+	icon = au_hatch_dragon
+	desc = au1_hatch_dragon_egg_interaction_desc
+	auto_accept = yes
+
+	target_type = artifact
+	target_filter = recipient_artifacts
+
+	ai_will_do = {
+		base = 0
+	}
+	can_be_picked_artifact = {
+		scope:target = {
+			has_variable = dragon_egg
+		}
+	}
+	is_shown = {
+		scope:actor = {
+			is_human = yes
+			has_character_flag = au1_enabled
+		}
+		scope:recipient = {
+			is_human = yes
+			any_character_artifact = {
+				has_variable = dragon_egg
+			}
+		}
+	}
+	on_accept = {
+		scope:recipient = {
+			agot_spawn_owned_hatchling_from_egg_effect = {
+				OWNER = scope:recipient
+				EGG = scope:target
+			}
+		}
+	}
+}
+
+au1_hatch_dragon_egg_dragonrider_interaction = {
+	category = interaction_category_diplomacy
+	common_interaction = yes
+	interface_priority = 3
+	icon = au_hatch_dragon_bond
+	desc = au1_hatch_dragon_egg_dragonrider_interaction_desc
+
+	auto_accept = yes
+
+	target_type = artifact
+	target_filter = recipient_artifacts
+
+	ai_will_do = {
+		base = 0
+	}
+	can_be_picked_artifact = {
+		scope:target = {
+			has_variable = dragon_egg
+		}
+	}
+	is_shown = {
+		scope:actor = {
+			has_character_flag = au1_enabled
+		}
+		scope:recipient = {
+			is_human = yes
+			any_character_artifact = {
+				has_variable = dragon_egg
+			}
+		}
+	}
+	on_accept = {
+		scope:recipient = {
+			agot_spawn_bonded_hatchling_from_egg_effect = {
+				OWNER = scope:recipient
+				EGG = scope:target
+			}
+		}
+	}
+}
+au1_lay_dragon_egg_interaction = {
+	category = interaction_category_diplomacy
+	common_interaction = yes
+	interface_priority = 997
+	icon = au_logo
+	desc = au1_lay_dragon_egg_interaction_desc
+
+	ai_will_do = {
+		base = 0
+	}
+
+	is_shown = {
+		scope:actor = {
+			has_character_flag = au1_enabled
+		}
+		scope:recipient = {
+			has_trait = dragon
+			is_female = yes
+		}
+	}
+
+	auto_accept = yes
+
+	on_accept = {
+		scope:recipient = {
+			save_scope_as = dragon_parent
+		}
+		scope:dragon_parent = { custom_tooltip = agot_dragon_lay_egg_debug.lay_eggs }
+		scope:actor = {
+			random_list = {
+				1 = {
+					trigger = {
+						scope:dragon_parent = {
+							NOR = {
+								has_trait = dragon_fertile
+								AND = {
+									has_inactive_trait = dragon_fertile
+									has_variable = dragon_is_fertile
+								}
+							}
+						}
+						agot_dragon_population_low = no
+					}
+					trigger_event = {
+						id = agot_dragon_egg_lay.0001
+					}
+				}
+				9 = {
+					trigger_event = {
+						id = agot_dragon_egg_lay.0002
+					}
+				}
+			}
+		}
+	}
+}
+au1_spawn_dragon_interaction = {
+	category = interaction_category_diplomacy
+	use_diplomatic_range = no
+	common_interaction = yes
+	interface_priority = 3
+	icon = icon_scheme_dragon
+	desc = au1_spawn_dragon_interaction_desc
+	is_shown = {
+		scope:actor = { is_ai = no }
+		OR = {
+		scope:actor = {
+			has_character_flag = au1_enabled
+		}
+		}
+	}
+
+	auto_accept = yes
+
+	send_option = {
+		flag = debug_spawn_owned_dragon
+		localization = debug_spawn_owned_dragon
+	}
+	send_option = {
+		flag = debug_spawn_wild_dragon
+		localization = debug_spawn_wild_dragon
+	}
+	send_option = {
+		flag = debug_spawn_tamed_dragon
+		localization = debug_spawn_tamed_dragon
+	}
+	on_accept = {
+		if = {
+			limit = {
+				scope:debug_spawn_owned_dragon = yes
+			}
+			scope:actor = {
+				custom_tooltip = {
+					text = agot_debug_spawn_owned_dragon_tt
+					agot_spawn_owned_adult_dragon_effect = yes
+				}
+			}
+		}
+		if = {
+			limit = {
+				scope:debug_spawn_wild_dragon = yes
+			}
+			scope:actor = {
+				custom_tooltip = {
+					text = agot_debug_spawn_wild_dragon_tt
+					agot_spawn_wild_dragon_effect = yes
+				}
+			}
+		}
+		if = {
+			limit = {
+				scope:debug_spawn_tamed_dragon = yes
+			}
+			scope:recipient = {
+				custom_tooltip = {
+					text = agot_debug_give_dragon_tt
+					agot_spawn_owned_adult_dragon_effect = yes
+					if = {
+						limit = { exists = scope:dragon }
+						agot_tame_dragon = {
+							TAMER = scope:recipient
+							DRAGON = scope:dragon
+						}
+					}
+				}
+			}
+		}
+	}
+}
+au1_dragon_disinterest_interaction = {
+	category = interaction_category_diplomacy
+	desc = agot_dragon_disinterest_desc
+	icon = au_logo
+    	interface_priority = 3
+	auto_accept = yes
+    	use_diplomatic_range = no
+
+
+	is_shown = {
+		scope:actor = {
+			has_character_flag = au1_enabled
+		}
+	}
+	is_valid_showing_failures_only = {
+
+	}
+
+	on_accept = {
+		scope:recipient = {
+			add_character_modifier = agot_dragon_disinterest
+					}
+
+		}
+	ai_will_do = {
+		base = 0
+	}
+}
+au1_religion_set_special_incest_flag_interaction = {
+	category = interaction_category_diplomacy
+	icon = au_logo
+	use_diplomatic_range = no
+	common_interaction = yes
+	interface_priority = 3
+
+	is_shown = {
+		scope:actor = { has_character_flag = au1_enabled }
+	}
+
+	auto_accept = yes
+
+	send_option = {
+		flag = adelphogamous_incest_for_dynasty
+		localization = agot_adelphogamous_incest_for_dynasty
+		is_valid = {
+			custom_tooltip = {
+				text = agot_debug_incest_variable.tt
+				NOT = { exists = scope:recipient.dynasty.var:agot_doctrine_of_exceptionalism_incest_exemption }
+			}
+		}
+	}
+	send_option = {
+		flag = allow_adelphogamous_incest_for_house
+		localization = agot_adelphogamous_incest_for_house
+		is_valid = {
+			custom_tooltip = {
+				text = agot_debug_incest_variable.tt
+				NOT = { exists = scope:recipient.house.var:agot_doctrine_of_exceptionalism_incest_exemption }
+			}
+		}
+	}
+	send_option = {
+		flag = agot_no_incest_allowed
+		localization = agot_agot_no_incest_allowed
+	}
+
+	on_accept = {
+		if = {
+			limit = { scope:adelphogamous_incest_for_dynasty = yes }
+
+			scope:recipient.dynasty = { set_variable = agot_doctrine_of_exceptionalism_incest_exemption }
+		}
+		if = {
+			limit = { scope:allow_adelphogamous_incest_for_house = yes }
+
+			scope:recipient.house = { set_variable = agot_doctrine_of_exceptionalism_incest_exemption }
+		}
+		if = {
+			limit = { scope:agot_no_incest_allowed = yes }
+
+			scope:recipient.dynasty ?= { remove_variable = agot_doctrine_of_exceptionalism_incest_exemption }
+			scope:recipient.house ?= { remove_variable = agot_doctrine_of_exceptionalism_incest_exemption }
+		}
+	}
+}
+
+au3_change_hunt_success_chance = {
+	category = interaction_category_diplomacy
+	use_diplomatic_range = no
+	ignores_pending_interaction_block = yes
+	common_interaction = yes
+	icon = au_logo
+	is_shown = {
+		scope:actor = {
+			has_character_flag = au1_enabled
+		}
+		scope:actor.involved_activity ?= {
+			has_activity_type = activity_hunt
+			exists = var:hunt_success_chance
+		}
+	}
+
+	send_option = {
+		flag = score_massive
+		localization = score_massive
+	}
+
+	send_option = {
+		flag = score_major
+		localization = score_major
+	}
+
+	send_option = {
+		flag = score_medium
+		localization = score_medium
+	}
+
+	send_option = {
+		flag = score_minor
+		localization = score_minor
+	}
+
+	send_option = {
+		flag = decrease_score_minor
+		localization = decrease_score_minor
+	}
+
+	send_option = {
+		flag = decrease_score_medium
+		localization = decrease_score_medium
+	}
+
+	send_option = {
+		flag = decrease_score_major
+		localization = decrease_score_major
+	}
+
+	send_option = {
+		flag = decrease_score_massive
+		localization = decrease_score_massive
+	}
+
+	on_accept = {
+		scope:actor.involved_activity = {
+			if = {
+				limit = {
+					NOT = { exists = var:hunt_success_chance_event }
+				}
+				set_variable = { name = hunt_success_chance_event value = 0 }
+			}
+			switch = {
+				trigger = yes
+				scope:score_massive = {
+					change_variable = { name = hunt_success_chance_event add = hunt_activity_success_increase_massive_value }
+				}
+				scope:score_major = {
+					change_variable = { name = hunt_success_chance_event add = hunt_activity_success_increase_major_value }
+				}
+				scope:score_medium = {
+					change_variable = { name = hunt_success_chance_event add = hunt_activity_success_increase_medium_value }
+				}
+				scope:score_minor = {
+					change_variable = { name = hunt_success_chance_event add = hunt_activity_success_increase_minor_value }
+				}
+				scope:decrease_score_massive = {
+					change_variable = { name = hunt_success_chance_event add = hunt_activity_success_decrease_massive_value }
+				}
+				scope:decrease_score_major = {
+					change_variable = { name = hunt_success_chance_event add = hunt_activity_success_decrease_major_value }
+				}
+				scope:decrease_score_medium = {
+					change_variable = { name = hunt_success_chance_event add = hunt_activity_success_decrease_medium_value }
+				}
+				scope:decrease_score_minor = {
+					change_variable = { name = hunt_success_chance_event add = hunt_activity_success_decrease_minor_value }
+				}
+			}
+			set_variable = {
+				name = hunt_success_chance
+				value = {
+					value = hunt_success_chance_value
+					add = var:hunt_success_chance_event
+				}
+			}
+		}
+	}
+
+	auto_accept = yes
+}
+au3_change_tournament_score = {
+	category = interaction_category_diplomacy
+	use_diplomatic_range = no
+	ignores_pending_interaction_block = yes
+	common_interaction = yes
+	icon = au_logo
+	is_shown = {
+		scope:actor = {
+			has_character_flag = au1_enabled
+		}
+		scope:recipient = {
+			involved_activity ?= {
+				has_activity_type = activity_tournament
+			}
+			activity_is_competing_trigger = yes
+		}
+	}
+
+	send_option = {
+		flag = score_massive
+		localization = score_massive
+	}
+
+	send_option = {
+		flag = score_major
+		localization = score_major
+	}
+
+	send_option = {
+		flag = score_medium
+		localization = score_medium
+	}
+
+	send_option = {
+		flag = score_minor
+		localization = score_minor
+	}
+
+	send_option = {
+		flag = decrease_score_minor
+		localization = decrease_score_minor
+	}
+
+	send_option = {
+		flag = decrease_score_medium
+		localization = decrease_score_medium
+	}
+
+	send_option = {
+		flag = decrease_score_major
+		localization = decrease_score_major
+	}
+
+	send_option = {
+		flag = decrease_score_massive
+		localization = decrease_score_massive
+	}
+
+	on_accept = {
+		scope:recipient = {
+			if = {
+				limit = { scope:score_massive = yes }
+				activity_tournament_change_contestant_score_effect = { SCORE = increase_massive }
+			}
+			else_if = {
+				limit = { scope:score_major = yes }
+				activity_tournament_change_contestant_score_effect = { SCORE = increase_major }
+			}
+			else_if = {
+				limit = { scope:score_medium = yes }
+				activity_tournament_change_contestant_score_effect = { SCORE = increase_medium }
+			}
+			else_if = {
+				limit = { scope:score_minor = yes }
+				activity_tournament_change_contestant_score_effect = { SCORE = increase_minor }
+			}
+			else_if = {
+				limit = { scope:decrease_score_massive = yes }
+				activity_tournament_change_contestant_score_effect = { SCORE = decrease_massive }
+			}
+			else_if = {
+				limit = { scope:decrease_score_major = yes }
+				activity_tournament_change_contestant_score_effect = { SCORE = decrease_major }
+			}
+			else_if = {
+				limit = { scope:decrease_score_medium = yes }
+				activity_tournament_change_contestant_score_effect = { SCORE = decrease_medium }
+			}
+			else_if = {
+				limit = { scope:decrease_score_minor = yes }
+				activity_tournament_change_contestant_score_effect = { SCORE = decrease_minor }
+			}
+		}
+	}
+
+	auto_accept = yes
+}
+au3_destroy_title_interaction = {
+	category = interaction_category_diplomacy
+	use_diplomatic_range = no
+	ignores_pending_interaction_block = yes
+	icon = antagonistic
+
+	is_shown = {
+		scope:actor = {
+			has_character_flag = au1_enabled
+		}
+	}
+
+	send_option = {
+		is_valid = {
+			scope:recipient = {
+				primary_title.tier >= tier_duchy
+			}
+		}
+		flag = top_title
+		localization = debug_top_title_interaction
+	}
+
+	send_option = {
+		flag = all_title
+		localization = debug_all_title_interaction
+	}
+
+	on_accept = {
+		switch = {
+			trigger = yes
+			scope:top_title = {
+				scope:recipient = {
+					scope:recipient = { destroy_title = primary_title }
+				}
+			}
+			scope:all_title = {
+				scope:recipient = {
+					every_sub_realm_title = {
+						limit = {
+							tier >= tier_duchy
+						}
+						scope:recipient = { destroy_title = prev }
+					}
+				}
+			}
+		}
+	}
+
+	auto_accept = yes
+}
+au3_spawn_courtier_interaction = {
+	category = interaction_category_diplomacy
+	use_diplomatic_range = no
+	ignores_pending_interaction_block = yes
+	icon = au_logo
+
+	interface_priority = 996
+
+	is_shown = {
+		scope:recipient = { is_ruler = yes }
+		scope:actor = {
+			has_character_flag = au1_enabled
+		}
+	}
+
+	send_option = {
+		flag = diplomacy
+		localization = diplomacy
+	}
+	send_option = {
+		flag = martial
+		localization = martial
+	}
+	send_option = {
+		flag = stewardship
+		localization = stewardship
+	}
+	send_option = {
+		flag = intrigue
+		localization = intrigue
+	}
+	send_option = {
+		flag = learning
+		localization = learning
+	}
+	send_option = {
+		flag = prowess
+		localization = prowess
+	}
+	on_accept = {
+		switch = {
+			trigger = yes
+			scope:diplomacy = {
+				create_character = {
+					template = pool_repopulate_diplomacy
+					gender_female_chance = 50
+					culture = scope:recipient.culture
+					faith = scope:recipient.faith
+					location = scope:recipient.location
+					dynasty = none
+					save_scope_as = new_courtier
+				}
+			}
+			scope:martial = {
+				create_character = {
+					template = pool_repopulate_martial
+					gender_female_chance = recipient_soldier_female_chance
+					culture = scope:recipient.culture
+					faith = scope:recipient.faith
+					location = scope:recipient.location
+					dynasty = none
+					save_scope_as = new_courtier
+				}
+			}
+			scope:stewardship = {
+				create_character = {
+					template = pool_repopulate_stewardship
+					gender_female_chance = 50
+					culture = scope:recipient.culture
+					faith = scope:recipient.faith
+					location = scope:recipient.location
+					dynasty = none
+					save_scope_as = new_courtier
+				}
+			}
+			scope:intrigue = {
+				create_character = {
+					template = pool_repopulate_intrigue
+					gender_female_chance = 50
+					culture = scope:recipient.culture
+					faith = scope:recipient.faith
+					location = scope:recipient.location
+					dynasty = none
+					save_scope_as = new_courtier
+				}
+			}
+			scope:learning = {
+				create_character = {
+					template = pool_repopulate_learning
+					gender_female_chance = 50
+					culture = scope:recipient.culture
+					faith = scope:recipient.faith
+					location = scope:recipient.location
+					dynasty = none
+					save_scope_as = new_courtier
+				}
+			}
+			scope:prowess = {
+				create_character = {
+					template = pool_repopulate_prowess
+					gender_female_chance = recipient_soldier_female_chance
+					culture = scope:recipient.culture
+					faith = scope:recipient.faith
+					location = scope:recipient.location
+					dynasty = none
+					save_scope_as = new_courtier
+				}
+			}
+		}
+		scope:recipient = { custom_tooltip = spawn_courtier_interaction_tt }
+		if = {
+			limit = { exists = scope:new_courtier }
+			scope:recipient = {
+				hidden_effect = {
+					send_interface_toast = {
+						title = spawn_courtier_interaction_tt
+						left_icon = scope:new_courtier
+						right_icon = scope:actor
+						add_courtier = scope:new_courtier
+						hidden_effect = {
+							scope:new_courtier = { return_to_court = yes }
+						}
+					}
+				}
+			}
+		}
+	}
+	auto_accept = yes
+}
+
+add_au3_kingsguard_interaction = {
+	category = interaction_category_diplomacy
+	desc = add_au3_kingsguard_interaction.desc
+	icon = tournament_positive
+    	interface_priority = 3
+	auto_accept = yes
+    	use_diplomatic_range = no
+
+
+	is_shown = {
+		scope:actor = {
+			has_character_flag = au3_enabled
+		}
+		scope:recipient = {
+			NOT = { has_character_flag = au_kingsguard}
+		}
+	}
+	is_valid_showing_failures_only = {
+
+	}
+
+	on_accept = {
+		scope:recipient = {
+			add_character_flag = au_kingsguard
+			add_character_modifier = au_kingsguard
+		}
+	}
+
+	ai_will_do = {
+		base = 0
+	}
+}
+add_au3_kingsguard_r_interaction = {
+	category = interaction_category_diplomacy
+	desc = add_au3_kingsguard_r_interaction.desc
+	icon = tournament_negative
+    	interface_priority = 3
+	auto_accept = yes
+    	use_diplomatic_range = no
+
+
+	is_shown = {
+		scope:actor = {
+			has_character_flag = au3_enabled
+		}
+		scope:recipient = {
+			has_character_flag = au_kingsguard
+		}
+	}
+	is_valid_showing_failures_only = {
+
+	}
+
+	on_accept = {
+		scope:recipient = {
+                	remove_character_flag = au_kingsguard
+                	remove_character_modifier = au_kingsguard
+		}
+	}
+
+	ai_will_do = {
+		base = 0
+	}
+}
+add_au3_rhaegar_interaction = {
+	category = interaction_category_diplomacy
+	desc = add_au3_rhaegar_interaction.desc
+	icon = tournament_positive
+    	interface_priority = 3
+	auto_accept = yes
+    	use_diplomatic_range = no
+
+
+	is_shown = {
+		scope:actor = {
+			has_character_flag = au3_enabled
+		}
+		scope:recipient = {
+			NOT = { has_character_flag = au_rhaegar}
+		}
+	}
+	is_valid_showing_failures_only = {
+
+	}
+
+	on_accept = {
+		scope:recipient = {
+			add_character_flag = au_rhaegar
+			add_character_modifier = au_rhaegar
+		}
+	}
+
+	ai_will_do = {
+		base = 0
+	}
+}
+add_au3_rhaegar_r_interaction = {
+	category = interaction_category_diplomacy
+	desc = add_au3_rhaegar_r_interaction.desc
+	icon = tournament_negative
+    	interface_priority = 3
+	auto_accept = yes
+    	use_diplomatic_range = no
+
+
+	is_shown = {
+		scope:actor = {
+			has_character_flag = au3_enabled
+		}
+		scope:recipient = {
+			has_character_flag = au_rhaegar
+		}
+	}
+	is_valid_showing_failures_only = {
+
+	}
+
+	on_accept = {
+		scope:recipient = {
+                	remove_character_flag = au_rhaegar
+                	remove_character_modifier = au_rhaegar
+		}
+	}
+
+	ai_will_do = {
+		base = 0
+	}
+}
+add_au3_ned_dynastic_interaction = {
+	category = interaction_category_diplomacy
+	desc = add_au3_ned_dynastic_interaction.desc
+	icon = tournament_positive
+    	interface_priority = 3
+	auto_accept = yes
+    	use_diplomatic_range = no
+
+
+	is_shown = {
+		scope:actor = {
+			has_character_flag = au3_enabled
+		}
+		scope:recipient = {
+			NOT = { has_character_flag = au_ned_dynastic}
+		}
+	}
+	is_valid_showing_failures_only = {
+
+	}
+
+	on_accept = {
+		scope:recipient = {
+			add_character_flag = au_ned_dynastic
+			add_character_modifier = au_ned_dynastic
+		}
+	}
+
+	ai_will_do = {
+		base = 0
+	}
+}
+add_au3_ned_dynastic_r_interaction = {
+	category = interaction_category_diplomacy
+	desc = add_au3_ned_dynastic_r_interaction.desc
+	icon = tournament_negative
+    	interface_priority = 3
+	auto_accept = yes
+    	use_diplomatic_range = no
+
+
+	is_shown = {
+		scope:actor = {
+			has_character_flag = au3_enabled
+		}
+		scope:recipient = {
+			has_character_flag = au_ned_dynastic
+		}
+	}
+	is_valid_showing_failures_only = {
+
+	}
+
+	on_accept = {
+		scope:recipient = {
+                	remove_character_flag = au_ned_dynastic
+                	remove_character_modifier = au_ned_dynastic
+		}
+	}
+
+	ai_will_do = {
+		base = 0
+	}
+}
+add_au3_robert_dynastic_interaction = {
+	category = interaction_category_diplomacy
+	desc = add_au3_robert_dynastic_interaction.desc
+	icon = tournament_positive
+    	interface_priority = 3
+	auto_accept = yes
+    	use_diplomatic_range = no
+
+
+	is_shown = {
+		scope:actor = {
+			has_character_flag = au3_enabled
+		}
+		scope:recipient = {
+			NOT = { has_character_flag = au_robert_dynastic}
+		}
+	}
+	is_valid_showing_failures_only = {
+
+	}
+
+	on_accept = {
+		scope:recipient = {
+			add_character_flag = au_robert_dynastic
+			add_character_modifier = au_robert_dynastic
+		}
+	}
+
+	ai_will_do = {
+		base = 0
+	}
+}
+add_au3_robert_dynastic_r_interaction = {
+	category = interaction_category_diplomacy
+	desc = add_au3_robert_dynastic_r_interaction.desc
+	icon = tournament_negative
+    	interface_priority = 3
+	auto_accept = yes
+    	use_diplomatic_range = no
+
+
+	is_shown = {
+		scope:actor = {
+			has_character_flag = au3_enabled
+		}
+		scope:recipient = {
+			has_character_flag = au_robert_dynastic
+		}
+	}
+	is_valid_showing_failures_only = {
+
+	}
+
+	on_accept = {
+		scope:recipient = {
+                	remove_character_flag = au_robert_dynastic
+                	remove_character_modifier = au_robert_dynastic
+		}
+	}
+
+	ai_will_do = {
+		base = 0
+	}
+}
+add_au3_arryns_interaction = {
+	category = interaction_category_diplomacy
+	desc = add_au3_arryns_interaction.desc
+	icon = tournament_positive
+    	interface_priority = 3
+	auto_accept = yes
+    	use_diplomatic_range = no
+
+
+	is_shown = {
+		scope:actor = {
+			has_character_flag = au3_enabled
+		}
+		scope:recipient = {
+			NOT = { has_character_flag = au_arryns}
+		}
+	}
+	is_valid_showing_failures_only = {
+
+	}
+
+	on_accept = {
+		scope:recipient = {
+			add_character_flag = au_arryns
+			add_character_modifier = au_arryns
+		}
+	}
+
+	ai_will_do = {
+		base = 0
+	}
+}
+add_au3_arryns_r_interaction = {
+	category = interaction_category_diplomacy
+	desc = add_au3_arryns_r_interaction.desc
+	icon = tournament_negative
+    	interface_priority = 3
+	auto_accept = yes
+    	use_diplomatic_range = no
+
+
+	is_shown = {
+		scope:actor = {
+			has_character_flag = au3_enabled
+		}
+		scope:recipient = {
+			has_character_flag = au_arryns
+		}
+	}
+	is_valid_showing_failures_only = {
+
+	}
+
+	on_accept = {
+		scope:recipient = {
+                	remove_character_flag = au_arryns
+                	remove_character_modifier = au_arryns
+		}
+	}
+
+	ai_will_do = {
+		base = 0
+	}
+}
+add_au3_royce_interaction = {
+	category = interaction_category_diplomacy
+	desc = add_au3_royce_interaction.desc
+	icon = tournament_positive
+    	interface_priority = 3
+	auto_accept = yes
+    	use_diplomatic_range = no
+
+
+	is_shown = {
+		scope:actor = {
+			has_character_flag = au3_enabled
+		}
+		scope:recipient = {
+			NOT = { has_character_flag = au_royce}
+		}
+	}
+	is_valid_showing_failures_only = {
+
+	}
+
+	on_accept = {
+		scope:recipient = {
+			add_character_flag = au_royce
+			add_character_modifier = au_royce
+		}
+	}
+
+	ai_will_do = {
+		base = 0
+	}
+}
+add_au3_royce_r_interaction = {
+	category = interaction_category_diplomacy
+	desc = add_au3_royce_r_interaction.desc
+	icon = tournament_negative
+    	interface_priority = 3
+	auto_accept = yes
+    	use_diplomatic_range = no
+
+
+	is_shown = {
+		scope:actor = {
+			has_character_flag = au3_enabled
+		}
+		scope:recipient = {
+			has_character_flag = au_royce
+		}
+	}
+	is_valid_showing_failures_only = {
+
+	}
+
+	on_accept = {
+		scope:recipient = {
+                	remove_character_flag = au_royce
+                	remove_character_modifier = au_royce
+		}
+	}
+
+	ai_will_do = {
+		base = 0
+	}
+}
+add_au3_rowan_interaction = {
+	category = interaction_category_diplomacy
+	desc = add_au3_rowan_interaction.desc
+	icon = tournament_positive
+    	interface_priority = 3
+	auto_accept = yes
+    	use_diplomatic_range = no
+
+
+	is_shown = {
+		scope:actor = {
+			has_character_flag = au3_enabled
+		}
+		scope:recipient = {
+			NOT = { has_character_flag = au_rowan}
+		}
+	}
+	is_valid_showing_failures_only = {
+
+	}
+
+	on_accept = {
+		scope:recipient = {
+			add_character_flag = au_rowan
+			add_character_modifier = au_rowan
+		}
+	}
+
+	ai_will_do = {
+		base = 0
+	}
+}
+add_au3_rowan_r_interaction = {
+	category = interaction_category_diplomacy
+	desc = add_au3_rowan_r_interaction.desc
+	icon = tournament_negative
+    	interface_priority = 3
+	auto_accept = yes
+    	use_diplomatic_range = no
+
+
+	is_shown = {
+		scope:actor = {
+			has_character_flag = au3_enabled
+		}
+		scope:recipient = {
+			has_character_flag = au_rowan
+		}
+	}
+	is_valid_showing_failures_only = {
+
+	}
+
+	on_accept = {
+		scope:recipient = {
+                	remove_character_flag = au_rowan
+                	remove_character_modifier = au_rowan
+		}
+	}
+
+	ai_will_do = {
+		base = 0
+	}
+}
+add_au3_tywin_interaction = {
+	category = interaction_category_diplomacy
+	desc = add_au3_tywin_interaction.desc
+	icon = tournament_positive
+    	interface_priority = 3
+	auto_accept = yes
+    	use_diplomatic_range = no
+
+
+	is_shown = {
+		scope:actor = {
+			has_character_flag = au3_enabled
+		}
+		scope:recipient = {
+			NOT = { has_character_flag = au_tywin}
+		}
+	}
+	is_valid_showing_failures_only = {
+
+	}
+
+	on_accept = {
+		scope:recipient = {
+			add_character_flag = au_tywin
+			add_character_modifier = au_tywin
+		}
+	}
+
+	ai_will_do = {
+		base = 0
+	}
+}
+add_au3_tywin_r_interaction = {
+	category = interaction_category_diplomacy
+	desc = add_au3_tywin_r_interaction.desc
+	icon = tournament_negative
+    	interface_priority = 3
+	auto_accept = yes
+    	use_diplomatic_range = no
+
+
+	is_shown = {
+		scope:actor = {
+			has_character_flag = au3_enabled
+		}
+		scope:recipient = {
+			has_character_flag = au_tywin
+		}
+	}
+	is_valid_showing_failures_only = {
+
+	}
+
+	on_accept = {
+		scope:recipient = {
+                	remove_character_flag = au_tywin
+                	remove_character_modifier = au_tywin
+		}
+	}
+
+	ai_will_do = {
+		base = 0
+	}
+}
+add_au3_jaime_interaction = {
+	category = interaction_category_diplomacy
+	desc = add_au3_jaime_interaction.desc
+	icon = tournament_positive
+    	interface_priority = 3
+	auto_accept = yes
+    	use_diplomatic_range = no
+
+
+	is_shown = {
+		scope:actor = {
+			has_character_flag = au3_enabled
+		}
+		scope:recipient = {
+			NOT = { has_character_flag = au_jaime}
+		}
+	}
+	is_valid_showing_failures_only = {
+
+	}
+
+	on_accept = {
+		scope:recipient = {
+			add_character_flag = au_jaime
+			add_character_modifier = au_jaime
+		}
+	}
+
+	ai_will_do = {
+		base = 0
+	}
+}
+add_au3_jaime_r_interaction = {
+	category = interaction_category_diplomacy
+	desc = add_au3_jaime_r_interaction.desc
+	icon = tournament_negative
+    	interface_priority = 3
+	auto_accept = yes
+    	use_diplomatic_range = no
+
+
+	is_shown = {
+		scope:actor = {
+			has_character_flag = au3_enabled
+		}
+		scope:recipient = {
+			has_character_flag = au_jaime
+		}
+	}
+	is_valid_showing_failures_only = {
+
+	}
+
+	on_accept = {
+		scope:recipient = {
+                	remove_character_flag = au_jaime
+                	remove_character_modifier = au_jaime
+		}
+	}
+
+	ai_will_do = {
+		base = 0
+	}
+}
+add_au3_gray_dragon_plate_interaction = {
+	category = interaction_category_diplomacy
+	desc = add_au3_gray_dragon_plate_interaction.desc
+	icon = tournament_positive
+    	interface_priority = 3
+	auto_accept = yes
+    	use_diplomatic_range = no
+
+
+	is_shown = {
+		scope:actor = {
+			has_character_flag = au3_enabled
+		}
+		scope:recipient = {
+			NOT = { has_character_flag = au_gray_dragon_plate }
+		}
+	}
+	is_valid_showing_failures_only = {
+
+	}
+
+	on_accept = {
+		scope:recipient = {
+			add_character_flag = au_gray_dragon_plate
+			add_character_modifier = au_gray_dragon_plate
+		}
+	}
+
+	ai_will_do = {
+		base = 0
+	}
+}
+add_au3_gray_dragon_plate_r_interaction = {
+	category = interaction_category_diplomacy
+	desc = add_au3_gray_dragon_plate_r_interaction.desc
+	icon = tournament_negative
+    	interface_priority = 3
+	auto_accept = yes
+    	use_diplomatic_range = no
+
+
+	is_shown = {
+		scope:actor = {
+			has_character_flag = au3_enabled
+		}
+		scope:recipient = {
+			has_character_flag = au_gray_dragon_plate
+		}
+	}
+	is_valid_showing_failures_only = {
+
+	}
+
+	on_accept = {
+		scope:recipient = {
+                	remove_character_flag = au_gray_dragon_plate
+                	remove_character_modifier = au_gray_dragon_plate
+		}
+	}
+
+	ai_will_do = {
+		base = 0
+	}
+}
+add_au3_red_dragon_plate_interaction = {
+	category = interaction_category_diplomacy
+	desc = add_au3_red_dragon_plate_interaction.desc
+	icon = tournament_positive
+    	interface_priority = 3
+	auto_accept = yes
+    	use_diplomatic_range = no
+
+
+	is_shown = {
+		scope:actor = {
+			has_character_flag = au3_enabled
+		}
+		scope:recipient = {
+			NOT = { has_character_flag = au_red_dragon_plate }
+		}
+	}
+	is_valid_showing_failures_only = {
+
+	}
+
+	on_accept = {
+		scope:recipient = {
+			add_character_flag = au_red_dragon_plate
+			add_character_modifier = au_red_dragon_plate
+		}
+	}
+
+	ai_will_do = {
+		base = 0
+	}
+}
+add_au3_red_dragon_plate_r_interaction = {
+	category = interaction_category_diplomacy
+	desc = add_au3_red_dragon_plate_r_interaction.desc
+	icon = tournament_negative
+    	interface_priority = 3
+	auto_accept = yes
+    	use_diplomatic_range = no
+
+
+	is_shown = {
+		scope:actor = {
+			has_character_flag = au3_enabled
+		}
+		scope:recipient = {
+			has_character_flag = au_red_dragon_plate
+		}
+	}
+	is_valid_showing_failures_only = {
+
+	}
+
+	on_accept = {
+		scope:recipient = {
+                	remove_character_flag = au_red_dragon_plate
+                	remove_character_modifier = au_red_dragon_plate
+		}
+	}
+
+	ai_will_do = {
+		base = 0
+	}
+}
+add_au3_decorated_dragon_plate_interaction = {
+	category = interaction_category_diplomacy
+	desc = add_au3_decorated_dragon_plate_interaction.desc
+	icon = tournament_positive
+    	interface_priority = 3
+	auto_accept = yes
+    	use_diplomatic_range = no
+
+
+	is_shown = {
+		scope:actor = {
+			has_character_flag = au3_enabled
+		}
+		scope:recipient = {
+			NOT = { has_character_flag = au_decorated_dragon_plate }
+		}
+	}
+	is_valid_showing_failures_only = {
+
+	}
+
+	on_accept = {
+		scope:recipient = {
+			add_character_flag = au_decorated_dragon_plate
+			add_character_modifier = au_decorated_dragon_plate
+		}
+	}
+
+	ai_will_do = {
+		base = 0
+	}
+}
+add_au3_decorated_dragon_plate_r_interaction = {
+	category = interaction_category_diplomacy
+	desc = add_au3_decorated_dragon_plate_r_interaction.desc
+	icon = tournament_negative
+    	interface_priority = 3
+	auto_accept = yes
+    	use_diplomatic_range = no
+
+
+	is_shown = {
+		scope:actor = {
+			has_character_flag = au3_enabled
+		}
+		scope:recipient = {
+			has_character_flag = au_decorated_dragon_plate
+		}
+	}
+	is_valid_showing_failures_only = {
+
+	}
+
+	on_accept = {
+		scope:recipient = {
+                	remove_character_flag = au_decorated_dragon_plate
+                	remove_character_modifier = au_decorated_dragon_plate
+		}
+	}
+
+	ai_will_do = {
+		base = 0
+	}
+}
+
+add_au4_blacksfaction_interaction = {
+	category = interaction_category_diplomacy
+	desc = add_au4_blacksfaction_interaction.desc
+	icon = mask_positive
+    	interface_priority = 3
+	auto_accept = yes
+    	use_diplomatic_range = no
+
+
+	is_shown = {
+		scope:actor = {
+			has_character_flag = au4_enabled
+		}
+		scope:recipient = {
+			NOT = { has_character_flag = au_blacksfaction }
+		}
+	}
+	is_valid_showing_failures_only = {
+
+	}
+
+	on_accept = {
+		scope:recipient = {
+			add_character_flag = au_blacksfaction
+			add_character_modifier = au_blacksfaction
+		}
+	}
+
+	ai_will_do = {
+		base = 0
+	}
+}
+add_au4_blacksfaction_r_interaction = {
+	category = interaction_category_diplomacy
+	desc = add_au4_blacksfaction_r_interaction.desc
+	icon = mask_negative
+    	interface_priority = 3
+	auto_accept = yes
+    	use_diplomatic_range = no
+
+
+	is_shown = {
+		scope:actor = {
+			has_character_flag = au4_enabled
+		}
+		scope:recipient = {
+			has_character_flag = au_blacksfaction
+		}
+	}
+	is_valid_showing_failures_only = {
+
+	}
+
+	on_accept = {
+		scope:recipient = {
+                	remove_character_flag = au_blacksfaction
+                	remove_character_modifier = au_blacksfaction
+		}
+	}
+
+	ai_will_do = {
+		base = 0
+	}
+}
+add_au4_greensfaction_interaction = {
+	category = interaction_category_diplomacy
+	desc = add_au4_greensfaction_interaction.desc
+	icon = mask_positive
+    	interface_priority = 3
+	auto_accept = yes
+    	use_diplomatic_range = no
+
+
+	is_shown = {
+		scope:actor = {
+			has_character_flag = au4_enabled
+		}
+		scope:recipient = {
+			NOT = { has_character_flag = au_greensfaction }
+		}
+	}
+	is_valid_showing_failures_only = {
+
+	}
+
+	on_accept = {
+		scope:recipient = {
+			add_character_flag = au_greensfaction
+			add_character_modifier = au_greensfaction
+		}
+	}
+
+	ai_will_do = {
+		base = 0
+	}
+}
+add_au4_greensfaction_r_interaction = {
+	category = interaction_category_diplomacy
+	desc = add_au4_greensfaction_r_interaction.desc
+	icon = mask_negative
+    	interface_priority = 3
+	auto_accept = yes
+    	use_diplomatic_range = no
+
+
+	is_shown = {
+		scope:actor = {
+			has_character_flag = au4_enabled
+		}
+		scope:recipient = {
+			has_character_flag = au_greensfaction
+		}
+	}
+	is_valid_showing_failures_only = {
+
+	}
+
+	on_accept = {
+		scope:recipient = {
+                	remove_character_flag = au_greensfaction
+                	remove_character_modifier = au_greensfaction
+		}
+	}
+
+	ai_will_do = {
+		base = 0
+	}
+}
+add_au4_high_winter_tunic_interaction = {
+	category = interaction_category_diplomacy
+	desc = add_au4_high_winter_tunic_interaction.desc
+	icon = mask_positive
+    	interface_priority = 3
+	auto_accept = yes
+    	use_diplomatic_range = no
+
+
+	is_shown = {
+		scope:actor = {
+			has_character_flag = au4_enabled
+		}
+		scope:recipient = {
+			NOT = { has_character_flag = au_high_winter_tunic }
+		}
+	}
+	is_valid_showing_failures_only = {
+
+	}
+
+	on_accept = {
+		scope:recipient = {
+			add_character_flag = au_high_winter_tunic
+			add_character_modifier = au_high_winter_tunic
+		}
+	}
+
+	ai_will_do = {
+		base = 0
+	}
+}
+add_au4_high_winter_tunic_r_interaction = {
+	category = interaction_category_diplomacy
+	desc = add_au4_high_winter_tunic_r_interaction.desc
+	icon = mask_negative
+    	interface_priority = 3
+	auto_accept = yes
+    	use_diplomatic_range = no
+
+
+	is_shown = {
+		scope:actor = {
+			has_character_flag = au4_enabled
+		}
+		scope:recipient = {
+			has_character_flag = au_high_winter_tunic
+		}
+	}
+	is_valid_showing_failures_only = {
+
+	}
+
+	on_accept = {
+		scope:recipient = {
+                	remove_character_flag = au_high_winter_tunic
+                	remove_character_modifier = au_high_winter_tunic
+		}
+	}
+
+	ai_will_do = {
+		base = 0
+	}
+}
+add_au4_dornish_high_nobles_interaction = {
+	category = interaction_category_diplomacy
+	desc = add_au4_dornish_high_nobles_interaction.desc
+	icon = mask_positive
+    	interface_priority = 3
+	auto_accept = yes
+    	use_diplomatic_range = no
+
+
+	is_shown = {
+		scope:actor = {
+			has_character_flag = au4_enabled
+		}
+		scope:recipient = {
+			NOT = { has_character_flag = au_dornish_high_nobles }
+		}
+	}
+	is_valid_showing_failures_only = {
+
+	}
+
+	on_accept = {
+		scope:recipient = {
+			add_character_flag = au_dornish_high_nobles
+			add_character_modifier = au_dornish_high_nobles
+		}
+	}
+
+	ai_will_do = {
+		base = 0
+	}
+}
+add_au4_dornish_high_nobles_r_interaction = {
+	category = interaction_category_diplomacy
+	desc = add_au4_dornish_high_nobles_r_interaction.desc
+	icon = mask_negative
+    	interface_priority = 3
+	auto_accept = yes
+    	use_diplomatic_range = no
+
+
+	is_shown = {
+		scope:actor = {
+			has_character_flag = au4_enabled
+		}
+		scope:recipient = {
+			has_character_flag = au_dornish_high_nobles
+		}
+	}
+	is_valid_showing_failures_only = {
+
+	}
+
+	on_accept = {
+		scope:recipient = {
+                	remove_character_flag = au_dornish_high_nobles
+                	remove_character_modifier = au_dornish_high_nobles
+		}
+	}
+
+	ai_will_do = {
+		base = 0
+	}
+}
+
+ban_wandering_interaction = {
+	category = interaction_category_diplomacy
+	common_interaction = yes
+	interface_priority = 60
+	desc = ban_wandering_interaction_desc
+	icon = au_logo
+
+	greeting = positive
+	notification_text = BAN_WANDERING_PROPOSAL
+
+	answer_accept_key = BAN_WANDERING_ACCEPT
+	answer_reject_key = BAN_WANDERING_REJECT
+
+	cost = {
+		prestige = {
+			value = 0
+			add = {
+				value = 30
+				desc = PRESTIGE_COST_REASON
+			}
+			add = {
+				value = indecisive_liege_cost_calculation
+				desc = PRESTIGE_COST_RECENT_DECISION_REASON
+			}
+		}
+	}
+
+	ai_frequency = 60
+
+	is_shown = {
+
+		NOT = {
+			scope:recipient = scope:actor
+		}
+		OR = {
+
+			AND = {
+
+				scope:actor = {
+					is_dynast = yes
+					dynasty = scope:recipient.dynasty
+				}
+
+				scope:actor = {
+					is_house_head = yes
+				}
+			}
+
+
+			scope:recipient = {
+				is_courtier_of = scope:actor
+			}
+		}
+
+
+		scope:recipient = {
+			NOT = { has_character_flag = blocked_from_leaving }
+		}
+	}
+
+	is_valid_showing_failures_only = {
+
+		scope:recipient = { is_diplomatically_available = yes }
+	}
+
+	on_accept = {
+		scope:actor = {
+			send_interface_message = {
+				type = event_generic_neutral
+				title = ban_wandering_notification
+				right_icon = scope:recipient
+				scope:recipient = {
+					add_character_flag = { FLAG = blocked_from_leaving }
+					add_character_flag = {
+						FLAG = recently_changed_wandering_status
+						years = 5
+					}
+				}
+			}
+		}
+	}
+
+	ai_accept = {
+		base = 0
+		modifier = {
+			add = 100
+			desc = REASON_LIEGE
+		}
+	}
+
+	ai_potential = {
+		is_adult = yes
+	}
+
+	auto_accept = {
+		custom_description = {
+			text = auto_accept_interaction_ai
+			object = scope:recipient
+			scope:recipient = {
+				is_ai = yes
+			}
+		}
+	}
+
+	ai_min_reply_days = 1
+	ai_max_reply_days = 1
+
+	ai_will_do = {
+		base = 100
+	}
+}
+
+enable_wandering_interaction = {
+	category = interaction_category_diplomacy
+	common_interaction = yes
+	interface_priority = 60
+	desc = enable_wandering_interaction_desc
+	icon = au_logo
+
+	greeting = positive
+	notification_text = ENABLE_WANDERING_PROPOSAL
+
+	answer_accept_key = ENABLE_WANDERING_ACCEPT
+	answer_reject_key = ENABLE_WANDERING_REJECT
+
+	cost = {
+		prestige = {
+			value = 0
+			add = {
+				value = indecisive_liege_cost_calculation
+				desc = PRESTIGE_COST_RECENT_DECISION_REASON
+			}
+		}
+	}
+	ai_frequency = 60
+
+	is_shown = {
+
+		NOT = {
+			scope:recipient = scope:actor
+		}
+
+		OR = {
+			AND = {
+
+				scope:actor = {
+					is_dynast = yes
+					dynasty = scope:recipient.dynasty
+				}
+				scope:actor = {
+					is_house_head = yes
+				}
+			}
+
+
+			scope:recipient = {
+				is_courtier_of = scope:actor
+			}
+		}
+
+		scope:recipient = {
+			has_character_flag = blocked_from_leaving
+		}
+	}
+
+	is_valid_showing_failures_only = {
+		scope:recipient = { is_diplomatically_available = yes }
+	}
+
+	on_auto_accept = {
+		scope:recipient = {
+			trigger_event = char_interaction.0100
+		}
+	}
+
+	on_accept = {
+		scope:actor = {
+			send_interface_message = {
+				type = event_generic_neutral
+				title = enable_wandering_notification
+				right_icon = scope:recipient
+				scope:recipient = {
+					remove_character_flag = blocked_from_leaving
+					add_character_flag = {
+						FLAG = recently_changed_wandering_status
+						years = 5
+					}
+				}
+			}
+		}
+	}
+
+	ai_accept = {
+		base = 0
+		modifier = {
+			add = 100
+			desc = REASON_LIEGE
+		}
+	}
+
+	ai_potential = {
+		is_adult = yes
+	}
+
+	auto_accept = {
+		custom_description = {
+			text = auto_accept_interaction_ai
+			object = scope:recipient
+			scope:recipient = {
+				is_ai = yes
+			}
+		}
+	}
+
+	ai_min_reply_days = 1
+	ai_max_reply_days = 1
+
+	ai_will_do = {
+		base = 100
+	}
+}

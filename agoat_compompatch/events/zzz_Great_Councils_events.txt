@@ -1,270 +1,183 @@
 ﻿namespace = zzz_great_councils_event
 
-zzz_great_councils_event.0004 = {
+zzz_great_councils_event.0001 = {
 	type = character_event
-	title = zzz_great_councils_event.0004.t
-	desc = zzz_great_councils_event.0004.desc
+	title = zzz_great_councils_event.0001.t
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					scope:zzz_great_councils_temp_emp = { has_character_flag = zzz_great_councils_inherit }
+				}
+				desc = zzz_great_councils_event.0001.a.desc
+			}
+			triggered_desc = {
+				trigger = {
+					scope:zzz_great_councils_temp_emp = { has_character_flag = zzz_great_councils_depose }
+				}
+				desc = zzz_great_councils_event.0001.b.desc
+			}
+			triggered_desc = {
+				trigger = {
+					scope:zzz_great_councils_emperor = { has_character_flag = zzz_great_councils_called_council }
+					root = scope:zzz_great_councils_emperor
+				}
+				desc = zzz_great_councils_event.0001.c.desc
+			}
+			triggered_desc = {
+				trigger = {
+					scope:zzz_great_councils_emperor = { has_character_flag = zzz_great_councils_called_council }
+					NOT = { root = scope:zzz_great_councils_emperor }
+				}
+				desc = zzz_great_councils_event.0001.d.desc
+			}
+		}
+	}
 	theme = crown
-	override_background = throne_room
+	override_background = garden
 
 	left_portrait = {
 		character = root
 		animation = thinking
 	}
 
-	immediate = {
-		ordered_in_list = {
-			list = zzz_great_councils_candidates
-			order_by = {
-				if = {
-					limit = { has_variable = zzz_great_councils_votes }
-					value = var:zzz_great_councils_votes
+	option = {
+		name = {
+			text = {
+				first_valid = {
+					triggered_desc = {
+						trigger = {
+							OR = {
+								scope:zzz_great_councils_temp_emp = { has_character_flag = zzz_great_councils_inherit }
+								scope:zzz_great_councils_temp_emp = { has_character_flag = zzz_great_councils_depose }
+							}
+						}
+						desc = zzz_great_councils_event.0001.a
+					}
+					triggered_desc = {
+						trigger = {
+							scope:zzz_great_councils_emperor = { has_character_flag = zzz_great_councils_called_council }
+						}
+						desc = zzz_great_councils_event.0001.c
+					}
 				}
 			}
-			max = 1
-			check_range_bounds = no
-			save_scope_as = zzz_great_councils_winner
 		}
+
+		if = {
+			limit = {
+				scope:zzz_great_councils_pregnant ?= { is_alive = yes }
+			}
+			scope:zzz_great_councils_pregnant ?= {
+				set_local_variable = {
+					name = zzz_great_councils_preg_var
+					value = {
+						add = 281
+						subtract = pregnancy_days
+					}
+				}
+			}
+		}
+		if = {
+			limit = {
+				scope:zzz_great_councils_pregnant ?= { has_local_variable = zzz_great_councils_preg_var }
+			}
+			trigger_event = {
+				id = zzz_great_councils_event.0002
+				days = scope:zzz_great_councils_pregnant.var:zzz_great_councils_preg_var
+			}
+		}
+		else_if = {
+			limit = { NOT = { any_player = { is_in_list = zzz_great_councils_electors } } }
+			trigger_event = zzz_great_councils_event.0002
+		}
+		else = {
+			trigger_event = {
+				id = zzz_great_councils_event.0002
+				days = 15
+			}
+		}
+	}
+}
+
+zzz_great_councils_event.0002 = {
+	type = character_event
+	title = zzz_great_councils_event.0002.t
+	desc = zzz_great_councils_event.0002.desc
+	theme = crown
+	override_background = feast
+
+	left_portrait = {
+		character = root
+		animation = debating
 	}
 
 	option = {
-		name = zzz_great_councils_event.0004.a
-		ordered_in_list = {
-			list = zzz_great_councils_candidates
-			order_by = {
-				if = {
-					limit = { has_variable = zzz_great_councils_votes }
-					value = var:zzz_great_councils_votes
-				}
-			}
-			max = 100
-			check_range_bounds = no
-			custom_tooltip = zzz_great_councils_event.0004.a.tt
-		}
-		if = {
-			limit = {
-				scope:zzz_great_councils_temp_emp = { has_character_flag = zzz_great_councils_disable }
-			}
-			scope:zzz_great_councils_temp_emp = { remove_character_flag = zzz_great_councils_disable }
-		}
+		name = zzz_great_councils_event.0002.a
+
 		hidden_effect = {
 			if = {
 				limit = {
-					scope:zzz_great_councils_emperor = { has_character_flag = zzz_great_councils_called_btw }
-				}
-				scope:zzz_great_councils_emperor = { set_designated_heir_unsafe = scope:zzz_great_councils_winner }
-				scope:zzz_great_councils_winner = { add_character_flag = zzz_great_councils_won_btw }
-			}
-			else_if = {
-				limit = {
-					scope:zzz_great_councils_emperor = { has_character_flag = zzz_great_councils_called_dorne }
-				}
-				scope:zzz_great_councils_emperor = { set_designated_heir_unsafe = scope:zzz_great_councils_winner }
-				scope:zzz_great_councils_winner = { add_character_flag = zzz_great_councils_won_dorne }
-			}
-			else_if = {
-				limit = {
-					scope:zzz_great_councils_emperor = { has_character_flag = zzz_great_councils_called_iron_isle }
-				}
-				scope:zzz_great_councils_emperor = { set_designated_heir_unsafe = scope:zzz_great_councils_winner }
-				scope:zzz_great_councils_winner = { add_character_flag = zzz_great_councils_won_iron_isle }
-			}
-			else_if = {
-				limit = {
-					scope:zzz_great_councils_emperor = { has_character_flag = zzz_great_councils_called_iron_throne }
-				}
-				scope:zzz_great_councils_emperor = { set_designated_heir_unsafe = scope:zzz_great_councils_winner }
-				scope:zzz_great_councils_winner = { add_character_flag = zzz_great_councils_won_iron_throne }
-			}
-			else_if = {
-				limit = {
-					scope:zzz_great_councils_emperor = { has_character_flag = zzz_great_councils_called_north }
-				}
-				scope:zzz_great_councils_emperor = { set_designated_heir_unsafe = scope:zzz_great_councils_winner }
-				scope:zzz_great_councils_winner = { add_character_flag = zzz_great_councils_won_north }
-			}
-			else_if = {
-				limit = {
-					scope:zzz_great_councils_emperor = { has_character_flag = zzz_great_councils_called_reach }
-				}
-				scope:zzz_great_councils_emperor = { set_designated_heir_unsafe = scope:zzz_great_councils_winner }
-				scope:zzz_great_councils_winner = { add_character_flag = zzz_great_councils_won_reach }
-			}
-			else_if = {
-				limit = {
-					scope:zzz_great_councils_emperor = { has_character_flag = zzz_great_councils_called_river }
-				}
-				scope:zzz_great_councils_emperor = { set_designated_heir_unsafe = scope:zzz_great_councils_winner }
-				scope:zzz_great_councils_winner = { add_character_flag = zzz_great_councils_won_river }
-			}
-			else_if = {
-				limit = {
-					scope:zzz_great_councils_emperor = { has_character_flag = zzz_great_councils_called_storm }
-				}
-				scope:zzz_great_councils_emperor = { set_designated_heir_unsafe = scope:zzz_great_councils_winner }
-				scope:zzz_great_councils_winner = { add_character_flag = zzz_great_councils_won_storm }
-			}
-			else_if = {
-				limit = {
-					scope:zzz_great_councils_emperor = { has_character_flag = zzz_great_councils_called_vale }
-				}
-				scope:zzz_great_councils_emperor = { set_designated_heir_unsafe = scope:zzz_great_councils_winner }
-				scope:zzz_great_councils_winner = { add_character_flag = zzz_great_councils_won_vale }
-			}
-			else_if = {
-				limit = {
-					scope:zzz_great_councils_emperor = { has_character_flag = zzz_great_councils_called_wall }
-				}
-				scope:zzz_great_councils_emperor = { set_designated_heir_unsafe = scope:zzz_great_councils_winner }
-				scope:zzz_great_councils_winner = { add_character_flag = zzz_great_councils_won_wall }
-			}
-			else_if = {
-				limit = {
-					scope:zzz_great_councils_emperor = { has_character_flag = zzz_great_councils_called_wester }
-				}
-				scope:zzz_great_councils_emperor = { set_designated_heir_unsafe = scope:zzz_great_councils_winner }
-				scope:zzz_great_councils_winner = { add_character_flag = zzz_great_councils_won_wester }
-			}
-			else_if = {
-				limit = {
-					scope:zzz_great_councils_emperor = { has_character_flag = zzz_great_councils_called_narrow_sea }
-				}
-				scope:zzz_great_councils_emperor = { set_designated_heir_unsafe = scope:zzz_great_councils_winner }
-				scope:zzz_great_councils_winner = { add_character_flag = zzz_great_councils_won_narrow_sea }
-			}
-			else_if = {
-				limit = {
-					scope:zzz_great_councils_emperor = { has_character_flag = zzz_great_councils_called_daoryrdembos }
-				}
-				scope:zzz_great_councils_emperor = { set_designated_heir_unsafe = scope:zzz_great_councils_winner }
-				scope:zzz_great_councils_winner = { add_character_flag = zzz_great_councils_won_daoryrdembos }
-			}
-			else_if = {
-				limit = {
-					scope:zzz_great_councils_emperor = { has_character_flag = zzz_great_councils_called_crownlands }
-				}
-				scope:zzz_great_councils_emperor = { set_designated_heir_unsafe = scope:zzz_great_councils_winner }
-				scope:zzz_great_councils_winner = { add_character_flag = zzz_great_councils_won_crownlands }
-			}
-			else_if = {
-				limit = {
-					scope:zzz_great_councils_emperor = { has_character_flag = zzz_great_councils_called_rhoyne }
-				}
-				scope:zzz_great_councils_emperor = { set_designated_heir_unsafe = scope:zzz_great_councils_winner }
-				scope:zzz_great_councils_winner = { add_character_flag = zzz_great_councils_won_rhoyne }
-			}
-			else_if = {
-				limit = {
-					scope:zzz_great_councils_emperor = { has_character_flag = zzz_great_councils_called_hvalyria }
-				}
-				scope:zzz_great_councils_emperor = { set_designated_heir_unsafe = scope:zzz_great_councils_winner }
-				scope:zzz_great_councils_winner = { add_character_flag = zzz_great_councils_won_hvalyria }
-			}
-			else_if = {
-				limit = {
-					scope:zzz_great_councils_emperor = { has_character_flag = zzz_great_councils_called_evalyria }
-				}
-				scope:zzz_great_councils_emperor = { set_designated_heir_unsafe = scope:zzz_great_councils_winner }
-				scope:zzz_great_councils_winner = { add_character_flag = zzz_great_councils_won_evalyria }
-			}
-			else_if = {
-				limit = {
-					scope:zzz_great_councils_emperor = { has_character_flag = zzz_great_councils_called_custom_emp }
-				}
-				scope:zzz_great_councils_emperor = { set_designated_heir_unsafe = scope:zzz_great_councils_winner }
-				scope:zzz_great_councils_winner = { add_character_flag = zzz_great_councils_won_custom_emp }
-			}
-			else = {
-				create_title_and_vassal_change = {
-					type = election
-					save_scope_as = zzz_great_councils_change
-					add_claim_on_loss = no
-				}
-				every_in_list = {
-					list = zzz_great_councils_titles
-					change_title_holder_include_vassals = {
-						holder = scope:zzz_great_councils_winner
-						change = scope:zzz_great_councils_change
-					}
-				}
-				resolve_title_and_vassal_change = scope:zzz_great_councils_change
-			}
-		}
-		hidden_effect = {
-			scope:zzz_great_councils_temp_emp = { add_pressed_claim = scope:zzz_great_councils_empire }
-		}
-	}
-	
-	after = {
-		if = {
-			limit = {
-				OR = {
-					scope:zzz_great_councils_temp_emp = { has_character_flag = zzz_great_councils_inherit }
-					scope:zzz_great_councils_temp_emp = { has_character_flag = zzz_great_councils_depose }
-				}
-			}
-			hidden_effect = {
-				create_title_and_vassal_change = {
-					type = returned
-					save_scope_as = zzz_great_councils_fix_change
-					add_claim_on_loss = no
-				}
-				if = {
-					limit = {
-						scope:zzz_great_councils_winner != scope:zzz_great_councils_temp_emp
-						scope:zzz_great_councils_temp_emps_liege ?= { is_alive = yes }
-					}
-					scope:zzz_great_councils_temp_emp = {
-						change_liege = {
-							liege = scope:zzz_great_councils_temp_emps_liege
-							change = scope:zzz_great_councils_fix_change
+					scope:zzz_great_councils_emperor = {
+						any_child = {
+							NOT = { is_in_list = zzz_great_councils_candidates }
+							NOR = {
+								is_alive = no
+								has_trait = kingsguard
+								has_trait = nightswatch
+								has_trait = maester
+								has_trait = septon
+								has_trait = silent_sister
+								has_trait = dragon
+								has_trait = disinherited
+								has_trait = mw_expelled_trait
+								has_trait = devoted
+								has_trait = order_member
+								has_trait = gallivanter
+								has_trait = incapable
+							}
 						}
 					}
 				}
-				every_in_list = {
-					list = zzz_great_councils_temp_vas
-					change_liege = {
-						liege = scope:zzz_great_councils_temp_emp
-						change = scope:zzz_great_councils_fix_change
+				scope:zzz_great_councils_emperor = {
+					every_child = {
+						limit = {
+							NOT = { is_in_list = zzz_great_councils_candidates }
+							NOR = {
+								is_alive = no
+								has_trait = kingsguard
+								has_trait = nightswatch
+								has_trait = maester
+								has_trait = septon
+								has_trait = silent_sister
+								has_trait = dragon
+								has_trait = disinherited
+								has_trait = mw_expelled_trait
+								has_trait = devoted
+								has_trait = order_member
+								has_trait = gallivanter
+								has_trait = incapable
+							}
+						}
+						add_to_list = zzz_great_councils_candidates
+						set_variable = {
+							name = zzz_great_councils_votes
+							value = 0
+						}
 					}
 				}
-				resolve_title_and_vassal_change = scope:zzz_great_councils_fix_change
-			}
-			if = {
-				limit = {
-					scope:zzz_great_councils_temp_emp = { has_character_flag = zzz_great_councils_inherit }
-				}
-				scope:zzz_great_councils_temp_emp = { remove_character_flag = zzz_great_councils_inherit }
-			}
-			if = {
-				limit = {
-					scope:zzz_great_councils_temp_emp = { has_character_flag = zzz_great_councils_depose }
-				}
-				scope:zzz_great_councils_temp_emp = { remove_character_flag = zzz_great_councils_depose }
 			}
 		}
+
+		trigger_event = zzz_great_councils_event.0003
+	}
+
+	after = {
 		if = {
 			limit = {
-				scope:zzz_great_councils_emperor ?= { has_character_flag = zzz_great_councils_called_council }
+				scope:zzz_great_councils_pregnant ?= { is_alive = yes }
 			}
-			scope:zzz_great_councils_emperor ?= { remove_character_flag = zzz_great_councils_called_council }
-		}
-		every_in_list = {
-			list = zzz_great_councils_candidates
-			remove_variable = zzz_great_councils_votes
-		}
-		every_in_list = {
-			list = zzz_great_councils_electors
-			limit = { is_alive = no }
-			remove_from_list = zzz_great_councils_electors
-		}
-		every_in_list = {
-			list = zzz_great_councils_electors
-			limit = {
-				has_character_flag = zzz_great_councils_four_fired
-				is_alive = yes
-			}
-			remove_character_flag = zzz_great_councils_four_fired
+			scope:zzz_great_councils_pregnant ?= { remove_variable = zzz_great_councils_preg_var }
 		}
 	}
 }
@@ -1576,7 +1489,7 @@ zzz_great_councils_event.0003 = {
 						add = 15
 					}
 					if = {
-						limit = { 
+						limit = {
 							is_consort_of = root
 						}
 						add = 5
@@ -1612,7 +1525,7 @@ zzz_great_councils_event.0003 = {
 			}
 		}
 	}
-	
+
 	option = {
 		name = zzz_great_councils_event.0003.a
 		trigger = {
@@ -1620,15 +1533,9 @@ zzz_great_councils_event.0003 = {
 			dynasty ?= scope:zzz_great_councils_old_dyn
 		}
 		scope:zzz_great_councils_selection = {
-			if = {
-				limit = { has_variable = zzz_great_councils_votes }
-				change_variable = {
-				   name = zzz_great_councils_votes
-				   add = 20
-				}
-			}
-			else = {
-				set_variable = { name = zzz_great_councils_votes value = 20 }
+			change_variable = {
+			   name = zzz_great_councils_votes
+			   add = 20
 			}
 		}
 	}
@@ -1640,15 +1547,9 @@ zzz_great_councils_event.0003 = {
 			NOT = { dynasty ?= scope:zzz_great_councils_old_dyn }
 		}
 		scope:zzz_great_councils_selection = {
-			if = {
-				limit = { has_variable = zzz_great_councils_votes }
-				change_variable = {
-				   name = zzz_great_councils_votes
-				   add = 10
-				}
-			}
-			else = {
-				set_variable = { name = zzz_great_councils_votes value = 10 }
+			change_variable = {
+			   name = zzz_great_councils_votes
+			   add = 10
 			}
 		}
 	}
@@ -1660,15 +1561,9 @@ zzz_great_councils_event.0003 = {
 			NOT = { dynasty ?= scope:zzz_great_councils_old_dyn }
 		}
 		scope:zzz_great_councils_selection = {
-			if = {
-				limit = { has_variable = zzz_great_councils_votes }
-				change_variable = {
-				   name = zzz_great_councils_votes
-				   add = 1
-				}
-			}
-			else = {
-				set_variable = { name = zzz_great_councils_votes value = 1 }
+			change_variable = {
+			   name = zzz_great_councils_votes
+			   add = 1
 			}
 		}
 	}
@@ -1678,17 +1573,12 @@ zzz_great_councils_event.0003 = {
 			is_ai = no
 			root = scope:zzz_great_councils_emperor
 		}
+
 		var:si_selected_character = { save_scope_as = zzz_great_councils_selection }
 		scope:zzz_great_councils_selection = {
-			if = {
-				limit = { has_variable = zzz_great_councils_votes }
-				change_variable = {
-				   name = zzz_great_councils_votes
-				   add = 100
-				}
-			}
-			else = {
-				set_variable = { name = zzz_great_councils_votes value = 100 }
+			change_variable = {
+			   name = zzz_great_councils_votes
+			   add = 100
 			}
 		}
 		trigger_event = {
@@ -1703,17 +1593,12 @@ zzz_great_councils_event.0003 = {
 			dynasty ?= scope:zzz_great_councils_old_dyn
 			NOT = { root = scope:zzz_great_councils_emperor }
 		}
+
 		var:si_selected_character = { save_scope_as = zzz_great_councils_selection }
 		scope:zzz_great_councils_selection = {
-			if = {
-				limit = { has_variable = zzz_great_councils_votes }
-				change_variable = {
-				   name = zzz_great_councils_votes
-				   add = 60
-				}
-			}
-			else = {
-				set_variable = { name = zzz_great_councils_votes value = 60 }
+			change_variable = {
+			   name = zzz_great_councils_votes
+			   add = 60
 			}
 		}
 		trigger_event = {
@@ -1728,17 +1613,12 @@ zzz_great_councils_event.0003 = {
 			highest_held_title_tier >= tier_kingdom
 			NOT = { dynasty ?= scope:zzz_great_councils_old_dyn }
 		}
+
 		var:si_selected_character = { save_scope_as = zzz_great_councils_selection }
 		scope:zzz_great_councils_selection = {
-			if = {
-				limit = { has_variable = zzz_great_councils_votes }
-				change_variable = {
-				   name = zzz_great_councils_votes
-				   add = 40
-				}
-			}
-			else = {
-				set_variable = { name = zzz_great_councils_votes value = 40 }
+			change_variable = {
+			   name = zzz_great_councils_votes
+			   add = 40
 			}
 		}
 		trigger_event = {
@@ -1753,17 +1633,12 @@ zzz_great_councils_event.0003 = {
 			highest_held_title_tier <= tier_duchy
 			NOT = { dynasty ?= scope:zzz_great_councils_old_dyn }
 		}
+
 		var:si_selected_character = { save_scope_as = zzz_great_councils_selection }
 		scope:zzz_great_councils_selection = {
-			if = {
-				limit = { has_variable = zzz_great_councils_votes }
-				change_variable = {
-				   name = zzz_great_councils_votes
-				   add = 20
-				}
-			}
-			else = {
-				set_variable = { name = zzz_great_councils_votes value = 20 }
+			change_variable = {
+			   name = zzz_great_councils_votes
+			   add = 20
 			}
 		}
 		trigger_event = {
@@ -1782,7 +1657,7 @@ zzz_great_councils_event.0003 = {
 			days = 15
 		}
 	}
-	
+
 	after = {
 		if = {
 			limit = {
@@ -1806,6 +1681,266 @@ zzz_great_councils_event.0003 = {
 				add_character_flag = zzz_great_councils_four_fired
 				trigger_event = zzz_great_councils_event.0004
 			}
+		}
+	}
+}
+
+zzz_great_councils_event.0004 = {
+	type = character_event
+	title = zzz_great_councils_event.0004.t
+	desc = zzz_great_councils_event.0004.desc
+	theme = crown
+	override_background = throne_room
+
+	left_portrait = {
+		character = root
+		animation = thinking
+	}
+
+	immediate = {
+		ordered_in_list = {
+			list = zzz_great_councils_candidates
+			order_by = { value = var:zzz_great_councils_votes }
+			max = 1
+			check_range_bounds = no
+			save_scope_as = zzz_great_councils_winner
+		}
+	}
+
+	option = {
+		name = zzz_great_councils_event.0004.a
+		ordered_in_list = {
+			list = zzz_great_councils_candidates
+			order_by = { value = var:zzz_great_councils_votes }
+			max = 100
+			check_range_bounds = no
+			custom_tooltip = zzz_great_councils_event.0004.a.tt
+		}
+		if = {
+			limit = {
+				scope:zzz_great_councils_temp_emp = { has_character_flag = zzz_great_councils_disable }
+			}
+			scope:zzz_great_councils_temp_emp = { remove_character_flag = zzz_great_councils_disable }
+		}
+		hidden_effect = {
+			if = {
+				limit = {
+					scope:zzz_great_councils_emperor = { has_character_flag = zzz_great_councils_called_btw }
+				}
+				scope:zzz_great_councils_emperor = { set_designated_heir_unsafe = scope:zzz_great_councils_winner }
+				scope:zzz_great_councils_winner = { add_character_flag = zzz_great_councils_won_btw }
+			}
+			else_if = {
+				limit = {
+					scope:zzz_great_councils_emperor = { has_character_flag = zzz_great_councils_called_dorne }
+				}
+				scope:zzz_great_councils_emperor = { set_designated_heir_unsafe = scope:zzz_great_councils_winner }
+				scope:zzz_great_councils_winner = { add_character_flag = zzz_great_councils_won_dorne }
+			}
+			else_if = {
+				limit = {
+					scope:zzz_great_councils_emperor = { has_character_flag = zzz_great_councils_called_iron_isle }
+				}
+				scope:zzz_great_councils_emperor = { set_designated_heir_unsafe = scope:zzz_great_councils_winner }
+				scope:zzz_great_councils_winner = { add_character_flag = zzz_great_councils_won_iron_isle }
+			}
+			else_if = {
+				limit = {
+					scope:zzz_great_councils_emperor = { has_character_flag = zzz_great_councils_called_iron_throne }
+				}
+				scope:zzz_great_councils_emperor = { set_designated_heir_unsafe = scope:zzz_great_councils_winner }
+				scope:zzz_great_councils_winner = { add_character_flag = zzz_great_councils_won_iron_throne }
+			}
+			else_if = {
+				limit = {
+					scope:zzz_great_councils_emperor = { has_character_flag = zzz_great_councils_called_north }
+				}
+				scope:zzz_great_councils_emperor = { set_designated_heir_unsafe = scope:zzz_great_councils_winner }
+				scope:zzz_great_councils_winner = { add_character_flag = zzz_great_councils_won_north }
+			}
+			else_if = {
+				limit = {
+					scope:zzz_great_councils_emperor = { has_character_flag = zzz_great_councils_called_reach }
+				}
+				scope:zzz_great_councils_emperor = { set_designated_heir_unsafe = scope:zzz_great_councils_winner }
+				scope:zzz_great_councils_winner = { add_character_flag = zzz_great_councils_won_reach }
+			}
+			else_if = {
+				limit = {
+					scope:zzz_great_councils_emperor = { has_character_flag = zzz_great_councils_called_river }
+				}
+				scope:zzz_great_councils_emperor = { set_designated_heir_unsafe = scope:zzz_great_councils_winner }
+				scope:zzz_great_councils_winner = { add_character_flag = zzz_great_councils_won_river }
+			}
+			else_if = {
+				limit = {
+					scope:zzz_great_councils_emperor = { has_character_flag = zzz_great_councils_called_storm }
+				}
+				scope:zzz_great_councils_emperor = { set_designated_heir_unsafe = scope:zzz_great_councils_winner }
+				scope:zzz_great_councils_winner = { add_character_flag = zzz_great_councils_won_storm }
+			}
+			else_if = {
+				limit = {
+					scope:zzz_great_councils_emperor = { has_character_flag = zzz_great_councils_called_vale }
+				}
+				scope:zzz_great_councils_emperor = { set_designated_heir_unsafe = scope:zzz_great_councils_winner }
+				scope:zzz_great_councils_winner = { add_character_flag = zzz_great_councils_won_vale }
+			}
+			else_if = {
+				limit = {
+					scope:zzz_great_councils_emperor = { has_character_flag = zzz_great_councils_called_wall }
+				}
+				scope:zzz_great_councils_emperor = { set_designated_heir_unsafe = scope:zzz_great_councils_winner }
+				scope:zzz_great_councils_winner = { add_character_flag = zzz_great_councils_won_wall }
+			}
+			else_if = {
+				limit = {
+					scope:zzz_great_councils_emperor = { has_character_flag = zzz_great_councils_called_wester }
+				}
+				scope:zzz_great_councils_emperor = { set_designated_heir_unsafe = scope:zzz_great_councils_winner }
+				scope:zzz_great_councils_winner = { add_character_flag = zzz_great_councils_won_wester }
+			}
+			else_if = {
+				limit = {
+					scope:zzz_great_councils_emperor = { has_character_flag = zzz_great_councils_called_narrow_sea }
+				}
+				scope:zzz_great_councils_emperor = { set_designated_heir_unsafe = scope:zzz_great_councils_winner }
+				scope:zzz_great_councils_winner = { add_character_flag = zzz_great_councils_won_narrow_sea }
+			}
+			else_if = {
+				limit = {
+					scope:zzz_great_councils_emperor = { has_character_flag = zzz_great_councils_called_daoryrdembos }
+				}
+				scope:zzz_great_councils_emperor = { set_designated_heir_unsafe = scope:zzz_great_councils_winner }
+				scope:zzz_great_councils_winner = { add_character_flag = zzz_great_councils_won_daoryrdembos }
+			}
+			else_if = {
+				limit = {
+					scope:zzz_great_councils_emperor = { has_character_flag = zzz_great_councils_called_crownlands }
+				}
+				scope:zzz_great_councils_emperor = { set_designated_heir_unsafe = scope:zzz_great_councils_winner }
+				scope:zzz_great_councils_winner = { add_character_flag = zzz_great_councils_won_crownlands }
+			}
+			else_if = {
+				limit = {
+					scope:zzz_great_councils_emperor = { has_character_flag = zzz_great_councils_called_rhoyne }
+				}
+				scope:zzz_great_councils_emperor = { set_designated_heir_unsafe = scope:zzz_great_councils_winner }
+				scope:zzz_great_councils_winner = { add_character_flag = zzz_great_councils_won_rhoyne }
+			}
+			else_if = {
+				limit = {
+					scope:zzz_great_councils_emperor = { has_character_flag = zzz_great_councils_called_hvalyria }
+				}
+				scope:zzz_great_councils_emperor = { set_designated_heir_unsafe = scope:zzz_great_councils_winner }
+				scope:zzz_great_councils_winner = { add_character_flag = zzz_great_councils_won_hvalyria }
+			}
+			else_if = {
+				limit = {
+					scope:zzz_great_councils_emperor = { has_character_flag = zzz_great_councils_called_evalyria }
+				}
+				scope:zzz_great_councils_emperor = { set_designated_heir_unsafe = scope:zzz_great_councils_winner }
+				scope:zzz_great_councils_winner = { add_character_flag = zzz_great_councils_won_evalyria }
+			}
+			else_if = {
+				limit = {
+					scope:zzz_great_councils_emperor = { has_character_flag = zzz_great_councils_called_custom_emp }
+				}
+				scope:zzz_great_councils_emperor = { set_designated_heir_unsafe = scope:zzz_great_councils_winner }
+				scope:zzz_great_councils_winner = { add_character_flag = zzz_great_councils_won_custom_emp }
+			}
+			else = {
+				create_title_and_vassal_change = {
+					type = election
+					save_scope_as = zzz_great_councils_change
+					add_claim_on_loss = no
+				}
+				every_in_list = {
+					list = zzz_great_councils_titles
+					change_title_holder_include_vassals = {
+
+						holder = scope:zzz_great_councils_winner
+						change = scope:zzz_great_councils_change
+					}
+				}
+				resolve_title_and_vassal_change = scope:zzz_great_councils_change
+			}
+		}
+		hidden_effect = {
+			scope:zzz_great_councils_temp_emp = { add_pressed_claim = scope:zzz_great_councils_empire }
+		}
+	}
+
+	after = {
+		if = {
+			limit = {
+				OR = {
+					scope:zzz_great_councils_temp_emp = { has_character_flag = zzz_great_councils_inherit }
+					scope:zzz_great_councils_temp_emp = { has_character_flag = zzz_great_councils_depose }
+				}
+			}
+			hidden_effect = {
+				create_title_and_vassal_change = {
+					type = returned
+					save_scope_as = zzz_great_councils_fix_change
+					add_claim_on_loss = no
+				}
+				if = {
+					limit = {
+						scope:zzz_great_councils_winner != scope:zzz_great_councils_temp_emp
+						scope:zzz_great_councils_temp_emps_liege ?= { is_alive = yes }
+					}
+					scope:zzz_great_councils_temp_emp = {
+						change_liege = {
+							liege = scope:zzz_great_councils_temp_emps_liege
+							change = scope:zzz_great_councils_fix_change
+						}
+					}
+				}
+				every_in_list = {
+					list = zzz_great_councils_temp_vas
+					change_liege = {
+						liege = scope:zzz_great_councils_temp_emp
+						change = scope:zzz_great_councils_fix_change
+					}
+				}
+				resolve_title_and_vassal_change = scope:zzz_great_councils_fix_change
+			}
+			if = {
+				limit = {
+					scope:zzz_great_councils_temp_emp = { has_character_flag = zzz_great_councils_inherit }
+				}
+				scope:zzz_great_councils_temp_emp = { remove_character_flag = zzz_great_councils_inherit }
+			}
+			if = {
+				limit = {
+					scope:zzz_great_councils_temp_emp = { has_character_flag = zzz_great_councils_depose }
+				}
+				scope:zzz_great_councils_temp_emp = { remove_character_flag = zzz_great_councils_depose }
+			}
+		}
+		if = {
+			limit = {
+				scope:zzz_great_councils_emperor ?= { has_character_flag = zzz_great_councils_called_council }
+			}
+			scope:zzz_great_councils_emperor ?= { remove_character_flag = zzz_great_councils_called_council }
+		}
+		every_in_list = {
+			list = zzz_great_councils_candidates
+			remove_variable = zzz_great_councils_votes
+		}
+		every_in_list = {
+			list = zzz_great_councils_electors
+			limit = { is_alive = no }
+			remove_from_list = zzz_great_councils_electors
+		}
+		every_in_list = {
+			list = zzz_great_councils_electors
+			limit = {
+				has_character_flag = zzz_great_councils_four_fired
+				is_alive = yes
+			}
+			remove_character_flag = zzz_great_councils_four_fired
 		}
 	}
 }

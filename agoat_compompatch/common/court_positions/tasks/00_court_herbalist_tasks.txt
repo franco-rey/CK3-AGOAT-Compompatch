@@ -1,0 +1,308 @@
+
+
+
+
+
+
+
+
+
+
+court_herbalist_tend_garden = {
+	court_position_types = { court_herbalist_court_position }
+
+
+	cost = {
+		round = no
+		gold = {
+			value = 0
+			if = {
+				limit = {
+					scope:liege = {
+						has_treasury = no
+					}
+				}
+				add = {
+					value = monthly_court_position_task_cost
+					desc = COURT_POSITION_TASK_COST_BREAKDOWN_BASE
+					format = "BASE_VALUE_FORMAT_DECIMALS_PLUS_NEGATIVE"
+				}
+			}
+		}
+		treasury = {
+			value = 0
+			if = {
+				limit = {
+					scope:liege = {
+						has_treasury = yes
+					}
+				}
+				add = {
+					value = monthly_court_position_task_cost
+					desc = COURT_POSITION_TASK_COST_BREAKDOWN_BASE
+					format = "BASE_VALUE_FORMAT_DECIMALS_PLUS_NEGATIVE"
+				}
+			}
+		}
+	}
+
+
+	employee_modifier = {
+		monthly_learning_lifestyle_xp_gain_mult = 0.10
+	}
+
+
+	scaling_employer_modifiers = {
+		terrible = {
+			negate_health_penalty_add = 0.05
+		}
+		poor = {
+			negate_health_penalty_add = 0.05
+		}
+		average = {
+			negate_health_penalty_add = 0.05
+			life_expectancy = 1
+		}
+		good = {
+			negate_health_penalty_add = 0.10
+			life_expectancy = 2
+		}
+		excellent = {
+			negate_health_penalty_add = 0.10
+			life_expectancy = 3
+			court_grandeur_baseline_add = 1
+		}
+	}
+
+	is_shown = { }
+	is_valid_showing_failures_only = { }
+
+	on_start = { }
+	on_end = { }
+
+	ai_will_do = {
+		value = 1
+
+		if = {
+			limit = {
+				health <= 4
+			}
+			add = 25
+		}
+		if = {
+			limit = {
+				has_treasury = no
+				monthly_character_income < monthly_court_position_task_cost_double
+			}
+			add = -1000
+		}
+		else_if = {
+			limit = {
+				has_treasury = yes
+				monthly_character_treasury_income < monthly_court_position_task_cost_double
+			}
+			add = -1000
+		}
+	}
+}
+
+
+
+
+
+
+
+court_herbalist_brew_remedies = {
+	court_position_types = { court_herbalist_court_position }
+
+
+	cost = {
+		round = no
+		gold = {
+			value = 0
+			if = {
+				limit = {
+					scope:liege = {
+						has_treasury = no
+					}
+				}
+				add = {
+					value = monthly_court_position_task_cost
+					desc = COURT_POSITION_TASK_COST_BREAKDOWN_BASE
+					format = "BASE_VALUE_FORMAT_DECIMALS_PLUS_NEGATIVE"
+				}
+			}
+		}
+		treasury = {
+			value = 0
+			if = {
+				limit = {
+					scope:liege = {
+						has_treasury = yes
+					}
+				}
+				add = {
+					value = monthly_court_position_task_cost
+					desc = COURT_POSITION_TASK_COST_BREAKDOWN_BASE
+					format = "BASE_VALUE_FORMAT_DECIMALS_PLUS_NEGATIVE"
+				}
+			}
+		}
+	}
+
+
+	employee_modifier = {
+		monthly_prestige = 0.25
+		learning = 1
+	}
+
+
+	scaling_employer_modifiers = {
+		terrible = {
+			child_health = 0.05
+		}
+		poor = {
+			child_health = 0.10
+			negate_health_penalty_add = 0.05
+		}
+		average = {
+			child_health = 0.10
+			negate_health_penalty_add = 0.10
+			diplomacy = 1
+		}
+		good = {
+			child_health = 0.15
+			negate_health_penalty_add = 0.10
+			diplomacy = 1
+			monthly_prestige_gain_mult = 0.05
+		}
+		excellent = {
+			child_health = 0.15
+			negate_health_penalty_add = 0.10
+			diplomacy = 2
+			monthly_prestige_gain_mult = 0.10
+		}
+	}
+
+	is_shown = { }
+	is_valid_showing_failures_only = { }
+
+	on_start = { }
+	on_end = { }
+
+	ai_will_do = {
+		value = 1
+
+		if = {
+			limit = {
+				any_child = {
+					age <= 10
+				}
+			}
+			add = 30
+		}
+		if = {
+			limit = {
+				has_treasury = no
+				monthly_character_income < monthly_court_position_task_cost_double
+			}
+			add = -1000
+		}
+		else_if = {
+			limit = {
+				has_treasury = yes
+				monthly_character_treasury_income < monthly_court_position_task_cost_double
+			}
+			add = -1000
+		}
+	}
+}
+
+
+
+
+
+
+
+
+
+court_herbalist_study_forbidden_lore = {
+	court_position_types = { court_herbalist_court_position }
+
+
+	cost = {
+		round = no
+		piety = {
+			add = {
+				value = monthly_court_position_task_cost
+				desc = COURT_POSITION_TASK_COST_BREAKDOWN_BASE
+				format = "BASE_VALUE_FORMAT_DECIMALS_PLUS_NEGATIVE"
+			}
+		}
+	}
+
+
+	employee_modifier = {
+		monthly_learning_lifestyle_xp_gain_mult = 0.15
+	}
+
+
+	scaling_employer_modifiers = {
+		average = {
+			dread_baseline_add = 2
+		}
+		good = {
+			dread_baseline_add = 4
+		}
+		excellent = {
+			dread_baseline_add = 6
+		}
+	}
+
+	is_shown = {}
+
+
+	is_valid_showing_failures_only = {
+		custom_tooltip = {
+			text = court_herbalist_study_forbidden_lore_requires_witch_tt
+			OR = {
+				is_witch_trigger = yes
+				has_trait = lifestyle_mystic
+			}
+		}
+	}
+
+	on_start = { }
+	on_end = { }
+
+	ai_will_do = {
+		value = 1
+
+		if = {
+			limit = {
+				has_trait = cynical
+			}
+			add = 20
+		}
+		if = {
+			limit = {
+				has_trait = curious
+			}
+			add = 15
+		}
+
+		if = {
+			limit = {
+				has_trait = zealous
+			}
+			multiply = 0
+		}
+
+		if = {
+			limit = {
+				piety_level <= 1
+			}
+			add = -30
+		}
+	}
+}

@@ -1,0 +1,3562 @@
+﻿
+
+
+asoiaf_Svennis = {
+	name = Sven
+
+	religion = old_gods_wnw
+	culture = northman
+	sexuality = heterosexual
+
+	martial = 9
+	diplomacy = 16
+	intrigue = 7
+	stewardship = 4
+	learning = 13
+	prowess = 17
+
+	trait = brave
+	trait = stubborn
+	trait = honest
+	trait = lifestyle_physician
+	trait = education_learning_1
+
+	disallow_random_traits = yes
+
+	8269.1.1 = {
+		birth = yes
+		add_character_flag = sexuality_ensure_heterosexual
+		effect = { if = { limit = { is_alive = no } make_unprunable = yes } }
+		effect = {
+			agot_safe_set_location_history_effect = { CASTLE = title:c_white_harbor }
+		}
+		effect = {
+			set_focus = education_learning
+		}
+	}
+	8282.1.1 = {
+		effect = {
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:Manderly_8 }
+		}
+	}
+	8289.1.1 = {
+		trait = knight
+	}
+}
+
+
+
+
+asoiaf_Toth_1 = {
+	name = Alliser
+	dynasty = dynn_Toth
+
+	religion = fots_seven
+	culture = valeman_main
+
+	martial = 5
+	diplomacy = 5
+	intrigue = 5
+	stewardship = 5
+	learning = 5
+	prowess = 5
+
+	8241.1.1 = {
+		birth = yes
+		effect = { if = { limit = { is_alive = no } make_unprunable = yes } }
+		effect = {
+			agot_safe_set_location_history_effect = { CASTLE = title:c_osgoodswell }
+		}
+	}
+	8265.1.1 = {
+		add_spouse = asoiaf_Toth_rs_1
+	}
+	8282.12.12 = {
+		death = {
+			death_reason = death_siege
+		}
+	}
+}
+asoiaf_Toth_rs_1 = {
+	name = Melody
+	female = yes
+
+	religion = fots_seven
+	culture = valeman_main
+
+	martial = 5
+	diplomacy = 5
+	intrigue = 5
+	stewardship = 5
+	learning = 5
+	prowess = 5
+
+	8241.1.1 = {
+		birth = yes
+		effect = { if = { limit = { is_alive = no } make_unprunable = yes } }
+		effect = {
+			agot_safe_set_location_history_effect = { CASTLE = title:c_osgoodswell }
+		}
+	}
+	8282.12.12 = {
+		death = {
+			death_reason = death_siege
+		}
+	}
+}
+asoiaf_Toth_2 = {
+	name = Istvan
+	dynasty = dynn_Toth
+	dna = asoiaf_Toth_2
+	sexuality = homosexual
+
+	religion = fots_seven
+	culture = valeman_main
+
+	martial = 6
+	diplomacy = 10
+	intrigue = 10
+	stewardship = 5
+	learning = 10
+	prowess = 10
+	trait = intellect_good_2
+
+	trait = deceitful
+	trait = ambitious
+	trait = callous
+	trait = cynical
+	trait = fashionable
+	trait = schemer
+	trait = education_intrigue_4
+	trait = education_martial_prowess_3
+
+	disallow_random_traits = yes
+
+	father = asoiaf_Toth_1
+	mother = asoiaf_Toth_rs_1
+
+	8267.1.1 = {
+		birth = yes
+		add_character_flag = sexuality_ensure_homosexual
+		effect = { if = { limit = { is_alive = no } make_unprunable = yes } }
+		effect = {
+			agot_safe_set_location_history_effect = { CASTLE = title:c_osgoodswell }
+		}
+		effect = {
+			set_focus = education_intrigue
+		}
+	}
+	8282.12.12 = {
+		effect = {
+			agot_safe_set_location_history_effect = { CASTLE = title:c_gulltown }
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:Grafton_3 }
+			set_relation_grudge = { reason = asoiaf_istvan_robert_grudge_desc target = character:Baratheon_2 }
+		}
+	}
+	8298.12.21 = {
+		effect = {
+			agot_safe_set_location_history_effect = { CASTLE = title:c_riverrun }
+		}
+	}
+	8284.1.1 = {
+		trait = knight
+	}
+	8288.1.1 = {
+		effect = {
+			set_relation_friend = character:asoiaf_Erik
+			set_relation_lover = { reason = asoiaf_istvan_erik_lover_desc target = character:asoiaf_Erik }
+		}
+	}
+
+
+
+	8299.12.15 = {
+		death = {
+			death_reason = death_duel
+			killer = asoiaf_Kobyla_2
+		}
+	}
+}
+asoiaf_Erik_father = {
+	name = Bernard
+
+	religion = fots_seven
+	culture = valeman_main
+
+	martial = 5
+	diplomacy = 5
+	intrigue = 5
+	stewardship = 5
+	learning = 5
+	prowess = 5
+
+	8243.1.1 = {
+		birth = yes
+		effect = { if = { limit = { is_alive = no } make_unprunable = yes } }
+		effect = {
+			agot_safe_set_location_history_effect = { CASTLE = title:c_gulltown }
+		}
+	}
+	8262.1.1 = {
+		add_spouse = asoiaf_Erik_mother
+	}
+	8282.12.12 = {
+		death = {
+			death_reason = death_siege
+		}
+	}
+}
+asoiaf_Erik_mother = {
+	name = Flora
+	female = yes
+
+	religion = fots_seven
+	culture = valeman_main
+
+	martial = 5
+	diplomacy = 5
+	intrigue = 5
+	stewardship = 5
+	learning = 5
+	prowess = 5
+
+	8244.1.1 = {
+		birth = yes
+		effect = { if = { limit = { is_alive = no } make_unprunable = yes } }
+		effect = {
+			agot_safe_set_location_history_effect = { CASTLE = title:c_gulltown }
+		}
+	}
+	8282.12.12 = {
+		death = {
+			death_reason = death_siege
+		}
+	}
+}
+asoiaf_Erik = {
+	name = Erik
+	dna = asoiaf_Erik
+	sexuality = homosexual
+
+	religion = fots_seven
+	culture = valeman_main
+
+	martial = 10
+	diplomacy = 6
+	intrigue = 6
+	stewardship = 5
+	learning = 7
+	prowess = 10
+
+	trait = brave
+	trait = wrathful
+	trait = diligent
+	trait = impatient
+	trait = loyal
+	trait = aggressive_attacker
+	trait = education_martial_3
+	trait = education_martial_prowess_4
+
+	disallow_random_traits = yes
+
+	father = asoiaf_Erik_father
+	mother = asoiaf_Erik_mother
+
+	8271.1.1 = {
+		birth = yes
+		add_character_flag = sexuality_ensure_homosexual
+		effect = { if = { limit = { is_alive = no } make_unprunable = yes } }
+		effect = {
+			agot_safe_set_location_history_effect = { CASTLE = title:c_gulltown }
+		}
+		effect = {
+			set_focus = education_martial
+		}
+	}
+	8288.1.1 = {
+		effect = {
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Toth_2 }
+		}
+	}
+	8298.12.21 = {
+		effect = {
+			agot_safe_set_location_history_effect = { CASTLE = title:c_riverrun }
+		}
+	}
+	8299.12.15 = {
+		effect = {
+			set_relation_nemesis = { reason = asoiaf_erik_henry_nemesis_desc target = character:asoiaf_Kobyla_2 }
+		}
+	}
+}
+asoiaf_Henry_mother = {
+	name = Hazel
+	female = yes
+	sexuality = heterosexual
+
+	religion = fots_seven
+	culture = westerman_main
+
+	martial = 5
+	diplomacy = 5
+	intrigue = 5
+	stewardship = 5
+	learning = 5
+	prowess = 5
+	trait = beauty_good_2
+
+	trait = compassionate
+	trait = forgiving
+	trait = content
+	trait = diligent
+	trait = education_diplomacy_2
+
+	disallow_random_traits = yes
+
+	8258.1.1 = {
+		birth = yes
+		add_character_flag = sexuality_ensure_heterosexual
+		effect = { if = { limit = { is_alive = no } make_unprunable = yes } }
+		effect = {
+			agot_safe_set_location_history_effect = { CASTLE = title:c_deadwater }
+		}
+		effect = {
+			set_focus = education_diplomacy
+		}
+	}
+
+	8281.1.1 = {
+		trait = fornicator
+		add_spouse = asoiaf_Martin
+	}
+	8299.1.1 = {
+		death = {
+			death_reason = death_raid
+			killer = asoiaf_Toth_2
+		}
+	}
+}
+asoiaf_Martin = {
+	name = Martin
+	sexuality = heterosexual
+
+	religion = fots_seven
+	culture = westerman_main
+
+	martial = 8
+	diplomacy = 5
+	intrigue = 3
+	stewardship = 10
+	learning = 5
+	prowess = 10
+
+	trait = honest
+	trait = brave
+	trait = just
+	trait = diligent
+	trait = shrewd
+	trait = education_stewardship_3
+
+	disallow_random_traits = yes
+
+	8256.1.1 = {
+		birth = yes
+		add_character_flag = sexuality_ensure_heterosexual
+		effect = { if = { limit = { is_alive = no } make_unprunable = yes } }
+		effect = {
+			agot_safe_set_location_history_effect = { CASTLE = title:c_deadwater }
+		}
+		effect = {
+			set_focus = education_stewardship
+		}
+	}
+	8281.1.1 = {
+		effect = {
+			agot_appoint_as_court_position_for_castle_history_effect = {
+				CASTLE = title:c_deadwater
+				POSITION = court_smith_court_position
+			}
+		}
+	}
+	8299.1.1 = {
+		death = {
+			death_reason = death_raid
+			killer = asoiaf_Toth_2
+		}
+	}
+}
+asoiaf_Kobyla_1 = {
+	name = Radzig
+	dynasty = dynn_Kobyla
+	sexuality = heterosexual
+
+	religion = fots_seven
+	culture = westerman_main
+
+	martial = 9
+	diplomacy = 8
+	intrigue = 5
+	stewardship = 12
+	learning = 10
+	prowess = 10
+
+	trait = just
+	trait = brave
+	trait = calm
+	trait = ambitious
+	trait = shrewd
+	trait = avaricious
+	trait = education_martial_3
+	trait = education_martial_prowess_3
+
+	disallow_random_traits = yes
+
+	8262.1.1 = {
+		birth = yes
+		add_character_flag = sexuality_ensure_heterosexual
+		effect = { if = { limit = { is_alive = no } make_unprunable = yes } }
+		effect = {
+			agot_safe_set_location_history_effect = { CASTLE = title:c_deadwater }
+		}
+		effect = {
+			set_focus = education_martial
+		}
+	}
+	8274.1.1 = {
+		effect = {
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:Bettley_1 }
+		}
+	}
+	8278.1.1 = {
+		effect = {
+			agot_knighted_char_history_effect = { KNIGHT = character:Bettley_1 }
+			set_relation_friend = character:asoiaf_Leipa_12
+		}
+		trait = knight
+	}
+	8279.1.1 = {
+		effect = {
+			agot_appoint_as_court_position_for_castle_history_effect = {
+				CASTLE = title:c_deadwater
+				POSITION = seneschal_court_position
+			}
+		}
+	}
+	8280.1.1 = {
+		effect = {
+			set_relation_lover = character:asoiaf_Henry_mother
+			set_relation_friend = character:asoiaf_Martin
+		}
+	}
+	8281.1.1 = {
+		trait = fornicator
+		effect = { remove_relation_lover = character:asoiaf_Henry_mother }
+	}
+}
+asoiaf_Kobyla_2 = {
+	name = Henry
+	dynasty = dynn_Kobyla
+	dna = asoiaf_Kobyla_2
+
+	religion = fots_seven
+	culture = westerman_main
+
+	martial = 7
+	diplomacy = 6
+	intrigue = 5
+	stewardship = 7
+	learning = 6
+	prowess = 10
+
+	trait = bastard
+	trait = brave
+	trait = diligent
+	trait = just
+	trait = lifestyle_blademaster
+	trait = loyal
+	trait = education_martial_2
+	trait = education_martial_prowess_4
+
+	disallow_random_traits = yes
+
+	father = asoiaf_Kobyla_1
+	mother = asoiaf_Henry_mother
+
+	8281.1.1 = {
+		birth = yes
+		make_trait_inactive = surname_hill
+		effect = { if = { limit = { is_alive = no } make_unprunable = yes } }
+		effect = {
+			agot_safe_set_location_history_effect = { CASTLE = title:c_deadwater }
+		}
+		effect = {
+			set_focus = education_martial
+		}
+		effect = {
+			agot_set_as_ward_history_effect = { GUARDIAN = character:asoiaf_Martin }
+		}
+	}
+	8299.1.1 = {
+		trait = vengeful
+		effect = {
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Capon_2 }
+			set_relation_best_friend = { reason = asoiaf_henry_hans_best_friend_desc target = character:asoiaf_Capon_2 }
+			set_relation_nemesis = { reason = asoiaf_henry_istvan_nemesis_desc target = character:asoiaf_Toth_2 }
+			set_relation_grudge = { reason = asoiaf_henry_robb_grudge_desc target = character:Stark_6 }
+
+		}
+	}
+}
+
+asoiaf_Ronov_1 = {
+	name = Smil
+	dynasty = dynn_Ronov
+
+	religion = fots_seven
+	culture = westerman_main
+
+	martial = 5
+	diplomacy = 5
+	intrigue = 5
+	stewardship = 5
+	learning = 5
+	prowess = 5
+
+	8097.1.1 = {
+		birth = yes
+		effect = { if = { limit = { is_alive = no } make_unprunable = yes } }
+		effect = {
+			agot_safe_set_location_history_effect = { CASTLE = title:c_deadwater }
+		}
+	}
+	8110.1.1 = {
+		effect = {
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:Bettley_1 }
+		}
+	}
+	8114.1.1 = {
+		trait = knight
+		add_spouse = asoiaf_Ronov_rs_1
+	}
+	8148.1.1 = {
+		death = { death_reason = death_natural_causes }
+	}
+}
+asoiaf_Ronov_rs_1 = {
+	name = Theresa
+	female = yes
+
+	religion = fots_seven
+	culture = westerman_main
+
+	martial = 5
+	diplomacy = 5
+	intrigue = 5
+	stewardship = 5
+	learning = 5
+	prowess = 5
+
+	8097.1.1 = {
+		birth = yes
+		effect = { if = { limit = { is_alive = no } make_unprunable = yes } }
+		effect = {
+			agot_safe_set_location_history_effect = { CASTLE = title:c_deadwater }
+		}
+	}
+	8148.1.1 = {
+		death = { death_reason = death_natural_causes }
+	}
+}
+asoiaf_Ronov_2 = {
+	name = Castolov
+	dynasty = dynn_Ronov
+
+	religion = fots_seven
+	culture = westerman_main
+
+	martial = 5
+	diplomacy = 5
+	intrigue = 5
+	stewardship = 5
+	learning = 5
+	prowess = 5
+
+	trait = education_martial_2
+	trait = lifestyle_hunter
+
+	father = asoiaf_Ronov_1
+	mother = asoiaf_Ronov_rs_1
+
+	8123.1.1 = {
+		birth = yes
+		effect = { if = { limit = { is_alive = no } make_unprunable = yes } }
+		effect = {
+			agot_safe_set_location_history_effect = { CASTLE = title:c_deadwater }
+		}
+		effect = {
+			set_focus = education_martial
+		}
+	}
+	8133.1.1 = {
+		effect = {
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Ronov_1 }
+		}
+	}
+	8142.1.1 = {
+		trait = knight
+		add_spouse = asoiaf_Ronov_rs_2
+	}
+	8166.1.1 = {
+		death = { death_reason = death_natural_causes }
+	}
+}
+asoiaf_Ronov_rs_2 = {
+	name = Obetta
+	female = yes
+
+	religion = fots_seven
+	culture = westerman_main
+
+	martial = 5
+	diplomacy = 5
+	intrigue = 5
+	stewardship = 5
+	learning = 5
+	prowess = 5
+
+	8123.1.1 = {
+		birth = yes
+		effect = { if = { limit = { is_alive = no } make_unprunable = yes } }
+		effect = {
+			agot_safe_set_location_history_effect = { CASTLE = title:c_deadwater }
+		}
+	}
+	8166.1.1 = {
+		death = { death_reason = death_natural_causes }
+	}
+}
+asoiaf_Ronov_3 = {
+	name = Henry
+	dynasty = dynn_Ronov
+
+	religion = fots_seven
+	culture = westerman_main
+
+	martial = 5
+	diplomacy = 5
+	intrigue = 5
+	stewardship = 5
+	learning = 5
+	prowess = 5
+
+	trait = administrator
+	trait = education_stewardship_3
+
+	father = asoiaf_Ronov_1
+	mother = asoiaf_Ronov_rs_1
+
+	8125.1.1 = {
+		birth = yes
+		effect = { if = { limit = { is_alive = no } make_unprunable = yes } }
+		effect = {
+			agot_safe_set_location_history_effect = { CASTLE = title:c_deadwater }
+		}
+		effect = {
+			set_focus = education_stewardship
+		}
+	}
+	8139.1.1 = {
+		effect = {
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Ronov_1 }
+		}
+	}
+	8143.1.1 = {
+		trait = knight
+		add_spouse = asoiaf_Ronov_rs_3
+	}
+	8173.1.1 = {
+		death = { death_reason = death_natural_causes }
+	}
+}
+asoiaf_Ronov_rs_3 = {
+	name = Lily
+	female = yes
+
+	religion = fots_seven
+	culture = westerman_main
+
+	martial = 5
+	diplomacy = 5
+	intrigue = 5
+	stewardship = 5
+	learning = 5
+	prowess = 5
+
+	8125.1.1 = {
+		birth = yes
+		effect = { if = { limit = { is_alive = no } make_unprunable = yes } }
+		effect = {
+			agot_safe_set_location_history_effect = { CASTLE = title:c_deadwater }
+		}
+	}
+	8173.1.1 = {
+		death = { death_reason = death_natural_causes }
+	}
+}
+asoiaf_Ronov_4 = {
+	name = Henry
+	dynasty = dynn_Ronov
+
+	religion = fots_seven
+	culture = westerman_main
+
+	martial = 5
+	diplomacy = 5
+	intrigue = 5
+	stewardship = 5
+	learning = 5
+	prowess = 5
+
+	father = asoiaf_Ronov_2
+	mother = asoiaf_Ronov_rs_2
+
+	8146.1.1 = {
+		birth = yes
+		effect = { if = { limit = { is_alive = no } make_unprunable = yes } }
+		effect = {
+			agot_safe_set_location_history_effect = { CASTLE = title:c_deadwater }
+		}
+	}
+	8161.1.1 = {
+		effect = {
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Ronov_2 }
+		}
+	}
+	8162.1.1 = {
+		trait = knight
+	}
+	8203.1.1 = {
+		death = { death_reason = death_natural_causes }
+	}
+}
+asoiaf_Ronov_5 = {
+	name = Castolov
+	dynasty = dynn_Ronov
+
+	religion = fots_seven
+	culture = westerman_main
+
+	martial = 5
+	diplomacy = 5
+	intrigue = 5
+	stewardship = 5
+	learning = 5
+	prowess = 5
+
+	father = asoiaf_Ronov_2
+	mother = asoiaf_Ronov_rs_2
+
+	8147.1.1 = {
+		birth = yes
+		effect = { if = { limit = { is_alive = no } make_unprunable = yes } }
+		effect = {
+			agot_safe_set_location_history_effect = { CASTLE = title:c_deadwater }
+		}
+	}
+	8162.1.1 = {
+		effect = {
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Ronov_2 }
+		}
+	}
+	8163.1.1 = {
+		trait = knight
+	}
+	8204.1.1 = {
+		death = { death_reason = death_natural_causes }
+	}
+}
+asoiaf_Leipa_1 = {
+	name = Chval
+	dynasty_house = house_Leipa
+
+	religion = fots_seven
+	culture = westerman_main
+
+	martial = 5
+	diplomacy = 5
+	intrigue = 5
+	stewardship = 5
+	learning = 5
+	prowess = 5
+
+	trait = ambitious
+	trait = architect
+
+	father = asoiaf_Ronov_2
+	mother = asoiaf_Ronov_rs_2
+
+	8149.1.1 = {
+		birth = yes
+		effect = { if = { limit = { is_alive = no } make_unprunable = yes } }
+		effect = {
+			agot_safe_set_location_history_effect = { CASTLE = title:c_deadwater }
+		}
+	}
+	8164.1.1 = {
+		effect = {
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Ronov_1 }
+		}
+	}
+	8165.1.1 = {
+		trait = knight
+		add_spouse = asoiaf_Leipa_rs_1
+	}
+	8206.1.1 = {
+		death = { death_reason = death_natural_causes }
+	}
+}
+asoiaf_Leipa_rs_1 = {
+	name = Alerie
+	female = yes
+
+	religion = fots_seven
+	culture = westerman_main
+
+	martial = 5
+	diplomacy = 5
+	intrigue = 5
+	stewardship = 5
+	learning = 5
+	prowess = 5
+
+	8149.1.1 = {
+		birth = yes
+		effect = { if = { limit = { is_alive = no } make_unprunable = yes } }
+		effect = {
+			agot_safe_set_location_history_effect = { CASTLE = title:c_deadwater }
+		}
+	}
+	8206.1.1 = {
+		death = { death_reason = death_natural_causes }
+	}
+}
+asoiaf_Ronov_6 = {
+	name = Smil
+	dynasty_house = house_Lichtenburg
+
+	religion = fots_seven
+	culture = westerman_main
+
+	martial = 5
+	diplomacy = 5
+	intrigue = 5
+	stewardship = 5
+	learning = 5
+	prowess = 5
+
+	father = asoiaf_Ronov_3
+	mother = asoiaf_Ronov_rs_3
+
+	8145.1.1 = {
+		birth = yes
+		effect = { if = { limit = { is_alive = no } make_unprunable = yes } }
+		effect = {
+			agot_safe_set_location_history_effect = { CASTLE = title:c_deadwater }
+		}
+	}
+	8157.1.1 = {
+		effect = {
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Ronov_3 }
+		}
+	}
+	8162.1.1 = {
+		trait = knight
+		add_spouse = asoiaf_Ronov_rs_6
+		effect = {
+			agot_safe_set_location_history_effect = { CASTLE = title:c_nunns_deep }
+		}
+	}
+	8182.1.1 = {
+		death = { death_reason = death_natural_causes }
+	}
+}
+asoiaf_Ronov_rs_6 = {
+	name = Elizabeth
+	female = yes
+
+	religion = fots_seven
+	culture = westerman_main
+
+	martial = 5
+	diplomacy = 5
+	intrigue = 5
+	stewardship = 5
+	learning = 5
+	prowess = 5
+
+	8145.1.1 = {
+		birth = yes
+		effect = { if = { limit = { is_alive = no } make_unprunable = yes } }
+		effect = {
+			agot_safe_set_location_history_effect = { CASTLE = title:c_deadwater }
+		}
+	}
+	8162.1.1 = {
+		effect = {
+			agot_safe_set_location_history_effect = { CASTLE = title:c_nunns_deep }
+		}
+	}
+	8182.1.1 = {
+		death = { death_reason = death_natural_causes }
+	}
+}
+asoiaf_Leipa_2 = {
+	name = Cenek
+	dynasty_house = house_Leipa
+
+	religion = fots_seven
+	culture = westerman_main
+
+	martial = 5
+	diplomacy = 5
+	intrigue = 5
+	stewardship = 5
+	learning = 5
+	prowess = 5
+
+	father = asoiaf_Leipa_1
+	mother = asoiaf_Leipa_rs_1
+
+	8172.1.1 = {
+		birth = yes
+		effect = { if = { limit = { is_alive = no } make_unprunable = yes } }
+		effect = {
+			agot_safe_set_location_history_effect = { CASTLE = title:c_deadwater }
+		}
+	}
+	8187.1.1 = {
+		effect = {
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Leipa_1 }
+		}
+	}
+	8191.1.1 = {
+		trait = knight
+		add_spouse = asoiaf_Leipa_rs_2
+	}
+	8218.1.1 = {
+		death = { death_reason = death_natural_causes }
+	}
+}
+asoiaf_Leipa_rs_2 = {
+	name = Austa
+	female = yes
+
+	religion = fots_seven
+	culture = westerman_main
+
+	martial = 5
+	diplomacy = 5
+	intrigue = 5
+	stewardship = 5
+	learning = 5
+	prowess = 5
+
+	8172.1.1 = {
+		birth = yes
+		effect = { if = { limit = { is_alive = no } make_unprunable = yes } }
+		effect = {
+			agot_safe_set_location_history_effect = { CASTLE = title:c_deadwater }
+		}
+	}
+	8218.1.1 = {
+		death = { death_reason = death_natural_causes }
+	}
+}
+asoiaf_Leipa_3 = {
+	name = Henry
+	dynasty_house = house_Leipa
+
+	religion = fots_seven
+	culture = westerman_main
+
+	martial = 10
+	diplomacy = 6
+	intrigue = 8
+	stewardship = 7
+	learning = 7
+	prowess = 10
+
+	trait = deceitful
+	trait = diligent
+	trait = ambitious
+	trait = education_martial_4
+	trait = education_martial_prowess_3
+
+	disallow_random_traits = yes
+
+	father = asoiaf_Leipa_2
+	mother = asoiaf_Leipa_rs_2
+
+	8197.1.1 = {
+		birth = yes
+		effect = { if = { limit = { is_alive = no } make_unprunable = yes } }
+		effect = {
+			agot_safe_set_location_history_effect = { CASTLE = title:c_deadwater }
+		}
+		effect = {
+			set_focus = education_martial
+		}
+	}
+	8208.1.1 = {
+		effect = {
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Leipa_2 }
+		}
+	}
+	8214.1.1 = {
+		trait = knight
+		add_spouse = asoiaf_Leipa_rs_3
+	}
+	8245.1.1 = {
+		trait = widowed
+	}
+	8249.1.1 = {
+		death = { death_reason = death_natural_causes }
+	}
+}
+asoiaf_Leipa_rs_3 = {
+	name = Elizabeth
+	female = yes
+
+	religion = fots_seven
+	culture = westerman_main
+
+	martial = 5
+	diplomacy = 5
+	intrigue = 5
+	stewardship = 5
+	learning = 5
+	prowess = 5
+
+	trait = shrewd
+	trait = education_diplomacy_4
+
+	8197.1.1 = {
+		birth = yes
+		effect = { if = { limit = { is_alive = no } make_unprunable = yes } }
+		effect = {
+			agot_safe_set_location_history_effect = { CASTLE = title:c_deadwater }
+		}
+		effect = {
+			set_focus = education_diplomacy
+		}
+	}
+	8245.1.1 = {
+		death = { death_reason = death_natural_causes }
+	}
+}
+asoiaf_Leipa_4 = {
+	name = Henry
+	dynasty_house = house_Leipa
+
+	religion = fots_seven
+	culture = westerman_main
+
+	martial = 8
+	diplomacy = 7
+	intrigue = 5
+	stewardship = 5
+	learning = 5
+	prowess = 8
+
+	trait = strong
+	trait = education_martial_3
+	trait = education_martial_prowess_3
+
+	father = asoiaf_Leipa_3
+	mother = asoiaf_Leipa_rs_3
+
+	8222.1.1 = {
+		birth = yes
+		effect = { if = { limit = { is_alive = no } make_unprunable = yes } }
+		effect = {
+			agot_safe_set_location_history_effect = { CASTLE = title:c_deadwater }
+		}
+		effect = {
+			set_focus = education_martial
+		}
+	}
+	8234.1.1 = {
+		give_nickname = nick_the_iron_one
+		effect = {
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Leipa_3 }
+		}
+	}
+	8240.1.1 = {
+		trait = knight
+		add_spouse = asoiaf_Leipa_rs_4
+	}
+	8273.1.1 = {
+		death = { death_reason = death_natural_causes }
+	}
+}
+asoiaf_Leipa_rs_4 = {
+	name = Agnes
+	female = yes
+
+	religion = fots_seven
+	culture = westerman_main
+
+	martial = 5
+	diplomacy = 5
+	intrigue = 5
+	stewardship = 5
+	learning = 5
+	prowess = 5
+
+	8222.1.1 = {
+		birth = yes
+		effect = { if = { limit = { is_alive = no } make_unprunable = yes } }
+		effect = {
+			agot_safe_set_location_history_effect = { CASTLE = title:c_deadwater }
+		}
+	}
+	8273.1.1 = {
+		death = { death_reason = death_natural_causes }
+	}
+}
+asoiaf_Leipa_5 = {
+	name = Clara
+	dynasty_house = house_Leipa
+	female = yes
+
+	religion = fots_seven
+	culture = westerman_main
+
+	martial = 5
+	diplomacy = 5
+	intrigue = 5
+	stewardship = 5
+	learning = 5
+	prowess = 5
+
+	father = asoiaf_Leipa_3
+	mother = asoiaf_Leipa_rs_3
+
+	8224.1.1 = {
+		birth = yes
+		effect = { if = { limit = { is_alive = no } make_unprunable = yes } }
+		effect = {
+			agot_safe_set_location_history_effect = { CASTLE = title:c_deadwater }
+		}
+	}
+	8270.1.1 = {
+		death = { death_reason = death_natural_causes }
+	}
+}
+asoiaf_Leipa_6 = {
+	name = Margaret
+	dynasty_house = house_Leipa
+	female = yes
+
+	religion = fots_seven
+	culture = westerman_main
+
+	martial = 5
+	diplomacy = 5
+	intrigue = 5
+	stewardship = 5
+	learning = 5
+	prowess = 5
+
+	father = asoiaf_Leipa_3
+	mother = asoiaf_Leipa_rs_3
+
+	8225.1.1 = {
+		birth = yes
+		effect = { if = { limit = { is_alive = no } make_unprunable = yes } }
+		effect = {
+			agot_safe_set_location_history_effect = { CASTLE = title:c_deadwater }
+		}
+	}
+	8262.1.1 = {
+		death = { death_reason = death_natural_causes }
+	}
+}
+asoiaf_Leipa_7 = {
+	name = John
+	dynasty_house = house_Leipa
+
+	religion = fots_seven
+	culture = westerman_main
+
+	martial = 5
+	diplomacy = 5
+	intrigue = 5
+	stewardship = 5
+	learning = 5
+	prowess = 5
+
+	father = asoiaf_Leipa_3
+	mother = asoiaf_Leipa_rs_3
+
+	8227.1.1 = {
+		birth = yes
+		effect = { if = { limit = { is_alive = no } make_unprunable = yes } }
+		effect = {
+			agot_safe_set_location_history_effect = { CASTLE = title:c_deadwater }
+		}
+	}
+	8240.1.1 = {
+		effect = {
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Leipa_3 }
+		}
+	}
+	8245.1.1 = {
+		trait = knight
+	}
+	8282.1.1 = {
+		death = { death_reason = death_natural_causes }
+	}
+}
+asoiaf_Leipa_8 = {
+	name = Katherine
+	dynasty_house = house_Leipa
+	female = yes
+
+	religion = fots_seven
+	culture = westerman_main
+
+	martial = 5
+	diplomacy = 5
+	intrigue = 5
+	stewardship = 5
+	learning = 5
+	prowess = 5
+
+	father = asoiaf_Leipa_3
+	mother = asoiaf_Leipa_rs_3
+
+	8229.1.1 = {
+		birth = yes
+		effect = { if = { limit = { is_alive = no } make_unprunable = yes } }
+		effect = {
+			agot_safe_set_location_history_effect = { CASTLE = title:c_deadwater }
+		}
+	}
+	8279.1.1 = {
+		death = { death_reason = death_natural_causes }
+	}
+}
+asoiaf_Leipa_9 = {
+	name = Berthold
+	dynasty_house = house_Leipa
+
+	religion = fots_seven
+	culture = westerman_main
+
+	martial = 5
+	diplomacy = 5
+	intrigue = 5
+	stewardship = 5
+	learning = 5
+	prowess = 5
+
+	father = asoiaf_Leipa_3
+	mother = asoiaf_Leipa_rs_3
+
+	8230.1.1 = {
+		birth = yes
+		effect = { if = { limit = { is_alive = no } make_unprunable = yes } }
+		effect = {
+			agot_safe_set_location_history_effect = { CASTLE = title:c_deadwater }
+		}
+	}
+	8243.1.1 = {
+		effect = {
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:Bettley_22 }
+		}
+	}
+	8247.1.1 = {
+		trait = knight
+	}
+	8278.1.1 = {
+		death = { death_reason = death_natural_causes }
+	}
+}
+asoiaf_Leipa_10 = {
+	name = Cenek
+	dynasty_house = house_Leipa
+
+	religion = fots_seven
+	culture = westerman_main
+
+	martial = 5
+	diplomacy = 5
+	intrigue = 5
+	stewardship = 5
+	learning = 5
+	prowess = 5
+
+	father = asoiaf_Leipa_3
+	mother = asoiaf_Leipa_rs_3
+
+	8232.1.1 = {
+		birth = yes
+		effect = { if = { limit = { is_alive = no } make_unprunable = yes } }
+		effect = {
+			agot_safe_set_location_history_effect = { CASTLE = title:c_deadwater }
+		}
+	}
+	8245.1.1 = {
+		effect = {
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:Bettley_22 }
+		}
+	}
+	8249.1.1 = {
+		trait = knight
+		add_spouse = asoiaf_Leipa_rs_10
+	}
+	8298.1.1 = {
+		death = { death_reason = death_natural_causes }
+	}
+}
+asoiaf_Leipa_rs_10 = {
+	name = Judith
+	female = yes
+
+	religion = fots_seven
+	culture = westerman_main
+
+	martial = 5
+	diplomacy = 5
+	intrigue = 5
+	stewardship = 5
+	learning = 5
+	prowess = 5
+
+	8232.1.1 = {
+		birth = yes
+		effect = { if = { limit = { is_alive = no } make_unprunable = yes } }
+		effect = {
+			agot_safe_set_location_history_effect = { CASTLE = title:c_deadwater }
+		}
+	}
+	8290.1.1 = {
+		death = { death_reason = death_natural_causes }
+	}
+}
+asoiaf_Leipa_11 = {
+	name = Henry
+	dynasty_house = house_Leipa
+
+	religion = fots_seven
+	culture = westerman_main
+
+	martial = 5
+	diplomacy = 5
+	intrigue = 5
+	stewardship = 5
+	learning = 5
+	prowess = 5
+
+	father = asoiaf_Leipa_4
+	mother = asoiaf_Leipa_rs_4
+
+	8245.1.1 = {
+		birth = yes
+		effect = { if = { limit = { is_alive = no } make_unprunable = yes } }
+		effect = {
+			agot_safe_set_location_history_effect = { CASTLE = title:c_deadwater }
+		}
+	}
+	8256.1.1 = {
+		effect = {
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Leipa_4 }
+		}
+	}
+	8264.1.1 = {
+		trait = knight
+		add_spouse = asoiaf_Leipa_rs_11
+	}
+	8284.1.1 = {
+		death = { death_reason = death_natural_causes }
+	}
+}
+asoiaf_Leipa_rs_11 = {
+	name = Ofca
+	female = yes
+
+	religion = fots_seven
+	culture = westerman_main
+
+	martial = 5
+	diplomacy = 5
+	intrigue = 5
+	stewardship = 5
+	learning = 5
+	prowess = 5
+
+	8245.1.1 = {
+		birth = yes
+		effect = { if = { limit = { is_alive = no } make_unprunable = yes } }
+		effect = {
+			agot_safe_set_location_history_effect = { CASTLE = title:c_deadwater }
+		}
+	}
+	8284.1.1 = {
+		trait = widowed
+	}
+	8286.1.1 = {
+		death = { death_reason = death_natural_causes }
+	}
+}
+asoiaf_Capon_1 = {
+	name = Henry
+	dynasty_house = house_Capon
+
+	religion = fots_seven
+	culture = westerman_main
+
+	martial = 5
+	diplomacy = 5
+	intrigue = 5
+	stewardship = 5
+	learning = 5
+	prowess = 5
+
+	trait = lifestyle_hunter
+
+	father = asoiaf_Leipa_10
+	mother = asoiaf_Leipa_rs_10
+
+	8257.1.1 = {
+		birth = yes
+		effect = { if = { limit = { is_alive = no } make_unprunable = yes } }
+		effect = {
+			agot_safe_set_location_history_effect = { CASTLE = title:c_deadwater }
+		}
+		effect = {
+			agot_set_as_ward_history_effect = { GUARDIAN = character:asoiaf_Leipa_10 }
+		}
+	}
+	8272.1.1 = {
+		effect = {
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Leipa_10 }
+		}
+	}
+	8276.1.1 = {
+		trait = knight
+		add_spouse = asoiaf_Capon_rs_1
+		effect = {
+			agot_appoint_as_court_position_for_castle_history_effect = {
+				CASTLE = title:c_deadwater
+				POSITION = master_of_hunt_court_position
+			}
+		}
+	}
+	8297.2.1 = {
+		death = { death_reason = death_horse_riding_accident }
+	}
+}
+asoiaf_Capon_rs_1 = {
+	name = Hedvika
+	female = yes
+
+	religion = fots_seven
+	culture = westerman_main
+
+	martial = 5
+	diplomacy = 5
+	intrigue = 5
+	stewardship = 5
+	learning = 5
+	prowess = 5
+
+	8258.1.1 = {
+		birth = yes
+		effect = { if = { limit = { is_alive = no } make_unprunable = yes } }
+		effect = {
+			agot_safe_set_location_history_effect = { CASTLE = title:c_deadwater }
+		}
+	}
+	8297.2.1 = {
+		trait = widowed
+		effect = {
+			agot_safe_set_location_history_effect = { CASTLE = title:c_lannisport }
+		}
+	}
+}
+asoiaf_Leipa_12 = {
+	name = Hanush
+	dynasty_house = house_Leipa
+	sexuality = heterosexual
+
+	religion = fots_seven
+	culture = westerman_main
+
+	martial = 9
+	diplomacy = 8
+	intrigue = 5
+	stewardship = 9
+	learning = 1
+	prowess = 7
+
+	trait = gregarious
+	trait = authoritative
+	trait = greedy
+	trait = stubborn
+	trait = administrator
+	trait = education_stewardship_2
+	trait = education_martial_prowess_2
+
+	disallow_random_traits = yes
+
+	father = asoiaf_Leipa_10
+	mother = asoiaf_Leipa_rs_10
+
+	8259.1.1 = {
+		birth = yes
+		add_character_flag = sexuality_ensure_heterosexual
+		effect = { if = { limit = { is_alive = no } make_unprunable = yes } }
+		effect = {
+			agot_safe_set_location_history_effect = { CASTLE = title:c_deadwater }
+		}
+		effect = {
+			set_focus = education_stewardship
+		}
+	}
+	8274.1.1 = {
+		effect = {
+			agot_set_as_ward_history_effect = { GUARDIAN = character:asoiaf_Leipa_10 }
+		}
+	}
+	8277.1.1 = {
+		trait = knight
+	}
+}
+asoiaf_Capon_2 = {
+	name = Hans
+	dynasty_house = house_Capon
+	dna = asoiaf_Capon_2
+
+	religion = fots_seven
+	culture = westerman_main
+
+	martial = 6
+	diplomacy = 3
+	intrigue = 3
+	stewardship = 5
+	learning = 9
+	prowess = 10
+	trait = beauty_good_2
+
+	trait = arrogant
+	trait = compassionate
+	trait = gregarious
+	trait = brave
+	trait = seducer
+	trait = lifestyle_hunter
+	trait = lifestyle_reveler
+	trait = education_martial_3
+	trait = education_martial_prowess_3
+
+	disallow_random_traits = yes
+
+	father = asoiaf_Capon_1
+	mother = asoiaf_Capon_rs_1
+
+	8280.1.1 = {
+		birth = yes
+		effect = { if = { limit = { is_alive = no } make_unprunable = yes } }
+		effect = {
+			agot_safe_set_location_history_effect = { CASTLE = title:c_deadwater }
+		}
+		effect = {
+			set_focus = education_martial
+		}
+		effect = {
+			agot_set_as_ward_history_effect = { GUARDIAN = character:asoiaf_Capon_1 }
+		}
+	}
+	8292.1.1 = {
+		effect = {
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Capon_1 }
+		}
+	}
+	8296.1.1 = {
+		trait = knight
+	}
+
+
+}
+asoiaf_Leipa_13 = {
+	name = Agnes
+	dynasty_house = house_Leipa
+	female = yes
+
+	religion = fots_seven
+	culture = westerman_main
+
+	martial = 5
+	diplomacy = 5
+	intrigue = 5
+	stewardship = 5
+	learning = 5
+	prowess = 5
+
+	father = asoiaf_Leipa_11
+	mother = asoiaf_Leipa_rs_11
+
+	8268.1.1 = {
+		birth = yes
+		effect = { if = { limit = { is_alive = no } make_unprunable = yes } }
+		effect = {
+			agot_safe_set_location_history_effect = { CASTLE = title:c_deadwater }
+		}
+	}
+	8306.1.1 = {
+		death = { death_reason = death_natural_causes }
+	}
+}
+asoiaf_Leipa_14 = {
+	name = Henry
+	dynasty_house = house_Leipa
+
+	religion = fots_seven
+	culture = westerman_main
+
+	martial = 5
+	diplomacy = 5
+	intrigue = 5
+	stewardship = 5
+	learning = 5
+	prowess = 5
+
+	father = asoiaf_Leipa_11
+	mother = asoiaf_Leipa_rs_11
+
+	8269.1.1 = {
+		birth = yes
+		effect = { if = { limit = { is_alive = no } make_unprunable = yes } }
+		effect = {
+			agot_safe_set_location_history_effect = { CASTLE = title:c_deadwater }
+		}
+	}
+	8281.1.1 = {
+		effect = {
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Leipa_12 }
+		}
+	}
+	8286.1.1 = {
+		trait = knight
+	}
+	8317.1.1 = {
+		death = { death_reason = death_natural_causes }
+	}
+}
+asoiaf_Leipa_15 = {
+	name = Berthold
+	dynasty_house = house_Leipa
+
+	religion = fots_seven
+	culture = westerman_main
+
+	martial = 5
+	diplomacy = 5
+	intrigue = 5
+	stewardship = 5
+	learning = 5
+	prowess = 5
+
+	father = asoiaf_Leipa_11
+	mother = asoiaf_Leipa_rs_11
+
+	8271.1.1 = {
+		birth = yes
+		effect = { if = { limit = { is_alive = no } make_unprunable = yes } }
+		effect = {
+			agot_safe_set_location_history_effect = { CASTLE = title:c_deadwater }
+		}
+	}
+	8283.1.1 = {
+		effect = {
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Leipa_12 }
+		}
+	}
+	8288.1.1 = {
+		trait = knight
+	}
+	8316.1.1 = {
+		death = { death_reason = death_natural_causes }
+	}
+}
+asoiaf_Leipa_16 = {
+	name = Helena
+	dynasty_house = house_Leipa
+	female = yes
+
+	religion = fots_seven
+	culture = westerman_main
+
+	martial = 5
+	diplomacy = 5
+	intrigue = 5
+	stewardship = 5
+	learning = 5
+	prowess = 5
+
+	father = asoiaf_Leipa_11
+	mother = asoiaf_Leipa_rs_11
+
+	8273.1.1 = {
+		birth = yes
+		effect = { if = { limit = { is_alive = no } make_unprunable = yes } }
+		effect = {
+			agot_safe_set_location_history_effect = { CASTLE = title:c_deadwater }
+		}
+	}
+	8334.1.1 = {
+		death = { death_reason = death_natural_causes }
+	}
+}
+asoiaf_Leipa_17 = {
+	name = Cenek
+	dynasty_house = house_Leipa
+
+	religion = fots_seven
+	culture = westerman_main
+
+	martial = 5
+	diplomacy = 5
+	intrigue = 5
+	stewardship = 5
+	learning = 5
+	prowess = 5
+
+	father = asoiaf_Leipa_11
+	mother = asoiaf_Leipa_rs_11
+
+	8276.1.1 = {
+		birth = yes
+		effect = { if = { limit = { is_alive = no } make_unprunable = yes } }
+		effect = {
+			agot_safe_set_location_history_effect = { CASTLE = title:c_deadwater }
+		}
+	}
+	8290.1.1 = {
+		effect = {
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Leipa_14 }
+		}
+	}
+	8293.1.1 = {
+		trait = knight
+	}
+	8334.1.1 = {
+		death = { death_reason = death_natural_causes }
+	}
+}
+
+
+asoiaf_Lichtenburg_1 = {
+	name = Henry
+	dynasty_house = house_Lichtenburg
+
+	religion = fots_seven
+	culture = westerman_main
+
+	martial = 5
+	diplomacy = 5
+	intrigue = 5
+	stewardship = 5
+	learning = 5
+	prowess = 5
+
+	father = asoiaf_Ronov_6
+	mother = asoiaf_Ronov_rs_6
+
+	8170.1.1 = {
+		birth = yes
+		effect = { if = { limit = { is_alive = no } make_unprunable = yes } }
+		effect = {
+			agot_safe_set_location_history_effect = { CASTLE = title:c_nunns_deep }
+		}
+	}
+	8182.1.1 = {
+		effect = {
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Ronov_6 }
+		}
+	}
+	8189.1.1 = {
+		trait = knight
+		add_spouse = asoiaf_Lichtenburg_rs_1
+	}
+	8193.1.1 = {
+		add_spouse = asoiaf_Lichtenburg_rs_2
+	}
+	8218.1.1 = {
+		death = { death_reason = death_natural_causes }
+	}
+}
+asoiaf_Lichtenburg_rs_1 = {
+	name = Domaslava
+	female = yes
+
+	religion = fots_seven
+	culture = westerman_main
+
+	martial = 5
+	diplomacy = 5
+	intrigue = 5
+	stewardship = 5
+	learning = 5
+	prowess = 5
+
+	8170.1.1 = {
+		birth = yes
+		effect = { if = { limit = { is_alive = no } make_unprunable = yes } }
+		effect = {
+			agot_safe_set_location_history_effect = { CASTLE = title:c_nunns_deep }
+		}
+	}
+	8192.1.1 = {
+		death = { death_reason = death_childbirth }
+	}
+}
+asoiaf_Lichtenburg_rs_2 = {
+	name = Matilda
+	female = yes
+
+	religion = fots_seven
+	culture = westerman_main
+
+	martial = 5
+	diplomacy = 5
+	intrigue = 5
+	stewardship = 5
+	learning = 5
+	prowess = 5
+
+	8170.1.1 = {
+		birth = yes
+		effect = { if = { limit = { is_alive = no } make_unprunable = yes } }
+		effect = {
+			agot_safe_set_location_history_effect = { CASTLE = title:c_nunns_deep }
+		}
+	}
+	8218.1.1 = {
+		trait = widowed
+	}
+	8223.1.1 = {
+		death = { death_reason = death_natural_causes }
+	}
+}
+asoiaf_Lichtenburg_2 = {
+	name = Smil
+	dynasty_house = house_Lichtenburg
+
+	religion = fots_seven
+	culture = westerman_main
+
+	martial = 5
+	diplomacy = 5
+	intrigue = 5
+	stewardship = 5
+	learning = 5
+	prowess = 5
+
+	father = asoiaf_Ronov_6
+	mother = asoiaf_Ronov_rs_6
+
+	8173.1.1 = {
+		birth = yes
+		effect = { if = { limit = { is_alive = no } make_unprunable = yes } }
+		effect = {
+			agot_safe_set_location_history_effect = { CASTLE = title:c_nunns_deep }
+		}
+	}
+	8186.1.1 = {
+		effect = {
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:Tetting_36 }
+		}
+	}
+	8190.1.1 = {
+		trait = knight
+	}
+	8202.1.1 = {
+		death = { death_reason = death_accident }
+	}
+}
+asoiaf_Lichtenburg_3 = {
+	name = Oldrich
+	dynasty_house = house_Lichtenburg
+
+	religion = fots_seven
+	culture = westerman_main
+
+	martial = 5
+	diplomacy = 5
+	intrigue = 5
+	stewardship = 5
+	learning = 5
+	prowess = 5
+
+	father = asoiaf_Ronov_6
+	mother = asoiaf_Ronov_rs_6
+
+	8175.1.1 = {
+		birth = yes
+		effect = { if = { limit = { is_alive = no } make_unprunable = yes } }
+		effect = {
+			agot_safe_set_location_history_effect = { CASTLE = title:c_nunns_deep }
+		}
+	}
+	8186.1.1 = {
+		effect = {
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:Tetting_36 }
+		}
+	}
+	8194.1.1 = {
+		trait = knight
+		add_spouse = asoiaf_Lichtenburg_rs_3
+	}
+	8236.1.1 = {
+		death = { death_reason = death_natural_causes }
+	}
+}
+asoiaf_Lichtenburg_rs_3 = {
+	name = Lobella
+	female = yes
+
+	religion = fots_seven
+	culture = westerman_main
+
+	martial = 5
+	diplomacy = 5
+	intrigue = 5
+	stewardship = 5
+	learning = 5
+	prowess = 5
+
+	8175.1.1 = {
+		birth = yes
+		effect = { if = { limit = { is_alive = no } make_unprunable = yes } }
+		effect = {
+			agot_safe_set_location_history_effect = { CASTLE = title:c_nunns_deep }
+		}
+	}
+	8236.1.1 = {
+		death = { death_reason = death_natural_causes }
+	}
+}
+asoiaf_Lichtenburg_4 = {
+	name = Raymond
+	dynasty_house = house_Bitov
+
+	religion = fots_seven
+	culture = westerman_main
+
+	martial = 5
+	diplomacy = 5
+	intrigue = 5
+	stewardship = 5
+	learning = 5
+	prowess = 5
+
+	father = asoiaf_Ronov_6
+	mother = asoiaf_Ronov_rs_6
+
+	8176.1.1 = {
+		birth = yes
+		effect = { if = { limit = { is_alive = no } make_unprunable = yes } }
+		effect = {
+			agot_safe_set_location_history_effect = { CASTLE = title:c_nunns_deep }
+		}
+	}
+	8189.1.1 = {
+		effect = {
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:Tetting_36 }
+		}
+	}
+	8194.1.1 = {
+		trait = knight
+		add_spouse = asoiaf_Lichtenburg_rs_4
+		effect = {
+			agot_safe_set_location_history_effect = { CASTLE = title:c_rivermont }
+		}
+	}
+	8226.1.1 = {
+		death = { death_reason = death_natural_causes }
+	}
+}
+asoiaf_Lichtenburg_rs_4 = {
+	name = Adele
+	female = yes
+
+	religion = fots_seven
+	culture = westerman_main
+
+	martial = 5
+	diplomacy = 5
+	intrigue = 5
+	stewardship = 5
+	learning = 5
+	prowess = 5
+
+	8176.1.1 = {
+		birth = yes
+		effect = { if = { limit = { is_alive = no } make_unprunable = yes } }
+		effect = {
+			agot_safe_set_location_history_effect = { CASTLE = title:c_nunns_deep }
+		}
+	}
+	8194.1.1 = {
+		effect = {
+			agot_safe_set_location_history_effect = { CASTLE = title:c_rivermont }
+		}
+	}
+	8226.1.1 = {
+		death = { death_reason = death_natural_causes }
+	}
+}
+asoiaf_Lichtenburg_5 = {
+	name = Hynek
+	dynasty_house = house_Krusina
+
+	religion = fots_seven
+	culture = westerman_main
+
+	martial = 5
+	diplomacy = 5
+	intrigue = 5
+	stewardship = 5
+	learning = 5
+	prowess = 5
+
+	father = asoiaf_Lichtenburg_1
+	mother = asoiaf_Lichtenburg_rs_1
+
+	8192.1.1 = {
+		birth = yes
+		effect = { if = { limit = { is_alive = no } make_unprunable = yes } }
+		effect = {
+			agot_safe_set_location_history_effect = { CASTLE = title:c_nunns_deep }
+		}
+	}
+	8204.1.1 = {
+		effect = {
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Lichtenburg_1 }
+		}
+	}
+	8209.1.1 = {
+		trait = knight
+		add_spouse = asoiaf_Lichtenburg_rs_5
+	}
+	8238.1.1 = {
+		death = { death_reason = death_natural_causes }
+	}
+}
+asoiaf_Lichtenburg_rs_5 = {
+	name = Marianne
+	female = yes
+
+	religion = fots_seven
+	culture = westerman_main
+
+	martial = 5
+	diplomacy = 5
+	intrigue = 5
+	stewardship = 5
+	learning = 5
+	prowess = 5
+
+	8192.1.1 = {
+		birth = yes
+		effect = { if = { limit = { is_alive = no } make_unprunable = yes } }
+		effect = {
+			agot_safe_set_location_history_effect = { CASTLE = title:c_nunns_deep }
+		}
+	}
+	8238.1.1 = {
+		death = { death_reason = death_natural_causes }
+	}
+}
+asoiaf_Zleb_1 = {
+	name = Wenceslaus
+	dynasty_house = house_Zleb
+
+	religion = fots_seven
+	culture = westerman_main
+
+	martial = 5
+	diplomacy = 5
+	intrigue = 5
+	stewardship = 5
+	learning = 5
+	prowess = 5
+
+	father = asoiaf_Lichtenburg_1
+	mother = asoiaf_Lichtenburg_rs_2
+
+	8194.1.1 = {
+		birth = yes
+		effect = { if = { limit = { is_alive = no } make_unprunable = yes } }
+		effect = {
+			agot_safe_set_location_history_effect = { CASTLE = title:c_nunns_deep }
+		}
+	}
+	8205.1.1 = {
+		effect = {
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Lichtenburg_1 }
+		}
+	}
+	8212.1.1 = {
+		trait = knight
+		add_spouse = asoiaf_Zleb_rs_1
+	}
+	8250.1.1 = {
+		death = { death_reason = death_natural_causes }
+	}
+}
+asoiaf_Zleb_rs_1 = {
+	name = Agnes
+	female = yes
+
+	religion = fots_seven
+	culture = westerman_main
+
+	martial = 5
+	diplomacy = 5
+	intrigue = 5
+	stewardship = 5
+	learning = 5
+	prowess = 5
+
+	8194.1.1 = {
+		birth = yes
+		effect = { if = { limit = { is_alive = no } make_unprunable = yes } }
+		effect = {
+			agot_safe_set_location_history_effect = { CASTLE = title:c_nunns_deep }
+		}
+	}
+	8250.1.1 = {
+		death = { death_reason = death_natural_causes }
+	}
+}
+asoiaf_Lichtenburg_6 = {
+	name = Smil
+	dynasty_house = house_Lichtenburg
+
+	religion = fots_seven
+	culture = westerman_main
+
+	martial = 5
+	diplomacy = 5
+	intrigue = 5
+	stewardship = 5
+	learning = 5
+	prowess = 5
+
+	father = asoiaf_Lichtenburg_1
+	mother = asoiaf_Lichtenburg_rs_2
+
+	8195.1.1 = {
+		birth = yes
+		effect = { if = { limit = { is_alive = no } make_unprunable = yes } }
+		effect = {
+			agot_safe_set_location_history_effect = { CASTLE = title:c_nunns_deep }
+		}
+	}
+	8207.1.1 = {
+		effect = {
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Lichtenburg_1 }
+		}
+	}
+	8213.1.1 = {
+		trait = knight
+	}
+	8233.1.1 = {
+		death = { death_reason = death_natural_causes }
+	}
+}
+asoiaf_Lichtenburg_7 = {
+	name = Cenek
+	dynasty_house = house_Lichtenburg
+
+	religion = fots_seven
+	culture = westerman_main
+
+	martial = 5
+	diplomacy = 5
+	intrigue = 5
+	stewardship = 5
+	learning = 5
+	prowess = 5
+
+	father = asoiaf_Lichtenburg_1
+	mother = asoiaf_Lichtenburg_rs_2
+
+	8197.1.1 = {
+		birth = yes
+		effect = { if = { limit = { is_alive = no } make_unprunable = yes } }
+		effect = {
+			agot_safe_set_location_history_effect = { CASTLE = title:c_nunns_deep }
+		}
+	}
+	8209.1.1 = {
+		effect = {
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Lichtenburg_1 }
+		}
+	}
+	8216.1.1 = {
+		trait = knight
+		add_spouse = asoiaf_Lichtenburg_rs_7
+	}
+	8225.1.1 = {
+		death = { death_reason = death_accident }
+	}
+}
+asoiaf_Lichtenburg_rs_7 = {
+	name = Agnes
+	female = yes
+
+	religion = fots_seven
+	culture = westerman_main
+
+	martial = 5
+	diplomacy = 5
+	intrigue = 5
+	stewardship = 5
+	learning = 5
+	prowess = 5
+
+	8197.1.1 = {
+		birth = yes
+		effect = { if = { limit = { is_alive = no } make_unprunable = yes } }
+		effect = {
+			agot_safe_set_location_history_effect = { CASTLE = title:c_nunns_deep }
+		}
+	}
+	8225.1.1 = {
+		trait = widowed
+	}
+	8252.1.1 = {
+		death = { death_reason = death_natural_causes }
+	}
+}
+asoiaf_Lichtenburg_8 = {
+	name = Henry
+	dynasty_house = house_Lichtenburg
+
+	religion = fots_seven
+	culture = westerman_main
+
+	martial = 5
+	diplomacy = 5
+	intrigue = 5
+	stewardship = 5
+	learning = 5
+	prowess = 5
+
+	father = asoiaf_Lichtenburg_3
+	mother = asoiaf_Lichtenburg_rs_3
+
+	8197.1.1 = {
+		birth = yes
+		effect = { if = { limit = { is_alive = no } make_unprunable = yes } }
+		effect = {
+			agot_safe_set_location_history_effect = { CASTLE = title:c_nunns_deep }
+		}
+	}
+	8209.1.1 = {
+		effect = {
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Lichtenburg_3 }
+		}
+	}
+	8216.1.1 = {
+		trait = knight
+	}
+	8223.1.1 = {
+		death = { death_reason = death_accident }
+	}
+}
+
+
+asoiaf_Bitov_1 = {
+	name = Henry
+	dynasty_house = house_Bitov
+
+	religion = fots_seven
+	culture = westerman_main
+
+	martial = 5
+	diplomacy = 5
+	intrigue = 5
+	stewardship = 5
+	learning = 5
+	prowess = 5
+
+	father = asoiaf_Lichtenburg_4
+	mother = asoiaf_Lichtenburg_rs_4
+
+	8198.1.1 = {
+		birth = yes
+		effect = { if = { limit = { is_alive = no } make_unprunable = yes } }
+		effect = {
+			agot_safe_set_location_history_effect = { CASTLE = title:c_rivermont }
+		}
+	}
+	8208.1.1 = {
+		effect = {
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Lichtenburg_4 }
+		}
+	}
+	8215.1.1 = {
+		trait = knight
+		add_spouse = asoiaf_Bitov_rs_1
+	}
+	8245.1.1 = {
+		death = { death_reason = death_natural_causes }
+	}
+}
+asoiaf_Bitov_rs_1 = {
+	name = Melara
+	female = yes
+
+	religion = fots_seven
+	culture = westerman_main
+
+	martial = 5
+	diplomacy = 5
+	intrigue = 5
+	stewardship = 5
+	learning = 5
+	prowess = 5
+
+	8198.1.1 = {
+		birth = yes
+		effect = { if = { limit = { is_alive = no } make_unprunable = yes } }
+		effect = {
+			agot_safe_set_location_history_effect = { CASTLE = title:c_rivermont }
+		}
+	}
+	8245.1.1 = {
+		death = { death_reason = death_natural_causes }
+	}
+}
+asoiaf_Bitov_2 = {
+	name = Cenek
+	dynasty_house = house_Bitov
+
+	religion = fots_seven
+	culture = westerman_main
+
+	martial = 5
+	diplomacy = 5
+	intrigue = 5
+	stewardship = 5
+	learning = 5
+	prowess = 5
+
+	father = asoiaf_Lichtenburg_4
+	mother = asoiaf_Lichtenburg_rs_4
+
+	8199.1.1 = {
+		birth = yes
+		effect = { if = { limit = { is_alive = no } make_unprunable = yes } }
+		effect = {
+			agot_safe_set_location_history_effect = { CASTLE = title:c_rivermont }
+		}
+	}
+	8209.1.1 = {
+		effect = {
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Lichtenburg_4 }
+		}
+	}
+	8216.1.1 = {
+		trait = knight
+	}
+	8240.1.1 = {
+		death = { death_reason = death_natural_causes }
+	}
+}
+asoiaf_Bitov_3 = {
+	name = Smil
+	dynasty_house = house_Bitov
+
+	religion = fots_seven
+	culture = westerman_main
+
+	martial = 5
+	diplomacy = 5
+	intrigue = 5
+	stewardship = 5
+	learning = 5
+	prowess = 5
+
+	father = asoiaf_Lichtenburg_4
+	mother = asoiaf_Lichtenburg_rs_4
+
+	8201.1.1 = {
+		birth = yes
+		effect = { if = { limit = { is_alive = no } make_unprunable = yes } }
+		effect = {
+			agot_safe_set_location_history_effect = { CASTLE = title:c_rivermont }
+		}
+	}
+	8213.1.1 = {
+		effect = {
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Lichtenburg_4 }
+		}
+	}
+	8220.1.1 = {
+		trait = knight
+		add_spouse = asoiaf_Bitov_rs_3
+	}
+	8257.1.1 = {
+		death = { death_reason = death_natural_causes }
+	}
+}
+asoiaf_Bitov_rs_3 = {
+	name = Anna
+	female = yes
+
+	religion = fots_seven
+	culture = westerman_main
+
+	martial = 5
+	diplomacy = 5
+	intrigue = 5
+	stewardship = 5
+	learning = 5
+	prowess = 5
+
+	8201.1.1 = {
+		birth = yes
+		effect = { if = { limit = { is_alive = no } make_unprunable = yes } }
+		effect = {
+			agot_safe_set_location_history_effect = { CASTLE = title:c_rivermont }
+		}
+	}
+	8257.1.1 = {
+		death = { death_reason = death_natural_causes }
+	}
+}
+asoiaf_Bitov_4 = {
+	name = Margaret
+	dynasty_house = house_Bitov
+	female = yes
+
+	religion = fots_seven
+	culture = westerman_main
+
+	martial = 5
+	diplomacy = 5
+	intrigue = 5
+	stewardship = 5
+	learning = 5
+	prowess = 5
+
+	father = asoiaf_Lichtenburg_4
+	mother = asoiaf_Lichtenburg_rs_4
+
+	8202.1.1 = {
+		birth = yes
+		effect = { if = { limit = { is_alive = no } make_unprunable = yes } }
+		effect = {
+			agot_safe_set_location_history_effect = { CASTLE = title:c_rivermont }
+		}
+	}
+	8216.1.1 = {
+		trait = septon
+	}
+	8261.1.1 = {
+		death = { death_reason = death_natural_causes }
+	}
+}
+asoiaf_Bitov_5 = {
+	name = Serra
+	dynasty_house = house_Bitov
+	female = yes
+
+	religion = fots_seven
+	culture = westerman_main
+
+	martial = 5
+	diplomacy = 5
+	intrigue = 5
+	stewardship = 5
+	learning = 5
+	prowess = 5
+
+	father = asoiaf_Lichtenburg_4
+	mother = asoiaf_Lichtenburg_rs_4
+
+	8203.1.1 = {
+		birth = yes
+		effect = { if = { limit = { is_alive = no } make_unprunable = yes } }
+		effect = {
+			agot_safe_set_location_history_effect = { CASTLE = title:c_rivermont }
+		}
+	}
+	8258.1.1 = {
+		death = { death_reason = death_natural_causes }
+	}
+}
+asoiaf_Bitov_6 = {
+	name = John
+	dynasty_house = house_Bitov
+
+	religion = fots_seven
+	culture = westerman_main
+
+	martial = 5
+	diplomacy = 5
+	intrigue = 5
+	stewardship = 5
+	learning = 5
+	prowess = 5
+
+	father = asoiaf_Bitov_1
+	mother = asoiaf_Bitov_rs_1
+
+	8219.1.1 = {
+		birth = yes
+		effect = { if = { limit = { is_alive = no } make_unprunable = yes } }
+		effect = {
+			agot_safe_set_location_history_effect = { CASTLE = title:c_rivermont }
+		}
+	}
+	8233.1.1 = {
+		effect = {
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Bitov_1 }
+		}
+	}
+	8239.1.1 = {
+		trait = knight
+	}
+	8253.1.1 = {
+		death = { death_reason = death_accident }
+	}
+}
+asoiaf_Bitov_7 = {
+	name = Smil
+	dynasty_house = house_Bitov
+
+	religion = fots_seven
+	culture = westerman_main
+
+	martial = 5
+	diplomacy = 5
+	intrigue = 5
+	stewardship = 5
+	learning = 5
+	prowess = 5
+
+	trait = bastard
+
+	father = asoiaf_Bitov_2
+
+	8226.1.1 = {
+		birth = yes
+		make_trait_inactive = surname_hill
+		effect = { if = { limit = { is_alive = no } make_unprunable = yes } }
+		effect = {
+			agot_safe_set_location_history_effect = { CASTLE = title:c_rivermont }
+		}
+	}
+	8236.1.1 = {
+		effect = {
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Bitov_2 }
+		}
+	}
+	8241.1.1 = {
+		trait = knight
+	}
+	8280.1.1 = {
+		death = { death_reason = death_natural_causes }
+	}
+}
+asoiaf_Bitov_8 = {
+	name = Henry
+	dynasty_house = house_Bitov
+
+	religion = fots_seven
+	culture = westerman_main
+
+	martial = 5
+	diplomacy = 5
+	intrigue = 5
+	stewardship = 5
+	learning = 5
+	prowess = 5
+
+	father = asoiaf_Bitov_3
+	mother = asoiaf_Bitov_rs_3
+
+	8222.1.1 = {
+		birth = yes
+		effect = { if = { limit = { is_alive = no } make_unprunable = yes } }
+		effect = {
+			agot_safe_set_location_history_effect = { CASTLE = title:c_rivermont }
+		}
+	}
+	8235.1.1 = {
+		effect = {
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Bitov_3 }
+		}
+	}
+	8240.1.1 = {
+		trait = knight
+		add_spouse = asoiaf_Bitov_rs_8
+	}
+	8273.1.1 = {
+		death = { death_reason = death_natural_causes }
+	}
+}
+asoiaf_Bitov_rs_8 = {
+	name = Anezka
+	female = yes
+
+	religion = fots_seven
+	culture = westerman_main
+
+	martial = 5
+	diplomacy = 5
+	intrigue = 5
+	stewardship = 5
+	learning = 5
+	prowess = 5
+
+	8222.1.1 = {
+		birth = yes
+		effect = { if = { limit = { is_alive = no } make_unprunable = yes } }
+		effect = {
+			agot_safe_set_location_history_effect = { CASTLE = title:c_rivermont }
+		}
+	}
+	8273.1.1 = {
+		death = { death_reason = death_natural_causes }
+	}
+}
+asoiaf_Bitov_9 = {
+	name = Hynek
+	dynasty_house = house_Bitov
+
+	religion = fots_seven
+	culture = westerman_main
+
+	martial = 5
+	diplomacy = 5
+	intrigue = 5
+	stewardship = 5
+	learning = 5
+	prowess = 5
+
+	father = asoiaf_Bitov_3
+	mother = asoiaf_Bitov_rs_3
+
+	8224.1.1 = {
+		birth = yes
+		effect = { if = { limit = { is_alive = no } make_unprunable = yes } }
+		effect = {
+			agot_safe_set_location_history_effect = { CASTLE = title:c_rivermont }
+		}
+	}
+	8240.1.1 = {
+		trait = septon
+	}
+	8286.1.1 = {
+		death = { death_reason = death_natural_causes }
+	}
+}
+asoiaf_Bitov_10 = {
+	name = John
+	dynasty_house = house_Bitov
+
+	religion = fots_seven
+	culture = westerman_main
+
+	martial = 5
+	diplomacy = 5
+	intrigue = 5
+	stewardship = 5
+	learning = 5
+	prowess = 5
+
+	father = asoiaf_Bitov_3
+	mother = asoiaf_Bitov_rs_3
+
+	8225.1.1 = {
+		birth = yes
+		effect = { if = { limit = { is_alive = no } make_unprunable = yes } }
+		effect = {
+			agot_safe_set_location_history_effect = { CASTLE = title:c_rivermont }
+		}
+	}
+	8235.1.1 = {
+		effect = {
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Bitov_3 }
+		}
+	}
+	8242.1.1 = {
+		trait = knight
+	}
+	8272.1.1 = {
+		death = { death_reason = death_natural_causes }
+	}
+}
+asoiaf_Bitov_11 = {
+	name = George
+	dynasty_house = house_Bitov
+
+	religion = fots_seven
+	culture = westerman_main
+
+	martial = 5
+	diplomacy = 5
+	intrigue = 5
+	stewardship = 5
+	learning = 5
+	prowess = 5
+
+	father = asoiaf_Bitov_3
+	mother = asoiaf_Bitov_rs_3
+
+	8227.1.1 = {
+		birth = yes
+		effect = { if = { limit = { is_alive = no } make_unprunable = yes } }
+		effect = {
+			agot_safe_set_location_history_effect = { CASTLE = title:c_rivermont }
+		}
+	}
+	8237.1.1 = {
+		effect = {
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Bitov_3 }
+		}
+	}
+	8244.1.1 = {
+		trait = knight
+		add_spouse = asoiaf_Bitov_rs_11
+	}
+	8282.1.1 = {
+		death = { death_reason = death_natural_causes }
+	}
+}
+asoiaf_Bitov_rs_11 = {
+	name = Sybell
+	female = yes
+
+	religion = fots_seven
+	culture = westerman_main
+
+	martial = 5
+	diplomacy = 5
+	intrigue = 5
+	stewardship = 5
+	learning = 5
+	prowess = 5
+
+	8227.1.1 = {
+		birth = yes
+		effect = { if = { limit = { is_alive = no } make_unprunable = yes } }
+		effect = {
+			agot_safe_set_location_history_effect = { CASTLE = title:c_rivermont }
+		}
+	}
+	8282.1.1 = {
+		death = { death_reason = death_natural_causes }
+	}
+}
+asoiaf_Bitov_12 = {
+	name = Albert
+	dynasty_house = house_Bitov
+
+	religion = fots_seven
+	culture = westerman_main
+
+	martial = 5
+	diplomacy = 5
+	intrigue = 5
+	stewardship = 5
+	learning = 5
+	prowess = 5
+
+	father = asoiaf_Bitov_8
+	mother = asoiaf_Bitov_rs_8
+
+	8244.1.1 = {
+		birth = yes
+		effect = { if = { limit = { is_alive = no } make_unprunable = yes } }
+		effect = {
+			agot_safe_set_location_history_effect = { CASTLE = title:c_rivermont }
+		}
+	}
+	8257.1.1 = {
+		effect = {
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Bitov_8 }
+		}
+	}
+	8263.1.1 = {
+		trait = knight
+		add_spouse = asoiaf_Bitov_rs_12
+	}
+	8300.1.1 = {
+		death = { death_reason = death_natural_causes }
+	}
+}
+asoiaf_Bitov_rs_12 = {
+	name = Jeyne
+	female = yes
+
+	religion = fots_seven
+	culture = westerman_main
+
+	martial = 5
+	diplomacy = 5
+	intrigue = 5
+	stewardship = 5
+	learning = 5
+	prowess = 5
+
+	8244.1.1 = {
+		birth = yes
+		effect = { if = { limit = { is_alive = no } make_unprunable = yes } }
+		effect = {
+			agot_safe_set_location_history_effect = { CASTLE = title:c_rivermont }
+		}
+	}
+	8300.1.1 = {
+		death = { death_reason = death_natural_causes }
+	}
+}
+asoiaf_Bitov_13 = {
+	name = Henry
+	dynasty_house = house_Bitov
+
+	religion = fots_seven
+	culture = westerman_main
+
+	martial = 5
+	diplomacy = 5
+	intrigue = 5
+	stewardship = 5
+	learning = 5
+	prowess = 5
+
+	father = asoiaf_Bitov_8
+	mother = asoiaf_Bitov_rs_8
+
+	8245.1.1 = {
+		birth = yes
+		effect = { if = { limit = { is_alive = no } make_unprunable = yes } }
+		effect = {
+			agot_safe_set_location_history_effect = { CASTLE = title:c_rivermont }
+		}
+	}
+	8258.1.1 = {
+		effect = {
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Bitov_8 }
+		}
+	}
+	8264.1.1 = {
+		trait = knight
+	}
+	8293.1.1 = {
+		death = { death_reason = death_natural_causes }
+	}
+}
+asoiaf_Bitov_14 = {
+	name = Smil
+	dynasty_house = house_Bitov
+
+	religion = fots_seven
+	culture = westerman_main
+
+	martial = 5
+	diplomacy = 5
+	intrigue = 5
+	stewardship = 5
+	learning = 5
+	prowess = 5
+
+	father = asoiaf_Bitov_8
+	mother = asoiaf_Bitov_rs_8
+
+	8247.1.1 = {
+		birth = yes
+		effect = { if = { limit = { is_alive = no } make_unprunable = yes } }
+		effect = {
+			agot_safe_set_location_history_effect = { CASTLE = title:c_rivermont }
+		}
+	}
+	8260.1.1 = {
+		effect = {
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Bitov_8 }
+		}
+	}
+	8266.1.1 = {
+		trait = knight
+	}
+	8279.1.1 = {
+		death = { death_reason = death_accident }
+	}
+}
+asoiaf_Bitov_15 = {
+	name = Hanush
+	dynasty_house = house_Bitov
+
+	religion = fots_seven
+	culture = westerman_main
+
+	martial = 5
+	diplomacy = 5
+	intrigue = 5
+	stewardship = 5
+	learning = 5
+	prowess = 5
+
+	father = asoiaf_Bitov_11
+	mother = asoiaf_Bitov_rs_11
+
+	8245.1.1 = {
+		birth = yes
+		effect = { if = { limit = { is_alive = no } make_unprunable = yes } }
+		effect = {
+			agot_safe_set_location_history_effect = { CASTLE = title:c_rivermont }
+		}
+	}
+	8257.1.1 = {
+		effect = {
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Bitov_11 }
+		}
+	}
+	8262.1.1 = {
+		trait = knight
+	}
+	8294.1.1 = {
+		death = { death_reason = death_natural_causes }
+	}
+}
+asoiaf_Bitov_16 = {
+	name = George
+	dynasty_house = house_Bitov
+
+	religion = fots_seven
+	culture = westerman_main
+
+	martial = 5
+	diplomacy = 5
+	intrigue = 5
+	stewardship = 5
+	learning = 5
+	prowess = 5
+
+	father = asoiaf_Bitov_11
+	mother = asoiaf_Bitov_rs_11
+
+	8247.1.1 = {
+		birth = yes
+		effect = { if = { limit = { is_alive = no } make_unprunable = yes } }
+		effect = {
+			agot_safe_set_location_history_effect = { CASTLE = title:c_rivermont }
+		}
+	}
+	8258.1.1 = {
+		effect = {
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Bitov_11 }
+		}
+	}
+	8264.1.1 = {
+		trait = knight
+	}
+	8266.1.1 = {
+		death = { death_reason = death_accident }
+	}
+}
+asoiaf_Bitov_17 = {
+	name = Hynek
+	dynasty_house = house_Bitov
+
+	religion = fots_seven
+	culture = westerman_main
+
+	martial = 5
+	diplomacy = 5
+	intrigue = 5
+	stewardship = 5
+	learning = 5
+	prowess = 5
+
+	father = asoiaf_Bitov_11
+	mother = asoiaf_Bitov_rs_11
+
+	8248.1.1 = {
+		birth = yes
+		effect = { if = { limit = { is_alive = no } make_unprunable = yes } }
+		effect = {
+			agot_safe_set_location_history_effect = { CASTLE = title:c_rivermont }
+		}
+	}
+	8259.1.1 = {
+		effect = {
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Bitov_11 }
+		}
+	}
+	8266.1.1 = {
+		trait = knight
+		add_spouse = asoiaf_Bitov_rs_17
+	}
+	8298.1.1 = {
+		death = { death_reason = death_natural_causes }
+	}
+}
+asoiaf_Bitov_rs_17 = {
+	name = Tanda
+	female = yes
+
+	religion = fots_seven
+	culture = westerman_main
+
+	martial = 5
+	diplomacy = 5
+	intrigue = 5
+	stewardship = 5
+	learning = 5
+	prowess = 5
+
+	8248.1.1 = {
+		birth = yes
+		effect = { if = { limit = { is_alive = no } make_unprunable = yes } }
+		effect = {
+			agot_safe_set_location_history_effect = { CASTLE = title:c_rivermont }
+		}
+	}
+	8298.1.1 = {
+		death = { death_reason = death_natural_causes }
+	}
+}
+asoiaf_Bitov_18 = {
+	name = Litholt
+	dynasty_house = house_Bitov
+
+	religion = fots_seven
+	culture = westerman_main
+
+	martial = 5
+	diplomacy = 5
+	intrigue = 5
+	stewardship = 5
+	learning = 5
+	prowess = 5
+
+	father = asoiaf_Bitov_11
+	mother = asoiaf_Bitov_rs_11
+
+	8249.1.1 = {
+		birth = yes
+		effect = { if = { limit = { is_alive = no } make_unprunable = yes } }
+		effect = {
+			agot_safe_set_location_history_effect = { CASTLE = title:c_rivermont }
+		}
+	}
+	8261.1.1 = {
+		effect = {
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Bitov_11 }
+		}
+	}
+	8265.1.1 = {
+		trait = knight
+		add_spouse = asoiaf_Bitov_rs_18
+	}
+	8301.1.1 = {
+		death = { death_reason = death_natural_causes }
+	}
+}
+asoiaf_Bitov_rs_18 = {
+	name = Magda
+	female = yes
+
+	religion = fots_seven
+	culture = westerman_main
+
+	martial = 5
+	diplomacy = 5
+	intrigue = 5
+	stewardship = 5
+	learning = 5
+	prowess = 5
+
+	8249.1.1 = {
+		birth = yes
+		effect = { if = { limit = { is_alive = no } make_unprunable = yes } }
+		effect = {
+			agot_safe_set_location_history_effect = { CASTLE = title:c_rivermont }
+		}
+	}
+	8301.1.1 = {
+		death = { death_reason = death_natural_causes }
+	}
+}
+asoiaf_Bitov_19 = {
+	name = Henry
+	dynasty_house = house_Bitov
+
+	religion = fots_seven
+	culture = westerman_main
+
+	martial = 5
+	diplomacy = 5
+	intrigue = 5
+	stewardship = 5
+	learning = 5
+	prowess = 5
+
+	father = asoiaf_Bitov_11
+	mother = asoiaf_Bitov_rs_11
+
+	8250.1.1 = {
+		birth = yes
+		effect = { if = { limit = { is_alive = no } make_unprunable = yes } }
+		effect = {
+			agot_safe_set_location_history_effect = { CASTLE = title:c_rivermont }
+		}
+	}
+	8261.1.1 = {
+		effect = {
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Bitov_11 }
+		}
+	}
+	8269.1.1 = {
+		trait = knight
+	}
+	8296.1.1 = {
+		death = { death_reason = death_natural_causes }
+	}
+}
+asoiaf_Bitov_20 = {
+	name = Smil
+	dynasty_house = house_Bitov
+
+	religion = fots_seven
+	culture = westerman_main
+
+	martial = 5
+	diplomacy = 5
+	intrigue = 5
+	stewardship = 5
+	learning = 5
+	prowess = 5
+
+	father = asoiaf_Bitov_11
+	mother = asoiaf_Bitov_rs_11
+
+	8251.1.1 = {
+		birth = yes
+		effect = { if = { limit = { is_alive = no } make_unprunable = yes } }
+		effect = {
+			agot_safe_set_location_history_effect = { CASTLE = title:c_rivermont }
+		}
+	}
+	8263.1.1 = {
+		effect = {
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Bitov_11 }
+		}
+	}
+	8268.1.1 = {
+		trait = knight
+	}
+	8307.1.1 = {
+		death = { death_reason = death_natural_causes }
+	}
+}
+asoiaf_Bitov_21 = {
+	name = Margaret
+	dynasty_house = house_Bitov
+	female = yes
+
+	religion = fots_seven
+	culture = westerman_main
+
+	martial = 5
+	diplomacy = 5
+	intrigue = 5
+	stewardship = 5
+	learning = 5
+	prowess = 5
+
+	father = asoiaf_Bitov_12
+	mother = asoiaf_Bitov_rs_12
+
+	8266.1.1 = {
+		birth = yes
+		effect = { if = { limit = { is_alive = no } make_unprunable = yes } }
+		effect = {
+			agot_safe_set_location_history_effect = { CASTLE = title:c_rivermont }
+		}
+	}
+	8312.1.1 = {
+		death = { death_reason = death_natural_causes }
+	}
+}
+asoiaf_Bitov_22 = {
+	name = Stephen
+	dynasty_house = house_Bitov
+
+	religion = fots_seven
+	culture = westerman_main
+
+	martial = 5
+	diplomacy = 5
+	intrigue = 5
+	stewardship = 5
+	learning = 5
+	prowess = 5
+
+	father = asoiaf_Bitov_12
+	mother = asoiaf_Bitov_rs_12
+
+	8267.1.1 = {
+		birth = yes
+		effect = { if = { limit = { is_alive = no } make_unprunable = yes } }
+		effect = {
+			agot_safe_set_location_history_effect = { CASTLE = title:c_rivermont }
+		}
+	}
+	8278.1.1 = {
+		effect = {
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Bitov_12 }
+		}
+	}
+	8284.1.1 = {
+		trait = knight
+	}
+	8319.1.1 = {
+		death = { death_reason = death_natural_causes }
+	}
+}
+asoiaf_Bitov_23 = {
+	name = Smil
+	dynasty_house = house_Bitov
+
+	religion = fots_seven
+	culture = westerman_main
+
+	martial = 5
+	diplomacy = 5
+	intrigue = 5
+	stewardship = 5
+	learning = 5
+	prowess = 5
+
+	father = asoiaf_Bitov_12
+	mother = asoiaf_Bitov_rs_12
+
+	8269.1.1 = {
+		birth = yes
+		effect = { if = { limit = { is_alive = no } make_unprunable = yes } }
+		effect = {
+			agot_safe_set_location_history_effect = { CASTLE = title:c_rivermont }
+		}
+	}
+	8280.1.1 = {
+		effect = {
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Bitov_12 }
+		}
+	}
+	8286.1.1 = {
+		trait = knight
+	}
+	8323.1.1 = {
+		death = { death_reason = death_natural_causes }
+	}
+}
+asoiaf_Bitov_24 = {
+	name = Jan
+	dynasty_house = house_Bitov
+
+	religion = fots_seven
+	culture = westerman_main
+
+	martial = 5
+	diplomacy = 5
+	intrigue = 5
+	stewardship = 5
+	learning = 5
+	prowess = 5
+
+	father = asoiaf_Bitov_12
+	mother = asoiaf_Bitov_rs_12
+
+	8270.1.1 = {
+		birth = yes
+		effect = { if = { limit = { is_alive = no } make_unprunable = yes } }
+		effect = {
+			agot_safe_set_location_history_effect = { CASTLE = title:c_rivermont }
+		}
+	}
+	8282.1.1 = {
+		effect = {
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Bitov_12 }
+		}
+	}
+	8289.1.1 = {
+		trait = knight
+		add_spouse = asoiaf_Bitov_rs_24
+	}
+	8308.1.1 = {
+		death = { death_reason = death_natural_causes }
+	}
+}
+asoiaf_Bitov_rs_24 = {
+	name = Alanna
+	female = yes
+
+	religion = fots_seven
+	culture = westerman_main
+
+	martial = 5
+	diplomacy = 5
+	intrigue = 5
+	stewardship = 5
+	learning = 5
+	prowess = 5
+
+	8270.1.1 = {
+		birth = yes
+		effect = { if = { limit = { is_alive = no } make_unprunable = yes } }
+		effect = {
+			agot_safe_set_location_history_effect = { CASTLE = title:c_rivermont }
+		}
+	}
+	8308.1.1 = {
+		death = { death_reason = death_natural_causes }
+	}
+}
+asoiaf_Bitov_25 = {
+	name = Franek
+	dynasty_house = house_Bitov
+
+	religion = fots_seven
+	culture = westerman_main
+
+	martial = 5
+	diplomacy = 5
+	intrigue = 5
+	stewardship = 5
+	learning = 5
+	prowess = 5
+
+	father = asoiaf_Bitov_12
+	mother = asoiaf_Bitov_rs_12
+
+	8272.1.1 = {
+		birth = yes
+		effect = { if = { limit = { is_alive = no } make_unprunable = yes } }
+		effect = {
+			agot_safe_set_location_history_effect = { CASTLE = title:c_rivermont }
+		}
+	}
+	8284.1.1 = {
+		effect = {
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Bitov_12 }
+		}
+	}
+	8290.1.1 = {
+		trait = knight
+	}
+	8332.1.1 = {
+		death = { death_reason = death_natural_causes }
+	}
+}
+asoiaf_Bitov_26 = {
+	name = Jirik
+	dynasty_house = house_Bitov
+
+	religion = fots_seven
+	culture = westerman_main
+
+	martial = 5
+	diplomacy = 5
+	intrigue = 5
+	stewardship = 5
+	learning = 5
+	prowess = 5
+
+	father = asoiaf_Bitov_12
+	mother = asoiaf_Bitov_rs_12
+
+	8273.1.1 = {
+		birth = yes
+		effect = { if = { limit = { is_alive = no } make_unprunable = yes } }
+		effect = {
+			agot_safe_set_location_history_effect = { CASTLE = title:c_rivermont }
+		}
+	}
+	8285.1.1 = {
+		effect = {
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Bitov_12 }
+		}
+	}
+	8291.1.1 = {
+		trait = knight
+	}
+	8329.1.1 = {
+		death = { death_reason = death_natural_causes }
+	}
+}
+asoiaf_Bitov_27 = {
+	name = Barbora
+	dynasty_house = house_Bitov
+	female = yes
+
+	religion = fots_seven
+	culture = westerman_main
+
+	martial = 5
+	diplomacy = 5
+	intrigue = 5
+	stewardship = 5
+	learning = 5
+	prowess = 5
+
+	father = asoiaf_Bitov_17
+	mother = asoiaf_Bitov_rs_17
+
+	8270.1.1 = {
+		birth = yes
+		effect = { if = { limit = { is_alive = no } make_unprunable = yes } }
+		effect = {
+			agot_safe_set_location_history_effect = { CASTLE = title:c_rivermont }
+		}
+	}
+	8318.1.1 = {
+		death = { death_reason = death_natural_causes }
+	}
+}
+asoiaf_Bitov_28 = {
+	name = Klara
+	dynasty_house = house_Bitov
+	female = yes
+
+	religion = fots_seven
+	culture = westerman_main
+
+	martial = 5
+	diplomacy = 5
+	intrigue = 5
+	stewardship = 5
+	learning = 5
+	prowess = 5
+
+	father = asoiaf_Bitov_17
+	mother = asoiaf_Bitov_rs_17
+
+	8272.1.1 = {
+		birth = yes
+		effect = { if = { limit = { is_alive = no } make_unprunable = yes } }
+		effect = {
+			agot_safe_set_location_history_effect = { CASTLE = title:c_rivermont }
+		}
+	}
+	8315.1.1 = {
+		death = { death_reason = death_natural_causes }
+	}
+}
+asoiaf_Bitov_29 = {
+	name = Smil
+	dynasty_house = house_Bitov
+
+	religion = fots_seven
+	culture = westerman_main
+
+	martial = 5
+	diplomacy = 5
+	intrigue = 5
+	stewardship = 5
+	learning = 5
+	prowess = 5
+
+	father = asoiaf_Bitov_18
+	mother = asoiaf_Bitov_rs_18
+
+	8268.1.1 = {
+		birth = yes
+		effect = { if = { limit = { is_alive = no } make_unprunable = yes } }
+		effect = {
+			agot_safe_set_location_history_effect = { CASTLE = title:c_rivermont }
+		}
+	}
+	8280.1.1 = {
+		effect = {
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Bitov_18 }
+		}
+	}
+	8285.1.1 = {
+		trait = knight
+		add_spouse = asoiaf_Bitov_rs_29
+	}
+	8321.1.1 = {
+		death = { death_reason = death_natural_causes }
+	}
+}
+asoiaf_Bitov_rs_29 = {
+	name = Mary
+	female = yes
+
+	religion = fots_seven
+	culture = westerman_main
+
+	martial = 5
+	diplomacy = 5
+	intrigue = 5
+	stewardship = 5
+	learning = 5
+	prowess = 5
+
+	8268.1.1 = {
+		birth = yes
+		effect = { if = { limit = { is_alive = no } make_unprunable = yes } }
+		effect = {
+			agot_safe_set_location_history_effect = { CASTLE = title:c_rivermont }
+		}
+	}
+	8321.1.1 = {
+		death = { death_reason = death_natural_causes }
+	}
+}
+asoiaf_Bitov_30 = {
+	name = Jan
+	dynasty_house = house_Bitov
+
+	religion = fots_seven
+	culture = westerman_main
+
+	martial = 5
+	diplomacy = 5
+	intrigue = 5
+	stewardship = 5
+	learning = 5
+	prowess = 5
+
+	father = asoiaf_Bitov_18
+	mother = asoiaf_Bitov_rs_18
+
+	8270.1.1 = {
+		birth = yes
+		effect = { if = { limit = { is_alive = no } make_unprunable = yes } }
+		effect = {
+			agot_safe_set_location_history_effect = { CASTLE = title:c_rivermont }
+		}
+	}
+	8283.1.1 = {
+		effect = {
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Bitov_18 }
+		}
+	}
+	8288.1.1 = {
+		trait = knight
+	}
+	8299.1.1 = {
+		death = { death_reason = death_accident }
+	}
+}

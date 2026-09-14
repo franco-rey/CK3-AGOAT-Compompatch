@@ -83,6 +83,7 @@
 				}
 			}
 		}
+
 		OR = {
 			has_game_rule = bannermen_mode_enabled
 			scope:actor = {
@@ -133,6 +134,7 @@
 					was_called = scope:recipient
 				}
 			}
+
 			custom_description = {
 				text = join_war_interaction_already_in_target_war
 				NOR = {
@@ -160,8 +162,9 @@
 		}
 		OR ={
 			has_game_rule = bannermen_mode_enabled
-			
+
 			scope:target = {
+
 				custom_description = {
 					text = ASK_VASSAL_MILITARY_SUPPORT_IS_CIVIL_WAR_TEXT
 					NOT = {
@@ -178,6 +181,9 @@
 			hidden_effect = {
 				set_called_to = scope:recipient
 			}
+
+
+
 			if = {
 				limit = {
 					NOT = {
@@ -320,6 +326,7 @@
 			NOT = {
 				has_game_rule = bannermen_mode_enabled
 			}
+
 			add = -1000
 			exists = scope:recipient.player_heir
 			trigger_if = {
@@ -337,6 +344,7 @@
 			NOT = {
 				has_game_rule = bannermen_mode_enabled
 			}
+
 			add = -1000
 			scope:recipient = {
 				trigger_if = {
@@ -370,6 +378,7 @@
 			NOT = {
 				has_game_rule = bannermen_mode_enabled
 			}
+
 			add = -50
 			scope:target.casus_belli.primary_attacker = scope:actor
 			scope:recipient = {
@@ -381,6 +390,7 @@
 			NOT = {
 				has_game_rule = bannermen_mode_enabled
 			}
+
 			add = -50
 			scope:target.casus_belli.primary_defender = scope:actor
 			scope:recipient = {
@@ -392,6 +402,7 @@
 			NOT = {
 				has_game_rule = bannermen_mode_enabled
 			}
+
 			add = -50
 			trigger_if = {
 				limit = {
@@ -408,6 +419,7 @@
 			NOT = {
 				has_game_rule = bannermen_mode_enabled
 			}
+
 			add = -50
 			trigger_if = {
 				limit = {
@@ -424,6 +436,7 @@
 			NOT = {
 				has_game_rule = bannermen_mode_enabled
 			}
+
 			add = -50
 			trigger_if = {
 				limit = {
@@ -440,6 +453,7 @@
 			NOT = {
 				has_game_rule = bannermen_mode_enabled
 			}
+
 			add = -50
 			trigger_if = {
 				limit = {
@@ -456,6 +470,7 @@
 			NOT = {
 				has_game_rule = bannermen_mode_enabled
 			}
+
 			any_home_court_hostage = {
 				warden = {
 					OR = {

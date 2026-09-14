@@ -1234,7 +1234,6 @@ accou_quick_marriage_ai_accept_modifier_value = {
 					OR = {
 						AND = {
 							scope:actor = {
-								has_trait = fp3_struggle_detractor
 								any_character_struggle = {
 									involvement = involved
 									phase_has_catalyst = catalyst_forming_alliance_between_detractor_uninvolved_rulers
@@ -1246,7 +1245,6 @@ accou_quick_marriage_ai_accept_modifier_value = {
 						}
 						AND = {
 							scope:recipient = {
-								has_trait = fp3_struggle_detractor
 								any_character_struggle = {
 									involvement = involved
 									phase_has_catalyst = catalyst_forming_alliance_between_detractor_uninvolved_rulers

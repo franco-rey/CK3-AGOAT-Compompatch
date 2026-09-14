@@ -1,0 +1,336 @@
+template character_opinion_tooltip {
+	widget = {
+		using = GeneralTooltipSetup
+		using = DefaultTooltipBackground
+		alwaystransparent = no
+
+		vbox = {
+			set_parent_size_to_minimum = yes
+			margin = { 8 8 }
+			spacing = 2
+
+			hbox = {
+				name = "heading"
+				layoutpolicy_horizontal = expanding
+
+				margin = { 8 8 }
+
+				spacing = 6
+
+				background = {
+					using = Background_Area
+				}
+
+				text_single = {
+
+
+					 	raw_text = "@opinion_icon! [Character.GetOpinionHeadingText( GetPlayer )]"
+
+
+					using = Font_Size_Medium
+					align = nobaseline
+					fonttintcolor = "[TooltipInfo.GetTintColor]"
+				}
+
+				text_single = {
+					background = {
+						name = "portrait_opinion_bg"
+						texture = "gfx/interface/component_tiles/solid_black_label.dds"
+						spritetype = Corneredtiled
+						spriteborder = { 20 20 }
+						texture_density = 2
+						margin = { 3 1 }
+					}
+
+					max_width = 45
+					align = nobaseline
+
+
+
+						text = "[Character.GetOpinionOf( GetPlayer )|=]"
+						fonttintcolor = "[Character.GetOpinionOfTint( GetPlayer )]"
+
+
+					default_format = "#true_white"
+					using = Font_Size_Medium
+
+				}
+
+				expand = {}
+			}
+
+			hbox = {
+				layoutpolicy_horizontal = expanding
+				margin = { 8 0 }
+				visible = "[Character.IsPlayer]"
+
+				text_multi = {
+					datacontext = "[Character]"
+					visible = "[Not( Character.IsLocalPlayer )]"
+
+					autoresize = yes
+					max_width = 400
+					text = "PLAYER_OPINION_UNIMPORTANT"
+					default_format = "#weak"
+					fonttintcolor = "[TooltipInfo.GetTintColor]"
+				}
+
+				text_multi = {
+					datacontext = "[Character]"
+					visible = "[Character.IsLocalPlayer]"
+
+					autoresize = yes
+					max_width = 400
+					text = "PLAYER_OPINION_UNIMPORTANT_SELF"
+					default_format = "#weak"
+					fonttintcolor = "[TooltipInfo.GetTintColor]"
+				}
+
+				expand = {}
+			}
+
+
+			hbox = {
+				layoutpolicy_horizontal = expanding
+				margin = { 8 0 }
+
+				text_multi = {
+					block "ott_opinion_breakdown_text"
+					{
+						text = "[Character.GetOpinionBreakdownText( GetPlayer )]"
+					}
+
+					autoresize = yes
+					max_width = 400
+					fonttintcolor = "[TooltipInfo.GetTintColor]"
+				}
+
+				expand = {}
+			}
+		}
+	}
+}
+
+template character_opinion_tooltip_player {
+	widget = {
+		using = GeneralTooltipSetup
+		using = DefaultTooltipBackground
+		alwaystransparent = no
+
+		vbox = {
+			set_parent_size_to_minimum = yes
+			margin = { 8 8 }
+			spacing = 2
+
+			hbox = {
+				name = "heading"
+				layoutpolicy_horizontal = expanding
+
+				margin = { 8 8 }
+
+				spacing = 6
+
+				background = {
+					using = Background_Area
+				}
+
+				text_single = {
+
+
+						raw_text = "@opinion_icon! [GetPlayer.GetOpinionHeadingText(Character.Self)]"
+
+
+					using = Font_Size_Medium
+					align = nobaseline
+					fonttintcolor = "[TooltipInfo.GetTintColor]"
+				}
+
+				text_single = {
+					background = {
+						name = "portrait_opinion_bg"
+						texture = "gfx/interface/component_tiles/solid_black_label.dds"
+						spritetype = Corneredtiled
+						spriteborder = { 20 20 }
+						texture_density = 2
+						margin = { 3 1 }
+					}
+
+					max_width = 45
+					align = nobaseline
+
+
+
+						text = "[GetPlayer.GetOpinionOf(Character.Self)|=]"
+						fonttintcolor = "[GetPlayer.GetOpinionOfTint(Character.Self)]"
+
+
+					default_format = "#true_white"
+					using = Font_Size_Medium
+				}
+
+				expand = {}
+			}
+
+			hbox = {
+				layoutpolicy_horizontal = expanding
+				margin = { 8 0 }
+				visible = "[Character.IsPlayer]"
+
+				text_multi = {
+					datacontext = "[Character]"
+					visible = "[Not( Character.IsLocalPlayer )]"
+
+					autoresize = yes
+					max_width = 400
+					text = "PLAYER_OPINION_UNIMPORTANT"
+					default_format = "#weak"
+					fonttintcolor = "[TooltipInfo.GetTintColor]"
+				}
+
+				text_multi = {
+					datacontext = "[Character]"
+					visible = "[Character.IsLocalPlayer]"
+
+					autoresize = yes
+					max_width = 400
+					text = "PLAYER_OPINION_UNIMPORTANT_SELF"
+					default_format = "#weak"
+					fonttintcolor = "[TooltipInfo.GetTintColor]"
+				}
+
+				expand = {}
+			}
+
+
+			hbox = {
+				layoutpolicy_horizontal = expanding
+				margin = { 8 0 }
+
+				text_multi = {
+
+
+						text = "[GetPlayer.GetOpinionBreakdownText(Character.Self)]"
+
+
+					autoresize = yes
+					max_width = 400
+					fonttintcolor = "[TooltipInfo.GetTintColor]"
+				}
+
+				expand = {}
+			}
+		}
+	}
+}
+
+template character_opinion_tooltip_nonplayer {
+	widget = {
+		using = GeneralTooltipSetup
+		using = DefaultTooltipBackground
+		alwaystransparent = no
+
+		vbox = {
+			set_parent_size_to_minimum = yes
+			margin = { 8 8 }
+			spacing = 2
+
+			hbox = {
+				name = "heading"
+				layoutpolicy_horizontal = expanding
+
+				margin = { 8 8 }
+
+				spacing = 6
+
+				background = {
+					using = Background_Area
+				}
+
+				text_single = {
+
+
+						raw_text = "@opinion_icon! [GetPlayer.MakeScope.Var('SPO').Char.GetOpinionHeadingText( Character.Self )]"
+
+
+					using = Font_Size_Medium
+					align = nobaseline
+					fonttintcolor = "[TooltipInfo.GetTintColor]"
+				}
+
+				text_single = {
+					background = {
+						name = "portrait_opinion_bg"
+						texture = "gfx/interface/component_tiles/solid_black_label.dds"
+						spritetype = Corneredtiled
+						spriteborder = { 20 20 }
+						texture_density = 2
+						margin = { 3 1 }
+					}
+
+					max_width = 45
+					align = nobaseline
+
+
+
+						text = "[GetPlayer.MakeScope.Var('SPO').Char.GetOpinionOf( Character.Self )|=]"
+						fonttintcolor = "[GetPlayer.MakeScope.Var('SPO').Char.GetOpinionOfTint( Character.Self )]"
+
+
+					default_format = "#true_white"
+					using = Font_Size_Medium
+				}
+
+				expand = {}
+			}
+
+			hbox = {
+				layoutpolicy_horizontal = expanding
+				margin = { 8 0 }
+				visible = "[Character.IsPlayer]"
+
+				text_multi = {
+					datacontext = "[Character]"
+					visible = "[Not( Character.IsLocalPlayer )]"
+
+					autoresize = yes
+					max_width = 400
+					text = "PLAYER_OPINION_UNIMPORTANT"
+					default_format = "#weak"
+					fonttintcolor = "[TooltipInfo.GetTintColor]"
+				}
+
+				text_multi = {
+					datacontext = "[Character]"
+					visible = "[Character.IsLocalPlayer]"
+
+					autoresize = yes
+					max_width = 400
+					text = "PLAYER_OPINION_UNIMPORTANT_SELF"
+					default_format = "#weak"
+					fonttintcolor = "[TooltipInfo.GetTintColor]"
+				}
+
+				expand = {}
+			}
+
+
+			hbox = {
+				layoutpolicy_horizontal = expanding
+				margin = { 8 0 }
+
+				text_multi = {
+
+
+						text = "[GetPlayer.MakeScope.Var('SPO').Char.GetOpinionBreakdownText( Character.Self )]"
+
+
+					autoresize = yes
+					max_width = 400
+					fonttintcolor = "[TooltipInfo.GetTintColor]"
+				}
+
+				expand = {}
+			}
+		}
+	}
+}

@@ -1,0 +1,477 @@
+﻿dw_direwolf_feral_recount_county_effect = {
+    save_temporary_scope_as = dw_recount_county
+    if = {
+        limit = {
+            any_in_global_list = {
+                variable = dw_feral_wolves
+                is_alive = yes
+                has_character_flag = dw_feral_leader
+                location.county ?= scope:dw_recount_county
+            }
+        }
+        if = {
+            limit = { NOT = { has_county_modifier = dw_feral_pack_modifier } }
+            add_county_modifier = dw_feral_pack_modifier
+        }
+    }
+    else = {
+        if = {
+            limit = { has_county_modifier = dw_feral_pack_modifier }
+            remove_county_modifier = dw_feral_pack_modifier
+        }
+    }
+}
+
+dw_direwolf_go_feral_effect = {
+    save_scope_as = dw_new_feral
+
+    court_owner ?= { remove_courtier_or_guest = scope:dw_new_feral }
+
+    scope:dw_new_feral = {
+        remove_trait = direwolf_alpha
+        remove_trait = direwolf_beta
+        remove_trait = direwolf_omega
+        remove_trait = direwolf_outcast
+        remove_character_flag = dw_forced_outcast
+        remove_character_flag = dw_pack_rep
+        remove_trait = direwolf_bonded
+        add_trait = direwolf_wild
+        clear_variable_list = dw_packmates
+        add_character_flag = dw_feral
+
+        if = {
+
+        	limit = { is_alive = no }
+
+        	make_unprunable = yes
+
+        }
+    }
+
+    add_to_global_variable_list = { name = dw_feral_wolves  target = scope:dw_new_feral }
+
+    scope:dw_new_feral = { dw_direwolf_feral_join_or_create_effect = yes }
+}
+
+dw_direwolf_feral_make_alpha_effect = {
+    if = {
+        limit = {
+            NOT = { has_trait = direwolf_alpha }
+            NOT = { has_character_flag = dw_feral_heartbeat }
+        }
+        add_character_flag = dw_feral_heartbeat
+        trigger_event = { id = dw_direwolf.0900  months = 3 }
+    }
+
+    if = {
+        limit = { dw_pack_ranks_active_trigger = yes }
+        remove_trait = direwolf_beta
+        remove_trait = direwolf_omega
+        remove_trait = direwolf_outcast
+        add_trait = direwolf_alpha
+    }
+}
+
+dw_direwolf_feral_make_beta_effect = {
+    if = {
+        limit = { dw_pack_ranks_active_trigger = yes }
+        remove_trait = direwolf_alpha
+        remove_trait = direwolf_omega
+        remove_trait = direwolf_outcast
+        add_trait = direwolf_beta
+    }
+}
+
+dw_direwolf_feral_join_or_create_effect = {
+    save_scope_as = dw_joining
+    if = {
+        limit = {
+            any_in_global_list = {
+                variable = dw_feral_wolves
+                is_alive = yes
+                has_character_flag = dw_feral_leader
+                NOT = { this = scope:dw_joining }
+            }
+        }
+        random_in_global_list = {
+            variable = dw_feral_wolves
+            limit = {
+                is_alive = yes
+                has_character_flag = dw_feral_leader
+                NOT = { this = scope:dw_joining }
+            }
+            save_scope_as = dw_found_leader
+        }
+        scope:dw_joining = {
+            set_variable = { name = dw_feral_leader  value = scope:dw_found_leader }
+            set_location = scope:dw_found_leader.location
+            dw_direwolf_feral_make_beta_effect = yes
+        }
+    }
+    else = {
+        scope:dw_joining = {
+            add_character_flag = dw_feral_leader
+            set_variable = { name = dw_feral_leader  value = scope:dw_joining }
+            dw_direwolf_feral_make_alpha_effect = yes
+        }
+        scope:dw_joining.location.county ?= { dw_direwolf_feral_recount_county_effect = yes }
+    }
+
+    if = {
+        limit = { exists = scope:dw_found_leader }
+        scope:dw_found_leader = { dw_direwolf_publish_feral_pack_effect = yes }
+    }
+    else = {
+        scope:dw_joining = { dw_direwolf_publish_feral_pack_effect = yes }
+    }
+}
+
+dw_direwolf_leave_feral_effect = {
+    save_scope_as = dw_leaving
+    location.county ?= { save_temporary_scope_as = dw_leaving_county }
+
+    if = {
+        limit = {
+            NOT = { has_character_flag = dw_feral_leader }
+            exists = var:dw_feral_leader
+        }
+        var:dw_feral_leader = { save_scope_as = dw_leave_pack_leader }
+    }
+
+    if = {
+        limit = { has_character_flag = dw_feral_leader }
+        random_in_global_list = {
+            variable = dw_feral_wolves
+            limit = {
+                is_alive = yes
+                NOT = { this = scope:dw_leaving }
+                var:dw_feral_leader = scope:dw_leaving
+            }
+            add_character_flag = dw_feral_leader
+            save_scope_as = dw_new_leader
+            set_variable = { name = dw_feral_leader  value = this }
+            dw_direwolf_feral_make_alpha_effect = yes
+        }
+        if = {
+            limit = { exists = scope:dw_new_leader }
+            every_in_global_list = {
+                variable = dw_feral_wolves
+                limit = {
+                    is_alive = yes
+                    NOT = { this = scope:dw_new_leader }
+                    var:dw_feral_leader = scope:dw_leaving
+                }
+                set_variable = { name = dw_feral_leader  value = scope:dw_new_leader }
+            }
+        }
+    }
+
+    scope:dw_leaving = {
+        remove_character_flag = dw_feral
+        remove_character_flag = dw_feral_leader
+        remove_variable = dw_feral_leader
+        remove_character_flag = dw_feral_heartbeat
+        remove_trait = direwolf_alpha
+        remove_trait = direwolf_beta
+    }
+    remove_list_global_variable = { name = dw_feral_wolves  target = scope:dw_leaving }
+
+    scope:dw_leaving_county ?= { dw_direwolf_feral_recount_county_effect = yes }
+
+    scope:dw_leaving = { clear_variable_list = dw_packmates }
+
+    if = {
+        limit = { exists = scope:dw_new_leader }
+        scope:dw_new_leader = { dw_direwolf_publish_feral_pack_effect = yes }
+    }
+    else_if = {
+        limit = {
+            exists = scope:dw_leave_pack_leader
+            scope:dw_leave_pack_leader = { is_alive = yes  has_character_flag = dw_feral_leader }
+        }
+        scope:dw_leave_pack_leader = { dw_direwolf_publish_feral_pack_effect = yes }
+    }
+}
+
+dw_direwolf_publish_feral_pack_effect = {
+    save_scope_as = dw_fpub_leader
+
+    clear_global_variable_list = dw_roster_tmp
+    add_to_global_variable_list = { name = dw_roster_tmp  target = scope:dw_fpub_leader }
+    every_in_global_list = {
+        variable = dw_feral_wolves
+        limit = {
+            is_alive = yes
+            NOT = { this = scope:dw_fpub_leader }
+            var:dw_feral_leader = scope:dw_fpub_leader
+        }
+        add_to_global_variable_list = { name = dw_roster_tmp  target = this }
+    }
+
+    every_in_global_list = {
+        variable = dw_feral_wolves
+        limit = {
+            is_alive = yes
+            OR = {
+                this = scope:dw_fpub_leader
+                var:dw_feral_leader = scope:dw_fpub_leader
+            }
+        }
+        save_scope_as = dw_pack_self
+        clear_variable_list = dw_packmates
+        every_in_global_list = {
+            variable = dw_roster_tmp
+            limit = { NOT = { this = scope:dw_pack_self } }
+            dw_direwolf_add_packmate_effect = yes
+        }
+    }
+
+    clear_global_variable_list = dw_roster_tmp
+}
+
+dw_direwolf_feral_roam_one_effect = {
+    if = {
+        limit = {
+            is_alive = yes
+            has_character_flag = dw_feral_leader
+        }
+        random = {
+            chance = 35
+            dw_direwolf_feral_leader_move_effect = yes
+        }
+        dw_direwolf_feral_infight_effect = yes
+    }
+    else_if = {
+        limit = {
+            is_alive = yes
+            has_character_flag = dw_feral
+            exists = var:dw_feral_leader
+            var:dw_feral_leader = { is_alive = yes }
+        }
+        set_location = var:dw_feral_leader.location
+    }
+    else_if = {
+        limit = {
+            is_alive = yes
+            has_character_flag = dw_feral
+            OR = {
+                NOT = { exists = var:dw_feral_leader }
+                var:dw_feral_leader = { NOT = { is_alive = yes } }
+            }
+        }
+        dw_direwolf_feral_join_or_create_effect = yes
+    }
+}
+
+dw_direwolf_feral_leader_move_effect = {
+    save_scope_as = dw_move_leader
+    location.county ?= { save_scope_as = dw_move_old_county }
+
+    if = {
+        limit = { exists = location.county }
+        location.county = {
+            random_neighboring_county = {
+                limit = {
+                    trigger_if = {
+                        limit = { exists = title_province }
+                        title_province = {
+                            NOT = { geographical_region = world_ruins }
+                        }
+                    }
+                    trigger_else = { always = no }
+                }
+                save_scope_as = dw_move_new_county
+            }
+        }
+    }
+
+    if = {
+        limit = { exists = scope:dw_move_new_county }
+        scope:dw_move_leader = { set_location = scope:dw_move_new_county.title_province }
+        every_in_global_list = {
+            variable = dw_feral_wolves
+            limit = {
+                is_alive = yes
+                NOT = { this = scope:dw_move_leader }
+                var:dw_feral_leader = scope:dw_move_leader
+            }
+            set_location = scope:dw_move_new_county.title_province
+        }
+        scope:dw_move_new_county = { dw_direwolf_feral_recount_county_effect = yes }
+        scope:dw_move_old_county ?= { dw_direwolf_feral_recount_county_effect = yes }
+
+        every_player = {
+            limit = { has_character_flag = dw_watch_feral_moves }
+            send_interface_toast = {
+                title = dw_direwolf_feral_pack_moved_toast
+                left_icon = scope:dw_move_leader
+            }
+        }
+    }
+}
+
+dw_direwolf_feral_infight_effect = {
+    save_scope_as = dw_infight_leader
+    if = {
+        limit = {
+            any_in_global_list = {
+                variable = dw_feral_wolves
+                is_alive = yes
+                NOT = { this = scope:dw_infight_leader }
+                var:dw_feral_leader = scope:dw_infight_leader
+            }
+        }
+        random = {
+            chance = 30
+            random_in_global_list = {
+                variable = dw_feral_wolves
+                limit = {
+                    is_alive = yes
+                    NOT = { this = scope:dw_infight_leader }
+                    var:dw_feral_leader = scope:dw_infight_leader
+                }
+                random_list = {
+                    60 = { add_trait = direwolf_scarred }
+                    40 = { add_trait = wounded_2 }
+                }
+            }
+        }
+    }
+}
+
+dw_direwolf_trim_pack_effect = {
+    if = {
+        limit = {
+            any_courtier = {
+                count >= 9
+                has_trait = direwolf
+                is_alive = yes
+            }
+            any_courtier = { dw_direwolf_is_surplus_trigger = yes }
+        }
+        random_courtier = {
+            limit = { dw_direwolf_is_surplus_trigger = yes }
+            random_list = {
+                55 = { dw_direwolf_go_feral_effect = yes }
+                45 = { death = { death_reason = death_direwolf } }
+            }
+        }
+        dw_direwolf_refresh_pack_full_effect = yes
+    }
+}
+
+dw_direwolf_slay_feral_pack_effect = {
+    if = {
+        limit = { exists = scope:dw_hunt_pack_leader }
+        scope:dw_hunt_pack_leader = { save_scope_as = dw_slay_leader }
+
+        clear_global_variable_list = dw_slay_tmp
+        every_in_global_list = {
+            variable = dw_feral_wolves
+            limit = {
+                is_alive = yes
+                OR = {
+                    this = scope:dw_slay_leader
+                    var:dw_feral_leader = scope:dw_slay_leader
+                    location.county ?= scope:dw_hunt_county
+                }
+            }
+            add_to_global_variable_list = { name = dw_slay_tmp  target = this }
+        }
+
+        while = {
+            count = dw_direwolf_hunt_kills_value
+            dw_direwolf_slay_one_of_pack_effect = yes
+        }
+        clear_global_variable_list = dw_slay_tmp
+    }
+}
+
+dw_direwolf_slay_one_of_pack_effect = {
+    random_in_global_list = {
+        variable = dw_slay_tmp
+        limit = { is_alive = yes }
+        death = {
+            death_reason = death_wounds
+            killer = scope:dw_hunter
+        }
+    }
+}
+
+
+
+
+
+dw_direwolf_create_wild_wolf_effect = {
+    create_character = {
+        location = scope:dw_fpack_loc
+        template = dw_direwolf_adult_template
+        gender = $GENDER$
+        random_traits = no
+        save_scope_as = new_direwolf
+    }
+    scope:new_direwolf = {
+        add_character_flag = dw_feral
+        if = {
+        	limit = { is_alive = no }
+        	make_unprunable = yes
+        }
+    }
+    add_to_global_variable_list = { name = dw_all_wolves     target = scope:new_direwolf }
+    add_to_global_variable_list = { name = dw_feral_wolves   target = scope:new_direwolf }
+    add_to_global_variable_list = { name = dw_spawning_pack  target = scope:new_direwolf }
+}
+
+dw_direwolf_spawn_feral_pack_at_loc_effect = {
+    if = {
+        limit = { exists = scope:dw_fpack_loc }
+
+        clear_global_variable_list = dw_spawning_pack
+        dw_direwolf_create_wild_wolf_effect = { GENDER = male }
+        dw_direwolf_create_wild_wolf_effect = { GENDER = female }
+        random_list = {
+            50 = { dw_direwolf_create_wild_wolf_effect = { GENDER = male } }
+            50 = { dw_direwolf_create_wild_wolf_effect = { GENDER = female } }
+        }
+        random_in_global_list = {
+            variable = dw_spawning_pack
+            limit = { is_alive = yes }
+            save_scope_as = dw_fpack_leader
+            add_character_flag = dw_feral_leader
+            set_variable = { name = dw_feral_leader  value = this }
+            dw_direwolf_feral_make_alpha_effect = yes
+        }
+        every_in_global_list = {
+            variable = dw_spawning_pack
+            limit = { is_alive = yes  NOT = { this = scope:dw_fpack_leader } }
+            set_variable = { name = dw_feral_leader  value = scope:dw_fpack_leader }
+            dw_direwolf_feral_make_beta_effect = yes
+        }
+        clear_global_variable_list = dw_spawning_pack
+
+        scope:dw_fpack_leader ?= {
+            location.county ?= { dw_direwolf_feral_recount_county_effect = yes }
+            dw_direwolf_publish_feral_pack_effect = yes
+        }
+    }
+}
+
+dw_direwolf_spawn_feral_pack_beyond_wall_effect = {
+    random_county = {
+        limit = {
+            trigger_if = {
+                limit = { exists = title_province }
+                title_province = {
+                    geographical_region = world_westeros_beyond_the_wall
+                }
+            }
+            trigger_else = { always = no }
+        }
+        save_scope_as = dw_btw_county
+    }
+    if = {
+        limit = { exists = scope:dw_btw_county }
+        scope:dw_btw_county.title_province = { save_scope_as = dw_fpack_loc }
+        dw_direwolf_spawn_feral_pack_at_loc_effect = yes
+    }
+}

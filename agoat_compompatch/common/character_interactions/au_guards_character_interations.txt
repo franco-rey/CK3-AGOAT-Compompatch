@@ -1,0 +1,1696 @@
+﻿add_au5_au_dragonguard_interaction = {
+	category = interaction_category_friendly
+	desc = add_au5_au_dragonguard_interaction.desc
+	icon = au_dragonguard
+    	interface_priority = 990
+	auto_accept = yes
+    	use_diplomatic_range = no
+
+
+	cooldown = { years = 0 }
+
+	cost = {
+		prestige = {
+			value = 1000
+		}
+	}
+	is_shown = {
+		scope:actor = {
+			OR = {
+				has_trait = au_immortalvalyrian_bloodline
+				has_trait = au_redvalyrian_bloodline
+				has_trait = au_blackvalyrian_bloodline
+				has_trait = au_silvervalyrian_bloodline
+			}
+			NOT = { has_character_modifier = au_dragonguard_cooldown_5y }
+		}
+		scope:recipient = {
+			NOT = { has_trait = au_dragonguard }
+			is_adult = yes
+			is_in_same_court = yes
+			is_vassal = yes
+			is_courtier = yes
+			is_male = yes
+			is_ruler = no
+		}
+	}
+	is_valid_showing_failures_only = {
+
+	}
+	send_option = {
+		flag = au_red_dragonsguard
+		localization = au_red_dragonsguard
+	}
+
+	send_option = {
+		flag = au_targaryen_dragonsguard
+		localization = au_targaryen_dragonsguard
+	}
+
+	send_option = {
+		flag = au_gray_dragonsguard
+		localization = au_gray_dragonsguard
+	}
+	send_option = {
+		flag = au_white_dragonsguard
+		localization = au_white_dragonsguard
+	}
+	on_accept = {
+		scope:recipient = {
+
+			remove_trait = squire
+
+    			remove_trait = education_diplomacy_1
+    			remove_trait = education_diplomacy_2
+    			remove_trait = education_diplomacy_3
+    			remove_trait = education_diplomacy_4
+    			remove_trait = education_diplomacy_5
+
+    			remove_trait = education_martial_1
+    			remove_trait = education_martial_2
+    			remove_trait = education_martial_3
+    			remove_trait = education_martial_4
+			remove_trait = education_martial_5
+
+    			remove_trait = education_stewardship_1
+    			remove_trait = education_stewardship_2
+    			remove_trait = education_stewardship_3
+    			remove_trait = education_stewardship_4
+			remove_trait = education_stewardship_5
+
+    			remove_trait = education_intrigue_1
+    			remove_trait = education_intrigue_2
+    			remove_trait = education_intrigue_3
+    			remove_trait = education_intrigue_4
+			remove_trait = education_intrigue_5
+
+    			remove_trait = education_learning_1
+    			remove_trait = education_learning_2
+    			remove_trait = education_learning_3
+    			remove_trait = education_learning_4
+			remove_trait = education_learning_5
+
+			remove_trait = education_martial_prowess_1
+			remove_trait = education_martial_prowess_2
+			remove_trait = education_martial_prowess_3
+			remove_trait = education_martial_prowess_4
+			remove_trait = education_martial_prowess_5
+
+			add_trait = au_dragonguard
+			add_trait = lifestyle_blademaster
+			add_trait = education_martial_4
+			add_trait = education_martial_prowess_4
+			add_trait = knight
+			add_trait_xp = {
+					trait = lifestyle_blademaster
+					value < 100
+				}
+			create_artifact_dragonsguard_sword_effect = { OWNER = scope:recipient }
+			if = {
+				limit = { scope:au_red_dragonsguard = yes }
+				create_artifact_red_dragonsguard_armor_effect = { OWNER = scope:recipient }
+				add_character_flag = au_red_dragonsguard
+			}
+			else_if = {
+				limit = { scope:au_targaryen_dragonsguard = yes }
+				create_artifact_dragonsguard_armor_effect = { OWNER = scope:recipient }
+				add_character_flag = au_targaryen_dragonsguard
+			}
+			else_if = {
+				limit = { scope:au_gray_dragonsguard = yes }
+				create_artifact_gray_dragonsguard_armor_effect = { OWNER = scope:recipient }
+				add_character_flag = au_gray_dragonsguard
+			}
+			else_if = {
+				limit = { scope:au_white_dragonsguard = yes }
+				create_artifact_white_dragonsguard_armor_effect = { OWNER = scope:recipient }
+				add_character_flag = au_white_dragonsguard
+			}
+
+		}
+	}
+	ai_will_do = {
+		base = 100
+	}
+}
+add_au5_au_bloodsguard_interaction = {
+	category = interaction_category_friendly
+	desc = add_au5_au_bloodsguard_interaction.desc
+	icon = au_bloodsguard
+    	interface_priority = 990
+	auto_accept = yes
+    	use_diplomatic_range = no
+
+
+	cooldown = { years = 0 }
+
+	cost = {
+		prestige = {
+			value = 1000
+		}
+	}
+	is_shown = {
+		scope:actor = {
+			OR = {
+				has_trait = au_sun_bloodline
+				has_trait = au_west_bloodline
+				has_trait = au_north_bloodline
+				has_trait = au_iron_bloodline
+				has_trait = au_storm_bloodline
+				has_trait = au_vale_bloodline
+				has_trait = au_river_bloodline
+				has_trait = au_reach_bloodline
+				has_trait = au_wildlings_bloodline
+			}
+			NOT = { has_character_modifier = au_dragonguard_cooldown_5y }
+		}
+		scope:recipient = {
+			NOT = { has_trait = au_bloodsguard }
+			is_adult = yes
+			is_in_same_court = yes
+			is_vassal = yes
+			is_courtier = yes
+			is_male = yes
+			is_ruler = no
+		}
+	}
+	is_valid_showing_failures_only = {
+
+	}
+	send_option = {
+		flag = au_bloodsguard
+		localization = au_bloodsguard
+	}
+
+	send_option = {
+		flag = au_red_bloodsguard
+		localization = au_red_bloodsguard
+	}
+
+	send_option = {
+		flag = au_gray_bloodsguard
+		localization = au_gray_bloodsguard
+	}
+	send_option = {
+		flag = au_hedge_bloodsguard
+		localization = au_hedge_bloodsguard
+	}
+	on_accept = {
+		scope:recipient = {
+
+			remove_trait = squire
+
+    			remove_trait = education_diplomacy_1
+    			remove_trait = education_diplomacy_2
+    			remove_trait = education_diplomacy_3
+    			remove_trait = education_diplomacy_4
+    			remove_trait = education_diplomacy_5
+
+    			remove_trait = education_martial_1
+    			remove_trait = education_martial_2
+    			remove_trait = education_martial_3
+    			remove_trait = education_martial_4
+			remove_trait = education_martial_5
+
+    			remove_trait = education_stewardship_1
+    			remove_trait = education_stewardship_2
+    			remove_trait = education_stewardship_3
+    			remove_trait = education_stewardship_4
+			remove_trait = education_stewardship_5
+
+    			remove_trait = education_intrigue_1
+    			remove_trait = education_intrigue_2
+    			remove_trait = education_intrigue_3
+    			remove_trait = education_intrigue_4
+			remove_trait = education_intrigue_5
+
+    			remove_trait = education_learning_1
+    			remove_trait = education_learning_2
+    			remove_trait = education_learning_3
+    			remove_trait = education_learning_4
+			remove_trait = education_learning_5
+
+			remove_trait = education_martial_prowess_1
+			remove_trait = education_martial_prowess_2
+			remove_trait = education_martial_prowess_3
+			remove_trait = education_martial_prowess_4
+			remove_trait = education_martial_prowess_5
+
+			add_trait = au_bloodsguard
+			add_trait = lifestyle_blademaster
+			add_trait = education_martial_4
+			add_trait = education_martial_prowess_4
+			add_trait = knight
+			add_trait_xp = {
+					trait = lifestyle_blademaster
+					value < 100
+				}
+			create_artifact_bloodsguard_sword_effect = { OWNER = scope:recipient }
+			if = {
+				limit = { scope:au_bloodsguard = yes }
+				create_artifact_bloodsguard_armor_effect = { OWNER = scope:recipient }
+				add_character_flag = au_bloodsguard
+			}
+			else_if = {
+				limit = { scope:au_red_bloodsguard = yes }
+				create_artifact_red_bloodsguard_armor_effect = { OWNER = scope:recipient }
+				add_character_flag = au_red_bloodsguard
+			}
+			else_if = {
+				limit = { scope:au_gray_bloodsguard = yes }
+				create_artifact_gray_bloodsguard_armor_effect = { OWNER = scope:recipient }
+				add_character_flag = au_gray_bloodsguard
+			}
+			else_if = {
+				limit = { scope:au_hedge_bloodsguard = yes }
+				create_artifact_hedge_bloodsguard_armor_effect = { OWNER = scope:recipient }
+				add_character_flag = au_hedge_bloodsguard
+			}
+		}
+	}
+	ai_will_do = {
+		base = 100
+	}
+}
+
+
+add_au2_bloodlines_interaction = {
+	category = interaction_category_diplomacy
+	desc = add_au2_bloodlines_interaction.desc
+	icon = au_logo
+    	interface_priority = 991
+	auto_accept = yes
+    	use_diplomatic_range = no
+
+
+	is_shown = {
+		scope:actor = {
+			has_character_flag = au2_enabled
+		}
+		scope:recipient = {
+			is_alive = yes
+		}
+	}
+	is_valid_showing_failures_only = {
+
+	}
+	send_option = {
+		flag = au_sun_bloodline
+		localization = add_au_sun_bloodline_interaction
+	}
+
+	send_option = {
+		flag = au_west_bloodline
+		localization = add_au_west_bloodline_interaction
+	}
+
+	send_option = {
+		flag = au_north_bloodline
+		localization = add_au_north_bloodline_interaction
+	}
+	send_option = {
+		flag = au_iron_bloodline
+		localization = add_au_iron_bloodline_interaction
+	}
+	send_option = {
+		flag = au_storm_bloodline
+		localization = add_au_storm_bloodline_interaction
+	}
+	send_option = {
+		flag = au_vale_bloodline
+		localization = add_au_vale_bloodline_interaction
+	}
+	send_option = {
+		flag = au_river_bloodline
+		localization = add_au_river_bloodline_interaction
+	}
+	send_option = {
+		flag = au_reach_bloodline
+		localization = add_au_reach_bloodline_interaction
+	}
+	send_option = {
+		flag = au_wildlings_bloodline
+		localization = add_au_wildlings_bloodline_interaction
+	}
+	send_option = {
+		flag = au_immortalvalyrian_bloodline
+		localization = add_au_immortalvalyrian_package_interaction
+	}
+	send_option = {
+		flag = au_redvalyrian_bloodline
+		localization = add_au_redvalyrian_package_interaction
+	}
+	send_option = {
+		flag = au_blackvalyrian_bloodline
+		localization = add_au_blackvalyrian_package_interaction
+	}
+	send_option = {
+		flag = au_silvervalyrian_bloodline
+		localization = add_au_silvervalyrian_package_interaction
+	}
+	on_accept = {
+		scope:recipient = {
+			if = {
+				limit = { scope:au_sun_bloodline = yes }
+				add_trait = au_sun_bloodline
+			}
+			else_if = {
+				limit = { scope:au_west_bloodline = yes }
+				add_trait = au_west_bloodline
+			}
+			else_if = {
+				limit = { scope:au_north_bloodline = yes }
+				add_trait = au_north_bloodline
+			}
+			else_if = {
+				limit = { scope:au_iron_bloodline = yes }
+				add_trait = au_iron_bloodline
+			}
+			else_if = {
+				limit = { scope:au_storm_bloodline = yes }
+				add_trait = au_storm_bloodline
+			}
+			else_if = {
+				limit = { scope:au_vale_bloodline = yes }
+				add_trait = au_vale_bloodline
+			}
+			else_if = {
+				limit = { scope:au_river_bloodline = yes }
+				add_trait = au_river_bloodline
+			}
+			else_if = {
+				limit = { scope:au_reach_bloodline = yes }
+				add_trait = au_reach_bloodline
+			}
+			else_if = {
+				limit = { scope:au_wildlings_bloodline = yes }
+				add_trait = au_wildlings_bloodline
+			}
+			else_if = {
+				limit = { scope:au_immortalvalyrian_bloodline = yes }
+				add_trait = au_immortalvalyrian_bloodline
+			}
+			else_if = {
+				limit = { scope:au_redvalyrian_bloodline = yes }
+				add_trait = au_redvalyrian_bloodline
+			}
+			else_if = {
+				limit = { scope:au_blackvalyrian_bloodline = yes }
+				add_trait = au_blackvalyrian_bloodline
+			}
+			else_if = {
+				limit = { scope:au_silvervalyrian_bloodline = yes }
+				add_trait = au_silvervalyrian_bloodline
+			}
+		}
+	}
+	ai_will_do = {
+		base = 0
+	}
+}
+remove_au2_bloodlines_interaction = {
+	category = interaction_category_diplomacy
+	desc = remove_au2_bloodlines_interaction.desc
+	icon = au_logo
+    	interface_priority = 990
+	auto_accept = yes
+    	use_diplomatic_range = no
+
+
+	is_shown = {
+		scope:actor = {
+			OR = {
+				has_character_flag = au2_enabled
+				has_character_flag = au_enabled
+			}
+		}
+		scope:recipient = {
+				OR = {
+					has_trait = au_sun_bloodline
+					has_trait = au_west_bloodline
+					has_trait = au_north_bloodline
+					has_trait = au_iron_bloodline
+					has_trait = au_storm_bloodline
+					has_trait = au_vale_bloodline
+					has_trait = au_river_bloodline
+					has_trait = au_reach_bloodline
+					has_trait = au_wildlings_bloodline
+					has_trait = au_immortalvalyrian_bloodline
+					has_trait = au_redvalyrian_bloodline
+					has_trait = au_blackvalyrian_bloodline
+					has_trait = au_silvervalyrian_bloodline
+
+			}
+		}
+	}
+	is_valid_showing_failures_only = {
+
+	}
+	send_option = {
+	is_shown = {
+		scope:recipient = { has_trait = au_sun_bloodline } }
+		flag = au_sun_bloodline
+		localization = remove_au_sun_bloodline_interaction
+	}
+	send_option = {
+	is_shown = {
+		scope:recipient = { has_trait = au_west_bloodline } }
+		flag = au_west_bloodline
+		localization = remove_au_west_bloodline_interaction
+	}
+	send_option = {
+	is_shown = {
+		scope:recipient = { has_trait = au_north_bloodline } }
+		flag = au_north_bloodline
+		localization = remove_au_north_bloodline_interaction
+	}
+	send_option = {
+	is_shown = {
+		scope:recipient = { has_trait = au_iron_bloodline } }
+		flag = au_iron_bloodline
+		localization = remove_au_iron_bloodline_interaction
+	}
+	send_option = {
+	is_shown = {
+		scope:recipient = { has_trait = au_storm_bloodline } }
+		flag = au_storm_bloodline
+		localization = remove_au_storm_bloodline_interaction
+	}
+	send_option = {
+	is_shown = {
+		scope:recipient = { has_trait = au_vale_bloodline } }
+		flag = au_vale_bloodline
+		localization = remove_au_vale_bloodline_interaction
+	}
+	send_option = {
+	is_shown = {
+		scope:recipient = { has_trait = au_river_bloodline } }
+		flag = au_river_bloodline
+		localization = remove_au_river_bloodline_interaction
+	}
+	send_option = {
+	is_shown = {
+		scope:recipient = { has_trait = au_reach_bloodline } }
+		flag = au_reach_bloodline
+		localization = remove_au_reach_bloodline_interaction
+	}
+	send_option = {
+	is_shown = {
+		scope:recipient = { has_trait = au_wildlings_bloodline } }
+		flag = au_wildlings_bloodline
+		localization = remove_au_wildlings_bloodline_interaction
+	}
+	send_option = {
+	is_shown = {
+		scope:recipient = { has_trait = au_immortalvalyrian_bloodline } }
+		flag = au_immortalvalyrian_bloodline
+		localization = remove_au_immortalvalyrian_package_interaction
+	}
+	send_option = {
+	is_shown = {
+		scope:recipient = { has_trait = au_redvalyrian_bloodline } }
+		flag = au_redvalyrian_bloodline
+		localization = remove_au_redvalyrian_package_interaction
+	}
+	send_option = {
+	is_shown = {
+		scope:recipient = { has_trait = au_blackvalyrian_bloodline } }
+		flag = au_blackvalyrian_bloodline
+		localization = remove_au_blackvalyrian_package_interaction
+	}
+	send_option = {
+	is_shown = {
+		scope:recipient = { has_trait = au_silvervalyrian_bloodline } }
+		flag = au_silvervalyrian_bloodline
+		localization = remove_au_silvervalyrian_package_interaction
+	}
+	on_accept = {
+		scope:recipient = {
+			if = {
+				limit = { scope:au_sun_bloodline = yes }
+				remove_trait = au_sun_bloodline
+			}
+			else_if = {
+				limit = { scope:au_west_bloodline = yes }
+				remove_trait = au_west_bloodline
+			}
+			else_if = {
+				limit = { scope:au_north_bloodline = yes }
+				remove_trait = au_north_bloodline
+			}
+			else_if = {
+				limit = { scope:au_iron_bloodline = yes }
+				remove_trait = au_iron_bloodline
+			}
+			else_if = {
+				limit = { scope:au_storm_bloodline = yes }
+				remove_trait = au_storm_bloodline
+			}
+			else_if = {
+				limit = { scope:au_vale_bloodline = yes }
+				remove_trait = au_vale_bloodline
+			}
+			else_if = {
+				limit = { scope:au_river_bloodline = yes }
+				remove_trait = au_river_bloodline
+			}
+			else_if = {
+				limit = { scope:au_reach_bloodline = yes }
+				remove_trait = au_reach_bloodline
+			}
+			else_if = {
+				limit = { scope:au_wildlings_bloodline = yes }
+				remove_trait = au_wildlings_bloodline
+			}
+			else_if = {
+				limit = { scope:au_immortalvalyrian_bloodline = yes }
+				remove_trait = au_immortalvalyrian_bloodline
+			}
+			else_if = {
+				limit = { scope:au_redvalyrian_bloodline = yes }
+				remove_trait = au_redvalyrian_bloodline
+			}
+			else_if = {
+				limit = { scope:au_blackvalyrian_bloodline = yes }
+				remove_trait = au_blackvalyrian_bloodline
+			}
+			else_if = {
+				limit = { scope:au_silvervalyrian_bloodline = yes }
+				remove_trait = au_silvervalyrian_bloodline
+			}
+		}
+	}
+	ai_will_do = {
+		base = 0
+	}
+}
+
+add_au2_bloodlines_artifacts_interaction = {
+	category = interaction_category_diplomacy
+	desc = add_au2_bloodlines_artifacts_interaction.desc
+	icon = au_logo
+    	interface_priority = 991
+	auto_accept = yes
+    	use_diplomatic_range = no
+
+
+	is_shown = {
+		scope:actor = {
+			has_character_flag = au_enabled
+		}
+		scope:recipient = {
+			is_alive = yes
+		}
+	}
+	is_valid_showing_failures_only = {
+
+	}
+	send_option = {
+		flag = au_sun_bloodline
+		localization = artifacts_au_sun_bloodline_interaction
+	}
+
+	send_option = {
+		flag = au_west_bloodline
+		localization = artifacts_au_west_bloodline_interaction
+	}
+
+	send_option = {
+		flag = au_north_bloodline
+		localization = artifacts_au_north_bloodline_interaction
+	}
+	send_option = {
+		flag = au_iron_bloodline
+		localization = artifacts_au_iron_bloodline_interaction
+	}
+	send_option = {
+		flag = au_storm_bloodline
+		localization = artifacts_au_storm_bloodline_interaction
+	}
+	send_option = {
+		flag = au_vale_bloodline
+		localization = artifacts_au_vale_bloodline_interaction
+	}
+	send_option = {
+		flag = au_river_bloodline
+		localization = artifacts_au_river_bloodline_interaction
+	}
+	send_option = {
+		flag = au_reach_bloodline
+		localization = artifacts_au_reach_bloodline_interaction
+	}
+	send_option = {
+		flag = au_wildlings_bloodline
+		localization = artifacts_au_wildlings_bloodline_interaction
+	}
+	send_option = {
+		flag = au_immortalvalyrian_bloodline
+		localization = artifacts_au_immortalvalyrian_package_interaction
+	}
+	send_option = {
+		flag = au_redvalyrian_bloodline
+		localization = artifacts_au_redvalyrian_package_interaction
+	}
+	send_option = {
+		flag = au_blackvalyrian_bloodline
+		localization = artifacts_au_blackvalyrian_package_interaction
+	}
+	send_option = {
+		flag = au_silvervalyrian_bloodline
+		localization = artifacts_au_silvervalyrian_package_interaction
+	}
+	on_accept = {
+		scope:recipient = {
+			if = {
+				limit = { scope:au_sun_bloodline = yes }
+				scope:recipient.dynasty = { add_dynasty_modifier = valyrian_heritage_dynasty_modifier }
+				add_trait = au_sun_bloodline
+
+				create_artifact_sun_effect = { OWNER = scope:recipient }
+				create_artifact_sun_armor_effect = { OWNER = scope:recipient }
+				create_artifact_sun_necklace_effect = { OWNER = scope:recipient }
+				create_artifact_sun_ring_effect = { OWNER = scope:recipient }
+				create_artifact_sun_pin_effect = { OWNER = scope:recipient }
+				create_artifact_sun_seal_effect = { OWNER = scope:recipient }
+				create_artifact_westeros_journal_effect = { OWNER = scope:recipient }
+				every_child = {
+					even_if_dead = yes
+					add_trait = au_sun_bloodline
+					every_child = {
+						even_if_dead = yes
+						limit = {
+							OR = {
+								is_grandchild_of = scope:recipient
+								is_great_grandchild_of = scope:recipient
+							}
+						}
+					add_trait = au_sun_bloodline
+					}
+				}
+			}
+			else_if = {
+				limit = { scope:au_west_bloodline = yes }
+				scope:recipient.dynasty = { add_dynasty_modifier = valyrian_heritage_dynasty_modifier }
+				add_trait = au_west_bloodline
+
+				create_artifact_west_effect = { OWNER = scope:recipient }
+				create_artifact_west_necklace_effect = { OWNER = scope:recipient }
+				create_artifact_west_ring_effect = { OWNER = scope:recipient }
+				create_artifact_west_belt_effect = { OWNER = scope:recipient }
+				create_artifact_west_pin_effect = { OWNER = scope:recipient }
+				create_artifact_west_journal_effect = { OWNER = scope:recipient }
+				create_artifact_west_armor_effect = { OWNER = scope:recipient }
+				create_artifact_west_crown_effect = { OWNER = scope:recipient }
+				every_child = {
+					even_if_dead = yes
+					add_trait = au_west_bloodline
+					every_child = {
+						even_if_dead = yes
+						limit = {
+							OR = {
+								is_grandchild_of = scope:recipient
+								is_great_grandchild_of = scope:recipient
+							}
+						}
+					add_trait = au_west_bloodline
+					}
+				}
+			}
+			else_if = {
+				limit = { scope:au_north_bloodline = yes }
+				scope:recipient.dynasty = { add_dynasty_modifier = valyrian_heritage_dynasty_modifier }
+				add_trait = au_north_bloodline
+
+				create_artifact_north_effect = { OWNER = scope:recipient }
+				create_artifact_north_necklace_effect = { OWNER = scope:recipient }
+				create_artifact_north_ring_effect = { OWNER = scope:recipient }
+				create_artifact_north_belt_effect = { OWNER = scope:recipient }
+				create_artifact_north_pin_effect = { OWNER = scope:recipient }
+				create_artifact_north_journal_effect = { OWNER = scope:recipient }
+				create_artifact_ab_regalia_effect = { OWNER = scope:recipient }
+				create_artifact_north_armor_effect = { OWNER = scope:recipient }
+				create_artifact_north_crown_effect = { OWNER = scope:recipient }
+				every_child = {
+					even_if_dead = yes
+					add_trait = au_north_bloodline
+					every_child = {
+						even_if_dead = yes
+						limit = {
+							OR = {
+								is_grandchild_of = scope:recipient
+								is_great_grandchild_of = scope:recipient
+							}
+						}
+					add_trait = au_north_bloodline
+					}
+				}
+			}
+			else_if = {
+				limit = { scope:au_iron_bloodline = yes }
+				scope:recipient.dynasty = { add_dynasty_modifier = valyrian_heritage_dynasty_modifier }
+				add_trait = au_iron_bloodline
+
+				create_artifact_iron_effect = { OWNER = scope:recipient }
+				create_artifact_iron_armor_effect = { OWNER = scope:recipient }
+				create_artifact_iron_necklace_effect = { OWNER = scope:recipient }
+				create_artifact_iron_ring_effect = { OWNER = scope:recipient }
+				create_artifact_iron_pin_effect = { OWNER = scope:recipient }
+				create_artifact_iron_bracelet_effect = { OWNER = scope:recipient }
+				create_artifact_westeros_journal_effect = { OWNER = scope:recipient }
+				every_child = {
+					even_if_dead = yes
+					add_trait = au_iron_bloodline
+					every_child = {
+						even_if_dead = yes
+						limit = {
+							OR = {
+								is_grandchild_of = scope:recipient
+								is_great_grandchild_of = scope:recipient
+							}
+						}
+					add_trait = au_iron_bloodline
+					}
+				}
+			}
+			else_if = {
+				limit = { scope:au_storm_bloodline = yes }
+				scope:recipient.dynasty = { add_dynasty_modifier = valyrian_heritage_dynasty_modifier }
+				add_trait = au_storm_bloodline
+
+				create_artifact_storm_effect = { OWNER = scope:recipient }
+				create_artifact_storm_armor_effect = { OWNER = scope:recipient }
+				create_artifact_storm_necklace_effect = { OWNER = scope:recipient }
+				create_artifact_storm_ring_effect = { OWNER = scope:recipient }
+				create_artifact_storm_pin_effect = { OWNER = scope:recipient }
+				create_artifact_storm_bracelet_effect = { OWNER = scope:recipient }
+				create_artifact_westeros_journal_effect = { OWNER = scope:recipient }
+				every_child = {
+					even_if_dead = yes
+					add_trait = au_storm_bloodline
+					every_child = {
+						even_if_dead = yes
+						limit = {
+							OR = {
+								is_grandchild_of = scope:recipient
+								is_great_grandchild_of = scope:recipient
+							}
+						}
+					add_trait = au_storm_bloodline
+					}
+				}
+			}
+			else_if = {
+				limit = { scope:au_vale_bloodline = yes }
+				scope:recipient.dynasty = { add_dynasty_modifier = valyrian_heritage_dynasty_modifier }
+				add_trait = au_vale_bloodline
+
+				create_artifact_vale_effect = { OWNER = scope:recipient }
+				create_artifact_vale_armor_effect = { OWNER = scope:recipient }
+				create_artifact_vale_necklace_effect = { OWNER = scope:recipient }
+				create_artifact_vale_ring_effect = { OWNER = scope:recipient }
+				create_artifact_vale_pin_effect = { OWNER = scope:recipient }
+				create_artifact_vale_seal_effect = { OWNER = scope:recipient }
+				create_artifact_westeros_journal_effect = { OWNER = scope:recipient }
+				every_child = {
+					even_if_dead = yes
+					add_trait = au_vale_bloodline
+					every_child = {
+						even_if_dead = yes
+						limit = {
+							OR = {
+								is_grandchild_of = scope:recipient
+								is_great_grandchild_of = scope:recipient
+							}
+						}
+					add_trait = au_vale_bloodline
+					}
+				}
+			}
+			else_if = {
+				limit = { scope:au_river_bloodline = yes }
+				scope:recipient.dynasty = { add_dynasty_modifier = valyrian_heritage_dynasty_modifier }
+				add_trait = au_river_bloodline
+
+				create_artifact_river_effect = { OWNER = scope:recipient }
+				create_artifact_river_armor_effect = { OWNER = scope:recipient }
+				create_artifact_river_necklace_effect = { OWNER = scope:recipient }
+				create_artifact_river_ring_effect = { OWNER = scope:recipient }
+				create_artifact_river_pin_effect = { OWNER = scope:recipient }
+				create_artifact_river_rod_effect = { OWNER = scope:recipient }
+				create_artifact_westeros_journal_effect = { OWNER = scope:recipient }
+				every_child = {
+					even_if_dead = yes
+					add_trait = au_river_bloodline
+					every_child = {
+						even_if_dead = yes
+						limit = {
+							OR = {
+								is_grandchild_of = scope:recipient
+								is_great_grandchild_of = scope:recipient
+							}
+						}
+					add_trait = au_river_bloodline
+					}
+				}
+			}
+			else_if = {
+				limit = { scope:au_reach_bloodline = yes }
+				scope:recipient.dynasty = { add_dynasty_modifier = valyrian_heritage_dynasty_modifier }
+				add_trait = au_reach_bloodline
+
+				create_artifact_reach_effect = { OWNER = scope:recipient }
+				create_artifact_reach_necklace_effect = { OWNER = scope:recipient }
+				create_artifact_reach_ring_effect = { OWNER = scope:recipient }
+				create_artifact_reach_pin_effect = { OWNER = scope:recipient }
+				create_artifact_reach_mirror_effect = { OWNER = scope:recipient }
+				create_artifact_reach_journal_effect = { OWNER = scope:recipient }
+				create_artifact_reach_armor_effect = { OWNER = scope:recipient }
+				create_artifact_reach_crown_effect = { OWNER = scope:recipient }
+				every_child = {
+					even_if_dead = yes
+					add_trait = au_reach_bloodline
+					every_child = {
+						even_if_dead = yes
+						limit = {
+							OR = {
+								is_grandchild_of = scope:recipient
+								is_great_grandchild_of = scope:recipient
+							}
+						}
+					add_trait = au_reach_bloodline
+					}
+				}
+			}
+			else_if = {
+				limit = { scope:au_wildlings_bloodline = yes }
+				scope:recipient.dynasty = { add_dynasty_modifier = valyrian_heritage_dynasty_modifier }
+				add_trait = au_wildlings_bloodline
+
+				create_artifact_wildlings_effect = { OWNER = scope:recipient }
+				create_artifact_wildlings_armor_effect = { OWNER = scope:recipient }
+				create_artifact_wildlings_necklace_effect = { OWNER = scope:recipient }
+				create_artifact_wildlings_ring_effect = { OWNER = scope:recipient }
+				create_artifact_wildlings_bracelet_effect = { OWNER = scope:recipient }
+				create_artifact_wildlings_arrow_effect = { OWNER = scope:recipient }
+				create_artifact_dragon_egg_white_effect = { OWNER = scope:recipient }
+				every_child = {
+					even_if_dead = yes
+					add_trait = au_wildlings_bloodline
+					every_child = {
+						even_if_dead = yes
+						limit = {
+							OR = {
+								is_grandchild_of = scope:recipient
+								is_great_grandchild_of = scope:recipient
+							}
+						}
+					add_trait = au_wildlings_bloodline
+					}
+				}
+			}
+			else_if = {
+				limit = { scope:au_immortalvalyrian_bloodline = yes }
+				scope:recipient.dynasty = {
+					add_dynasty_modifier = valyrian_heritage_dynasty_modifier
+					set_variable = agot_doctrine_of_exceptionalism_incest_exemption
+					}
+				add_trait = au_immortalvalyrian_bloodline
+
+				create_artifact_immortalvalyrian_package_effect = { OWNER = scope:recipient }
+				create_artifact_immortalvalyrian_package_armor_effect = { OWNER = scope:recipient }
+				create_artifact_immortalvalyrian_journal_effect = { OWNER = scope:recipient }
+				create_artifact_immortalvalyrian_regalia_effect = { OWNER = scope:recipient }
+				create_artifact_immortalvalyrian_necklace_effect = { OWNER = scope:recipient }
+				create_artifact_immortalvalyrian_ring_effect = { OWNER = scope:recipient }
+				create_artifact_immortalvalyrian_pin_effect = { OWNER = scope:recipient }
+				create_artifact_immortalvalyrian_cup_effect = { OWNER = scope:recipient }
+				create_artifact_immortalvalyrian_circlet_effect = { OWNER = scope:recipient }
+				create_artifact_immortalvalyrian_crown_effect = { OWNER = scope:recipient }
+				every_child = {
+					even_if_dead = yes
+					add_trait = au_immortalvalyrian_bloodline
+					every_child = {
+						even_if_dead = yes
+						limit = {
+							OR = {
+								is_grandchild_of = scope:recipient
+								is_great_grandchild_of = scope:recipient
+							}
+						}
+					add_trait = au_immortalvalyrian_bloodline
+					}
+				}
+			}
+			else_if = {
+				limit = { scope:au_redvalyrian_bloodline = yes }
+				scope:recipient.dynasty = {
+					add_dynasty_modifier = valyrian_heritage_dynasty_modifier
+					set_variable = agot_doctrine_of_exceptionalism_incest_exemption
+					}
+				add_trait = au_redvalyrian_bloodline
+
+				create_artifact_redvalyrian_package_effect = { OWNER = scope:recipient }
+				create_artifact_redvalyrian_package_armor_effect = { OWNER = scope:recipient }
+				create_artifact_valyrian_journal_effect = { OWNER = scope:recipient }
+				create_artifact_redvalyrian_regalia_effect = { OWNER = scope:recipient }
+				create_artifact_redvalyrian_necklace_effect = { OWNER = scope:recipient }
+				create_artifact_redvalyrian_ring_effect = { OWNER = scope:recipient }
+				create_artifact_redvalyrian_brooch_effect = { OWNER = scope:recipient }
+				create_artifact_valyrian_mirror_effect = { OWNER = scope:recipient }
+				create_artifact_redvalyrian_circlet_effect = { OWNER = scope:recipient }
+				create_artifact_redvalyrian_crown_effect = { OWNER = scope:recipient }
+				every_child = {
+					even_if_dead = yes
+					add_trait = au_redvalyrian_bloodline
+					every_child = {
+						even_if_dead = yes
+						limit = {
+							OR = {
+								is_grandchild_of = scope:recipient
+								is_great_grandchild_of = scope:recipient
+							}
+						}
+					add_trait = au_redvalyrian_bloodline
+					}
+				}
+			}
+			else_if = {
+				limit = { scope:au_blackvalyrian_bloodline = yes }
+				scope:recipient.dynasty = {
+					add_dynasty_modifier = valyrian_heritage_dynasty_modifier
+					set_variable = agot_doctrine_of_exceptionalism_incest_exemption
+					}
+				add_trait = au_blackvalyrian_bloodline
+
+				create_artifact_blackvalyrian_package_effect = { OWNER = scope:recipient }
+				create_artifact_blackvalyrian_package_armor_effect = { OWNER = scope:recipient }
+				create_artifact_valyrian_journal_effect = { OWNER = scope:recipient }
+				create_artifact_blackvalyrian_regalia_effect = { OWNER = scope:recipient }
+				create_artifact_blackvalyrian_necklace_effect = { OWNER = scope:recipient }
+				create_artifact_blackvalyrian_ring_effect = { OWNER = scope:recipient }
+				create_artifact_valyrian_brooch_effect = { OWNER = scope:recipient }
+				create_artifact_valyrian_mirror_effect = { OWNER = scope:recipient }
+				create_artifact_blackvalyrian_circlet_effect = { OWNER = scope:recipient }
+				create_artifact_blackvalyrian_crown_effect = { OWNER = scope:recipient }
+				every_child = {
+					even_if_dead = yes
+					add_trait = au_blackvalyrian_bloodline
+					every_child = {
+						even_if_dead = yes
+						limit = {
+							OR = {
+								is_grandchild_of = scope:recipient
+								is_great_grandchild_of = scope:recipient
+							}
+						}
+					add_trait = au_blackvalyrian_bloodline
+					}
+				}
+			}
+			else_if = {
+				limit = { scope:au_silvervalyrian_bloodline = yes }
+				scope:recipient.dynasty = {
+					add_dynasty_modifier = valyrian_heritage_dynasty_modifier
+					set_variable = agot_doctrine_of_exceptionalism_incest_exemption
+					}
+				add_trait = au_silvervalyrian_bloodline
+
+				create_artifact_silvervalyrian_package_effect = { OWNER = scope:recipient }
+				create_artifact_silvervalyrian_package_armor_effect = { OWNER = scope:recipient }
+				create_artifact_valyrian_journal_effect = { OWNER = scope:recipient }
+				create_artifact_silvervalyrian_regalia_effect = { OWNER = scope:recipient }
+				create_artifact_silvervalyrian_necklace_effect = { OWNER = scope:recipient }
+				create_artifact_silvervalyrian_ring_effect = { OWNER = scope:recipient }
+				create_artifact_valyrian_brooch_effect = { OWNER = scope:recipient }
+				create_artifact_valyrian_mirror_effect = { OWNER = scope:recipient }
+				create_artifact_silvervalyrian_circlet_effect = { OWNER = scope:recipient }
+				create_artifact_silvervalyrian_crown_effect = { OWNER = scope:recipient }
+				every_child = {
+					even_if_dead = yes
+					add_trait = au_silvervalyrian_bloodline
+					every_child = {
+						even_if_dead = yes
+						limit = {
+							OR = {
+								is_grandchild_of = scope:recipient
+								is_great_grandchild_of = scope:recipient
+							}
+						}
+					add_trait = au_silvervalyrian_bloodline
+					}
+				}
+			}
+		}
+	}
+	ai_will_do = {
+		base = 0
+	}
+}
+add_au1_au_courtier_interaction = {
+	category = interaction_category_diplomacy
+	desc = add_au1_au_courtier_interaction.desc
+	icon = au_logo
+    	interface_priority = 1001
+	auto_accept = yes
+    	use_diplomatic_range = no
+
+
+	cooldown = { days = 0 }
+
+	is_shown = {
+		scope:actor = {
+			has_character_flag = au1_enabled
+		}
+		scope:recipient = {
+			is_alive = yes
+		}
+	}
+	is_valid_showing_failures_only = {
+
+	}
+	send_option = {
+	is_shown = {
+		scope:recipient = { is_male = yes }
+		scope:recipient = { is_ruler = no } }
+		flag = add_au1_au_maester_interaction
+		localization = add_au1_au_maester_interaction
+	}
+	send_option = {
+		flag = add_au1_au_martial_interaction
+		localization = add_au1_au_martial_interaction
+	}
+	send_option = {
+		flag = add_au1_au_steward_interaction
+		localization = add_au1_au_steward_interaction
+	}
+	send_option = {
+		flag = add_au1_au_diplomacy_interaction
+		localization = add_au1_au_diplomacy_interaction
+	}
+	send_option = {
+		flag = add_au1_au_intrigue_interaction
+		localization = add_au1_au_intrigue_interaction
+	}
+	send_option = {
+		flag = add_au1_au_learning_interaction
+		localization = add_au1_au_learning_interaction
+	}
+	on_accept = {
+		scope:recipient = {
+
+			remove_trait = authoritative
+			remove_trait = inquisitive
+			remove_trait = rude
+			remove_trait = arrogant
+    			remove_trait = humble
+    			remove_trait = brave
+    			remove_trait = craven
+   		 	remove_trait = callous
+    			remove_trait = compassionate
+    			remove_trait = calm
+    			remove_trait = wrathful
+    			remove_trait = diligent
+    			remove_trait = lazy
+    			remove_trait = fickle
+    			remove_trait = stubborn
+    			remove_trait = forgiving
+    			remove_trait = vengeful
+    			remove_trait = generous
+    			remove_trait = greedy
+    			remove_trait = honest
+    			remove_trait = deceitful
+    			remove_trait = just
+    			remove_trait = arbitrary
+    			remove_trait = chaste
+    			remove_trait = lustful
+    			remove_trait = temperate
+    			remove_trait = gluttonous
+    			remove_trait = trusting
+    			remove_trait = paranoid
+    			remove_trait = zealous
+    			remove_trait = cynical
+    			remove_trait = patient
+    			remove_trait = impatient
+    			remove_trait = gregarious
+   		 	remove_trait = shy
+    			remove_trait = ambitious
+    			remove_trait = content
+    			remove_trait = sadistic
+    			remove_trait = eccentric
+
+			remove_trait = lifestyle_blademaster_3_history
+			remove_trait = lifestyle_blademaster
+			remove_trait = lifestyle_hunter
+			remove_trait = diplomat
+			remove_trait = family_first
+			remove_trait = august
+			remove_trait = lifestyle_reveler
+			remove_trait = strategist
+			remove_trait = overseer
+			remove_trait = gallant
+			remove_trait = architect
+			remove_trait = administrator
+			remove_trait = avaricious
+			remove_trait = schemer
+			remove_trait = seducer
+			remove_trait = torturer
+			remove_trait = whole_of_body
+			remove_trait = scholar
+			remove_trait = theologian
+			remove_trait = lifestyle_mystic
+			remove_trait = lifestyle_physician
+			remove_trait = lifestyle_herbalist
+			remove_trait = lifestyle_gardener
+			remove_trait = squire
+			remove_trait = knight
+			remove_trait = stripped_knight
+			remove_trait = maester
+			remove_trait = disgraced_maester
+			remove_trait = maester_historical
+			remove_trait = spider
+
+    			remove_trait = education_diplomacy_1
+    			remove_trait = education_diplomacy_2
+    			remove_trait = education_diplomacy_3
+    			remove_trait = education_diplomacy_4
+    			remove_trait = education_diplomacy_5
+
+    			remove_trait = education_martial_1
+    			remove_trait = education_martial_2
+    			remove_trait = education_martial_3
+    			remove_trait = education_martial_4
+			remove_trait = education_martial_5
+
+    			remove_trait = education_stewardship_1
+    			remove_trait = education_stewardship_2
+    			remove_trait = education_stewardship_3
+    			remove_trait = education_stewardship_4
+			remove_trait = education_stewardship_5
+
+    			remove_trait = education_intrigue_1
+    			remove_trait = education_intrigue_2
+    			remove_trait = education_intrigue_3
+    			remove_trait = education_intrigue_4
+			remove_trait = education_intrigue_5
+
+    			remove_trait = education_learning_1
+    			remove_trait = education_learning_2
+    			remove_trait = education_learning_3
+    			remove_trait = education_learning_4
+			remove_trait = education_learning_5
+
+			remove_trait = education_martial_prowess_1
+			remove_trait = education_martial_prowess_2
+			remove_trait = education_martial_prowess_3
+			remove_trait = education_martial_prowess_4
+			remove_trait = education_martial_prowess_5
+
+			if = {
+				limit = { scope:add_au1_au_maester_interaction = yes }
+    				add_trait = diligent
+				add_trait = inquisitive
+				add_trait = patient
+				add_trait = content
+    				add_trait = education_learning_4
+				add_trait = maester
+				add_trait = lifestyle_mystic
+				add_trait = lifestyle_physician
+				add_trait = lifestyle_herbalist
+				add_trait = scholar
+				add_trait_xp = {
+						trait = maester
+						value < 100
+					}
+				add_trait_xp = {
+						trait = lifestyle_physician
+						value < 100
+					}
+				add_trait_xp = {
+						trait = lifestyle_mystic
+						value < 100
+					}
+			}
+			else_if = {
+				limit = { scope:add_au1_au_martial_interaction = yes }
+    				add_trait = brave
+				add_trait = diligent
+				add_trait = wrathful
+				add_trait = gregarious
+				add_trait = lifestyle_blademaster
+				add_trait = education_martial_4
+				add_trait = education_martial_prowess_4
+				add_trait_xp = {
+						trait = lifestyle_blademaster
+						value < 100
+					}
+			}
+			else_if = {
+				limit = { scope:add_au1_au_steward_interaction = yes }
+				add_trait = diligent
+				add_trait = stubborn
+    				add_trait = temperate
+				add_trait = just
+    				add_trait = education_stewardship_4
+				add_trait = architect
+				add_trait = administrator
+			}
+			else_if = {
+				limit = { scope:add_au1_au_diplomacy_interaction = yes }
+				add_trait = diligent
+    				add_trait = gregarious
+    				add_trait = honest
+				add_trait = just
+    				add_trait = education_diplomacy_4
+				add_trait = diplomat
+				add_trait = august
+			}
+			else_if = {
+				limit = { scope:add_au1_au_intrigue_interaction = yes }
+				add_trait = rude
+    				add_trait = calm
+    				add_trait = paranoid
+				add_trait = deceitful
+    				add_trait = education_intrigue_4
+				add_trait = spider
+				add_trait = schemer
+			}
+			else_if = {
+				limit = { scope:add_au1_au_learning_interaction = yes }
+    				add_trait = diligent
+				add_trait = inquisitive
+				add_trait = patient
+				add_trait = content
+    				add_trait = education_learning_4
+				add_trait = scholar
+				add_trait = lifestyle_mystic
+				add_trait_xp = {
+						trait = lifestyle_mystic
+						value < 100
+				}
+			}
+		}
+	}
+
+	ai_will_do = {
+		base = 0
+	}
+}
+
+add_au1_au_weapons_interaction = {
+	category = interaction_category_diplomacy
+	desc = add_au1_au_weapons_interaction.desc
+	icon = au_logo
+    	interface_priority = 999
+	auto_accept = yes
+    	use_diplomatic_range = no
+
+
+	cooldown = { days = 0 }
+
+	is_shown = {
+		scope:actor = {
+			has_character_flag = au1_enabled
+		}
+		scope:recipient = {
+			is_alive = yes
+		}
+	}
+	is_valid_showing_failures_only = {
+
+	}
+	send_option = {
+		flag = add_au1_au_sword_1_interaction
+		localization = silvervalyrian_package_name
+	}
+	send_option = {
+		flag = add_au1_au_sword_2_interaction
+		localization = redvalyrian_package_name
+	}
+	send_option = {
+		flag = add_au1_au_sword_3_interaction
+		localization = immortalvalyrian_package_name
+	}
+	send_option = {
+		flag = add_au1_au_sword_12_interaction
+		localization = reach_name
+	}
+	send_option = {
+		flag = add_au1_au_sword_13_interaction
+		localization = vale_name
+	}
+	send_option = {
+		flag = add_au1_au_sword_14_interaction
+		localization = river_name
+	}
+	send_option = {
+		flag = add_au1_au_sword_4_interaction
+		localization = iron_name
+	}
+	send_option = {
+		flag = add_au1_au_sword_5_interaction
+		localization = storm_name
+	}
+	send_option = {
+		flag = add_au1_au_sword_6_interaction
+		localization = wildlings_name
+	}
+	send_option = {
+		flag = add_au1_au_sword_7_interaction
+		localization = sun_name
+	}
+	send_option = {
+		flag = add_au1_au_sword_8_interaction
+		localization = north_name
+	}
+	send_option = {
+		flag = add_au1_au_sword_9_interaction
+		localization = west_name
+	}
+	send_option = {
+		flag = add_au1_au_sword_10_interaction
+		localization = valyrian_conqueror_sword_name
+	}
+	send_option = {
+		flag = add_au1_au_sword_11_interaction
+		localization = valyrian_pack_sword_name
+	}
+	on_accept = {
+		scope:recipient = {
+			if = {
+				limit = { scope:add_au1_au_sword_1_interaction = yes }
+				create_artifact_silvervalyrian_package_effect = { OWNER = scope:recipient }
+			}
+			else_if = {
+				limit = { scope:add_au1_au_sword_2_interaction = yes }
+				create_artifact_redvalyrian_package_effect = { OWNER = scope:recipient }
+			}
+			else_if = {
+				limit = { scope:add_au1_au_sword_3_interaction = yes }
+				create_artifact_immortalvalyrian_package_effect = { OWNER = scope:recipient }
+			}
+			else_if = {
+				limit = { scope:add_au1_au_sword_12_interaction = yes }
+				create_artifact_reach_effect = { OWNER = scope:recipient }
+			}
+			else_if = {
+				limit = { scope:add_au1_au_sword_13_interaction = yes }
+				create_artifact_vale_effect = { OWNER = scope:recipient }
+			}
+			else_if = {
+				limit = { scope:add_au1_au_sword_14_interaction = yes }
+				create_artifact_river_effect = { OWNER = scope:recipient }
+			}
+			else_if = {
+				limit = { scope:add_au1_au_sword_4_interaction = yes }
+				create_artifact_iron_effect = { OWNER = scope:recipient }
+			}
+			else_if = {
+				limit = { scope:add_au1_au_sword_5_interaction = yes }
+				create_artifact_storm_effect = { OWNER = scope:recipient }
+			}
+			else_if = {
+				limit = { scope:add_au1_au_sword_6_interaction = yes }
+				create_artifact_wildlings_effect = { OWNER = scope:recipient }
+			}
+			else_if = {
+				limit = { scope:add_au1_au_sword_7_interaction = yes }
+				create_artifact_sun_effect = { OWNER = scope:recipient }
+			}
+			else_if = {
+				limit = { scope:add_au1_au_sword_8_interaction = yes }
+				create_artifact_north_effect = { OWNER = scope:recipient }
+			}
+			else_if = {
+				limit = { scope:add_au1_au_sword_9_interaction = yes }
+				create_artifact_west_effect = { OWNER = scope:recipient }
+			}
+			else_if = {
+				limit = { scope:add_au1_au_sword_10_interaction = yes }
+				create_artifact_valyrian_conqueror_sword_effect = { OWNER = scope:recipient }
+			}
+			else_if = {
+				limit = { scope:add_au1_au_sword_11_interaction = yes }
+				create_artifact_valyrian_pack_sword_1_effect = { OWNER = scope:recipient }
+				create_artifact_valyrian_pack_sword_2_effect = { OWNER = scope:recipient }
+				create_artifact_valyrian_pack_sword_3_effect = { OWNER = scope:recipient }
+			}
+		}
+	}
+
+	ai_will_do = {
+		base = 0
+	}
+}
+add_au1_au_dragon_traits_interaction = {
+	category = interaction_category_diplomacy
+	desc = add_au1_au_dragon_traits_interaction.desc
+	icon = au_logo
+    	interface_priority = 999
+	auto_accept = yes
+    	use_diplomatic_range = no
+
+
+	cooldown = { days = 0 }
+
+	is_shown = {
+		scope:actor = {
+			has_character_flag = au1_enabled
+		}
+		scope:recipient = {
+			has_trait = dragon
+		}
+	}
+	is_valid_showing_failures_only = {
+
+	}
+	send_option = {
+		flag = add_au1_au_almighty_dragon_interaction
+		localization = add_au1_au_almighty_dragon_interaction.desc
+	}
+	send_option = {
+		flag = add_au1_au_battle_dragon_interaction
+		localization = add_au1_au_battle_dragon_interaction.desc
+	}
+	send_option = {
+		flag = add_au1_au_noble_dragon_interaction
+		localization = add_au1_au_noble_dragon_interaction.desc
+	}
+	send_option = {
+	is_shown = {
+		scope:recipient = { is_female = yes } }
+		flag = add_au1_au_mother_dragon_interaction
+		localization = add_au1_au_mother_dragon_interaction.desc
+	}
+	on_accept = {
+		scope:recipient = {
+
+			remove_trait = dragon_aggressive
+			remove_trait = dragon_friendly
+			remove_trait = dragon_solitary
+			remove_trait = dragon_cooperative
+    			remove_trait = dragon_imperious
+    			remove_trait = dragon_supporting
+    			remove_trait = dragon_impulsive
+   		 	remove_trait = dragon_calculating
+    			remove_trait = dragon_voracious
+    			remove_trait = dragon_restrained
+    			remove_trait = dragon_defiant
+    			remove_trait = dragon_accepting
+    			remove_trait = dragon_bloodthirsty
+    			remove_trait = dragon_skittish
+    			remove_trait = dragon_cannibal
+
+    			remove_trait = dragon_physique_good_3
+    			remove_trait = dragon_physique_good_2
+    			remove_trait = dragon_physique_good_1
+    			remove_trait = dragon_physique_bad_1
+    			remove_trait = dragon_physique_bad_2
+    			remove_trait = dragon_physique_bad_3
+    			remove_trait = dragon_swift
+    			remove_trait = dragon_slow
+    			remove_trait = dragon_spindly
+    			remove_trait = dragon_majestic
+    			remove_trait = dragon_ugly
+    			remove_trait = dragon_fertile
+    			remove_trait = dragon_destined
+
+			remove_trait = dragon_wounded_1
+			remove_trait = dragon_wounded_2
+			remove_trait = dragon_wounded_3
+			remove_trait = dragon_wounded_4
+			remove_trait = dragon_wounded_5
+			remove_trait = dragon_burned
+			remove_trait = dragon_ill
+			remove_trait = dragon_blind
+			remove_trait = dragon_depressed
+
+			remove_trait = education_dragon_1
+			remove_trait = education_dragon_2
+			remove_trait = education_dragon_3
+			remove_trait = education_dragon_4
+			remove_trait = education_dragon_5
+			if = {
+				limit = { scope:add_au1_au_almighty_dragon_interaction = yes }
+				add_trait = dragon_imperious
+				add_trait = dragon_calculating
+				add_trait = dragon_aggressive
+				add_trait = dragon_bloodthirsty
+    				add_trait = education_dragon_5
+				add_trait = dragon_physique_good_3
+				add_trait = dragon_swift
+				add_trait = dragon_majestic
+			}
+			else_if = {
+				limit = { scope:add_au1_au_battle_dragon_interaction = yes }
+				add_trait = dragon_imperious
+				add_trait = dragon_calculating
+				add_trait = dragon_aggressive
+				add_trait = dragon_bloodthirsty
+    				add_trait = education_dragon_5
+				add_trait = dragon_physique_good_3
+			}
+			else_if = {
+				limit = { scope:add_au1_au_noble_dragon_interaction = yes }
+				add_trait = dragon_accepting
+				add_trait = dragon_calculating
+				add_trait = dragon_supporting
+				add_trait = dragon_cooperative
+    				add_trait = education_dragon_5
+				add_trait = dragon_swift
+			}
+			else_if = {
+				limit = { scope:add_au1_au_mother_dragon_interaction = yes }
+				add_trait = dragon_skittish
+				add_trait = dragon_friendly
+				add_trait = dragon_supporting
+				add_trait = dragon_cooperative
+    				add_trait = education_dragon_5
+				add_trait = dragon_fertile
+			}
+		}
+	}
+
+	ai_will_do = {
+		base = 0
+	}
+}
+au1_au_spawn_egg_interaction = {
+	category = interaction_category_diplomacy
+	use_diplomatic_range = no
+	common_interaction = yes
+	interface_priority = 1000
+	icon = au_logo
+	desc = au1_spawn_egg_interaction_desc
+	auto_accept = yes
+
+	cooldown = { days = 0 }
+
+	is_shown = {
+		scope:actor = {
+			has_character_flag = au1_enabled
+		}
+	}
+	is_valid_showing_failures_only = {
+
+	}
+	send_option = {
+		flag = au1_nagga_spawn_egg_interaction
+		localization = au1_nagga_spawn_egg_interaction_desc
+	}
+	send_option = {
+		flag = au1_pythax_spawn_egg_interaction
+		localization = au1_pythax_spawn_egg_interaction_desc
+	}
+	send_option = {
+		flag = au1_vezojaes_spawn_egg_interaction
+		localization = au1_vezojaes_spawn_egg_interaction_desc
+	}
+	send_option = {
+		flag = au1_falkael_spawn_egg_interaction
+		localization = au1_falkael_spawn_egg_interaction_desc
+	}
+	send_option = {
+		flag = au1_peldion_spawn_egg_interaction
+		localization = au1_peldion_spawn_egg_interaction_desc
+	}
+	send_option = {
+		flag = au1_volon_spawn_egg_interaction
+		localization = au1_volon_spawn_egg_interaction_desc
+	}
+	send_option = {
+		flag = au1_anogaros_spawn_egg_interaction
+		localization = au1_anogaros_spawn_egg_interaction_desc
+	}
+	send_option = {
+		flag = au1_balerion_spawn_egg_interaction
+		localization = au1_balerion_spawn_egg_interaction_desc
+	}
+	on_accept = {
+		scope:recipient = {
+			if = {
+				limit = { scope:au1_nagga_spawn_egg_interaction = yes }
+				agot_spawn_laid_egg = {
+					OWNER_SCOPE = scope:recipient
+					AMOUNT_OF_EGGS_TO_SPAWN = 1
+					DRAGON_PARENT = character:dragon_nagga
+				}
+			}
+			else_if = {
+				limit = { scope:au1_pythax_spawn_egg_interaction = yes }
+				agot_spawn_laid_egg = {
+					OWNER_SCOPE = scope:recipient
+					AMOUNT_OF_EGGS_TO_SPAWN = 1
+					DRAGON_PARENT = character:dragon_pythax
+				}
+			}
+			else_if = {
+				limit = { scope:au1_vezojaes_spawn_egg_interaction = yes }
+				agot_spawn_laid_egg = {
+					OWNER_SCOPE = scope:recipient
+					AMOUNT_OF_EGGS_TO_SPAWN = 1
+					DRAGON_PARENT = character:dragon_ancestor_2
+				}
+			}
+			else_if = {
+				limit = { scope:au1_falkael_spawn_egg_interaction = yes }
+				agot_spawn_laid_egg = {
+					OWNER_SCOPE = scope:recipient
+					AMOUNT_OF_EGGS_TO_SPAWN = 1
+					DRAGON_PARENT = character:dragon_ancestor_3
+				}
+			}
+			else_if = {
+				limit = { scope:au1_peldion_spawn_egg_interaction = yes }
+				agot_spawn_laid_egg = {
+					OWNER_SCOPE = scope:recipient
+					AMOUNT_OF_EGGS_TO_SPAWN = 1
+					DRAGON_PARENT = character:dragon_ancestor_4
+				}
+			}
+			else_if = {
+				limit = { scope:au1_volon_spawn_egg_interaction = yes }
+				agot_spawn_laid_egg = {
+					OWNER_SCOPE = scope:recipient
+					AMOUNT_OF_EGGS_TO_SPAWN = 1
+					DRAGON_PARENT = character:dragon_ancestor_5
+				}
+			}
+			else_if = {
+				limit = { scope:au1_anogaros_spawn_egg_interaction = yes }
+				agot_spawn_laid_egg = {
+					OWNER_SCOPE = scope:recipient
+					AMOUNT_OF_EGGS_TO_SPAWN = 1
+					DRAGON_PARENT = character:dragon_anogaros
+				}
+			}
+			else_if = {
+				limit = { scope:au1_balerion_spawn_egg_interaction = yes }
+				agot_spawn_laid_egg = {
+					OWNER_SCOPE = scope:recipient
+					AMOUNT_OF_EGGS_TO_SPAWN = 1
+					DRAGON_PARENT = character:dragon_balerion
+				}
+			}
+		}
+	}
+}

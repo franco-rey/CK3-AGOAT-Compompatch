@@ -400,7 +400,6 @@ gr_npc_obituary_data_effect = {
 
 		scope:dead_npc = {
 			if = { limit = { has_trait = viking } set_variable = { name = gr_fame_viking value = yes } }
-			if = { limit = { has_trait = varangian } set_variable = { name = gr_fame_varangian value = yes } }
 			if = { limit = { has_trait = shieldmaiden } set_variable = { name = gr_fame_shieldmaiden value = yes } }
 			if = { limit = { has_trait = berserker } set_variable = { name = gr_fame_berserker value = yes } }
 			if = { limit = { has_trait = faith_warrior } set_variable = { name = gr_fame_faithwarrior value = yes } }
@@ -408,7 +407,6 @@ gr_npc_obituary_data_effect = {
 			if = { limit = { has_trait = order_member } set_variable = { name = gr_fame_ordermember value = yes } }
 			if = { limit = { has_trait = adventurer } set_variable = { name = gr_fame_vetadventurer value = yes } }
 			if = { limit = { has_trait = crusader_king } set_variable = { name = gr_fame_crusaderking value = yes } }
-			if = { limit = { has_trait = confucian_education } set_variable = { name = gr_fame_confucian value = yes } }
 			if = { limit = { has_trait = governor } set_variable = { name = gr_fame_governor value = yes } }
 			if = { limit = { has_trait = nomadic_philosophy } set_variable = { name = gr_fame_nomad value = yes } }
 			if = {
@@ -435,7 +433,6 @@ gr_npc_obituary_data_effect = {
 			if = { limit = { has_trait = lifestyle_voyager } set_variable = { name = gr_fame_voyager value = yes } }
 			if = { limit = { has_trait = lifestyle_surveyor } set_variable = { name = gr_fame_surveyor value = yes } }
 
-			if = { limit = { has_trait = augustus } set_variable = { name = gr_fame_augustus value = yes } }
 		}
 
 
@@ -477,7 +474,6 @@ gr_npc_obituary_data_effect = {
 			if = { limit = { has_trait = confider } set_variable = { name = gr_coping_confider value = yes } }
 			if = { limit = { has_trait = reclusive } set_variable = { name = gr_coping_recluse value = yes } }
 
-			if = { limit = { has_trait = born_in_the_purple } set_variable = { name = gr_dynasty_purple value = yes } }
 			if = { limit = { has_trait = bastard } set_variable = { name = gr_dynasty_bastard value = yes } }
 			if = { limit = { has_trait = legitimized_bastard } set_variable = { name = gr_dynasty_legit_bastard value = yes } }
 			if = { limit = { has_trait = disinherited } set_variable = { name = gr_dynasty_disinherited value = yes } }

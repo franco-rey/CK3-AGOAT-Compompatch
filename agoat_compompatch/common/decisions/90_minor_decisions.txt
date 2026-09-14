@@ -1759,7 +1759,7 @@ commit_suicide_decision = {
 					}
 					trait_is_criminal_in_faith_trigger = {
 						FAITH = faith
-						TRAIT = adulterer
+						TRAIT = trait:adulterer
 						GENDER_CHARACTER = this
 					}
 				}
@@ -1820,7 +1820,7 @@ commit_suicide_decision = {
 						}
 						trait_is_criminal_in_faith_trigger = {
 							FAITH = faith
-							TRAIT = adulterer
+							TRAIT = trait:adulterer
 							GENDER_CHARACTER = this
 						}
 					}

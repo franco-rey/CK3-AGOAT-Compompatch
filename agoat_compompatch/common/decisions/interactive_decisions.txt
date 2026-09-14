@@ -43,6 +43,12 @@
 			interactive_bannermen_worth_calling_trigger = {
 				LIEGE = root
 			}
+			NOT = {
+				is_target_in_variable_list = {
+					name = miv_bannermen_called
+					target = root
+				}
+			}
 			OR = {
 				OR = {
 					primary_attacker = root
@@ -204,6 +210,17 @@
 								interactive_bannermen_callable_war_trigger = {
 									LIEGE = scope:liege
 								}
+								OR = {
+									scope:liege = {
+										is_ai = no
+									}
+									NOT = {
+										is_target_in_variable_list = {
+											name = miv_bannermen_called
+											target = scope:liege
+										}
+									}
+								}
 							}
 						}
 						random_character_war = {
@@ -211,6 +228,17 @@
 								is_civil_war = no
 								interactive_bannermen_callable_war_trigger = {
 									LIEGE = scope:liege
+								}
+								OR = {
+									scope:liege = {
+										is_ai = no
+									}
+									NOT = {
+										is_target_in_variable_list = {
+											name = miv_bannermen_called
+											target = scope:liege
+										}
+									}
 								}
 							}
 							save_scope_as = miv_bannermen_war
@@ -284,6 +312,7 @@
 					}
 					every_character_war = {
 						save_temporary_scope_as = war
+
 						if = {
 							limit = {
 								scope:war = {
@@ -294,6 +323,19 @@
 								scope:war = {
 									interactive_bannermen_callable_war_trigger = {
 										LIEGE = scope:liege
+									}
+								}
+								OR = {
+									scope:liege = {
+										is_ai = no
+									}
+									scope:war = {
+										NOT = {
+											is_target_in_variable_list = {
+												name = miv_bannermen_called
+												target = scope:liege
+											}
+										}
 									}
 								}
 								OR = {
@@ -359,7 +401,24 @@
 									}
 								}
 							}
+							scope:war = {
+								if = {
+									limit = {
+										NOT = {
+											is_target_in_variable_list = {
+												name = miv_bannermen_called
+												target = scope:liege
+											}
+										}
+									}
+									add_to_variable_list = {
+										name = miv_bannermen_called
+										target = scope:liege
+									}
+								}
+							}
 						}
+
 						else_if = {
 							limit = {
 								scope:war = {
@@ -370,6 +429,19 @@
 								scope:war = {
 									interactive_bannermen_callable_war_trigger = {
 										LIEGE = scope:liege
+									}
+								}
+								OR = {
+									scope:liege = {
+										is_ai = no
+									}
+									scope:war = {
+										NOT = {
+											is_target_in_variable_list = {
+												name = miv_bannermen_called
+												target = scope:liege
+											}
+										}
 									}
 								}
 								OR = {
@@ -432,6 +504,22 @@
 									}
 									scope:vassal = {
 										interactive_bannermen_summon_effect = yes
+									}
+								}
+							}
+							scope:war = {
+								if = {
+									limit = {
+										NOT = {
+											is_target_in_variable_list = {
+												name = miv_bannermen_called
+												target = scope:liege
+											}
+										}
+									}
+									add_to_variable_list = {
+										name = miv_bannermen_called
+										target = scope:liege
 									}
 								}
 							}

@@ -1,0 +1,205 @@
+﻿
+au_enable_decision = {
+    picture = {
+        reference = "gfx/interface/illustrations/decisions/agot_bloodlines.dds"
+    }
+    title = au_enable_decision
+    desc = au_enable_decision_desc
+    selection_tooltip = au_enable_decision_tooltip
+    confirm_text = au_enable_decision_confirm
+
+    is_shown = {
+        NOT = { has_character_flag = au_enabled }
+    }
+
+    effect = {
+        custom_tooltip = au_enable_decision_effect_tooltip
+        add_character_flag = au_enabled
+    }
+
+}
+
+au_disable_decision = {
+    picture = {
+        reference = "gfx/interface/illustrations/decisions/agot_bloodlines_2.dds"
+    }
+    title = au_disable_decision
+    desc = au_disable_decision_desc
+    selection_tooltip = au_disable_decision_tooltip
+    confirm_text = au_disable_decision_confirm
+
+    is_shown = {
+        has_character_flag = au_enabled
+    }
+
+    effect = {
+        custom_tooltip = au_disable_decision_effect_tooltip
+        remove_character_flag = au_enabled
+    }
+
+}
+
+
+au1_enable_decision = {
+    picture = {
+        reference = "gfx/interface/illustrations/decisions/au1_event_valyria_enable.dds"
+    }
+    title = au1_enable_decision
+    desc = au1_enable_decision_desc
+    selection_tooltip = au1_enable_decision_tooltip
+    confirm_text = au1_enable_decision_confirm
+
+    is_shown = {
+        NOT = { has_character_flag = au1_enabled }
+    }
+
+    effect = {
+        custom_tooltip = au1_enable_decision_effect_tooltip
+        add_character_flag = au1_enabled
+    }
+
+}
+
+au1_disable_decision = {
+    picture = {
+        reference = "gfx/interface/illustrations/decisions/au1_event_valyria_disable.dds"
+    }
+    title = au1_disable_decision
+    desc = au1_disable_decision_desc
+    selection_tooltip = au1_disable_decision_tooltip
+    confirm_text = au1_disable_decision_confirm
+
+    is_shown = {
+        has_character_flag = au1_enabled
+    }
+
+    effect = {
+        custom_tooltip = au1_disable_decision_effect_tooltip
+        remove_character_flag = au1_enabled
+    }
+
+}
+
+au2_enable_decision = {
+    picture = {
+        reference = "gfx/interface/illustrations/decisions/au2_event_great_houses_enable.dds"
+    }
+    title = au2_enable_decision
+    desc = au2_enable_decision_desc
+    selection_tooltip = au2_enable_decision_tooltip
+    confirm_text = au2_enable_decision_confirm
+
+    is_shown = {
+        NOT = { has_character_flag = au2_enabled }
+    }
+
+    effect = {
+        custom_tooltip = au2_enable_decision_effect_tooltip
+        add_character_flag = au2_enabled
+    }
+
+}
+
+au2_disable_decision = {
+    picture = {
+        reference = "gfx/interface/illustrations/decisions/au2_event_great_houses_disable.dds"
+    }
+    title = au2_disable_decision
+    desc = au2_disable_decision_desc
+    selection_tooltip = au2_disable_decision_tooltip
+    confirm_text = au2_disable_decision_confirm
+
+    is_shown = {
+        has_character_flag = au2_enabled
+    }
+
+    effect = {
+        custom_tooltip = au2_disable_decision_effect_tooltip
+        remove_character_flag = au2_enabled
+    }
+
+}
+
+au3_enable_decision = {
+    picture = {
+        reference = "gfx/interface/illustrations/decisions/au3_event_armor_1.dds"
+    }
+    title = au3_enable_decision
+    desc = au3_enable_decision_desc
+    selection_tooltip = au3_enable_decision_tooltip
+    confirm_text = au3_enable_decision_confirm
+
+    is_shown = {
+        NOT = { has_character_flag = au3_enabled }
+    }
+
+    effect = {
+        custom_tooltip = au3_enable_decision_effect_tooltip
+        add_character_flag = au3_enabled
+    }
+
+}
+
+au3_disable_decision = {
+    picture = {
+        reference = "gfx/interface/illustrations/decisions/au3_event_armor_2.dds"
+    }
+    title = au3_disable_decision
+    desc = au3_disable_decision_desc
+    selection_tooltip = au3_disable_decision_tooltip
+    confirm_text = au3_disable_decision_confirm
+
+    is_shown = {
+        has_character_flag = au3_enabled
+    }
+
+    effect = {
+        custom_tooltip = au3_disable_decision_effect_tooltip
+        remove_character_flag = au3_enabled
+    }
+
+}
+
+au4_enable_decision = {
+    picture = {
+        reference = "gfx/interface/illustrations/decisions/au4_event_clothing_1.dds"
+    }
+    title = au4_enable_decision
+    desc = au4_enable_decision_desc
+    selection_tooltip = au4_enable_decision_tooltip
+    confirm_text = au4_enable_decision_confirm
+
+    is_shown = {
+        NOT = { has_character_flag = au4_enabled }
+    }
+
+    effect = {
+        custom_tooltip = au4_enable_decision_effect_tooltip
+        add_character_flag = au4_enabled
+    }
+
+}
+
+au4_disable_decision = {
+    picture = {
+        reference = "gfx/interface/illustrations/decisions/au4_event_clothing_2.dds"
+    }
+    title = au4_disable_decision
+    desc = au4_disable_decision_desc
+    selection_tooltip = au4_disable_decision_tooltip
+    confirm_text = au4_disable_decision_confirm
+
+    is_shown = {
+        has_character_flag = au4_enabled
+    }
+
+    effect = {
+        custom_tooltip = au4_disable_decision_effect_tooltip
+        remove_character_flag = au4_enabled
+    }
+
+}
+
+
+
+

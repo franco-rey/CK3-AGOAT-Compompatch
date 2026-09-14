@@ -1,0 +1,192 @@
+﻿au_clothes_situational = {
+
+	usage = game
+	selection_behavior = weighted_random
+	priority = 5
+
+
+    au_clothing_blacks_faction_clothing = {
+        dna_modifiers = {
+            accessory = {
+                mode = add
+               gene = clothes
+                template = agot_the_blacks_faction
+                range = { 0 1 }
+            }
+            accessory = {
+                mode = add
+                gene = legwear
+               template = agot_all_legwear
+                range = male_legwear_secular_agot_trousers_black_01
+           }
+        }
+        weight = {
+            base = 0
+            modifier = {
+                add = 1000
+		portrait_wear_armor_trigger = no
+		has_character_flag = au_blacksfaction
+
+            }
+        }
+    }
+    au_clothing_silvervalyrian_clothing = {
+        dna_modifiers = {
+            accessory = {
+                mode = add
+                gene = clothes
+                template = agot_the_greens_faction
+                range = { 0 1 }
+            }
+            accessory = {
+                mode = add
+                gene = legwear
+                template = agot_all_legwear
+                range = male_legwear_secular_agot_trousers_black_01
+            }
+        }
+        weight = {
+            base = 0
+            modifier = {
+                add = 1000
+		portrait_wear_armor_trigger = no
+		OR = {
+                	has_trait = au_silvervalyrian_bloodline
+			has_character_flag = au_greensfaction
+		}
+            }
+        }
+    }
+    au_clothing_redvalyrian_clothing = {
+        dna_modifiers = {
+            accessory = {
+                mode = add
+                gene = clothes
+                template = agot_house_clothes
+                accessory = male_clothes_westerland_doublet_no_cloak_04
+            }
+            accessory = {
+                mode = add
+                gene = legwear
+                template = agot_all_legwear
+                range = male_legwear_secular_agot_trousers_black_01
+            }
+        }
+        weight = {
+            base = 0
+            modifier = {
+                add = 1000
+		portrait_wear_armor_trigger = no
+		OR = {
+	        	has_trait = au_redvalyrian_bloodline
+			has_trait = au_west_bloodline
+			has_trait = au_immortalvalyrian_bloodline
+		}
+            }
+        }
+    }
+    au_clothing_blackvalyrian_clothing = {
+        dna_modifiers = {
+            accessory = {
+                mode = add
+                gene = clothes
+                template = agot_house_clothes
+                accessory = male_clothes_westerland_doublet_no_cloak_03
+            }
+            accessory = {
+                mode = add
+                gene = legwear
+                template = agot_all_legwear
+                range = male_legwear_secular_agot_trousers_black_01
+            }
+        }
+        weight = {
+            base = 0
+            modifier = {
+                add = 1000
+		portrait_wear_armor_trigger = no
+		has_trait = au_blackvalyrian_bloodline
+            }
+        }
+    }
+    au_high_winter_tunic = {
+	dna_modifiers = {
+		accessory = {
+			mode = add
+			gene = clothes
+			template = north_high_winter_high_clothes
+			range = { 0 1 }
+		}
+		accessory = {
+			mode = add
+			gene = legwear
+			template = dragon_rider_legwear
+			accessory = male_legwear_special_dragon_rider_01
+		}
+	}
+	weight = {
+		base = 0
+		modifier = {
+                	add = 1000
+			portrait_wear_armor_trigger = no
+			OR {
+			has_character_flag = au_high_winter_tunic
+			has_trait = au_north_bloodline
+		}
+	    }
+	}
+    }
+    au_dornish_high_nobles = {
+		dna_modifiers = {
+			accessory = {
+				mode = add
+				gene = clothes
+				template = agot_dornish_high_nobility
+				range = { 0 1 }
+			}
+			accessory = {
+				mode = add
+				gene = legwear
+				template = free_city_sandals
+				range = { 0 1 }
+			}
+		}
+		weight = {
+			base = 0
+			modifier = {
+                		add = 1000
+				portrait_wear_armor_trigger = no
+				   OR {
+					has_character_flag = au_dornish_high_nobles
+					has_trait = au_sun_bloodline
+				}
+			}
+		}
+	}
+    au_wildlings_bloodline = {
+		dna_modifiers = {
+			accessory = {
+				mode = add
+				gene = clothes
+				template = ccp7_agot_wildling
+				range = { 0.666 1 }
+			}
+			accessory = {
+				mode = add
+				gene = legwear
+				template = ccp7_wildling_legwear
+				range = { 0 1 }
+			}
+		}
+		weight = {
+			base = 0
+			modifier = {
+                		add = 1000
+				portrait_wear_armor_trigger = no
+				has_trait = au_wildlings_bloodline
+
+			}
+		}
+	}
+}
+

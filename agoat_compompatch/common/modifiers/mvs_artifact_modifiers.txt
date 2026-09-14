@@ -1,0 +1,369 @@
+gore_modifier = {
+	prowess_no_portrait = 9
+	monthly_dynasty_prestige_mult = 0.05
+	monthly_prestige = 0.2
+	enemy_hard_casualty_modifier = 0.05
+}
+deathtoll_modifier = {
+	prowess_no_portrait = 9
+	monthly_dynasty_prestige_mult = 0.05
+	monthly_prestige = 0.2
+	mountains_advantage = 5
+	majorroad_mountains_advantage = 5
+	minorroad_mountains_advantage = 5
+}
+ember_modifier = {
+	prowess_no_portrait = 9
+	monthly_dynasty_prestige_mult = 0.05
+	monthly_prestige = 0.2
+	monthly_martial_lifestyle_xp_gain_mult = 0.05
+}
+sting_modifier = {
+	prowess_no_portrait = 9
+	monthly_dynasty_prestige_mult = 0.05
+	monthly_prestige = 0.2
+	pursue_efficiency = 0.05
+}
+talon_modifier = {
+	prowess_no_portrait = 9
+	monthly_dynasty_prestige_mult = 0.05
+	monthly_prestige = 0.2
+	movement_speed = 0.05
+}
+mothers_mercy_modifier = {
+	prowess_no_portrait = 9
+	monthly_dynasty_prestige_mult = 0.05
+	monthly_prestige = 0.2
+	the_seven_religion_opinion = 10
+}
+bloodblade_modifier = {
+	prowess_no_portrait = 9
+	monthly_dynasty_prestige_mult = 0.05
+	monthly_prestige = 0.2
+	desert_advantage = 5
+	majorroad_desert_advantage = 5
+	minorroad_desert_advantage = 5
+	desert_mountains_advantage = 5
+	majorroad_desert_mountains_advantage
+	minorroad_desert_mountains_advantage
+}
+ninthstar_modifier = {
+	prowess_no_portrait = 9
+	monthly_dynasty_prestige_mult = 0.05
+	monthly_prestige = 0.2
+	monthly_martial_lifestyle_xp_gain_mult = 0.10
+}
+sorcery_modifier = {
+	prowess_no_portrait = 9
+	monthly_dynasty_prestige_mult = 0.05
+	monthly_prestige = 0.2
+	monthly_intrigue_lifestyle_xp_gain_mult = 0.10
+}
+skycry_modifier = {
+	prowess_no_portrait = 9
+	monthly_dynasty_prestige_mult = 0.05
+	monthly_prestige = 0.2
+	monthly_stewardship_lifestyle_xp_gain_mult = 0.10
+}
+mercy_modifier = {
+	prowess_no_portrait = 9
+	monthly_dynasty_prestige_mult = 0.05
+	monthly_prestige = 0.2
+	enemy_hard_casualty_modifier = 0.05
+}
+raindancer_modifier = {
+	prowess_no_portrait = 9
+	monthly_dynasty_prestige_mult = 0.05
+	monthly_prestige = 0.2
+	forest_advantage = 5
+	majorroad_forest_advantage = 5
+	minorroad_forest_advantage = 5
+	cloudforest_advantage = 5
+	majorroad_cloudforest_advantage = 5
+	minorroad_cloudforest_advantage = 5
+}
+achievement_modifier = {
+	prowess_no_portrait = 9
+	monthly_dynasty_prestige_mult = 0.05
+	monthly_prestige = 0.2
+	learning = 2
+}
+tusk_modifier = {
+	prowess_no_portrait = 9
+	monthly_dynasty_prestige_mult = 0.05
+	monthly_prestige = 0.2
+	enemy_hard_casualty_modifier = 0.1
+	hard_casualty_modifier = 0.1
+}
+glimmerpoint_modifier = {
+	prowess_no_portrait = 9
+	monthly_dynasty_prestige_mult = 0.05
+	monthly_prestige = 0.2
+	monthly_income_mult = 0.10
+}
+venom_modifier = {
+	prowess_no_portrait = 9
+	monthly_dynasty_prestige_mult = 0.05
+	monthly_prestige = 0.2
+	desert_advantage = 8
+	majorroad_desert_advantage = 8
+	minorroad_desert_advantage = 8
+}
+hells_embrace_modifier = {
+	prowess_no_portrait = 9
+	monthly_dynasty_prestige_mult = 0.05
+	monthly_prestige = 0.2
+	monthly_income_mult = 0.10
+}
+cunning_modifier = {
+	prowess_no_portrait = 5
+	monthly_dynasty_prestige_mult = 0.02
+	monthly_prestige = 0.05
+	intrigue = 2
+	monthly_intrigue_lifestyle_xp_gain_mult = 0.05
+}
+bloodvyne_modifier = {
+	prowess_no_portrait = 9
+	monthly_dynasty_prestige_mult = 0.05
+	monthly_prestige = 0.2
+	monthly_income_mult = 0.15
+}
+cold_oath_modifier = {
+	prowess_no_portrait = 9
+	monthly_dynasty_prestige_mult = 0.05
+	monthly_prestige = 0.2
+	mountains_advantage = 5
+	majorroad_mountains_advantage = 5
+	minorroad_mountains_advantage = 5
+	winter_advantage = 5
+}
+winters_bite_modifier = {
+	prowess_no_portrait = 9
+	monthly_dynasty_prestige_mult = 0.05
+	monthly_prestige = 0.2
+	mountains_advantage = 5
+	majorroad_mountains_advantage = 5
+	minorroad_mountains_advantage = 5
+	winter_advantage = 5
+}
+rememberance_modifier = {
+	prowess_no_portrait = 9
+	monthly_dynasty_prestige_mult = 0.05
+	monthly_prestige = 0.2
+	riverman_main_opinion = 10
+	monthly_martial_lifestyle_xp_gain_mult = 0.10
+}
+verdict_modifier = {
+	prowess_no_portrait = 9
+	monthly_dynasty_prestige_mult = 0.05
+	monthly_prestige = 0.2
+	the_seven_religion_opinion = 10
+	martial = 2
+}
+maiden_modifier = {
+	prowess_no_portrait = 9
+	monthly_dynasty_prestige_mult = 0.05
+	monthly_prestige = 0.2
+	monthly_diplomacy_lifestyle_xp_gain_mult = 0.10
+}
+tidebreaker_modifier = {
+	prowess_no_portrait = 9
+	monthly_dynasty_prestige_mult = 0.05
+	monthly_prestige = 0.2
+	enemy_hard_casualty_modifier = 0.05
+}
+serenity_modifier = {
+	prowess_no_portrait = 9
+	monthly_dynasty_prestige_mult = 0.05
+	monthly_prestige = 0.2
+	riverman_main_opinion = 15
+}
+everwick_modifier = {
+	prowess_no_portrait = 9
+	monthly_dynasty_prestige_mult = 0.05
+	monthly_prestige = 0.2
+	monthly_learning_lifestyle_xp_gain_mult = 0.05
+}
+glover_modifier = {
+	prowess_no_portrait = 9
+	monthly_dynasty_prestige_mult = 0.05
+	monthly_prestige = 0.2
+	forest_advantage = 5
+	majorroad_forest_advantage = 5
+	minorroad_forest_advantage = 5
+	cloudforest_advantage = 5
+	majorroad_cloudforest_advantage = 5
+	minorroad_cloudforest_advantage = 5
+}
+iron_price_modifier = {
+	prowess_no_portrait = 9
+	monthly_dynasty_prestige_mult = 0.05
+	monthly_prestige = 0.2
+	raid_speed = 0.15
+}
+just_rule_modifier = {
+	prowess_no_portrait = 9
+	monthly_dynasty_prestige_mult = 0.05
+	monthly_prestige = 0.2
+	martial = 2
+}
+elissa_modifier = {
+	prowess_no_portrait = 9
+	monthly_dynasty_prestige_mult = 0.05
+	monthly_prestige = 0.2
+	monthly_income_mult = 0.05
+}
+godsgrace_modifier = {
+	prowess_no_portrait = 9
+	monthly_dynasty_prestige_mult = 0.05
+	monthly_prestige = 0.2
+}
+gilded_modifier = {
+	prowess_no_portrait = 9
+	monthly_dynasty_prestige_mult = 0.05
+	monthly_prestige = 0.2
+	defender_advantage = 5
+	westerman_main_opinion = 10
+}
+skinpeeler_modifier = {
+	prowess_no_portrait = 9
+	monthly_dynasty_prestige_mult = 0.05
+	monthly_prestige = 0.2
+	intrigue = 2
+	monthly_intrigue_lifestyle_xp_gain_mult = 0.05
+}
+arakh_modifier = {
+	prowess_no_portrait = 9
+	monthly_dynasty_prestige_mult = 0.05
+	monthly_prestige = 0.2
+	enemy_hard_casualty_modifier = 0.1
+	hard_casualty_modifier = 0.1
+}
+stackspear_modifier = {
+	prowess_no_portrait = 9
+	monthly_dynasty_prestige_mult = 0.05
+	monthly_prestige = 0.2
+	attacker_advantage = 5
+	westerman_main_opinion = 5
+}
+midnight_modifier = {
+	prowess_no_portrait = 5
+	monthly_dynasty_prestige_mult = 0.02
+	monthly_prestige = 0.05
+	intrigue = 2
+}
+wrath_modifier = {
+	prowess_no_portrait = 9
+	monthly_dynasty_prestige_mult = 0.05
+	monthly_prestige = 0.2
+	monthly_stewardship_lifestyle_xp_gain_mult = 0.10
+}
+lonmouth_modifier = {
+	prowess_no_portrait = 5
+	monthly_dynasty_prestige_mult = 0.02
+	monthly_prestige = 0.05
+	attraction_opinion = 15
+}
+twilight_modifier = {
+	prowess_no_portrait = 9
+	monthly_dynasty_prestige_mult = 0.05
+	monthly_prestige = 0.2
+	monthly_martial_lifestyle_xp_gain_mult = 0.10
+}
+rook_modifier = {
+	prowess_no_portrait = 9
+	monthly_dynasty_prestige_mult = 0.05
+	monthly_prestige = 0.2
+	stewardship = 1
+	liege_opinion = 10
+}
+ruthermont_modifier = {
+	prowess_no_portrait = 9
+	monthly_dynasty_prestige_mult = 0.05
+	monthly_prestige = 0.2
+	the_seven_religion_opinion = 10
+	martial = 1
+}
+ruttiger_modifier = {
+	prowess_no_portrait = 9
+	monthly_dynasty_prestige_mult = 0.05
+	monthly_prestige = 0.2
+	westerman_main_opinion = 10
+	monthly_diplomacy_lifestyle_xp_gain_mult = 0.10
+}
+fake_lightbringer_modifier = {
+	the_rhllor_religion_opinion = 50
+	prowess_no_portrait = 6
+	monthly_prestige = 0.2
+}
+needle_modifier = {
+	prowess_no_portrait = 5
+	monthly_prestige = 0.2
+}
+herston_modifier = {
+	prowess_no_portrait = 5
+	monthly_dynasty_prestige_mult = 0.05
+	monthly_prestige = 0.2
+	stormlander_main_opinion = 5
+	marcher_opinion = 5
+}
+scales_modifier = {
+	prowess_no_portrait = 9
+	monthly_dynasty_prestige_mult = 0.05
+	monthly_prestige = 0.2
+	monthly_martial_lifestyle_xp_gain_mult = 0.10
+}
+volmark_modifier = {
+	prowess_no_portrait = 9
+	monthly_dynasty_prestige_mult = 0.05
+	monthly_prestige = 0.2
+	ironman_main_opinion = 10
+	raid_speed = 0.05
+}
+penny_modifier = {
+	prowess_no_portrait = 6
+	monthly_prestige = 0.2
+}
+tempest_modifier = {
+	prowess_no_portrait = 9
+	monthly_dynasty_prestige_mult = 0.05
+	monthly_prestige = 0.2
+	monthly_martial_lifestyle_xp_gain_mult = 0.10
+}
+littlefinger_modifier = {
+	prowess_no_portrait = 5
+	monthly_dynasty_prestige_mult = 0.02
+	monthly_prestige = 0.05
+	monthly_intrigue_lifestyle_xp_gain_mult = 0.15
+	monthly_income_mult = 0.10
+}
+dragon_katana_modifier = {
+	prowess_no_portrait = 9
+	monthly_dynasty_prestige_mult = 0.05
+	monthly_prestige = 0.2
+	monthly_martial_lifestyle_xp_gain_mult = 0.15
+}
+moonfell_modifier = {
+	prowess_no_portrait = 9
+	monthly_dynasty_prestige_mult = 0.05
+	monthly_prestige = 0.2
+	martial = 2
+	valeman_opinion = 10
+}
+shadow_modifier = {
+	prowess_no_portrait = 9
+	monthly_dynasty_prestige_mult = 0.05
+	monthly_prestige = 0.2
+	dread_baseline_add = 30
+}
+karstark_modifier = {
+	prowess_no_portrait = 6
+	monthly_prestige = 0.2
+	liege_opinion = 15
+}
+manderly_modifier = {
+	prowess_no_portrait = 9
+	monthly_dynasty_prestige_mult = 0.05
+	monthly_prestige = 0.2
+	stewardship = 2
+}

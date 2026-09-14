@@ -1,0 +1,1134 @@
+﻿au_clothes_armor = {
+
+	usage = game
+	selection_behavior = weighted_random
+	priority = 5
+
+
+au_clothing_sun_bloodline_armor = {
+	dna_modifiers = {
+		accessory = {
+			mode = add
+			gene = clothes
+			template = agot_all_armors
+			accessory = male_clothes_dornish_martell_war_03
+		}
+		accessory = {
+			mode = add
+			gene = legwear
+			template = agot_all_legwear
+			accessory = male_legwear_secular_dornish_martell_war_03
+		}
+		morph = {
+			mode = modify_multiply
+			gene = gene_bs_bust
+			value = 0.8
+			template = bust_clothes
+		}
+	}
+	outfit_tags = { military_outfit }
+	weight = {
+		base = 0
+		modifier = {
+			add = 400
+			exists = this
+			portrait_wear_armor_trigger = yes
+			has_trait = au_sun_bloodline
+			}
+		}
+	}
+
+au_clothing_north_bloodline_armor = {
+	dna_modifiers = {
+		accessory = {
+			mode = add
+			gene = clothes
+               		template = agot_all_armors
+               		accessory = male_clothes_north_war_ned_coa_01
+		}
+		accessory = {
+			mode = add
+			gene = legwear
+               		template = agot_all_legwear
+               		accessory = male_legwear_secular_north_stark_war_03
+		}
+		morph = {
+			mode = modify_multiply
+			gene = gene_bs_bust
+			value = 0.8
+			template = bust_clothes
+		}
+		morph = {
+			mode = modify_multiply
+			gene = gene_bs_body_shape
+			value = 0.8
+			template = body_shape_average_clothed
+		}
+	}
+	outfit_tags = { military_outfit }
+	weight = {
+		base = 0
+		modifier = {
+			add = 400
+			exists = this
+			portrait_wear_armor_trigger = yes
+			has_trait = au_north_bloodline
+
+			}
+		}
+	}
+
+au_clothing_west_bloodline_armor = {
+	dna_modifiers = {
+		accessory = {
+			mode = add
+			gene = clothes
+			template = agot_all_armors
+			accessory = male_clothes_westerlands_tywin_war
+		}
+		accessory = {
+			mode = add
+			gene = legwear
+			template = agot_all_legwear
+			accessory = male_legwear_secular_westerlands_tywin_war_03
+		}
+		morph = {
+			mode = modify_multiply
+			gene = gene_bs_bust
+			value = 0.8
+			template = bust_clothes
+		}
+	}
+	outfit_tags = { military_outfit }
+	weight = {
+		base = 0
+		modifier = {
+			add = 400
+			exists = this
+			portrait_wear_armor_trigger = yes
+			has_trait = au_west_bloodline
+			}
+		}
+	}
+
+au_clothing_vale_bloodline_armor = {
+	dna_modifiers = {
+		accessory = {
+			mode = add
+			gene = clothes
+			template = agot_all_armors
+			accessory = male_clothes_vale_war_03
+		}
+		accessory = {
+			mode = add
+			gene = legwear
+			template = agot_all_legwear
+			accessory = male_legwear_secular_vale_war_03
+		}
+		morph = {
+			mode = modify_multiply
+			gene = gene_bs_bust
+			value = 0.8
+			template = bust_clothes
+		}
+	}
+	outfit_tags = { military_outfit }
+	weight = {
+		base = 0
+		modifier = {
+			add = 400
+			exists = this
+			portrait_wear_armor_trigger = yes
+			has_trait = au_vale_bloodline
+			}
+		}
+	}
+
+au_clothing_river_bloodline_armor = {
+	dna_modifiers = {
+		accessory = {
+			mode = add
+			gene = clothes
+			template = agot_all_armors
+			accessory = male_clothes_riverlands_war_04_b
+		}
+		accessory = {
+			mode = add
+			gene = legwear
+			template = agot_all_legwear
+			accessory = male_legwear_secular_riverlands_war_04
+		}
+		morph = {
+			mode = modify_multiply
+			gene = gene_bs_bust
+			value = 0.8
+			template = bust_clothes
+		}
+	}
+	outfit_tags = { military_outfit }
+	weight = {
+		base = 0
+		modifier = {
+			add = 400
+			exists = this
+			portrait_wear_armor_trigger = yes
+			has_trait = au_river_bloodline
+			}
+		}
+	}
+
+au_clothing_reach_bloodline_armor = {
+	dna_modifiers = {
+		accessory = {
+			mode = add
+			gene = clothes
+			template = agot_all_armors
+			accessory = male_clothes_reach_tyrell_war_03
+		}
+		accessory = {
+			mode = add
+			gene = legwear
+			template = agot_all_legwear
+			accessory = male_legwear_secular_reach_tyrell_war_03
+		}
+		morph = {
+			mode = modify_multiply
+			gene = gene_bs_bust
+			value = 0.8
+			template = bust_clothes
+		}
+	}
+	outfit_tags = { military_outfit }
+	weight = {
+		base = 0
+		modifier = {
+			add = 400
+			exists = this
+			portrait_wear_armor_trigger = yes
+			has_trait = au_reach_bloodline
+			}
+		}
+	}
+
+au_clothing_iron_bloodline_armor = {
+	dna_modifiers = {
+		accessory = {
+			mode = add
+			gene = clothes
+			template = agot_all_armors
+			accessory = male_clothes_ironborn_greyjoy_war_03
+		}
+		accessory = {
+			mode = add
+			gene = legwear
+			template = agot_all_legwear
+			accessory = male_legwear_secular_ironborn_greyjoy_war_03
+		}
+		morph = {
+			mode = modify_multiply
+			gene = gene_bs_bust
+			value = 0.8
+			template = bust_clothes
+		}
+	}
+	outfit_tags = { military_outfit }
+	weight = {
+		base = 0
+		modifier = {
+			add = 400
+			exists = this
+			portrait_wear_armor_trigger = yes
+			has_trait = au_iron_bloodline
+			}
+		}
+	}
+
+au_clothing_storm_bloodline_armor = {
+	dna_modifiers = {
+		accessory = {
+			mode = add
+			gene = clothes
+			template = agot_all_armors
+			accessory = male_clothes_stormlands_coa_war_04
+		}
+		accessory = {
+			mode = add
+			gene = legwear
+			template = agot_all_legwear
+			accessory = male_legwear_secular_stormlands_war_04
+		}
+		morph = {
+			mode = modify_multiply
+			gene = gene_bs_bust
+			value = 0.8
+			template = bust_clothes
+		}
+	}
+	outfit_tags = { military_outfit }
+	weight = {
+		base = 0
+		modifier = {
+			add = 400
+			exists = this
+			portrait_wear_armor_trigger = yes
+			has_trait = au_storm_bloodline
+			}
+		}
+	}
+
+au_clothing_wildlings_bloodline_armor = {
+	dna_modifiers = {
+		accessory = {
+			mode = add
+			gene = clothes
+			template = agot_all_armors
+			accessory = male_clothes_secular_valyrian_steel_armor_01
+		}
+		accessory = {
+			mode = add
+			gene = legwear
+			template = agot_all_legwear
+			accessory = male_legwear_secular_valyrian_steel_armor_01
+		}
+		morph = {
+			mode = modify_multiply
+			gene = gene_bs_bust
+			value = 0.8
+			template = bust_clothes
+		}
+	}
+	outfit_tags = { military_outfit }
+	weight = {
+		base = 0
+		modifier = {
+			add = 400
+			exists = this
+			portrait_wear_armor_trigger = yes
+			has_trait = au_wildlings_bloodline
+			}
+		}
+	}
+
+au_clothing_silvervalyrian_bloodline_armor = {
+	dna_modifiers = {
+		accessory = {
+			mode = add
+			gene = clothes
+			template = agot_all_armors
+			accessory = male_clothes_valyrian_war_dynastic_03_high
+		}
+		accessory = {
+			mode = add
+			gene = legwear
+			template = agot_all_legwear
+			accessory = male_legwear_secular_valyrian_war_03_high
+		}
+		morph = {
+			mode = modify_multiply
+			gene = gene_bs_bust
+			value = 0.8
+			template = bust_clothes
+		}
+	}
+	outfit_tags = { military_outfit }
+	weight = {
+		base = 0
+		modifier = {
+			add = 400
+			exists = this
+			portrait_wear_armor_trigger = yes
+			has_trait = au_silvervalyrian_bloodline
+			}
+		}
+	}
+
+au_clothing_blackvalyrian_bloodline_armor = {
+	dna_modifiers = {
+		accessory = {
+			mode = add
+			gene = clothes
+			template = agot_all_armors
+			accessory = male_clothes_secular_valyrian_steel_armor_01
+		}
+		accessory = {
+			mode = add
+			gene = legwear
+			template = agot_all_legwear
+			accessory = male_legwear_secular_valyrian_steel_armor_01
+		}
+		morph = {
+			mode = modify_multiply
+			gene = gene_bs_bust
+			value = 0.8
+			template = bust_clothes
+		}
+	}
+	outfit_tags = { military_outfit }
+	weight = {
+		base = 0
+		modifier = {
+			add = 400
+			exists = this
+			portrait_wear_armor_trigger = yes
+			has_trait = au_blackvalyrian_bloodline
+			}
+		}
+	}
+
+au_clothing_redvalyrian_bloodline_armor = {
+	dna_modifiers = {
+		accessory = {
+			mode = add
+			gene = clothes
+			template = agot_all_armors
+			accessory = male_clothes_valyrian_war_blackfyre_03_high
+		}
+		accessory = {
+			mode = add
+			gene = legwear
+			template = agot_all_legwear
+			accessory = male_legwear_secular_valyrian_war_blackfyre_03_high
+		}
+		morph = {
+			mode = modify_multiply
+			gene = gene_bs_bust
+			value = 0.8
+			template = bust_clothes
+		}
+	}
+	outfit_tags = { military_outfit }
+	weight = {
+		base = 0
+		modifier = {
+			add = 400
+			exists = this
+			portrait_wear_armor_trigger = yes
+			has_trait = au_redvalyrian_bloodline
+			}
+		}
+	}
+
+au_clothing_immortalvalyrian_bloodline_armor = {
+	dna_modifiers = {
+		accessory = {
+			mode = add
+			gene = clothes
+			template = agot_all_armors
+			accessory = male_clothes_valyrian_war_03_high_decorated_coa
+
+		}
+		accessory = {
+			mode = add
+			gene = legwear
+			template = agot_all_legwear
+			accessory = male_legwear_secular_valyrian_war_03_high_decorated
+
+		}
+		morph = {
+			mode = modify_multiply
+			gene = gene_bs_bust
+			value = 0.8
+			template = bust_clothes
+		}
+	}
+	outfit_tags = { military_outfit }
+	weight = {
+		base = 0
+		modifier = {
+			add = 400
+			exists = this
+			portrait_wear_armor_trigger = yes
+			has_trait = au_immortalvalyrian_bloodline
+			}
+		}
+	}
+au_kingsguard_armor = {
+        	dna_modifiers = {
+            		accessory = {
+               			mode = add
+                		gene = clothes
+                		template = agot_all_armors
+                		accessory = male_clothes_kingsguard_war_01
+            		}
+            		accessory = {
+                		mode = add
+                		gene = legwear
+                		template = agot_all_legwear
+                		accessory = male_legwear_special_kingsguard_war_01
+            		}
+            		accessory = {
+                		mode = add
+                		gene = cloaks
+                		template = kingsguard_cloak
+                		value = 1
+            		}
+            		morph = {
+                		mode = modify_multiply
+                		gene = gene_bs_bust
+                		value = 0.8
+                		template = bust_clothes
+            			}
+        		}
+			outfit_tags = { military_outfit }
+        		weight = {
+            			base = 0
+            			modifier = {
+                		add = 1000
+				portrait_wear_armor_trigger = yes
+                		has_character_flag = au_kingsguard
+            			}
+        		}
+    		}
+au_targaryen_dragonsguard_armor = {
+        	dna_modifiers = {
+            		accessory = {
+				mode = add
+				gene = clothes
+				template = agot_all_armors
+				accessory = male_clothes_valyrian_war_04
+            		}
+            		accessory = {
+				mode = add
+				gene = legwear
+				template = agot_all_legwear
+				accessory = male_legwear_secular_valyrian_war_04
+            		}
+            		morph = {
+                		mode = modify_multiply
+                		gene = gene_bs_bust
+                		value = 0.8
+                		template = bust_clothes
+            			}
+        		}
+			outfit_tags = { military_outfit }
+        		weight = {
+            			base = 0
+            			modifier = {
+                		add = 1500
+
+                		has_character_flag = au_targaryen_dragonsguard
+            			}
+        		}
+    		}
+au_gray_dragonsguard_armor = {
+	dna_modifiers = {
+		accessory = {
+			mode = add
+			gene = clothes
+			template = agot_all_armors
+			accessory = male_clothes_valyrian_war_dynastic_03_high
+		}
+		accessory = {
+			mode = add
+			gene = legwear
+			template = agot_all_legwear
+			accessory = male_legwear_secular_valyrian_war_03_high
+		}
+		morph = {
+			mode = modify_multiply
+			gene = gene_bs_bust
+			value = 0.8
+			template = bust_clothes
+		}
+	}
+	outfit_tags = { military_outfit }
+	weight = {
+		base = 0
+		modifier = {
+			add = 1500
+			exists = this
+
+			has_character_flag = au_gray_dragonsguard
+			}
+		}
+	}
+au_red_dragonsguard_armor = {
+	dna_modifiers = {
+		accessory = {
+			mode = add
+			gene = clothes
+			template = agot_all_armors
+			accessory = male_clothes_valyrian_war_blackfyre_03_high
+		}
+		accessory = {
+			mode = add
+			gene = legwear
+			template = agot_all_legwear
+			accessory = male_legwear_secular_valyrian_war_blackfyre_03_high
+		}
+		morph = {
+			mode = modify_multiply
+			gene = gene_bs_bust
+			value = 0.8
+			template = bust_clothes
+		}
+	}
+	outfit_tags = { military_outfit }
+	weight = {
+		base = 0
+		modifier = {
+			add = 1500
+			exists = this
+
+			has_character_flag = au_red_dragonsguard
+			}
+		}
+	}
+au_white_dragonsguard_armor = {
+        	dna_modifiers = {
+            		accessory = {
+               			mode = add
+                		gene = clothes
+                		template = agot_all_armors
+                		accessory = male_clothes_kingsguard_war_01
+            		}
+            		accessory = {
+                		mode = add
+                		gene = legwear
+                		template = agot_all_legwear
+                		accessory = male_legwear_special_kingsguard_war_01
+            		}
+            		accessory = {
+                		mode = add
+                		gene = cloaks
+                		template = kingsguard_cloak
+                		value = 1
+            		}
+            		morph = {
+                		mode = modify_multiply
+                		gene = gene_bs_bust
+                		value = 0.8
+                		template = bust_clothes
+            			}
+        		}
+			outfit_tags = { military_outfit }
+        		weight = {
+            			base = 0
+            			modifier = {
+                		add = 1500
+
+                		has_character_flag = au_white_dragonsguard
+            			}
+        		}
+    		}
+au_bloodsguard_armor = {
+        	dna_modifiers = {
+            		accessory = {
+               			mode = add
+                		gene = clothes
+                		template = agot_all_armors
+                		accessory = male_clothes_kingsguard_war_01
+            		}
+            		accessory = {
+                		mode = add
+                		gene = legwear
+                		template = agot_all_legwear
+                		accessory = male_legwear_special_kingsguard_war_01
+            		}
+            		accessory = {
+                		mode = add
+                		gene = cloaks
+                		template = kingsguard_cloak
+                		value = 1
+            		}
+            		morph = {
+                		mode = modify_multiply
+                		gene = gene_bs_bust
+                		value = 0.8
+                		template = bust_clothes
+            			}
+        		}
+			outfit_tags = { military_outfit }
+        		weight = {
+            			base = 0
+            			modifier = {
+                		add = 1500
+
+                		has_character_flag = au_bloodsguard
+            			}
+        		}
+    		}
+	au_red_bloodsguard_armor = {
+		dna_modifiers = {
+			accessory = {
+				mode = add
+				gene = clothes
+				template = agot_all_armors
+				accessory = male_clothes_bolton_war_01
+			}
+			accessory = {
+				mode = add
+				gene = legwear
+				template = agot_all_legwear
+				accessory = male_legwear_secular_bolton_war_01
+			}
+            		accessory = {
+                		mode = add
+                		gene = cloaks
+                		template = kingsguard_cloak
+                		value = 1
+            		}
+			morph = {
+				mode = modify_multiply
+				gene = gene_bs_bust
+				value = 0.8
+				template = bust_clothes
+			}
+		}
+		outfit_tags = { military_outfit }
+        		weight = {
+            			base = 0
+            			modifier = {
+                		add = 1500
+
+                		has_character_flag = au_red_bloodsguard
+			}
+		}
+	}
+	au_gray_bloodsguard_armor = {
+		dna_modifiers = {
+			accessory = {
+				mode = add
+				gene = clothes
+				template = agot_all_armors
+				accessory = male_clothes_vale_war_03
+			}
+			accessory = {
+				mode = add
+				gene = legwear
+				template = agot_all_legwear
+				accessory = male_legwear_secular_vale_war_03
+			}
+            		accessory = {
+                		mode = add
+                		gene = cloaks
+                		template = kingsguard_cloak
+                		value = 1
+            		}
+			morph = {
+				mode = modify_multiply
+				gene = gene_bs_bust
+				value = 0.8
+				template = bust_clothes
+			}
+		}
+		outfit_tags = { military_outfit }
+        		weight = {
+            			base = 0
+            			modifier = {
+                		add = 1500
+
+                		has_character_flag = au_gray_bloodsguard
+			}
+		}
+	}
+	au_hedge_bloodsguard_armor = {
+		dna_modifiers = {
+			accessory = {
+				mode = add
+				gene = clothes
+				template = agot_all_armors
+				accessory = male_clothes_hedge_knight_war_01
+			}
+			accessory = {
+				mode = add
+				gene = legwear
+				template = agot_all_legwear
+				accessory = male_legwear_hedge_knight_war_01
+			}
+            		accessory = {
+                		mode = add
+                		gene = cloaks
+                		template = kingsguard_cloak
+                		value = 1
+            		}
+			morph = {
+				mode = modify_multiply
+				gene = gene_bs_bust
+				value = 0.8
+				template = bust_clothes
+			}
+		}
+		outfit_tags = { military_outfit }
+        		weight = {
+            			base = 0
+            			modifier = {
+                		add = 1500
+
+                		has_character_flag = au_hedge_bloodsguard
+			}
+		}
+	}
+au_rhaegar_armor = {
+		dna_modifiers = {
+			accessory = {
+				mode = add
+				gene = clothes
+				template = agot_all_armors
+				accessory = male_clothes_valyrian_war_04
+			}
+			accessory = {
+				mode = add
+				gene = legwear
+				template = agot_all_legwear
+				accessory = male_legwear_secular_valyrian_war_04
+			}
+			morph = {
+				mode = modify_multiply
+				gene = gene_bs_bust
+				value = 0.8
+				template = bust_clothes
+			}
+		}
+		outfit_tags = { military_outfit }
+		weight = {
+			base = 0
+			modifier = {
+				add = 1000
+				exists = this
+				portrait_wear_armor_trigger = yes
+                		has_character_flag = au_rhaegar
+				}
+			}
+		}
+	au_ned_dynastic_armor = {
+		dna_modifiers = {
+			accessory = {
+				mode = add
+				gene = clothes
+               			template = agot_all_armors
+               			accessory = male_clothes_north_war_ned_coa_01
+			}
+			accessory = {
+				mode = add
+				gene = legwear
+               			template = agot_all_legwear
+               			accessory = male_legwear_secular_north_stark_war_03
+			}
+			morph = {
+				mode = modify_multiply
+				gene = gene_bs_bust
+				value = 0.8
+				template = bust_clothes
+			}
+			morph = {
+				mode = modify_multiply
+				gene = gene_bs_body_shape
+				value = 0.8
+				template = body_shape_average_clothed
+			}
+		}
+		outfit_tags = { military_outfit }
+		weight = {
+			base = 0
+			modifier = {
+				add = 1000
+				exists = this
+				portrait_wear_armor_trigger = yes
+				has_character_flag = au_ned_dynastic
+				}
+			}
+		}
+	au_robert_dynastic_armor = {
+		dna_modifiers = {
+			accessory = {
+				mode = add
+				gene = clothes
+				template = agot_all_armors
+				accessory = male_clothes_stormlands_coa_war_04
+			}
+			accessory = {
+				mode = add
+				gene = legwear
+				template = agot_all_legwear
+				accessory = male_legwear_secular_stormlands_war_04
+			}
+			morph = {
+				mode = modify_multiply
+				gene = gene_bs_bust
+				value = 0.8
+				template = bust_clothes
+				}
+			}
+			outfit_tags = { military_outfit }
+			weight = {
+				base = 0
+				modifier = {
+					add = 1000
+					exists = this
+					portrait_wear_armor_trigger = yes
+					has_character_flag = au_robert_dynastic
+				}
+			}
+		}
+	au_arryns_armor = {
+		dna_modifiers = {
+			accessory = {
+				mode = add
+				gene = clothes
+				template = agot_all_armors
+				accessory = male_clothes_vale_war_03
+			}
+			accessory = {
+				mode = add
+				gene = legwear
+				template = agot_all_legwear
+				accessory = male_legwear_secular_vale_war_03
+			}
+			morph = {
+				mode = modify_multiply
+				gene = gene_bs_bust
+				value = 0.8
+				template = bust_clothes
+				}
+			}
+			outfit_tags = { military_outfit }
+			weight = {
+				base = 0
+				modifier = {
+					add = 1000
+					exists = this
+					portrait_wear_armor_trigger = yes
+					has_character_flag = au_arryns
+				}
+			}
+		}
+	au_royce_armor = {
+		dna_modifiers = {
+			accessory = {
+				mode = add
+				gene = clothes
+				template = agot_all_armors
+				accessory = male_clothes_royce_war_03
+			}
+			accessory = {
+				mode = add
+				gene = legwear
+				template = agot_all_legwear
+				accessory = male_legwear_special_royce_war_03
+			}
+			morph = {
+				mode = modify_multiply
+				gene = gene_bs_bust
+				value = 0.8
+				template = bust_clothes
+			}
+			morph = {
+				mode = modify_multiply
+				gene = gene_bs_body_shape
+				value = 0.8
+				template = body_shape_average_clothed
+				}
+
+			}
+			outfit_tags = { military_outfit }
+			weight = {
+				base = 0
+				modifier = {
+					add = 1000
+					portrait_wear_armor_trigger = yes
+					has_character_flag = au_royce
+				}
+			}
+		}
+	au_rowan_armor = {
+		dna_modifiers = {
+			accessory = {
+				mode = add
+				gene = clothes
+				template = agot_all_armors
+				accessory = male_clothes_rowan_war_01
+			}
+			accessory = {
+				mode = add
+				gene = legwear
+				template = agot_all_legwear
+				accessory = male_legwear_secular_rowan_war_01
+			}
+			morph = {
+				mode = modify_multiply
+				gene = gene_bs_bust
+				value = 0.8
+				template = bust_clothes
+			}
+			morph = {
+				mode = modify_multiply
+				gene = gene_bs_body_shape
+				value = 0.8
+				template = body_shape_average_clothed
+			}
+
+		}
+		outfit_tags = { military_outfit }
+		weight = {
+			base = 0
+			modifier = {
+				add = 1000
+				is_male = yes
+				portrait_wear_armor_trigger = yes
+				has_character_flag = au_rowan
+			}
+		}
+	}
+	au_tywin_armor = {
+		dna_modifiers = {
+			accessory = {
+				mode = add
+				gene = clothes
+				template = agot_all_armors
+				accessory = male_clothes_westerlands_tywin_war
+			}
+			accessory = {
+				mode = add
+				gene = legwear
+				template = agot_all_legwear
+				accessory = male_legwear_secular_westerlands_tywin_war_03
+			}
+			morph = {
+				mode = modify_multiply
+				gene = gene_bs_bust
+				value = 0.8
+				template = bust_clothes
+			}
+		}
+		outfit_tags = { military_outfit }
+		weight = {
+			base = 0
+			modifier = {
+				add = 1000
+				exists = this
+				portrait_wear_armor_trigger = yes
+				has_character_flag = au_tywin
+			}
+		}
+	}
+	au_jaime_armor = {
+		dna_modifiers = {
+			accessory = {
+				mode = add
+				gene = clothes
+				template = agot_all_armors
+				accessory = male_clothes_westerlands_jimothy_war
+			}
+			accessory = {
+				mode = add
+				gene = legwear
+				template = agot_all_legwear
+				accessory = male_legwear_secular_westerlands_jimothy_war_03
+			}
+			morph = {
+				mode = modify_multiply
+				gene = gene_bs_bust
+				value = 0.8
+				template = bust_clothes
+			}
+		}
+		outfit_tags = { military_outfit }
+		weight = {
+			base = 0
+			modifier = {
+				add = 1000
+				exists = this
+				portrait_wear_armor_trigger = yes
+				has_character_flag = au_jaime
+			}
+		}
+	}
+au_gray_plate_dragon_armor = {
+	dna_modifiers = {
+		accessory = {
+			mode = add
+			gene = clothes
+			template = agot_all_armors
+			accessory = male_clothes_valyrian_war_dynastic_03_high
+		}
+		accessory = {
+			mode = add
+			gene = legwear
+			template = agot_all_legwear
+			accessory = male_legwear_secular_valyrian_war_03_high
+		}
+		morph = {
+			mode = modify_multiply
+			gene = gene_bs_bust
+			value = 0.8
+			template = bust_clothes
+		}
+	}
+	outfit_tags = { military_outfit }
+	weight = {
+		base = 0
+		modifier = {
+			add = 1000
+			exists = this
+			portrait_wear_armor_trigger = yes
+			has_character_flag = au_gray_dragon_plate
+			}
+		}
+	}
+au_red_plate_dragon_armor = {
+	dna_modifiers = {
+		accessory = {
+			mode = add
+			gene = clothes
+			template = agot_all_armors
+			accessory = male_clothes_valyrian_war_blackfyre_03_high
+		}
+		accessory = {
+			mode = add
+			gene = legwear
+			template = agot_all_legwear
+			accessory = male_legwear_secular_valyrian_war_blackfyre_03_high
+		}
+		morph = {
+			mode = modify_multiply
+			gene = gene_bs_bust
+			value = 0.8
+			template = bust_clothes
+		}
+	}
+	outfit_tags = { military_outfit }
+	weight = {
+		base = 0
+		modifier = {
+			add = 1000
+			exists = this
+			portrait_wear_armor_trigger = yes
+			has_character_flag = au_red_dragon_plate
+			}
+		}
+	}
+au_decorated_dragon_plate_armor = {
+	dna_modifiers = {
+		accessory = {
+			mode = add
+			gene = clothes
+			template = agot_all_armors
+			accessory = male_clothes_valyrian_war_03_high_decorated
+		}
+		accessory = {
+			mode = add
+			gene = legwear
+			template = agot_all_legwear
+			accessory = male_legwear_secular_valyrian_war_03_high_decorated
+		}
+		morph = {
+			mode = modify_multiply
+			gene = gene_bs_bust
+			value = 0.8
+			template = bust_clothes
+		}
+	}
+	outfit_tags = { military_outfit }
+	weight = {
+		base = 0
+		modifier = {
+			add = 1000
+			exists = this
+			portrait_wear_armor_trigger = yes
+			has_character_flag = au_decorated_dragon_plate
+			}
+		}
+	}
+}
+

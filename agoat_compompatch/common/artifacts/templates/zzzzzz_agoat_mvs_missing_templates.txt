@@ -1,0 +1,238 @@
+vs_black_death_template = {
+	can_equip = {
+		always = yes
+	}
+	can_benefit = {
+		is_capable_adult = yes
+	}
+	fallback = {
+	}
+	unique = yes
+	ai_score = {
+		value = 100
+	}
+}
+vs_dark_moon_template = {
+	can_equip = {
+		always = yes
+	}
+	can_benefit = {
+		is_capable_adult = yes
+	}
+	fallback = {
+	}
+	unique = yes
+	ai_score = {
+		value = 100
+	}
+}
+vs_dragonbane_template = {
+	can_equip = {
+		always = yes
+	}
+	can_benefit = {
+		is_capable_adult = yes
+	}
+	fallback = {
+	}
+	unique = yes
+	ai_score = {
+		value = 100
+	}
+}
+vs_generic_andal_template = {
+	can_equip = {
+		always = yes
+	}
+	can_benefit = {
+		is_capable_adult = yes
+	}
+	fallback = {
+	}
+	unique = yes
+	ai_score = {
+		value = 100
+	}
+}
+vs_generic_firstman_template = {
+	can_equip = {
+		always = yes
+	}
+	can_benefit = {
+		is_capable_adult = yes
+	}
+	fallback = {
+	}
+	unique = yes
+	ai_score = {
+		value = 100
+	}
+}
+vs_generic_valyrian_template = {
+	can_equip = {
+		always = yes
+	}
+	can_benefit = {
+		is_capable_adult = yes
+	}
+	fallback = {
+	}
+	unique = yes
+	ai_score = {
+		value = 100
+	}
+}
+vs_glory_template = {
+	can_equip = {
+		always = yes
+	}
+	can_benefit = {
+		is_capable_adult = yes
+	}
+	fallback = {
+	}
+	unique = yes
+	ai_score = {
+		value = 100
+	}
+}
+vs_iron_price_template = {
+	can_equip = {
+		always = yes
+	}
+	can_benefit = {
+		is_capable_adult = yes
+	}
+	fallback = {
+	}
+	unique = yes
+	ai_score = {
+		value = 100
+	}
+}
+vs_mothers_grief_template = {
+	can_equip = {
+		always = yes
+	}
+	can_benefit = {
+		is_capable_adult = yes
+	}
+	fallback = {
+	}
+	unique = yes
+	ai_score = {
+		value = 100
+	}
+}
+vs_oathkeeper_template = {
+	can_equip = {
+		always = yes
+	}
+	can_benefit = {
+		is_capable_adult = yes
+	}
+	fallback = {
+	}
+	unique = yes
+	ai_score = {
+		value = 100
+	}
+}
+vs_skinpeeler_template = {
+	can_equip = {
+		always = yes
+	}
+	can_benefit = {
+		is_capable_adult = yes
+	}
+	fallback = {
+	}
+	unique = yes
+	ai_score = {
+		value = 100
+	}
+}
+vs_sting_template = {
+	can_equip = {
+		always = yes
+	}
+	can_benefit = {
+		is_capable_adult = yes
+	}
+	fallback = {
+	}
+	unique = yes
+	ai_score = {
+		value = 100
+	}
+}
+vs_stormy_nights_template = {
+	can_equip = {
+		always = yes
+	}
+	can_benefit = {
+		is_capable_adult = yes
+	}
+	fallback = {
+	}
+	unique = yes
+	ai_score = {
+		value = 100
+	}
+}
+vs_strangers_touch_template = {
+	can_equip = {
+		always = yes
+	}
+	can_benefit = {
+		is_capable_adult = yes
+	}
+	fallback = {
+	}
+	unique = yes
+	ai_score = {
+		value = 100
+	}
+}
+vs_talon_template = {
+	can_equip = {
+		always = yes
+	}
+	can_benefit = {
+		is_capable_adult = yes
+	}
+	fallback = {
+	}
+	unique = yes
+	ai_score = {
+		value = 100
+	}
+}
+vs_unkindness_template = {
+	can_equip = {
+		always = yes
+	}
+	can_benefit = {
+		is_capable_adult = yes
+	}
+	fallback = {
+	}
+	unique = yes
+	ai_score = {
+		value = 100
+	}
+}
+vs_widows_wail_template = {
+	can_equip = {
+		always = yes
+	}
+	can_benefit = {
+		is_capable_adult = yes
+	}
+	fallback = {
+	}
+	unique = yes
+	ai_score = {
+		value = 100
+	}
+}
