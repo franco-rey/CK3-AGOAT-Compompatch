@@ -1,4 +1,4 @@
-ce_chained_dragon.dds = {colors = 3 category = abstract}
+﻿ce_chained_dragon.dds = {colors = 3 category = abstract}
 ce_sun_logo_transparent_256.dds = {colors = 2 category = abstract}
 ce_bergcoa.dds = {colors = 2 category = abstract}
 ce_suncoavulcanodragon.dds = {colors = 3 category = abstract}

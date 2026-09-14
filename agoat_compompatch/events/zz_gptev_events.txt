@@ -1490,11 +1490,18 @@ gpt_personality_lustful.0002 = {
 			lustful = @stressminor
 		}
 		gptev_remove_prestige_large = yes
-		add_courtier = scope:prostitute_character
+		if = {
+			limit = { exists = scope:prostitute_character }
+			add_courtier = scope:prostitute_character
+		}
 		if = {
 			limit = {
 				is_male = yes
-				scope:prostitute_character = { is_female = yes is_pregnant = no fertility >= 0.2 }
+				trigger_if = {
+					limit = { exists = scope:prostitute_character }
+					scope:prostitute_character = { is_female = yes is_pregnant = no fertility >= 0.2 }
+				}
+				trigger_else = { always = no }
 			}
 			random = {
 				chance = 50
@@ -1512,7 +1519,11 @@ gpt_personality_lustful.0002 = {
 				is_female = yes
 				is_pregnant = no
 				fertility >= 0.2
-				scope:prostitute_character = { is_male = yes }
+				trigger_if = {
+					limit = { exists = scope:prostitute_character }
+					scope:prostitute_character = { is_male = yes }
+				}
+				trigger_else = { always = no }
 			}
 			random = {
 				chance = 50
@@ -1721,11 +1732,18 @@ gpt_personality_lustful.0003 = {
 		stress_impact = {
 			lustful = @stressdecrease
 		}
-		add_courtier = scope:prostitute_character
+		if = {
+			limit = { exists = scope:prostitute_character }
+			add_courtier = scope:prostitute_character
+		}
 		if = {
 			limit = {
 				is_male = yes
-				scope:prostitute_character = { is_female = yes is_pregnant = no fertility >= 0.2 }
+				trigger_if = {
+					limit = { exists = scope:prostitute_character }
+					scope:prostitute_character = { is_female = yes is_pregnant = no fertility >= 0.2 }
+				}
+				trigger_else = { always = no }
 			}
 			random = {
 				chance = 50
@@ -1743,7 +1761,11 @@ gpt_personality_lustful.0003 = {
 				is_female = yes
 				is_pregnant = no
 				fertility >= 0.2
-				scope:prostitute_character = { is_male = yes }
+				trigger_if = {
+					limit = { exists = scope:prostitute_character }
+					scope:prostitute_character = { is_male = yes }
+				}
+				trigger_else = { always = no }
 			}
 			random = {
 				chance = 50

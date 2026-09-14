@@ -1,4 +1,4 @@
-ab_reach_crown_template = {
+﻿ab_reach_crown_template = {
 	can_equip = {
 		always = yes
 	}

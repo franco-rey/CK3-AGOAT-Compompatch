@@ -1,4 +1,4 @@
-vs_black_death_template = {
+﻿vs_black_death_template = {
 	can_equip = {
 		always = yes
 	}
