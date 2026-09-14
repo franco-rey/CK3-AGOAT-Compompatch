@@ -1,0 +1,741 @@
+﻿
+
+
+
+
+
+
+
+
+
+
+
+
+
+namespace = ame_service
+
+
+
+
+
+
+
+ame_service.0001 = {
+	type = character_event
+	title = ame_service.0001.t
+	desc = ame_service.0001.desc
+	theme = martial
+
+	left_portrait = root
+	right_portrait = scope:recipient
+
+	option = {
+		name = ame_service.0001.join_golden_company
+		trigger = {
+			ame_company_available_trigger = {
+				COMPANY = d_laamp_merc_golden_company
+				REFERENCE = scope:recipient.var:ame_home_liege
+			}
+		}
+		ame_charge_service_cost_effect = yes
+		scope:recipient = {
+			ame_join_company_effect = { COMPANY = d_laamp_merc_golden_company CHARACTER = scope:recipient }
+			trigger_event = { id = ame_service.0002 days = 1 }
+		}
+		ai_chance = { base = 100 }
+	}
+	option = {
+		name = ame_service.0001.join_windblown
+		trigger = {
+			ame_company_available_trigger = {
+				COMPANY = d_laamp_merc_windblown
+				REFERENCE = scope:recipient.var:ame_home_liege
+			}
+		}
+		ame_charge_service_cost_effect = yes
+		scope:recipient = {
+			ame_join_company_effect = { COMPANY = d_laamp_merc_windblown CHARACTER = scope:recipient }
+			trigger_event = { id = ame_service.0002 days = 1 }
+		}
+		ai_chance = { base = 100 }
+	}
+	option = {
+		name = ame_service.0001.join_company_of_the_cat
+		trigger = {
+			ame_company_available_trigger = {
+				COMPANY = d_laamp_merc_company_of_the_cat
+				REFERENCE = scope:recipient.var:ame_home_liege
+			}
+		}
+		ame_charge_service_cost_effect = yes
+		scope:recipient = {
+			ame_join_company_effect = { COMPANY = d_laamp_merc_company_of_the_cat CHARACTER = scope:recipient }
+			trigger_event = { id = ame_service.0002 days = 1 }
+		}
+		ai_chance = { base = 100 }
+	}
+	option = {
+		name = ame_service.0001.join_long_lances
+		trigger = {
+			ame_company_available_trigger = {
+				COMPANY = d_laamp_merc_long_lances
+				REFERENCE = scope:recipient.var:ame_home_liege
+			}
+		}
+		ame_charge_service_cost_effect = yes
+		scope:recipient = {
+			ame_join_company_effect = { COMPANY = d_laamp_merc_long_lances CHARACTER = scope:recipient }
+			trigger_event = { id = ame_service.0002 days = 1 }
+		}
+		ai_chance = { base = 100 }
+	}
+	option = {
+		name = ame_service.0001.join_second_sons
+		trigger = {
+			ame_company_available_trigger = {
+				COMPANY = d_laamp_merc_second_sons
+				REFERENCE = scope:recipient.var:ame_home_liege
+			}
+		}
+		ame_charge_service_cost_effect = yes
+		scope:recipient = {
+			ame_join_company_effect = { COMPANY = d_laamp_merc_second_sons CHARACTER = scope:recipient }
+			trigger_event = { id = ame_service.0002 days = 1 }
+		}
+		ai_chance = { base = 100 }
+	}
+	option = {
+		name = ame_service.0001.join_stormcrows
+		trigger = {
+			ame_company_available_trigger = {
+				COMPANY = d_laamp_merc_stormcrows
+				REFERENCE = scope:recipient.var:ame_home_liege
+			}
+		}
+		ame_charge_service_cost_effect = yes
+		scope:recipient = {
+			ame_join_company_effect = { COMPANY = d_laamp_merc_stormcrows CHARACTER = scope:recipient }
+			trigger_event = { id = ame_service.0002 days = 1 }
+		}
+		ai_chance = { base = 100 }
+	}
+	option = {
+		name = ame_service.0001.join_maidens_men
+		trigger = {
+			ame_company_available_trigger = {
+				COMPANY = d_laamp_merc_maidens_men
+				REFERENCE = scope:recipient.var:ame_home_liege
+			}
+		}
+		ame_charge_service_cost_effect = yes
+		scope:recipient = {
+			ame_join_company_effect = { COMPANY = d_laamp_merc_maidens_men CHARACTER = scope:recipient }
+			trigger_event = { id = ame_service.0002 days = 1 }
+		}
+		ai_chance = { base = 100 }
+	}
+	option = {
+		name = ame_service.0001.join_jolly_fellows
+		trigger = {
+			ame_company_available_trigger = {
+				COMPANY = d_laamp_merc_jolly_fellows
+				REFERENCE = scope:recipient.var:ame_home_liege
+			}
+		}
+		ame_charge_service_cost_effect = yes
+		scope:recipient = {
+			ame_join_company_effect = { COMPANY = d_laamp_merc_jolly_fellows CHARACTER = scope:recipient }
+			trigger_event = { id = ame_service.0002 days = 1 }
+		}
+		ai_chance = { base = 100 }
+	}
+	option = {
+		name = ame_service.0001.join_bright_banners
+		trigger = {
+			ame_company_available_trigger = {
+				COMPANY = d_laamp_merc_bright_banners
+				REFERENCE = scope:recipient.var:ame_home_liege
+			}
+		}
+		ame_charge_service_cost_effect = yes
+		scope:recipient = {
+			ame_join_company_effect = { COMPANY = d_laamp_merc_bright_banners CHARACTER = scope:recipient }
+			trigger_event = { id = ame_service.0002 days = 1 }
+		}
+		ai_chance = { base = 100 }
+	}
+	option = {
+		name = ame_service.0001.join_summer_swords
+		trigger = {
+			ame_company_available_trigger = {
+				COMPANY = d_laamp_merc_summer_swords
+				REFERENCE = scope:recipient.var:ame_home_liege
+			}
+		}
+		ame_charge_service_cost_effect = yes
+		scope:recipient = {
+			ame_join_company_effect = { COMPANY = d_laamp_merc_summer_swords CHARACTER = scope:recipient }
+			trigger_event = { id = ame_service.0002 days = 1 }
+		}
+		ai_chance = { base = 100 }
+	}
+	option = {
+		name = ame_service.0001.join_lost_legion
+		trigger = {
+			ame_company_available_trigger = {
+				COMPANY = d_laamp_merc_lost_legion
+				REFERENCE = scope:recipient.var:ame_home_liege
+			}
+		}
+		ame_charge_service_cost_effect = yes
+		scope:recipient = {
+			ame_join_company_effect = { COMPANY = d_laamp_merc_lost_legion CHARACTER = scope:recipient }
+			trigger_event = { id = ame_service.0002 days = 1 }
+		}
+		ai_chance = { base = 100 }
+	}
+	option = {
+		name = ame_service.0001.join_brave_companions
+		trigger = {
+			ame_company_available_trigger = {
+				COMPANY = d_laamp_merc_brave_companions
+				REFERENCE = scope:recipient.var:ame_home_liege
+			}
+		}
+		ame_charge_service_cost_effect = yes
+		scope:recipient = {
+			ame_join_company_effect = { COMPANY = d_laamp_merc_brave_companions CHARACTER = scope:recipient }
+			trigger_event = { id = ame_service.0002 days = 1 }
+		}
+		ai_chance = { base = 100 }
+	}
+	option = {
+		name = ame_service.0001.join_gallant_men
+		trigger = {
+			ame_company_available_trigger = {
+				COMPANY = d_laamp_merc_gallant_men
+				REFERENCE = scope:recipient.var:ame_home_liege
+			}
+		}
+		ame_charge_service_cost_effect = yes
+		scope:recipient = {
+			ame_join_company_effect = { COMPANY = d_laamp_merc_gallant_men CHARACTER = scope:recipient }
+			trigger_event = { id = ame_service.0002 days = 1 }
+		}
+		ai_chance = { base = 100 }
+	}
+	option = {
+		name = ame_service.0001.join_iron_shields
+		trigger = {
+			ame_company_available_trigger = {
+				COMPANY = d_laamp_merc_iron_shields
+				REFERENCE = scope:recipient.var:ame_home_liege
+			}
+		}
+		ame_charge_service_cost_effect = yes
+		scope:recipient = {
+			ame_join_company_effect = { COMPANY = d_laamp_merc_iron_shields CHARACTER = scope:recipient }
+			trigger_event = { id = ame_service.0002 days = 1 }
+		}
+		ai_chance = { base = 100 }
+	}
+	option = {
+		name = ame_service.0001.join_adventurers
+		trigger = {
+			ame_company_available_trigger = {
+				COMPANY = d_laamp_merc_adventurers
+				REFERENCE = scope:recipient.var:ame_home_liege
+			}
+		}
+		ame_charge_service_cost_effect = yes
+		scope:recipient = {
+			ame_join_company_effect = { COMPANY = d_laamp_merc_adventurers CHARACTER = scope:recipient }
+			trigger_event = { id = ame_service.0002 days = 1 }
+		}
+		ai_chance = { base = 100 }
+	}
+	option = {
+		name = ame_service.0001.join_company_of_the_rose
+		trigger = {
+			ame_company_available_trigger = {
+				COMPANY = d_laamp_merc_company_of_the_rose
+				REFERENCE = scope:recipient.var:ame_home_liege
+			}
+		}
+		ame_charge_service_cost_effect = yes
+		scope:recipient = {
+			ame_join_company_effect = { COMPANY = d_laamp_merc_company_of_the_rose CHARACTER = scope:recipient }
+			trigger_event = { id = ame_service.0002 days = 1 }
+		}
+		ai_chance = { base = 100 }
+	}
+	option = {
+		name = ame_service.0001.join_free_company
+		trigger = {
+			ame_company_available_trigger = {
+				COMPANY = d_laamp_merc_free_company
+				REFERENCE = scope:recipient.var:ame_home_liege
+			}
+		}
+		ame_charge_service_cost_effect = yes
+		scope:recipient = {
+			ame_join_company_effect = { COMPANY = d_laamp_merc_free_company CHARACTER = scope:recipient }
+			trigger_event = { id = ame_service.0002 days = 1 }
+		}
+		ai_chance = { base = 100 }
+	}
+	option = {
+		name = ame_service.0001.join_men_of_valor
+		trigger = {
+			ame_company_available_trigger = {
+				COMPANY = d_laamp_merc_men_of_valor
+				REFERENCE = scope:recipient.var:ame_home_liege
+			}
+		}
+		ame_charge_service_cost_effect = yes
+		scope:recipient = {
+			ame_join_company_effect = { COMPANY = d_laamp_merc_men_of_valor CHARACTER = scope:recipient }
+			trigger_event = { id = ame_service.0002 days = 1 }
+		}
+		ai_chance = { base = 100 }
+	}
+	option = {
+		name = ame_service.0001.join_ragged_standard
+		trigger = {
+			ame_company_available_trigger = {
+				COMPANY = d_laamp_merc_ragged_standard
+				REFERENCE = scope:recipient.var:ame_home_liege
+			}
+		}
+		ame_charge_service_cost_effect = yes
+		scope:recipient = {
+			ame_join_company_effect = { COMPANY = d_laamp_merc_ragged_standard CHARACTER = scope:recipient }
+			trigger_event = { id = ame_service.0002 days = 1 }
+		}
+		ai_chance = { base = 100 }
+	}
+	option = {
+		name = ame_service.0001.join_stormbreakers
+		trigger = {
+			ame_company_available_trigger = {
+				COMPANY = d_laamp_merc_stormbreakers
+				REFERENCE = scope:recipient.var:ame_home_liege
+			}
+		}
+		ame_charge_service_cost_effect = yes
+		scope:recipient = {
+			ame_join_company_effect = { COMPANY = d_laamp_merc_stormbreakers CHARACTER = scope:recipient }
+			trigger_event = { id = ame_service.0002 days = 1 }
+		}
+		ai_chance = { base = 100 }
+	}
+	option = {
+		name = ame_service.0001.join_wolf_pack
+		trigger = {
+			ame_company_available_trigger = {
+				COMPANY = d_laamp_merc_wolf_pack
+				REFERENCE = scope:recipient.var:ame_home_liege
+			}
+		}
+		ame_charge_service_cost_effect = yes
+		scope:recipient = {
+			ame_join_company_effect = { COMPANY = d_laamp_merc_wolf_pack CHARACTER = scope:recipient }
+			trigger_event = { id = ame_service.0002 days = 1 }
+		}
+		ai_chance = { base = 100 }
+	}
+	option = {
+		name = ame_service.0001.no_company_available
+
+
+		trigger = {
+			NOT = {
+				ame_any_company_available_trigger = { REFERENCE = scope:recipient.var:ame_home_liege }
+			}
+		}
+
+
+		fallback = yes
+		scope:recipient = {
+			if = {
+				limit = { has_character_flag = ame_serving }
+				remove_character_flag = ame_serving
+			}
+			remove_variable = ame_home_liege
+		}
+		ai_chance = { base = 100 }
+	}
+}
+
+
+ame_service.0002 = {
+	type = character_event
+	title = ame_service.0002.t
+	desc = ame_service.0002.desc
+	theme = friendly
+
+	left_portrait = root
+
+	option = {
+		name = ame_service.0002.a
+	}
+}
+
+
+
+
+ame_service.0011 = {
+	type = letter_event
+	opening = ame_service.0011.opening
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					scope:ame_returning_character = {
+						OR = {
+							has_trait = ame_haunted_by_war_1
+							has_trait = ame_haunted_by_war_2
+						}
+					}
+				}
+				desc = ame_service.0011.desc_haunted
+			}
+			triggered_desc = {
+				trigger = {
+					scope:ame_returning_character = {
+						OR = {
+							has_trait = ame_tempered_by_war_1
+							has_trait = ame_tempered_by_war_2
+						}
+					}
+				}
+				desc = ame_service.0011.desc_tempered
+			}
+			triggered_desc = {
+				trigger = {
+					scope:ame_returning_character = { var:ame_years_of_service >= 5 }
+				}
+				desc = ame_service.0011.desc_long_service
+			}
+
+
+
+			triggered_desc = {
+				trigger = {
+					scope:ame_returning_character = { var:ame_years_of_service < 2 }
+				}
+				desc = ame_service.0011.desc_early_recall
+			}
+			desc = ame_service.0011.desc_simple
+		}
+	}
+	sender = scope:ame_returning_character
+
+	option = {
+		name = ame_service.0011.a
+	}
+}
+
+
+
+ame_service.0012 = {
+	type = character_event
+	title = ame_service.0012.t
+	desc = ame_service.0012.desc
+	theme = crown
+
+	left_portrait = root
+
+	option = {
+		name = ame_service.0012.a
+	}
+}
+
+
+
+ame_service.0020 = {
+	type = character_event
+	title = ame_service.0020.t
+	desc = ame_service.0020.desc
+	theme = war
+
+	left_portrait = root
+	right_portrait = var:ame_company.holder
+
+	trigger = {
+		has_character_flag = ame_serving
+	}
+
+	weight_multiplier = {
+		base = 1
+		modifier = {
+			var:ame_company.holder = { is_at_war = yes }
+			factor = 4
+		}
+	}
+
+	option = {
+		name = ame_service.0020.a
+
+		death = { death_reason = death_battle }
+
+		if = {
+			limit = {
+				exists = var:ame_home_liege
+				var:ame_home_liege = { is_alive = yes }
+				exists = var:ame_company.holder
+				var:ame_company.holder = { is_alive = yes }
+			}
+
+
+			save_scope_as = ame_fallen_character
+			var:ame_company = {
+				save_scope_as = ame_fallen_company
+			}
+			var:ame_company.holder = {
+				save_scope_as = ame_reporting_captain
+			}
+			var:ame_home_liege = {
+				trigger_event = ame_service.0021
+			}
+		}
+
+		if = {
+			limit = { has_character_flag = ame_serving }
+			remove_character_flag = ame_serving
+		}
+		if = {
+			limit = { has_variable = ame_company }
+			remove_variable = ame_company
+		}
+		if = {
+			limit = { has_variable = ame_years_of_service }
+			remove_variable = ame_years_of_service
+		}
+	}
+}
+
+
+
+ame_service.0021 = {
+	type = letter_event
+	opening = ame_service.0021.opening
+	desc = ame_service.0021.desc
+	sender = scope:ame_reporting_captain
+
+	option = {
+		name = ame_service.0021.a
+	}
+}
+
+
+
+
+
+
+ame_service.0030 = {
+	type = character_event
+	title = ame_service.0030.t
+	desc = ame_service.0030.desc
+	theme = mental_health
+
+	left_portrait = root
+
+	trigger = {
+		has_character_flag = ame_serving
+	}
+
+	weight_multiplier = {
+		base = 1
+		modifier = {
+			var:ame_company.holder = { is_at_war = yes }
+			factor = 3
+		}
+	}
+
+	immediate = {
+		if = {
+			limit = {
+				NOR = {
+					has_trait = ame_tempered_by_war_1
+					has_trait = ame_tempered_by_war_2
+				}
+			}
+			if = {
+				limit = { has_trait = ame_haunted_by_war_1 }
+				change_trait_rank = {
+					trait = ame_haunted_by_war
+					rank = 2
+					max = 2
+				}
+			}
+			else_if = {
+				limit = { has_trait = ame_haunted_by_war_2 }
+
+			}
+			else = {
+				change_trait_rank = {
+					trait = ame_haunted_by_war
+					rank = 1
+					max = 2
+				}
+				create_character_memory = {
+					type = ame_haunted_by_war_memory
+				}
+			}
+		}
+		add_stress = major_stress_gain
+	}
+
+	option = {
+		name = ame_service.0030.a
+	}
+}
+
+
+
+ame_service.0040 = {
+	type = character_event
+	title = ame_service.0040.t
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = { local_var:ame_reward_kind = 1 }
+				desc = ame_service.0040.desc_gold
+			}
+			triggered_desc = {
+				trigger = { local_var:ame_reward_kind = 2 }
+				desc = ame_service.0040.desc_prestige
+			}
+			triggered_desc = {
+				trigger = { local_var:ame_reward_kind = 3 }
+				desc = ame_service.0040.desc_camaraderie
+			}
+			desc = ame_service.0040.desc_skill
+		}
+	}
+	theme = martial
+
+	left_portrait = root
+
+	trigger = {
+		has_character_flag = ame_serving
+	}
+
+	immediate = {
+		random_list = {
+			30 = {
+				set_local_variable = { name = ame_reward_kind value = 1 }
+				add_gold = medium_gold_value
+			}
+			25 = {
+				set_local_variable = { name = ame_reward_kind value = 2 }
+				add_prestige = medium_prestige_gain
+			}
+			20 = {
+				set_local_variable = { name = ame_reward_kind value = 3 }
+				add_stress = minor_stress_loss
+			}
+			25 = {
+				set_local_variable = { name = ame_reward_kind value = 4 }
+				random_list = {
+					25 = { add_martial_skill = 1 }
+					25 = { add_prowess_skill = 1 }
+					25 = { add_diplomacy_skill = 1 }
+					25 = { add_intrigue_skill = 1 }
+				}
+			}
+		}
+	}
+
+	option = {
+		name = ame_service.0040.a
+	}
+}
+
+
+
+ame_service.0050 = {
+	type = character_event
+	title = ame_service.0050.t
+	desc = ame_service.0050.desc
+	theme = physical_health
+
+	left_portrait = root
+
+	trigger = {
+		has_character_flag = ame_serving
+	}
+
+	immediate = {
+		increase_wounds_effect = { REASON = fight }
+		add_stress = minor_stress_gain
+	}
+
+	option = {
+		name = ame_service.0050.a
+	}
+}
+
+
+
+
+
+ame_service.0060 = {
+	type = character_event
+	title = ame_service.0060.t
+	desc = ame_service.0060.desc
+	theme = martial
+
+	left_portrait = root
+
+	trigger = {
+		has_character_flag = ame_serving
+	}
+
+	weight_multiplier = {
+		base = 1
+		modifier = {
+			var:ame_company.holder = { is_at_war = yes }
+			factor = 3
+		}
+	}
+
+	immediate = {
+		if = {
+			limit = {
+				NOR = {
+					has_trait = ame_haunted_by_war_1
+					has_trait = ame_haunted_by_war_2
+				}
+			}
+			if = {
+				limit = { has_trait = ame_tempered_by_war_1 }
+				change_trait_rank = {
+					trait = ame_tempered_by_war
+					rank = 2
+					max = 2
+				}
+			}
+			else_if = {
+				limit = { has_trait = ame_tempered_by_war_2 }
+
+			}
+			else = {
+				change_trait_rank = {
+					trait = ame_tempered_by_war
+					rank = 1
+					max = 2
+				}
+				create_character_memory = {
+					type = ame_tempered_by_war_memory
+				}
+			}
+		}
+		add_stress = minor_stress_loss
+	}
+
+	option = {
+		name = ame_service.0060.a
+	}
+}
