@@ -354,7 +354,7 @@ master_at_arms_court_position = {
 
 	# Modifiers always applied to the Master at Arms themselves
 	modifier = {
-		monthly_prestige = medium_court_position_prestige_salary
+		monthly_prestige = 0.2
 		accolade_glory_gain_mult = 0.1
 		lifestyle_blademaster_xp_gain_mult = 0.1
 		monthly_martial_lifestyle_xp_gain_mult = 0.05

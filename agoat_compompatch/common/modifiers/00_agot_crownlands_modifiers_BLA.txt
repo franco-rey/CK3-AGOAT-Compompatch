@@ -1334,8 +1334,8 @@ agot_velaryon_harbor_customs_bla = {
 
 agot_velaryon_foreign_craftsmen_bla = {
 	icon = stewardship_positive
-	building_construction_cost = -0.10
-	building_construction_time = -0.10
+	build_gold_cost = -0.10
+	build_speed = -0.10
 }
 
 agot_velaryon_restricted_foreign_trade_bla = {
@@ -1374,7 +1374,7 @@ agot_velaryon_preserved_old_driftmark_bla = {
 agot_velaryon_new_driftmark_bla = {
 	icon = stewardship_positive
 	development_growth_factor = 0.08
-	building_construction_time = -0.05
+	build_speed = -0.05
 }
 
 agot_velaryon_ancient_harbor_rights_bla = {
@@ -1459,7 +1459,7 @@ agot_velaryon_golden_age_driftmark_bla = {
 	icon = stewardship_positive
 	development_growth_factor = 0.10
 	 tax_mult = 0.08
-	building_construction_time = -0.10
+	build_speed = -0.10
 }
 
 agot_velaryon_mastery_of_the_gullet_bla = {

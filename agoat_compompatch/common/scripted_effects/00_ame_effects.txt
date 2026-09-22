@@ -1,0 +1,290 @@
+﻿# AGOT Submod: All Men Must Serve - Mercenary Service Effects
+# Joining a company (called from ame_service.0001) and returning home (called from the
+# ame_service_ongoing return roll and ame_recall_from_service_interaction).
+
+# Sends root home. Assumes root = the serving/returning character throughout.
+ame_return_home_effect = {
+	if = {
+		limit = { is_imprisoned = yes }
+		# Can't walk home from a cell. has_character_flag = ame_serving is still set, so the next
+		# ame_service_ongoing pulse calls back in here; reschedule sooner (a season, not a full year).
+		trigger_event = {
+			on_action = ame_service_ongoing
+			days = { 80 100 }
+		}
+	}
+	else = {
+		if = {
+			limit = {
+				exists = var:ame_home_liege
+				var:ame_home_liege = { is_alive = yes }
+			}
+			var:ame_home_liege = {
+				if = {
+					limit = { NOT = { root = { is_courtier_of = prev } } }
+					add_courtier = root
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				exists = dynasty.dynast
+				dynasty.dynast = {
+					OR = {
+						is_landed = yes
+						is_ruler = yes
+					}
+				}
+			}
+			dynasty.dynast = {
+				if = {
+					limit = { NOT = { root = { is_courtier_of = prev } } }
+					add_courtier = root
+				}
+			}
+		}
+		else_if = {
+			# The recall interaction also accepts the recipient's house head, not just the dynasty head, so
+			# this fallback must offer the same destination or a house head's recall drops him in the pool.
+			limit = {
+				exists = house.house_head
+				house.house_head = {
+					OR = {
+						is_landed = yes
+						is_ruler = yes
+					}
+				}
+			}
+			house.house_head = {
+				if = {
+					limit = { NOT = { root = { is_courtier_of = prev } } }
+					add_courtier = root
+				}
+			}
+		}
+		else = {
+			move_to_pool = yes
+		}
+
+		# ame_years_of_service hits 2 after the first yearly pulse; the return roll only calls this at >= 3.
+		# The destroy path can still fire after one pulse - same gate applies in the recall interaction.
+		if = {
+			limit = { var:ame_years_of_service >= 2 }
+			add_trait_force_tooltip = ame_mercenary_veteran
+		}
+
+		if = {
+			limit = {
+				exists = var:ame_home_liege
+				var:ame_home_liege = { is_alive = yes }
+			}
+			# Saved and fired before the remove_variable calls below, so ame_service.0011 can still read
+			# var:ame_years_of_service and name the company.
+			save_scope_as = ame_returning_character
+			var:ame_company = {
+				save_scope_as = ame_returning_company
+			}
+			var:ame_home_liege = {
+				trigger_event = ame_service.0011
+			}
+		}
+
+		remove_character_flag = ame_serving
+		remove_variable = ame_company
+		remove_variable = ame_years_of_service
+	}
+}
+
+# Charges the 75-gold service fee; called once per join-company option, with root = the sender/volunteer.
+# Not charged from the no_company_available fallback, so self-volunteering is free.
+ame_charge_service_cost_effect = {
+	if = {
+		limit = { NOT = { root = scope:recipient } }
+		remove_short_term_gold = 75
+	}
+}
+
+# Joins CHARACTER to company COMPANY (a bare title id) and starts the yearly service loop.
+# CHARACTER is explicit since the caller's root is the sender, not the recipient.
+ame_join_company_effect = {
+	title:$COMPANY$.holder = {
+		add_courtier = $CHARACTER$
+	}
+	$CHARACTER$ = {
+		set_variable = {
+			name = ame_company
+			value = title:$COMPANY$
+		}
+		# Start at 1, not 0: ame_service_ongoing increments before its random_events check on the same
+		# pulse, so this keeps the counter matching real elapsed years.
+		set_variable = {
+			name = ame_years_of_service
+			value = 1
+		}
+		trigger_event = {
+			on_action = ame_service_ongoing
+			days = { 340 380 }
+		}
+	}
+}
+
+# COMPANY = bare title id. CAPTAIN = absolute char ref (scope:x); caller gates landless, titleless.
+# Only create_adventurer_title makes a camp, and it dies with its title, so the captain keeps both titles.
+ame_install_captain_effect = {
+	hidden_effect = {
+		$CAPTAIN$ = { create_landless_adventurer_title_effect = { REASON = flag:voluntary FLAVOR_CHAR = $CAPTAIN$ } }
+	}
+	create_title_and_vassal_change = { type = created save_scope_as = ame_install_change add_claim_on_loss = no }
+	title:$COMPANY$ = { change_title_holder = { holder = $CAPTAIN$ change = scope:ame_install_change } }
+	resolve_title_and_vassal_change = scope:ame_install_change
+	scope:new_landless_adventurer_title ?= {
+		# _adj is the name without the article; the camp title supplies its own.
+		set_title_name = $COMPANY$_adj
+		set_coa = title:$COMPANY$
+	}
+	title:$COMPANY$ = {
+		if = {
+			limit = { exists = scope:new_landless_adventurer_title }
+			set_variable = { name = ame_camp_title value = scope:new_landless_adventurer_title }
+		}
+	}
+
+	title:$COMPANY$.holder ?= {
+		if = {
+			limit = { NOT = { has_government = landless_adventurer_government } }
+			change_government = landless_adventurer_government
+		}
+		# A captain raised from a court arrives as his old lord's vassal. Cut him loose the way AGOT's
+		# Blackfyre scenario does; a free company answers no liege.
+		if = {
+			limit = { is_independent_ruler = no }
+			save_scope_as = ame_new_captain_holder
+			create_title_and_vassal_change = { type = independency save_scope_as = ame_indep_change add_claim_on_loss = no }
+			change_liege_or_become_independent = { CHANGE = scope:ame_indep_change VASSAL = scope:ame_new_captain_holder }
+			resolve_title_and_vassal_change = scope:ame_indep_change
+		}
+		if = {
+			limit = { NOT = { has_realm_law = landless_adventurer_succession_law } }
+			add_realm_law = landless_adventurer_succession_law
+		}
+		if = {
+			limit = { has_realm_law = crown_authority_0 }
+			remove_realm_law = crown_authority_0
+		}
+		# skip_effects like AGOT's own history: on_pass is a player-facing purpose change (prestige, flavor).
+		if = {
+			limit = { NOT = { has_realm_law = camp_purpose_mercenaries } }
+			add_realm_law_skip_effects = camp_purpose_mercenaries
+		}
+		domicile = { change_provisions = starting_provisions_value }
+		# Nothing else relocates a revived captain's camp: vanilla's on_title_gained teleport misses its
+		# window since government changes here happen after title-gain. Pitch it at the company's seat.
+		domicile ?= { move_domicile = title:$COMPANY$.title_capital_county.title_province }
+		set_location_to_default = yes
+		# Keeps the captain on the landless-adventurer tally so vanilla's guest lists, AI throttle, and
+		# wanderer spawns still see him.
+		add_to_global_variable_list = { name = laamps_tally target = title:$COMPANY$ }
+		# Fires vanilla's starting courtier seeder unconditionally - no courtiers otherwise.
+		# Self-gates and reschedules on failure.
+		trigger_event = { id = ep3_laamps.1001 weeks = { 2 6 } }
+	}
+
+	# Vanilla and AGOT both stamp these on every adventurer title.
+	# Guarded so a revival of a slot that already carries flag:historical keeps it.
+	title:$COMPANY$ = {
+		if = {
+			limit = { NOT = { has_variable = adventurer_creation_reason } }
+			set_variable = { name = adventurer_creation_reason value = flag:voluntary }
+		}
+		if = {
+			limit = { NOT = { has_variable = adventurer_flavor_char } }
+			set_variable = { name = adventurer_flavor_char value = holder }
+		}
+	}
+}
+
+# COMPANY = bare title id. Refounds under the original id (destroy_if_invalid_heir only cleared the holder).
+# New captain starts weak (small regiment, no bonus gold/prestige) and fills in over time.
+ame_revive_company_effect = {
+	create_character = {
+		age = 35
+		gender = male
+		location = title:$COMPANY$.title_capital_county.title_province
+		culture = title:$COMPANY$.title_capital_county.title_province.culture
+		faith = title:$COMPANY$.title_capital_county.title_province.faith
+		save_scope_as = ame_new_captain
+	}
+	ame_install_captain_effect = { COMPANY = $COMPANY$ CAPTAIN = scope:ame_new_captain }
+
+	title:$COMPANY$.holder ?= {
+		# Runs after the government change above: the regiment belongs to the camp.
+		hidden_effect = {
+			create_maa_regiment = { type = light_footmen check_can_recruit = no size = 2 }
+		}
+	}
+
+	# Prevents an unlucky captain from thrashing revive/destroy on repeat childless deaths.
+	title:$COMPANY$ = {
+		set_variable = { name = ame_reform_cooldown value = yes years = 10 }
+	}
+}
+
+# CHARACTER = char to check. COMPANY = title id last seen in. Grants ame_mercenary_veteran after two
+# yearly ticks (fixed Jan 1) in the SAME company. Tenure = timed flag, not a counter; years must stay integer.
+ame_veteran_backfill_check_effect = {
+	$CHARACTER$ = {
+		if = {
+			limit = {
+				# Male-only trait everywhere else in this mod; a captain's court holds wife and daughters too.
+				is_male = yes
+				NOT = { has_trait = ame_mercenary_veteran }
+				# Real service already tracks tenure via ame_years_of_service; this backfill is only for men
+				# that system never touched.
+				NOT = { has_character_flag = ame_serving }
+			}
+			if = {
+				# Same company survived from a prior, unexpired tick - second sighting, grant.
+				limit = {
+					exists = var:ame_veteran_backfill_tenure
+					var:ame_veteran_backfill_company = title:$COMPANY$
+				}
+				add_trait_force_tooltip = ame_mercenary_veteran
+				remove_variable = ame_veteran_backfill_tenure
+				remove_variable = ame_veteran_backfill_company
+			}
+			else = {
+				# First tick for this company, or a stale flag from a different one - overwritten so this
+				# company starts at zero.
+				set_variable = { name = ame_veteran_backfill_tenure value = yes years = 2 }
+				set_variable = { name = ame_veteran_backfill_company value = title:$COMPANY$ }
+			}
+		}
+		else = {
+			# Already a veteran, or now tracked for real (ame_serving) - drop any stray tenure so a later,
+			# unrelated membership starts counting from zero instead of resuming a stale count.
+			if = {
+				limit = { exists = var:ame_veteran_backfill_tenure }
+				remove_variable = ame_veteran_backfill_tenure
+			}
+			if = {
+				limit = { exists = var:ame_veteran_backfill_company }
+				remove_variable = ame_veteran_backfill_company
+			}
+		}
+	}
+}
+
+# COMPANY = bare title id. Sweeps captain and adult courtiers through the backfill check above.
+# is_adult gates only courtiers - a minor can still inherit and stays ungated; holder check stays open.
+ame_veteran_backfill_apply_to_company_effect = {
+	if = {
+		limit = { exists = title:$COMPANY$.holder }
+		ame_veteran_backfill_check_effect = { CHARACTER = title:$COMPANY$.holder COMPANY = $COMPANY$ }
+		title:$COMPANY$.holder = {
+			every_courtier = {
+				limit = { is_adult = yes }
+				ame_veteran_backfill_check_effect = { CHARACTER = this COMPANY = $COMPANY$ }
+			}
+		}
+	}
+}
