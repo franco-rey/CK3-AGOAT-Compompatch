@@ -312,7 +312,6 @@
 					}
 					every_character_war = {
 						save_temporary_scope_as = war
-
 						if = {
 							limit = {
 								scope:war = {
@@ -418,7 +417,6 @@
 								}
 							}
 						}
-
 						else_if = {
 							limit = {
 								scope:war = {

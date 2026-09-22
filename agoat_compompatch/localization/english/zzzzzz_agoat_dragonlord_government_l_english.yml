@@ -1,0 +1,9 @@
+﻿l_english:
+ dragonlord_oligarchy_government_with_icon:0 "@government_type_dragonlord_oligarchy! $dragonlord_oligarchy_government$"
+ dragonlord_oligarchy_government_vassals_label:0 "$dragonlord_oligarchy_government_adjective$ [obligations|E] are based on [GetPlayer.Custom('GetProvinceAdministrationConcept')]"
+ dragonlord_oligarchy_government_filter_option:0 "Dragonlord Oligarchy"
+ dragonlord_oligarchy_government_filter_option_desc:0 "Only show characters with Dragonlord Oligarchy [government|E]"
+ dragonlord_oligarchy_government_obligations:0 "$dragonlord_oligarchy_government$ [obligations|E]"
+
+ procure_estate_low_rank_tt:0 "They must hold at least a [duchy|E]-tier [title|E]"
+ procure_estate_at_war_tt:0 "You must not be at [war|E] with them"

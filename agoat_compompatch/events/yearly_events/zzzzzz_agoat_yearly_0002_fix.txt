@@ -1,0 +1,214 @@
+﻿#Events run from the yearly_pulse on_action
+namespace = yearly
+
+#Trigger to ensure one of ROOT's children is valid for the seducee role.
+scripted_trigger agoat_yearly_0002_valid_child = {
+	is_available_ai_adult = yes
+	NOT = {
+		has_trait = chaste
+		this = scope:councillor
+	}
+	is_married = no
+	is_concubine = no
+	might_cheat_on_every_partner_trigger = yes
+	is_in_the_same_court_as_or_guest = root
+	can_set_relation_lover_trigger = { CHARACTER = scope:councillor }
+}
+
+#Trigger to ensure a councillor is valid for the secuder role.
+scripted_trigger agoat_yearly_0002_valid_councillor = {
+	is_available_ai_adult = yes
+	NOR = {
+		has_trait = chaste
+		is_spouse_of = root
+	}
+
+	save_temporary_scope_as = councillor
+	root = {
+		any_child = {
+			agoat_yearly_0002_valid_child = yes
+			save_temporary_scope_as = child
+		}
+	}
+	is_attracted_to_gender_of = scope:child
+	might_cheat_on_every_partner_trigger = yes
+}
+
+yearly.0002 = {
+	type = character_event
+	title = yearly.0002.t
+	desc = yearly.0002.desc
+	left_portrait = {
+		character = scope:councillor
+		animation = flirtation
+	}
+	right_portrait = {
+		character = scope:child
+		animation = flirtation_left
+	}
+	theme = seduction
+
+	trigger = {
+		OR = {
+			any_councillor = {
+				agoat_yearly_0002_valid_councillor = yes
+			}
+			any_court_position_holder = {
+				agoat_yearly_0002_valid_councillor = yes
+			}
+		}
+		any_child = {
+			agoat_yearly_0002_valid_child = yes
+		}
+	}
+
+	weight_multiplier = {
+		base = 0.75
+
+		modifier = {
+			add = 0.5
+			any_councillor = {
+				agoat_yearly_0002_valid_councillor = yes
+				has_trait = lustful
+			}
+		}
+		modifier = {
+			add = 0.5
+			any_child = {
+				is_in_the_same_court_as_or_guest = root
+				has_trait = lustful
+			}
+		}
+	}
+
+	immediate = {
+		#Find a valid councillor to use for the seducer.
+		random_councillor = {
+			limit = {
+				agoat_yearly_0002_valid_councillor = yes
+			}
+
+			weight = {
+				base = 10
+
+				modifier = {
+					factor = 2
+					has_trait = lustful
+				}
+				modifier = {
+					factor = 2
+					is_married = no
+				}
+			}
+
+			save_scope_as = councillor
+		}
+		#Find a valid court position to use for the seducer.
+		if = {
+			limit = {
+				NOT = { exists = scope:councillor }
+			}
+			random_court_position_holder = {
+				limit = {
+					agoat_yearly_0002_valid_councillor = yes
+				}
+				weight = {
+					base = 10
+
+					modifier = {
+						factor = 2
+						has_trait = lustful
+					}
+					modifier = {
+						factor = 2
+						is_married = no
+					}
+				}
+				save_scope_as = councillor
+			}
+		}
+
+		#Find one of your valid children to be the seducee.
+		random_child = {
+			limit = {
+				agoat_yearly_0002_valid_child = yes
+			}
+
+			weight = {
+				base = 10
+
+				modifier = {
+					factor = 2
+					has_trait = lustful
+				}
+			}
+
+			save_scope_as = child
+
+			#Create the relationship between the two characters.
+			if = {
+				limit = { exists = scope:councillor }
+				set_relation_lover = { reason = lover_indiscreet target = scope:councillor involved_character = root }
+
+				#Chance to get pregnant
+				hidden_effect = {
+					save_scope_as = root_character
+					had_sex_with_effect = {
+						CHARACTER = scope:councillor
+						PREGNANCY_CHANCE = pregnancy_chance
+					}
+				}
+			}
+		}
+
+		#Save the councillor's lover secret.
+		if = {
+			limit = {
+				exists = scope:councillor
+				exists = scope:child
+			}
+			scope:councillor = {
+				random_secret = {
+					type = secret_lover
+					limit = {
+						secret_target = scope:child
+					}
+					hidden_effect = {
+						reveal_to = root
+					}
+					save_scope_as = secret
+				}
+			}
+		}
+	}
+
+	#Option A: Imprison the councillor.
+	option = {
+		name = yearly.0002.c
+		if = {
+			limit = { exists = scope:councillor }
+			imprison_character_effect = {
+				TARGET = scope:councillor
+				IMPRISONER = root
+			}
+			scope:councillor = {
+				#AGOT Modified to account for paramours
+				if = {
+					limit = { exists = scope:child }
+					remove_lover_or_soulmate_relation_effect = { CHARACTER = scope:child }
+				}
+			}
+		}
+	}
+
+	#Option B: Keep the secret to yourself... for now.
+	option = {
+		name = yearly.0002.d
+		if = {
+			limit = { exists = scope:secret }
+			scope:secret = {
+				reveal_to = root
+			}
+		}
+	}
+}

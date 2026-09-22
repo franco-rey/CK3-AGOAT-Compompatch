@@ -1,13 +1,13 @@
-﻿
+﻿# Bring existing player saves onto the current council title and succession.
 on_game_start_after_lobby = {
 	on_actions = {
 		dragonlord_oligarchy_player_load_repair
 	}
 }
 
-
-
-
+# AGOT's name formatter classifies governments through persistent global
+# lists. Register this administrative derivative after AGOT has processed a
+# government change, and repair characters loaded from older saves.
 on_government_change = {
 	on_actions = {
 		dragonlord_oligarchy_register_agot_government_data
@@ -15,10 +15,10 @@ on_government_change = {
 	}
 }
 
-
-
-
-
+# Native administrative succession may create an ordinary Noble Family estate
+# for a replacement county governor. It must survive: destroying it unlands the
+# governor and immediately starts another replacement cycle. Ordinary families
+# remain unregistered and therefore never count as Dragonlord Families.
 on_noble_family_title_created = {
 	on_actions = {
 		dragonlord_oligarchy_normalize_noble_family_government
@@ -60,23 +60,23 @@ dragonlord_oligarchy_register_agot_government_data = {
 	}
 }
 
-
-
+# Apply naming and succession additions immediately to an existing player save,
+# rather than making the player wait for the next yearly pulse.
 dragonlord_oligarchy_player_load_repair = {
 	effect = {
 			every_player = {
-
-
+			# Existing saves may retain either the old two-year duration or the
+			# temporary ten-day testing duration. Normalize it to one year once.
 			if = {
 				limit = {
-					NOT = { has_character_flag = dragonlord_council_10_day_cooldown_migrated }
+					NOT = { has_character_flag = dragonlord_council_1_year_cooldown_migrated }
 				}
 				if = {
 					limit = { has_character_flag = dragonlord_council_meeting_cooldown }
 					remove_character_flag = dragonlord_council_meeting_cooldown
-					add_character_flag = { flag = dragonlord_council_meeting_cooldown days = 10 }
+					add_character_flag = { flag = dragonlord_council_meeting_cooldown years = 1 }
 				}
-				add_character_flag = dragonlord_council_10_day_cooldown_migrated
+				add_character_flag = dragonlord_council_1_year_cooldown_migrated
 			}
 
 			dragonlord_refresh_bureaucracy_opinion_penalty_effect = yes
@@ -85,6 +85,7 @@ dragonlord_oligarchy_player_load_repair = {
 					top_liege = this
 					government_has_flag = government_is_dragonlord_oligarchy
 				}
+				dragonlord_repair_family_registration_markers_effect = yes
 				dragonlord_enforce_single_high_title_effect = yes
 				dragonlord_normalize_noble_family_governments_effect = yes
 				dragonlord_normalize_realm_vassal_appointment_succession_effect = yes
@@ -114,8 +115,8 @@ dragonlord_oligarchy_player_load_repair = {
 					}
 					add_realm_law_skip_effects = dragonlord_council_election_succession_law
 				}
-
-
+				# Old versions selected families before kingdom destruction. Repair
+				# that ordering once so newly direct counts receive vacant seats.
 				if = {
 					limit = {
 						NOT = { has_character_flag = dragonlord_final_hierarchy_family_selection_migrated }
@@ -131,11 +132,11 @@ dragonlord_oligarchy_player_load_repair = {
 	}
 }
 
-
-
-
-
-
+# A newly landed character is initialized before the grant's final vassal
+# relationship is always visible to succession-law setup. That transient state
+# can give a new count the independent administrative Acclamation law. Repair
+# it once the vassal change has settled; a one-day event covers load/order
+# differences with the native grant pipeline.
 on_vassal_change = {
 	on_actions = {
 		dragonlord_oligarchy_normalize_vassal_appointment_succession
@@ -161,8 +162,8 @@ dragonlord_oligarchy_normalize_vassal_appointment_succession = {
 	}
 }
 
-
-
+# Preserve the single-top-title structure when a kingdom or additional empire
+# is inherited, usurped, granted, or gained by war after founding.
 on_title_gain = {
 	on_actions = {
 		dragonlord_oligarchy_destroy_gained_kingdom
@@ -171,10 +172,10 @@ on_title_gain = {
 	}
 }
 
-
-
-
-
+# Administrative appointments and inheritance may select the territorial
+# governorship as primary after a Dragonlord dignity has already been created.
+# Correct that immediately on title gain and, for existing saves, on the next
+# monthly pulse.
 monthly_playable_pulse = {
 	on_actions = {
 		dragonlord_oligarchy_register_agot_government_data
@@ -260,18 +261,18 @@ dragonlord_oligarchy_enforce_family_primary_title = {
 	}
 }
 
-
-
-
+# Re-evaluate the ranking once per year. yearly_playable_pulse fires for every
+# playable ruler, so restricting it to independent Dragonlord rulers produces
+# one calculation per Freehold.
 yearly_playable_pulse = {
 	on_actions = {
 		dragonlord_oligarchy_yearly_fourteen_dragonlords
 	}
 }
 
-
-
-
+# Keep the House bonus close to changes in dragon bonds without evaluating all
+# forty Families every month. The stored list also lets us cleanly retire the
+# modifier if the realm abandons the Dragonlord Oligarchy.
 quarterly_playable_pulse = {
 	on_actions = {
 		dragonlord_oligarchy_quarterly_tamed_dragon_influence
@@ -323,9 +324,9 @@ dragonlord_oligarchy_yearly_fourteen_dragonlords = {
 				government_has_flag = government_is_dragonlord_oligarchy
 			}
 			dragonlord_enforce_single_high_title_effect = yes
-
-
-
+			# New families are normalized immediately. This yearly pass migrates
+			# older saves and repairs unusual title transfers without destroying
+			# ordinary Noble Family titles or their estates.
 			dragonlord_normalize_noble_family_governments_effect = yes
 			dragonlord_normalize_realm_vassal_appointment_succession_effect = yes
 			primary_title = {
@@ -338,8 +339,8 @@ dragonlord_oligarchy_yearly_fourteen_dragonlords = {
 				}
 				add_realm_law_skip_effects = dragonlord_council_election_succession_law
 			}
-
-
+			# Apply the final-hierarchy family selection migration to AI realms as
+			# well as player realms, once per existing Freehold.
 			if = {
 				limit = {
 					NOT = { has_character_flag = dragonlord_final_hierarchy_family_selection_migrated }
@@ -347,8 +348,8 @@ dragonlord_oligarchy_yearly_fourteen_dragonlords = {
 				dragonlord_repair_post_kingdom_family_selection_effect = yes
 				add_character_flag = dragonlord_final_hierarchy_family_selection_migrated
 			}
-
-
+			# Repair realms founded by an earlier broken version of the decision.
+			# This runs only when not a single registered family title survived.
 			if = {
 				limit = {
 					NOR = {
@@ -371,8 +372,8 @@ dragonlord_oligarchy_yearly_fourteen_dragonlords = {
 			dragonlord_recalculate_tamed_dragon_influence_effect = yes
 		}
 		else = {
-
-
+			# If the realm has ceased to use the government, retire all stored
+			# Fourteen Dragonlords statuses instead of leaving stale modifiers.
 			dragonlord_clear_fourteen_attribute_modifiers_effect = yes
 			primary_title = {
 				if = {
@@ -396,8 +397,8 @@ dragonlord_oligarchy_yearly_fourteen_dragonlords = {
 	}
 }
 
-
-
+# Do not leave the status modifier behind when a registered family title is
+# destroyed between yearly recalculations.
 on_title_destroyed = {
 	on_actions = {
 		dragonlord_oligarchy_destroyed_family_cleanup
@@ -412,11 +413,28 @@ dragonlord_oligarchy_destroyed_family_cleanup = {
 		}
 	}
 	effect = {
+		if = {
+			limit = {
+				NOT = {
+					house ?= {
+						any_house_member = {
+							any_held_title = {
+								is_noble_family_title = yes
+								has_variable = dragonlord_family_title
+								NOT = { this = scope:landed_title }
+							}
+						}
+					}
+				}
+			}
 			house ?= {
 				dragonlord_remove_fourteen_attribute_modifiers_from_house_effect = yes
 				remove_house_modifier = dragonlord_fourteen_dragonlords_house_modifier
-			dragonlord_clear_tamed_dragon_influence_effect = yes
-			remove_variable = dragonlord_is_fourteen_dragonlord
+				dragonlord_clear_tamed_dragon_influence_effect = yes
+				remove_variable = dragonlord_is_fourteen_dragonlord
+				remove_variable = dragonlord_is_registered_family
+			}
+			remove_character_flag = dragonlord_family_head
 		}
 	}
 }

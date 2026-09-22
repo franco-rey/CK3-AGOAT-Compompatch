@@ -1,0 +1,78 @@
+﻿lv_aurion_settle_valyria_effect = {
+	save_scope_as = lv_aurion
+	title:c_valyria.title_province = { save_scope_as = lv_aurion_seat }
+
+	scope:lv_aurion_seat = {
+		if = {
+			limit = { has_province_modifier = agot_ruin_reconstruction }
+			remove_province_modifier = agot_ruin_reconstruction
+		}
+		if = { limit = { has_building = large_ruin_04 } remove_building = large_ruin_04 }
+		else_if = { limit = { has_building = large_ruin_03 } remove_building = large_ruin_03 }
+		else_if = { limit = { has_building = large_ruin_02 } remove_building = large_ruin_02 }
+		else_if = { limit = { has_building = large_ruin_01 } remove_building = large_ruin_01 }
+		else_if = { limit = { has_building = medium_ruin_04 } remove_building = medium_ruin_04 }
+		else_if = { limit = { has_building = medium_ruin_03 } remove_building = medium_ruin_03 }
+		else_if = { limit = { has_building = medium_ruin_02 } remove_building = medium_ruin_02 }
+		else_if = { limit = { has_building = medium_ruin_01 } remove_building = medium_ruin_01 }
+		else_if = { limit = { has_building = small_ruin_04 } remove_building = small_ruin_04 }
+		else_if = { limit = { has_building = small_ruin_03 } remove_building = small_ruin_03 }
+		else_if = { limit = { has_building = small_ruin_02 } remove_building = small_ruin_02 }
+		else_if = { limit = { has_building = small_ruin_01 } remove_building = small_ruin_01 }
+		else_if = { limit = { has_building = ruin_renowned_01 } remove_building = ruin_renowned_01 }
+		if = {
+			limit = { NOT = { has_holding_type = castle_holding } }
+			set_holding_type = castle_holding
+		}
+		if = {
+			limit = { NOT = { has_building = castle_02 } }
+			add_building = castle_02
+		}
+	}
+
+	get_title = title:c_valyria
+	if = {
+		limit = { has_title = title:c_valyria }
+		set_realm_capital = title:c_valyria
+	}
+
+	if = {
+		limit = { any_held_title = { has_variable = adventurer_creation_reason } }
+		destroy_laamp_effect = { ADVENTURER = scope:lv_aurion }
+	}
+
+	if = {
+		limit = {
+			NOR = {
+				has_government = lp_feudal_government
+				has_government = feudal_government
+				has_government = clan_government
+				has_government = tribal_government
+				government_has_flag = government_is_administrative
+			}
+		}
+		if = {
+			limit = { agot_is_valid_lp_feudal_government_target = yes }
+			change_government = lp_feudal_government
+		}
+		else = {
+			change_government = feudal_government
+		}
+	}
+
+	title:c_valyria = {
+		set_county_faith = scope:lv_aurion.faith
+		if = {
+			limit = { culture = culture:unknown_culture }
+			set_county_culture = scope:lv_aurion.culture
+		}
+		generate_coa = yes
+		every_county_province = { barony ?= { generate_coa = yes } }
+	}
+	if = {
+		limit = { exists = scope:lv_aurion.house }
+		scope:lv_aurion_seat.barony ?= { set_coa = scope:lv_aurion.house }
+	}
+
+	set_primary_title_to = title:c_valyria
+}

@@ -1,0 +1,7 @@
+﻿l_english:
+ norvos_government_with_icon:0 "@government_type_administrative! $norvos_government$"
+ norvos_government_realm:0 "Norvos"
+
+ oligarchic_government_vassals_label:0 "$oligarchic_government_adjective$ [obligations|E] are based on [GetPlayer.Custom('GetProvinceAdministrationConcept')]"
+ oligarchic_government_filter_option:0 "Oligarchic"
+ oligarchic_government_filter_option_desc:0 "Only show characters with Oligarchic [government|E]"

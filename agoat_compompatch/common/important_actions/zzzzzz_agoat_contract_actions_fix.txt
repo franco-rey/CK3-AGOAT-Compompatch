@@ -38,7 +38,14 @@
 			AND = {
 				exists = scope:task_contract
 				scope:task_contract = {
-				"task_contract_location.squared_distance(root.location)" > define:NTaskContract|ADVENTURER_DISTANCE_RESTRICTION
+					trigger_if = {
+						limit = {
+							exists = task_contract_location
+							exists = root.location
+						}
+						"task_contract_location.squared_distance(root.location)" > define:NTaskContract|ADVENTURER_DISTANCE_RESTRICTION
+					}
+					trigger_else = { always = no }
 				}
 			}
 			any_character_active_contract = { }

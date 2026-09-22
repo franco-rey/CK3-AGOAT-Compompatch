@@ -788,47 +788,53 @@ gr_internal_obituary_processing = {
 
 
 				if = {
-					limit = { root = { OR = { death_reason = death_natural_causes death_reason = death_old_age } } }
-					set_variable = { name = gr_death_reason value = flag:old_age }
-				}
-				else_if = {
-					limit = { root = { death_reason = death_battle } }
-					set_variable = { name = gr_death_reason value = flag:battle }
-				}
-				else_if = {
-					limit = { root = { OR = { death_reason = death_murder_known death_reason = death_murder death_reason = death_assassination death_reason = death_mysterious death_reason = death_plotting death_reason = death_poison } } }
-					set_variable = { name = gr_death_reason value = flag:murder }
-				}
-				else_if = {
-					limit = { root = { OR = { death_reason = death_execution death_reason = death_execution_blood_eagle death_reason = death_execution_blot } } }
-					set_variable = { name = gr_death_reason value = flag:execution }
-				}
-				else_if = {
-					limit = { root = { OR = { death_reason = death_childbirth death_reason = death_delivery } } }
-					set_variable = { name = gr_death_reason value = flag:childbirth }
-				}
-				else_if = {
-					limit = { root = { OR = {
-						death_reason = death_bubonic_plague
-						death_reason = death_smallpox
-						death_reason = death_consumption
-						death_reason = death_cancer
-						death_reason = death_leper
-						death_reason = death_great_pox
-						death_reason = death_typhus
-						death_reason = death_pneumonic
-						death_reason = death_ill
-						death_reason = death_measles
-						death_reason = death_dysentery
-						death_reason = death_ergotism
-						death_reason = death_camp_fever
-						death_reason = death_horrible_disease
-					} } }
-					set_variable = { name = gr_death_reason value = flag:disease }
-				}
-				else_if = {
-					limit = { root = { OR = { death_reason = death_wounds death_reason = death_duel } } }
-					set_variable = { name = gr_death_reason value = flag:wounds }
+					limit = { root = { is_alive = no } }
+					if = {
+						limit = { root = { OR = { death_reason = death_natural_causes death_reason = death_old_age } } }
+						set_variable = { name = gr_death_reason value = flag:old_age }
+					}
+					else_if = {
+						limit = { root = { death_reason = death_battle } }
+						set_variable = { name = gr_death_reason value = flag:battle }
+					}
+					else_if = {
+						limit = { root = { OR = { death_reason = death_murder_known death_reason = death_murder death_reason = death_assassination death_reason = death_mysterious death_reason = death_plotting death_reason = death_poison } } }
+						set_variable = { name = gr_death_reason value = flag:murder }
+					}
+					else_if = {
+						limit = { root = { OR = { death_reason = death_execution death_reason = death_execution_blood_eagle death_reason = death_execution_blot } } }
+						set_variable = { name = gr_death_reason value = flag:execution }
+					}
+					else_if = {
+						limit = { root = { OR = { death_reason = death_childbirth death_reason = death_delivery } } }
+						set_variable = { name = gr_death_reason value = flag:childbirth }
+					}
+					else_if = {
+						limit = { root = { OR = {
+							death_reason = death_bubonic_plague
+							death_reason = death_smallpox
+							death_reason = death_consumption
+							death_reason = death_cancer
+							death_reason = death_leper
+							death_reason = death_great_pox
+							death_reason = death_typhus
+							death_reason = death_pneumonic
+							death_reason = death_ill
+							death_reason = death_measles
+							death_reason = death_dysentery
+							death_reason = death_ergotism
+							death_reason = death_camp_fever
+							death_reason = death_horrible_disease
+						} } }
+						set_variable = { name = gr_death_reason value = flag:disease }
+					}
+					else_if = {
+						limit = { root = { OR = { death_reason = death_wounds death_reason = death_duel } } }
+						set_variable = { name = gr_death_reason value = flag:wounds }
+					}
+					else = {
+						set_variable = { name = gr_death_reason value = flag:unknown }
+					}
 				}
 				else = {
 					set_variable = { name = gr_death_reason value = flag:unknown }

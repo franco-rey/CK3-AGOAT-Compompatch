@@ -33,7 +33,6 @@ on_combat_end_winner = {
 
 gr_internal_battle_tracking = {
 	effect = {
-
 		if = {
 			limit = {
 				exists = side_commander

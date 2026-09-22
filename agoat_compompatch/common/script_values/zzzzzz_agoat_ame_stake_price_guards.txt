@@ -1,0 +1,41 @@
+﻿ame_stake_tier_1_price_value = {
+	value = 250
+	if = {
+		limit = {
+			trigger_if = {
+				limit = { exists = scope:ame_target_company }
+				scope:ame_target_company = title:d_laamp_merc_golden_company
+			}
+			trigger_else = { always = no }
+		}
+		multiply = 3
+	}
+}
+
+ame_stake_tier_2_price_value = {
+	value = 600
+	if = {
+		limit = {
+			trigger_if = {
+				limit = { exists = scope:ame_target_company }
+				scope:ame_target_company = title:d_laamp_merc_golden_company
+			}
+			trigger_else = { always = no }
+		}
+		multiply = 3
+	}
+}
+
+ame_stake_tier_3_price_value = {
+	value = 1500
+	if = {
+		limit = {
+			trigger_if = {
+				limit = { exists = scope:ame_target_company }
+				scope:ame_target_company = title:d_laamp_merc_golden_company
+			}
+			trigger_else = { always = no }
+		}
+		multiply = 3
+	}
+}

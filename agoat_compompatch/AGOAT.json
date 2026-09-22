@@ -925,6 +925,12 @@
       "enabled": true,
       "position": 153,
       "steamId": "3795793975"
+    },
+    {
+      "displayName": "AGOT - Holdings Art",
+      "enabled": true,
+      "position": 154,
+      "steamId": "3013743552"
     }
   ]
 }

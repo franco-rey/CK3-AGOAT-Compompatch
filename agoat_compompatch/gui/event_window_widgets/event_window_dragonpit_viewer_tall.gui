@@ -64,7 +64,7 @@
 									text_single = {
 										name = "title_name"
 										text = "[Scope.Title.GetNameNoTooltip]"
-										using = Font_Size_Large
+										using = Font_Size_Big
 										align = center
 										position = { 100 30 }
 									}

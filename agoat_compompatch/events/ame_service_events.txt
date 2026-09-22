@@ -1,26 +1,12 @@
-﻿
-
-
-
-
-
-
-
-
-
-
-
-
+﻿# AGOT Submod: All Men Must Serve - Service Events
+# Root is the serving son unless the event says otherwise.
 
 namespace = ame_service
 
-
-
-
-
-
-
+# Page 1 of 3 (companies 1-7 of 21, rest on .0003/.0004). root = sender, scope:recipient = the son.
+# scope:recipient is saved before this fires and survives the page-flip trigger_events and the 0002 delay.
 ame_service.0001 = {
+	# root stays the sender: CK3 only pops a character_event to the player's own character.
 	type = character_event
 	title = ame_service.0001.t
 	desc = ame_service.0001.desc
@@ -135,6 +121,49 @@ ame_service.0001 = {
 		ai_chance = { base = 100 }
 	}
 	option = {
+		name = ame_service.0001.look_further_afield
+		# Fallback trigger below must exactly negate this 21-way check, since the fallback option only fires
+		# when every regular option fails; drift between the two leaves scope:recipient never cleared.
+		trigger = {
+			ame_any_company_available_trigger = { REFERENCE = scope:recipient.var:ame_home_liege }
+		}
+		trigger_event = ame_service.0003
+		ai_chance = { base = 100 }
+	}
+	option = {
+		name = ame_service.0001.no_company_available
+		# Negates ame_any_company_available_trigger instead of repeating each of the 21 checks.
+		trigger = {
+			NOT = {
+				ame_any_company_available_trigger = { REFERENCE = scope:recipient.var:ame_home_liege }
+			}
+		}
+		# Belt-and-suspenders: still shown if the trigger above ever drifts from the actual company list
+		# (for example a 22nd company added and forgotten in one list but not the other).
+		fallback = yes
+		scope:recipient = {
+			if = {
+				limit = { has_character_flag = ame_serving }
+				remove_character_flag = ame_serving
+			}
+			remove_variable = ame_home_liege
+		}
+		ai_chance = { base = 100 }
+	}
+}
+
+# Page 2 of 3 (companies 8-14 of 21). root/scope:recipient carry over from page 1 unchanged.
+# trigger_event doesn't reroot; reached only from 0001/0004's navigation, fires immediately.
+ame_service.0003 = {
+	type = character_event
+	title = ame_service.0001.t
+	desc = ame_service.0003.desc
+	theme = martial
+
+	left_portrait = root
+	right_portrait = scope:recipient
+
+	option = {
 		name = ame_service.0001.join_jolly_fellows
 		trigger = {
 			ame_company_available_trigger = {
@@ -239,6 +268,29 @@ ame_service.0001 = {
 		}
 		ai_chance = { base = 100 }
 	}
+	option = {
+		name = ame_service.0003.look_further_afield
+		trigger_event = ame_service.0004
+		ai_chance = { base = 100 }
+	}
+	option = {
+		name = ame_service.0003.look_back
+		trigger_event = ame_service.0001
+		ai_chance = { base = 5 }
+	}
+}
+
+# Company choice, page 3 of 3 (companies 15-21 of 21). Reached only from ame_service.0003's
+# "Look Further Afield" option; same root and scope:recipient handling as page 2 above.
+ame_service.0004 = {
+	type = character_event
+	title = ame_service.0001.t
+	desc = ame_service.0004.desc
+	theme = martial
+
+	left_portrait = root
+	right_portrait = scope:recipient
+
 	option = {
 		name = ame_service.0001.join_adventurers
 		trigger = {
@@ -345,29 +397,14 @@ ame_service.0001 = {
 		ai_chance = { base = 100 }
 	}
 	option = {
-		name = ame_service.0001.no_company_available
-
-
-		trigger = {
-			NOT = {
-				ame_any_company_available_trigger = { REFERENCE = scope:recipient.var:ame_home_liege }
-			}
-		}
-
-
-		fallback = yes
-		scope:recipient = {
-			if = {
-				limit = { has_character_flag = ame_serving }
-				remove_character_flag = ame_serving
-			}
-			remove_variable = ame_home_liege
-		}
-		ai_chance = { base = 100 }
+		name = ame_service.0004.look_back
+		trigger_event = ame_service.0003
+		ai_chance = { base = 5 }
 	}
 }
 
 
+# Settling in. Pure flavor, no mechanical effect, fired one day after joining a company.
 ame_service.0002 = {
 	type = character_event
 	title = ame_service.0002.t
@@ -381,9 +418,8 @@ ame_service.0002 = {
 	}
 }
 
-
-
-
+# Reunion letter, fired by ame_return_home_effect / ame_recall_from_service_interaction; root =
+# var:ame_home_liege. Tone splits on haunted/tempered traits first, then years served.
 ame_service.0011 = {
 	type = letter_event
 	opening = ame_service.0011.opening
@@ -417,9 +453,8 @@ ame_service.0011 = {
 				}
 				desc = ame_service.0011.desc_long_service
 			}
-
-
-
+			# Fires under 2 years served, before desc_simple's "thinner and quieter" framing would fit.
+			# Can't overlap the haunted branch above, which needs years_of_service >= 2 to grant.
 			triggered_desc = {
 				trigger = {
 					scope:ame_returning_character = { var:ame_years_of_service < 2 }
@@ -436,8 +471,8 @@ ame_service.0011 = {
 	}
 }
 
-
-
+# A son who has inherited the very company he was serving in. Fired by ame_service_ongoing before it
+# clears the vars this desc reads. Root = the son, as captain.
 ame_service.0012 = {
 	type = character_event
 	title = ame_service.0012.t
@@ -451,8 +486,8 @@ ame_service.0012 = {
 	}
 }
 
-
-
+# Death in service. Drawn from ame_service_ongoing's random_events. weight_multiplier scales the
+# baseline weight up while the company is at war (the "real teeth" half of the mixture).
 ame_service.0020 = {
 	type = character_event
 	title = ame_service.0020.t
@@ -472,6 +507,12 @@ ame_service.0020 = {
 			var:ame_company.holder = { is_at_war = yes }
 			factor = 4
 		}
+		# Half weight for a son serving in a company his home liege owns outright (war modifier above).
+		# See ame_serving_under_own_patron_trigger for what "owns outright" means.
+		modifier = {
+			ame_serving_under_own_patron_trigger = yes
+			factor = 0.5
+		}
 	}
 
 	option = {
@@ -486,8 +527,8 @@ ame_service.0020 = {
 				exists = var:ame_company.holder
 				var:ame_company.holder = { is_alive = yes }
 			}
-
-
+			# Saved and fired before the remove_variable calls below: ame_service.0021 still needs
+			# var:ame_years_of_service and the company's name.
 			save_scope_as = ame_fallen_character
 			var:ame_company = {
 				save_scope_as = ame_fallen_company
@@ -515,8 +556,8 @@ ame_service.0020 = {
 	}
 }
 
-
-
+# Letter home reporting a death, fired by 0020 with root = var:ame_home_liege and the fallen
+# character/company/reporting captain already saved to scope.
 ame_service.0021 = {
 	type = letter_event
 	opening = ame_service.0021.opening
@@ -528,11 +569,8 @@ ame_service.0021 = {
 	}
 }
 
-
-
-
-
-
+# Horrors of war. Mutually exclusive with ame_tempered_by_war (cross-guard below): tempered stays tempered
+# and just pays the stress cost; otherwise escalates ame_haunted_by_war tier 1->2, capped.
 ame_service.0030 = {
 	type = character_event
 	title = ame_service.0030.t
@@ -550,6 +588,12 @@ ame_service.0030 = {
 		modifier = {
 			var:ame_company.holder = { is_at_war = yes }
 			factor = 3
+		}
+		# Same modifier as ame_service.0020's weight_multiplier: half weight for a son serving in a
+		# company his home liege owns outright.
+		modifier = {
+			ame_serving_under_own_patron_trigger = yes
+			factor = 0.5
 		}
 	}
 
@@ -571,7 +615,7 @@ ame_service.0030 = {
 			}
 			else_if = {
 				limit = { has_trait = ame_haunted_by_war_2 }
-
+				# Already at the worst tier. No further escalation, just the stress below.
 			}
 			else = {
 				change_trait_rank = {
@@ -592,8 +636,8 @@ ame_service.0030 = {
 	}
 }
 
-
-
+# Reward flavor: gold, prestige, camaraderie or a skill point, rolled in immediate and read back in
+# desc via a local_var (the ep3_laamp_flavour_ewan idiom).
 ame_service.0040 = {
 	type = character_event
 	title = ame_service.0040.t
@@ -646,6 +690,12 @@ ame_service.0040 = {
 				}
 			}
 		}
+		# Flat top-up on whatever the roll above gave, for a son serving in a company his home liege owns
+		# outright - same rule as ame_service.0020's weight_multiplier.
+		if = {
+			limit = { ame_serving_under_own_patron_trigger = yes }
+			add_gold = minor_gold_value
+		}
 	}
 
 	option = {
@@ -653,8 +703,8 @@ ame_service.0040 = {
 	}
 }
 
-
-
+# Minor wound/risk flavor. Reuses vanilla increase_wounds_effect, which escalates to a real
+# death_reason itself past wound rank 3, so no extra death handling is needed here.
 ame_service.0050 = {
 	type = character_event
 	title = ame_service.0050.t
@@ -677,10 +727,8 @@ ame_service.0050 = {
 	}
 }
 
-
-
-
-
+# Tempered by war, the positive mirror of 0030 (same trigger, opposite outcome). Mutually exclusive
+# with ame_haunted_by_war: haunted stays haunted and just gets the stress relief below.
 ame_service.0060 = {
 	type = character_event
 	title = ame_service.0060.t
@@ -719,7 +767,7 @@ ame_service.0060 = {
 			}
 			else_if = {
 				limit = { has_trait = ame_tempered_by_war_2 }
-
+				# Already at the best tier. No further escalation, just the stress relief below.
 			}
 			else = {
 				change_trait_rank = {

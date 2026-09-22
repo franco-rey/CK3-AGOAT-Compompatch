@@ -1,0 +1,466 @@
+﻿@laamp_base_contract_schemes_1782_min_gold_value = 50
+
+namespace = laamp_base_contract_schemes
+
+laamp_base_contract_schemes.1782 = {
+	type = character_event
+	title = laamp_base_contract_schemes.1782.t
+	desc = {
+		random_valid = {
+			desc = laamp_base_contract_schemes.1782.desc.intro.1
+			desc = laamp_base_contract_schemes.1782.desc.intro.2
+			desc = laamp_base_contract_schemes.1782.desc.intro.3
+			desc = laamp_base_contract_schemes.1782.desc.intro.4
+			desc = laamp_base_contract_schemes.1782.desc.intro.5
+		}
+		# Do we know the person?
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					has_any_moderate_good_relationship_with_character_trigger = { CHARACTER = scope:victim }
+				}
+				desc = laamp_base_contract_schemes.1782.desc.connection.negative
+			}
+			triggered_desc = {
+				trigger = {
+					has_any_moderate_bad_relationship_with_character_trigger = { CHARACTER = scope:victim }
+				}
+				desc = laamp_base_contract_schemes.1782.desc.connection.positive
+			}
+			triggered_desc = {
+				trigger = { is_consort_of = scope:victim }
+				desc = laamp_base_contract_schemes.1782.desc.connection.family_or_consort
+			}
+			desc = laamp_base_contract_schemes.1782.desc.connection.none
+		}
+		desc = boilerplate.paragraph
+		# What type of person are they?
+		first_valid = {
+			triggered_desc = {
+				trigger = { scope:victim_type = flag:pool }
+				desc = laamp_base_contract_schemes.1782.desc.victim_type.pool
+			}
+			triggered_desc = {
+				trigger = { scope:victim_type = flag:baron }
+				desc = laamp_base_contract_schemes.1782.desc.victim_type.baron
+			}
+			triggered_desc = {
+				trigger = { scope:victim_type = flag:travelling_ruler }
+				desc = laamp_base_contract_schemes.1782.desc.victim_type.travelling_ruler
+			}
+			triggered_desc = {
+				trigger = { scope:victim_type = flag:travelling_nobody }
+				desc = laamp_base_contract_schemes.1782.desc.victim_type.travelling_nobody
+			}
+			triggered_desc = {
+				trigger = { scope:victim_type = flag:laamp }
+				desc = laamp_base_contract_schemes.1782.desc.victim_type.laamp
+			}
+			triggered_desc = {
+				trigger = { scope:victim_type = flag:fallback }
+				desc = laamp_base_contract_schemes.1782.desc.victim_type.fallback
+			}
+		}
+		desc = boilerplate.paragraph
+		desc = laamp_base_contract_schemes.1782.desc.outro
+	}
+	theme = martial
+	left_portrait = {
+		character = root
+		animation = spymaster
+	}
+	right_portrait = {
+		character = scope:victim
+		animation = happiness
+	}
+	override_background = { reference = wilderness }
+
+	immediate = {
+		# Nab our contract.
+		random_character_active_contract = {
+			task_contract_type = laamp_base_1041
+			save_scope_as = task_contract
+		}
+		# Alright, gather our potential victims.
+		## First we wipe anyone who might've been here to begin with.
+		every_in_list = {
+			list = potential_chars_list
+			remove_from_list = potential_chars_list
+		}
+		## Pool chars.
+		### Current location.
+		every_pool_character = {
+			province = root.location
+			limit = { agoat_laamp_1782_valid_target_char_trigger = yes }
+			add_to_list = potential_chars_list
+			add_to_list = is_pool_char_list
+		}
+		### Neighbouring locations.
+		location.duchy = {
+			every_title_to_title_neighboring_and_across_water_duchy = {
+				title_capital_county.title_province = { save_scope_as = province_temp }
+				every_pool_character = {
+					province = scope:province_temp
+					limit = { agoat_laamp_1782_valid_target_char_trigger = yes }
+					add_to_list = potential_chars_list
+					add_to_list = is_pool_char_list
+				}
+			}
+		}
+		## Local barons & passers by.
+		location.duchy = {
+			every_dejure_vassal_title_holder = {
+				limit = { highest_held_title_tier = tier_barony }
+				# Grab suitable barons.
+				if = {
+					limit = {
+						agoat_laamp_1782_valid_target_char_trigger = yes
+						is_available = yes
+					}
+					add_to_list = potential_chars_list
+					add_to_list = is_baron_char_list
+				}
+				# And available travellers.
+				primary_title.title_province = {
+					every_character_in_location = {
+						limit = {
+							agoat_laamp_1782_valid_target_char_trigger = yes
+							is_travelling = yes
+							is_landless_adventurer = no
+						}
+						add_to_list = potential_chars_list
+						add_to_list = is_travelling_char_list
+					}
+				}
+			}
+		}
+		## Fellow laamps.
+		### There can be quite a few of these, so we only check such for players and notable laamps.
+		if = {
+			limit = {
+				OR = {
+					is_ai = no
+					prestige_level >= high_prestige_level
+				}
+			}
+			every_in_global_list = {
+				variable = laamps_tally
+				limit = {
+					trigger_if = {
+						limit = { exists = holder }
+						holder = {
+							domicile = {
+								domicile_location.duchy = root.location.duchy
+								# Laamps with defences can't be ambushed.
+								NOT = { has_domicile_building_or_higher = camp_perimeter_01 }
+							}
+							agoat_laamp_1782_valid_target_char_trigger = yes
+							this != root
+						}
+					}
+					trigger_else = { always = no }
+				}
+				holder = {
+					add_to_list = potential_chars_list
+					add_to_list = is_laamp_char_list
+				}
+			}
+		}
+		# Aaaand process them to pick out the one we want.
+		random_in_list = {
+			list = potential_chars_list
+			weight = {
+				# Take our wealth as the standard measurement.
+				modifier = {
+					add = {
+						value = gold
+						subtract = @laamp_base_contract_schemes_1782_min_gold_value
+					}
+					always = yes
+				}
+				# Then we really want to get people travelling if we can.
+				modifier = {
+					add = 250
+					is_travelling = yes
+				}
+				# And anyone who _isn't_ a baron is a great target.
+				modifier = {
+					add = {
+						value = highest_held_title_tier
+						multiply = 100
+					}
+					is_ruler = yes
+				}
+				# Finally, hyper-prio other laamps, as that helps the world feel alive.
+				modifier = {
+					add = 1000
+					has_government = landless_adventurer_government
+				}
+			}
+			save_scope_as = victim
+			# Log them as someone we shouldn't rob again this contract.
+			scope:task_contract = {
+				add_to_variable_list = {
+					name = previous_victims_list
+					target = scope:victim
+				}
+			}
+		}
+		## If we managed to _not_ grab anyone, then generate someone as a fallback.
+		if = {
+			limit = {
+				NOT = { exists = scope:victim }
+			}
+			create_character = {
+				template = merchant_template
+				culture = location.culture
+				faith = location.faith
+				location = root.location
+				save_scope_as = victim
+			}
+		}
+		hidden_effect = {
+			scope:victim = {
+				if = {
+					limit = {
+						gold < 50
+					}
+					add_gold = {
+						value = {
+							integer_range = {
+								min = 50
+								max = 200
+							}
+						}
+					}
+				}
+			}
+		}
+		# Cool, now that we've got a victim, let's set up some scopes derived from them.
+		## See what list they came from for the desc.
+		scope:victim = {
+			switch = {
+				trigger = is_in_list
+				is_pool_char_list = {
+					save_scope_value_as = {
+						name = victim_type
+						value = flag:pool
+					}
+				}
+				is_baron_char_list = {
+					save_scope_value_as = {
+						name = victim_type
+						value = flag:baron
+					}
+				}
+				is_travelling_char_list = {
+					if = {
+						limit = { is_ruler = yes }
+						save_scope_value_as = {
+							name = victim_type
+							value = flag:travelling_ruler
+						}
+					}
+					else = {
+						save_scope_value_as = {
+							name = victim_type
+							value = flag:travelling_nobody
+						}
+					}
+				}
+				is_laamp_char_list = {
+					save_scope_value_as = {
+						name = victim_type
+						value = flag:laamp
+					}
+				}
+				fallback = {
+					save_scope_value_as = {
+						name = victim_type
+						value = flag:fallback
+					}
+				}
+			}
+		}
+		## Plus set up how much gold we might be able to purloin from them.
+		save_scope_value_as = {
+			name = haul
+			value = {
+				value = scope:victim.gold
+				multiply = 0.2
+				min = 50
+				max = {
+					value = scope:victim.highest_held_title_tier
+					multiply = 100
+					min = 100
+				}
+			}
+		}
+		save_scope_value_as = {
+			name = haul_half
+			value = {
+				value = scope:haul
+				multiply = 0.5
+				ceiling = yes
+			}
+		}
+		## And what our gallowbait gain would be.
+		save_scope_value_as = {
+			name = gallowsbait_xp_win
+			value = {
+				add = scope:victim.highest_held_title_tier
+				add = 1
+			}
+		}
+		save_scope_value_as = {
+			name = gallowsbait_xp_lose
+			value = {
+				add = scope:gallowsbait_xp_win
+				multiply = 0.5
+				floor = yes
+				min = 1
+			}
+		}
+		## Finally, check our skills for the duel diffs.
+		save_scope_value_as = {
+			name = prowess_diff
+			value = {
+				add = scope:victim.prowess
+				add = highest_held_title_tier
+				min = high_skill_rating
+			}
+		}
+		save_scope_value_as = {
+			name = martial_diff
+			value = {
+				add = scope:victim.martial
+				add = highest_held_title_tier
+				min = high_skill_rating
+			}
+		}
+		save_scope_value_as = {
+			name = intrigue_diff
+			value = {
+				add = scope:victim.intrigue
+				add = highest_held_title_tier
+				min = decent_skill_rating
+			}
+		}
+	}
+
+	# Prowess duel — default.
+	option = {
+		name = laamp_base_contract_schemes.1782.a
+		skill = prowess
+
+		agoat_laamp_1782_roll_duel_effect = {
+			SKILL = prowess
+			DIFF = scope:prowess_diff
+			WIN_CHANCE = 50
+			LOSE_CHANCE = 50
+			OPTION = a
+			GOLD = scope:haul
+		}
+
+		stress_impact = {
+			arbitrary = miniscule_stress_impact_loss
+			just = minor_stress_impact_gain
+		}
+		ai_chance = {
+			base = 1
+			modifier = {
+				add = {
+					value = prowess
+					subtract = scope:victim.prowess
+					multiply = 5
+				}
+				always = yes
+			}
+		}
+	}
+
+	# Martial duel — default.
+	option = {
+		name = laamp_base_contract_schemes.1782.b
+		skill = martial
+
+		agoat_laamp_1782_roll_duel_effect = {
+			SKILL = martial
+			DIFF = scope:martial_diff
+			WIN_CHANCE = 50
+			LOSE_CHANCE = 50
+			OPTION = b
+			GOLD = scope:haul
+		}
+
+		stress_impact = {
+			arbitrary = miniscule_stress_impact_loss
+			just = minor_stress_impact_gain
+		}
+		ai_chance = {
+			base = 1
+			modifier = {
+				add = {
+					value = martial
+					subtract = scope:victim.martial
+					multiply = 5
+				}
+				always = yes
+			}
+		}
+	}
+
+	# Intrigue duel — easier, but lower returns.
+	option = {
+		name = laamp_base_contract_schemes.1782.c
+		skill = intrigue
+
+		custom_tooltip = laamp_base_contract_schemes.1782.c.tt.easier_against_most_but_less_rewards
+		agoat_laamp_1782_roll_duel_effect = {
+			SKILL = intrigue
+			DIFF = scope:intrigue_diff
+			WIN_CHANCE = 60
+			LOSE_CHANCE = 40
+			OPTION = c
+			GOLD = scope:haul_half
+		}
+
+		stress_impact = {
+			arbitrary = miniscule_stress_impact_loss
+			just = minor_stress_impact_gain
+		}
+		ai_chance = {
+			base = 1
+			modifier = {
+				add = {
+					value = intrigue
+					subtract = scope:victim.intrigue
+					multiply = 5
+				}
+				always = yes
+			}
+			ai_value_modifier = { ai_greed = -0.2 }
+		}
+	}
+
+	# Leave this one alone.
+	option = {
+		name = laamp_base_contract_schemes.1782.d
+
+		custom_tooltip = laamp_base_contract_schemes.1782.d.tt
+		reverse_add_opinion = {
+			target = scope:victim
+			modifier = friendly_face_on_the_road_opinion
+			opinion = 10
+		}
+
+		stress_impact = {
+			just = miniscule_stress_impact_loss
+			arbitrary = minor_stress_impact_gain
+		}
+		ai_chance = {
+			base = 1
+			ai_value_modifier = { ai_honor = 1 }
+		}
+	}
+}
