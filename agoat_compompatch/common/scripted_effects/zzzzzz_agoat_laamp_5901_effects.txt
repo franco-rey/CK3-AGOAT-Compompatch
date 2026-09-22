@@ -26,6 +26,7 @@
 			XP_MAX = 2
 			XP_MIN = 2
 		}
+	}
 }
 
 agoat_laamp_5901_duel_failure_effect = {
