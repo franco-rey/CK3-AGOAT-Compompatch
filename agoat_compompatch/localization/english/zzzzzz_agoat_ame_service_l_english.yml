@@ -1,0 +1,2 @@
+﻿l_english:
+ agoat_ame_service_0021_desc:0 "[ame_fallen_character.GetFirstNameNoTooltip] is dead, killed in the company's service. He served the [ame_fallen_company.GetName] for [SCOPE.GetValue('agoat_ame_fallen_service_years')|0] years. There was no time to arrange for the body to be sent home, and no ship willing to carry it in this season regardless. He was buried where he fell."

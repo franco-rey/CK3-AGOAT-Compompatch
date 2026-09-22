@@ -1,0 +1,411 @@
+﻿# Court Positions Expanded - Master at Arms
+# Adapted for CK3 1.19 framework
+# master_at_arms_court_position
+
+### Common Court Positions ###
+
+master_at_arms_court_position = {
+	sort_order = 274
+	skill = martial
+	max_available_positions = 1
+
+	court_position_asset = {
+		trigger = {
+			culture_has_east_asian_heritage_pillar_trigger = yes
+		}
+		animation = marshal_shield
+		background = "gfx/interface/illustrations/event_scenes/tgp_camp_asia.dds"
+	}
+
+	court_position_asset = {
+		trigger = {
+			OR = {
+				government_has_flag = government_is_tribal
+				government_has_flag = government_is_nomadic
+			}
+		}
+		animation = marshal_shield
+		background = "gfx/interface/illustrations/event_scenes/fp1_norse_camp.dds"
+	}
+
+	court_position_asset = {
+		animation = marshal_shield
+		background = "gfx/interface/illustrations/event_scenes/ep2_tournament_western.dds"
+	}
+
+	opinion = {
+		value = ceremonial_court_position_opinion
+	}
+
+	# How high the aptitude has to be to reach the 5 different modifier levels
+	aptitude_level_breakpoints = { 20 40 60 80 }
+
+	# How good is this character in this position? root scope is the holder of the court position
+	aptitude = {
+		value = 1
+		add = {
+			value = martial
+			multiply = 2
+			max = 50
+			desc = court_position_skill_martial
+		}
+		add = {
+			value = prowess
+			multiply = 2
+			max = 50
+			desc = court_position_skill_prowess
+		}
+		if = {
+			limit = {
+				has_trait = overseer
+			}
+			add = {
+				value = 10
+				desc = court_position_overseer_trait
+			}
+		}
+		if = {
+			limit = {
+				has_trait = strategist
+			}
+			add = {
+				value = 10
+				desc = court_position_strategist_trait
+			}
+		}
+		if = {
+			limit = {
+				has_trait = gallant
+			}
+			add = {
+				value = 10
+				desc = court_position_gallant_trait
+			}
+		}
+		if = {
+			limit = {
+				has_trait = honest
+			}
+			add = {
+				value = 5
+				desc = court_position_honest_trait
+			}
+		}
+		if = {
+			limit = {
+				has_trait = craven
+			}
+			add = {
+				value = -10
+				desc = court_position_craven_trait
+			}
+		}
+		if = {
+			limit = {
+				has_trait = deceitful
+			}
+			add = {
+				value = -5
+				desc = court_position_deceitful_trait
+			}
+		}
+		# Japan house aspiration bonus
+		if = {
+			limit = {
+				liege.house ?= { has_house_aspiration_parameter = improved_martial_court_position_efficiency }
+			}
+			add = {
+				value = cp_bonus_aptitude_value
+				desc = improved_martial_court_position_efficiency_desc
+			}
+		}
+		add = court_position_aptitude_family_business_value
+		add = general_aptitude_bonus
+	}
+
+	# Is this an available position for this court? (root is court owner)
+	is_shown = {
+		is_landed_or_landless_administrative = yes
+		trigger_if = {
+			limit = {
+				is_ai = yes
+				highest_held_title_tier <= tier_county
+			}
+			always = no
+		}
+	}
+
+	valid_position = {
+		is_landed_or_landless_administrative = yes
+	}
+
+	is_shown_character = {
+		scope:employee = {
+			court_position_employee_shown_trigger = yes
+		}
+	}
+
+	valid_character = {
+		scope:employee = {
+			is_imprisoned = no
+			is_knight = yes
+		}
+	}
+
+	revoke_cost = {
+		prestige = {
+			value = major_court_position_prestige_revoke_cost
+			if = {
+				limit = {
+					exists = dynasty
+					dynasty = { has_dynasty_perk = fp2_coterie_legacy_1 }
+					employs_court_position = master_at_arms_court_position
+					any_court_position_holder = {
+						type = master_at_arms_court_position
+						exists = dynasty
+						house = prev.house
+					}
+				}
+				multiply = 0
+			}
+			if = {
+				limit = {
+					exists = this
+					is_ai = yes
+				}
+				multiply = 0
+			}
+			if = {
+				limit = {
+					exists = this
+					has_character_flag = free_revoke_cost
+				}
+				multiply = 0
+			}
+		}
+	}
+
+	salary = {
+		round = no
+		gold = {
+			value = 0
+			if = {
+				limit = {
+					trigger_if = {
+						limit = { exists = scope:liege }
+						scope:liege = {
+							has_treasury = no
+						}
+					}
+					trigger_else = { always = no }
+				}
+				add = {
+					value = medium_court_position_salary
+					if = {
+						limit = {
+							trigger_if = {
+								limit = { exists = scope:liege }
+								scope:liege = {
+									exists = dynasty
+									dynasty = { has_dynasty_perk = fp2_coterie_legacy_1 }
+									employs_court_position = master_at_arms_court_position
+									any_court_position_holder = {
+										type = master_at_arms_court_position
+										exists = dynasty
+										house = prev.house
+									}
+								}
+							}
+							trigger_else = { always = no }
+						}
+						multiply = {
+							value = 0.0
+							desc = inner_circle_salary_mod
+							format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+						}
+					}
+					if = {
+						limit = {
+							trigger_if = {
+								limit = { exists = scope:liege }
+								scope:liege = {
+									employs_court_position = master_at_arms_court_position
+									any_court_position_holder = {
+										type = master_at_arms_court_position
+										scope:liege = {
+											has_hook_of_type = {
+												type = obligation_hook
+												target = prev
+											}
+										}
+									}
+								}
+							}
+							trigger_else = { always = no }
+						}
+						multiply = {
+							value = 0.5
+							desc = obligation_hook_salary
+						}
+					}
+				}
+			}
+		}
+		treasury = {
+			value = 0
+			if = {
+				limit = {
+					trigger_if = {
+						limit = { exists = scope:liege }
+						scope:liege = {
+							has_treasury = yes
+						}
+					}
+					trigger_else = { always = no }
+				}
+				add = {
+					value = medium_court_position_salary
+					if = {
+						limit = {
+							trigger_if = {
+								limit = { exists = scope:liege }
+								scope:liege = {
+									exists = dynasty
+									dynasty = { has_dynasty_perk = fp2_coterie_legacy_1 }
+									employs_court_position = master_at_arms_court_position
+									any_court_position_holder = {
+										type = master_at_arms_court_position
+										exists = dynasty
+										house = prev.house
+									}
+								}
+							}
+							trigger_else = { always = no }
+						}
+						multiply = {
+							value = 0.0
+							desc = inner_circle_salary_mod
+							format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+						}
+					}
+					if = {
+						limit = {
+							trigger_if = {
+								limit = { exists = scope:liege }
+								scope:liege = {
+									employs_court_position = master_at_arms_court_position
+									any_court_position_holder = {
+										type = master_at_arms_court_position
+										scope:liege = {
+											has_hook_of_type = {
+												type = obligation_hook
+												target = prev
+											}
+										}
+									}
+								}
+							}
+							trigger_else = { always = no }
+						}
+						multiply = {
+							value = 0.5
+							desc = obligation_hook_salary
+						}
+					}
+				}
+			}
+		}
+		prestige = {
+			value = medium_court_position_prestige_salary
+		}
+	}
+
+	received_salary = {
+		gold = {
+			value = medium_court_position_salary
+		}
+		prestige = {
+			value = medium_court_position_prestige_salary
+		}
+		round = no
+	}
+
+	# Scaling modifiers based on Master at Arms aptitude
+	scaling_employer_modifiers = {
+		terrible = {
+			knight_effectiveness_mult = 0.02
+		}
+		poor = {
+			knight_effectiveness_mult = 0.03
+		}
+		average = {
+			knight_effectiveness_mult = 0.06
+			knight_limit = 1
+		}
+		good = {
+			knight_effectiveness_mult = 0.08
+			knight_limit = 2
+		}
+		excellent = {
+			knight_effectiveness_mult = 0.16
+			knight_limit = 3
+		}
+	}
+
+	# Modifiers always applied to the Master at Arms themselves
+	modifier = {
+		monthly_prestige = medium_court_position_prestige_salary
+		accolade_glory_gain_mult = 0.1
+		lifestyle_blademaster_xp_gain_mult = 0.1
+		monthly_martial_lifestyle_xp_gain_mult = 0.05
+	}
+
+	on_court_position_received = {
+		basic_gained_court_position_effect = yes
+	}
+	on_court_position_revoked = {
+		basic_revoked_court_position_effect = yes
+	}
+	on_court_position_invalidated = {
+		basic_invalidated_court_position_effect = yes
+	}
+	on_court_position_vacated = {
+		court_position_vacated_event_effect = {
+			COURT_POSITION_TYPE = master_at_arms_court_position
+		}
+	}
+
+	ai_position_score = {
+		value = 1
+		scope:liege = {
+			# More likely for martially minded rulers
+			if = {
+				limit = {
+					has_lifestyle = martial_lifestyle
+				}
+				add = 25
+			}
+			# More likely if ruler has many knights
+			if = {
+				limit = {
+					knight_limit >= 6
+				}
+				add = 20
+			}
+			if = {
+				limit = {
+					knight_limit >= 10
+				}
+				add = 20
+			}
+		}
+		add = court_position_debt_considerations_value
+	}
+	ai_candidate_score = {
+		value = 50
+		add = scope:base_value
+		add = court_position_candidate_score_base_value
+		add = court_position_candidate_aptitude_value
+		add = court_position_debt_considerations_value
+	}
+}

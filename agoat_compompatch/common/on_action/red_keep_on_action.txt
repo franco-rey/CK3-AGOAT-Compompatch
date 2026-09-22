@@ -284,9 +284,11 @@ rk_on_title_lost = {
 rk_recreate_red_keep = {
 	trigger = {
 		has_title = title:b_the_red_keep
-		NOT = {
-			has_title = title:b_the_red_keep.var:rk_domicile_title
+		trigger_if = {
+			limit = { exists = title:b_the_red_keep.var:rk_domicile_title }
+			NOT = { has_title = title:b_the_red_keep.var:rk_domicile_title }
 		}
+		trigger_else = { always = yes }
 	}
 	effect = {
 		 if = {

@@ -8,7 +8,8 @@ ln_coldwinds_pulse = {
 	effect = {
 		if = {
 			limit = {
-				scope:struggle = { is_struggle_type = ln_long_night_struggle }
+				exists = scope:struggle
+				scope:struggle ?= { is_struggle_type = ln_long_night_struggle }
 			}
 			ln_coldwinds_pulse_effect = yes
 		}

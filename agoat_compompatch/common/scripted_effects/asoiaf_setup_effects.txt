@@ -737,7 +737,7 @@ asoiaf_setup_houses_effect = {
 			limit = {
 				is_alive = yes
 				NOT = { has_character_flag = has_personal_coa }
-				has_title ?= title:c_darry
+				has_title = title:c_darry
 			}
 			agot_create_personal_coa_for_historical_ai = { ACTOR = character:Lannister_9 COA_KEY = lancel_lannister_personal_coa }
 		}

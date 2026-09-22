@@ -17,7 +17,7 @@
                 mode = add
                 gene = legwear
                template = agot_all_legwear
-                range = male_legwear_secular_agot_trousers_black_01
+                accessory = male_legwear_secular_agot_trousers_black_01
            }
         }
         weight = {
@@ -42,7 +42,7 @@
                 mode = add
                 gene = legwear
                 template = agot_all_legwear
-                range = male_legwear_secular_agot_trousers_black_01
+                accessory = male_legwear_secular_agot_trousers_black_01
             }
         }
         weight = {
@@ -69,7 +69,7 @@
                 mode = add
                 gene = legwear
                 template = agot_all_legwear
-                range = male_legwear_secular_agot_trousers_black_01
+                accessory = male_legwear_secular_agot_trousers_black_01
             }
         }
         weight = {
@@ -97,7 +97,7 @@
                 mode = add
                 gene = legwear
                 template = agot_all_legwear
-                range = male_legwear_secular_agot_trousers_black_01
+                accessory = male_legwear_secular_agot_trousers_black_01
             }
         }
         weight = {
@@ -129,7 +129,7 @@
 		modifier = {
                 	add = 1000
 			portrait_wear_armor_trigger = no
-			OR {
+			OR = {
 			has_character_flag = au_high_winter_tunic
 			has_trait = au_north_bloodline
 		}
@@ -156,7 +156,7 @@
 			modifier = {
                 		add = 1000
 				portrait_wear_armor_trigger = no
-				   OR {
+				   OR = {
 					has_character_flag = au_dornish_high_nobles
 					has_trait = au_sun_bloodline
 				}

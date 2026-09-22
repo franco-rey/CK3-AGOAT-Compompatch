@@ -518,17 +518,13 @@ ame_service.0020 = {
 	option = {
 		name = ame_service.0020.a
 
-		death = { death_reason = death_battle }
-
 		if = {
 			limit = {
 				exists = var:ame_home_liege
-				var:ame_home_liege = { is_alive = yes }
+				var:ame_home_liege ?= { is_alive = yes }
 				exists = var:ame_company.holder
-				var:ame_company.holder = { is_alive = yes }
+				var:ame_company.holder ?= { is_alive = yes }
 			}
-			# Saved and fired before the remove_variable calls below: ame_service.0021 still needs
-			# var:ame_years_of_service and the company's name.
 			save_scope_as = ame_fallen_character
 			var:ame_company = {
 				save_scope_as = ame_fallen_company
@@ -536,8 +532,13 @@ ame_service.0020 = {
 			var:ame_company.holder = {
 				save_scope_as = ame_reporting_captain
 			}
+			save_scope_value_as = { name = agoat_ame_fallen_service_years value = 0 }
+			if = {
+				limit = { has_variable = ame_years_of_service }
+				save_scope_value_as = { name = agoat_ame_fallen_service_years value = var:ame_years_of_service }
+			}
 			var:ame_home_liege = {
-				trigger_event = ame_service.0021
+				save_scope_as = agoat_ame_fallen_home_liege
 			}
 		}
 
@@ -553,6 +554,14 @@ ame_service.0020 = {
 			limit = { has_variable = ame_years_of_service }
 			remove_variable = ame_years_of_service
 		}
+		death = { death_reason = death_battle }
+		scope:agoat_ame_fallen_home_liege ?= {
+			if = {
+				limit = { is_alive = yes }
+				trigger_event = ame_service.0021
+			}
+		}
+
 	}
 }
 
@@ -561,7 +570,7 @@ ame_service.0020 = {
 ame_service.0021 = {
 	type = letter_event
 	opening = ame_service.0021.opening
-	desc = ame_service.0021.desc
+	desc = agoat_ame_service_0021_desc
 	sender = scope:ame_reporting_captain
 
 	option = {

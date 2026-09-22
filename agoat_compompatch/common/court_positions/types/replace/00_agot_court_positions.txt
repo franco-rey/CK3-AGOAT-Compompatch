@@ -1,0 +1,612 @@
+﻿
+#AGOT - Flumph (Canon, Modcanon Name)
+grey_cloaks_commander_court_position = { # City Watch of Oldtown
+	sort_order = 998
+	max_available_positions = 1
+	court_position_asset = {
+		animation = marshal
+		background = "gfx/interface/illustrations/event_scenes/alley.dds"
+	}
+
+	opinion = {
+		value = regular_court_position_opinion
+	}
+	aptitude_level_breakpoints = {
+		20
+		40
+		60
+		80
+	}
+	aptitude = {
+		value = 25
+		add = {
+			value = martial
+			multiply = 1.5
+			max = 25
+			desc = court_position_skill_martial
+		}
+		add = {
+			value = diplomacy
+			multiply = 1.5
+			max = 25
+			desc = court_position_skill_diplomacy
+		}
+		if = {
+			limit = {
+				has_trait = loyal
+			}
+			add = {
+				value = 15
+				desc = court_position_loyal_trait
+			}
+		}
+		if = {
+			limit = {
+				has_trait = overseer
+			}
+			add = {
+				value = 10
+				desc = court_position_overseer_trait
+			}
+		}
+		if = {
+			limit = {
+				has_trait = brave
+			}
+			add = {
+				value = 5
+				desc = court_position_brave_trait
+			}
+		}
+		if = {
+			limit = {
+				has_trait = diligent
+			}
+			add = {
+				value = 5
+				desc = court_position_diligent_trait
+			}
+		}
+		if = {
+			limit = {
+				has_trait = just
+			}
+			add = {
+				value = 5
+				desc = court_position_just_trait
+			}
+		}
+		if = {
+			limit = {
+				has_trait = greedy
+			}
+			add = {
+				value = -5
+				desc = court_position_greedy_trait
+			}
+		}
+		if = {
+			limit = {
+				has_trait = trusting
+			}
+			add = {
+				value = -5
+				desc = court_position_trusting_trait
+			}
+		}
+		if = {
+			limit = {
+				has_trait = craven
+			}
+			add = {
+				value = -10
+				desc = court_position_craven_trait
+			}
+		}
+		if = {
+			limit = {
+				has_trait = deceitful
+			}
+			add = {
+				value = -10
+				desc = court_position_deceitful_trait
+			}
+		}
+		if = {
+			limit = {
+				has_trait = disloyal
+			}
+			add = {
+				value = -15
+				desc = court_position_disloyal_trait
+			}
+		}
+		add = general_aptitude_bonus
+	}
+	is_shown = {
+		has_title = title:c_oldtown
+		OR = {
+			any_vassal_or_below = {
+				has_title = title:b_oldtown
+			}
+			has_title = title:b_oldtown
+		}
+	}
+	valid_position = {
+		has_title = title:c_oldtown
+	}
+	valid_character = {
+		scope:employee = {
+			base_court_position_validity_trigger = { EMPLOYER = scope:liege }
+			OR = {
+				AND = {
+					any_liege_or_above = {
+						has_title = title:b_oldtown
+					}
+					is_landed = no
+				}
+				has_title = title:b_oldtown
+			}
+			NOR = {
+				has_trait = kingsguard
+				has_trait = maester
+				# has_trait = archmaester
+				has_trait = septon
+			}
+			can_be_combatant_based_on_gender_trigger = { ARMY_OWNER = scope:liege }
+		}
+	}
+	revoke_cost = {
+		prestige = {
+			value = major_court_position_prestige_revoke_cost
+			# Set to 0 with Dynasty Perk Inner Circle
+			if = {
+				limit = {
+					exists = dynasty
+					dynasty = { has_dynasty_perk = fp2_coterie_legacy_1 }
+
+					employs_court_position = grey_cloaks_commander_court_position
+					any_court_position_holder = {
+						type = grey_cloaks_commander_court_position
+						exists = dynasty
+						house = prev.house
+					}
+				}
+				multiply = 0
+			}
+			if = {
+				limit = {
+					exists = this
+					is_ai = yes
+				}
+				multiply = 0
+			}
+		}
+	}
+	salary = {
+		round = no
+		gold = {
+			value = major_court_position_salary
+			# Set to 0 with Dynasty Perk Inner Circle
+			if = {
+				limit = {
+					trigger_if = {
+						limit = { exists = scope:liege }
+						scope:liege = {
+							exists = dynasty
+							dynasty = { has_dynasty_perk = fp2_coterie_legacy_1 }
+	
+							employs_court_position = grey_cloaks_commander_court_position
+							any_court_position_holder = {
+								type = grey_cloaks_commander_court_position
+								exists = dynasty
+								house = prev.house
+							}
+						}
+					}
+					trigger_else = { always = no }
+				}
+				multiply = {
+					value = 0.0
+					desc = inner_circle_salary_mod
+					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+				}
+			}
+		}
+		prestige = {
+			value = medium_court_position_prestige_salary
+			# Set to 0 with Dynasty Perk Inner Circle
+			if = {
+				limit = {
+					trigger_if = {
+						limit = { exists = scope:liege }
+						scope:liege = {
+							exists = dynasty
+							dynasty = { has_dynasty_perk = fp2_coterie_legacy_1 }
+	
+							employs_court_position = grey_cloaks_commander_court_position
+							any_court_position_holder = {
+								type = grey_cloaks_commander_court_position
+								exists = dynasty
+								house = prev.house
+							}
+						}
+					}
+					trigger_else = { always = no }
+				}
+				multiply = {
+					value = 0.0
+					desc = inner_circle_salary_mod
+					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+				}
+			}
+		}
+	}
+	scaling_employer_modifiers = {
+		terrible = {
+			monthly_county_control_growth_add = 0.1
+			enemy_hostile_scheme_phase_duration_add = 1
+		}
+		poor = {
+			monthly_county_control_growth_add = 0.2
+			enemy_hostile_scheme_phase_duration_add = 2
+		}
+		average = {
+			monthly_county_control_growth_add = 0.3
+			enemy_hostile_scheme_phase_duration_add = 4
+		}
+		good = {
+			monthly_county_control_growth_add = 0.4
+			enemy_hostile_scheme_phase_duration_add = 8
+		}
+		excellent = {
+			monthly_county_control_growth_add = 0.5
+			enemy_hostile_scheme_phase_duration_add = 10
+		}
+	}
+
+	custom_employer_modifier_description = generic_scheme_warning_employer_custom_effect_description
+	is_powerful_agent = yes
+
+	modifier = {
+		martial = 1
+		monthly_martial_lifestyle_xp_gain_mult = 0.3
+		monthly_prestige = 0.5
+	}
+
+	on_court_position_received = {
+		agot_grey_cloaks_title_accepted_effect = yes
+	}
+	on_court_position_revoked = {
+		seneschal_title_revoked_effect = yes
+		agot_grey_cloaks_title_revoked_effect = yes
+	}
+	on_court_position_invalidated = {
+		seneschal_title_revoked_effect = yes
+		agot_grey_cloaks_title_revoked_effect = yes
+	}
+	on_court_position_vacated = {
+		court_position_vacated_event_effect = {
+			COURT_POSITION_TYPE = grey_cloaks_commander_court_position
+		}
+	}
+
+	ai_candidate_score = {
+		value = 50
+		add = scope:base_value
+		add = court_position_candidate_score_base_value
+		if = {
+			limit = {
+				NOT = {
+					exists = scope:firing_court_position
+				}
+				scope:employee = {
+					has_any_court_position = yes
+				}
+			}
+			add = 50
+		}
+		if = {
+			limit = {
+				scope:employee = {
+					has_title = title:b_oldtown
+				}
+			}
+			add = 100			#to stop AI from revoking alot
+		}
+	}
+}
+
+#AGOT - Flumph (Canon, Modcanon Name)
+crimson_cloaks_commander_court_position = { # City Watch of Lannisport
+	sort_order = 998
+	max_available_positions = 1
+	court_position_asset = {
+		animation = marshal
+		background = "gfx/interface/illustrations/event_scenes/alley.dds"
+	}
+	skill = prowess
+	opinion = {
+		value = regular_court_position_opinion
+	}
+	aptitude_level_breakpoints = {
+		20
+		40
+		60
+		80
+	}
+	aptitude = {
+		value = 25
+		add = {
+			value = martial
+			multiply = 1.5
+			max = 25
+			desc = court_position_skill_martial
+		}
+		add = {
+			value = diplomacy
+			multiply = 1.5
+			max = 25
+			desc = court_position_skill_diplomacy
+		}
+		if = {
+			limit = {
+				has_trait = loyal
+			}
+			add = {
+				value = 15
+				desc = court_position_loyal_trait
+			}
+		}
+		if = {
+			limit = {
+				has_trait = overseer
+			}
+			add = {
+				value = 10
+				desc = court_position_overseer_trait
+			}
+		}
+		if = {
+			limit = {
+				has_trait = brave
+			}
+			add = {
+				value = 5
+				desc = court_position_brave_trait
+			}
+		}
+		if = {
+			limit = {
+				has_trait = diligent
+			}
+			add = {
+				value = 5
+				desc = court_position_diligent_trait
+			}
+		}
+		if = {
+			limit = {
+				has_trait = just
+			}
+			add = {
+				value = 5
+				desc = court_position_just_trait
+			}
+		}
+		if = {
+			limit = {
+				has_trait = greedy
+			}
+			add = {
+				value = -5
+				desc = court_position_greedy_trait
+			}
+		}
+		if = {
+			limit = {
+				has_trait = trusting
+			}
+			add = {
+				value = -5
+				desc = court_position_trusting_trait
+			}
+		}
+		if = {
+			limit = {
+				has_trait = craven
+			}
+			add = {
+				value = -10
+				desc = court_position_craven_trait
+			}
+		}
+		if = {
+			limit = {
+				has_trait = deceitful
+			}
+			add = {
+				value = -10
+				desc = court_position_deceitful_trait
+			}
+		}
+		if = {
+			limit = {
+				has_trait = disloyal
+			}
+			add = {
+				value = -15
+				desc = court_position_disloyal_trait
+			}
+		}
+		add = general_aptitude_bonus
+	}
+	is_shown = {
+		has_title = title:c_lannisport
+	}
+	valid_position = {
+		has_title = title:c_lannisport
+	}
+	valid_character = {
+		scope:employee = {
+			base_court_position_validity_trigger = { EMPLOYER = scope:liege }
+			NOR = {
+				has_trait = kingsguard
+				has_trait = maester
+				# has_trait = archmaester
+				has_trait = septon
+			}
+			can_be_combatant_based_on_gender_trigger = { ARMY_OWNER = scope:liege }
+			is_courtier_of = scope:liege
+		}
+	}
+	revoke_cost = {
+		prestige = {
+			value = major_court_position_prestige_revoke_cost
+			# Set to 0 with Dynasty Perk Inner Circle
+			if = {
+				limit = {
+					exists = dynasty
+					dynasty = { has_dynasty_perk = fp2_coterie_legacy_1 }
+
+					employs_court_position = crimson_cloaks_commander_court_position
+					any_court_position_holder = {
+						type = crimson_cloaks_commander_court_position
+						exists = dynasty
+						house = prev.house
+					}
+				}
+				multiply = 0
+			}
+			if = {
+				limit = {
+					exists = this
+					is_ai = yes
+				}
+				multiply = 0
+			}
+		}
+	}
+	salary = {
+		round = no
+		gold = {
+			value = major_court_position_salary
+			# Set to 0 with Dynasty Perk Inner Circle
+			if = {
+				limit = {
+					trigger_if = {
+						limit = { exists = scope:liege }
+						scope:liege = {
+							exists = dynasty
+							dynasty = { has_dynasty_perk = fp2_coterie_legacy_1 }
+	
+							employs_court_position = crimson_cloaks_commander_court_position
+							any_court_position_holder = {
+								type = crimson_cloaks_commander_court_position
+								exists = dynasty
+								house = prev.house
+							}
+						}
+					}
+					trigger_else = { always = no }
+				}
+				multiply = {
+					value = 0.0
+					desc = inner_circle_salary_mod
+					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+				}
+			}
+		}
+		prestige = {
+			value = medium_court_position_prestige_salary
+			# Set to 0 with Dynasty Perk Inner Circle
+			if = {
+				limit = {
+					trigger_if = {
+						limit = { exists = scope:liege }
+						scope:liege = {
+							exists = dynasty
+							dynasty = { has_dynasty_perk = fp2_coterie_legacy_1 }
+	
+							employs_court_position = crimson_cloaks_commander_court_position
+							any_court_position_holder = {
+								type = crimson_cloaks_commander_court_position
+								exists = dynasty
+								house = prev.house
+							}
+						}
+					}
+					trigger_else = { always = no }
+				}
+				multiply = {
+					value = 0.0
+					desc = inner_circle_salary_mod
+					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+				}
+			}
+		}
+	}
+	scaling_employer_modifiers = {
+		terrible = {
+			monthly_county_control_growth_add = 0.1
+			enemy_hostile_scheme_phase_duration_add = 1
+		}
+		poor = {
+			monthly_county_control_growth_add = 0.2
+			enemy_hostile_scheme_phase_duration_add = 2
+		}
+		average = {
+			monthly_county_control_growth_add = 0.3
+			enemy_hostile_scheme_phase_duration_add = 4
+		}
+		good = {
+			monthly_county_control_growth_add = 0.4
+			enemy_hostile_scheme_phase_duration_add = 8
+		}
+		excellent = {
+			monthly_county_control_growth_add = 0.5
+			enemy_hostile_scheme_phase_duration_add = 10
+		}
+	}
+
+	custom_employer_modifier_description = generic_scheme_warning_employer_custom_effect_description
+	is_powerful_agent = yes
+
+	modifier = {
+		martial = 1
+		monthly_martial_lifestyle_xp_gain_mult = 0.3
+		monthly_prestige = 0.5
+	}
+
+	on_court_position_received = {
+		basic_gained_court_position_effect = yes
+	}
+	on_court_position_revoked = {
+		basic_revoked_court_position_effect = yes
+	}
+	on_court_position_invalidated = {
+		basic_revoked_court_position_effect = yes
+	}
+	on_court_position_vacated = {
+		court_position_vacated_event_effect = {
+			COURT_POSITION_TYPE = crimson_cloaks_commander_court_position
+		}
+	}
+
+	ai_candidate_score = {
+		value = 50
+		add = scope:base_value
+		add = court_position_candidate_score_base_value
+		if = {
+			limit = {
+				NOT = {
+					exists = scope:firing_court_position
+				}
+				scope:employee = {
+					has_any_court_position = yes
+				}
+			}
+			add = 50
+		}
+	}
+}

@@ -579,7 +579,7 @@ au_red_dragonsguard_headgear = {
 			accessory = {
 				mode = add
 				gene = headgear
-				template = agot_most_headgears_
+				template = agot_most_headgears
 				accessory = male_headgear_secular_reach_rowan_war_03
 			}
 		}

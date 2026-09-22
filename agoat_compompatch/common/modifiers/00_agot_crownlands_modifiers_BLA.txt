@@ -825,7 +825,7 @@ agot_darklyn_return_to_duskendale_bla = {
 agot_darklyn_continuity_of_duskendale_bla = {
 	icon = stewardship_positive
 	development_growth_factor = 0.05
-	county_tax_mult = 0.05
+	tax_mult = 0.05
 }
 
 agot_darklyn_heirs_without_the_name_bla = {
@@ -845,7 +845,7 @@ agot_darklyn_second_age_white_swords_bla = {
 agot_darklyn_second_age_duskendale_bla = {
 	icon = stewardship_positive
 	development_growth_factor = 0.06
-	county_tax_mult = 0.05
+	tax_mult = 0.05
 }
 
 agot_darklyn_second_age_defiant_bla = {

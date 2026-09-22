@@ -288,7 +288,7 @@ court_herbalist_court_position = {
 	}
 
 	modifier = {
-		monthly_prestige = minor_court_position_prestige_salary
+		monthly_prestige = 0.1
 		learning = 1
 	}
 

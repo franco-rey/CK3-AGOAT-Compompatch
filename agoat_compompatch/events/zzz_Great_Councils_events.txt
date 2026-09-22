@@ -1533,9 +1533,15 @@ zzz_great_councils_event.0003 = {
 			dynasty ?= scope:zzz_great_councils_old_dyn
 		}
 		scope:zzz_great_councils_selection = {
-			change_variable = {
-			   name = zzz_great_councils_votes
-			   add = 20
+			if = {
+				limit = { has_variable = zzz_great_councils_votes }
+				change_variable = {
+				   name = zzz_great_councils_votes
+				   add = 20
+				}
+			}
+			else = {
+				set_variable = { name = zzz_great_councils_votes value = 20 }
 			}
 		}
 	}
@@ -1547,9 +1553,15 @@ zzz_great_councils_event.0003 = {
 			NOT = { dynasty ?= scope:zzz_great_councils_old_dyn }
 		}
 		scope:zzz_great_councils_selection = {
-			change_variable = {
-			   name = zzz_great_councils_votes
-			   add = 10
+			if = {
+				limit = { has_variable = zzz_great_councils_votes }
+				change_variable = {
+				   name = zzz_great_councils_votes
+				   add = 10
+				}
+			}
+			else = {
+				set_variable = { name = zzz_great_councils_votes value = 10 }
 			}
 		}
 	}
@@ -1561,9 +1573,15 @@ zzz_great_councils_event.0003 = {
 			NOT = { dynasty ?= scope:zzz_great_councils_old_dyn }
 		}
 		scope:zzz_great_councils_selection = {
-			change_variable = {
-			   name = zzz_great_councils_votes
-			   add = 1
+			if = {
+				limit = { has_variable = zzz_great_councils_votes }
+				change_variable = {
+				   name = zzz_great_councils_votes
+				   add = 1
+				}
+			}
+			else = {
+				set_variable = { name = zzz_great_councils_votes value = 1 }
 			}
 		}
 	}
@@ -1573,12 +1591,17 @@ zzz_great_councils_event.0003 = {
 			is_ai = no
 			root = scope:zzz_great_councils_emperor
 		}
-
 		var:si_selected_character = { save_scope_as = zzz_great_councils_selection }
 		scope:zzz_great_councils_selection = {
-			change_variable = {
-			   name = zzz_great_councils_votes
-			   add = 100
+			if = {
+				limit = { has_variable = zzz_great_councils_votes }
+				change_variable = {
+				   name = zzz_great_councils_votes
+				   add = 100
+				}
+			}
+			else = {
+				set_variable = { name = zzz_great_councils_votes value = 100 }
 			}
 		}
 		trigger_event = {
@@ -1593,12 +1616,17 @@ zzz_great_councils_event.0003 = {
 			dynasty ?= scope:zzz_great_councils_old_dyn
 			NOT = { root = scope:zzz_great_councils_emperor }
 		}
-
 		var:si_selected_character = { save_scope_as = zzz_great_councils_selection }
 		scope:zzz_great_councils_selection = {
-			change_variable = {
-			   name = zzz_great_councils_votes
-			   add = 60
+			if = {
+				limit = { has_variable = zzz_great_councils_votes }
+				change_variable = {
+				   name = zzz_great_councils_votes
+				   add = 60
+				}
+			}
+			else = {
+				set_variable = { name = zzz_great_councils_votes value = 60 }
 			}
 		}
 		trigger_event = {
@@ -1613,12 +1641,17 @@ zzz_great_councils_event.0003 = {
 			highest_held_title_tier >= tier_kingdom
 			NOT = { dynasty ?= scope:zzz_great_councils_old_dyn }
 		}
-
 		var:si_selected_character = { save_scope_as = zzz_great_councils_selection }
 		scope:zzz_great_councils_selection = {
-			change_variable = {
-			   name = zzz_great_councils_votes
-			   add = 40
+			if = {
+				limit = { has_variable = zzz_great_councils_votes }
+				change_variable = {
+				   name = zzz_great_councils_votes
+				   add = 40
+				}
+			}
+			else = {
+				set_variable = { name = zzz_great_councils_votes value = 40 }
 			}
 		}
 		trigger_event = {
@@ -1633,12 +1666,17 @@ zzz_great_councils_event.0003 = {
 			highest_held_title_tier <= tier_duchy
 			NOT = { dynasty ?= scope:zzz_great_councils_old_dyn }
 		}
-
 		var:si_selected_character = { save_scope_as = zzz_great_councils_selection }
 		scope:zzz_great_councils_selection = {
-			change_variable = {
-			   name = zzz_great_councils_votes
-			   add = 20
+			if = {
+				limit = { has_variable = zzz_great_councils_votes }
+				change_variable = {
+				   name = zzz_great_councils_votes
+				   add = 20
+				}
+			}
+			else = {
+				set_variable = { name = zzz_great_councils_votes value = 20 }
 			}
 		}
 		trigger_event = {
@@ -1700,7 +1738,12 @@ zzz_great_councils_event.0004 = {
 	immediate = {
 		ordered_in_list = {
 			list = zzz_great_councils_candidates
-			order_by = { value = var:zzz_great_councils_votes }
+			order_by = {
+				if = {
+					limit = { has_variable = zzz_great_councils_votes }
+					value = var:zzz_great_councils_votes
+				}
+			}
 			max = 1
 			check_range_bounds = no
 			save_scope_as = zzz_great_councils_winner
@@ -1711,7 +1754,12 @@ zzz_great_councils_event.0004 = {
 		name = zzz_great_councils_event.0004.a
 		ordered_in_list = {
 			list = zzz_great_councils_candidates
-			order_by = { value = var:zzz_great_councils_votes }
+			order_by = {
+				if = {
+					limit = { has_variable = zzz_great_councils_votes }
+					value = var:zzz_great_councils_votes
+				}
+			}
 			max = 100
 			check_range_bounds = no
 			custom_tooltip = zzz_great_councils_event.0004.a.tt
@@ -1858,7 +1906,6 @@ zzz_great_councils_event.0004 = {
 				every_in_list = {
 					list = zzz_great_councils_titles
 					change_title_holder_include_vassals = {
-
 						holder = scope:zzz_great_councils_winner
 						change = scope:zzz_great_councils_change
 					}
