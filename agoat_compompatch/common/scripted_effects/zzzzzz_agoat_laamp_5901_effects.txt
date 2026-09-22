@@ -1,0 +1,84 @@
+﻿agoat_laamp_5901_duel_success_effect = {
+	root = {
+		send_interface_toast = {
+			type = event_generic_good
+			title = laamp_base_contract_schemes.5901.$OPTION$.tt.success
+			left_icon = scope:victim
+			scope:victim = {
+				pay_treasury_or_gold = {
+					target = root
+					value = scope:haul
+				}
+				progress_towards_rival_effect = {
+					REASON = rival_mugged_me
+					CHARACTER = root
+					OPINION = 0
+				}
+			}
+		}
+		reverse_add_opinion = {
+			target = scope:victim
+			modifier = gallowsbait_scum_opinion
+			opinion = -50
+		}
+		laamp_rewards_apply_criminal_xp_effect = {
+			TRACK = bandit
+			XP_MAX = 2
+			XP_MIN = 2
+		}
+}
+
+agoat_laamp_5901_duel_failure_effect = {
+	root = {
+		send_interface_toast = {
+			type = event_generic_bad
+			title = laamp_base_contract_schemes.5901.$OPTION$.tt.failure
+			left_icon = scope:victim
+			custom_tooltip = laamp_base_contract_schemes.5901.tt.victim_escapes
+			progress_towards_rival_effect = {
+				REASON = rival_attempted_to_mug_me
+				CHARACTER = root
+				OPINION = 0
+			}
+		}
+		reverse_add_opinion = {
+			target = scope:victim
+			modifier = gallowsbait_scum_opinion
+			opinion = -25
+		}
+		laamp_rewards_apply_criminal_xp_effect = {
+			TRACK = bandit
+			XP_MAX = 1
+			XP_MIN = 1
+		}
+	}
+}
+
+agoat_laamp_5901_roll_duel_effect = {
+	duel = {
+		skill = $SKILL$
+		value = $DIFF$
+		# Victory!
+		50 = {
+			compare_modifier = {
+				value = scope:duel_value
+				multiplier = 3.5
+				min = -49
+			}
+			min = 10
+			desc = laamp_base_contract_schemes.5901.$OPTION$.tt.success
+			agoat_laamp_5901_duel_success_effect = { OPTION = $OPTION$ }
+		}
+		# Defeat.
+		50 = {
+			compare_modifier = {
+				value = scope:duel_value
+				multiplier = -3.5
+				min = -49
+			}
+			min = 10
+			desc = laamp_base_contract_schemes.5901.$OPTION$.tt.failure
+			agoat_laamp_5901_duel_failure_effect = { OPTION = $OPTION$ }
+		}
+	}
+}

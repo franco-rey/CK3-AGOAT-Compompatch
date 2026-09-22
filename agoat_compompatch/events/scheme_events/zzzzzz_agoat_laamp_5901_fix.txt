@@ -1,0 +1,595 @@
+﻿@laamp_base_contract_schemes_5901_min_gold_value = 50
+
+namespace = laamp_base_contract_schemes
+
+laamp_base_contract_schemes.5901 = {
+	type = character_event
+	title = laamp_base_contract_schemes.5901.t
+	desc = {
+		random_valid = {
+			desc = laamp_base_contract_schemes.5901.desc.intro.1
+			desc = laamp_base_contract_schemes.5901.desc.intro.2
+			desc = laamp_base_contract_schemes.5901.desc.intro.3
+			desc = laamp_base_contract_schemes.5901.desc.intro.4
+			desc = laamp_base_contract_schemes.5901.desc.intro.5
+		}
+		desc = boilerplate.paragraph
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					has_any_moderate_good_relationship_with_character_trigger = { CHARACTER = scope:victim }
+				}
+				desc = laamp_base_contract_schemes.5901.desc.victim_type.good_relation
+			}
+			triggered_desc = {
+				trigger = {
+					has_any_moderate_bad_relationship_with_character_trigger = { CHARACTER = scope:victim }
+				}
+				desc = laamp_base_contract_schemes.5901.desc.victim_type.bad_relation
+			}
+			triggered_desc = {
+				trigger = { is_consort_of = scope:victim }
+				desc = laamp_base_contract_schemes.5901.desc.victim_type.consort
+			}
+			triggered_desc = {
+				trigger = { is_close_or_extended_family_of = scope:victim }
+				desc = laamp_base_contract_schemes.5901.desc.victim_type.family
+			}
+			triggered_desc = {
+				trigger = { scope:victim_type = flag:courtier }
+				desc = laamp_base_contract_schemes.5901.desc.victim_type.courtier
+			}
+			triggered_desc = {
+				trigger = { scope:victim_type = flag:baron }
+				desc = laamp_base_contract_schemes.5901.desc.victim_type.baron
+			}
+			triggered_desc = {
+				trigger = { scope:victim_type = flag:baron_courtier }
+				desc = laamp_base_contract_schemes.5901.desc.victim_type.baron_courtier
+			}
+			triggered_desc = {
+				trigger = { scope:victim_type = flag:traveller }
+				desc = laamp_base_contract_schemes.5901.desc.victim_type.traveller
+			}
+			triggered_desc = {
+				trigger = { scope:victim_type = flag:fallback }
+				desc = laamp_base_contract_schemes.5901.desc.victim_type.fallback
+			}
+		}
+		desc = boilerplate.paragraph
+		random_valid = {
+			desc = laamp_base_contract_schemes.5901.desc.outro.1
+			desc = laamp_base_contract_schemes.5901.desc.outro.2
+			desc = laamp_base_contract_schemes.5901.desc.outro.3
+			desc = laamp_base_contract_schemes.5901.desc.outro.4
+			desc = laamp_base_contract_schemes.5901.desc.outro.5
+		}
+	}
+	theme = martial
+	left_portrait = {
+		character = root
+		animation = spymaster
+	}
+	right_portrait = {
+		character = scope:victim
+		animation = personality_bold
+	}
+	lower_left_portrait = scope:rollee
+	override_background = { reference = alley_night }
+
+	trigger = { scope:scheme.var:special_muggings_tally < scope:scheme.var:special_muggings_max }
+
+	immediate = {
+		# Nab our contract.
+		random_character_active_contract = {
+			task_contract_type = laamp_base_5051
+			save_scope_as = task_contract
+		}
+		# Add to our tally.
+		scope:scheme = {
+			increment_variable_effect = {
+				VAR = special_muggings_tally
+				VAL = 1
+			}
+		}
+		# Plus, tell the player how many special muggings they're even at.
+		custom_tooltip = laamp_base_contract_schemes.5901.tt.muggings_tally_and_max
+		# Grab a target.
+		## Clearing out prior scopes if necessary.
+		clear_saved_scope = victim
+		every_in_list = {
+			list = potential_chars_list
+			remove_from_list = potential_chars_list
+		}
+		## First put a bunch of people in a big list.
+		### Local courtiers.
+		scope:target = {
+			every_courtier = {
+				limit = {
+					agoat_laamp_5901_valid_victims_trigger = yes
+					is_available = yes
+				}
+				add_to_list = potential_chars_list
+				add_to_list = is_courtier_char_list
+			}
+		}
+		### Local barons + their courtiers + travellers.
+		scope:target.capital_county.duchy = {
+			every_dejure_vassal_title_holder = {
+				limit = {
+					highest_held_title_tier = tier_barony
+					any_liege_or_above = { this = scope:target }
+				}
+				# Barons.
+				if = {
+					limit = {
+						agoat_laamp_1782_valid_target_char_trigger = yes
+						is_available = yes
+					}
+					add_to_list = potential_chars_list
+					add_to_list = is_baron_char_list
+				}
+				# Their courtiers.
+				every_courtier = {
+					if = {
+						limit = {
+							agoat_laamp_1782_valid_target_char_trigger = yes
+							is_available = yes
+						}
+						add_to_list = potential_chars_list
+						add_to_list = is_baron_courtier_char_list
+					}
+				}
+				# Travellers.
+				primary_title.title_province = {
+					every_character_in_location = {
+						limit = {
+							agoat_laamp_1782_valid_target_char_trigger = yes
+							is_travelling = yes
+							highest_held_title_tier <= tier_barony
+						}
+						add_to_list = potential_chars_list
+						add_to_list = is_travelling_char_list
+					}
+				}
+			}
+		}
+		## Aaaand process them to pick out the one we want.
+		random_in_list = {
+			list = potential_chars_list
+			weight = {
+				# Take our wealth as the standard measurement.
+				modifier = {
+					add = {
+						value = gold
+						subtract = @laamp_base_contract_schemes_5901_min_gold_value
+					}
+					always = yes
+				}
+				# Adjust for traits.
+				## Greedy (keeps their money secure)
+				modifier = {
+					add = -100
+					has_trait = greedy
+				}
+				## Generous (always has some to give away)
+				modifier = {
+					add = 200
+					has_trait = generous
+				}
+				## Arrogant
+				modifier = {
+					add = 50
+					has_trait = arrogant
+				}
+				## Humble
+				modifier = {
+					add = -50
+					has_trait = humble
+				}
+				## Craven
+				modifier = {
+					add = -100
+					has_trait = craven
+				}
+				## Brave
+				modifier = {
+					add = 100
+					has_trait = brave
+				}
+			}
+			save_scope_as = victim
+			# Log them as someone we shouldn't rob again this contract.
+			scope:task_contract = {
+				add_to_variable_list = {
+					name = previous_victims_list
+					target = scope:victim
+				}
+			}
+		}
+		## If we managed to _not_ grab anyone, then generate someone as a fallback.
+		if = {
+			limit = {
+				NOT = { exists = scope:victim }
+			}
+			create_character = {
+				template = merchant_template
+				culture = location.culture
+				faith = location.faith
+				location = root.location
+				save_scope_as = victim
+			}
+		}
+		hidden_effect = {
+			scope:victim = {
+				if = {
+					limit = {
+						gold < 50
+					}
+					add_gold = {
+						value = {
+							integer_range = {
+								min = 50
+								max = 100
+							}
+						}
+					}
+				}
+			}
+		}
+		# Cool, now that we've got a victim, let's set up some scopes derived from them.
+		## See what list they came from for the desc.
+		scope:victim = {
+			switch = {
+				trigger = is_in_list
+				is_courtier_char_list = {
+					save_scope_value_as = {
+						name = victim_type
+						value = flag:courtier
+					}
+				}
+				is_baron_char_list = {
+					save_scope_value_as = {
+						name = victim_type
+						value = flag:baron
+					}
+				}
+				is_baron_courtier_char_list = {
+					save_scope_value_as = {
+						name = victim_type
+						value = flag:baron_courtier
+					}
+				}
+				is_travelling_char_list = {
+					save_scope_value_as = {
+						name = victim_type
+						value = flag:traveller
+					}
+				}
+				fallback = {
+					save_scope_value_as = {
+						name = victim_type
+						value = flag:fallback
+					}
+				}
+			}
+		}
+		## Plus set up how much gold we might be able to purloin from them.
+		save_scope_value_as = {
+			name = haul
+			value = {
+				value = scope:victim.gold
+				multiply = 0.5
+				min = 50
+				max = 300
+			}
+		}
+		## Finally, check our skills for the duel diffs.
+		save_scope_value_as = {
+			name = prowess_diff
+			value = {
+				add = scope:victim.prowess
+				add = highest_held_title_tier
+				min = decent_skill_rating
+			}
+		}
+		save_scope_value_as = {
+			name = intrigue_diff
+			value = {
+				add = scope:victim.intrigue
+				add = highest_held_title_tier
+				min = mediocre_skill_rating
+			}
+		}
+		# Grab a tertiary rollee.
+		## Remove any old one we might have.
+		clear_saved_scope = rollee
+		## Try to nab a new one.
+		random_list = {
+			100 = {
+				trigger = {
+					scope:scheme = {
+						any_scheme_agent_character = { }
+					}
+				}
+				scope:scheme = {
+					ordered_scheme_agent_character = {
+						order_by = intrigue
+						save_scope_as = rollee
+					}
+				}
+				save_scope_value_as = {
+					name = tertiary_roll
+					value = flag:agent_intrigue
+				}
+				scope:scheme = {
+					set_variable = {
+						name = last_tertiary_roller
+						value = flag:agent_intrigue
+					}
+				}
+				modifier = {
+					add = -50
+					scope:scheme = { var:last_tertiary_roller ?= flag:agent_intrigue  }
+				}
+			}
+			100 = {
+				trigger = {
+					scope:scheme = {
+						any_scheme_agent_character = { }
+					}
+				}
+				scope:scheme = {
+					ordered_scheme_agent_character = {
+						order_by = prowess
+						save_scope_as = rollee
+					}
+				}
+				save_scope_value_as = {
+					name = tertiary_roll
+					value = flag:agent_prowess
+				}
+				scope:scheme = {
+					set_variable = {
+						name = last_tertiary_roller
+						value = flag:agent_prowess
+					}
+				}
+				modifier = {
+					add = -50
+					scope:scheme = { var:last_tertiary_roller ?= flag:agent_prowess }
+				}
+			}
+			100 = {
+				trigger = {
+					court_position:master_thief_camp_officer ?= { is_available = yes }
+				}
+				court_position:master_thief_camp_officer = { save_scope_as = rollee }
+				save_scope_value_as = {
+					name = tertiary_roll
+					value = flag:master_thief
+				}
+				scope:scheme = {
+					set_variable = {
+						name = last_tertiary_roller
+						value = flag:master_thief
+					}
+				}
+				modifier = {
+					add = -50
+					scope:scheme = { var:last_tertiary_roller ?= flag:master_thief }
+				}
+			}
+		}
+	}
+
+	# Prowess duel.
+	option = {
+		name = laamp_base_contract_schemes.5901.a
+		skill = prowess
+
+		agoat_laamp_5901_roll_duel_effect = {
+			SKILL = prowess
+			DIFF = scope:prowess_diff
+			OPTION = a
+		}
+
+		stress_impact = {
+			arbitrary = miniscule_stress_impact_loss
+			just = minor_stress_impact_gain
+		}
+		ai_chance = {
+			base = 1
+			modifier = {
+				add = {
+					value = prowess
+					subtract = scope:prowess_diff
+					multiply = 5
+				}
+				always = yes
+			}
+		}
+	}
+
+	# Intrigue duel.
+	option = {
+		name = laamp_base_contract_schemes.5901.b
+		skill = intrigue
+
+		agoat_laamp_5901_roll_duel_effect = {
+			SKILL = intrigue
+			DIFF = scope:intrigue_diff
+			OPTION = b
+		}
+
+		stress_impact = {
+			arbitrary = miniscule_stress_impact_loss
+			just = minor_stress_impact_gain
+		}
+		ai_chance = {
+			base = 1
+			modifier = {
+				add = {
+					value = intrigue
+					subtract = scope:intrigue_diff
+					multiply = 5
+				}
+				always = yes
+			}
+		}
+	}
+
+	# Agent prowess duel.
+	option = {
+		name = laamp_base_contract_schemes.5901.c
+		trigger = {
+			exists = scope:rollee
+			scope:tertiary_roll = flag:agent_prowess
+		}
+		skill = prowess
+
+		scope:rollee = {
+			agoat_laamp_5901_roll_duel_effect = {
+				SKILL = prowess
+				DIFF = scope:prowess_diff
+				OPTION = c
+			}
+		}
+
+		stress_impact = {
+			arbitrary = miniscule_stress_impact_loss
+			lazy = miniscule_stress_impact_loss
+			diligent = minor_stress_impact_gain
+			just = minor_stress_impact_gain
+		}
+		ai_chance = {
+			base = 1
+			modifier = {
+				add = {
+					value = scope:rollee.prowess
+					subtract = scope:prowess_diff
+					multiply = 5
+				}
+				always = yes
+			}
+		}
+	}
+
+	# Agent intrigue duel.
+	option = {
+		name = laamp_base_contract_schemes.5901.d
+		trigger = {
+			exists = scope:rollee
+			scope:tertiary_roll = flag:agent_intrigue
+		}
+		skill = intrigue
+
+		scope:rollee = {
+			agoat_laamp_5901_roll_duel_effect = {
+				SKILL = intrigue
+				DIFF = scope:intrigue_diff
+				OPTION = d
+			}
+		}
+
+		stress_impact = {
+			arbitrary = miniscule_stress_impact_loss
+			lazy = miniscule_stress_impact_loss
+			diligent = minor_stress_impact_gain
+			just = minor_stress_impact_gain
+		}
+		ai_chance = {
+			base = 1
+			modifier = {
+				add = {
+					value = scope:rollee.intrigue
+					subtract = scope:intrigue_diff
+					multiply = 5
+				}
+				always = yes
+			}
+		}
+	}
+
+	# Master Thief duel.
+	option = {
+		name = laamp_base_contract_schemes.5901.e
+		trigger = {
+			exists = scope:rollee
+			scope:tertiary_roll = flag:master_thief
+		}
+		reason = have_master_thief
+
+		scope:rollee = {
+			stress_impact = {
+				base = medium_stress_gain
+				diligent = minor_stress_impact_loss
+				lazy = medium_stress_impact_gain
+			}
+		}
+		custom_tooltip = option_boilerplate.tt.officer_aptitude
+		random_list = {
+			0 = {
+				desc = option_boilerplate.tt.officer_aptitude.success
+				agoat_laamp_5901_duel_success_effect = { OPTION = e }
+				# Raw aptitude.
+				modifier = {
+					add = {
+						scope:rollee ?= { add = add_camp_officer_aptitude_value }
+						multiply = 20
+						min = 5
+						max = 95
+					}
+					always = yes
+				}
+			}
+			0 = {
+				desc = option_boilerplate.tt.officer_aptitude.failure
+				agoat_laamp_5901_duel_failure_effect = { OPTION = e }
+				# Raw aptitude.
+				modifier = {
+					add = {
+						scope:rollee ?= { add = add_camp_officer_aptitude_value }
+						multiply = -20
+						min = 5
+						max = 95
+					}
+					always = yes
+				}
+			}
+		}
+
+		stress_impact = {
+			arbitrary = miniscule_stress_impact_loss
+			lazy = miniscule_stress_impact_loss
+			diligent = minor_stress_impact_gain
+			just = minor_stress_impact_gain
+		}
+		ai_chance = {
+			base = 1
+			modifier = {
+				add = {
+					scope:officer ?= { add = "aptitude(master_thief_camp_officer)" }
+					multiply = 5
+				}
+				always = yes
+			}
+		}
+	}
+
+	# Let the opportunity pass.
+	option = {
+		name = laamp_base_contract_schemes.5901.f
+
+		custom_tooltip = laamp_base_contract_schemes.5901.f.tt
+
+		stress_impact = {
+			just = miniscule_stress_impact_loss
+			arbitrary = minor_stress_impact_gain
+		}
+		ai_chance = {
+			base = 1
+			ai_value_modifier = { ai_honor = 1 }
+		}
+	}
+}
