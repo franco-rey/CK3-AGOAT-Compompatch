@@ -1,0 +1,43 @@
+# AGOT: Royal Guards can record a battle for legacy or otherwise uninitialised
+# guards. Initialise its service counter before incrementing it.
+agot_guard_positions_record_battle_victory_effect = {
+	if = { limit = { is_kingsguard_trigger = yes } create_character_memory = { type = agot_kingsguard_service_battle_victory_memory } }
+	else_if = { limit = { has_character_flag = agot_guard_positions_rainbow_guard_member } create_character_memory = { type = agot_rainbow_guard_battle_victory_memory } }
+	else_if = { limit = { has_character_flag = agot_guard_positions_battleguard_member } create_character_memory = { type = agot_battleguard_battle_victory_memory } }
+	else_if = { limit = { has_character_flag = agot_guard_positions_winged_knight_member } create_character_memory = { type = agot_winged_knight_battle_victory_memory } }
+	else_if = { limit = { has_character_flag = agot_guard_positions_kingsmen_member } create_character_memory = { type = agot_kingsman_battle_victory_memory } }
+	else_if = { limit = { has_character_flag = agot_guard_positions_queensguard_member } create_character_memory = { type = agot_queensguard_battle_victory_memory } }
+	else_if = { limit = { has_character_flag = agot_guard_positions_greenhand_member } create_character_memory = { type = agot_greenhand_guard_battle_victory_memory } }
+	else_if = { limit = { has_character_flag = agot_guard_positions_tully_guard_member } create_character_memory = { type = agot_tully_guard_battle_victory_memory } }
+	agot_guard_order_book_append_battle_effect = yes
+	if = {
+		limit = { NOT = { has_variable = agot_guard_positions_service_battle_victories } }
+		set_variable = { name = agot_guard_positions_service_battle_victories value = 0 }
+	}
+	change_variable = { name = agot_guard_positions_service_battle_victories add = 1 }
+	agot_guard_positions_initialize_experience_effect = yes
+	change_variable = { name = agot_guard_positions_battle_experience add = 1 }
+	agot_guard_positions_update_specialisation_effect = yes
+}
+
+# Eyes of the Old Gods runs this for every birth, including children for whom
+# one or both parent scopes do not exist.
+eotog_inherit_skinchanger_effect = {
+	random = {
+		chance = 3
+		modifier = {
+			add = 5
+			OR = {
+				AND = {
+					exists = scope:mother
+					scope:mother = { has_trait = skinchanger }
+				}
+				AND = {
+					exists = scope:father
+					scope:father = { has_trait = skinchanger }
+				}
+			}
+		}
+		add_trait = skinchanger
+	}
+}

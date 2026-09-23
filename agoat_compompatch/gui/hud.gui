@@ -4188,6 +4188,14 @@ widget = {
 
 	using = Animation_ShowHide_Quick
 
+	# Render the dragon and dynamic family portraits before the lower HUD.
+	# Otherwise spouse/heir canvases can cover the interface with black silhouettes.
+	bottom_left_dragon_portrait = {
+		parentanchor = bottom|left
+	}
+	bottom_left_portrait = {
+		parentanchor = bottom|left
+	}
 
 	widget = {
 		parentanchor = bottom|left
@@ -4280,15 +4288,6 @@ widget = {
 		parentanchor = bottom|left
 		ignoreinvisible = yes
 	}
-
-
-	bottom_left_dragon_portrait = {
-		parentanchor = bottom|left
-	}
-	bottom_left_portrait = {
-		parentanchor = bottom|left
-	}
-
 
 	flowcontainer = {
 		visible = "[And(And( Not( IsGameViewOpen( 'barbershop' ) ), And( GetPlayer.IsValid, Not( GetVariableSystem.Exists( 'hide_bottom_left_HUD' ) ) ) ), Not( GreaterThan_CFixedPoint( GetPlayer.MakeScope.Var('hide_ui_bottom_left_bar').GetValue, '(CFixedPoint)0' ) ))]"
