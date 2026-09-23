@@ -1,0 +1,146 @@
+﻿# Preserve the native three-character layout for every other interaction.
+types CharacterInteraction
+{
+ type vbox_character_interaction_three_characters = vbox {
+  vbox = {
+   visible = "[Not(EqualTo_string(Localize('agot_guard_assign_mentor_send'), CharacterInteractionConfirmationWindow.GetSendName))]"
+
+		margin = { 10 10 }
+
+		background = {
+			texture = "[CharacterInteractionConfirmationWindow.GetTexture]"
+			alpha = 0.5
+			fittype = centercrop
+			using = Mask_Rough_Edges
+		}
+
+		hbox = {
+			layoutpolicy_horizontal = expanding
+
+			### Left
+			vbox = {
+				layoutpolicy_horizontal = expanding
+				layoutpolicy_vertical = expanding
+				spacing = 5
+
+				portrait_shoulders = {
+					name = "left_background_portrait"
+					datacontext = "[CharacterInteractionConfirmationWindow.GetActor]"
+					visible = "[Character.IsValid]"
+				}
+
+				text_label_center = {
+					text = "INTERACTION_SENDER"
+					min_width = 100
+					max_width = 170
+				}
+			}
+
+			vbox = {
+				datacontext = "[CharacterInteractionConfirmationWindow.GetSecondaryRecipient]"
+				visible = "[CharacterInteractionConfirmationWindow.ShouldShowSecondaryRecipient]"
+				layoutpolicy_horizontal = expanding
+				layoutpolicy_vertical = expanding
+				spacing = 5
+
+				expand = {}
+
+				portrait_head = {}
+
+				hbox = {
+					spacing = 5
+
+					text_label_center = {
+						visible = "[CharacterInteractionConfirmationWindow.ShouldShowSecondaryRecipient]"
+						text = "[CharacterInteractionConfirmationWindow.GetRecipientSecondaryLabel]"
+						max_width = 170
+						multiline = yes
+					}
+
+					change_revert_buttons = {
+
+						blockoverride "size"
+						{
+							size = { 32 32 }
+						}
+
+						blockoverride "size_icon"
+						{
+							size = { 24 24 }
+						}
+
+						blockoverride "ReplaceClick"
+						{
+							onclick = [CharacterInteractionConfirmationWindow.OnChangeOrRevertRecipientCharacter]
+						}
+						blockoverride "ReplaceVisible"
+						{
+							visible = [CharacterInteractionConfirmationWindow.CanChangeRecipientCharacter]
+						}
+						blockoverride "RevertClick"
+						{
+							onclick = [CharacterInteractionConfirmationWindow.OnChangeOrRevertRecipientCharacter]
+						}
+						blockoverride "RevertVisible"
+						{
+							visible = [CharacterInteractionConfirmationWindow.CanRevertRecipientCharacter]
+						}
+					}
+				}
+			}
+
+			### Right
+			vbox = {
+				datacontext = "[CharacterInteractionConfirmationWindow.GetRecipient]"
+				visible = "[And( Character.IsValid, Not( ObjectsEqual( CharacterInteractionConfirmationWindow.GetActor, CharacterInteractionConfirmationWindow.GetRecipient ) ) )]"
+				layoutpolicy_horizontal = expanding
+				layoutpolicy_vertical = expanding
+				spacing = 5
+
+				expand = {}
+
+				portrait_shoulders = {
+					name = "right_background_portrait"
+				}
+
+				text_label_center = {
+					visible = "[Not( ObjectsEqual( CharacterInteractionConfirmationWindow.GetActor, CharacterInteractionConfirmationWindow.GetRecipient ) )]"
+					text = "INTERACTION_RECIPIENT"
+					min_width = 100
+					max_width = 170
+				}
+			}
+		}
+
+  }
+  vbox = {
+   visible = "[EqualTo_string(Localize('agot_guard_assign_mentor_send'), CharacterInteractionConfirmationWindow.GetSendName)]"
+   margin = { 10 10 }
+   background = {
+    texture = "[CharacterInteractionConfirmationWindow.GetTexture]"
+    alpha = 0.5
+    fittype = centercrop
+    using = Mask_Rough_Edges
+   }
+   hbox = {
+    layoutpolicy_horizontal = expanding
+    vbox = {
+     layoutpolicy_horizontal = expanding
+     spacing = 5
+     portrait_shoulders = {
+      datacontext = "[CharacterInteractionConfirmationWindow.GetSecondaryActor]"
+     }
+     text_label_center = { text = "actor_secondary_agot_guard_assign_mentor_interaction" }
+    }
+    vbox = {
+     layoutpolicy_horizontal = expanding
+     spacing = 5
+     portrait_shoulders = {
+      datacontext = "[CharacterInteractionConfirmationWindow.GetRecipient]"
+     }
+     text_label_center = { text = "agot_guard_mentor_student_label" }
+    }
+   }
+  }
+ }
+}

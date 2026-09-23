@@ -6,11 +6,34 @@ is_nice_season_to_be_outside_trigger = {
 	OR = {
 		AND = {
 			temperate_seasons_trigger = { LOCATION = $LOCATION$ }
-			root = { middle_of_year_season_trigger = yes }
+			trigger_if = {
+				limit = { exists = root }
+				root = { middle_of_year_season_trigger = yes }
+			}
+			trigger_else = { middle_of_year_season_trigger = yes }
 		}
 		AND = {
 			tropical_seasons_trigger = { LOCATION = $LOCATION$ }
-			root = { end_of_year_season_trigger = yes }
+			trigger_if = {
+				limit = { exists = root }
+				root = { end_of_year_season_trigger = yes }
+			}
+			trigger_else = { end_of_year_season_trigger = yes }
 		}
+	}
+}
+
+# The caller in 00_war_effects already enters the commander's province. The
+# Seasons version entered `location` again from province scope and errored.
+has_winter_combat_trigger = {
+	OR = {
+		has_province_modifier = winter_north_modifier
+		has_province_modifier = winter_mild_modifier
+		has_province_modifier = winter_normal_modifier
+		has_province_modifier = winter_normal_modifier_1
+		has_province_modifier = winter_harsh_modifier
+		has_province_modifier = winter_cold_modifier
+		has_province_modifier = winter_light_modifier
+		has_province_modifier = winter_southern_modifier
 	}
 }

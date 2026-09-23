@@ -1,0 +1,34 @@
+# Battlefield Duel+ resolves AI-vs-AI duels from a live combat phase. Its
+# capture and death outcomes immediately remove a participating character from
+# imprisonment/combat or destroy the character while the engine is still
+# iterating that combat. This repeatedly ends in a native access violation.
+# Keep non-destructive AI outcomes; player battlefield duels are unaffected.
+bdp_ai_vs_ai_roll_outcome_effect = {
+	bdp_ai_vs_ai_select_outcome_profile_effect = yes
+	clear_saved_scope = bdp_ai_vs_ai_outcome
+	random_list = {
+		0 = {
+			modifier = { add = bdp_ai_vs_ai_outcome_defeat_weight_value }
+			save_scope_value_as = { name = bdp_ai_vs_ai_outcome value = flag:defeat }
+		}
+		0 = {
+			modifier = { add = bdp_ai_vs_ai_outcome_mercy_weight_value }
+			save_scope_value_as = { name = bdp_ai_vs_ai_outcome value = flag:mercy }
+		}
+		0 = {
+			trigger = {
+				scope:bdp_ai_vs_ai_loser = {
+					OR = {
+						NOT = { has_trait = one_legged }
+						NOT = { has_trait = disfigured }
+						NOT = { has_trait = one_eyed }
+						NOT = { has_trait = maimed }
+						NOT = { has_trait = half_blind has_inactive_trait = halfblind_scar }
+					}
+				}
+			}
+			modifier = { add = bdp_ai_vs_ai_outcome_maim_weight_value }
+			save_scope_value_as = { name = bdp_ai_vs_ai_outcome value = flag:maim }
+		}
+	}
+}

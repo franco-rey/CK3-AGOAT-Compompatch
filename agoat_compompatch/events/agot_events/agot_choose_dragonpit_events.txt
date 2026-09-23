@@ -54,20 +54,6 @@ agot_choose_dragonpit_event.0001 = {
 					any_held_title = {
 						is_noble_family_title = yes
 						has_variable = dragonlord_family_title
-						lv_has_dragon_pit_building = yes
-						OR = {
-							has_building = valyria_volcano_01
-							has_building = valyria_volcano_02
-							has_building = valyria_volcano_03
-							has_building = valyria_volcano_04
-							has_building = valyria_volcano_05
-							has_building = zanpur_volcano_01
-							has_building = yovesh_volcano_01
-							has_building = last_dragon_tower_01
-							has_building_or_higher = procrazion_01
-							has_building = valyria_dead_volcano_01
-							has_building = valyria_dead_volcano_02
-						}
 					}
 				}
 				random_held_title = {
