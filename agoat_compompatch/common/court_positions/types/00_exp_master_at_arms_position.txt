@@ -109,16 +109,6 @@ master_at_arms_court_position = {
 				desc = court_position_deceitful_trait
 			}
 		}
-		# Japan house aspiration bonus
-		if = {
-			limit = {
-				liege.house ?= { has_house_aspiration_parameter = improved_martial_court_position_efficiency }
-			}
-			add = {
-				value = cp_bonus_aptitude_value
-				desc = improved_martial_court_position_efficiency_desc
-			}
-		}
 		add = court_position_aptitude_family_business_value
 		add = general_aptitude_bonus
 	}

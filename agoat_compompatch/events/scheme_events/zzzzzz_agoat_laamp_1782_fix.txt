@@ -199,10 +199,13 @@ laamp_base_contract_schemes.1782 = {
 			}
 			save_scope_as = victim
 			# Log them as someone we shouldn't rob again this contract.
-			scope:task_contract = {
-				add_to_variable_list = {
-					name = previous_victims_list
-					target = scope:victim
+			if = {
+				limit = { exists = scope:task_contract }
+				scope:task_contract = {
+					add_to_variable_list = {
+						name = previous_victims_list
+						target = scope:victim
+					}
 				}
 			}
 		}

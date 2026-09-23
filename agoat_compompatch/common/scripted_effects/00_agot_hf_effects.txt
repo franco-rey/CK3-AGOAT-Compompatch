@@ -659,6 +659,7 @@ agot_hf_revealbastard_final_effect = {
 					else_if = {
 						limit = { is_playable_character = no }
 
+						house = { save_scope_as = generated_house }
 						trigger_event = agot_dynastic_stability.1003
 					}
 				}
@@ -1619,6 +1620,7 @@ agot_hf_revealbastard_final_siblings_effect = {
 					else_if = {
 						limit = { is_playable_character = no }
 
+						house = { save_scope_as = generated_house }
 						trigger_event = agot_dynastic_stability.1003
 					}
 				}

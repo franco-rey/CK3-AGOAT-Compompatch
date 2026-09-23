@@ -1,0 +1,16 @@
+﻿# AGOT's EP3 travel events evaluate this trigger while scoped to a province.
+# Seasons of Ice and Fire's current_season_* triggers expect a character scope
+# because they enter `location` themselves. Preserve the explicit LOCATION for
+# climate-region checks, but evaluate the season from the event's root character.
+is_nice_season_to_be_outside_trigger = {
+	OR = {
+		AND = {
+			temperate_seasons_trigger = { LOCATION = $LOCATION$ }
+			root = { middle_of_year_season_trigger = yes }
+		}
+		AND = {
+			tropical_seasons_trigger = { LOCATION = $LOCATION$ }
+			root = { end_of_year_season_trigger = yes }
+		}
+	}
+}

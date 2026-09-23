@@ -7,10 +7,13 @@ agoat_laamp_1782_valid_target_char_trigger = {
 	gold >= @laamp_base_contract_schemes_1782_min_gold_value
 	NOR = {
 		save_temporary_scope_as = char_temp
-		scope:task_contract = {
-			is_target_in_variable_list = {
-				name = previous_victims_list
-				target = scope:char_temp
+		trigger_if = {
+			limit = { exists = scope:task_contract }
+			scope:task_contract = {
+				is_target_in_variable_list = {
+					name = previous_victims_list
+					target = scope:char_temp
+				}
 			}
 		}
 		liege = root
