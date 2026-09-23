@@ -1,0 +1,15 @@
+# CK3's live Struggle.GetLatestCatalystHistory datamodel can be invalidated when
+# the running game appends another catalyst. The engine then refreshes a stale
+# history row and dereferences a null entry (RVA 0x0F13076, read from 0x14).
+#
+# GUI types keep their first registered definition. Register this deliberately
+# empty replacement before cooltip.gui so every struggle tooltip retains its
+# phase, progress, effects and decisions without constructing the unsafe live
+# catalyst-history list. This also prevents the phase-specific
+# GetCatalystHistoryForPhase block override from finding a live item container.
+types StruggleTooltipTypes
+{
+	type struggle_catalyst_history = vbox {
+		visible = no
+	}
+}
