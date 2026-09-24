@@ -918,7 +918,7 @@ widget = {
 
 				widget_hud_main_tab = {
 					name = "tab_naval_combat"
-					visible = "[GetScriptedGui('naval_combat_hud_eligible_gui').IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]"
+					visible = "[GetScriptedGui('naval_combat_hud_eligible_gui').IsShown( GuiScope.AddScope( 'agoat_player', GetPlayer.MakeScope ).End )]"
 
 					blockoverride "maintab_button"
 					{
@@ -8885,7 +8885,7 @@ types HUD
 											visible = "[GetPlayer.IsValid]"
 											layoutpolicy_horizontal = expanding
 											vbox = {
-												visible = "[And( GetScriptedGui('naval_combat_finance_active_gui').IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).End ), Not( GetPlayer.ShouldReplaceGoldCostByTreasury ) )]"
+												visible = "[And( GetScriptedGui('naval_combat_finance_active_gui').IsShown( GuiScope.AddScope( 'agoat_player', GetPlayer.MakeScope ).End ), Not( GetPlayer.ShouldReplaceGoldCostByTreasury ) )]"
 												layoutpolicy_horizontal = expanding
 												margin_top = 5
 												spacing = 5
@@ -8987,16 +8987,16 @@ types HUD
 											visible = "[GetPlayer.IsValid]"
 											text_single = {
 												name = "balance_positive"
-												visible = "[GreaterThanOrEqualTo_CFixedPoint(Select_CFixedPoint(And(GetScriptedGui('naval_combat_finance_active_gui').IsShown(GuiScope.SetRoot(GetPlayer.MakeScope).End), Not(GetPlayer.ShouldReplaceGoldCostByTreasury)), Subtract_CFixedPoint(InGameTopbar.GetGoldBalance, GetPlayer.MakeScope.ScriptValue('naval_combat_monthly_maintenance_value')), InGameTopbar.GetGoldBalance), '(CFixedPoint)0')]"
-												text = "[Select_CFixedPoint(And(GetScriptedGui('naval_combat_finance_active_gui').IsShown(GuiScope.SetRoot(GetPlayer.MakeScope).End), Not(GetPlayer.ShouldReplaceGoldCostByTreasury)), Subtract_CFixedPoint(InGameTopbar.GetGoldBalance, GetPlayer.MakeScope.ScriptValue('naval_combat_monthly_maintenance_value')), InGameTopbar.GetGoldBalance)|=1]"
+												visible = "[GreaterThanOrEqualTo_CFixedPoint(Select_CFixedPoint(And(GetScriptedGui('naval_combat_finance_active_gui').IsShown(GuiScope.AddScope('agoat_player', GetPlayer.MakeScope).End), Not(GetPlayer.ShouldReplaceGoldCostByTreasury)), Subtract_CFixedPoint(InGameTopbar.GetGoldBalance, GetPlayer.MakeScope.ScriptValue('naval_combat_monthly_maintenance_value')), InGameTopbar.GetGoldBalance), '(CFixedPoint)0')]"
+												text = "[Select_CFixedPoint(And(GetScriptedGui('naval_combat_finance_active_gui').IsShown(GuiScope.AddScope('agoat_player', GetPlayer.MakeScope).End), Not(GetPlayer.ShouldReplaceGoldCostByTreasury)), Subtract_CFixedPoint(InGameTopbar.GetGoldBalance, GetPlayer.MakeScope.ScriptValue('naval_combat_monthly_maintenance_value')), InGameTopbar.GetGoldBalance)|=1]"
 												max_width = 50
 												default_format = "#low"
 											}
 
 											text_single = {
 												name = "balance_negative"
-												visible = "[LessThan_CFixedPoint(Select_CFixedPoint(And(GetScriptedGui('naval_combat_finance_active_gui').IsShown(GuiScope.SetRoot(GetPlayer.MakeScope).End), Not(GetPlayer.ShouldReplaceGoldCostByTreasury)), Subtract_CFixedPoint(InGameTopbar.GetGoldBalance, GetPlayer.MakeScope.ScriptValue('naval_combat_monthly_maintenance_value')), InGameTopbar.GetGoldBalance), '(CFixedPoint)0')]"
-												text = "[Select_CFixedPoint(And(GetScriptedGui('naval_combat_finance_active_gui').IsShown(GuiScope.SetRoot(GetPlayer.MakeScope).End), Not(GetPlayer.ShouldReplaceGoldCostByTreasury)), Subtract_CFixedPoint(InGameTopbar.GetGoldBalance, GetPlayer.MakeScope.ScriptValue('naval_combat_monthly_maintenance_value')), InGameTopbar.GetGoldBalance)|=1]"
+												visible = "[LessThan_CFixedPoint(Select_CFixedPoint(And(GetScriptedGui('naval_combat_finance_active_gui').IsShown(GuiScope.AddScope('agoat_player', GetPlayer.MakeScope).End), Not(GetPlayer.ShouldReplaceGoldCostByTreasury)), Subtract_CFixedPoint(InGameTopbar.GetGoldBalance, GetPlayer.MakeScope.ScriptValue('naval_combat_monthly_maintenance_value')), InGameTopbar.GetGoldBalance), '(CFixedPoint)0')]"
+												text = "[Select_CFixedPoint(And(GetScriptedGui('naval_combat_finance_active_gui').IsShown(GuiScope.AddScope('agoat_player', GetPlayer.MakeScope).End), Not(GetPlayer.ShouldReplaceGoldCostByTreasury)), Subtract_CFixedPoint(InGameTopbar.GetGoldBalance, GetPlayer.MakeScope.ScriptValue('naval_combat_monthly_maintenance_value')), InGameTopbar.GetGoldBalance)|=1]"
 												max_width = 50
 												default_format = "#N"
 											}
@@ -9057,7 +9057,7 @@ types HUD
 									blockoverride "gold_income"
 									{
 										vbox = {
-											visible = "[And( GetScriptedGui('naval_combat_finance_active_gui').IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).End ), GetPlayer.ShouldReplaceGoldCostByTreasury )]"
+											visible = "[And( GetScriptedGui('naval_combat_finance_active_gui').IsShown( GuiScope.AddScope( 'agoat_player', GetPlayer.MakeScope ).End ), GetPlayer.ShouldReplaceGoldCostByTreasury )]"
 											layoutpolicy_horizontal = expanding
 											margin_top = 5
 											spacing = 5
@@ -9223,16 +9223,16 @@ types HUD
 										container = {
 											text_single = {
 												name = "treasury_balance_positive"
-												visible = "[GreaterThanOrEqualTo_CFixedPoint(Select_CFixedPoint(And(GetScriptedGui('naval_combat_finance_active_gui').IsShown(GuiScope.SetRoot(GetPlayer.MakeScope).End), GetPlayer.ShouldReplaceGoldCostByTreasury), Subtract_CFixedPoint(InGameTopbar.GetTreasuryBalance, GetPlayer.MakeScope.ScriptValue('naval_combat_monthly_maintenance_value')), InGameTopbar.GetTreasuryBalance), '(CFixedPoint)0')]"
-												text = "[Select_CFixedPoint(And(GetScriptedGui('naval_combat_finance_active_gui').IsShown(GuiScope.SetRoot(GetPlayer.MakeScope).End), GetPlayer.ShouldReplaceGoldCostByTreasury), Subtract_CFixedPoint(InGameTopbar.GetTreasuryBalance, GetPlayer.MakeScope.ScriptValue('naval_combat_monthly_maintenance_value')), InGameTopbar.GetTreasuryBalance)|=1]"
+												visible = "[GreaterThanOrEqualTo_CFixedPoint(Select_CFixedPoint(And(GetScriptedGui('naval_combat_finance_active_gui').IsShown(GuiScope.AddScope('agoat_player', GetPlayer.MakeScope).End), GetPlayer.ShouldReplaceGoldCostByTreasury), Subtract_CFixedPoint(InGameTopbar.GetTreasuryBalance, GetPlayer.MakeScope.ScriptValue('naval_combat_monthly_maintenance_value')), InGameTopbar.GetTreasuryBalance), '(CFixedPoint)0')]"
+												text = "[Select_CFixedPoint(And(GetScriptedGui('naval_combat_finance_active_gui').IsShown(GuiScope.AddScope('agoat_player', GetPlayer.MakeScope).End), GetPlayer.ShouldReplaceGoldCostByTreasury), Subtract_CFixedPoint(InGameTopbar.GetTreasuryBalance, GetPlayer.MakeScope.ScriptValue('naval_combat_monthly_maintenance_value')), InGameTopbar.GetTreasuryBalance)|=1]"
 												max_width = 50
 												default_format = "#low"
 											}
 
 											text_single = {
 												name = "treasury_balance_negative"
-												visible = "[LessThan_CFixedPoint(Select_CFixedPoint(And(GetScriptedGui('naval_combat_finance_active_gui').IsShown(GuiScope.SetRoot(GetPlayer.MakeScope).End), GetPlayer.ShouldReplaceGoldCostByTreasury), Subtract_CFixedPoint(InGameTopbar.GetTreasuryBalance, GetPlayer.MakeScope.ScriptValue('naval_combat_monthly_maintenance_value')), InGameTopbar.GetTreasuryBalance), '(CFixedPoint)0')]"
-												text = "[Select_CFixedPoint(And(GetScriptedGui('naval_combat_finance_active_gui').IsShown(GuiScope.SetRoot(GetPlayer.MakeScope).End), GetPlayer.ShouldReplaceGoldCostByTreasury), Subtract_CFixedPoint(InGameTopbar.GetTreasuryBalance, GetPlayer.MakeScope.ScriptValue('naval_combat_monthly_maintenance_value')), InGameTopbar.GetTreasuryBalance)|=1]"
+												visible = "[LessThan_CFixedPoint(Select_CFixedPoint(And(GetScriptedGui('naval_combat_finance_active_gui').IsShown(GuiScope.AddScope('agoat_player', GetPlayer.MakeScope).End), GetPlayer.ShouldReplaceGoldCostByTreasury), Subtract_CFixedPoint(InGameTopbar.GetTreasuryBalance, GetPlayer.MakeScope.ScriptValue('naval_combat_monthly_maintenance_value')), InGameTopbar.GetTreasuryBalance), '(CFixedPoint)0')]"
+												text = "[Select_CFixedPoint(And(GetScriptedGui('naval_combat_finance_active_gui').IsShown(GuiScope.AddScope('agoat_player', GetPlayer.MakeScope).End), GetPlayer.ShouldReplaceGoldCostByTreasury), Subtract_CFixedPoint(InGameTopbar.GetTreasuryBalance, GetPlayer.MakeScope.ScriptValue('naval_combat_monthly_maintenance_value')), InGameTopbar.GetTreasuryBalance)|=1]"
 												max_width = 50
 												default_format = "#N"
 											}

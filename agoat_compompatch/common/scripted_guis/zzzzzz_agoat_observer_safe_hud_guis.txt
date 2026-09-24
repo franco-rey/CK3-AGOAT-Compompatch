@@ -1,0 +1,180 @@
+# Several component HUDs continue evaluating hidden child widgets in observer mode.
+# Their original character-scoped scripted GUIs therefore receive GetPlayer's
+# invalid character scope every frame.  Rootless wrappers can safely return false
+# when no player exists, while retaining the original single-player behaviour.
+
+right_clear_notifications = {
+	scope = none
+
+	is_shown = {
+		exists = scope:agoat_player
+		scope:agoat_player = { exists = var:right_clear_notifications }
+	}
+
+	effect = {
+		scope:agoat_player = {
+			if = {
+				limit = { exists = var:right_clear_notifications }
+				remove_variable = right_clear_notifications
+			}
+			else = { set_variable = right_clear_notifications }
+		}
+	}
+}
+
+hide_notifications_windows = {
+	scope = none
+
+	is_shown = {
+		exists = scope:agoat_player
+		scope:agoat_player = { exists = var:hide_notifications_windows }
+	}
+
+	effect = {
+		scope:agoat_player = {
+			if = {
+				limit = { exists = var:hide_notifications_windows }
+				remove_variable = hide_notifications_windows
+			}
+			else = { set_variable = hide_notifications_windows }
+		}
+	}
+}
+
+hide_all_notifications = {
+	scope = none
+
+	is_shown = {
+		exists = scope:agoat_player
+		scope:agoat_player = { exists = var:hide_all_notifications }
+	}
+
+	effect = {
+		scope:agoat_player = {
+			if = {
+				limit = { exists = var:hide_all_notifications }
+				remove_variable = hide_all_notifications
+			}
+			else = { set_variable = hide_all_notifications }
+		}
+	}
+}
+
+agot_artifact_market_window = {
+	scope = none
+
+	is_shown = {
+		exists = scope:agoat_player
+		scope:agoat_player = { exists = var:agot_artifact_market_window_open }
+	}
+
+	effect = {
+		scope:agoat_player = {
+			if = {
+				limit = { has_variable = agot_artifact_market_window_open }
+				remove_variable = agot_artifact_market_window_open
+			}
+		}
+	}
+}
+
+DI_hide_button_check = {
+	scope = none
+
+	is_valid = {
+		exists = scope:agoat_player
+		scope:agoat_player = {
+			NOT = {
+				any_owned_story = {
+					story_type = DI_misc_variables_story
+					has_variable = DI_button_invisible_var
+				}
+			}
+		}
+	}
+}
+
+DI_misc_variable_story_check = {
+	scope = none
+
+	is_valid = {
+		exists = scope:agoat_player
+		scope:agoat_player = {
+			is_alive = yes
+			OR = {
+				NOT = { any_owned_story = { story_type = DI_misc_variables_story } }
+				any_owned_story = {
+					story_type = DI_misc_variables_story
+					count > 1
+				}
+			}
+		}
+	}
+
+	effect = {
+		scope:agoat_player = {
+			DI_clear_misc_variables_effect = yes
+			if = {
+				limit = { NOT = { any_owned_story = { story_type = DI_misc_variables_story } } }
+				create_story = DI_misc_variables_story
+			}
+			else = {
+				every_owned_story = {
+					limit = { story_type = DI_misc_variables_story }
+					end_story = yes
+				}
+			}
+		}
+	}
+}
+
+naval_combat_finance_active_gui = {
+	scope = none
+
+	is_shown = {
+		exists = scope:agoat_player
+		scope:agoat_player = {
+			exists = var:naval_combat_initialized
+			naval_combat_can_manage_navy_trigger = yes
+		}
+	}
+}
+
+naval_combat_hud_eligible_gui = {
+	scope = none
+
+	is_shown = {
+		exists = scope:agoat_player
+		scope:agoat_player = { naval_combat_can_manage_navy_trigger = yes }
+	}
+}
+
+agoat_player_can_have_dragon = {
+	scope = none
+
+	is_shown = {
+		exists = scope:agoat_player
+		scope:agoat_player = {
+			any_relation = { type = agot_dragon }
+		}
+	}
+}
+
+mde_dragon_portrait_toggle = {
+	scope = none
+
+	is_shown = {
+		exists = scope:agoat_player
+		scope:agoat_player = { mde_dragon_portrait_shown_trigger = yes }
+	}
+
+	effect = {
+		scope:agoat_player = {
+			if = {
+				limit = { mde_dragon_portrait_shown_trigger = yes }
+				mde_hide_dragon_portrait_effect = yes
+			}
+			else = { mde_show_dragon_portrait_effect = yes }
+		}
+	}
+}
