@@ -123,15 +123,15 @@ agot_mwrsf.0100 = {
 			limit = {
 				any_in_list = {
 					list = attackers
-					highest_held_title_tier > tier_duchy
+					tier_difference = { target = scope:war_loser value > agot_mw_tier_difference }
 					NOT = { this = scope:choosing_ruler }
 					count = 1
 				}
 			}
-			every_in_list = {
+			random_in_list = {
 				list = attackers
 				limit = {
-					highest_held_title_tier > tier_duchy
+					tier_difference = { target = scope:war_loser value > agot_mw_tier_difference }
 					NOT = { this = scope:choosing_ruler }
 				}
 
@@ -144,13 +144,13 @@ agot_mwrsf.0100 = {
 				OR = {
 					any_in_list = {
 						list = attackers
-						highest_held_title_tier > tier_duchy
+						tier_difference = { target = scope:war_loser value > agot_mw_tier_difference }
 						NOT = { this = scope:choosing_ruler }
 						count = 2
 					}
 					any_in_list = {
 						list = attackers
-						highest_held_title_tier > tier_duchy
+						tier_difference = { target = scope:war_loser value > agot_mw_tier_difference }
 						NOT = { this = scope:choosing_ruler }
 						count > 2
 					}
@@ -160,7 +160,7 @@ agot_mwrsf.0100 = {
 				limit = {
 					any_in_list = {
 						list = attackers
-						highest_held_title_tier > tier_duchy
+						tier_difference = { target = scope:war_loser value > agot_mw_tier_difference }
 						NOT = { this = scope:choosing_ruler }
 						count = 2
 					}
@@ -172,7 +172,7 @@ agot_mwrsf.0100 = {
 				limit = {
 					any_in_list = {
 						list = attackers
-						highest_held_title_tier > tier_duchy
+						tier_difference = { target = scope:war_loser value > agot_mw_tier_difference }
 						NOT = { this = scope:choosing_ruler }
 						count > 2
 					}
@@ -182,7 +182,7 @@ agot_mwrsf.0100 = {
 			every_in_list = {
 				list = attackers
 				limit = {
-					highest_held_title_tier > tier_duchy
+					tier_difference = { target = scope:war_loser value > agot_mw_tier_difference }
 					NOT = { this = scope:choosing_ruler }
 					NOR = {
 						AND = {
@@ -415,7 +415,7 @@ agot_mwrsf.0100 = {
 			trigger = {
 				any_in_list = {
 					list = attackers
-					highest_held_title_tier > tier_duchy
+					tier_difference = { target = scope:war_loser value > agot_mw_tier_difference }
 					NOT = { this = scope:choosing_ruler }
 					count = 1
 				}
@@ -426,7 +426,7 @@ agot_mwrsf.0100 = {
 			trigger = {
 				any_in_list = {
 					list = attackers
-					highest_held_title_tier > tier_duchy
+					tier_difference = { target = scope:war_loser value > agot_mw_tier_difference }
 					NOT = { this = scope:choosing_ruler }
 					count > 1
 				}
@@ -437,7 +437,7 @@ agot_mwrsf.0100 = {
 		trigger = {
 			any_in_list = {
 				list = attackers
-				highest_held_title_tier > tier_duchy
+				tier_difference = { target = scope:war_loser value > agot_mw_tier_difference }
 				NOT = { this = scope:choosing_ruler }
 				count > 0
 			}
@@ -449,7 +449,7 @@ agot_mwrsf.0100 = {
 			limit = {
 				any_in_list = {
 					list = attackers
-					highest_held_title_tier > tier_duchy
+					tier_difference = { target = scope:war_loser value > agot_mw_tier_difference }
 					NOT = { this = scope:choosing_ruler }
 					count > 1
 				}
@@ -526,7 +526,7 @@ agot_mwrsf.0101 = {
 	widget = {
 		is_shown = {
 			any_in_list = {
-				list = attackers
+				variable = possible_characters
 				count > 0
 			}
 		}
@@ -539,7 +539,7 @@ agot_mwrsf.0101 = {
 			list = attackers
 
 			limit = {
-				highest_held_title_tier > tier_duchy
+				tier_difference = { target = scope:war_loser value > agot_mw_tier_difference }
 				NOT = { this = scope:choosing_ruler }
 			}
 
@@ -570,12 +570,19 @@ agot_mwrsf.0101 = {
 		name = agot_mega_wars.0501.a
 
 		custom_tooltip = MEGA_WARS_0501_a_TOOLTIP
-		var:si_selected_character ?= {
-			save_scope_as = chosen_crown_ruler
-			remove_variable = si_selecting_character
-			trigger_event = agot_mwrsf.0102
-		}
 		clear_variable_list = possible_characters
+
+		if = {
+			limit = { NOT = { exists = var:si_selected_character } }
+			trigger_event = agot_mwrsf.0101
+		}
+		else = {
+			var:si_selected_character ?= {
+				save_scope_as = chosen_crown_ruler
+				remove_variable = si_selecting_character
+				trigger_event = agot_mwrsf.0102
+			}
+		}
 	}
 }
 

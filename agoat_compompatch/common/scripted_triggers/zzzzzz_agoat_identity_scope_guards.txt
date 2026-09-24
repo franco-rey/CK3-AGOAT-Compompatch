@@ -1,4 +1,4 @@
-# AGOAT: identity guards for generated/supernatural characters that do not
+﻿# AGOAT: identity guards for generated/supernatural characters that do not
 # possess the ordinary faith or culture scopes assumed by these triggers.
 
 is_eligible_for_agot_squirehood_trigger = {

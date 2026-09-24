@@ -1,4 +1,4 @@
-namespace = culture_conversion
+﻿namespace = culture_conversion
 
 
 ### My Liege converted culture

@@ -1,8 +1,8 @@
 ﻿@laamp_base_contract_schemes_1782_min_gold_value = 50
 
-namespace = laamp_base_contract_schemes
+namespace = agoat_laamp_contract
 
-laamp_base_contract_schemes.1782 = {
+agoat_laamp_contract.1782 = {
 	type = character_event
 	title = laamp_base_contract_schemes.1782.t
 	desc = {

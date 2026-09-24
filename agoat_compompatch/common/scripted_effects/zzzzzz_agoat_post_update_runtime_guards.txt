@@ -1,4 +1,4 @@
-# AGOT: Royal Guards can record a battle for legacy or otherwise uninitialised
+﻿# AGOT: Royal Guards can record a battle for legacy or otherwise uninitialised
 # guards. Initialise its service counter before incrementing it.
 agot_guard_positions_record_battle_victory_effect = {
 	if = { limit = { is_kingsguard_trigger = yes } create_character_memory = { type = agot_kingsguard_service_battle_victory_memory } }
@@ -7,7 +7,7 @@ agot_guard_positions_record_battle_victory_effect = {
 	else_if = { limit = { has_character_flag = agot_guard_positions_winged_knight_member } create_character_memory = { type = agot_winged_knight_battle_victory_memory } }
 	else_if = { limit = { has_character_flag = agot_guard_positions_kingsmen_member } create_character_memory = { type = agot_kingsman_battle_victory_memory } }
 	else_if = { limit = { has_character_flag = agot_guard_positions_queensguard_member } create_character_memory = { type = agot_queensguard_battle_victory_memory } }
-	else_if = { limit = { has_character_flag = agot_guard_positions_greenhand_member } create_character_memory = { type = agot_greenhand_guard_battle_victory_memory } }
+	else_if = { limit = { has_character_flag = agot_guard_positions_greenhand_member } create_character_memory = { type = agot_greenhand_battle_victory_memory } }
 	else_if = { limit = { has_character_flag = agot_guard_positions_tully_guard_member } create_character_memory = { type = agot_tully_guard_battle_victory_memory } }
 	agot_guard_order_book_append_battle_effect = yes
 	if = {

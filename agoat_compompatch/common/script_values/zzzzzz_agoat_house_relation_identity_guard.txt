@@ -1,4 +1,4 @@
-# AGOAT: a house-less special defender has no house-relation war score.
+﻿# AGOAT: a house-less special defender has no house-relation war score.
 
 house_relation_ai_score_value = {
 	value = 0

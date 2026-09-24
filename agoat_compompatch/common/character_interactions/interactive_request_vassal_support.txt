@@ -83,7 +83,6 @@
 				}
 			}
 		}
-
 		OR = {
 			has_game_rule = bannermen_mode_enabled
 			scope:actor = {
@@ -134,7 +133,6 @@
 					was_called = scope:recipient
 				}
 			}
-
 			custom_description = {
 				text = join_war_interaction_already_in_target_war
 				NOR = {
@@ -164,7 +162,6 @@
 			has_game_rule = bannermen_mode_enabled
 
 			scope:target = {
-
 				custom_description = {
 					text = ASK_VASSAL_MILITARY_SUPPORT_IS_CIVIL_WAR_TEXT
 					NOT = {
@@ -181,9 +178,6 @@
 			hidden_effect = {
 				set_called_to = scope:recipient
 			}
-
-
-
 			if = {
 				limit = {
 					NOT = {
@@ -253,9 +247,7 @@
 			desc = interactive_bannermen_accept_serving
 		}
 		modifier = {
-			add = 100
 			has_game_rule = bannermen_mode_enabled
-			interactive_bannermen_interaction_score >= interactive_bannermen_prompt_threshold
 			scope:recipient = {
 				NOT = {
 					interactive_bannermen_serving_trigger = {
@@ -263,82 +255,13 @@
 					}
 				}
 			}
-			desc = interactive_bannermen_accept_prompt
-		}
-		modifier = {
-			add = 70
-			has_game_rule = bannermen_mode_enabled
-			interactive_bannermen_interaction_score >= interactive_bannermen_willing_threshold
-			interactive_bannermen_interaction_score < interactive_bannermen_prompt_threshold
-			scope:recipient = {
-				NOT = {
-					interactive_bannermen_serving_trigger = {
-						LIEGE = scope:actor
-					}
-				}
-			}
-			desc = interactive_bannermen_accept_willing
-		}
-		modifier = {
-			add = 45
-			has_game_rule = bannermen_mode_enabled
-			interactive_bannermen_interaction_score >= interactive_bannermen_reluctant_threshold
-			interactive_bannermen_interaction_score < interactive_bannermen_willing_threshold
-			scope:recipient = {
-				NOT = {
-					interactive_bannermen_serving_trigger = {
-						LIEGE = scope:actor
-					}
-				}
-			}
-			desc = interactive_bannermen_accept_reluctant
-		}
-		modifier = {
-			add = 25
-			has_game_rule = bannermen_mode_enabled
-			interactive_bannermen_interaction_score >= interactive_bannermen_answer_threshold
-			interactive_bannermen_interaction_score < interactive_bannermen_reluctant_threshold
-			scope:recipient = {
-				NOT = {
-					interactive_bannermen_serving_trigger = {
-						LIEGE = scope:actor
-					}
-				}
-			}
-			desc = interactive_bannermen_accept_grudging
-		}
-		modifier = {
-			add = -20
-			has_game_rule = bannermen_mode_enabled
-			interactive_bannermen_interaction_score >= interactive_bannermen_betrayal_threshold
-			interactive_bannermen_interaction_score < interactive_bannermen_answer_threshold
-			scope:recipient = {
-				NOT = {
-					interactive_bannermen_serving_trigger = {
-						LIEGE = scope:actor
-					}
-				}
-			}
-			desc = interactive_bannermen_accept_refuse
-		}
-		modifier = {
-			add = -60
-			has_game_rule = bannermen_mode_enabled
-			interactive_bannermen_interaction_score < interactive_bannermen_betrayal_threshold
-			scope:recipient = {
-				NOT = {
-					interactive_bannermen_serving_trigger = {
-						LIEGE = scope:actor
-					}
-				}
-			}
-			desc = interactive_bannermen_accept_betray
+			add = miv_bannermen_accept_value
+			desc = interactive_bannermen_accept_ladder
 		}
 		modifier = {
 			NOT = {
 				has_game_rule = bannermen_mode_enabled
 			}
-
 			add = -1000
 			exists = scope:recipient.player_heir
 			trigger_if = {
@@ -356,7 +279,6 @@
 			NOT = {
 				has_game_rule = bannermen_mode_enabled
 			}
-
 			add = -1000
 			scope:recipient = {
 				trigger_if = {
@@ -390,7 +312,6 @@
 			NOT = {
 				has_game_rule = bannermen_mode_enabled
 			}
-
 			add = -50
 			scope:target.casus_belli.primary_attacker = scope:actor
 			scope:recipient = {
@@ -402,7 +323,6 @@
 			NOT = {
 				has_game_rule = bannermen_mode_enabled
 			}
-
 			add = -50
 			scope:target.casus_belli.primary_defender = scope:actor
 			scope:recipient = {
@@ -414,7 +334,6 @@
 			NOT = {
 				has_game_rule = bannermen_mode_enabled
 			}
-
 			add = -50
 			trigger_if = {
 				limit = {
@@ -431,7 +350,6 @@
 			NOT = {
 				has_game_rule = bannermen_mode_enabled
 			}
-
 			add = -50
 			trigger_if = {
 				limit = {
@@ -448,7 +366,6 @@
 			NOT = {
 				has_game_rule = bannermen_mode_enabled
 			}
-
 			add = -50
 			trigger_if = {
 				limit = {
@@ -465,7 +382,6 @@
 			NOT = {
 				has_game_rule = bannermen_mode_enabled
 			}
-
 			add = -50
 			trigger_if = {
 				limit = {
@@ -482,7 +398,6 @@
 			NOT = {
 				has_game_rule = bannermen_mode_enabled
 			}
-
 			any_home_court_hostage = {
 				warden = {
 					OR = {
@@ -512,7 +427,6 @@
 			}
 			desc = HOSTAGE_ENEMY_CALL_TO_ARMS_REASON
 		}
-		fp3_struggle_resist_allied_wars_modifier = yes
 	}
 	ai_will_do = {
 		base = 0

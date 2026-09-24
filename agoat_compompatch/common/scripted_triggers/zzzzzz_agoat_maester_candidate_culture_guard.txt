@@ -1,4 +1,4 @@
-# AGOAT: the yearly Citadel sweep samples special characters that may not have
+﻿# AGOAT: the yearly Citadel sweep samples special characters that may not have
 # a culture. Reject those before entering the culture scope.
 
 agot_is_maester_candidate = {

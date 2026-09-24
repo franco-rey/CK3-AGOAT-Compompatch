@@ -1,7 +1,7 @@
-macro = {
+﻿macro = {
 	description = "Requires all the things vanilla requires for a HUD portrait to be visible"
 	definition = "ShouldShowHudPortraits"
-	replace_with = "And(And(And(And(Not(IsGameViewOpen('barbershop')), And(GetPlayer.IsValid, Not(GetVariableSystem.Exists('hide_bottom_left_HUD')))), Not(GreaterThan_CFixedPoint(GetPlayer.MakeScope.Var('hide_ui_character_model').GetValue, '(CFixedPoint)0'))), Not(GetVariableSystem.Exists('lifestyle_open'))), GetScriptedGui('mde_dragon_portrait_toggle').IsShown(GuiScope.AddScope('agoat_player', GetPlayer.MakeScope).End))"
+	replace_with = "And(And(And(And(Not(IsGameViewOpen('barbershop')), And(GetPlayer.IsValid, Not(GetVariableSystem.Exists('hide_bottom_left_HUD')))), Not(GreaterThan_CFixedPoint(GetPlayer.MakeScope.Var('hide_ui_character_model').GetValue, '(CFixedPoint)0'))), Not(GetVariableSystem.Exists('lifestyle_open'))), GetScriptedGui('agoat_mde_dragon_portrait_toggle').IsShown(GuiScope.AddScope('agoat_player', GetPlayer.MakeScope).End))"
 }
 
 macro = {

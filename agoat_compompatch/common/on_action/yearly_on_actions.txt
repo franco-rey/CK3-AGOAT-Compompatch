@@ -1992,7 +1992,7 @@ on_yearly_events = {
 		200 = 0
 
 		50 = yearly.0001
-		100 = yearly.0002
+		100 = agoat_yearly.0002
 		10 = yearly.0003
 		25 = yearly.0011
 

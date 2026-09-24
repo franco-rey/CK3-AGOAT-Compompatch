@@ -1,4 +1,4 @@
-# Battlefield Duel+ resolves AI-vs-AI duels from a live combat phase. Its
+﻿# Battlefield Duel+ resolves AI-vs-AI duels from a live combat phase. Its
 # capture and death outcomes immediately remove a participating character from
 # imprisonment/combat or destroy the character while the engine is still
 # iterating that combat. This repeatedly ends in a native access violation.

@@ -6123,7 +6123,7 @@ asoiaf_got_traits_effect = {
 		add_trait = shrewd
 		if = {
 			limit = { age < 16 }
-			set_focus = education_stewardhip
+			set_focus = education_stewardship
 		}
 	}
 	character:Targaryen_89 ?= {

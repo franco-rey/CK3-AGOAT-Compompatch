@@ -1,4 +1,4 @@
-# AGOT's ESR threat pass calls has_any_cb_on for neighboring rulers and every
+﻿# AGOT's ESR threat pass calls has_any_cb_on for neighboring rulers and every
 # vassal below them. Special holders without a faith or culture cannot satisfy
 # normal CB eligibility, and asking the engine to enumerate their CBs floods
 # every allowed_for_character trigger with invalid faith/culture scopes.

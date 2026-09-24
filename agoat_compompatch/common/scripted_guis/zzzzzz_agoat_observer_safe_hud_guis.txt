@@ -1,4 +1,4 @@
-# Several component HUDs continue evaluating hidden child widgets in observer mode.
+﻿# Several component HUDs continue evaluating hidden child widgets in observer mode.
 # Their original character-scoped scripted GUIs therefore receive GetPlayer's
 # invalid character scope every frame.  Rootless wrappers can safely return false
 # when no player exists, while retaining the original single-player behaviour.
@@ -8,7 +8,7 @@ right_clear_notifications = {
 
 	is_shown = {
 		exists = scope:agoat_player
-		scope:agoat_player = { exists = var:right_clear_notifications }
+		scope:agoat_player ?= { exists = var:right_clear_notifications }
 	}
 
 	effect = {
@@ -27,7 +27,7 @@ hide_notifications_windows = {
 
 	is_shown = {
 		exists = scope:agoat_player
-		scope:agoat_player = { exists = var:hide_notifications_windows }
+		scope:agoat_player ?= { exists = var:hide_notifications_windows }
 	}
 
 	effect = {
@@ -46,7 +46,7 @@ hide_all_notifications = {
 
 	is_shown = {
 		exists = scope:agoat_player
-		scope:agoat_player = { exists = var:hide_all_notifications }
+		scope:agoat_player ?= { exists = var:hide_all_notifications }
 	}
 
 	effect = {
@@ -65,7 +65,7 @@ agot_artifact_market_window = {
 
 	is_shown = {
 		exists = scope:agoat_player
-		scope:agoat_player = { exists = var:agot_artifact_market_window_open }
+		scope:agoat_player ?= { exists = var:agot_artifact_market_window_open }
 	}
 
 	effect = {
@@ -83,7 +83,7 @@ DI_hide_button_check = {
 
 	is_valid = {
 		exists = scope:agoat_player
-		scope:agoat_player = {
+		scope:agoat_player ?= {
 			NOT = {
 				any_owned_story = {
 					story_type = DI_misc_variables_story
@@ -99,7 +99,7 @@ DI_misc_variable_story_check = {
 
 	is_valid = {
 		exists = scope:agoat_player
-		scope:agoat_player = {
+		scope:agoat_player ?= {
 			is_alive = yes
 			OR = {
 				NOT = { any_owned_story = { story_type = DI_misc_variables_story } }
@@ -133,7 +133,7 @@ naval_combat_finance_active_gui = {
 
 	is_shown = {
 		exists = scope:agoat_player
-		scope:agoat_player = {
+		scope:agoat_player ?= {
 			exists = var:naval_combat_initialized
 			naval_combat_can_manage_navy_trigger = yes
 		}
@@ -145,7 +145,7 @@ naval_combat_hud_eligible_gui = {
 
 	is_shown = {
 		exists = scope:agoat_player
-		scope:agoat_player = { naval_combat_can_manage_navy_trigger = yes }
+		scope:agoat_player ?= { naval_combat_can_manage_navy_trigger = yes }
 	}
 }
 
@@ -154,27 +154,17 @@ agoat_player_can_have_dragon = {
 
 	is_shown = {
 		exists = scope:agoat_player
-		scope:agoat_player = {
+		scope:agoat_player ?= {
 			any_relation = { type = agot_dragon }
 		}
 	}
 }
 
-mde_dragon_portrait_toggle = {
+agoat_mde_dragon_portrait_toggle = {
 	scope = none
 
 	is_shown = {
 		exists = scope:agoat_player
-		scope:agoat_player = { mde_dragon_portrait_shown_trigger = yes }
-	}
-
-	effect = {
-		scope:agoat_player = {
-			if = {
-				limit = { mde_dragon_portrait_shown_trigger = yes }
-				mde_hide_dragon_portrait_effect = yes
-			}
-			else = { mde_show_dragon_portrait_effect = yes }
-		}
+		scope:agoat_player ?= { mde_dragon_portrait_shown_trigger = yes }
 	}
 }

@@ -1326,6 +1326,7 @@ support_candidacy_interaction = {
 			scope:secondary_recipient ?= {
 				any_heir_title = {
 					is_noble_family_title = no
+					exists = holder
 					holder = {
 						government_allows = administrative
 					}
@@ -1467,9 +1468,18 @@ harm_candidacy_interaction = {
 	target_filter = secondary_recipient_de_jure_titles
 
 	can_be_picked_title = {
-		is_candidate_for_title_trigger = {
-			TITLE = scope:target
-			CANDIDATE = scope:secondary_recipient
+		trigger_if = {
+			limit = {
+				exists = scope:target
+				scope:target = {
+					tier >= tier_duchy
+					has_title_law_flag = appointment_type_succession
+				}
+			}
+			is_candidate_for_title_trigger = {
+				TITLE = scope:target
+				CANDIDATE = scope:secondary_recipient
+			}
 		}
 	}
 

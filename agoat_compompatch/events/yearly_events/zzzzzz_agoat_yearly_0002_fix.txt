@@ -1,5 +1,5 @@
 ﻿#Events run from the yearly_pulse on_action
-namespace = yearly
+namespace = agoat_yearly
 
 #Trigger to ensure one of ROOT's children is valid for the seducee role.
 scripted_trigger agoat_yearly_0002_valid_child = {
@@ -34,7 +34,7 @@ scripted_trigger agoat_yearly_0002_valid_councillor = {
 	might_cheat_on_every_partner_trigger = yes
 }
 
-yearly.0002 = {
+agoat_yearly.0002 = {
 	type = character_event
 	title = yearly.0002.t
 	desc = yearly.0002.desc

@@ -37,6 +37,7 @@
 				text_single = {
 					maximumsize = { 149 -1 }
 					name = "ai_personality"
+					using = IMHO_player_personality_enabled
 
 					raw_text = " • #L [Character.GetAIPersonalityNoTooltip]#!"
 					tooltip = "AI_PERSONALITY_TT"
