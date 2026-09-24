@@ -185,6 +185,7 @@ monthly_playable_pulse = {
 		dragonlord_oligarchy_initialize_noble_laws
 		dragonlord_oligarchy_fill_vacant_family_seats
 		dragonlord_oligarchy_refresh_family_ui_counts
+		agoat_ln_seasons_monthly_sync
 	}
 }
 

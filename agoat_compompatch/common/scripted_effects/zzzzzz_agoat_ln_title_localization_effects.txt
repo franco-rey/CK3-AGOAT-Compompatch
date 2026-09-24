@@ -1,0 +1,103 @@
+﻿# AGOAT Compompatch: restore Long Night title dispatch after later submods replace it.
+#
+# AGOT: The Knighting Ceremony defines set_title_localization_effect in a zzz file and therefore
+# replaces Long Night's government-aware definition.  Keep Long Night's narrow special cases first,
+# then preserve the ordinary flag writer for every other mod-provided title key (including the
+# Slaver's Bay Good/Wise/Great Master keys).
+
+set_title_localization_effect = {
+	if = {
+		limit = {
+			exists = $SCOPE$
+			$SCOPE$ ?= { has_government = wight_government }
+		}
+		if = {
+			limit = { $SCOPE$ ?= { ln_named_title_tier_trigger = { TIER = tier_barony } } }
+			ln_stamp_title_effect = { SCOPE = $SCOPE$ MALE = baron_wight_male FEMALE = baron_wight_female }
+		}
+		else_if = {
+			limit = { $SCOPE$ ?= { ln_named_title_tier_trigger = { TIER = tier_county } } }
+			ln_stamp_title_effect = { SCOPE = $SCOPE$ MALE = count_wight_male FEMALE = count_wight_female }
+		}
+		else_if = {
+			limit = { $SCOPE$ ?= { ln_named_title_tier_trigger = { TIER = tier_duchy } } }
+			ln_stamp_title_effect = { SCOPE = $SCOPE$ MALE = duke_wight_male FEMALE = duke_wight_female }
+		}
+		else_if = {
+			limit = { $SCOPE$ ?= { ln_named_title_tier_trigger = { TIER = tier_kingdom } } }
+			ln_stamp_title_effect = { SCOPE = $SCOPE$ MALE = king_wight_male FEMALE = king_wight_female }
+		}
+		else_if = {
+			limit = { $SCOPE$ ?= { ln_named_title_tier_trigger = { TIER = tier_empire } } }
+			ln_stamp_title_effect = { SCOPE = $SCOPE$ MALE = emperor_wight_male FEMALE = emperor_wight_female }
+		}
+		else_if = {
+			limit = { $SCOPE$ ?= { ln_named_title_tier_trigger = { TIER = tier_hegemony } } }
+			ln_stamp_title_effect = { SCOPE = $SCOPE$ MALE = emperor_wight_male FEMALE = emperor_wight_female }
+		}
+		else = {
+			ln_stamp_title_effect = { SCOPE = $SCOPE$ MALE = lord_non_paramount FEMALE = lady_non_paramount }
+		}
+	}
+	else_if = {
+		limit = {
+			exists = $SCOPE$
+			$SCOPE$ ?= { has_government = ln_ranger_government }
+		}
+		ln_stamp_title_effect = { SCOPE = $SCOPE$ MALE = duke_ln_ranger_male FEMALE = duke_ln_ranger_female }
+	}
+	else_if = {
+		limit = {
+			exists = $SCOPE$
+			$SCOPE$ ?= { agot_localization_government_trigger = { GOV = wilderness SPOUSE_SCOPE = scope:spouse_scope } }
+		}
+		if = {
+			limit = { $SCOPE$ ?= { ln_named_title_tier_trigger = { TIER = tier_hegemony } } }
+			ln_stamp_title_effect = { SCOPE = $SCOPE$ MALE = hegemon FEMALE = hegemon_female }
+		}
+		else_if = {
+			limit = { $SCOPE$ ?= { ln_named_title_tier_trigger = { TIER = tier_empire } } }
+			ln_stamp_title_effect = { SCOPE = $SCOPE$ MALE = emperor_wilderness_male FEMALE = emperor_wilderness_female }
+		}
+		else_if = {
+			limit = { $SCOPE$ ?= { ln_named_title_tier_trigger = { TIER = tier_kingdom } } }
+			ln_stamp_title_effect = { SCOPE = $SCOPE$ MALE = king_wilderness_male FEMALE = king_wilderness_female }
+		}
+		else_if = {
+			limit = { $SCOPE$ ?= { ln_named_title_tier_trigger = { TIER = tier_duchy } } }
+			ln_stamp_title_effect = { SCOPE = $SCOPE$ MALE = duke_wilderness_male FEMALE = duke_wilderness_female }
+		}
+		else_if = {
+			limit = { $SCOPE$ ?= { ln_named_title_tier_trigger = { TIER = tier_county } } }
+			ln_stamp_title_effect = { SCOPE = $SCOPE$ MALE = count_wilderness_male FEMALE = count_wilderness_female }
+		}
+		else_if = {
+			limit = { $SCOPE$ ?= { ln_named_title_tier_trigger = { TIER = tier_barony } } }
+			ln_stamp_title_effect = { SCOPE = $SCOPE$ MALE = baron_wilderness_male FEMALE = baron_wilderness_female }
+		}
+		else = {
+			ln_stamp_title_effect = { SCOPE = $SCOPE$ MALE = lord_non_paramount FEMALE = lady_non_paramount }
+		}
+	}
+	else = {
+		if = {
+			limit = {
+				exists = flag:$KEY$
+				switch = {
+					trigger = flag:$GENDER$
+					flag:male ?= { $SCOPE$ ?= { is_male = yes } }
+					flag:female ?= { $SCOPE$ ?= { is_female = yes } }
+					fallback = { always = yes }
+				}
+			}
+			if = {
+				limit = { $SCOPE$ ?= { is_male = yes } }
+				save_scope_value_as = { name = get_title value = flag:$KEY$ }
+			}
+			else_if = {
+				limit = { $SCOPE$ ?= { is_female = yes } }
+				save_scope_value_as = { name = get_title value = flag:$KEY$ }
+			}
+		}
+	}
+}

@@ -1,0 +1,33 @@
+﻿# AGOAT Compompatch: bind AGOT Seasons of Ice and Fire to the supernatural Long Night.
+# Registered in the patch's existing monthly_playable_pulse declaration in
+# dragonlord_oligarchy_on_actions.txt. Keeping one declaration prevents CK3 from discarding one of
+# two same-mod definitions instead of merging their on_actions lists.
+
+agoat_ln_seasons_monthly_sync = {
+	trigger = {
+		is_ai = no
+		has_global_variable = AGOT_seasons_is_loaded
+		exists = struggle:ln_long_night_struggle
+	}
+	effect = {
+		if = {
+			limit = {
+				struggle:ln_long_night_struggle = { is_struggle_phase = ln_phase_the_long_night }
+				OR = {
+					NOT = { has_global_variable = agoat_ln_seasons_winter_locked }
+					NOT = { global_var:what_season_is_it = 3 }
+				}
+			}
+			set_global_variable = { name = agoat_ln_seasons_winter_locked value = yes }
+			set_AGOT_season_winter = yes
+		}
+		else_if = {
+			limit = {
+				struggle:ln_long_night_struggle = { is_struggle_phase = ln_phase_the_dawn }
+				has_global_variable = agoat_ln_seasons_winter_locked
+			}
+			remove_global_variable = agoat_ln_seasons_winter_locked
+			set_AGOT_season_spring = yes
+		}
+	}
+}
