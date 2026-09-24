@@ -1,0 +1,41 @@
+# AGOAT: the yearly Citadel sweep samples special characters that may not have
+# a culture. Reject those before entering the culture scope.
+
+agot_is_maester_candidate = {
+	# Trigger for random adult maester candidates
+	exists = culture
+	culture = {
+		has_innovation = innovation_maesters
+	}
+	culture = { agot_is_wildling_culture = no }
+
+	is_lowborn = yes
+	is_ruler = no
+	is_landed = no
+	age < 30
+	learning > 10
+	has_any_court_position = no
+	is_knight = no
+	is_available_ai = yes
+	is_adult = yes
+	is_male = yes
+	NOT = {
+		any_child = {
+			age < 16
+		}
+	}
+
+	NOR = {
+		has_trait = nightswatch
+		has_trait = kingsguard
+		has_trait = maester
+		has_trait = devoted
+		has_trait = septon
+	}
+	AND = {
+		exists = liege_or_court_owner
+		liege_or_court_owner.capital_province ?= {
+			geographical_region = world_westeros_seven_kingdoms
+		}
+	}
+}

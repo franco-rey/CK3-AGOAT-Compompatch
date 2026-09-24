@@ -3525,7 +3525,7 @@ reindeer_crown_template = {
 				NOT = {
 					culture = {
 						OR = {
-							culture = culture:stormlander_main
+							this = culture:stormlander_main
 							has_cultural_pillar = heritage_first_man
 						}
 					}
@@ -3651,7 +3651,7 @@ aemma_tiara_template = {
 					culture = {
 						OR = {
 							has_cultural_pillar = heritage_valyrian
-							culture = culture:valeman_main
+							this = culture:valeman_main
 						}
 					}
 				}
@@ -3681,7 +3681,7 @@ baldric_durrandon_crown_template = {
 			limit = {
 				NOT = {
 					culture = {
-						culture = culture:stormlander_main
+						this = culture:stormlander_main
 					}
 				}
 			}

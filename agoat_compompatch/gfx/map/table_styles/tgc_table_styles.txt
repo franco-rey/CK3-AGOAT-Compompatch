@@ -2,7 +2,10 @@
 
 	is_shown = {
 		trigger_if = {
-			limit = { exists = title:d_laamp_merc_golden_company.holder }
+			limit = {
+				exists = this
+				exists = title:d_laamp_merc_golden_company.holder
+			}
 			this = title:d_laamp_merc_golden_company.holder
 		}
 		trigger_else = { always = no }

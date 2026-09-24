@@ -1,0 +1,29 @@
+# AGOAT: a house-less special defender has no house-relation war score.
+
+house_relation_ai_score_value = {
+	value = 0
+	scope:attacker.house ?= {
+		if = {
+			limit = {
+				exists = scope:defender.house
+				scope:defender.house ?= {
+					NOT = { this = scope:attacker.house }
+					has_house_relation_with = scope:attacker.house
+				}
+			}
+			every_house_relation = {
+				limit = {
+					any_relation_house = { this = scope:defender.house }
+				}
+				if = {
+					limit = { has_house_relation_parameter = less_likely_war_target }
+					add = house_relation_less_likely_war_target_value
+				}
+				else_if = {
+					limit = { has_house_relation_parameter = more_likely_war_target }
+					add = house_relation_more_likely_war_target_value
+				}
+			}
+		}
+	}
+}

@@ -4431,6 +4431,7 @@ make_child_learn_language_interaction = {
 
 		modifier = {
 			add = 100
+			exists = scope:secondary_actor.culture
 			any_vassal = {
 				primary_title.tier >= tier_county
 				knows_language_of_culture = scope:secondary_actor.culture

@@ -1,0 +1,32 @@
+# AGOAT: AGOT and More Dragon Eggs poll these HUD scripted GUIs when no player
+# character exists in observer mode. Guard the character scope before reading it.
+
+agot_can_have_dragon = {
+	scope = character
+
+	is_shown = {
+		exists = this
+		any_relation = {
+			type = agot_dragon
+		}
+	}
+}
+
+mde_dragon_portrait_toggle = {
+	scope = character
+
+	is_shown = {
+		exists = this
+		mde_dragon_portrait_shown_trigger = yes
+	}
+
+	effect = {
+		if = {
+			limit = { mde_dragon_portrait_shown_trigger = yes }
+			mde_hide_dragon_portrait_effect = yes
+		}
+		else = {
+			mde_show_dragon_portrait_effect = yes
+		}
+	}
+}

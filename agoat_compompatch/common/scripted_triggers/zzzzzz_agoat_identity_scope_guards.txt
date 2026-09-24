@@ -1,0 +1,120 @@
+# AGOAT: identity guards for generated/supernatural characters that do not
+# possess the ordinary faith or culture scopes assumed by these triggers.
+
+is_eligible_for_agot_squirehood_trigger = {
+	is_human = yes
+	OR = {
+		is_male = yes
+		AND = {
+			is_female = yes
+			has_character_modifier = agot_tomboy_modifier
+			prowess >= high_skill_rating
+			martial >= decent_skill_rating
+		}
+		AND = {
+			is_male = no
+			exists = faith
+			faith = { has_doctrine = doctrine_gender_equal }
+		}
+		AND = {
+			is_male = no
+			exists = faith
+			faith = { has_doctrine = doctrine_gender_female_dominated }
+		}
+	}
+	age < 22
+	age >= 9
+	custom_tooltip = {
+		text = is_squire_or_prev_squire
+		OR = {
+			NOT = {
+				has_trait_xp = {
+					trait = squire
+					track = knight
+					value < 100
+				}
+			}
+			has_past_experience_with_squirehood = yes
+		}
+	}
+	agot_has_traits_preventing_knighthood_trigger = no
+	is_imprisoned = no
+	num_of_relation_agot_knight = 0
+}
+
+accou_is_valid_invite_recipient_agot_trigger = {
+	exists = culture
+	$ACTOR$ = { exists = culture }
+	NOR = {
+		AND = {
+			$ACTOR$.culture = { agot_is_wildling_culture = no }
+			culture = { agot_is_wildling_culture = yes }
+		}
+		AND = {
+			$ACTOR$.culture = { agot_is_wildling_culture = yes }
+			culture = { agot_is_wildling_culture = no }
+		}
+		$ACTOR$ = { has_trait = nightswatch }
+		has_trait = nightswatch
+		$ACTOR$ = { has_trait = maester }
+		has_trait = maester
+		has_trait = kingsguard
+		has_trait = silent_sister
+	}
+	$ACTOR$ = { is_human = yes }
+	is_human = yes
+}
+
+relation_with_character_is_incestuous_in_my_or_lieges_faith_trigger = {
+	OR = {
+		AND = {
+			exists = faith
+			faith = {
+				save_temporary_scope_as = check_faith
+			}
+			relation_with_character_is_incestuous_in_faith_trigger = { CHARACTER = $CHARACTER$ FAITH = scope:check_faith }
+		}
+		AND = {
+			exists = liege.faith
+			liege ?= {
+				faith = {
+					save_temporary_scope_as = check_faith
+				}
+			}
+			relation_with_character_is_incestuous_in_faith_trigger = { CHARACTER = $CHARACTER$ FAITH = scope:check_faith }
+		}
+	}
+}
+
+should_have_same_faith_succession_trigger = {
+	exists = culture
+	culture = {
+		has_cultural_parameter = same_faith_inheritance_only
+	}
+	NOR = {
+		government_has_flag = government_is_theocracy
+		government_has_flag = government_is_holy_order
+		government_has_flag = government_is_mercenary
+	}
+}
+
+agot_guard_positions_is_globally_eligible_guard_candidate_trigger = {
+	is_adult = yes
+	is_landless_adventurer = no
+	NOR = {
+		has_trait = former_queensguard
+		has_trait = former_battleguard
+		has_trait = former_winged_knight
+		has_trait = former_rainbow_guard
+		has_trait = former_kingsman
+		has_trait = former_greenhand
+		has_trait = former_tully_guard
+	}
+	NOT = { has_trait = dragon }
+	exists = culture
+	culture = { agot_is_wildling_culture = no }
+	NOT = { has_trait = agot_guard_academy_instructor }
+	NOT = { agot_guard_positions_is_any_guard_member_trigger = yes }
+	NOT = { has_character_flag = kingsguard_position_rejected }
+	prowess >= 12
+}
