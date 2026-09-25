@@ -1,0 +1,1137 @@
+﻿on_title_gain = {
+	on_actions = {
+		zzz_great_councils_on_title_gain
+	}
+}
+on_death = {
+	on_actions = {
+		zzz_great_councils_on_death
+	}
+}
+on_birth_child = {
+	on_actions = {
+		zzz_great_councils_on_birth_child
+	}
+}
+
+zzz_great_councils_on_title_gain = {
+	trigger = {
+		has_game_rule = zzz_great_councils_after_death_rule_enabled
+		scope:title = {
+			tier >= tier_empire
+			NOR = {
+				has_title_law = nights_watch_succession_law
+				has_title_law = silent_sisterhood_succession_law
+				has_title_law = pirate_succession_law
+				has_title_law = confederation_elective_succession_law
+				has_title_law = law_of_the_land_succession_law
+				has_title_law = tribal_elective_succession_law
+				has_title_law = feudal_elective_succession_law
+			}
+		}
+		OR = {
+			scope:transfer_type = flag:inheritance
+			scope:transfer_type = flag:abdication
+			scope:transfer_type = flag:stepped_down
+		}
+		OR = {
+			has_realm_law = confederate_partition_succession_law
+			has_realm_law = partition_succession_law
+			has_realm_law = high_partition_succession_law
+			has_realm_law = single_heir_succession_law
+			has_realm_law = single_heir_succession_kurultai_law
+			has_realm_law = single_heir_succession_law_youngest
+			has_realm_law = clan_antagonistic_partition_succession_law
+			has_realm_law = clan_competitive_partition_succession_law
+			has_realm_law = clan_impassive_partition_succession_law
+			has_realm_law = clan_friendly_partition_succession_law
+			has_realm_law = clan_harmonious_partition_succession_law
+			has_realm_law = mandala_succession_law
+		}
+	#	trigger_if = {
+	#		limit = { has_game_rule = zzz_great_councils_two_needed_rule_disabled }
+	#		OR = {
+	#			AND = {
+	#				has_game_rule = zzz_great_councils_dynasty_rule_enabled
+	#				dynasty != scope:previous_holder.dynasty
+	#			}
+	#			AND = {
+	#				has_game_rule = zzz_great_councils_family_rule_enabled
+	#				NOR = {
+	#					is_close_or_extended_family_of = scope:previous_holder
+	#					any_ancestor = { this = scope:previous_holder }
+	#				}
+	#			}
+	#			AND = {
+	#				has_game_rule = zzz_great_councils_gender_rule_enabled
+	#				OR = {
+	#					AND = {
+	#						is_male = yes
+	#						OR = {
+	#							has_realm_law = female_only_law
+	#							has_realm_law = female_preference_law
+	#						}
+	#					}
+	#					AND = {
+	#						is_female = yes
+	#						OR = {
+	#							has_realm_law = male_only_law
+	#							has_realm_law = male_preference_law
+	#						}
+	#					}
+	#				}
+	#			}
+				AND = {
+					NOT = { is_close_family_of = scope:previous_holder }
+					age <= 10
+				}
+	#		}
+	#	}
+	#	trigger_if = {
+	#		limit = { has_game_rule = zzz_great_councils_two_needed_rule_enabled }
+	#		calc_true_if = {
+	#			amount >= 2
+	#			AND = {
+	#				has_game_rule = zzz_great_councils_dynasty_rule_enabled
+	#				dynasty != scope:previous_holder.dynasty
+	#			}
+	#			AND = {
+	#				has_game_rule = zzz_great_councils_family_rule_enabled
+	#				NOR = {
+	#					is_close_or_extended_family_of = scope:previous_holder
+	#					any_ancestor = { this = scope:previous_holder }
+	#				}
+	#			}
+	#			AND = {
+	#				has_game_rule = zzz_great_councils_gender_rule_enabled
+	#				OR = {
+	#					AND = {
+	#						is_male = yes
+	#						OR = {
+	#							has_realm_law = female_only_law
+	#							has_realm_law = female_preference_law
+	#						}
+	#					}
+	#					AND = {
+	#						is_female = yes
+	#						OR = {
+	#							has_realm_law = male_only_law
+	#							has_realm_law = male_preference_law
+	#						}
+	#					}
+	#				}
+	#			}
+	#			AND = {
+	#				has_game_rule = zzz_great_councils_under_ten_rule_enabled
+	#				age <= 10
+	#			}
+	#		}
+	#	}
+	}
+	effect = {
+		root = {
+			save_scope_as = zzz_great_councils_temp_emp
+			add_character_flag = zzz_great_councils_disable
+		}
+		#Code Written By Buffalomonger
+		scope:title = {
+			save_scope_as = zzz_great_councils_empire
+			title_capital_county = { save_scope_as = zzz_great_councils_cap_cnt }
+			previous_holder = {
+				save_scope_as = zzz_great_councils_emperor
+				dynasty ?= {
+					every_dynasty_member = {
+						limit = { is_alive = yes }
+						add_to_list = zzz_great_councils_electors
+					}
+					every_dynasty_member = {
+						limit = {
+							NOR = {
+								is_alive = no
+								has_trait = kingsguard
+								has_trait = nightswatch
+								has_trait = maester
+								has_trait = septon
+								has_trait = silent_sister
+								agot_is_high_septon = yes
+								has_trait = dragon
+								has_trait = disinherited
+								has_trait = mw_expelled_trait
+								has_trait = devoted
+								has_trait = order_member
+								has_trait = gallivanter
+								has_trait = incapable
+							}
+						}
+						add_to_list = zzz_great_councils_candidates
+					}
+				}
+				every_child = {
+					limit = { NOT = { is_in_list = zzz_great_councils_candidates } }
+					add_to_list = zzz_great_councils_candidates
+				}
+			}
+			every_claimant = {
+				limit = {
+					NOR = {
+						is_alive = no
+						has_trait = kingsguard
+						has_trait = nightswatch
+						has_trait = maester
+						has_trait = septon
+						has_trait = silent_sister
+						agot_is_high_septon = yes
+						has_trait = dragon
+						has_trait = disinherited
+						has_trait = mw_expelled_trait
+						has_trait = devoted
+						has_trait = order_member
+						has_trait = gallivanter
+						has_trait = incapable
+					}
+				}
+				add_to_list = zzz_great_councils_candidates
+			}
+			every_past_holder = {
+				limit = { NOT = { this = scope:zzz_great_councils_temp_emp } }
+				add_to_list = zzz_great_councils_past_emps
+			}
+		}
+		scope:zzz_great_councils_emperor.dynasty = { save_scope_as = zzz_great_councils_old_dyn }
+		ordered_in_list = {
+			list = zzz_great_councils_past_emps
+			order_by = {
+				value = 0
+				if = {
+					limit = {
+						save_temporary_scope_as = this_holder
+						any_in_list = {
+							list = zzz_great_councils_past_emps
+							dynasty = scope:this_holder.dynasty
+							count >= 5
+						}
+					}
+					add = 10
+				}
+				if = {
+					limit = {
+						save_temporary_scope_as = this_holder
+						any_in_list = {
+							list = zzz_great_councils_past_emps
+							dynasty = scope:this_holder.dynasty
+							count >= 10
+						}
+					}
+					add = 10
+				}
+				if = {
+					limit = {
+						save_temporary_scope_as = this_holder
+						any_in_list = {
+							list = zzz_great_councils_past_emps
+							dynasty = scope:this_holder.dynasty
+							count >= 15
+						}
+					}
+					add = 10
+				}
+				if = {
+					limit = {
+						save_temporary_scope_as = this_holder
+						any_in_list = {
+							list = zzz_great_councils_past_emps
+							dynasty = scope:this_holder.dynasty
+							count >= 20
+						}
+					}
+					add = 10
+				}
+				if = {
+					limit = {
+						save_temporary_scope_as = this_holder
+						any_in_list = {
+							list = zzz_great_councils_past_emps
+							dynasty = scope:this_holder.dynasty
+							count >= 25
+						}
+					}
+					add = 10
+				}
+				if = {
+					limit = {
+						save_temporary_scope_as = this_holder
+						any_in_list = {
+							list = zzz_great_councils_past_emps
+							dynasty = scope:this_holder.dynasty
+							count >= 30
+						}
+					}
+					add = 10
+				}
+			}
+			save_scope_as = zzz_great_councils_hist_dyn_guy
+		}
+		root = {
+			every_vassal_or_below = {
+				limit = {
+					OR = {
+						is_ai = no
+						highest_held_title_tier >= tier_county
+					}
+				}
+				add_to_list = zzz_great_councils_electors
+			}
+			if = {
+				limit = {
+					NOT = { is_in_list = zzz_great_councils_candidates }
+				}
+				add_to_list = zzz_great_councils_candidates
+			}
+			if = {
+				limit = {
+					NOT = { is_in_list = zzz_great_councils_electors }
+				}
+				add_to_list = zzz_great_councils_electors
+			}
+			every_held_title = {
+				limit = {
+					previous_holder ?= scope:zzz_great_councils_emperor
+				}
+				add_to_list = zzz_great_councils_titles
+			}
+			ordered_held_title = {
+				limit= {
+					NOT = { is_in_list = zzz_great_councils_titles }
+					tier >= tier_county
+					target_is_de_jure_liege_or_above = scope:zzz_great_councils_empire
+				}
+				order_by = tier
+				max = 1
+				check_range_bounds = no
+				if = {
+					limit = {
+						de_jure_liege = { is_title_created = yes }
+					}
+					de_jure_liege.holder = { save_scope_as = zzz_great_councils_temp_emps_liege }
+				}
+				else_if = {
+					limit = {
+						de_jure_liege.de_jure_liege = { is_title_created = yes }
+					}
+					de_jure_liege.de_jure_liege.holder = { save_scope_as = zzz_great_councils_temp_emps_liege }
+				}
+				else_if = {
+					limit = {
+						de_jure_liege.de_jure_liege.de_jure_liege = { is_title_created = yes }
+					}
+					de_jure_liege.de_jure_liege.de_jure_liege.holder = { save_scope_as = zzz_great_councils_temp_emps_liege }
+				}
+				else = {
+					root = { add_piety = 1 }
+				}
+			}
+			every_held_title = {
+				limit = {
+					NOT = { is_in_list = zzz_great_councils_titles }
+				}
+				every_dejure_vassal_title_holder = {
+					limit = {
+						this != scope:zzz_great_councils_temp_emp
+						liege = scope:zzz_great_councils_temp_emp
+					}
+					add_to_list = zzz_great_councils_temp_vas
+				}
+			}
+		}
+		#Anyone else releasing this has stolen it
+		every_in_list = {
+			list = zzz_great_councils_candidates
+			
+			if = {
+				limit = {
+					NOT = { is_in_list = zzz_great_councils_electors }
+				}
+				add_to_list = zzz_great_councils_electors
+			}
+			set_variable = {
+				name = zzz_great_councils_votes
+				value = 0
+			}
+		}
+		if = {
+			limit = {
+				scope:zzz_great_councils_emperor = {
+					any_consort = {
+						is_pregnant = yes
+						pregnancy_assumed_father ?= scope:zzz_great_councils_emperor
+					}
+				}
+			}
+			scope:zzz_great_councils_emperor = {
+				ordered_consort = {
+					limit = {
+						is_pregnant = yes
+						pregnancy_assumed_father ?= scope:zzz_great_councils_emperor
+					}
+					order_by = pregnancy_days
+					max = 1
+					check_range_bounds = no
+					
+					save_scope_as = zzz_great_councils_pregnant
+				}
+			}
+		}
+		if = {
+			limit = { scope:transfer_type = flag:inheritance }
+			root = { add_character_flag = zzz_great_councils_inherit }
+			every_in_list = {
+				list = zzz_great_councils_electors
+				
+				trigger_event = zzz_great_councils_event.0001
+			}
+		}
+		else = {
+			scope:zzz_great_councils_emperor = {
+				remove_from_list = zzz_great_councils_candidates
+				remove_variable = zzz_great_councils_votes
+			}
+			root = { add_character_flag = zzz_great_councils_depose }
+			every_in_list = {
+				list = zzz_great_councils_electors
+				
+				trigger_event = zzz_great_councils_event.0001
+			}
+		}
+	}
+}
+zzz_great_councils_on_death = {
+	trigger = {
+		root = {
+			OR = {
+				AND = {
+					has_character_flag = zzz_great_councils_won_btw
+					title:e_beyond_the_wall.holder ?= { has_character_flag = zzz_great_councils_called_btw }
+					NOT = { title:e_beyond_the_wall.holder ?= root }
+				}
+				AND = {
+					has_character_flag = zzz_great_councils_won_dorne
+					title:e_dorne.holder ?= { has_character_flag = zzz_great_councils_called_dorne }
+					NOT = { title:e_dorne.holder ?= root }
+				}
+				AND = {
+					has_character_flag = zzz_great_councils_won_iron_isle
+					title:e_the_iron_islands.holder ?= { has_character_flag = zzz_great_councils_called_iron_isle }
+					NOT = { title:e_the_iron_islands.holder ?= root }
+				}
+				AND = {
+					has_character_flag = zzz_great_councils_won_iron_throne
+					title:h_the_iron_throne.holder ?= { has_character_flag = zzz_great_councils_called_iron_throne }
+					NOT = { title:h_the_iron_throne.holder ?= root }
+				}
+				AND = {
+					has_character_flag = zzz_great_councils_won_north
+					title:e_the_north.holder ?= { has_character_flag = zzz_great_councils_called_north }
+					NOT = { title:e_the_north.holder ?= root }
+				}
+				AND = {
+					has_character_flag = zzz_great_councils_won_reach
+					title:e_the_reach.holder ?= { has_character_flag = zzz_great_councils_called_reach }
+					NOT = { title:e_the_reach.holder ?= root }
+				}
+				AND = {
+					has_character_flag = zzz_great_councils_won_river
+					title:e_the_riverlands.holder ?= { has_character_flag = zzz_great_councils_called_river }
+					NOT = { title:e_the_riverlands.holder ?= root }
+				}
+				AND = {
+					has_character_flag = zzz_great_councils_won_storm
+					title:e_the_stormlands.holder ?= { has_character_flag = zzz_great_councils_called_storm }
+					NOT = { title:e_the_stormlands.holder ?= root }
+				}
+				AND = {
+					has_character_flag = zzz_great_councils_won_vale
+					title:e_the_vale.holder ?= { has_character_flag = zzz_great_councils_called_vale }
+					NOT = { title:e_the_vale.holder ?= root }
+				}
+				AND = {
+					has_character_flag = zzz_great_councils_won_wall
+					title:e_the_wall.holder ?= { has_character_flag = zzz_great_councils_called_wall }
+					NOT = { title:e_the_wall.holder ?= root }
+				}
+				AND = {
+					has_character_flag = zzz_great_councils_won_wester
+					title:e_the_westerlands.holder ?= { has_character_flag = zzz_great_councils_called_wester }
+					NOT = { title:e_the_westerlands.holder ?= root }
+				}
+				AND = {
+					has_character_flag = zzz_great_councils_won_narrow_sea
+					title:e_narrow_sea.holder ?= { has_character_flag = zzz_great_councils_called_narrow_sea }
+					NOT = { title:e_narrow_sea.holder ?= root }
+				}
+				AND = {
+					has_character_flag = zzz_great_councils_won_daoryrdembos
+					title:e_daoryrdembos.holder ?= { has_character_flag = zzz_great_councils_called_daoryrdembos }
+					NOT = { title:e_daoryrdembos.holder ?= root }
+				}
+				AND = {
+					has_character_flag = zzz_great_councils_won_crownlands
+					title:e_the_crownlands.holder ?= { has_character_flag = zzz_great_councils_called_crownlands }
+					NOT = { title:e_the_crownlands.holder ?= root }
+				}
+				AND = {
+					has_character_flag = zzz_great_councils_won_rhoyne
+					title:e_rhoyne.holder ?= { has_character_flag = zzz_great_councils_called_rhoyne }
+					NOT = { title:e_rhoyne.holder ?= root }
+				}
+				AND = {
+					has_character_flag = zzz_great_councils_won_hvalyria
+					title:h_valyria.holder ?= { has_character_flag = zzz_great_councils_called_hvalyria }
+					NOT = { title:h_valyria.holder ?= root }
+				}
+				AND = {
+					has_character_flag = zzz_great_councils_won_evalyria
+					title:e_valyria.holder ?= { has_character_flag = zzz_great_councils_called_evalyria }
+					NOT = { title:e_valyria.holder ?= root }
+				}
+				AND = {
+					has_character_flag = zzz_great_councils_won_custom_emp
+					any_empire = {
+						is_title_created = yes
+						NOR = {
+							this = title:e_beyond_the_wall
+							this = title:e_dorne
+							this = title:e_the_iron_islands
+							this = title:e_the_north
+							this = title:e_the_reach
+							this = title:e_the_riverlands
+							this = title:e_the_stormlands
+							this = title:e_the_vale
+							this = title:e_the_wall
+							this = title:e_the_westerlands
+							this = title:e_narrow_sea
+							this = title:e_daoryrdembos
+							this = title:e_the_crownlands
+							this = title:e_rhoyne
+							this = title:h_valyria
+							this = title:e_valyria
+						}
+						holder ?= { has_character_flag = zzz_great_councils_called_custom_emp }
+					}
+					NOT = { has_character_flag = zzz_great_councils_called_custom_emp }
+					NOT = { highest_held_title_tier = tier_empire }
+				}
+			}
+		}
+	}
+	effect = {
+		if = {
+			limit = {
+				root = { has_character_flag = zzz_great_councils_won_custom_emp }
+			}
+			every_empire = {
+				limit = {
+					is_title_created = yes
+					NOR = {
+						this = title:e_beyond_the_wall
+						this = title:e_dorne
+						this = title:e_the_iron_islands
+						this = title:e_the_north
+						this = title:e_the_reach
+						this = title:e_the_riverlands
+						this = title:e_the_stormlands
+						this = title:e_the_vale
+						this = title:e_the_wall
+						this = title:e_the_westerlands
+						this = title:e_narrow_sea
+						this = title:e_daoryrdembos
+						this = title:e_the_crownlands
+						this = title:e_rhoyne
+						this = title:h_valyria
+						this = title:e_valyria
+					}
+					holder ?= { has_character_flag = zzz_great_councils_called_custom_emp }
+				}
+				save_scope_as = zzz_great_councils_custom_empire
+			}
+		}
+	
+		if = {
+			limit = {
+				root = { has_character_flag = zzz_great_councils_won_btw }
+				title:e_beyond_the_wall.holder ?= { has_character_flag = zzz_great_councils_called_btw }
+				NOT = { title:e_beyond_the_wall.holder ?= root }
+			}
+			root = { remove_character_flag = zzz_great_councils_won_btw }
+			title:e_beyond_the_wall.holder ?= { remove_character_flag = zzz_great_councils_called_btw }
+			title:e_beyond_the_wall.holder ?= { clear_designated_heir = yes }
+		}
+		if = {
+			limit = {
+				root = { has_character_flag = zzz_great_councils_won_dorne }
+				title:e_dorne.holder ?= { has_character_flag = zzz_great_councils_called_dorne }
+				NOT = { title:e_dorne.holder ?= root }
+			}
+			root = { remove_character_flag = zzz_great_councils_won_dorne }
+			title:e_dorne.holder ?= { remove_character_flag = zzz_great_councils_called_dorne }
+			title:e_dorne.holder ?= { clear_designated_heir = yes }
+		}
+		if = {
+			limit = {
+				root = { has_character_flag = zzz_great_councils_won_iron_isle }
+				title:e_the_iron_islands.holder ?= { has_character_flag = zzz_great_councils_called_iron_isle }
+				NOT = { title:e_the_iron_islands.holder ?= root }
+			}
+			root = { remove_character_flag = zzz_great_councils_won_iron_isle }
+			title:e_the_iron_islands.holder ?= { remove_character_flag = zzz_great_councils_called_iron_isle }
+			title:e_the_iron_islands.holder ?= { clear_designated_heir = yes }
+		}
+		if = {
+			limit = {
+				root = { has_character_flag = zzz_great_councils_won_iron_throne }
+				title:h_the_iron_throne.holder ?= { has_character_flag = zzz_great_councils_called_iron_throne }
+				NOT = { title:h_the_iron_throne.holder ?= root }
+			}
+			root = { remove_character_flag = zzz_great_councils_won_iron_throne }
+			title:h_the_iron_throne.holder ?= { remove_character_flag = zzz_great_councils_called_iron_throne }
+			title:h_the_iron_throne.holder ?= { clear_designated_heir = yes }
+		}
+		if = {
+			limit = {
+				root = { has_character_flag = zzz_great_councils_won_north }
+				title:e_the_north.holder ?= { has_character_flag = zzz_great_councils_called_north }
+				NOT = { title:e_the_north.holder ?= root }
+			}
+			root = { remove_character_flag = zzz_great_councils_won_north }
+			title:e_the_north.holder ?= { remove_character_flag = zzz_great_councils_called_north }
+			title:e_the_north.holder ?= { clear_designated_heir = yes }
+		}
+		if = {
+			limit = {
+				root = { has_character_flag = zzz_great_councils_won_reach }
+				title:e_the_reach.holder ?= { has_character_flag = zzz_great_councils_called_reach }
+				NOT = { title:e_the_reach.holder ?= root }
+			}
+			root = { remove_character_flag = zzz_great_councils_won_reach }
+			title:e_the_reach.holder ?= { remove_character_flag = zzz_great_councils_called_reach }
+			title:e_the_reach.holder ?= { clear_designated_heir = yes }
+		}
+		if = {
+			limit = {
+				root = { has_character_flag = zzz_great_councils_won_river }
+				title:e_the_riverlands.holder ?= { has_character_flag = zzz_great_councils_called_river }
+				NOT = { title:e_the_riverlands.holder ?= root }
+			}
+			root = { remove_character_flag = zzz_great_councils_won_river }
+			title:e_the_riverlands.holder ?= { remove_character_flag = zzz_great_councils_called_river }
+			title:e_the_riverlands.holder ?= { clear_designated_heir = yes }
+		}
+		if = {
+			limit = {
+				root = { has_character_flag = zzz_great_councils_won_storm }
+				title:e_the_stormlands.holder ?= { has_character_flag = zzz_great_councils_called_storm }
+				NOT = { title:e_the_stormlands.holder ?= root }
+			}
+			root = { remove_character_flag = zzz_great_councils_won_storm }
+			title:e_the_stormlands.holder ?= { remove_character_flag = zzz_great_councils_called_storm }
+			title:e_the_stormlands.holder ?= { clear_designated_heir = yes }
+		}
+		if = {
+			limit = {
+				root = { has_character_flag = zzz_great_councils_won_vale }
+				title:e_the_vale.holder ?= { has_character_flag = zzz_great_councils_called_vale }
+				NOT = { title:e_the_vale.holder ?= root }
+			}
+			root = { remove_character_flag = zzz_great_councils_won_vale }
+			title:e_the_vale.holder ?= { remove_character_flag = zzz_great_councils_called_vale }
+			title:e_the_vale.holder ?= { clear_designated_heir = yes }
+		}
+		if = {
+			limit = {
+				root = { has_character_flag = zzz_great_councils_won_wall }
+				title:e_the_wall.holder ?= { has_character_flag = zzz_great_councils_called_wall }
+				NOT = { title:e_the_wall.holder ?= root }
+			}
+			root = { remove_character_flag = zzz_great_councils_won_wall }
+			title:e_the_wall.holder ?= { remove_character_flag = zzz_great_councils_called_wall }
+			title:e_the_wall.holder ?= { clear_designated_heir = yes }
+		}
+		if = {
+			limit = {
+				root = { has_character_flag = zzz_great_councils_won_wester }
+				title:e_the_westerlands.holder ?= { has_character_flag = zzz_great_councils_called_wester }
+				NOT = { title:e_the_westerlands.holder ?= root }
+			}
+			root = { remove_character_flag = zzz_great_councils_won_wester }
+			title:e_the_westerlands.holder ?= { remove_character_flag = zzz_great_councils_called_wester }
+			title:e_the_westerlands.holder ?= { clear_designated_heir = yes }
+		}
+		if = {
+			limit = {
+				root = { has_character_flag = zzz_great_councils_won_narrow_sea }
+				title:e_narrow_sea.holder ?= { has_character_flag = zzz_great_councils_called_narrow_sea }
+				NOT = { title:e_narrow_sea.holder ?= root }
+			}
+			root = { remove_character_flag = zzz_great_councils_won_narrow_sea }
+			title:e_narrow_sea.holder ?= { remove_character_flag = zzz_great_councils_called_narrow_sea }
+			title:e_narrow_sea.holder ?= { clear_designated_heir = yes }
+		}
+		if = {
+			limit = {
+				root = { has_character_flag = zzz_great_councils_won_daoryrdembos }
+				title:e_daoryrdembos.holder ?= { has_character_flag = zzz_great_councils_called_daoryrdembos }
+				NOT = { title:e_daoryrdembos.holder ?= root }
+			}
+			root = { remove_character_flag = zzz_great_councils_won_daoryrdembos }
+			title:e_daoryrdembos.holder ?= { remove_character_flag = zzz_great_councils_called_daoryrdembos }
+			title:e_daoryrdembos.holder ?= { clear_designated_heir = yes }
+		}
+		if = {
+			limit = {
+				root = { has_character_flag = zzz_great_councils_won_crownlands }
+				title:e_the_crownlands.holder ?= { has_character_flag = zzz_great_councils_called_crownlands }
+				NOT = { title:e_the_crownlands.holder ?= root }
+			}
+			root = { remove_character_flag = zzz_great_councils_won_crownlands }
+			title:e_the_crownlands.holder ?= { remove_character_flag = zzz_great_councils_called_crownlands }
+			title:e_the_crownlands.holder ?= { clear_designated_heir = yes }
+		}
+		if = {
+			limit = {
+				root = { has_character_flag = zzz_great_councils_won_rhoyne }
+				title:e_rhoyne.holder ?= { has_character_flag = zzz_great_councils_called_rhoyne }
+				NOT = { title:e_rhoyne.holder ?= root }
+			}
+			root = { remove_character_flag = zzz_great_councils_won_rhoyne }
+			title:e_rhoyne.holder ?= { remove_character_flag = zzz_great_councils_called_rhoyne }
+			title:e_rhoyne.holder ?= { clear_designated_heir = yes }
+		}if = {
+			limit = {
+				root = { has_character_flag = zzz_great_councils_won_hvalyria }
+				title:h_valyria.holder ?= { has_character_flag = zzz_great_councils_called_hvalyria }
+				NOT = { title:h_valyria.holder ?= root }
+			}
+			root = { remove_character_flag = zzz_great_councils_won_hvalyria }
+			title:h_valyria.holder ?= { remove_character_flag = zzz_great_councils_called_hvalyria }
+			title:h_valyria.holder ?= { clear_designated_heir = yes }
+		}if = {
+			limit = {
+				root = { has_character_flag = zzz_great_councils_won_evalyria }
+				title:e_valyria.holder ?= { has_character_flag = zzz_great_councils_called_evalyria }
+				NOT = { title:e_valyria.holder ?= root }
+			}
+			root = { remove_character_flag = zzz_great_councils_won_evalyria }
+			title:e_valyria.holder ?= { remove_character_flag = zzz_great_councils_called_evalyria }
+			title:e_valyria.holder ?= { clear_designated_heir = yes }
+		}
+		if = {
+			limit = {
+				root = { has_character_flag = zzz_great_councils_won_custom_emp }
+				scope:zzz_great_councils_custom_empire.holder ?= { has_character_flag = zzz_great_councils_called_custom_emp }
+				NOT = { scope:zzz_great_councils_custom_empire.holder ?= root }
+			}
+			root = { remove_character_flag = zzz_great_councils_won_custom_emp }
+			scope:zzz_great_councils_custom_empire.holder ?= { remove_character_flag = zzz_great_councils_called_custom_emp }
+			scope:zzz_great_councils_custom_empire.holder ?= { clear_designated_heir = yes }
+		}
+	}
+}
+zzz_great_councils_on_birth_child = {
+	trigger = {
+		any_parent = {
+			dynasty ?= root.dynasty
+			OR = {
+				AND = {
+					designated_heir ?= { has_character_flag = zzz_great_councils_won_btw }
+					has_character_flag = zzz_great_councils_called_btw
+					this = title:e_beyond_the_wall.holder
+				}
+				AND = {
+					designated_heir ?= { has_character_flag = zzz_great_councils_won_dorne }
+					has_character_flag = zzz_great_councils_called_dorne
+					this = title:e_dorne.holder
+				}
+				AND = {
+					designated_heir ?= { has_character_flag = zzz_great_councils_won_iron_isle }
+					has_character_flag = zzz_great_councils_called_iron_isle
+					this = title:e_the_iron_islands.holder
+				}
+				AND = {
+					designated_heir ?= { has_character_flag = zzz_great_councils_won_iron_throne }
+					has_character_flag = zzz_great_councils_called_iron_throne
+					this = title:h_the_iron_throne.holder
+				}
+				AND = {
+					designated_heir ?= { has_character_flag = zzz_great_councils_won_north }
+					has_character_flag = zzz_great_councils_called_north
+					this = title:e_the_north.holder
+				}
+				AND = {
+					designated_heir ?= { has_character_flag = zzz_great_councils_won_reach }
+					has_character_flag = zzz_great_councils_called_reach
+					this = title:e_the_reach.holder
+				}
+				AND = {
+					designated_heir ?= { has_character_flag = zzz_great_councils_won_river }
+					has_character_flag = zzz_great_councils_called_river
+					this = title:e_the_riverlands.holder
+				}
+				AND = {
+					designated_heir ?= { has_character_flag = zzz_great_councils_won_storm }
+					has_character_flag = zzz_great_councils_called_storm
+					this = title:e_the_stormlands.holder
+				}
+				AND = {
+					designated_heir ?= { has_character_flag = zzz_great_councils_won_vale }
+					has_character_flag = zzz_great_councils_called_vale
+					this = title:e_the_vale.holder
+				}
+				AND = {
+					designated_heir ?= { has_character_flag = zzz_great_councils_won_wall }
+					has_character_flag = zzz_great_councils_called_wall
+					this = title:e_the_wall.holder
+				}
+				AND = {
+					designated_heir ?= { has_character_flag = zzz_great_councils_won_wester }
+					has_character_flag = zzz_great_councils_called_wester
+					this = title:e_the_westerlands.holder
+				}
+				AND = {
+					designated_heir ?= { has_character_flag = zzz_great_councils_won_narrow_sea }
+					has_character_flag = zzz_great_councils_called_narrow_sea
+					this = title:e_narrow_sea.holder
+				}
+				AND = {
+					designated_heir ?= { has_character_flag = zzz_great_councils_won_daoryrdembos }
+					has_character_flag = zzz_great_councils_called_daoryrdembos
+					this = title:e_daoryrdembos.holder
+				}
+				AND = {
+					designated_heir ?= { has_character_flag = zzz_great_councils_won_crownlands }
+					has_character_flag = zzz_great_councils_called_crownlands
+					this = title:e_the_crownlands.holder
+				}
+				AND = {
+					designated_heir ?= { has_character_flag = zzz_great_councils_won_rhoyne }
+					has_character_flag = zzz_great_councils_called_rhoyne
+					this = title:e_rhoyne.holder
+				}
+				AND = {
+					designated_heir ?= { has_character_flag = zzz_great_councils_won_hvalyria }
+					has_character_flag = zzz_great_councils_called_hvalyria
+					this = title:h_valyria.holder
+				}
+				AND = {
+					designated_heir ?= { has_character_flag = zzz_great_councils_won_evalyria }
+					has_character_flag = zzz_great_councils_called_evalyria
+					this = title:e_valyria.holder
+				}
+				AND = {
+					designated_heir ?= { has_character_flag = zzz_great_councils_won_custom_emp }
+					has_character_flag = zzz_great_councils_called_custom_emp
+					highest_held_title_tier = tier_empire
+					any_empire = {
+						is_title_created = yes
+						NOR = {
+							this = title:e_beyond_the_wall
+							this = title:e_dorne
+							this = title:e_the_iron_islands
+							this = title:e_the_north
+							this = title:e_the_reach
+							this = title:e_the_riverlands
+							this = title:e_the_stormlands
+							this = title:e_the_vale
+							this = title:e_the_wall
+							this = title:e_the_westerlands
+							this = title:e_narrow_sea
+							this = title:e_daoryrdembos
+							this = title:e_the_crownlands
+							this = title:e_rhoyne
+							this = title:h_valyria
+							this = title:e_valyria
+						}
+						holder ?= { has_character_flag = zzz_great_councils_called_custom_emp }
+					}
+				}
+			}
+			OR = {
+				has_realm_law = equal_law
+				AND = {
+					root = { is_male = yes }
+					OR = {
+						has_realm_law = male_preference_law
+						has_realm_law = male_only_law
+					}
+				}
+				AND = {
+					root = { is_female = yes }
+					OR = {
+						has_realm_law = female_preference_law
+						has_realm_law = female_only_law
+					}
+				}
+			}
+		}
+	}
+	effect = {
+		every_parent = {
+			limit = {
+				dynasty ?= root.dynasty
+				OR = {
+					AND = {
+						designated_heir ?= { has_character_flag = zzz_great_councils_won_btw }
+						has_character_flag = zzz_great_councils_called_btw
+						this = title:e_beyond_the_wall.holder
+					}
+					AND = {
+						designated_heir ?= { has_character_flag = zzz_great_councils_won_dorne }
+						has_character_flag = zzz_great_councils_called_dorne
+						this = title:e_dorne.holder
+					}
+					AND = {
+						designated_heir ?= { has_character_flag = zzz_great_councils_won_iron_isle }
+						has_character_flag = zzz_great_councils_called_iron_isle
+						this = title:e_the_iron_islands.holder
+					}
+					AND = {
+						designated_heir ?= { has_character_flag = zzz_great_councils_won_iron_throne }
+						has_character_flag = zzz_great_councils_called_iron_throne
+						this = title:h_the_iron_throne.holder
+					}
+					AND = {
+						designated_heir ?= { has_character_flag = zzz_great_councils_won_north }
+						has_character_flag = zzz_great_councils_called_north
+						this = title:e_the_north.holder
+					}
+					AND = {
+						designated_heir ?= { has_character_flag = zzz_great_councils_won_reach }
+						has_character_flag = zzz_great_councils_called_reach
+						this = title:e_the_reach.holder
+					}
+					AND = {
+						designated_heir ?= { has_character_flag = zzz_great_councils_won_river }
+						has_character_flag = zzz_great_councils_called_river
+						this = title:e_the_riverlands.holder
+					}
+					AND = {
+						designated_heir ?= { has_character_flag = zzz_great_councils_won_storm }
+						has_character_flag = zzz_great_councils_called_storm
+						this = title:e_the_stormlands.holder
+					}
+					AND = {
+						designated_heir ?= { has_character_flag = zzz_great_councils_won_vale }
+						has_character_flag = zzz_great_councils_called_vale
+						this = title:e_the_vale.holder
+					}
+					AND = {
+						designated_heir ?= { has_character_flag = zzz_great_councils_won_wall }
+						has_character_flag = zzz_great_councils_called_wall
+						this = title:e_the_wall.holder
+					}
+					AND = {
+						designated_heir ?= { has_character_flag = zzz_great_councils_won_wester }
+						has_character_flag = zzz_great_councils_called_wester
+						this = title:e_the_westerlands.holder
+					}
+					AND = {
+						designated_heir ?= { has_character_flag = zzz_great_councils_won_narrow_sea }
+						has_character_flag = zzz_great_councils_called_narrow_sea
+						this = title:e_narrow_sea.holder
+					}
+					AND = {
+						designated_heir ?= { has_character_flag = zzz_great_councils_won_daoryrdembos }
+						has_character_flag = zzz_great_councils_called_daoryrdembos
+						this = title:e_daoryrdembos.holder
+					}
+					AND = {
+						designated_heir ?= { has_character_flag = zzz_great_councils_won_crownlands }
+						has_character_flag = zzz_great_councils_called_crownlands
+						this = title:e_the_crownlands.holder
+					}
+					AND = {
+						designated_heir ?= { has_character_flag = zzz_great_councils_won_rhoyne }
+						has_character_flag = zzz_great_councils_called_rhoyne
+						this = title:e_rhoyne.holder
+					}
+					AND = {
+						designated_heir ?= { has_character_flag = zzz_great_councils_won_hvalyria }
+						has_character_flag = zzz_great_councils_called_hvalyria
+						this = title:h_valyria.holder
+					}
+					AND = {
+						designated_heir ?= { has_character_flag = zzz_great_councils_won_evalyria }
+						has_character_flag = zzz_great_councils_called_evalyria
+						this = title:e_valyria.holder
+					}
+					AND = {
+						designated_heir ?= { has_character_flag = zzz_great_councils_won_custom_emp }
+						has_character_flag = zzz_great_councils_called_custom_emp
+						highest_held_title_tier = tier_empire
+						any_empire = {
+							is_title_created = yes
+							NOR = {
+								this = title:e_beyond_the_wall
+								this = title:e_dorne
+								this = title:e_the_iron_islands
+								this = title:e_the_north
+								this = title:e_the_reach
+								this = title:e_the_riverlands
+								this = title:e_the_stormlands
+								this = title:e_the_vale
+								this = title:e_the_wall
+								this = title:e_the_westerlands
+								this = title:e_narrow_sea
+								this = title:e_daoryrdembos
+								this = title:e_the_crownlands
+								this = title:e_rhoyne
+								this = title:h_valyria
+								this = title:e_valyria
+							}
+							holder ?= { has_character_flag = zzz_great_councils_called_custom_emp }
+						}
+					}
+				}
+				OR = {
+					has_realm_law = equal_law
+					AND = {
+						root = { is_male = yes }
+						OR = {
+							has_realm_law = male_preference_law
+							has_realm_law = male_only_law
+						}
+					}
+					AND = {
+						root = { is_female = yes }
+						OR = {
+							has_realm_law = female_preference_law
+							has_realm_law = female_only_law
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					primary_title = title:e_beyond_the_wall
+				}
+				remove_character_flag = zzz_great_councils_called_btw
+				designated_heir ?= { remove_character_flag = zzz_great_councils_won_btw }
+			}
+			else_if = {
+				limit = {
+					primary_title = title:e_dorne
+				}
+				remove_character_flag = zzz_great_councils_called_dorne
+				designated_heir ?= { remove_character_flag = zzz_great_councils_won_dorne }
+			}
+			else_if = {
+				limit = {
+					primary_title = title:e_the_iron_islands
+				}
+				remove_character_flag = zzz_great_councils_called_iron_isle
+				designated_heir ?= { remove_character_flag = zzz_great_councils_won_iron_isle }
+			}
+			else_if = {
+				limit = {
+					primary_title = title:h_the_iron_throne
+				}
+				remove_character_flag = zzz_great_councils_called_iron_throne
+				designated_heir ?= { remove_character_flag = zzz_great_councils_won_iron_throne }
+			}
+			else_if = {
+				limit = {
+					primary_title = title:e_the_north
+				}
+				remove_character_flag = zzz_great_councils_called_north
+				designated_heir ?= { remove_character_flag = zzz_great_councils_won_north }
+			}
+			else_if = {
+				limit = {
+					primary_title = title:e_the_reach
+				}
+				remove_character_flag = zzz_great_councils_called_reach
+				designated_heir ?= { remove_character_flag = zzz_great_councils_won_reach }
+			}
+			else_if = {
+				limit = {
+					primary_title = title:e_the_riverlands
+				}
+				remove_character_flag = zzz_great_councils_called_river
+				designated_heir ?= { remove_character_flag = zzz_great_councils_won_river }
+			}
+			else_if = {
+				limit = {
+					primary_title = title:e_the_stormlands
+				}
+				remove_character_flag = zzz_great_councils_called_storm
+				designated_heir ?= { remove_character_flag = zzz_great_councils_won_storm }
+			}
+			else_if = {
+				limit = {
+					primary_title = title:e_the_vale
+				}
+				remove_character_flag = zzz_great_councils_called_vale
+				designated_heir ?= { remove_character_flag = zzz_great_councils_won_vale }
+			}
+			else_if = {
+				limit = {
+					primary_title = title:e_the_wall
+				}
+				remove_character_flag = zzz_great_councils_called_wall
+				designated_heir ?= { remove_character_flag = zzz_great_councils_won_wall }
+			}
+			else_if = {
+				limit = {
+					primary_title = title:e_the_westerlands
+				}
+				remove_character_flag = zzz_great_councils_called_wester
+				designated_heir ?= { remove_character_flag = zzz_great_councils_won_wester }
+			}
+			else_if = {
+				limit = {
+					primary_title = title:e_narrow_sea
+				}
+				remove_character_flag = zzz_great_councils_called_narrow_sea
+				designated_heir ?= { remove_character_flag = zzz_great_councils_won_narrow_sea }
+			}
+			else_if = {
+				limit = {
+					primary_title = title:e_daoryrdembos
+				}
+				remove_character_flag = zzz_great_councils_called_daoryrdembos
+				designated_heir ?= { remove_character_flag = zzz_great_councils_won_daoryrdembos }
+			}
+			else_if = {
+				limit = {
+					primary_title = title:e_the_crownlands
+				}
+				remove_character_flag = zzz_great_councils_called_crownlands
+				designated_heir ?= { remove_character_flag = zzz_great_councils_won_crownlands }
+			}
+			else_if = {
+				limit = {
+					primary_title = title:e_rhoyne
+				}
+				remove_character_flag = zzz_great_councils_called_rhoyne
+				designated_heir ?= { remove_character_flag = zzz_great_councils_won_rhoyne }
+			}
+			else_if = {
+				limit = {
+					primary_title = title:h_valyria
+				}
+				remove_character_flag = zzz_great_councils_called_hvalyria
+				designated_heir ?= { remove_character_flag = zzz_great_councils_won_hvalyria }
+			}
+			else_if = {
+				limit = {
+					primary_title = title:e_valyria
+				}
+				remove_character_flag = zzz_great_councils_called_evalyria
+				designated_heir ?= { remove_character_flag = zzz_great_councils_won_evalyria }
+			}
+			else = {
+				remove_character_flag = zzz_great_councils_called_custom_emp
+				designated_heir ?= { remove_character_flag = zzz_great_councils_won_custom_emp }
+			}
+			clear_designated_heir = yes
+		}
+	}
+}
