@@ -1245,7 +1245,7 @@ add_scaled_artifact_modifier_combat_effect = {
 
 			modifier = {
 				factor = 1.5
-				scope:owner = {
+				scope:owner ?= {
 					OR = {
 						culture = { has_cultural_tradition = tradition_chivalry }
 						culture = { has_cultural_tradition = tradition_martial_admiration }
@@ -1517,7 +1517,7 @@ add_scaled_artifact_modifier_combat_effect = {
 		40 = {
 			trigger = {
 				artifact_slot_type = primary_armament
-				scope:owner = {
+				scope:owner ?= {
 					can_raid_trigger = yes
 				}
 			}
@@ -1748,7 +1748,7 @@ add_scaled_artifact_modifier_combat_effect = {
 		20 = {
 			trigger = {
 				artifact_slot_type = primary_armament
-				scope:owner = {
+				scope:owner ?= {
 					OR = {
 						any_sub_realm_county = {
 							count >= 5
@@ -1823,7 +1823,7 @@ add_scaled_artifact_modifier_combat_effect = {
 			random_list = {
 				10 = {
 					trigger = {
-						scope:owner = {
+						scope:owner ?= {
 							OR = {
 								any_sub_realm_county = {
 									count >= 5
@@ -1871,7 +1871,7 @@ add_scaled_artifact_modifier_combat_effect = {
 				}
 				10 = {
 					trigger = {
-						scope:owner = {
+						scope:owner ?= {
 							OR = {
 								any_sub_realm_county = {
 									count >= 5
@@ -1925,7 +1925,7 @@ add_scaled_artifact_modifier_combat_effect = {
 				}
 				10 = {
 					trigger = {
-						scope:owner = {
+						scope:owner ?= {
 							OR = {
 								any_sub_realm_county = {
 									count >= 5
@@ -1979,7 +1979,7 @@ add_scaled_artifact_modifier_combat_effect = {
 				}
 				10 = {
 					trigger = {
-						scope:owner = {
+						scope:owner ?= {
 							OR = {
 								any_sub_realm_county = {
 									count >= 5
@@ -2033,7 +2033,7 @@ add_scaled_artifact_modifier_combat_effect = {
 				}
 				10 = {
 					trigger = {
-						scope:owner = {
+						scope:owner ?= {
 							OR = {
 								any_sub_realm_county = {
 									count >= 5
@@ -2081,7 +2081,7 @@ add_scaled_artifact_modifier_combat_effect = {
 				}
 				10 = {
 					trigger = {
-						scope:owner = {
+						scope:owner ?= {
 							OR = {
 								any_sub_realm_county = {
 									count >= 5
@@ -2135,7 +2135,7 @@ add_scaled_artifact_modifier_combat_effect = {
 				}
 				10 = {
 					trigger = {
-						scope:owner = {
+						scope:owner ?= {
 							OR = {
 								any_sub_realm_county = {
 									count >= 5
@@ -2183,7 +2183,7 @@ add_scaled_artifact_modifier_combat_effect = {
 				}
 				10 = {
 					trigger = {
-						scope:owner = {
+						scope:owner ?= {
 							OR = {
 								any_sub_realm_county = {
 									count >= 5
@@ -2231,7 +2231,7 @@ add_scaled_artifact_modifier_combat_effect = {
 				}
 				10 = {
 					trigger = {
-						scope:owner = {
+						scope:owner ?= {
 							OR = {
 								any_sub_realm_county = {
 									count >= 5
@@ -2285,7 +2285,7 @@ add_scaled_artifact_modifier_combat_effect = {
 				}
 				10 = {
 					trigger = {
-						scope:owner = {
+						scope:owner ?= {
 							OR = {
 								any_sub_realm_county = {
 									count >= 5
@@ -2339,7 +2339,7 @@ add_scaled_artifact_modifier_combat_effect = {
 				}
 				10 = {
 					trigger = {
-						scope:owner = {
+						scope:owner ?= {
 							OR = {
 								any_sub_realm_county = {
 									count >= 5
@@ -2393,7 +2393,7 @@ add_scaled_artifact_modifier_combat_effect = {
 				}
 				10 = {
 					trigger = {
-						scope:owner = {
+						scope:owner ?= {
 							OR = {
 								any_sub_realm_county = {
 									count >= 5
@@ -2447,7 +2447,7 @@ add_scaled_artifact_modifier_combat_effect = {
 				}
 				10 = {
 					trigger = {
-						scope:owner = {
+						scope:owner ?= {
 							OR = {
 								any_sub_realm_county = {
 									count >= 5
@@ -2495,7 +2495,7 @@ add_scaled_artifact_modifier_combat_effect = {
 				}
 				10 = {
 					trigger = {
-						scope:owner = {
+						scope:owner ?= {
 							OR = {
 								any_sub_realm_county = {
 									count >= 5

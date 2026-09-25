@@ -12072,31 +12072,31 @@ fill_external_estate_building_effect = {
 		trigger = has_domicile_building_or_higher
 		estate_main_05 = {
 			while = {
-				limit = { free_external_domicile_building_slots >= 1 }
+				limit = { free_external_domicile_building_slots >= 1 has_ongoing_domicile_construction = no }
 				add_random_external_estate_building = yes
 			}
 		}
 		estate_main_04 = {
 			while = {
-				limit = { free_external_domicile_building_slots >= 2 }
+				limit = { free_external_domicile_building_slots >= 2 has_ongoing_domicile_construction = no }
 				add_random_external_estate_building = yes
 			}
 		}
 		estate_main_03 = {
 			while = {
-				limit = { free_external_domicile_building_slots >= 3 }
+				limit = { free_external_domicile_building_slots >= 3 has_ongoing_domicile_construction = no }
 				add_random_external_estate_building = yes
 			}
 		}
 		estate_main_02 = {
 			while = {
-				limit = { free_external_domicile_building_slots >= 4 }
+				limit = { free_external_domicile_building_slots >= 4 has_ongoing_domicile_construction = no }
 				add_random_external_estate_building = yes
 			}
 		}
 		estate_main_01 = {
 			while = {
-				limit = { free_external_domicile_building_slots >= 5 }
+				limit = { free_external_domicile_building_slots >= 5 has_ongoing_domicile_construction = no }
 				add_random_external_estate_building = yes
 			}
 		}

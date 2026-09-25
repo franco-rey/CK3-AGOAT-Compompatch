@@ -1,0 +1,186 @@
+﻿agot_mw_uses_feudal_government_taxes_trigger = {
+	trigger_if = {
+		limit = { exists = vassal_contract_obligation_level:feudal_government_taxes }
+		OR = {
+			subject_contract_obligation_level_can_be_increased = feudal_government_taxes
+			subject_contract_obligation_level_can_be_decreased = feudal_government_taxes
+		}
+	}
+	trigger_else = { always = no }
+}
+
+agot_mw_uses_feudal_government_levies_trigger = {
+	trigger_if = {
+		limit = { exists = vassal_contract_obligation_level:feudal_government_levies }
+		OR = {
+			subject_contract_obligation_level_can_be_increased = feudal_government_levies
+			subject_contract_obligation_level_can_be_decreased = feudal_government_levies
+		}
+	}
+	trigger_else = { always = no }
+}
+
+agot_mw_uses_administrative_themes_trigger = {
+	trigger_if = {
+		limit = { exists = vassal_contract_obligation_level:administrative_themes }
+		OR = {
+			subject_contract_obligation_level_can_be_increased = administrative_themes
+			subject_contract_obligation_level_can_be_decreased = administrative_themes
+		}
+	}
+	trigger_else = { always = no }
+}
+
+agot_mw_uses_administrative_salary_trigger = {
+	trigger_if = {
+		limit = { exists = vassal_contract_obligation_level:administrative_salary_rank }
+		OR = {
+			subject_contract_obligation_level_can_be_increased = administrative_salary_rank
+			subject_contract_obligation_level_can_be_decreased = administrative_salary_rank
+		}
+	}
+	trigger_else = { always = no }
+}
+
+agot_mw_uses_special_contract_trigger = {
+	trigger_if = {
+		limit = { exists = vassal_contract_obligation_level:special_contract }
+		OR = {
+			subject_contract_obligation_level_can_be_increased = special_contract
+			subject_contract_obligation_level_can_be_decreased = special_contract
+		}
+	}
+	trigger_else = { always = no }
+}
+
+agot_mw_uses_religious_rights_trigger = {
+	trigger_if = {
+		limit = { exists = vassal_contract_obligation_level:religious_rights }
+		OR = {
+			subject_contract_obligation_level_can_be_increased = religious_rights
+			subject_contract_obligation_level_can_be_decreased = religious_rights
+		}
+	}
+	trigger_else = { always = no }
+}
+
+agot_mw_uses_fortification_rights_trigger = {
+	trigger_if = {
+		limit = { exists = vassal_contract_obligation_level:fortification_rights }
+		OR = {
+			subject_contract_obligation_level_can_be_increased = fortification_rights
+			subject_contract_obligation_level_can_be_decreased = fortification_rights
+		}
+	}
+	trigger_else = { always = no }
+}
+
+agot_mw_uses_coinage_rights_trigger = {
+	trigger_if = {
+		limit = { exists = vassal_contract_obligation_level:coinage_rights }
+		OR = {
+			subject_contract_obligation_level_can_be_increased = coinage_rights
+			subject_contract_obligation_level_can_be_decreased = coinage_rights
+		}
+	}
+	trigger_else = { always = no }
+}
+
+agot_mw_uses_succession_rights_trigger = {
+	trigger_if = {
+		limit = { exists = vassal_contract_obligation_level:succession_rights }
+		OR = {
+			subject_contract_obligation_level_can_be_increased = succession_rights
+			subject_contract_obligation_level_can_be_decreased = succession_rights
+		}
+	}
+	trigger_else = { always = no }
+}
+
+agot_mw_uses_war_declaration_rights_trigger = {
+	trigger_if = {
+		limit = { exists = vassal_contract_obligation_level:war_declaration_rights }
+		OR = {
+			subject_contract_obligation_level_can_be_increased = war_declaration_rights
+			subject_contract_obligation_level_can_be_decreased = war_declaration_rights
+		}
+	}
+	trigger_else = { always = no }
+}
+
+agot_mw_uses_council_rights_trigger = {
+	trigger_if = {
+		limit = { exists = vassal_contract_obligation_level:council_rights }
+		OR = {
+			subject_contract_obligation_level_can_be_increased = council_rights
+			subject_contract_obligation_level_can_be_decreased = council_rights
+		}
+	}
+	trigger_else = { always = no }
+}
+
+agot_mw_uses_title_revocation_rights_trigger = {
+	trigger_if = {
+		limit = { exists = vassal_contract_obligation_level:title_revocation_rights }
+		OR = {
+			subject_contract_obligation_level_can_be_increased = title_revocation_rights
+			subject_contract_obligation_level_can_be_decreased = title_revocation_rights
+		}
+	}
+	trigger_else = { always = no }
+}
+
+agot_mw_uses_jizya_special_rights_trigger = {
+	trigger_if = {
+		limit = { exists = vassal_contract_obligation_level:jizya_special_rights }
+		OR = {
+			subject_contract_obligation_level_can_be_increased = jizya_special_rights
+			subject_contract_obligation_level_can_be_decreased = jizya_special_rights
+		}
+	}
+	trigger_else = { always = no }
+}
+
+agot_mw_uses_iqta_special_rights_trigger = {
+	trigger_if = {
+		limit = { exists = vassal_contract_obligation_level:iqta_special_rights }
+		OR = {
+			subject_contract_obligation_level_can_be_increased = iqta_special_rights
+			subject_contract_obligation_level_can_be_decreased = iqta_special_rights
+		}
+	}
+	trigger_else = { always = no }
+}
+
+agot_mw_uses_ghazi_special_rights_trigger = {
+	trigger_if = {
+		limit = { exists = vassal_contract_obligation_level:ghazi_special_rights }
+		OR = {
+			subject_contract_obligation_level_can_be_increased = ghazi_special_rights
+			subject_contract_obligation_level_can_be_decreased = ghazi_special_rights
+		}
+	}
+	trigger_else = { always = no }
+}
+
+agot_mw_uses_marriage_favor_rights_trigger = {
+	trigger_if = {
+		limit = { exists = vassal_contract_obligation_level:marriage_favor_rights }
+		OR = {
+			subject_contract_obligation_level_can_be_increased = marriage_favor_rights
+			subject_contract_obligation_level_can_be_decreased = marriage_favor_rights
+		}
+	}
+	trigger_else = { always = no }
+}
+
+agot_mw_uses_kurultai_rights_trigger = {
+	trigger_if = {
+		limit = { exists = vassal_contract_obligation_level:kurultai_rights }
+		OR = {
+			subject_contract_obligation_level_can_be_increased = kurultai_rights
+			subject_contract_obligation_level_can_be_decreased = kurultai_rights
+		}
+	}
+	trigger_else = { always = no }
+}

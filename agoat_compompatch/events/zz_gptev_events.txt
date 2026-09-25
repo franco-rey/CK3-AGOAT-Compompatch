@@ -1491,12 +1491,16 @@ gpt_personality_lustful.0002 = {
 		}
 		gptev_remove_prestige_large = yes
 		if = {
-			limit = { exists = scope:prostitute_character }
+			limit = {
+				exists = scope:prostitute_character
+				OR = { is_landed = yes is_ruler = yes }
+			}
 			add_courtier = scope:prostitute_character
 		}
 		if = {
 			limit = {
 				is_male = yes
+				fertility > 0
 				trigger_if = {
 					limit = { exists = scope:prostitute_character }
 					scope:prostitute_character = { is_female = yes is_pregnant = no fertility >= 0.2 }
@@ -1521,7 +1525,7 @@ gpt_personality_lustful.0002 = {
 				fertility >= 0.2
 				trigger_if = {
 					limit = { exists = scope:prostitute_character }
-					scope:prostitute_character = { is_male = yes }
+					scope:prostitute_character = { is_male = yes fertility > 0 }
 				}
 				trigger_else = { always = no }
 			}
@@ -1733,12 +1737,16 @@ gpt_personality_lustful.0003 = {
 			lustful = @stressdecrease
 		}
 		if = {
-			limit = { exists = scope:prostitute_character }
+			limit = {
+				exists = scope:prostitute_character
+				OR = { is_landed = yes is_ruler = yes }
+			}
 			add_courtier = scope:prostitute_character
 		}
 		if = {
 			limit = {
 				is_male = yes
+				fertility > 0
 				trigger_if = {
 					limit = { exists = scope:prostitute_character }
 					scope:prostitute_character = { is_female = yes is_pregnant = no fertility >= 0.2 }
@@ -1763,7 +1771,7 @@ gpt_personality_lustful.0003 = {
 				fertility >= 0.2
 				trigger_if = {
 					limit = { exists = scope:prostitute_character }
-					scope:prostitute_character = { is_male = yes }
+					scope:prostitute_character = { is_male = yes fertility > 0 }
 				}
 				trigger_else = { always = no }
 			}

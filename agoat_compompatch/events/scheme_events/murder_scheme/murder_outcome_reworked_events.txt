@@ -4824,7 +4824,7 @@ murder_outcome_reworked.4042 = {
 		# First we kill dogs.
 		if = {
 			limit = {
-				scope:murder_method = flag:child_pushed
+				scope:murder_method ?= flag:child_pushed
 				exists = scope:child_pushed_dog
 			}
 			show_as_tooltip = {
@@ -4842,7 +4842,7 @@ murder_outcome_reworked.4042 = {
 		# Then we kill cats.
 		else_if = {
 			limit = {
-				scope:murder_method = flag:child_pushed
+				scope:murder_method ?= flag:child_pushed
 				exists = scope:child_pushed_cat
 				NOT = { exists = scope:cat_survives }
 			}

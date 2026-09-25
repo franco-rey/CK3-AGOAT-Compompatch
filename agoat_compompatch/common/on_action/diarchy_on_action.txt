@@ -352,9 +352,12 @@ on_diarch_change = {
 
 on_diarch_designation = {
 	effect = {
-		reverse_add_opinion = {
-			target = root.designated_diarch
-			modifier = designated_me_regent_opinion
+		if = {
+			limit = { root.designated_diarch ?= { is_alive = yes } }
+			reverse_add_opinion = {
+				target = root.designated_diarch
+				modifier = designated_me_regent_opinion
+			}
 		}
 		if = {
 			limit = {

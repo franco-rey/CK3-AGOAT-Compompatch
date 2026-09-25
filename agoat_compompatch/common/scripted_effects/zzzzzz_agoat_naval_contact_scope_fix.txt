@@ -28,3 +28,209 @@ naval_combat_clear_war_penalties_effect = {
 		remove_character_flag = naval_combat_automatic_battle_cooldown
 	}
 }
+
+naval_combat_update_contact_effect = {
+	if = {
+		limit = {
+			OR = {
+				NOT = { is_at_war = yes }
+				NOT = { naval_combat_can_enter_automatic_battle_trigger = yes }
+			}
+		}
+		naval_combat_clear_contact_state_effect = yes
+	}
+	else = {
+		# Drop a stale target before looking for a new opposing fleet.
+		if = {
+			limit = {
+				exists = var:naval_combat_contact_target
+				NOT = {
+					var:naval_combat_contact_target = {
+						is_alive = yes
+						naval_combat_can_enter_automatic_battle_trigger = yes
+						any_war_enemy = { this = root }
+					}
+				}
+			}
+			naval_combat_clear_contact_state_effect = yes
+		}
+
+		# One fleet pair is tracked at a time. Human opponents are always processed
+		# from the human side so the interactive event cannot resolve off-screen.
+		if = {
+			limit = { NOT = { exists = var:naval_combat_contact_target } }
+			random_war_enemy = {
+				limit = {
+					is_alive = yes
+					naval_combat_can_enter_automatic_battle_trigger = yes
+					OR = {
+						NOT = { exists = var:naval_combat_contact_target }
+						var:naval_combat_contact_target ?= root
+					}
+					trigger_if = {
+						limit = { root = { is_ai = yes } }
+						is_ai = yes
+					}
+				}
+				save_temporary_scope_as = agoat_naval_contact_candidate
+			}
+			if = {
+				limit = { exists = scope:agoat_naval_contact_candidate }
+				set_variable = {
+					name = naval_combat_contact_target
+					value = scope:agoat_naval_contact_candidate
+				}
+				set_variable = { name = naval_combat_contact_value value = 0 }
+				scope:agoat_naval_contact_candidate = {
+					set_variable = { name = naval_combat_contact_target value = root }
+					set_variable = { name = naval_combat_contact_value value = 0 }
+				}
+			}
+		}
+
+		if = {
+			limit = {
+				exists = var:naval_combat_contact_target
+				NOT = { has_character_flag = naval_combat_automatic_contact_checked }
+				var:naval_combat_contact_target = {
+					is_alive = yes
+					NOT = { has_character_flag = naval_combat_automatic_contact_checked }
+				}
+				# A human-vs-AI pair is advanced only from the human side.
+				trigger_if = {
+					limit = { is_ai = yes }
+					var:naval_combat_contact_target = { is_ai = yes }
+				}
+			}
+			var:naval_combat_contact_target = {
+				save_scope_as = naval_combat_contact_enemy
+			}
+			add_character_flag = {
+				flag = naval_combat_automatic_contact_checked
+				days = 6
+			}
+			scope:naval_combat_contact_enemy = {
+				add_character_flag = {
+					flag = naval_combat_automatic_contact_checked
+					days = 6
+				}
+			}
+
+			# Both sides contesting sea control: rapid search and a high encounter chance.
+			if = {
+				limit = {
+					var:naval_combat_sea_control_active ?= 1
+					scope:naval_combat_contact_enemy = { var:naval_combat_sea_control_active ?= 1 }
+				}
+				change_variable = { name = naval_combat_contact_value add = 15 }
+				set_variable = { name = naval_combat_contact_type value = 1 }
+				set_variable = {
+					name = naval_combat_contact_chance
+					value = {
+						value = var:naval_combat_contact_value
+						multiply = 0.30
+						add = 5
+					}
+				}
+				if = {
+					limit = { var:naval_combat_contact_chance > 40 }
+					set_variable = { name = naval_combat_contact_chance value = 40 }
+				}
+			}
+			# A patrol searching for a transport fleet: lower, but persistent interception odds.
+			else_if = {
+				limit = {
+					OR = {
+						var:naval_combat_sea_control_active ?= 1
+						scope:naval_combat_contact_enemy = { var:naval_combat_sea_control_active ?= 1 }
+					}
+				}
+				change_variable = { name = naval_combat_contact_value add = 6 }
+				set_variable = { name = naval_combat_contact_type value = 2 }
+				set_variable = {
+					name = naval_combat_contact_chance
+					value = {
+						value = var:naval_combat_contact_value
+						multiply = 0.15
+						add = 2
+					}
+				}
+				if = {
+					limit = { var:naval_combat_contact_chance > 18 }
+					set_variable = { name = naval_combat_contact_chance value = 18 }
+				}
+			}
+			# Two transport fleets are avoiding battle, but a rare chance encounter remains.
+			else = {
+				change_variable = { name = naval_combat_contact_value add = 2 }
+				set_variable = { name = naval_combat_contact_type value = 3 }
+				set_variable = {
+					name = naval_combat_contact_chance
+					value = {
+						value = var:naval_combat_contact_value
+						multiply = 0.05
+						add = 0.5
+					}
+				}
+				if = {
+					limit = { var:naval_combat_contact_chance > 6 }
+					set_variable = { name = naval_combat_contact_chance value = 6 }
+				}
+			}
+
+			if = {
+				limit = { var:naval_combat_contact_value > 100 }
+				set_variable = { name = naval_combat_contact_value value = 100 }
+			}
+			scope:naval_combat_contact_enemy = {
+				set_variable = {
+					name = naval_combat_contact_value
+					value = root.var:naval_combat_contact_value
+				}
+				set_variable = {
+					name = naval_combat_contact_chance
+					value = root.var:naval_combat_contact_chance
+				}
+				set_variable = {
+					name = naval_combat_contact_type
+					value = root.var:naval_combat_contact_type
+				}
+			}
+
+			random = {
+				chance = var:naval_combat_contact_chance
+				if = {
+					limit = {
+						naval_combat_has_active_fleet_orders_trigger = yes
+						scope:naval_combat_contact_enemy = {
+							naval_combat_has_active_fleet_orders_trigger = yes
+						}
+					}
+					set_variable = {
+						name = naval_combat_battle_opponent
+						value = scope:naval_combat_contact_enemy
+					}
+					set_variable = {
+						name = naval_combat_battle_encounter_type
+						value = var:naval_combat_contact_type
+					}
+					add_character_flag = {
+						flag = naval_combat_automatic_battle_cooldown
+						months = 1
+					}
+					scope:naval_combat_contact_enemy = {
+						add_character_flag = {
+							flag = naval_combat_automatic_battle_cooldown
+							months = 1
+						}
+					}
+					naval_combat_clear_contact_state_effect = yes
+					trigger_event = naval_combat.0200
+				}
+				else = {
+					naval_combat_clear_contact_state_effect = yes
+				}
+			}
+		}
+	}
+}
