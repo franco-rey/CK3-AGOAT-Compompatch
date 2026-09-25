@@ -106,7 +106,7 @@
 	}
 
 	if = {
-		limit = { capital_county = { is_coastal_county = yes } }
+		limit = { capital_county ?= { is_coastal_county = yes } }
 		add = {
 			value = 10
 			desc = naval_combat_ai_focus_coastal_capital

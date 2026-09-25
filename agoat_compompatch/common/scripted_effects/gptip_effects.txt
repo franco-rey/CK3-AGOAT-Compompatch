@@ -417,7 +417,6 @@ gptip_add_flags_effect = {
 							scheme_type = dispute_border
 							scheme_type = found_despotate
 							scheme_type = ingratiate_family
-							scheme_type = prepare_fire_dromons_scheme
 							scheme_type = raid_estate
 							scheme_type = subsume_province
 							scheme_type = expand_power_base
@@ -427,8 +426,6 @@ gptip_add_flags_effect = {
 
 							scheme_type = coup_ceremonial_liege
 							scheme_type = celestial_siphon_treasury
-							scheme_type = celestial_movement_power_slander
-							scheme_type = celestial_minister_find_secrets_scheme
 						}
 					}
 				}
@@ -446,7 +443,6 @@ gptip_add_flags_effect = {
 							scheme_type = leverage_contribution
 							scheme_type = promote
 							scheme_type = celestial_siphon_treasury
-							scheme_type = celestial_movement_power_promote
 						}
 					}
 				}
@@ -459,7 +455,7 @@ gptip_add_flags_effect = {
 					is_travelling = no
 					any_scheme = {
 						OR = {
-							scheme_type = study_confucian_classics
+							always = no
 						}
 					}
 				}

@@ -11,14 +11,6 @@ master_at_arms_court_position = {
 
 	court_position_asset = {
 		trigger = {
-			culture_has_east_asian_heritage_pillar_trigger = yes
-		}
-		animation = marshal_shield
-		background = "gfx/interface/illustrations/event_scenes/tgp_camp_asia.dds"
-	}
-
-	court_position_asset = {
-		trigger = {
 			OR = {
 				government_has_flag = government_is_tribal
 				government_has_flag = government_is_nomadic
@@ -378,13 +370,13 @@ master_at_arms_court_position = {
 			# More likely if ruler has many knights
 			if = {
 				limit = {
-					knight_limit >= 6
+					max_number_of_knights >= 6
 				}
 				add = 20
 			}
 			if = {
 				limit = {
-					knight_limit >= 10
+					max_number_of_knights >= 10
 				}
 				add = 20
 			}

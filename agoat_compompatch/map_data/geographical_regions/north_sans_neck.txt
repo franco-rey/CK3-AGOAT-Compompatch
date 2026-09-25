@@ -96,7 +96,8 @@ world_westeros_rest_of_dorne = {
 		d_salt_shore
 		d_sandstone
 		d_the_tor
-		d_yronwood
+		d_greenbelt
+		d_ghaston_grey
 		d_scourgehead
 	}
 }

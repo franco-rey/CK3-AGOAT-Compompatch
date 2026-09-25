@@ -114,7 +114,10 @@ asoiaf_canon_children_parentage_assignment_effect = {
 			exists = scope:mother.liege_or_court_owner
 		}
 		scope:mother.liege_or_court_owner = {
-			add_courtier = scope:child
+			if = {
+				limit = { NOT = { scope:child = { is_courtier_of = prev } } }
+				add_courtier = scope:child
+			}
 		}
 	}
 }

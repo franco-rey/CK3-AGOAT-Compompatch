@@ -163,7 +163,10 @@ on_remove_relation_lover = {
 			LOVER = scope:target
 		}
 
-		set_relation_old_flame = scope:target
+		if = {
+			limit = { NOT = { has_relation_old_flame = scope:target } }
+			set_relation_old_flame = scope:target
+		}
 
 		create_character_memory = {
 			type = broke_up_lovers

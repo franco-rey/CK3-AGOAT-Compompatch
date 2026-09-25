@@ -504,7 +504,7 @@ ame_service.0020 = {
 	weight_multiplier = {
 		base = 1
 		modifier = {
-			var:ame_company.holder = { is_at_war = yes }
+			var:ame_company.holder ?= { is_at_war = yes }
 			factor = 4
 		}
 		# Half weight for a son serving in a company his home liege owns outright (war modifier above).
@@ -595,7 +595,7 @@ ame_service.0030 = {
 	weight_multiplier = {
 		base = 1
 		modifier = {
-			var:ame_company.holder = { is_at_war = yes }
+			var:ame_company.holder ?= { is_at_war = yes }
 			factor = 3
 		}
 		# Same modifier as ame_service.0020's weight_multiplier: half weight for a son serving in a
@@ -753,7 +753,7 @@ ame_service.0060 = {
 	weight_multiplier = {
 		base = 1
 		modifier = {
-			var:ame_company.holder = { is_at_war = yes }
+			var:ame_company.holder ?= { is_at_war = yes }
 			factor = 3
 		}
 	}

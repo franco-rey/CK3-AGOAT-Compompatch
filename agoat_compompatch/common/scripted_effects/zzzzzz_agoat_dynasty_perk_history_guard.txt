@@ -1,0 +1,9 @@
+﻿agot_safe_add_dynasty_perk_history_effect = {
+	if = {
+		limit = {
+			exists = THIS.dynast
+			NOT = { has_dynasty_perk = $PERK$ }
+		}
+		add_dynasty_perk = $PERK$
+	}
+}

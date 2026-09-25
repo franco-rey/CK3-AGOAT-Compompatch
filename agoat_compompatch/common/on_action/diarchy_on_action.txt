@@ -142,7 +142,13 @@ on_left_diarchy = {
 			}
 			vizierate_remove_extravagance_modifiers_effect = yes
 			if = {
-				limit = { has_variable = use_co_ruler_title }
+				limit = {
+					trigger_if = {
+						limit = { is_alive = yes }
+						has_variable = use_co_ruler_title
+					}
+					trigger_else = { always = no }
+				}
 				remove_variable = use_co_ruler_title
 				root = {
 					set_variable = {

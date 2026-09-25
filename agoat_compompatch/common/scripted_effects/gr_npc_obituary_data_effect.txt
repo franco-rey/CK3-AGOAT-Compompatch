@@ -556,24 +556,8 @@ gr_npc_obituary_data_effect = {
 			}
 
 			if = {
-				limit = { exists = primary_title primary_title = { has_title_law = tanistry_elective_succession_law } }
-				set_variable = { name = gr_succession_elective value = flag:tanistry }
-			}
-			else_if = {
-				limit = { exists = primary_title primary_title = { has_title_law = scandinavian_elective_succession_law } }
-				set_variable = { name = gr_succession_elective value = flag:scandinavian }
-			}
-			else_if = {
 				limit = { exists = primary_title primary_title = { has_title_law = feudal_elective_succession_law } }
 				set_variable = { name = gr_succession_elective value = flag:feudal }
-			}
-			else_if = {
-				limit = { exists = primary_title primary_title = { has_title_law = saxon_elective_succession_law } }
-				set_variable = { name = gr_succession_elective value = flag:saxon }
-			}
-			else_if = {
-				limit = { exists = primary_title primary_title = { has_title_law = princely_elective_succession_law } }
-				set_variable = { name = gr_succession_elective value = flag:princely }
 			}
 		}
 

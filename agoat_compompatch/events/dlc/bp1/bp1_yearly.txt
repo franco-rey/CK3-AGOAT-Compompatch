@@ -14451,7 +14451,7 @@ bp1_yearly.8192 = {
 		custom_tooltip = bp1_yearly.8192.fired_tt
 		scope:insulting_scope = {
 			add_opinion = {
-				target = scope:insulting_scope
+				target = root
 				modifier = angry_opinion
 				opinion = -10
 			}

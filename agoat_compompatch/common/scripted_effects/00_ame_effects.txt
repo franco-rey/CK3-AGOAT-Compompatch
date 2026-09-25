@@ -17,7 +17,13 @@ ame_return_home_effect = {
 		if = {
 			limit = {
 				exists = var:ame_home_liege
-				var:ame_home_liege = { is_alive = yes }
+				var:ame_home_liege = {
+					is_alive = yes
+					OR = {
+						is_landed = yes
+						is_ruler = yes
+					}
+				}
 			}
 			var:ame_home_liege = {
 				if = {

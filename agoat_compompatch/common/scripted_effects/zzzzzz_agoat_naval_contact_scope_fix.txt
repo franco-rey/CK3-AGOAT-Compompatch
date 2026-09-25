@@ -1,0 +1,30 @@
+﻿naval_combat_schedule_weekly_readiness_effect = {
+	if = {
+		limit = {
+			exists = var:naval_combat_initialized
+			NOT = { exists = var:naval_combat_weekly_readiness_scheduled }
+		}
+		set_variable = {
+			name = naval_combat_weekly_readiness_scheduled
+			value = yes
+		}
+		if = {
+			limit = { exists = scope:naval_combat_contact_enemy }
+			clear_saved_scope = naval_combat_contact_enemy
+		}
+		trigger_event = { id = naval_combat.0100 days = 7 }
+	}
+}
+
+naval_combat_clear_war_penalties_effect = {
+	if = {
+		limit = { is_alive = yes }
+		naval_combat_clear_defeat_penalty_effect = yes
+		remove_character_modifier = naval_combat_blockaded_modifier
+		remove_variable = naval_combat_blockading_enemy
+		remove_variable = naval_combat_ai_avoiding_superior_fleet
+		naval_combat_clear_contact_state_effect = yes
+		remove_character_flag = naval_combat_automatic_contact_checked
+		remove_character_flag = naval_combat_automatic_battle_cooldown
+	}
+}

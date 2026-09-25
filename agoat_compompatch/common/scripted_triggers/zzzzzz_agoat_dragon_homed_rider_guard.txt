@@ -1,0 +1,42 @@
+﻿dragon_homed_separate_from_rider = {
+	$DRAGON$ = { save_temporary_scope_as = temp_dragon }
+	trigger_if = {
+		limit = {
+			OR = {
+				AND = {
+					scope:temp_dragon.var:current_rider ?= { is_landed = no }
+					scope:temp_dragon.var:current_rider.liege ?= {
+						has_more_than_one_dragonpit = yes
+					}
+				}
+				scope:temp_dragon.var:current_rider ?= {
+					has_more_than_one_dragonpit = yes
+				}
+			}
+		}
+		custom_description = {
+			text = dragon_homed_separate_from_rider
+			trigger_if = {
+				limit = {
+					exists = scope:temp_dragon.var:pitted_dragon_location
+					scope:temp_dragon.var:current_rider = { is_landed = yes }
+				}
+				NOT = { scope:temp_dragon.var:pitted_dragon_location = scope:temp_dragon.var:current_rider.capital_county }
+			}
+			trigger_else_if = {
+				limit = {
+					exists = scope:temp_dragon.var:pitted_dragon_location
+					exists = scope:temp_dragon.var:current_rider.liege_or_court_owner
+					exists = scope:temp_dragon.var:current_rider.liege_or_court_owner.capital_county
+				}
+				NOT = { scope:temp_dragon.var:pitted_dragon_location = scope:temp_dragon.var:current_rider.liege_or_court_owner.capital_county }
+			}
+			trigger_else = {
+				always = no
+			}
+		}
+	}
+	trigger_else = {
+		always = no
+	}
+}
