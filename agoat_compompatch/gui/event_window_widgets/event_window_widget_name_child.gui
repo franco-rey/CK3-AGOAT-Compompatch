@@ -1,0 +1,391 @@
+# Event window widget to rename a child (intended to be used at birth)
+# Required controller: name_character
+# CNL: vanilla copy + historical name buttons (marked with "CNL")
+
+vbox = {
+	name = "event_window_widget_name_child"
+	layoutpolicy_horizontal = expanding
+	minimumsize = { 240 -1 }
+	ignoreinvisible = yes
+	margin = { 5 0 }
+	margin_bottom = 5
+	spacing = 3
+
+	datacontext = "[EventWindowWidgetNameCharacter.GetCharacter]"
+	datacontext = "[Character.GetCulture]"
+
+	# Only name-entry tokens carry these frozen destinations. Birth popups do not.
+	vbox = {
+		visible = "[Or( Character.MakeScope.Var( 'cnl_entry_dynasty' ).IsSet, Character.MakeScope.Var( 'cnl_entry_house' ).IsSet )]"
+		layoutpolicy_horizontal = expanding
+		ignoreinvisible = yes
+		spacing = 4
+		margin_bottom = 4
+		vbox = {
+			visible = "[Character.MakeScope.Var( 'cnl_entry_dynasty' ).IsSet]"
+			datacontext = "[Character.MakeScope.Var( 'cnl_entry_dynasty' ).Dynasty]"
+			spacing = 4
+			coa_dynasty_medium = {}
+			text_multi = {
+				layoutpolicy_horizontal = expanding
+				autoresize = yes
+				max_width = 240
+				align = center|nobaseline
+				text = "HOUSE_VIEW_PART_OF_DYNASTY"
+			}
+		}
+		vbox = {
+			visible = "[Character.MakeScope.Var( 'cnl_entry_house' ).IsSet]"
+			datacontext = "[Character.MakeScope.Var( 'cnl_entry_house' ).House]"
+			spacing = 4
+			coa_house_medium = {}
+			text_multi = {
+				layoutpolicy_horizontal = expanding
+				autoresize = yes
+				max_width = 240
+				align = center|nobaseline
+				text = "HOUSE_VIEW_NAME_WITH_HOUSE"
+			}
+		}
+		divider_light = { layoutpolicy_horizontal = expanding }
+	}
+
+	editbox_standard = {
+		size = { 240 30 }
+
+		blockoverride "editbox_properties"
+		{
+		    name = "no_name_needed"
+		    text = "[EventWindowWidgetNameCharacter.GetCurrentName]"
+			ontextedited = "[EventWindowWidgetNameCharacter.OnEditCurrentName]"
+
+			state = {
+				name = "name_refresh"
+				next = "b"
+				using = Animation_Refresh_FadeOut
+			}
+
+			state = {
+				name = "b"
+				using = Animation_Refresh_FadeIn
+			}
+		}
+	}
+
+	vbox = {
+		layoutpolicy_horizontal = expanding
+		spacing = 3
+		margin = { 5 0 }
+
+		visible = "[GetVariableSystem.Exists( 'family_members_options_open' )]"
+
+		event_widget_name_child_option = {
+			visible = "[And( Not( Character.IsFemale ), Character.GetFather.IsValid )]"
+			text = "event_window_widget_name_child_after_father"
+			onclick = "[EventWindowWidgetNameCharacter.SetCurrentNameCultural( Character.GetFather.GetFirstNameBase )]"
+		}
+
+		event_widget_name_child_option = {
+			visible = "[And( Character.IsFemale, Character.GetMother.IsValid )]"
+			text = "event_window_widget_name_child_after_mother"
+			onclick = "[EventWindowWidgetNameCharacter.SetCurrentNameCultural( Character.GetMother.GetFirstNameBase )]"
+		}
+
+		event_widget_name_child_option = {
+			visible = "[And( Not( Character.IsFemale ), Character.GetFather.GetFather.IsValid )]"
+			text = "event_window_widget_name_child_after_fathers_father"
+			onclick = "[EventWindowWidgetNameCharacter.SetCurrentNameCultural( Character.GetFather.GetFather.GetFirstNameBase )]"
+		}
+
+		event_widget_name_child_option = {
+			visible = "[And( Character.IsFemale, Character.GetFather.GetMother.IsValid )]"
+			text = "event_window_widget_name_child_after_fathers_mother"
+			onclick = "[EventWindowWidgetNameCharacter.SetCurrentNameCultural( Character.GetFather.GetMother.GetFirstNameBase )]"
+		}
+
+		event_widget_name_child_option = {
+			visible = "[And( Not( Character.IsFemale ), Character.GetMother.GetFather.IsValid )]"
+			text = "event_window_widget_name_child_after_mothers_father"
+			onclick = "[EventWindowWidgetNameCharacter.SetCurrentNameCultural( Character.GetMother.GetFather.GetFirstNameBase )]"
+		}
+
+		event_widget_name_child_option = {
+			visible = "[And( Character.IsFemale, Character.GetMother.GetMother.IsValid )]"
+			text = "event_window_widget_name_child_after_mothers_mother"
+			onclick = "[EventWindowWidgetNameCharacter.SetCurrentNameCultural( Character.GetMother.GetMother.GetFirstNameBase )]"
+		}
+	}
+
+	# CNL: recorded historical names, one button per recorded name of the child's gender.
+	# The dynasty's records come first, the house's records under their own header; a
+	# header stays hidden while its list is empty, so a houseless child sees neither.
+	# The child itself is filtered out (it is already in the list at this point).
+	vbox = {
+		layoutpolicy_horizontal = expanding
+		spacing = 3
+		margin = { 5 0 }
+
+		visible = "[And( Character.GetDynasty.IsValid, GetVariableSystem.Exists( 'cnl_historical_names_open' ) )]"
+
+		# Height-bounded: a long record list scrolls instead of pushing the
+		# event window's own buttons off screen.
+		scrollbox = {
+			name = "cnl_historical_names_male_scrollbox"
+			size = { 230 150 }
+			layoutpolicy_horizontal = expanding
+			visible = "[Not( Character.IsFemale )]"
+
+			blockoverride "scrollbox_content"
+			{
+				vbox = {
+					layoutpolicy_horizontal = expanding
+					ignoreinvisible = yes
+					spacing = 3
+
+					text_label_center = {
+						visible = "[And( Character.GetHouse.IsValid, Not( IsDataModelEmpty( Character.GetHouse.MakeScope.GetList( 'cnl_historical_names_male' ) ) ) )]"
+						layoutpolicy_horizontal = expanding
+						max_width = 210
+						text = "cnl_pool_header_house"
+					}
+
+					vbox = {
+						visible = "[Character.GetHouse.IsValid]"
+						layoutpolicy_horizontal = expanding
+						spacing = 3
+						datamodel = "[Character.GetHouse.MakeScope.GetList( 'cnl_historical_names_male' )]"
+
+						item = {
+							event_widget_name_child_option = {
+								visible = "[And( Scope.Char.IsValid, Not( ObjectsEqual( Scope.Char.Self, Character.Self ) ) )]"
+								text = "[Localize( Scope.Char.GetFirstNameBase )]"
+								onclick = "[EventWindowWidgetNameCharacter.SetCurrentNameCultural( Scope.Char.GetFirstNameBase )]"
+							}
+						}
+					}
+
+					text_label_center = {
+						visible = "[And( Character.GetDynasty.IsValid, Not( IsDataModelEmpty( Character.GetDynasty.MakeScope.GetList( 'cnl_historical_names_male' ) ) ) )]"
+						layoutpolicy_horizontal = expanding
+						max_width = 210
+						text = "cnl_pool_header_dynasty"
+					}
+
+					vbox = {
+						visible = "[Character.GetDynasty.IsValid]"
+						layoutpolicy_horizontal = expanding
+						spacing = 3
+						datamodel = "[Character.GetDynasty.MakeScope.GetList( 'cnl_historical_names_male' )]"
+
+						item = {
+							event_widget_name_child_option = {
+								visible = "[And( Scope.Char.IsValid, Not( ObjectsEqual( Scope.Char.Self, Character.Self ) ) )]"
+								text = "[Localize( Scope.Char.GetFirstNameBase )]"
+								onclick = "[EventWindowWidgetNameCharacter.SetCurrentNameCultural( Scope.Char.GetFirstNameBase )]"
+							}
+						}
+					}
+				}
+			}
+		}
+
+		scrollbox = {
+			name = "cnl_historical_names_female_scrollbox"
+			size = { 230 150 }
+			layoutpolicy_horizontal = expanding
+			visible = "[Character.IsFemale]"
+
+			blockoverride "scrollbox_content"
+			{
+				vbox = {
+					layoutpolicy_horizontal = expanding
+					ignoreinvisible = yes
+					spacing = 3
+
+					text_label_center = {
+						visible = "[And( Character.GetHouse.IsValid, Not( IsDataModelEmpty( Character.GetHouse.MakeScope.GetList( 'cnl_historical_names_female' ) ) ) )]"
+						layoutpolicy_horizontal = expanding
+						max_width = 210
+						text = "cnl_pool_header_house"
+					}
+
+					vbox = {
+						visible = "[Character.GetHouse.IsValid]"
+						layoutpolicy_horizontal = expanding
+						spacing = 3
+						datamodel = "[Character.GetHouse.MakeScope.GetList( 'cnl_historical_names_female' )]"
+
+						item = {
+							event_widget_name_child_option = {
+								visible = "[And( Scope.Char.IsValid, Not( ObjectsEqual( Scope.Char.Self, Character.Self ) ) )]"
+								text = "[Localize( Scope.Char.GetFirstNameBase )]"
+								onclick = "[EventWindowWidgetNameCharacter.SetCurrentNameCultural( Scope.Char.GetFirstNameBase )]"
+							}
+						}
+					}
+
+					text_label_center = {
+						visible = "[And( Character.GetDynasty.IsValid, Not( IsDataModelEmpty( Character.GetDynasty.MakeScope.GetList( 'cnl_historical_names_female' ) ) ) )]"
+						layoutpolicy_horizontal = expanding
+						max_width = 210
+						text = "cnl_pool_header_dynasty"
+					}
+
+					vbox = {
+						visible = "[Character.GetDynasty.IsValid]"
+						layoutpolicy_horizontal = expanding
+						spacing = 3
+						datamodel = "[Character.GetDynasty.MakeScope.GetList( 'cnl_historical_names_female' )]"
+
+						item = {
+							event_widget_name_child_option = {
+								visible = "[And( Scope.Char.IsValid, Not( ObjectsEqual( Scope.Char.Self, Character.Self ) ) )]"
+								text = "[Localize( Scope.Char.GetFirstNameBase )]"
+								onclick = "[EventWindowWidgetNameCharacter.SetCurrentNameCultural( Scope.Char.GetFirstNameBase )]"
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	hbox = {
+
+		event_button_round = {
+			visible = "[Culture.ShouldSuggestAncestorName]"
+			onclick = "[EventWindowWidgetNameCharacter.SetCurrentNameCultural( EventWindowWidgetNameCharacter.GetRandomAvailableAncestorName )]"
+			onclick = "[PdxGuiTriggerAllAnimations('name_refresh')]"
+			tooltip = "event_window_widget_name_child_after_random_ancestor"
+			using = tooltip_se
+
+			button_dynasty_tree = {
+				parentanchor = center
+				alwaystransparent = yes
+			}
+		}
+
+		event_button_round = {
+			visible = "[Character.GetFaith.HasReservedNames( Character.IsFemale )]"
+			onclick = "[EventWindowWidgetNameCharacter.SetCurrentNameCultural( EventWindowWidgetNameCharacter.GetRandomAvailableFaithName )]"
+			onclick = "[PdxGuiTriggerAllAnimations('name_refresh')]"
+			tooltip =  "event_window_widget_name_child_random_faith_name"
+			using = tooltip_se
+
+			highlight_icon = {
+				datacontext = "[Character.GetFaith]"
+				texture = "[Faith.GetIcon]"
+				parentanchor = center
+				size = { 35 35 }
+			}
+		}
+
+		event_button_round = {
+			onclick = "[EventWindowWidgetNameCharacter.SetCurrentName( EventWindowWidgetNameCharacter.GetRandomAvailableCultureName )]"
+			onclick = "[PdxGuiTriggerAllAnimations('name_refresh')]"
+			tooltip =  "event_window_widget_name_child_random_cultural_name"
+			using = tooltip_se
+
+			highlight_icon = {
+				name = "culture"
+				texture = "gfx/interface/icons/icon_culture.dds"
+				size = { 35 35 }
+				parentanchor = center
+			}
+		}
+
+		hbox = {
+			layoutpolicy_vertical = expanding
+			margin = { 10 0 }
+
+			divider_light = {
+				layoutpolicy_vertical = expanding
+			}
+		}
+
+		event_button_round = {
+			visible = "[Culture.ShouldSuggestFamilyName]"
+			onclick = "[GetVariableSystem.Toggle( 'family_members_options_open' )]"
+			tooltip =  "event_window_widget_name_child_after_family_member"
+			using = tooltip_se
+
+			highlight_icon = {
+				name = "relation_icon"
+				size = { 35 35 }
+				parentanchor = center
+				texture = "gfx/interface/icons/portraits/relation.dds"
+				framesize = { 40 40 }
+				frame = "3"
+			}
+		}
+		#AGOT Added
+		agot_dynastic_event_widget_name_child_button = {}
+
+		# CNL: fill the name box with a random recorded name.
+		# The scripted GUI renames the child, then the name is copied into the box.
+		# Clicking again always lands on a different recorded name.
+		# Character.GetDynasty.IsValid stays the outer guard of both CNL buttons: the name
+		# token created by cnl_naming.0202 has no dynasty but does keep a house, so a
+		# house-only branch would make these buttons appear on the token's own naming window.
+		event_button_round = {
+			visible = "[And( Character.GetDynasty.IsValid, Or( And( Not( Character.IsFemale ), Or( Not( IsDataModelEmpty( Character.GetDynasty.MakeScope.GetList( 'cnl_historical_names_male' ) ) ), And( Character.GetHouse.IsValid, Not( IsDataModelEmpty( Character.GetHouse.MakeScope.GetList( 'cnl_historical_names_male' ) ) ) ) ) ), And( Character.IsFemale, Or( Not( IsDataModelEmpty( Character.GetDynasty.MakeScope.GetList( 'cnl_historical_names_female' ) ) ), And( Character.GetHouse.IsValid, Not( IsDataModelEmpty( Character.GetHouse.MakeScope.GetList( 'cnl_historical_names_female' ) ) ) ) ) ) ) )]"
+			onclick = "[GetScriptedGui( 'cnl_roll_historical_name' ).Execute( GuiScope.SetRoot( Character.MakeScope ).End )]"
+			onclick = "[EventWindowWidgetNameCharacter.SetCurrentNameCultural( Character.GetFirstNameBase )]"
+			onclick = "[PdxGuiTriggerAllAnimations('name_refresh')]"
+			tooltip = "cnl_name_child_random_historical_tooltip"
+			using = tooltip_se
+
+			# Vanilla flat icon. These ship as pure alpha masks over black RGB and
+			# are coloured at draw time by an add-blended frame of the shared colour
+			# sheet - leave the modify_texture out and the icon draws as a black
+			# blob, which is exactly what the hand-drawn die was doing.
+			highlight_icon = {
+				name = "cnl_random_historical_icon"
+				texture = "gfx/interface/icons/flat_icons/multiple_people.dds"
+				size = { 35 35 }
+				parentanchor = center
+
+				modify_texture = {
+					texture = "gfx/interface/colors/colors_textured.dds"
+					blend_mode = add
+					framesize = { 96 96 }
+					frame = 1
+				}
+			}
+		}
+
+		# CNL: toggle for the recorded names list. Only shown when the child's dynasty
+		# or house has recorded names of the child's gender.
+		event_button_round = {
+			visible = "[And( Character.GetDynasty.IsValid, Or( And( Not( Character.IsFemale ), Or( Not( IsDataModelEmpty( Character.GetDynasty.MakeScope.GetList( 'cnl_historical_names_male' ) ) ), And( Character.GetHouse.IsValid, Not( IsDataModelEmpty( Character.GetHouse.MakeScope.GetList( 'cnl_historical_names_male' ) ) ) ) ) ), And( Character.IsFemale, Or( Not( IsDataModelEmpty( Character.GetDynasty.MakeScope.GetList( 'cnl_historical_names_female' ) ) ), And( Character.GetHouse.IsValid, Not( IsDataModelEmpty( Character.GetHouse.MakeScope.GetList( 'cnl_historical_names_female' ) ) ) ) ) ) ) )]"
+			onclick = "[GetVariableSystem.Toggle( 'cnl_historical_names_open' )]"
+			tooltip = "cnl_name_child_historical_tooltip"
+			using = tooltip_se
+
+			# Vanilla chronicle book, kept on purpose - no drawn CNL icon suits a list.
+			highlight_icon = {
+				name = "cnl_historical_list_icon"
+				texture = "gfx/interface/icons/artifact/artifact_chronicle.dds"
+				size = { 35 35 }
+				parentanchor = center
+			}
+		}
+	}
+}
+
+types EventWindowWidgetNameChild
+{
+	type event_widget_name_child_option = button_standard_list {
+		layoutpolicy_horizontal = expanding
+
+		onclick = "[PdxGuiTriggerAllAnimations('name_refresh')]"
+
+		background = {
+			using = Background_Area
+		}
+	}
+
+	type event_button_round = button_round {
+		size = { 44 44 }
+	}
+}

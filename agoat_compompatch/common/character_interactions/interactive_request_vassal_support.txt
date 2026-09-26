@@ -16,6 +16,12 @@
 		NOT = {
 			has_game_rule = request_vassal_support_miv_disabled
 		}
+		trigger_if = {
+			limit = {
+				has_game_rule = bannermen_mode_enabled
+			}
+			interactive_bannermen_foreign_enabled_trigger = yes
+		}
 		NOT = {
 			AND = {
 				scope:actor = {
@@ -44,8 +50,10 @@
 
 		}
 		scope:recipient = {
-			max_military_strength > interactive_minimum_vassal_strength
 			is_vassal_of = scope:actor
+			interactive_bannermen_callable_vassal_trigger = {
+				LIEGE = scope:actor
+			}
 			trigger_if = {
 				limit = {
 					NOT = {
@@ -106,11 +114,26 @@
 		}
 		trigger_if = {
 			limit = {
+				scope:recipient = {
+					interactive_governor_support_trigger = {
+						LIEGE = scope:actor
+					}
+				}
+			}
+			scope:actor = {
+				custom_description = {
+					text = ASK_SUPPORT_CANNOT_AFFORD_INFLUENCE_TEXT
+					influence >= interactive_admin_governor_support_cost
+				}
+			}
+		}
+		trigger_if = {
+			limit = {
 				has_game_rule = bannermen_mode_enabled
 			}
 			scope:recipient = {
 				custom_description = {
-					text = interactive_bannermen_recipient_rebellion
+					text = interactive_bannermen_recipient_rebellion_text
 					NOT = {
 						interactive_bannermen_rebellion_trigger = {
 							LIEGE = scope:actor
@@ -118,16 +141,27 @@
 					}
 				}
 				custom_description = {
-					text = interactive_bannermen_recipient_indisposed
+					text = interactive_bannermen_recipient_indisposed_text
 					interactive_bannermen_fit_trigger = yes
 				}
 			}
 		}
 	}
 	can_be_picked = {
+		trigger_if = {
+			limit = {
+				has_game_rule = bannermen_mode_enabled
+			}
+			scope:target = {
+				custom_description = {
+					text = ASK_VASSAL_MILITARY_SUPPORT_CIVIL_WAR_BLOCKED_TEXT
+					interactive_bannermen_foreign_war_trigger = yes
+				}
+			}
+		}
 		scope:target = {
 			custom_description = {
-				text = interactive_bannermen_already_called
+				text = interactive_bannermen_already_called_text
 				subject = scope:recipient
 				NOT = {
 					was_called = scope:recipient
@@ -148,19 +182,47 @@
 		trigger_if = {
 			limit = {
 				has_game_rule = bannermen_mode_enabled
+				OR = {
+					has_game_rule = vassal_distance_land
+					has_game_rule = vassal_distance_land_or_sea
+				}
+				NOT = {
+					scope:recipient = {
+						interactive_governor_support_trigger = {
+							LIEGE = scope:actor
+						}
+					}
+				}
 			}
 			scope:target = {
 				custom_description = {
-					text = ASK_VASSAL_MILITARY_SUPPORT_IS_CIVIL_WAR_TEXT
-					interactive_bannermen_callable_war_trigger = {
-						LIEGE = scope:actor
+					text = interactive_bannermen_distance_target_text
+					subject = scope:recipient
+					OR = {
+						interactive_agot_megawar_trigger = yes
+						AND = {
+							is_attacker = scope:actor
+							miv_bannermen_distance_war_trigger = {
+								VASSAL = scope:recipient
+								ENEMY = scope:target.primary_defender
+							}
+						}
+						AND = {
+							NOT = {
+								is_attacker = scope:actor
+							}
+							miv_bannermen_distance_war_trigger = {
+								VASSAL = scope:recipient
+								ENEMY = scope:target.primary_attacker
+							}
+						}
 					}
 				}
 			}
 		}
 		OR ={
 			has_game_rule = bannermen_mode_enabled
-
+			
 			scope:target = {
 				custom_description = {
 					text = ASK_VASSAL_MILITARY_SUPPORT_IS_CIVIL_WAR_TEXT
@@ -201,11 +263,46 @@
 					}
 				}
 			}
-			interactive_bannermen_support_exhaustion_effect = yes
 			if = {
+				limit = {
+					scope:recipient = {
+						interactive_governor_support_trigger = {
+							LIEGE = scope:actor
+						}
+					}
+				}
+				save_scope_as = miv_support_war
+				scope:actor = {
+					save_scope_as = miv_support_liege
+				}
+				scope:recipient = {
+					save_scope_as = miv_support_vassal
+				}
+				scope:actor = {
+					custom_description = {
+						text = interactive_governor_support_mobilization
+						value = interactive_admin_governor_support_cost
+						change_influence = interactive_admin_governor_military_strength_negative
+					}
+				}
+				scope:recipient = {
+					change_influence = interactive_admin_governor_military_strength
+					hidden_effect = {
+						trigger_event = {
+							id = interactive.0009
+							days = {
+								10
+								30
+							}
+						}
+					}
+				}
+			}
+			else_if = {
 				limit = {
 					has_game_rule = bannermen_mode_enabled
 				}
+				interactive_bannermen_support_exhaustion_effect = yes
 				interactive_bannermen_support_delay_effect = yes
 			}
 			else_if = {
@@ -237,26 +334,25 @@
 	ai_accept = {
 		base = -20
 		modifier = {
-			add = 100
 			has_game_rule = bannermen_mode_enabled
-			scope:recipient = {
-				interactive_bannermen_serving_trigger = {
-					LIEGE = scope:actor
-				}
-			}
-			desc = interactive_bannermen_accept_serving
-		}
-		modifier = {
-			has_game_rule = bannermen_mode_enabled
-			scope:recipient = {
-				NOT = {
-					interactive_bannermen_serving_trigger = {
+			NOT = {
+				scope:recipient = {
+					interactive_governor_support_trigger = {
 						LIEGE = scope:actor
 					}
 				}
 			}
 			add = miv_bannermen_accept_value
 			desc = interactive_bannermen_accept_ladder
+		}
+		modifier = {
+			scope:recipient = {
+				interactive_governor_support_trigger = {
+					LIEGE = scope:actor
+				}
+			}
+			add = 120
+			desc = interactive_governor_support_accept
 		}
 		modifier = {
 			NOT = {

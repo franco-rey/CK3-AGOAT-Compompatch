@@ -124,6 +124,10 @@
 				}
 			}
 		}
+		joiner_not_already_in_another_war_with_any_target_war_participants_trigger = {
+			WARRIOR = scope:actor
+			JOINER = scope:recipient
+		}
 	}
 	is_valid_showing_failures_only = {
 		scope:recipient = {
@@ -390,11 +394,9 @@
 							}
 						}
 					}
-					scope:target.casus_belli.primary_attacker = {
-						add_opinion = {
-							target = scope:recipient
-							modifier = miv_oathbreaker
-						}
+					interactive_bannermen_brand_oathbreaker_effect = {
+						LIEGE = scope:recipient.liege
+						VASSAL = scope:recipient
 					}
 					interactive_bannermen_batch_toast_effect = {
 						KEY = defect_enemy
@@ -422,11 +424,9 @@
 							}
 						}
 					}
-					scope:target.casus_belli.primary_defender = {
-						add_opinion = {
-							target = scope:recipient
-							modifier = miv_oathbreaker
-						}
+					interactive_bannermen_brand_oathbreaker_effect = {
+						LIEGE = scope:recipient.liege
+						VASSAL = scope:recipient
 					}
 					interactive_bannermen_batch_toast_effect = {
 						KEY = defect_enemy
@@ -539,11 +539,9 @@
 							}
 						}
 					}
-					scope:target.casus_belli.primary_attacker = {
-						add_opinion = {
-							target = scope:recipient
-							modifier = miv_oathbreaker
-						}
+					interactive_bannermen_brand_oathbreaker_effect = {
+						LIEGE = scope:recipient.liege
+						VASSAL = scope:recipient
 					}
 					interactive_bannermen_batch_toast_effect = {
 						KEY = defect_enemy
@@ -571,11 +569,9 @@
 							}
 						}
 					}
-					scope:target.casus_belli.primary_defender = {
-						add_opinion = {
-							target = scope:recipient
-							modifier = miv_oathbreaker
-						}
+					interactive_bannermen_brand_oathbreaker_effect = {
+						LIEGE = scope:recipient.liege
+						VASSAL = scope:recipient
 					}
 					interactive_bannermen_batch_toast_effect = {
 						KEY = defect_enemy
