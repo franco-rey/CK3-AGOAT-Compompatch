@@ -1,0 +1,180 @@
+﻿ask_bearded_priests_for_boost_efficiency_interaction = {
+	category = interaction_category_succession
+	desc = ask_bearded_priests_for_boost_efficiency_interaction_desc
+	filter_tags = { ceremonial_liege }
+	icon = icon_boost_efficiency
+	interface_priority = 19
+	common_interaction = no
+
+	ai_targets = {
+		ai_recipients = head_of_faith
+		max = 1
+	}
+
+	ai_frequency_by_tier = {
+		barony = 0
+		county = 72
+		duchy = 36
+		kingdom = 36
+		empire = 36
+		hegemony = 36
+	}
+	is_shown = {
+		norvos_ceremonial_monarch_trigger_check = yes
+		scope:actor = {
+			is_human = yes
+		}
+		scope:recipient = {
+			is_human = yes
+		}
+	}
+
+	is_valid_showing_failures_only = {
+		scope:actor = {
+			is_adult = yes
+			NOT = { is_at_war_with = scope:recipient }
+			NOT = {
+				has_character_modifier = disfavored_by_bearded_priests_modifier
+			}
+		}
+		custom_tooltip = {
+			text = boost_efficiency_interaction_too_high_tt
+			scope:actor.governor_efficiency_presented <= boost_efficiency_maximum_value
+		}
+		custom_tooltip = {
+			text = ask_bearded_priests_efficiency_interaction_cooldown_tt
+			scope:actor = {
+				NOT = {
+					is_target_in_variable_list = {
+						name = efficiency_boosters
+						target = scope:recipient
+					}
+				}
+			}
+		}
+	}
+
+	can_send = {
+		custom_tooltip = {
+			text = boost_efficiency_interaction_too_high_tt
+			scope:actor.governor_efficiency_presented <= boost_efficiency_maximum_value
+		}
+		custom_tooltip = {
+			text = efficiency_interaction_cooldown_tt
+			scope:actor = {
+				NOT = {
+					is_target_in_variable_list = {
+						name = efficiency_boosters
+						target = scope:recipient
+					}
+				}
+			}
+		}
+	}
+
+	cost = {
+		influence = {
+			value = {
+				value = medium_influence_value
+				add = 25
+				desc = BASE
+			}
+		}
+		piety = {
+			value = medium_piety_value
+			add = 25
+			desc = BASE
+		}
+	}
+
+	on_accept = {
+		scope:actor = {
+			send_interface_toast = {
+				type = event_toast_effect_good
+				title = boost_efficiency_success_desc
+				left_icon = scope:recipient
+				if = {
+					limit = { has_character_modifier = ep3_damage_efficiency_modifier }
+					remove_character_modifier = ep3_damage_efficiency_modifier
+					if = {
+						limit = { var:ep3_governor_efficiency_stack = 1 }
+						remove_variable = ep3_governor_efficiency_stack
+					}
+					else = {
+						change_variable = {
+							name = ep3_governor_efficiency_stack
+							add = -1
+						}
+					}
+				}
+				else = {
+					add_character_modifier = {
+						modifier = ep3_boost_efficiency_modifier
+						years = 10
+					}
+					if = {
+						limit = { has_variable = ep3_governor_efficiency_stack }
+						set_variable = {
+							name = ep3_governor_efficiency_stack
+							value = {
+								value = var:ep3_governor_efficiency_stack
+								add = 1
+								max = 5
+							}
+							years = 10
+						}
+					}
+					else = {
+						set_variable = {
+							name = ep3_governor_efficiency_stack
+							value = 1
+							years = 10
+						}
+					}
+				}
+			}
+			add_to_variable_list = {
+				name = efficiency_boosters
+				target = scope:recipient
+				years = 5
+			}
+		}
+	}
+
+	ai_potential = {
+		government_has_flag = government_is_norvos
+	}
+
+	ai_will_do = {
+		base = 10
+		ai_value_modifier = {
+			ai_boldness = 0.75
+			ai_zeal = 0.75
+		}
+	}
+
+	ai_accept = {
+		base = -10
+		modifier = { # Boost house members
+			scope:recipient.house ?= scope:actor.house
+			add = 10
+		}
+		modifier = { # Boost family
+			scope:recipient = { is_close_family_of = scope:actor }
+			add = 10
+		}
+		modifier = { # Boost friends
+			scope:actor = { has_relation_friend = scope:recipient }
+			add = 10
+		}
+		opinion_modifier = {
+			who = scope:recipient
+			opinion_target = scope:actor
+			multiplier = 0.25
+		}
+		ai_value_modifier = {
+			who = scope:actor
+			ai_zeal = 0.75
+		}
+	}
+}

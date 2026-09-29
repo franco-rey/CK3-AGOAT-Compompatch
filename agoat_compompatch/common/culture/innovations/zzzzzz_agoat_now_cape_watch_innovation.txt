@@ -1,0 +1,14 @@
+﻿innovation_agot_cape_watch = {
+	group = culture_group_regional
+	culture_era = culture_era_early_medieval
+	icon = "gfx/interface/icons/culture_innovations/innovation_caballeros.dds"
+
+	region = world_westeros_flints_finger
+
+	parameters = {
+		unlock_maa_cape_watch = yes
+	}
+
+	flag = global_regional
+	flag = early_medieval_era_regular
+}

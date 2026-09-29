@@ -1098,7 +1098,6 @@ agot_stokeworth_provisioner_of_the_crown_bla = {
 agot_stokeworth_ambitious_matches_bla = {
 	icon = prestige_positive
 	monthly_prestige = 0.20
-	marriage_acceptance = 5
 }
 
 agot_stokeworth_ties_to_court_bla = {

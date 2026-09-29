@@ -9890,9 +9890,9 @@ ep3_laamp_decision_event.1033 = {
 
 								    	create_character = {
 											template = generic_peasant_character
-											culture = scope:visiting_location.location.county.culture
-											faith = scope:visiting_location.location.county.faith
-											location = scope:visiting_location.location
+											culture = scope:visiting_location.county.culture
+											faith = scope:visiting_location.county.faith
+											location = scope:visiting_location
 											after_creation = { set_to_lowborn = yes }
 											save_scope_as = 1030_previous_victim
 										}

@@ -1,0 +1,164 @@
+﻿create_artifact_scales_effect = {
+	# Get the character the artifact is being made for.
+	$OWNER$ = {	save_scope_as = owner }
+
+	set_artifact_rarity_illustrious = yes
+
+	create_artifact = {
+		name = scales_name
+		description = scales_description
+		type = sword
+		visuals = scales_visuals
+		wealth = scope:wealth
+		quality = scope:quality
+		template = scales_sword_template
+		history = {
+			type = created_before_history
+			date = 7700.1.1
+		}
+		modifier = scales_modifier
+		save_scope_as = newly_created_artifact
+		decaying = no
+	}
+	scope:newly_created_artifact ?= {
+		equip_artifact_to_owner_replace = yes
+		set_variable = {
+			name = valyrian_steel
+			value = yes
+		}
+		set_variable = {
+			name = historical_unique_artifact
+			value = yes
+		}
+		set_variable = {
+			name = traditional_house_owner
+			value = dynasty:dynn_Saerygan.dynasty_founder.house
+		}
+		agot_add_artifact_history = {
+			ARTIFACT = this
+			TYPE = inherited
+			DATE = 7762.1.1
+			RECIPIENT = character:Saerygan_1
+		}
+		agot_add_artifact_history = {
+			ARTIFACT = this
+			TYPE = inherited
+			DATE = 7779.1.1
+			RECIPIENT = character:Saerygan_2
+		}
+		agot_add_artifact_history = {
+			ARTIFACT = this
+			TYPE = inherited
+			DATE = 7799.1.1
+			RECIPIENT = character:Saerygan_7
+		}
+		agot_add_artifact_history = {
+			ARTIFACT = this
+			TYPE = inherited
+			DATE = 7820.1.1
+			RECIPIENT = character:Scales_23
+		}
+		agot_add_artifact_history = {
+			ARTIFACT = this
+			TYPE = inherited
+			DATE = 7888.1.1
+			RECIPIENT = character:Scales_6
+		}
+		agot_add_artifact_history = {
+			ARTIFACT = this
+			TYPE = inherited
+			DATE = 7900.1.1
+			RECIPIENT = character:Scales_12
+		}
+		agot_add_artifact_history = {
+			ARTIFACT = this
+			TYPE = inherited
+			DATE = 7933.1.1
+			RECIPIENT = character:Scales_17
+		}
+		agot_add_artifact_history = {
+			ARTIFACT = this
+			TYPE = inherited
+			DATE = 7965.1.1
+			RECIPIENT = character:Scales_25
+		}
+		agot_add_artifact_history = {
+			ARTIFACT = this
+			TYPE = inherited
+			DATE = 7988.1.1
+			RECIPIENT = character:Scales_27
+		}
+		agot_add_artifact_history = {
+			ARTIFACT = this
+			TYPE = inherited
+			DATE = 8025.1.1
+			RECIPIENT = character:Scales_30
+		}
+		agot_add_artifact_history = {
+			ARTIFACT = this
+			TYPE = inherited
+			DATE = 8044.1.1
+			RECIPIENT = character:Scales_39
+		}
+		agot_add_artifact_history = {
+			ARTIFACT = this
+			TYPE = inherited
+			DATE = 8082.1.1
+			RECIPIENT = character:Scales_41
+		}
+		agot_add_artifact_history = {
+			ARTIFACT = this
+			TYPE = inherited
+			DATE = 8105.1.1
+			RECIPIENT = character:Scales_48
+		}
+		agot_add_artifact_history = {
+			ARTIFACT = this
+			TYPE = inherited
+			DATE = 8122.1.1
+			RECIPIENT = character:Scales_49
+		}
+		agot_add_artifact_history = {
+			ARTIFACT = this
+			TYPE = inherited
+			DATE = 8133.1.1
+			RECIPIENT = character:Scales_51
+		}
+		agot_add_artifact_history = {
+			ARTIFACT = this
+			TYPE = inherited
+			DATE = 8134.1.1
+			RECIPIENT = character:Scales_50
+		}
+		agot_add_artifact_history = {
+			ARTIFACT = this
+			TYPE = inherited
+			DATE = 8142.1.1
+			RECIPIENT = character:Scales_55
+		}
+		agot_add_artifact_history = {
+			ARTIFACT = this
+			TYPE = inherited
+			DATE = 8173.1.1
+			RECIPIENT = character:Scales_56
+		}
+		agot_add_artifact_history = {
+			ARTIFACT = this
+			TYPE = inherited
+			DATE = 8214.1.1
+			RECIPIENT = character:Scales_62
+		}
+		agot_add_artifact_history = {
+			ARTIFACT = this
+			TYPE = inherited
+			DATE = 8243.1.1
+			RECIPIENT = character:Scales_3
+		}
+		agot_add_artifact_history = {
+			ARTIFACT = this
+			TYPE = inherited
+			DATE = 8283.1.1
+			RECIPIENT = character:Scales_1
+		}
+	}
+}

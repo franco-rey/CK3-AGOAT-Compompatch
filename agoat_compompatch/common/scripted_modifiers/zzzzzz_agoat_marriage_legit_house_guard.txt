@@ -5446,4 +5446,9 @@
 		add = 20
 		desc = WILDLING_MARRIAGE_STRONG_OWN
 	}
+	modifier = {
+		scope:actor = { has_character_modifier = agot_stokeworth_ambitious_matches_bla }
+		add = 5
+		desc = agot_stokeworth_ambitious_matches_bla
+	}
 }

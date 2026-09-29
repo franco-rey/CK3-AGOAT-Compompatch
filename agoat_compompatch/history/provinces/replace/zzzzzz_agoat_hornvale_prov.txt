@@ -1,0 +1,4 @@
+﻿3043 = {
+	special_building = agot_hornvale_02
+	duchy_capital_building = agot_hornvale_01
+}

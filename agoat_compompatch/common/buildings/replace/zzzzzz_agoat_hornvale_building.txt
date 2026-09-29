@@ -1,0 +1,28 @@
+﻿agot_hornvale_01 = {
+	construction_time = very_slow_construction_time
+
+	type_icon = "ep3_cilician gates.dds"
+
+	can_construct_potential = {
+		barony = title:b_hornvale
+	}
+
+	is_enabled = {
+		agot_generic_is_special_building_enabled = yes
+	}
+
+	cost_gold = expensive_building_tier_5_cost
+
+	duchy_capital_county_modifier = {
+		development_growth_factor = 0.2
+		supply_limit = 10000
+	}
+
+	character_modifier = {
+		monthly_income_mult = 0.15
+	}
+
+	type = duchy_capital
+
+	flag = travel_point_of_interest_economic
+}

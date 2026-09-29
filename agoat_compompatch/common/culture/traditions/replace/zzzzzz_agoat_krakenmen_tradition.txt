@@ -1,0 +1,40 @@
+﻿tradition_agot_krakenmen = {
+	category = regional
+
+	layers = {
+		0 = steward
+		1 = western
+		4 = battle.dds
+	}
+
+	is_shown = {
+		always = no
+	}
+
+	parameters = {
+		unlock_maa_cape_watch = yes
+		unlock_maa_finger_huscarls = yes
+		harder_to_convert_county_faith = yes
+		gain_gold_from_battles = yes
+	}
+
+	character_modifier = {
+		controlled_province_advantage = 5
+		light_cavalry_screen_mult = 0.1
+		hostile_raid_time = -0.1
+	}
+
+	cost = {
+		prestige = {
+			add = {
+				value = tradition_base_cost
+				desc = BASE
+				format = "BASE_VALUE_FORMAT"
+			}
+		}
+	}
+
+	ai_will_do = {
+		value = 100
+	}
+}

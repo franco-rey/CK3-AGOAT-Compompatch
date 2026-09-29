@@ -414,6 +414,10 @@ can_be_activity_guest = {
 			OR = {
 				this = scope:host
 				court_owner ?= scope:host
+				AND = {
+					is_lowborn = yes
+					NOT = { exists = court_owner }
+				}
 			}
 		}
 	}
