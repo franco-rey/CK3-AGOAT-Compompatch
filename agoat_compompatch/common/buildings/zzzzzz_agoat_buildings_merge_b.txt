@@ -1,0 +1,1944 @@
+﻿medium_ruin_04 = {
+	construction_time = 2920
+
+	can_construct_potential = {
+		has_building = medium_ruin_03
+		custom_tooltip = {
+			text = "RUIN_MUST_CLEAR_BLOCKERS"
+			NOT = { has_building_with_flag = obstacle }
+		}
+		custom_tooltip = {
+			text = "RUIN_MUST_BEGIN_CONSTRUCTION"
+			NOT = {
+				scope:holder = {
+					has_trait = ruin
+				}
+			}
+		}
+	}
+
+	on_complete = {
+		if = {
+			limit = {
+				county.holder = { is_human = yes }
+			}
+			save_scope_as = completed_ruin
+			county.holder = { trigger_event = agot_ruins.1000 }
+		}
+		else = {
+			set_variable = medium_ruin
+			trigger_event = agot_colonization_events.9001
+		}
+	}
+
+	can_construct_showing_failures_only = {
+		custom_tooltip = {
+			text = "REBUILD_CASTAMERE_FIRST"
+			NOT = { has_building = agot_castamere_ruins_01 }
+		}
+	}
+	cost_gold = 800
+
+	character_modifier = {
+		monthly_income = -4
+	}
+
+	province_modifier = {
+		fort_level = 3
+	}
+
+	levy = 400
+	max_garrison = 400
+	garrison_reinforcement_factor = 0.09
+
+	type_icon = "icon_building_ruin.dds"
+}
+
+large_ruin_04 = {
+	construction_time = 5475
+
+	can_construct_potential = {
+		has_building = large_ruin_03
+		custom_tooltip = {
+			text = "RUIN_MUST_CLEAR_BLOCKERS"
+			NOT = { has_building_with_flag = obstacle }
+		}
+		custom_tooltip = {
+			text = "RUIN_MUST_BEGIN_CONSTRUCTION"
+			NOT = {
+				scope:holder = {
+					has_trait = ruin
+				}
+			}
+		}
+	}
+
+	on_complete = {
+		if = {
+			limit = {
+				county.holder = { is_human = yes }
+			}
+			save_scope_as = completed_ruin
+			county.holder = { trigger_event = agot_ruins.1000 }
+		}
+		else = {
+			set_variable = large_ruin
+			trigger_event = agot_colonization_events.9001
+		}
+	}
+
+	can_construct_showing_failures_only = {			
+		custom_tooltip = {
+			text = "REBUILD_OLDSTONES_FIRST"
+			NOT = { has_building = agot_oldstones_01 }
+		}				
+	}
+	cost_gold = 800
+
+	character_modifier = {
+		monthly_income = -6
+	}
+
+	province_modifier = {
+		fort_level = 4
+	}
+
+	levy = 500
+	max_garrison = 500
+	garrison_reinforcement_factor = 0.09
+
+	type_icon = "icon_building_ruin.dds"
+}
+
+the_red_keep_01 = {
+    construction_time = very_quick_construction_time
+
+    type_icon = "icon_structure_red_keep.dds"
+
+    can_construct_potential = {
+        building_requirement_tribal = no
+    }
+
+    is_enabled = {
+        agot_generic_is_special_building_enabled = yes
+    }
+
+    asset = {
+        type = pdxmesh
+        name = "building_special_KL_aegonfort_new_mesh"
+    }
+
+    can_construct = {
+        amsb_can_build_red_keep = yes
+    }
+
+    cost_gold = expensive_building_tier_1_cost
+
+    next_building = the_red_keep_02
+
+    effect_desc = feast_cost_discount_max_desc
+
+    character_modifier = {
+        legitimacy_gain_mult = 0.01
+        court_grandeur_baseline_add = -5
+        monthly_prestige_gain_mult = 0.1
+    }
+
+    max_garrison = normal_building_max_garrison_tier_2
+
+    province_modifier = {
+        fort_level = 1
+        defender_holding_advantage = 2
+    }
+
+    county_modifier = {
+        county_opinion_add = 5
+    }
+
+    ai_value = {
+        base = 100
+        culture_likely_to_fortify_modifier = yes
+    }
+
+    type = special
+
+    flag = travel_point_of_interest_martial
+}
+
+the_red_keep_02 = {
+    construction_time = very_slow_construction_time
+
+    type_icon = "icon_structure_red_keep.dds"
+
+    can_construct_potential = {
+        building_requirement_tribal = no
+    }
+
+
+    can_construct = {
+        title:b_the_red_keep.title_province = { has_building_or_higher = seven_gates_01 }
+        title:b_goldguard_heights.title_province = { has_building_or_higher = cobblers_square_01 }
+        title:b_hookmarket.title_province = { has_building_or_higher = river_gate_01 }
+    }
+
+    can_construct_showing_failures_only = {
+        has_building_or_higher = castle_03
+    }
+
+    is_enabled = {
+        agot_generic_is_special_building_enabled = yes
+    }
+
+    asset = {
+        type = pdxmesh
+        name = "building_special_KL_maegorsholdfast_new_mesh"
+    }
+
+    cost_gold = expensive_building_tier_4_cost
+
+    next_building = the_red_keep_03
+
+    effect_desc = feast_cost_discount_max_desc
+
+    character_modifier = {
+        legitimacy_gain_mult = 0.05
+        dread_gain_mult = 0.1
+        personal_scheme_phase_duration_add = minor_scheme_phase_duration_bonus_value
+        monthly_prestige_gain_mult = 0.1
+    }
+
+    max_garrison = good_building_max_garrison_tier_2
+
+    province_modifier = {
+        fort_level = 2
+        defender_holding_advantage = 3
+    }
+
+    county_modifier = {
+        county_opinion_add = 8
+    }
+
+    ai_value = {
+        base = 100
+        culture_likely_to_fortify_modifier = yes
+    }
+
+    type = special
+
+    flag = travel_point_of_interest_intrigue
+}
+
+the_red_keep_03 = {
+	construction_time = very_slow_construction_time
+
+	type_icon = "icon_structure_red_keep.dds"
+
+	can_construct_potential = {
+		building_requirement_tribal = no
+	}
+
+    can_construct = {
+        title:b_the_red_keep.title_province = { has_building_or_higher = seven_gates_01 }
+        title:b_goldguard_heights.title_province = { has_building_or_higher = cobblers_square_01 }
+        title:b_hookmarket.title_province = { has_building_or_higher = river_gate_01 }
+        title:b_the_red_keep.title_province = { has_building_or_higher = the_red_keep_02 }
+    }
+
+    can_construct_showing_failures_only = {
+        has_building_or_higher = castle_03
+    }
+
+	is_enabled = {
+		agot_generic_is_special_building_enabled = yes
+	}
+
+	asset = {
+		type = pdxmesh
+        name = "building_special_KL_red_keep_new_mesh"
+	}
+
+	cost_gold = expensive_building_tier_8_cost
+
+	effect_desc = feast_cost_discount_max_desc
+
+	character_modifier = {
+		legitimacy_gain_mult = 0.15
+		court_grandeur_baseline_add = 8
+		enemy_hostile_scheme_phase_duration_add = minor_scheme_phase_duration_bonus_value
+		personal_scheme_phase_duration_add = minor_scheme_phase_duration_bonus_value
+		prestige_level_impact_mult = 0.1
+		monthly_prestige_gain_mult = 0.1
+		monthly_dynasty_prestige = 2
+		monthly_lifestyle_xp_gain_mult = 0.15
+	}
+
+	max_garrison = good_building_max_garrison_tier_10
+
+	province_modifier = {
+		fort_level = 5
+		defender_holding_advantage = 4
+	}
+
+	county_modifier = {
+		county_opinion_add = 10
+	}
+
+	ai_value = {
+		base = 100
+		culture_likely_to_fortify_modifier = yes
+	}
+
+	type = special
+
+	flag = travel_point_of_interest_diplomatic
+}
+
+seven_gates_01 = {
+    construction_time = very_slow_construction_time
+
+    type_icon = "icon_structure_walls_of_kings_landing.dds"
+
+    can_construct_potential = {
+        barony = title:b_the_red_keep
+        building_requirement_tribal = no
+    }
+
+    is_enabled = {
+        agot_generic_is_special_building_enabled = yes
+    }
+
+    can_construct = {
+        title:b_the_red_keep.title_province = { has_building_or_higher = the_red_keep_01 }
+        title:b_goldguard_heights.title_province = { has_building_or_higher = cobblers_square_01 }
+        title:b_hookmarket.title_province = { has_building_or_higher = river_gate_01 }
+    }
+
+    can_construct_showing_failures_only = {
+        has_building_or_higher = castle_02
+    }
+
+    cost_gold = expensive_building_tier_6_cost
+
+    max_garrison = normal_building_max_garrison_tier_6
+
+    duchy_capital_county_modifier = {
+        levy_size = 0.15
+        tax_mult = normal_building_tax_mult_tier_2
+    }
+
+    county_modifier = {
+        development_growth_factor = 0.1
+        hostile_raid_time = 0.5
+        fort_level = 3
+        garrison_size = 0.5
+    }
+
+    ai_value = {
+        base = 100
+        culture_likely_to_fortify_modifier = yes
+        modifier = { # Fill all building slots before going for special buildings
+            factor = 0
+            free_building_slots > 0
+        }
+    }
+
+    type = duchy_capital
+}
+
+cobblers_square_01 = {
+    construction_time = very_slow_construction_time
+
+    type_icon = "icon_building_market_villages.dds"
+
+    can_construct_potential = {
+        building_requirement_tribal = no
+    }
+
+    can_construct = {
+        title:b_the_red_keep.title_province = { has_building_or_higher = the_red_keep_01 }
+    }
+
+    is_enabled = {
+        agot_generic_is_special_building_enabled = yes
+    }
+
+    asset = {
+        type = pdxmesh
+        name = "building_special_KL_city_new_mesh"
+    }
+
+    cost_gold = normal_building_tier_8_cost
+
+    province_modifier = {
+        monthly_income = good_building_tax_tier_4
+    }
+
+    county_modifier = {
+        monthly_county_control_decline_factor = 2.50
+    }
+
+    county_holder_character_modifier = {
+        zealot_levy_contribution_mult = -0.05
+    }
+
+    ai_value = {
+        base = 100
+        culture_likely_to_fortify_modifier = yes
+        modifier = { # Fill all building slots before going for special buildings
+            factor = 0
+            free_building_slots > 0
+        }
+    }
+
+    type = special
+
+    flag = travel_point_of_interest_economic
+}
+
+dragonpit_01 = {
+    construction_time = very_slow_construction_time
+
+    type_icon = "icon_structure_lanns_sept.dds"
+
+    is_enabled = {
+        agot_generic_is_special_building_enabled = yes
+    }
+
+    asset = {
+        type = pdxmesh
+        name = "building_special_hotd_sept_of_remembrance_mesh"
+    }
+
+    cost_gold = expensive_building_tier_1_cost
+
+    next_building = dragonpit_02
+
+    county_holder_character_modifier = {
+        the_seven_religion_opinion = 10
+    }
+
+    character_modifier = {
+        the_seven_religion_opinion = 10
+    }
+
+    character_modifier = {
+        prowess_per_piety_level = 1
+        martial_per_piety_level = 1
+    }
+
+    max_garrison = normal_building_max_garrison_tier_2
+
+    province_modifier = {
+        fort_level = 2
+    }
+
+    ai_value = {
+        base = 100
+        modifier = { # Fill all building slots before going for special buildings
+            factor = 0
+            free_building_slots > 0
+        }
+    }
+
+    type = special
+
+    flag = travel_point_of_interest_religious
+    flag = holy_building
+}
+
+dragonpit_02 = {
+    construction_time = very_slow_construction_time
+
+    type_icon = "icon_structure_hadrians_wall.dds"
+
+    is_enabled = {
+        agot_generic_is_special_building_enabled = yes
+    }
+
+    asset = { # switch to ruined sept model when done
+        type = pdxmesh
+        name = "building_special_hotd_dragonpit_ruin_mesh"
+    }
+
+    cost_gold = expensive_building_tier_1_cost
+
+    next_building = dragonpit_03
+
+    county_holder_character_modifier = {
+        the_seven_religion_opinion = -10
+    }
+
+    county_modifier = {
+        county_opinion_add = -10
+    }
+
+    ai_value = {
+        base = 100
+        modifier = { # Fill all building slots before going for special buildings
+            factor = 0
+            free_building_slots > 0
+        }
+    }
+
+    type = special
+
+    flag = travel_point_of_interest_martial
+    flag = special_building_enabled_in_ruin_county
+}
+
+generic_harrenhal_01 = {
+    construction_time = very_slow_construction_time
+    effect_desc = {
+        triggered_desc = {
+            trigger = { has_dlc_feature = tours_and_tournaments }
+            desc = tournament_activity_cost_max_discount_effect_desc
+        }
+    }
+
+    asset = {
+        type = pdxmesh
+        name = "building_special_harrenhal_restored_mesh"
+    }
+
+    type_icon = "icon_structure_harrenhal.dds"
+
+    can_construct = {
+        scope:holder = {
+            has_title = title:e_the_riverlands
+            OR = {
+                has_trait = sadistic
+                has_trait = ambitious
+                has_trait = authoritative
+                culture = culture:ironborn
+                dynasty = dynasty:dynn_Hoare
+            }
+        }
+    }
+
+    can_construct_potential = {
+        building_requirement_tribal = no
+    }
+
+    is_enabled = {
+        agot_generic_is_special_building_enabled = yes
+    }
+
+    can_construct_showing_failures_only = {
+        has_building_or_higher = castle_05
+    }
+
+    on_complete = {
+    }
+
+    cost_gold = expensive_building_tier_8_cost
+
+    character_modifier = {
+        monthly_prestige = 0.30
+        monthly_dynasty_prestige_mult = 0.15
+        dread_gain_mult = 0.30
+        owned_legend_spread_mult = 0.1
+    }
+
+    county_modifier = {
+        tax_mult = 0.15
+        levy_size = 0.10
+        development_growth_factor = 0.10
+        monthly_county_control_growth_factor = 0.1
+    }
+
+    max_garrison = 4000
+
+    province_modifier = {
+        monthly_income = -7
+        defender_holding_advantage = 20
+        fort_level = 20
+    }
+
+    ai_value = {
+        base = 100
+        culture_likely_to_fortify_modifier = yes
+    }
+
+    type = special
+
+    flag = travel_point_of_interest_martial
+}
+
+harrenhal_01 = {
+    construction_time = very_slow_construction_time
+    effect_desc = {
+        triggered_desc = {
+            trigger = { has_dlc_feature = tours_and_tournaments }
+            desc = tournament_activity_cost_max_discount_effect_desc
+        }
+    }
+
+    asset = {
+        type = pdxmesh
+        name = "building_special_harrenhal_restored_mesh"
+    }
+
+    type_icon = "icon_structure_harrenhal.dds"
+
+    can_construct_potential = {
+        building_requirement_tribal = no
+        scope:holder = {
+            has_title = title:e_the_riverlands
+            OR = {
+                has_trait = sadistic
+                has_trait = ambitious
+                has_trait = authoritative
+                culture = culture:ironborn
+                holder.dynasty = dynasty:dynn_Hoare
+            }
+        }
+    }
+
+    is_enabled = {
+        agot_generic_is_special_building_enabled = yes
+    }
+
+    cost_gold = expensive_building_tier_8_cost
+
+    can_construct_showing_failures_only = {
+        has_building_or_higher = castle_05
+    }
+
+    on_complete = {
+        title:d_harrenhal = {
+            reset_title_name = yes
+        }
+        title:c_harrenhal = {
+            reset_title_name = yes
+        }
+        title:b_harrenhal = {
+            reset_title_name = yes
+        }
+        title:b_harrentown = {
+            reset_title_name = yes
+        }
+        title:b_hoarespring = {
+            reset_title_name = yes
+        }
+        title:c_harrenhal.holder = {
+            if = {
+                limit = {
+                    NOT = { culture = culture:riverman_main }
+                }
+                add_character_modifier = {
+                    modifier = harrenhal_constructed
+                }
+            }
+        }
+    }
+
+    cost_gold = 5000
+
+    character_modifier = {
+        monthly_prestige = 0.30
+        monthly_dynasty_prestige_mult = 0.15
+        dread_gain_mult = 0.30
+        owned_legend_spread_mult = 0.1
+    }
+
+    county_modifier = {
+        tax_mult = 0.15
+        levy_size = 0.10
+        development_growth_factor = 0.10
+        monthly_county_control_growth_factor = 0.1
+    }
+
+    max_garrison = 4000
+
+    province_modifier = {
+        monthly_income = -7
+        defender_holding_advantage = 20
+        fort_level = 20
+    }
+
+    ai_value = {
+        base = 100
+        culture_likely_to_fortify_modifier = yes
+    }
+
+    type = special
+
+    flag = travel_point_of_interest_martial
+}
+
+ruins_harrenhal_02 = {
+    construction_time = very_slow_construction_time
+    effect_desc = {
+        triggered_desc = {
+            trigger = { has_dlc_feature = tours_and_tournaments }
+            desc = tournament_activity_cost_max_discount_effect_desc
+        }
+    }
+
+    asset = {
+        type = pdxmesh
+        name = "building_special_harrenhal_ruined_1_mesh"
+    }
+
+    type_icon = "icon_structure_harrenhal.dds"
+
+    can_construct_potential = {
+        building_requirement_tribal = no
+    }
+
+    is_enabled = {
+        agot_generic_is_special_building_enabled = yes
+    }
+
+    cost_gold = expensive_building_tier_3_cost
+
+    character_modifier = {
+        monthly_prestige = 0.15
+        dread_gain_mult = 0.25
+        stress_gain_mult = 0.2
+    }
+
+    county_modifier = {
+        levy_size = -0.08
+        development_growth_factor = -0.08
+    }
+
+    max_garrison = 1500
+
+    province_modifier = {
+        defender_holding_advantage = 7
+        fort_level = 7
+        monthly_income = -2.1
+    }
+
+    next_building = ruins_harrenhal_03
+
+    on_start = {
+        county.holder = {
+            add_character_flag = started_rebuilding_harrenhal
+            add_character_flag = rebuilding_harrenhal
+        }
+        county.holder = {
+            trigger_event = agot_ruins.4000 # Reconstructing event
+        }
+
+        title:c_ruins.holder = {
+            trigger_event = {
+                id = agot_rebuilding_ruins.9999
+                years = 1
+            }
+        }
+
+        set_variable = {
+            name = constructor
+            value = scope:character
+        }
+    }
+
+    on_cancelled = {
+        root = { save_scope_as = province }
+        county.holder = {
+            add_character_flag = cancelled_harrenhal
+            trigger_event = agot_ruins.9998
+        }
+        remove_variable = constructor
+    }
+
+    on_complete = {
+        county.holder = {
+            trigger_event = agot_ruins.4001
+        }
+        remove_variable = constructor
+        title:c_harrenhal.holder = {
+            if = {
+                limit = {
+                    NOT = { culture = culture:riverman_main }
+                }
+                add_character_modifier = {
+                    modifier = harrenhal_restoration_1
+                    years = 5
+                }
+            }
+        }
+    }
+
+    ai_value = {
+        base = 100
+        culture_likely_to_fortify_modifier = yes
+    }
+
+    type = special
+
+    flag = travel_point_of_interest_martial
+}
+
+ruins_harrenhal_03 = {
+    construction_time = very_slow_construction_time
+    effect_desc = {
+        triggered_desc = {
+            trigger = { has_dlc_feature = tours_and_tournaments }
+            desc = tournament_activity_cost_max_discount_effect_desc
+        }
+    }
+
+    asset = {
+        type = pdxmesh
+        name = "building_special_harrenhal_ruined_2_mesh"
+    }
+
+    type_icon = "icon_structure_harrenhal.dds"
+
+    can_construct_potential = {
+        building_requirement_tribal = no
+    }
+
+    is_enabled = {
+        agot_generic_is_special_building_enabled = yes
+    }
+
+    cost_gold = expensive_building_tier_4_cost
+
+    character_modifier = {
+        monthly_prestige = 0.20
+        dread_gain_mult = 0.25
+        stress_gain_mult = 0.15
+    }
+
+    county_modifier = {
+        levy_size = -0.06
+        development_growth_factor = -0.06
+    }
+
+    max_garrison = 2000
+
+    province_modifier = {
+        defender_holding_advantage = 9
+        fort_level = 9
+        monthly_income = -2.2
+    }
+
+    next_building = ruins_harrenhal_04
+
+    on_start = {
+        county.holder = {
+            add_character_flag = rebuilding_harrenhal
+            add_character_flag = started_rebuilding_harrenhal
+            trigger_event = agot_ruins.4002
+        }
+        set_variable = {
+            name = constructor
+            value = scope:character
+        }
+
+        title:c_ruins.holder = {
+            trigger_event = {
+                id = agot_rebuilding_ruins.9999
+                months = { 5 7 }
+            }
+            trigger_event = {
+                id = agot_rebuilding_ruins.9999
+                months = { 11 13 }
+            }
+        }
+    }
+
+    on_cancelled = {
+        root = { save_scope_as = province }
+        county.holder = {
+            add_character_flag = cancelled_harrenhal
+            trigger_event = agot_ruins.9998
+        }
+        remove_variable = constructor
+    }
+
+    on_complete = {
+        county.holder = {
+            trigger_event = agot_ruins.4003
+        }
+        remove_variable = constructor
+        title:c_harrenhal.holder = {
+            if = {
+                limit = {
+                    NOT = { culture = culture:riverman_main }
+                }
+                add_character_modifier = {
+                    modifier = harrenhal_restoration_2
+                    years = 5
+                }
+            }
+        }
+    }
+
+    ai_value = {
+        base = 100
+        culture_likely_to_fortify_modifier = yes
+    }
+
+    type = special
+
+    flag = travel_point_of_interest_martial
+}
+
+ruins_harrenhal_04 = {
+    construction_time = very_slow_construction_time
+    effect_desc = {
+        triggered_desc = {
+            trigger = { has_dlc_feature = tours_and_tournaments }
+            desc = tournament_activity_cost_max_discount_effect_desc
+        }
+    }
+
+    asset = {
+        type = pdxmesh
+        name = "building_special_harrenhal_ruined_3_mesh"
+    }
+
+    type_icon = "icon_structure_harrenhal.dds"
+
+    can_construct_potential = {
+        building_requirement_tribal = no
+    }
+
+    is_enabled = {
+        agot_generic_is_special_building_enabled = yes
+    }
+
+    cost_gold = expensive_building_tier_5_cost
+
+    character_modifier = {
+        monthly_prestige = 0.25
+        dread_gain_mult = 0.25
+        stress_gain_mult = 0.1
+    }
+
+    county_modifier = {
+        levy_size = -0.04
+        development_growth_factor = -0.04
+    }
+
+    max_garrison = 2500
+
+    province_modifier = {
+        defender_holding_advantage = 11
+        fort_level = 11
+        monthly_income = -2.4
+    }
+
+    next_building = ruins_harrenhal_05
+
+    on_start = {
+        county.holder = {
+            add_character_flag = rebuilding_harrenhal
+            add_character_flag = started_rebuilding_harrenhal
+            trigger_event = agot_ruins.4004
+        }
+        set_variable = {
+            name = constructor
+            value = scope:character
+        }
+
+        title:c_ruins.holder = {
+            trigger_event = {
+                id = agot_rebuilding_ruins.9999
+                months = { 5 7 }
+            }
+            trigger_event = {
+                id = agot_rebuilding_ruins.9999
+                months = { 11 13 }
+            }
+        }
+    }
+
+    on_cancelled = {
+        root = { save_scope_as = province }
+        county.holder = {
+            add_character_flag = cancelled_harrenhal
+            trigger_event = agot_ruins.9998
+        }
+        remove_variable = constructor
+    }
+
+    on_complete = {
+        county.holder = {
+            trigger_event = agot_ruins.4005
+        }
+        remove_variable = constructor
+        title:c_harrenhal.holder = {
+            if = {
+                limit = {
+                    NOT = { culture = culture:riverman_main }
+                }
+                add_character_modifier = {
+                    modifier = harrenhal_restoration_3
+                    years = 5
+                }
+            }
+        }
+    }
+
+    ai_value = {
+        base = 100
+        culture_likely_to_fortify_modifier = yes
+    }
+
+    type = special
+
+    flag = travel_point_of_interest_martial
+}
+
+ruins_harrenhal_05 = {
+    construction_time = very_slow_construction_time
+    effect_desc = {
+        triggered_desc = {
+            trigger = { has_dlc_feature = tours_and_tournaments }
+            desc = tournament_activity_cost_max_discount_effect_desc
+        }
+    }
+
+    asset = {
+        type = pdxmesh
+        name = "building_special_harrenhal_ruined_4_mesh"
+    }
+
+    type_icon = "icon_structure_harrenhal.dds"
+
+    can_construct_potential = {
+        building_requirement_tribal = no
+    }
+
+    is_enabled = {
+        agot_generic_is_special_building_enabled = yes
+    }
+
+    cost_gold = expensive_building_tier_6_cost
+
+    character_modifier = {
+        monthly_prestige = 0.275
+        dread_gain_mult = 0.25
+        stress_gain_mult = 0.075
+    }
+
+    county_modifier = {
+        levy_size = -0.02
+        development_growth_factor = -0.02
+    }
+
+    max_garrison = 3000
+
+    province_modifier = {
+        defender_holding_advantage = 13
+        fort_level = 13
+        monthly_income = -2.6
+    }
+
+    next_building = ruins_harrenhal_06
+
+    on_start = {
+        county.holder = {
+            add_character_flag = rebuilding_harrenhal
+            add_character_flag = started_rebuilding_harrenhal
+            trigger_event = agot_ruins.4006
+        }
+        set_variable = {
+            name = constructor
+            value = scope:character
+        }
+
+        title:c_ruins.holder = {
+            trigger_event = {
+                id = agot_rebuilding_ruins.9999
+                months = { 5 7 }
+            }
+            trigger_event = {
+                id = agot_rebuilding_ruins.9999
+                months = { 11 13 }
+            }
+        }
+    }
+
+    on_cancelled = {
+        root = { save_scope_as = province }
+        county.holder = {
+            add_character_flag = cancelled_harrenhal
+            trigger_event = agot_ruins.9998
+        }
+        remove_variable = constructor
+    }
+
+    on_complete = {
+        county.holder = {
+            trigger_event = agot_ruins.4007
+        }
+        remove_variable = constructor
+        title:c_harrenhal.holder = {
+            if = {
+                limit = {
+                    NOT = { culture = culture:riverman_main }
+                }
+                add_character_modifier = {
+                    modifier = harrenhal_restoration_4
+                    years = 5
+                }
+            }
+        }
+    }
+
+    ai_value = {
+        base = 100
+        culture_likely_to_fortify_modifier = yes
+    }
+
+    type = special
+
+    flag = travel_point_of_interest_martial
+}
+
+ruins_harrenhal_06 = {
+    construction_time = very_slow_construction_time
+    effect_desc = {
+        triggered_desc = {
+            trigger = { has_dlc_feature = tours_and_tournaments }
+            desc = tournament_activity_cost_max_discount_effect_desc
+        }
+    }
+
+    asset = {
+        type = pdxmesh
+        name = "building_special_harrenhal_ruined_5_mesh"
+    }
+
+    type_icon = "icon_structure_harrenhal.dds"
+
+    can_construct_potential = {
+        building_requirement_tribal = no
+    }
+
+    is_enabled = {
+        agot_generic_is_special_building_enabled = yes
+    }
+
+    cost_gold = expensive_building_tier_7_cost
+
+    character_modifier = {
+        monthly_prestige = 0.30
+        dread_gain_mult = 0.25
+        stress_gain_mult = 0.05
+    }
+
+    county_modifier = {
+        levy_size = -0.01
+        development_growth_factor = -0.01
+    }
+
+    max_garrison = 3500
+
+    province_modifier = {
+        defender_holding_advantage = 15
+        fort_level = 15
+        monthly_income = -2.8
+    }
+
+    next_building = ruins_harrenhal_07
+
+    on_start = {
+        county.holder = {
+            add_character_flag = rebuilding_harrenhal
+            add_character_flag = started_rebuilding_harrenhal
+            add_character_flag = pyre_revived
+            trigger_event = agot_ruins.4008
+        }
+        set_variable = {
+            name = constructor
+            value = scope:character
+        }
+
+        title:c_ruins.holder = {
+            trigger_event = {
+                id = agot_rebuilding_ruins.9999
+                months = { 6 13 }
+            }
+        }
+    }
+
+    on_cancelled = {
+        root = { save_scope_as = province }
+        county.holder = {
+            add_character_flag = cancelled_harrenhal
+            trigger_event = agot_ruins.9998
+        }
+        remove_variable = constructor
+    }
+
+    on_complete = {
+        county.holder = {
+            trigger_event = agot_ruins.4009
+        }
+        remove_variable = constructor
+        title:c_harrenhal.holder = {
+            if = {
+                limit = {
+                    NOT = { culture = culture:riverman_main }
+                }
+                add_character_modifier = {
+                    modifier = harrenhal_restoration_5
+                    years = 5
+                }
+            }
+        }
+    }
+
+    ai_value = {
+        base = 100
+        culture_likely_to_fortify_modifier = yes
+    }
+
+    type = special
+
+    flag = travel_point_of_interest_martial
+}
+
+ruins_harrenhal_07 = {
+    construction_time = very_slow_construction_time
+    effect_desc = {
+        triggered_desc = {
+            trigger = { has_dlc_feature = tours_and_tournaments }
+            desc = tournament_activity_cost_max_discount_effect_desc
+        }
+    }
+
+    asset = {
+        type = pdxmesh
+        name = "building_special_harrenhal_restored_mesh"
+    }
+
+    type_icon = "icon_structure_harrenhal.dds"
+
+    can_construct_potential = {
+        building_requirement_tribal = no
+    }
+
+    is_enabled = {
+        agot_generic_is_special_building_enabled = yes
+    }
+
+    cost_gold = expensive_building_tier_8_cost
+
+    character_modifier = {
+        monthly_prestige = 0.30
+        monthly_dynasty_prestige_mult = 0.15
+        dread_gain_mult = 0.30
+    }
+
+    county_modifier = {
+        monthly_county_control_growth_factor = 0.1
+    }
+
+    max_garrison = 4000
+
+    province_modifier = {
+        defender_holding_advantage = 17
+        fort_level = 17
+        monthly_income = -3.0
+    }
+
+    on_start = {
+        county.holder = {
+            trigger_event = agot_ruins.4010
+        }
+        set_variable = {
+            name = constructor
+            value = scope:character
+        }
+
+        title:c_ruins.holder = {
+            trigger_event = {
+                id = agot_rebuilding_ruins.9999
+                months = { 5 7 }
+            }
+            trigger_event = {
+                id = agot_rebuilding_ruins.9999
+                months = { 11 13 }
+            }
+        }
+    }
+
+    on_cancelled = {
+        root = { save_scope_as = province }
+        county.holder = {
+            add_character_flag = cancelled_harrenhal
+            trigger_event = agot_ruins.9998
+        }
+        remove_variable = constructor
+    }
+
+    on_complete = {
+        county.holder = {
+            trigger_event = agot_ruins.4011
+        }
+        remove_variable = constructor
+        title:c_harrenhal.holder = {
+            if = {
+                limit = {
+                    NOT = { culture = culture:riverman_main }
+                }
+                add_character_modifier = {
+                    modifier = harrenhal_restored
+                    years = 15
+                }
+            }
+        }
+    }
+
+    ai_value = {
+        base = 100
+        culture_likely_to_fortify_modifier = yes
+    }
+
+    type = special
+
+    flag = travel_point_of_interest_martial
+}
+
+casterly_rock_02 = {
+	construction_time = very_slow_construction_time
+
+	can_construct_potential = {
+		building_requirement_tribal = no
+	}
+
+	asset = {
+		type = pdxmesh
+		name = "casterlyrock_mesh"
+	}
+
+	is_enabled = {
+		agot_generic_is_special_building_enabled = yes
+	}
+
+	cost_gold = expensive_building_tier_8_cost
+
+	next_building = casterly_rock_03
+
+	max_garrison = normal_building_max_garrison_tier_10
+
+	province_modifier = {
+		defender_holding_advantage = 20
+		fort_level = 20
+		monthly_income = special_mine_building_tax_tier_3
+	}
+
+	effect_desc = agot_sailing_activity_cost_discount_special_desc
+
+	ai_value = {
+		base = 100
+		culture_likely_to_fortify_modifier = yes
+	}
+
+	type = special
+
+	flag = port_building
+	flag = travel_point_of_interest_religious
+	flag = special_building_enabled_in_ruin_county
+	flag = special_mine
+	flag = special_mine_gold
+}
+
+casterly_rock_03 = {
+	construction_time = very_slow_construction_time
+
+	can_construct_potential = {
+		building_requirement_tribal = no
+	}
+
+	asset = {
+		type = pdxmesh
+		name = "casterlyrock_mesh"
+	}
+
+	is_enabled = {
+		agot_generic_is_special_building_enabled = yes
+	}
+
+	cost_gold = expensive_building_tier_8_cost
+
+	next_building = casterly_rock_04
+
+	character_modifier = {
+		legitimacy_gain_mult = 0.1
+		owned_legend_spread_mult = 0.1
+		dynasty_opinion = 10
+	}
+
+	max_garrison = normal_building_max_garrison_tier_10
+
+	province_modifier = {
+		defender_holding_advantage = 20
+		fort_level = 20
+		monthly_income = special_mine_building_tax_tier_3
+	}
+
+	effect_desc = agot_sailing_activity_cost_discount_special_desc
+
+	ai_value = {
+		base = 100
+		culture_likely_to_fortify_modifier = yes
+	}
+
+	type = special
+
+	flag = port_building
+	flag = travel_point_of_interest_intrigue
+	flag = special_building_enabled_in_ruin_county
+	flag = special_mine
+	flag = special_mine_gold
+}
+
+casterly_rock_04 = {
+	construction_time = very_slow_construction_time
+
+	can_construct_potential = {
+		building_requirement_tribal = no
+	}
+
+	asset = {
+		type = pdxmesh
+		name = "casterlyrock_mesh"
+	}
+
+	is_enabled = {
+		agot_generic_is_special_building_enabled = yes
+	}
+
+	cost_gold = expensive_building_tier_8_cost
+
+	character_modifier = {
+		court_grandeur_baseline_add = 5
+		legitimacy_gain_mult = 0.1
+		owned_legend_spread_mult = 0.1
+		dynasty_opinion = 10
+	}
+
+	max_garrison = normal_building_max_garrison_tier_10
+
+	province_modifier = {
+		defender_holding_advantage = 20
+		fort_level = 20
+		monthly_income = special_mine_building_tax_tier_3
+	}
+
+	county_modifier = {
+		development_growth_factor = 0.2
+	}
+
+	effect_desc = agot_sailing_activity_cost_discount_special_desc
+
+	ai_value = {
+		base = 100
+		culture_likely_to_fortify_modifier = yes
+	}
+
+	type = special
+
+	flag = port_building
+	flag = travel_point_of_interest_economic
+	flag = special_building_enabled_in_ruin_county
+	flag = special_mine
+	flag = special_mine_gold
+}
+
+the_hightower_01 = {
+
+	construction_time = very_slow_construction_time
+
+	type_icon = "icon_structure_hightower.dds"
+
+	can_construct_potential = {
+		building_requirement_tribal = no
+	}
+
+	asset = {
+		type = pdxmesh
+		name = "building_special_hightower_mesh"
+	}
+
+	is_enabled = {
+		agot_generic_is_special_building_enabled = yes
+	}
+
+	cost_gold = expensive_building_tier_8_cost
+
+	asset = {
+		type = pdxmesh
+		name = "building_special_hightower_mesh"
+	}
+
+	character_modifier = {
+		naval_movement_speed_mult = 0.25
+		embarkation_cost_mult = -0.25
+		diplomatic_range_mult = 0.25
+		owned_legend_spread_mult = 0.1
+		legitimacy_gain_mult = 0.1
+	}
+
+	province_modifier = {
+		fort_level = 6
+		monthly_income = special_mine_building_tax_tier_1
+	}
+
+	max_garrison = normal_building_max_garrison_tier_3
+
+	county_modifier = {
+		county_opinion_add = 15
+	}
+
+	effect_desc = agot_sailing_activity_cost_discount_special_desc
+
+	ai_value = {
+		base = 100
+		culture_likely_to_fortify_modifier = yes
+	}
+
+	type = special
+
+	flag = port_building
+	flag = travel_point_of_interest_economic
+}
+
+the_citadel_01 = {
+
+	construction_time = very_slow_construction_time
+
+	type_icon = "icon_structure_palace_of_ctesiphon.dds"
+
+	can_construct_potential = {
+		building_requirement_tribal = no
+	}
+
+	is_enabled = {
+		agot_generic_is_special_building_enabled = yes
+	}
+
+	cost_gold = expensive_building_tier_5_cost
+
+	next_building = the_citadel_02
+
+	character_modifier = {
+		diplomatic_range_mult = 0.5
+	}
+
+	province_modifier = {
+		fort_level = 2
+		monthly_income = good_building_tax_tier_6
+	}
+
+	effect_desc = agot_sailing_activity_cost_discount_special_desc
+
+	ai_value = {
+		base = 100
+		culture_likely_to_fortify_modifier = yes
+	}
+
+	type = special
+
+	flag = port_building
+	flag = travel_point_of_interest_martial
+}
+
+moat_cailin_02 = {
+
+	construction_time = very_slow_construction_time
+
+	type_icon = "icon_structure_moat_cailin.dds"
+
+	can_construct_potential = {
+		building_requirement_tribal = no
+	}
+
+	can_construct = {
+		OR = {
+			title:c_moat_cailin.holder = {
+				is_human = yes
+				agot_is_independent_ruler = yes
+			}
+			custom_tooltip = {
+				text = moat_cailin_top_liege_desc
+				title:c_moat_cailin.holder.top_liege ?= {
+					has_title = title:e_the_north
+					agot_is_independent_ruler = yes
+				}
+			}
+			custom_tooltip = {
+				text = moat_cailin_fortification_rights_desc
+				title:e_the_north.holder ?= {
+					OR = {
+						vassal_contract_has_flag = fortification_rights_granted
+						var:mw_obl_title_revocation_rights ?= 1
+					}
+				}
+				OR = {
+					title:e_the_north.holder = title:c_moat_cailin.holder
+					title:c_moat_cailin.holder = {
+						any_liege_or_above = {
+							this = title:e_the_north.holder
+						}
+					}
+				}
+			}
+		}
+	}
+
+	asset = {
+		type = pdxmesh
+		name = "building_special_moat_cailin_02_mesh"
+	}
+
+	next_building = moat_cailin_03
+
+	on_start = {
+		county.holder = {
+			add_character_flag = rebuilding_moat_cailin
+			add_character_flag = started_rebuilding_moat_cailin
+			trigger_event = agot_ruins.3000
+		}
+		set_variable = {
+			name = constructor
+			value = scope:character
+		}
+		title:c_ruins.holder = {
+			trigger_event = {
+				id = agot_rebuilding_ruins.1000
+				months = { 11 37 }
+			}
+		}
+	}
+
+	on_cancelled = {
+		root = { save_scope_as = province }
+		county.holder = {
+			add_character_flag = cancelled_cailin
+			trigger_event = agot_ruins.9998
+		}
+	}
+
+	on_complete = {
+		county.holder = {
+			trigger_event = agot_ruins.3001
+		}
+		remove_variable = constructor
+	}
+
+	is_enabled = {
+		agot_generic_is_special_building_enabled = yes
+	}
+
+	cost_gold = expensive_building_tier_4_cost
+
+	character_modifier = {
+		domain_limit = 1
+		monthly_prestige_gain_mult = 0.05
+		legitimacy_gain_mult = 0.05
+	}
+
+	max_garrison = normal_building_max_garrison_tier_1
+
+	province_modifier = {
+		defender_holding_advantage = 10
+		fort_level = 10
+		stationed_archers_damage_mult = very_high_maa_damage_tier_3
+		stationed_archers_toughness_mult = very_high_maa_toughness_tier_3
+		supply_limit_mult = 1.75
+	}
+	county_modifier = {
+		hostile_raid_time = 0.4
+		travel_danger = -5
+	}
+
+	ai_value = {
+		base = 100
+		culture_likely_to_fortify_modifier = yes
+	}
+
+	type = special
+
+	flag = travel_point_of_interest_martial
+}
+
+pastures_03 = {
+	construction_time = quick_construction_time
+
+	can_construct_potential = {
+		building_pastures_requirement_terrain = yes
+	}
+
+	can_construct = {
+		building_requirement_castle_city_church = { LEVEL = 02 }
+		scope:holder.culture = {
+			has_innovation = innovation_manorialism
+		}
+	}
+
+	can_construct_showing_failures_only = {
+		building_requirement_tribal = no
+	}
+	
+	cost_gold = normal_building_tier_3_cost
+	
+	levy = small_building_levy_tier_3
+	province_modifier = {
+		monthly_income = normal_building_tax_tier_3
+		# [mtxxx]
+		supply_limit = 500
+		# [/mtxxx]
+		levy_reinforcement_rate = 0.05
+	}
+	character_culture_modifier = {
+		parameter = pastures_building_bonuses
+		light_cavalry_maintenance_mult = -0.03
+	}
+	province_culture_modifier = {
+		parameter = pastures_building_bonuses
+		defender_holding_advantage = normal_building_advantage_tier_3
+		tax_mult = 0.02
+		levy_size = 0.02
+	}
+	# [mtxxx]
+	character_culture_modifier = {
+		parameter = elephant_pastures
+		elephant_cavalry_damage_mult = 0.04
+		elephant_cavalry_toughness_mult = 0.02
+	}
+	# [/mtxxx]
+	province_terrain_modifier = {
+		parameter = coastal_agriculture_building_bonuses
+		is_coastal = yes
+		tax_mult = 0.02
+		levy_size = 0.02
+	}
+
+	on_complete = {
+		#Mandala Creator Aspect
+		creator_mandala_built_regular_building_piety_effect = yes
+	}
+	
+	next_building = pastures_04
+	
+	ai_value = {
+		base = 8
+		ai_general_building_modifier = yes
+		directive_to_build_economy_modifier = yes
+		ai_economical_building_preference_modifier = yes
+	}
+}
+
+pastures_04 = {
+	construction_time = quick_construction_time
+
+	can_construct_potential = {
+		building_pastures_requirement_terrain = yes
+	}
+
+	can_construct = {
+		building_requirement_castle_city_church = { LEVEL = 02 }
+		scope:holder.culture = {
+			has_innovation = innovation_manorialism
+		}
+	}
+
+	can_construct_showing_failures_only = {
+		building_requirement_tribal = no
+	}
+	
+	cost_gold = normal_building_tier_4_cost
+	
+	levy = small_building_levy_tier_4
+	province_modifier = {
+		monthly_income = normal_building_tax_tier_4
+		# [mtxxx]
+		supply_limit = 500
+		# [/mtxxx]
+		levy_reinforcement_rate = 0.05
+	}
+	county_modifier = {
+		development_growth_factor = 0.02
+	}
+	character_culture_modifier = {
+		parameter = pastures_building_bonuses
+		light_cavalry_maintenance_mult = -0.04
+	}
+	province_culture_modifier = {
+		parameter = pastures_building_bonuses
+		defender_holding_advantage = normal_building_advantage_tier_4
+		tax_mult = 0.02
+		levy_size = 0.02
+	}
+	# [mtxxx]
+	character_culture_modifier = {
+		parameter = elephant_pastures
+		elephant_cavalry_damage_mult = 0.06
+		elephant_cavalry_toughness_mult = 0.03
+	}
+	# [/mtxxx]
+	province_terrain_modifier = {
+		parameter = coastal_agriculture_building_bonuses
+		is_coastal = yes
+		tax_mult = 0.02
+		levy_size = 0.02
+	}
+
+	on_complete = {
+		#Mandala Creator Aspect
+		creator_mandala_built_regular_building_piety_effect = yes
+	}
+	
+	next_building = pastures_05
+	
+	ai_value = {
+		base = 7
+		ai_general_building_modifier = yes
+		directive_to_build_economy_modifier = yes
+		ai_economical_building_preference_modifier = yes
+	}
+}
+
+pastures_05 = {
+	construction_time = quick_construction_time
+
+	can_construct_potential = {
+		building_pastures_requirement_terrain = yes
+	}
+
+	can_construct = {
+		building_requirement_castle_city_church = { LEVEL = 03 }
+		scope:holder.culture = {
+			has_innovation = innovation_guilds
+		}
+	}
+
+	can_construct_showing_failures_only = {
+		building_requirement_tribal = no
+	}
+	
+	cost_gold = normal_building_tier_5_cost
+	
+	levy = small_building_levy_tier_5
+	province_modifier = {
+		monthly_income = normal_building_tax_tier_5
+		# [mtxxx]
+		supply_limit = 500
+		# [/mtxxx]
+		levy_reinforcement_rate = 0.05
+		garrison_size = 0.05
+	}
+	character_culture_modifier = {
+		parameter = pastures_building_bonuses
+		light_cavalry_maintenance_mult = -0.05
+	}
+	province_culture_modifier = {
+		parameter = pastures_building_bonuses
+		defender_holding_advantage = normal_building_advantage_tier_5
+		tax_mult = 0.03
+		levy_size = 0.03
+	}
+	# [mtxxx]
+	character_culture_modifier = {
+		parameter = elephant_pastures
+		elephant_cavalry_damage_mult = 0.06
+		elephant_cavalry_toughness_mult = 0.03
+	}
+	# [/mtxxx]
+	province_terrain_modifier = {
+		parameter = coastal_agriculture_building_bonuses
+		is_coastal = yes
+		tax_mult = 0.03
+		levy_size = 0.03
+	}
+	county_modifier = {
+		development_growth_factor = 0.02
+	}
+
+	on_complete = {
+		#Mandala Creator Aspect
+		creator_mandala_built_regular_building_piety_effect = yes
+	}
+	
+	next_building = pastures_06
+	
+	ai_value = {
+		base = 6
+		ai_general_building_modifier = yes
+		directive_to_build_economy_modifier = yes
+		ai_economical_building_preference_modifier = yes
+	}
+}
+
+pastures_06 = {
+	construction_time = quick_construction_time
+
+	can_construct_potential = {
+		building_pastures_requirement_terrain = yes
+	}
+
+	can_construct = {
+		building_requirement_castle_city_church = { LEVEL = 03 }
+		scope:holder.culture = {
+			has_innovation = innovation_guilds
+		}
+	}
+
+	can_construct_showing_failures_only = {
+		building_requirement_tribal = no
+	}
+
+	cost_gold = normal_building_tier_6_cost
+	
+	levy = small_building_levy_tier_6
+	province_modifier = {
+		monthly_income = normal_building_tax_tier_6
+		# [mtxxx]
+		supply_limit = 500
+		# [/mtxxx]
+		levy_reinforcement_rate = 0.05
+		garrison_size = 0.05
+	}
+	county_modifier = {
+		development_growth_factor = 0.02
+		county_opinion_add = 2
+	}
+	character_culture_modifier = {
+		parameter = pastures_building_bonuses
+		light_cavalry_maintenance_mult = -0.06
+	}
+	province_culture_modifier = {
+		parameter = pastures_building_bonuses
+		defender_holding_advantage = normal_building_advantage_tier_6
+		tax_mult = 0.03
+		levy_size = 0.03
+	}
+	# [mtxxx]
+	character_culture_modifier = {
+		parameter = elephant_pastures
+		elephant_cavalry_damage_mult = 0.10
+		elephant_cavalry_toughness_mult = 0.05
+	}
+	# [/mtxxx]
+	province_terrain_modifier = {
+		parameter = coastal_agriculture_building_bonuses
+		is_coastal = yes
+		tax_mult = 0.03
+		levy_size = 0.03
+	}
+
+	on_complete = {
+		#Mandala Creator Aspect
+		creator_mandala_built_regular_building_piety_effect = yes
+	}
+	
+	next_building = pastures_07
+	
+	ai_value = {
+		base = 5
+		ai_general_building_modifier = yes
+		directive_to_build_economy_modifier = yes
+		ai_economical_building_preference_modifier = yes
+	}
+}

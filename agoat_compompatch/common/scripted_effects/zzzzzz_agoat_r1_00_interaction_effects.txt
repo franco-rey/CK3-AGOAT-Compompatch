@@ -1,0 +1,103 @@
+﻿kick_from_court_interaction_warning_tooltip_effect = {
+	if = {
+		limit = { exists = scope:actor }
+	save_temporary_scope_as = kicked
+	if = {
+		limit = { is_councillor_of = scope:actor }
+		custom_tooltip = kick_from_court_councillor_warning_tt
+	}
+	if = {
+		limit = {
+			any_claim = {
+				useful_courtier_or_guest_claim_trigger = { RULER = scope:actor }
+			}
+		}
+		random_claim = {
+			limit = {
+				useful_courtier_or_guest_claim_trigger = { RULER = scope:actor }
+				tier = tier_kingdom
+			}
+			alternative_limit = {
+				useful_courtier_or_guest_claim_trigger = { RULER = scope:actor }
+				tier = tier_duchy
+			}
+			alternative_limit = {
+				useful_courtier_or_guest_claim_trigger = { RULER = scope:actor }
+				tier = tier_county
+			}
+			save_scope_as = kicked_claim
+		}
+		custom_tooltip = kick_from_court_claimant_warning_tt
+	}
+	if = {
+		limit = { is_commanding_army = yes }
+		custom_tooltip = kick_from_court_commander_warning_tt
+	}
+	if = {
+		limit = { is_knight_of = scope:actor }
+		custom_tooltip = kick_from_court_knight_warning_tt
+	}
+	if = {
+		limit = {
+			scope:kicked = {
+				has_any_court_position = yes
+				any_court_position_employer = { this = scope:actor }
+			}
+		}
+		custom_tooltip = kick_from_court_holds_court_title_warning_tt
+	}
+	}
+}
+
+kick_from_court_interaction_effect = {
+	select_and_move_to_pool_effect = yes
+
+	if = {
+		limit = { exists = scope:actor }
+	add_opinion = {
+		modifier = kicked_me_from_court
+		target = scope:actor
+	}
+	kick_from_court_interaction_warning_tooltip_effect = yes
+	}
+
+	every_close_family_member = {
+		limit = { NOT = { any_in_list = { list = kicked_relatives_list this = prev } } }
+		add_to_list = kicked_relatives_list
+	}
+
+	if = {
+		limit = { exists = scope:actor }
+	scope:actor = {
+		if = {
+			limit = { has_government = landless_adventurer_government }
+			every_courtier = {
+				limit = {
+					is_adult = yes
+					NOR = {
+						is_close_family_of = scope:recipient
+						has_any_moderate_bad_relationship_with_character_trigger = { CHARACTER = scope:recipient }
+					}
+				}
+				custom = custom.every_adult_follower
+				add_opinion = {
+					target = scope:actor
+					modifier = kicked_follower_from_camp_opinion
+					opinion = -5
+				}
+			}
+			scope:recipient = {
+				every_relation = {
+					type = rival
+					limit = { is_courtier_of = scope:actor }
+					add_opinion = {
+						target = scope:actor
+						modifier = kicked_rival_from_camp_opinion
+						opinion = 30
+					}
+					}
+				}
+			}
+		}
+	}
+}

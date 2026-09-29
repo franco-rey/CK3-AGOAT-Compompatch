@@ -1,0 +1,582 @@
+﻿rhaenyra_personal_coa = {
+	sub = {
+		parent = "rhaenrya_personal_coa"
+		instance = { offset = { 0.0 0.0 } scale = { 1.0 1.0 } }
+	}
+}
+
+agoat_rhaenyra_pcoa_t1a1v2 = {
+	sub = {
+		parent = "dynn_Targaryen"
+		instance = { offset = { 0.0 0.0 } scale = { 0.5 0.5 }  }
+		instance = { offset = { 0.5 0.5 } scale = { 0.5 0.5 }  }
+	}
+	sub = {
+		parent = "dynn_Arryn"
+		instance = { offset = { 0.5 0.0 } scale = { 0.5 0.5 }  }
+	}
+	sub = {
+		parent = "show_dynn_Velaryon"
+		instance = { offset = { 0.0 0.5 } scale = { 0.5 0.5 }  }
+	}
+}
+
+agoat_rhaenyra_pcoa_t1a1v5 = {
+	sub = {
+		parent = "dynn_Targaryen"
+		instance = { offset = { 0.0 0.0 } scale = { 0.5 0.5 }  }
+		instance = { offset = { 0.5 0.5 } scale = { 0.5 0.5 }  }
+	}
+	sub = {
+		parent = "dynn_Arryn"
+		instance = { offset = { 0.5 0.0 } scale = { 0.5 0.5 }  }
+	}
+	sub = {
+		parent = "vanilla_dynn_Velaryon"
+		instance = { offset = { 0.0 0.5 } scale = { 0.5 0.5 }  }
+	}
+}
+
+agoat_rhaenyra_pcoa_t1a2v1 = {
+	sub = {
+		parent = "dynn_Targaryen"
+		instance = { offset = { 0.0 0.0 } scale = { 0.5 0.5 }  }
+		instance = { offset = { 0.5 0.5 } scale = { 0.5 0.5 }  }
+	}
+	sub = {
+		parent = "agotp_dynn_Arryn"
+		instance = { offset = { 0.5 0.0 } scale = { 0.5 0.5 }  }
+	}
+	sub = {
+		parent = "dynn_Velaryon"
+		instance = { offset = { 0.0 0.5 } scale = { 0.5 0.5 }  }
+	}
+}
+
+agoat_rhaenyra_pcoa_t1a2v2 = {
+	sub = {
+		parent = "dynn_Targaryen"
+		instance = { offset = { 0.0 0.0 } scale = { 0.5 0.5 }  }
+		instance = { offset = { 0.5 0.5 } scale = { 0.5 0.5 }  }
+	}
+	sub = {
+		parent = "agotp_dynn_Arryn"
+		instance = { offset = { 0.5 0.0 } scale = { 0.5 0.5 }  }
+	}
+	sub = {
+		parent = "show_dynn_Velaryon"
+		instance = { offset = { 0.0 0.5 } scale = { 0.5 0.5 }  }
+	}
+}
+
+agoat_rhaenyra_pcoa_t1a2v5 = {
+	sub = {
+		parent = "dynn_Targaryen"
+		instance = { offset = { 0.0 0.0 } scale = { 0.5 0.5 }  }
+		instance = { offset = { 0.5 0.5 } scale = { 0.5 0.5 }  }
+	}
+	sub = {
+		parent = "agotp_dynn_Arryn"
+		instance = { offset = { 0.5 0.0 } scale = { 0.5 0.5 }  }
+	}
+	sub = {
+		parent = "vanilla_dynn_Velaryon"
+		instance = { offset = { 0.0 0.5 } scale = { 0.5 0.5 }  }
+	}
+}
+
+agoat_rhaenyra_pcoa_t1a3v1 = {
+	sub = {
+		parent = "dynn_Targaryen"
+		instance = { offset = { 0.0 0.0 } scale = { 0.5 0.5 }  }
+		instance = { offset = { 0.5 0.5 } scale = { 0.5 0.5 }  }
+	}
+	sub = {
+		parent = "show_dynn_Arryn"
+		instance = { offset = { 0.5 0.0 } scale = { 0.5 0.5 }  }
+	}
+	sub = {
+		parent = "dynn_Velaryon"
+		instance = { offset = { 0.0 0.5 } scale = { 0.5 0.5 }  }
+	}
+}
+
+agoat_rhaenyra_pcoa_t1a3v2 = {
+	sub = {
+		parent = "dynn_Targaryen"
+		instance = { offset = { 0.0 0.0 } scale = { 0.5 0.5 }  }
+		instance = { offset = { 0.5 0.5 } scale = { 0.5 0.5 }  }
+	}
+	sub = {
+		parent = "show_dynn_Arryn"
+		instance = { offset = { 0.5 0.0 } scale = { 0.5 0.5 }  }
+	}
+	sub = {
+		parent = "show_dynn_Velaryon"
+		instance = { offset = { 0.0 0.5 } scale = { 0.5 0.5 }  }
+	}
+}
+
+agoat_rhaenyra_pcoa_t1a3v5 = {
+	sub = {
+		parent = "dynn_Targaryen"
+		instance = { offset = { 0.0 0.0 } scale = { 0.5 0.5 }  }
+		instance = { offset = { 0.5 0.5 } scale = { 0.5 0.5 }  }
+	}
+	sub = {
+		parent = "show_dynn_Arryn"
+		instance = { offset = { 0.5 0.0 } scale = { 0.5 0.5 }  }
+	}
+	sub = {
+		parent = "vanilla_dynn_Velaryon"
+		instance = { offset = { 0.0 0.5 } scale = { 0.5 0.5 }  }
+	}
+}
+
+agoat_rhaenyra_pcoa_t1a5v1 = {
+	sub = {
+		parent = "dynn_Targaryen"
+		instance = { offset = { 0.0 0.0 } scale = { 0.5 0.5 }  }
+		instance = { offset = { 0.5 0.5 } scale = { 0.5 0.5 }  }
+	}
+	sub = {
+		parent = "vanilla_dynn_Arryn"
+		instance = { offset = { 0.5 0.0 } scale = { 0.5 0.5 }  }
+	}
+	sub = {
+		parent = "dynn_Velaryon"
+		instance = { offset = { 0.0 0.5 } scale = { 0.5 0.5 }  }
+	}
+}
+
+agoat_rhaenyra_pcoa_t1a5v2 = {
+	sub = {
+		parent = "dynn_Targaryen"
+		instance = { offset = { 0.0 0.0 } scale = { 0.5 0.5 }  }
+		instance = { offset = { 0.5 0.5 } scale = { 0.5 0.5 }  }
+	}
+	sub = {
+		parent = "vanilla_dynn_Arryn"
+		instance = { offset = { 0.5 0.0 } scale = { 0.5 0.5 }  }
+	}
+	sub = {
+		parent = "show_dynn_Velaryon"
+		instance = { offset = { 0.0 0.5 } scale = { 0.5 0.5 }  }
+	}
+}
+
+agoat_rhaenyra_pcoa_t1a5v5 = {
+	sub = {
+		parent = "dynn_Targaryen"
+		instance = { offset = { 0.0 0.0 } scale = { 0.5 0.5 }  }
+		instance = { offset = { 0.5 0.5 } scale = { 0.5 0.5 }  }
+	}
+	sub = {
+		parent = "vanilla_dynn_Arryn"
+		instance = { offset = { 0.5 0.0 } scale = { 0.5 0.5 }  }
+	}
+	sub = {
+		parent = "vanilla_dynn_Velaryon"
+		instance = { offset = { 0.0 0.5 } scale = { 0.5 0.5 }  }
+	}
+}
+
+agoat_rhaenyra_pcoa_t2a1v1 = {
+	sub = {
+		parent = "old_dynn_Targaryen"
+		instance = { offset = { 0.0 0.0 } scale = { 0.5 0.5 }  }
+		instance = { offset = { 0.5 0.5 } scale = { 0.5 0.5 }  }
+	}
+	sub = {
+		parent = "dynn_Arryn"
+		instance = { offset = { 0.5 0.0 } scale = { 0.5 0.5 }  }
+	}
+	sub = {
+		parent = "dynn_Velaryon"
+		instance = { offset = { 0.0 0.5 } scale = { 0.5 0.5 }  }
+	}
+}
+
+agoat_rhaenyra_pcoa_t2a1v2 = {
+	sub = {
+		parent = "old_dynn_Targaryen"
+		instance = { offset = { 0.0 0.0 } scale = { 0.5 0.5 }  }
+		instance = { offset = { 0.5 0.5 } scale = { 0.5 0.5 }  }
+	}
+	sub = {
+		parent = "dynn_Arryn"
+		instance = { offset = { 0.5 0.0 } scale = { 0.5 0.5 }  }
+	}
+	sub = {
+		parent = "show_dynn_Velaryon"
+		instance = { offset = { 0.0 0.5 } scale = { 0.5 0.5 }  }
+	}
+}
+
+agoat_rhaenyra_pcoa_t2a1v5 = {
+	sub = {
+		parent = "old_dynn_Targaryen"
+		instance = { offset = { 0.0 0.0 } scale = { 0.5 0.5 }  }
+		instance = { offset = { 0.5 0.5 } scale = { 0.5 0.5 }  }
+	}
+	sub = {
+		parent = "dynn_Arryn"
+		instance = { offset = { 0.5 0.0 } scale = { 0.5 0.5 }  }
+	}
+	sub = {
+		parent = "vanilla_dynn_Velaryon"
+		instance = { offset = { 0.0 0.5 } scale = { 0.5 0.5 }  }
+	}
+}
+
+agoat_rhaenyra_pcoa_t2a2v1 = {
+	sub = {
+		parent = "old_dynn_Targaryen"
+		instance = { offset = { 0.0 0.0 } scale = { 0.5 0.5 }  }
+		instance = { offset = { 0.5 0.5 } scale = { 0.5 0.5 }  }
+	}
+	sub = {
+		parent = "agotp_dynn_Arryn"
+		instance = { offset = { 0.5 0.0 } scale = { 0.5 0.5 }  }
+	}
+	sub = {
+		parent = "dynn_Velaryon"
+		instance = { offset = { 0.0 0.5 } scale = { 0.5 0.5 }  }
+	}
+}
+
+agoat_rhaenyra_pcoa_t2a3v1 = {
+	sub = {
+		parent = "old_dynn_Targaryen"
+		instance = { offset = { 0.0 0.0 } scale = { 0.5 0.5 }  }
+		instance = { offset = { 0.5 0.5 } scale = { 0.5 0.5 }  }
+	}
+	sub = {
+		parent = "show_dynn_Arryn"
+		instance = { offset = { 0.5 0.0 } scale = { 0.5 0.5 }  }
+	}
+	sub = {
+		parent = "dynn_Velaryon"
+		instance = { offset = { 0.0 0.5 } scale = { 0.5 0.5 }  }
+	}
+}
+
+agoat_rhaenyra_pcoa_t2a5v1 = {
+	sub = {
+		parent = "old_dynn_Targaryen"
+		instance = { offset = { 0.0 0.0 } scale = { 0.5 0.5 }  }
+		instance = { offset = { 0.5 0.5 } scale = { 0.5 0.5 }  }
+	}
+	sub = {
+		parent = "vanilla_dynn_Arryn"
+		instance = { offset = { 0.5 0.0 } scale = { 0.5 0.5 }  }
+	}
+	sub = {
+		parent = "dynn_Velaryon"
+		instance = { offset = { 0.0 0.5 } scale = { 0.5 0.5 }  }
+	}
+}
+
+agoat_rhaenyra_pcoa_t3a1v1 = {
+	sub = {
+		parent = "acs_dynn_Targaryen"
+		instance = { offset = { 0.0 0.0 } scale = { 0.5 0.5 }  }
+		instance = { offset = { 0.5 0.5 } scale = { 0.5 0.5 }  }
+	}
+	sub = {
+		parent = "dynn_Arryn"
+		instance = { offset = { 0.5 0.0 } scale = { 0.5 0.5 }  }
+	}
+	sub = {
+		parent = "dynn_Velaryon"
+		instance = { offset = { 0.0 0.5 } scale = { 0.5 0.5 }  }
+	}
+}
+
+agoat_rhaenyra_pcoa_t3a1v2 = {
+	sub = {
+		parent = "acs_dynn_Targaryen"
+		instance = { offset = { 0.0 0.0 } scale = { 0.5 0.5 }  }
+		instance = { offset = { 0.5 0.5 } scale = { 0.5 0.5 }  }
+	}
+	sub = {
+		parent = "dynn_Arryn"
+		instance = { offset = { 0.5 0.0 } scale = { 0.5 0.5 }  }
+	}
+	sub = {
+		parent = "show_dynn_Velaryon"
+		instance = { offset = { 0.0 0.5 } scale = { 0.5 0.5 }  }
+	}
+}
+
+agoat_rhaenyra_pcoa_t3a1v5 = {
+	sub = {
+		parent = "acs_dynn_Targaryen"
+		instance = { offset = { 0.0 0.0 } scale = { 0.5 0.5 }  }
+		instance = { offset = { 0.5 0.5 } scale = { 0.5 0.5 }  }
+	}
+	sub = {
+		parent = "dynn_Arryn"
+		instance = { offset = { 0.5 0.0 } scale = { 0.5 0.5 }  }
+	}
+	sub = {
+		parent = "vanilla_dynn_Velaryon"
+		instance = { offset = { 0.0 0.5 } scale = { 0.5 0.5 }  }
+	}
+}
+
+agoat_rhaenyra_pcoa_t3a2v1 = {
+	sub = {
+		parent = "acs_dynn_Targaryen"
+		instance = { offset = { 0.0 0.0 } scale = { 0.5 0.5 }  }
+		instance = { offset = { 0.5 0.5 } scale = { 0.5 0.5 }  }
+	}
+	sub = {
+		parent = "agotp_dynn_Arryn"
+		instance = { offset = { 0.5 0.0 } scale = { 0.5 0.5 }  }
+	}
+	sub = {
+		parent = "dynn_Velaryon"
+		instance = { offset = { 0.0 0.5 } scale = { 0.5 0.5 }  }
+	}
+}
+
+agoat_rhaenyra_pcoa_t3a3v1 = {
+	sub = {
+		parent = "acs_dynn_Targaryen"
+		instance = { offset = { 0.0 0.0 } scale = { 0.5 0.5 }  }
+		instance = { offset = { 0.5 0.5 } scale = { 0.5 0.5 }  }
+	}
+	sub = {
+		parent = "show_dynn_Arryn"
+		instance = { offset = { 0.5 0.0 } scale = { 0.5 0.5 }  }
+	}
+	sub = {
+		parent = "dynn_Velaryon"
+		instance = { offset = { 0.0 0.5 } scale = { 0.5 0.5 }  }
+	}
+}
+
+agoat_rhaenyra_pcoa_t3a5v1 = {
+	sub = {
+		parent = "acs_dynn_Targaryen"
+		instance = { offset = { 0.0 0.0 } scale = { 0.5 0.5 }  }
+		instance = { offset = { 0.5 0.5 } scale = { 0.5 0.5 }  }
+	}
+	sub = {
+		parent = "vanilla_dynn_Arryn"
+		instance = { offset = { 0.5 0.0 } scale = { 0.5 0.5 }  }
+	}
+	sub = {
+		parent = "dynn_Velaryon"
+		instance = { offset = { 0.0 0.5 } scale = { 0.5 0.5 }  }
+	}
+}
+
+agoat_rhaenyra_pcoa_t4a1v1 = {
+	sub = {
+		parent = "grrm_dynn_Targaryen"
+		instance = { offset = { 0.0 0.0 } scale = { 0.5 0.5 }  }
+		instance = { offset = { 0.5 0.5 } scale = { 0.5 0.5 }  }
+	}
+	sub = {
+		parent = "dynn_Arryn"
+		instance = { offset = { 0.5 0.0 } scale = { 0.5 0.5 }  }
+	}
+	sub = {
+		parent = "dynn_Velaryon"
+		instance = { offset = { 0.0 0.5 } scale = { 0.5 0.5 }  }
+	}
+}
+
+agoat_rhaenyra_pcoa_t4a1v2 = {
+	sub = {
+		parent = "grrm_dynn_Targaryen"
+		instance = { offset = { 0.0 0.0 } scale = { 0.5 0.5 }  }
+		instance = { offset = { 0.5 0.5 } scale = { 0.5 0.5 }  }
+	}
+	sub = {
+		parent = "dynn_Arryn"
+		instance = { offset = { 0.5 0.0 } scale = { 0.5 0.5 }  }
+	}
+	sub = {
+		parent = "show_dynn_Velaryon"
+		instance = { offset = { 0.0 0.5 } scale = { 0.5 0.5 }  }
+	}
+}
+
+agoat_rhaenyra_pcoa_t4a1v5 = {
+	sub = {
+		parent = "grrm_dynn_Targaryen"
+		instance = { offset = { 0.0 0.0 } scale = { 0.5 0.5 }  }
+		instance = { offset = { 0.5 0.5 } scale = { 0.5 0.5 }  }
+	}
+	sub = {
+		parent = "dynn_Arryn"
+		instance = { offset = { 0.5 0.0 } scale = { 0.5 0.5 }  }
+	}
+	sub = {
+		parent = "vanilla_dynn_Velaryon"
+		instance = { offset = { 0.0 0.5 } scale = { 0.5 0.5 }  }
+	}
+}
+
+agoat_rhaenyra_pcoa_t4a2v1 = {
+	sub = {
+		parent = "grrm_dynn_Targaryen"
+		instance = { offset = { 0.0 0.0 } scale = { 0.5 0.5 }  }
+		instance = { offset = { 0.5 0.5 } scale = { 0.5 0.5 }  }
+	}
+	sub = {
+		parent = "agotp_dynn_Arryn"
+		instance = { offset = { 0.5 0.0 } scale = { 0.5 0.5 }  }
+	}
+	sub = {
+		parent = "dynn_Velaryon"
+		instance = { offset = { 0.0 0.5 } scale = { 0.5 0.5 }  }
+	}
+}
+
+agoat_rhaenyra_pcoa_t4a3v1 = {
+	sub = {
+		parent = "grrm_dynn_Targaryen"
+		instance = { offset = { 0.0 0.0 } scale = { 0.5 0.5 }  }
+		instance = { offset = { 0.5 0.5 } scale = { 0.5 0.5 }  }
+	}
+	sub = {
+		parent = "show_dynn_Arryn"
+		instance = { offset = { 0.5 0.0 } scale = { 0.5 0.5 }  }
+	}
+	sub = {
+		parent = "dynn_Velaryon"
+		instance = { offset = { 0.0 0.5 } scale = { 0.5 0.5 }  }
+	}
+}
+
+agoat_rhaenyra_pcoa_t4a5v1 = {
+	sub = {
+		parent = "grrm_dynn_Targaryen"
+		instance = { offset = { 0.0 0.0 } scale = { 0.5 0.5 }  }
+		instance = { offset = { 0.5 0.5 } scale = { 0.5 0.5 }  }
+	}
+	sub = {
+		parent = "vanilla_dynn_Arryn"
+		instance = { offset = { 0.5 0.0 } scale = { 0.5 0.5 }  }
+	}
+	sub = {
+		parent = "dynn_Velaryon"
+		instance = { offset = { 0.0 0.5 } scale = { 0.5 0.5 }  }
+	}
+}
+
+agoat_rhaenyra_pcoa_t5a1v1 = {
+	sub = {
+		parent = "vanilla_dynn_Targaryen"
+		instance = { offset = { 0.0 0.0 } scale = { 0.5 0.5 }  }
+		instance = { offset = { 0.5 0.5 } scale = { 0.5 0.5 }  }
+	}
+	sub = {
+		parent = "dynn_Arryn"
+		instance = { offset = { 0.5 0.0 } scale = { 0.5 0.5 }  }
+	}
+	sub = {
+		parent = "dynn_Velaryon"
+		instance = { offset = { 0.0 0.5 } scale = { 0.5 0.5 }  }
+	}
+}
+
+agoat_rhaenyra_pcoa_t5a1v2 = {
+	sub = {
+		parent = "vanilla_dynn_Targaryen"
+		instance = { offset = { 0.0 0.0 } scale = { 0.5 0.5 }  }
+		instance = { offset = { 0.5 0.5 } scale = { 0.5 0.5 }  }
+	}
+	sub = {
+		parent = "dynn_Arryn"
+		instance = { offset = { 0.5 0.0 } scale = { 0.5 0.5 }  }
+	}
+	sub = {
+		parent = "show_dynn_Velaryon"
+		instance = { offset = { 0.0 0.5 } scale = { 0.5 0.5 }  }
+	}
+}
+
+agoat_rhaenyra_pcoa_t5a1v5 = {
+	sub = {
+		parent = "vanilla_dynn_Targaryen"
+		instance = { offset = { 0.0 0.0 } scale = { 0.5 0.5 }  }
+		instance = { offset = { 0.5 0.5 } scale = { 0.5 0.5 }  }
+	}
+	sub = {
+		parent = "dynn_Arryn"
+		instance = { offset = { 0.5 0.0 } scale = { 0.5 0.5 }  }
+	}
+	sub = {
+		parent = "vanilla_dynn_Velaryon"
+		instance = { offset = { 0.0 0.5 } scale = { 0.5 0.5 }  }
+	}
+}
+
+agoat_rhaenyra_pcoa_t5a2v1 = {
+	sub = {
+		parent = "vanilla_dynn_Targaryen"
+		instance = { offset = { 0.0 0.0 } scale = { 0.5 0.5 }  }
+		instance = { offset = { 0.5 0.5 } scale = { 0.5 0.5 }  }
+	}
+	sub = {
+		parent = "agotp_dynn_Arryn"
+		instance = { offset = { 0.5 0.0 } scale = { 0.5 0.5 }  }
+	}
+	sub = {
+		parent = "dynn_Velaryon"
+		instance = { offset = { 0.0 0.5 } scale = { 0.5 0.5 }  }
+	}
+}
+
+agoat_rhaenyra_pcoa_t5a3v1 = {
+	sub = {
+		parent = "vanilla_dynn_Targaryen"
+		instance = { offset = { 0.0 0.0 } scale = { 0.5 0.5 }  }
+		instance = { offset = { 0.5 0.5 } scale = { 0.5 0.5 }  }
+	}
+	sub = {
+		parent = "show_dynn_Arryn"
+		instance = { offset = { 0.5 0.0 } scale = { 0.5 0.5 }  }
+	}
+	sub = {
+		parent = "dynn_Velaryon"
+		instance = { offset = { 0.0 0.5 } scale = { 0.5 0.5 }  }
+	}
+}
+
+agoat_rhaenyra_pcoa_t5a5v1 = {
+	sub = {
+		parent = "vanilla_dynn_Targaryen"
+		instance = { offset = { 0.0 0.0 } scale = { 0.5 0.5 }  }
+		instance = { offset = { 0.5 0.5 } scale = { 0.5 0.5 }  }
+	}
+	sub = {
+		parent = "vanilla_dynn_Arryn"
+		instance = { offset = { 0.5 0.0 } scale = { 0.5 0.5 }  }
+	}
+	sub = {
+		parent = "dynn_Velaryon"
+		instance = { offset = { 0.0 0.5 } scale = { 0.5 0.5 }  }
+	}
+}
+
+rhaenyra_personal_coa_t1a1v2 = {
+	sub = {
+		parent = "vanilla_dynn_Targaryen"
+		instance = { offset = { 0.0 0.0 } scale = { 0.5 0.5 }  }
+		instance = { offset = { 0.5 0.5 } scale = { 0.5 0.5 }  }
+	}
+	sub = {
+		parent = "vanilla_dynn_Arryn"
+		instance = { offset = { 0.5 0.0 } scale = { 0.5 0.5 }  }
+	}
+	sub = {
+		parent = "show_dynn_Velaryon"
+		instance = { offset = { 0.0 0.5 } scale = { 0.5 0.5 }  }
+	}
+}

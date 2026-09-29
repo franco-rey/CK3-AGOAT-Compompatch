@@ -1,0 +1,696 @@
+﻿agoat_nw_return_to_ranging_effect = {
+	if = {
+		limit = { agoat_nw_player_brother_left_with_nothing_trigger = { TITLE = $TITLE$ } }
+		save_scope_as = agoat_nw_brother
+		ln_mark_ranger_titles_effect = yes
+		agoat_nw_grant_a_ranging_company_effect = yes
+		if = {
+			limit = { any_held_title = { has_variable = ln_is_a_ranger_title } }
+			if = {
+				limit = { NOT = { has_government = ln_ranger_government } }
+				change_government = ln_ranger_government
+			}
+			add_character_flag = ln_rode_out
+			trigger_event = {
+				id = agoat_nw_ranging.0001
+				days = $DAYS$
+			}
+		}
+	}
+}
+
+agoat_nw_grant_a_ranging_company_effect = {
+	if = {
+		limit = { NOT = { exists = title:d_ln_ranger_01.holder } }
+		get_title = title:d_ln_ranger_01
+	}
+	else_if = {
+		limit = { NOT = { exists = title:d_ln_ranger_02.holder } }
+		get_title = title:d_ln_ranger_02
+	}
+	else_if = {
+		limit = { NOT = { exists = title:d_ln_ranger_03.holder } }
+		get_title = title:d_ln_ranger_03
+	}
+	else_if = {
+		limit = { NOT = { exists = title:d_ln_ranger_04.holder } }
+		get_title = title:d_ln_ranger_04
+	}
+	else_if = {
+		limit = { NOT = { exists = title:d_ln_ranger_05.holder } }
+		get_title = title:d_ln_ranger_05
+	}
+	else_if = {
+		limit = { NOT = { exists = title:d_ln_ranger_06.holder } }
+		get_title = title:d_ln_ranger_06
+	}
+	else_if = {
+		limit = { NOT = { exists = title:d_ln_ranger_07.holder } }
+		get_title = title:d_ln_ranger_07
+	}
+	else_if = {
+		limit = { NOT = { exists = title:d_ln_ranger_08.holder } }
+		get_title = title:d_ln_ranger_08
+	}
+	else_if = {
+		limit = { title:d_ln_ranger_01.holder ?= { is_ai = yes } }
+		agoat_nw_take_over_company_effect = { COMPANY = title:d_ln_ranger_01 }
+	}
+	else_if = {
+		limit = { title:d_ln_ranger_02.holder ?= { is_ai = yes } }
+		agoat_nw_take_over_company_effect = { COMPANY = title:d_ln_ranger_02 }
+	}
+	else_if = {
+		limit = { title:d_ln_ranger_03.holder ?= { is_ai = yes } }
+		agoat_nw_take_over_company_effect = { COMPANY = title:d_ln_ranger_03 }
+	}
+	else_if = {
+		limit = { title:d_ln_ranger_04.holder ?= { is_ai = yes } }
+		agoat_nw_take_over_company_effect = { COMPANY = title:d_ln_ranger_04 }
+	}
+	else_if = {
+		limit = { title:d_ln_ranger_05.holder ?= { is_ai = yes } }
+		agoat_nw_take_over_company_effect = { COMPANY = title:d_ln_ranger_05 }
+	}
+	else_if = {
+		limit = { title:d_ln_ranger_06.holder ?= { is_ai = yes } }
+		agoat_nw_take_over_company_effect = { COMPANY = title:d_ln_ranger_06 }
+	}
+	else_if = {
+		limit = { title:d_ln_ranger_07.holder ?= { is_ai = yes } }
+		agoat_nw_take_over_company_effect = { COMPANY = title:d_ln_ranger_07 }
+	}
+	else_if = {
+		limit = { title:d_ln_ranger_08.holder ?= { is_ai = yes } }
+		agoat_nw_take_over_company_effect = { COMPANY = title:d_ln_ranger_08 }
+	}
+}
+
+agoat_nw_take_over_company_effect = {
+	$COMPANY$.holder ?= { save_scope_as = agoat_nw_old_captain }
+	create_title_and_vassal_change = {
+		type = granted
+		save_scope_as = agoat_nw_handover
+		add_claim_on_loss = no
+	}
+	$COMPANY$ = {
+		change_title_holder = {
+			holder = scope:agoat_nw_brother
+			change = scope:agoat_nw_handover
+		}
+	}
+	resolve_title_and_vassal_change = scope:agoat_nw_handover
+	if = {
+		limit = {
+			exists = scope:agoat_nw_old_captain
+			scope:agoat_nw_old_captain = {
+				is_alive = yes
+				is_ruler = no
+			}
+			exists = title:k_the_wall.holder
+			NOT = { scope:agoat_nw_old_captain = { is_courtier_of = title:k_the_wall.holder } }
+		}
+		title:k_the_wall.holder = { add_courtier = scope:agoat_nw_old_captain }
+	}
+}
+
+agot_on_eastwatch_court_position_revoked = {
+	scope:employee = { agoat_nw_return_to_ranging_effect = { TITLE = title:c_eastwatch DAYS = 2 } }
+	scope:liege = {
+		trigger_event = {
+			id = agot_nights_watch.0006
+			days = 1
+		}
+	}
+}
+
+agot_on_shadowtower_court_position_revoked = {
+	scope:employee = { agoat_nw_return_to_ranging_effect = { TITLE = title:c_the_shadow_tower DAYS = 2 } }
+	scope:liege = {
+		trigger_event = {
+			id = agot_nights_watch.0007
+			days = 1
+		}
+	}
+}
+
+agot_on_nightfort_court_position_revoked = {
+	scope:employee = { agoat_nw_return_to_ranging_effect = { TITLE = title:c_the_nightfort DAYS = 2 } }
+	scope:liege = {
+		trigger_event = {
+			id = agot_nights_watch.0008
+			days = 1
+		}
+	}
+}
+
+agot_on_icemark_court_position_revoked = {
+	scope:employee = { agoat_nw_return_to_ranging_effect = { TITLE = title:b_icemark DAYS = 2 } }
+	scope:liege = {
+		trigger_event = {
+			id = agot_nights_watch.0009
+			days = 1
+		}
+	}
+}
+
+agot_on_deep_lake_court_position_revoked = {
+	scope:employee = { agoat_nw_return_to_ranging_effect = { TITLE = title:b_deep_lake DAYS = 2 } }
+	scope:liege = {
+		trigger_event = {
+			id = agot_nights_watch.0010
+			days = 1
+		}
+	}
+}
+
+agot_on_queengate_court_position_revoked = {
+	scope:employee = { agoat_nw_return_to_ranging_effect = { TITLE = title:b_queensgate DAYS = 2 } }
+	scope:liege = {
+		trigger_event = {
+			id = agot_nights_watch.0011
+			days = 1
+		}
+	}
+}
+
+agot_on_oakenshield_court_position_revoked = {
+	scope:employee = { agoat_nw_return_to_ranging_effect = { TITLE = title:b_oakenshield DAYS = 2 } }
+	scope:liege = {
+		trigger_event = {
+			id = agot_nights_watch.0012
+			days = 1
+		}
+	}
+}
+
+agot_on_woodwatch_court_position_revoked = {
+	scope:employee = { agoat_nw_return_to_ranging_effect = { TITLE = title:b_woodswatch_by_the_pool DAYS = 2 } }
+	scope:liege = {
+		trigger_event = {
+			id = agot_nights_watch.0013
+			days = 1
+		}
+	}
+}
+
+agot_on_westwatch_court_position_revoked = {
+	scope:employee = { agoat_nw_return_to_ranging_effect = { TITLE = title:b_westwatch_by_the_bridge DAYS = 2 } }
+	scope:liege = {
+		trigger_event = {
+			id = agot_nights_watch.0014
+			days = 1
+		}
+	}
+}
+
+agot_on_sentinel_court_position_revoked = {
+	scope:employee = { agoat_nw_return_to_ranging_effect = { TITLE = title:b_sentinel_stand DAYS = 2 } }
+	scope:liege = {
+		trigger_event = {
+			id = agot_nights_watch.0015
+			days = 1
+		}
+	}
+}
+
+agot_on_greyguard_court_position_revoked = {
+	scope:employee = { agoat_nw_return_to_ranging_effect = { TITLE = title:b_greyguard DAYS = 2 } }
+	scope:liege = {
+		trigger_event = {
+			id = agot_nights_watch.0016
+			days = 1
+		}
+	}
+}
+
+agot_on_stonedoor_court_position_revoked = {
+	scope:employee = { agoat_nw_return_to_ranging_effect = { TITLE = title:b_stonedoor DAYS = 2 } }
+	scope:liege = {
+		trigger_event = {
+			id = agot_nights_watch.0017
+			days = 1
+		}
+	}
+}
+
+agot_on_hoarfrost_court_position_revoked = {
+	scope:employee = { agoat_nw_return_to_ranging_effect = { TITLE = title:b_hoarfrost_hill DAYS = 2 } }
+	scope:liege = {
+		trigger_event = {
+			id = agot_nights_watch.0018
+			days = 1
+		}
+	}
+}
+
+agot_on_stable_court_position_revoked = {
+	scope:employee = { agoat_nw_return_to_ranging_effect = { TITLE = title:b_sable_hall DAYS = 2 } }
+	scope:liege = {
+		trigger_event = {
+			id = agot_nights_watch.0019
+			days = 1
+		}
+	}
+}
+
+agot_on_rimegate_court_position_revoked = {
+	scope:employee = { agoat_nw_return_to_ranging_effect = { TITLE = title:b_rimegate DAYS = 2 } }
+	scope:liege = {
+		trigger_event = {
+			id = agot_nights_watch.0020
+			days = 1
+		}
+	}
+}
+
+agot_on_longbarrow_court_position_revoked = {
+	scope:employee = { agoat_nw_return_to_ranging_effect = { TITLE = title:b_long_barrow DAYS = 2 } }
+	scope:liege = {
+		trigger_event = {
+			id = agot_nights_watch.0021
+			days = 1
+		}
+	}
+}
+
+agot_on_torches_court_position_revoked = {
+	scope:employee = { agoat_nw_return_to_ranging_effect = { TITLE = title:b_the_torches DAYS = 2 } }
+	scope:liege = {
+		trigger_event = {
+			id = agot_nights_watch.0022
+			days = 1
+		}
+	}
+}
+
+agot_on_greenguard_court_position_revoked = {
+	scope:employee = { agoat_nw_return_to_ranging_effect = { TITLE = title:b_greenguard DAYS = 2 } }
+	scope:liege = {
+		trigger_event = {
+			id = agot_nights_watch.0023
+			days = 1
+		}
+	}
+}
+
+revoke_title_interaction_effect = {
+	if = {
+		limit = {
+			scope:recipient = {
+				faith = scope:actor.faith
+				government_has_flag = government_is_theocracy
+			}
+			scope:actor != scope:actor.faith.religious_head #No loss if actor is head of faith themselves
+		}
+		scope:actor = {
+			add_piety = major_piety_loss
+		}
+		if = {
+			limit = {
+				exists = scope:actor.faith.religious_head
+			}
+			scope:actor.faith.religious_head = {
+				add_opinion = {
+					target = scope:actor
+					modifier = impious_opinion
+					opinion = -20
+				}
+			}
+		}
+	}
+	if = {
+		limit = {
+			exists = scope:actor.faith.religious_head
+			scope:recipient = scope:actor.faith.religious_head
+		}
+		scope:actor = {
+			add_piety_level = -2
+		}
+	}
+	if = {
+		limit = {
+			scope:landed_title.tier != tier_barony
+			scope:recipient = {
+				NOT = { government_has_flag = government_is_herder }
+			}
+		}
+		scope:actor = {
+			revocation_tyranny_effect = { VASSAL = scope:recipient }
+			title_revocation_stress_effect = { VASSAL = scope:recipient }
+			consume_revoke_title_reason = scope:recipient
+		}
+		scope:recipient = {
+			if = {
+				limit = {
+					NOT = { exists = scope:administrative_revocation }
+					is_landed_or_landless_administrative = no
+				}
+				add_pressed_claim = scope:landed_title
+			}
+			if = {
+				limit = {
+					is_a_faction_member = yes
+				}
+				add_joined_faction_discontent = 25
+			}
+		}
+
+		if = {
+			limit = { scope:landed_title.tier = tier_county }
+			scope:landed_title = {
+				change_county_control = {
+					value = -30
+					if = {
+						limit = {
+							scope:recipient.culture != scope:actor.culture
+							scope:recipient.culture = this.culture
+						}
+						multiply = 1.5
+					}
+					if = {
+						limit = {
+							scope:recipient.faith != scope:actor.faith
+							scope:recipient.faith = this.faith
+						}
+						multiply = 1.5
+					}
+				}
+			}
+		}
+
+		if = {
+			limit = {
+				scope:actor.culture = { has_cultural_parameter = penalty_for_revoking_titles_from_house_members }
+				exists = scope:actor.house
+				exists = scope:recipient.house
+				scope:actor.house = scope:recipient.house
+			}
+			if = {
+				limit = {
+					scope:landed_title.tier = tier_county
+				}
+				scope:actor = {
+					add_prestige = medium_prestige_loss
+				}
+			}
+			else_if = {
+				limit = {
+					scope:landed_title.tier = tier_duchy
+				}
+				scope:actor = {
+					add_prestige = major_prestige_loss
+				}
+			}
+			else_if = { #Empire
+				limit = {
+					scope:landed_title.tier = tier_kingdom
+				}
+				scope:actor = {
+					add_prestige = massive_prestige_loss
+				}
+			}
+		}
+
+		if = {
+			limit = {
+				scope:actor.culture = { has_cultural_parameter = penalty_for_revoking_titles_from_close_family }
+				exists = scope:actor
+				exists = scope:recipient
+				scope:actor = {
+					is_close_family_of = scope:recipient
+				}
+			}
+			if = {
+				limit = {
+					scope:landed_title.tier = tier_county
+				}
+				scope:actor = {
+					add_prestige = medium_prestige_loss
+				}
+			}
+			else_if = {
+				limit = {
+					scope:landed_title.tier = tier_duchy
+				}
+				scope:actor = {
+					add_prestige = major_prestige_loss
+				}
+			}
+			else_if = { #Empire
+				limit = {
+					scope:landed_title.tier = tier_kingdom
+				}
+				scope:actor = {
+					add_prestige = massive_prestige_loss
+				}
+			}
+		}
+
+		if = {
+			limit = {
+				scope:actor.culture = { has_cultural_parameter = piety_penalty_for_revoking_titles_from_house_members }
+				exists = scope:actor.house
+				exists = scope:recipient.house
+				scope:actor.house = scope:recipient.house
+			}
+			if = {
+				limit = {
+					scope:landed_title.tier = tier_county
+				}
+				scope:actor = {
+					add_piety = medium_piety_loss
+				}
+			}
+			else_if = {
+				limit = {
+					scope:landed_title.tier = tier_duchy
+				}
+				scope:actor = {
+					add_piety = major_piety_loss
+				}
+			}
+			else = { #Can't revoke empire titles anyway
+				limit = {
+					scope:landed_title.tier = tier_kingdom
+				}
+				scope:actor = {
+					add_piety = massive_piety_loss
+				}
+			}
+		}
+
+		# If we're a clan this interaction affects unity
+		if = {
+			limit = {
+				scope:actor = { government_has_flag = government_is_clan }
+				scope:recipient = { government_has_flag = government_is_clan }
+				exists = scope:actor.house
+				exists = scope:recipient.house
+				scope:actor.house = scope:recipient.house
+				scope:landed_title.tier >= tier_county
+			}
+			scope:actor.house = {
+				if = {
+					limit = {
+						scope:landed_title.tier = tier_county
+					}
+					save_scope_value_as = {
+						name = revoke_title_unity_loss
+						value = minor_unity_loss
+					}
+				}
+				if = {
+					limit = {
+						scope:landed_title.tier = tier_duchy
+					}
+					save_scope_value_as = {
+						name = revoke_title_unity_loss
+						value = medium_unity_loss
+					}
+				}
+				else_if = {
+					limit = {
+						scope:landed_title.tier = tier_kingdom
+					}
+					save_scope_value_as = {
+						name = revoke_title_unity_loss
+						value = major_unity_loss
+					}
+				}
+				if = {
+					limit = { exists = scope:revoke_title_unity_loss }
+					add_clan_unity_interaction_effect = {
+						CHARACTER = scope:actor
+						TARGET = scope:recipient
+						VALUE = scope:revoke_title_unity_loss
+						DESC = clan_unity_title_revoked.desc
+						REVERSE_NON_HOUSE_TARGET = no
+					}
+				}
+			}
+		}
+
+		# EP3 - Become Adventurer - Revocation
+		scope:recipient = {
+			if = {
+				limit = {
+					has_ep3_dlc_trigger = yes
+					is_valid_for_laampdom = yes
+				}
+				# Plus for our memory variable.
+				clear_saved_scope = lost_primary_title
+				primary_title = { save_scope_as = lost_primary_title }
+				custom_tooltip = {
+					text = laamp_may_become_adventurer_tt
+					trigger_event = {
+						id = ep3_laamps.0041
+						delayed = yes
+					}
+				}
+			}
+		}
+	}
+	else = {
+		if = {
+			limit = {
+				NOT = { exists = scope:revoke_title_interaction }
+			}
+			custom_tooltip = IS_ALLOWED_TO_REVOKE_TITLE_BARONY_DESC
+			scope:actor = {
+				if = {
+					limit = {
+						any_vassal = {
+							vassal_stance = barons_and_minor_landholders
+						}
+					}
+					custom_tooltip = barons_and_minor_landholders_disapproves_baron_revocations
+					hidden_effect = {
+						every_vassal = {
+							vassal_stance = barons_and_minor_landholders
+							add_opinion = {
+								target = scope:actor
+								modifier = barons_and_minor_landholders_disapproves_baron_revocations_opinion
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+
+	scope:actor = {
+		if = {
+			limit = {
+				scope:hook = yes
+				scope:recipient = { is_alive = yes }
+			}
+			use_hook = scope:recipient
+		}
+		if = {
+			limit = {
+				scope:hook_liege ?= yes
+				scope:intermediary = { is_alive = yes }
+			}
+			use_hook = scope:intermediary
+		}
+	}
+	if = {
+		limit = {
+			scope:recipient = { government_has_flag = government_is_herder }
+		}
+		scope:recipient = {
+			add_opinion = {
+				target = scope:actor
+				opinion = -10 # Herders don't care much
+				modifier = revoked_title
+			}
+		}
+	}
+	else = {
+		scope:recipient = {
+			add_opinion = {
+				target = scope:actor
+				modifier = revoked_title
+			}
+
+			#AGOT Added; ESR
+			esr_revoke_effect = yes
+
+			if = { #If they recently imprisoned you, or asked for your excommunication, they become your rival
+				limit = {
+					OR = {
+						has_opinion_modifier = {
+							target = scope:actor
+							modifier = released_from_prison
+						}
+						AND = {
+							exists = var:requested_my_excommunication
+							var:requested_my_excommunication = scope:actor
+						}
+					}
+					NOT = {
+						has_relation_rival = scope:actor
+					}
+				}
+				if = {
+					limit = {
+						has_relation_potential_rival = scope:actor
+					}
+					remove_relation_potential_rival = scope:actor
+				}
+				set_relation_rival = {
+					target = scope:actor
+					reason = rival_revoked_title_reversed
+				}
+			}
+			else = {
+				progress_towards_rival_effect = {
+					CHARACTER = scope:actor
+					REASON = rival_revoked_title_progress
+					OPINION = 0
+				}
+			}
+			# HOUSE RELATION
+			house ?= {
+				if = {
+					limit = { NOT = { this = scope:actor.house } }
+					change_house_relation_effect = {
+						HOUSE = scope:actor.house
+						VALUE = house_relation_damage_medium_value
+						REASON = title_revocation
+						CHAR = scope:actor
+						TARGET_CHAR = scope:recipient
+						TITLE = scope:landed_title
+					}
+				}
+			}
+		}
+	}
+
+	# Penalty for taking the Party Baron's last title. I mean, come on...
+	if = {
+		limit = {
+			scope:recipient = {
+				has_character_flag = is_party_baron
+				NOT = {
+					any_held_title = {
+						this != scope:landed_title
+					}
+				}
+			}
+		}
+		scope:actor = {
+			add_character_modifier = {
+				modifier = party_baron_ended_the_party_modifier
+				years = 10
+			}
+			random_owned_story = {
+				type = story_party_baron
+				end_story = yes
+			}
+		}
+	}
+	scope:recipient = { agoat_nw_return_to_ranging_effect = { TITLE = scope:landed_title DAYS = 1 } }
+}

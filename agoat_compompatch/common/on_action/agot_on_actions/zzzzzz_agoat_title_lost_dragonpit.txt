@@ -1,0 +1,26 @@
+﻿agot_on_title_lost_dragonpit = {
+	trigger = {
+		scope:title.tier = tier_county
+		scope:title = {
+			any_county_province = {
+				OR = {
+					AND = {
+						has_holding_type = castle_holding
+						has_building_or_higher = generic_dragon_pit_01
+					}
+					has_building_or_higher = dragonpit_01
+					has_building_or_higher = dragonpit_ruins_03
+					has_building = agot_dragonmont_01
+				}
+			}
+		}
+		scope:previous_holder = {
+			is_alive = yes
+			exists = var:current_dragon
+			var:current_dragon ?= {
+				has_character_flag = dragon_put_in_different_pit
+				scope:title = var:pitted_dragon_location
+			}
+		}
+	}
+}

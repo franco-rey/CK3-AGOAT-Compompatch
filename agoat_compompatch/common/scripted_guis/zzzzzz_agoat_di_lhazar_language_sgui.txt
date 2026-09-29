@@ -1,0 +1,11 @@
+﻿DI_language_agot_lhazaar_sgui = {
+    scope = character # Player Character
+
+    effect = {
+        save_scope_as = player_character
+
+        var:DI_innovation_selected_culture = {
+            set_culture_pillar = language_agot_lhazar
+        }
+    }
+}

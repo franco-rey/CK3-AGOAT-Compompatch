@@ -1,0 +1,78 @@
+﻿courtier_or_guest_claim_trigger = {
+	trigger_if = {
+		limit = { exists = $RULER$ }
+	exists = holder
+	NOT = {
+		holder = {
+			OR = {
+				this = $RULER$
+				target_is_liege_or_above = $RULER$
+			}
+		}
+	}
+	}
+	trigger_else = { always = no }
+}
+
+useful_courtier_or_guest_claim_trigger = {
+	trigger_if = {
+		limit = {
+			exists = $RULER$
+			$RULER$ ?= {
+				is_landed = yes
+				exists = capital_province
+			}
+		}
+	courtier_or_guest_claim_trigger = { RULER = $RULER$ }
+	tier < $RULER$.highest_held_title_tier
+	$RULER$ = { is_landed = yes }
+	OR = { #For distance check
+		exists = title_province
+		exists = holder.capital_province
+	}
+
+
+	#The higher tier the ruler has, the longer distance is acceptable
+	#We prefer to measure against the title's province, but if there is none, check its holder
+	trigger_if = {
+		limit = { $RULER$ = { highest_held_title_tier = tier_empire } }
+		trigger_if = {
+			limit = { exists = title_province }
+			title_province = { squared_distance = { target = $RULER$.capital_province value <= squared_distance_almost_massive } }
+		}
+		trigger_else = {
+			holder.capital_province = { squared_distance = { target = $RULER$.capital_province value <= squared_distance_almost_massive } }
+		}
+	}
+	trigger_else_if = {
+		limit = { $RULER$ = { highest_held_title_tier = tier_kingdom } }
+		trigger_if = {
+			limit = { exists = title_province }
+			title_province = { squared_distance = { target = $RULER$.capital_province value <= squared_distance_huge } }
+		}
+		trigger_else = {
+			holder.capital_province = { squared_distance = { target = $RULER$.capital_province value <= squared_distance_huge } }
+		}
+	}
+	trigger_else_if = {
+		limit = { $RULER$ = { highest_held_title_tier = tier_duchy } }
+		trigger_if = {
+			limit = { exists = title_province }
+			title_province = { squared_distance = { target = $RULER$.capital_province value <= squared_distance_large } }
+		}
+		trigger_else = {
+			holder.capital_province = { squared_distance = { target = $RULER$.capital_province value <= squared_distance_large } }
+		}
+	}
+	trigger_else = {
+		trigger_if = {
+			limit = { exists = title_province }
+			title_province = { squared_distance = { target = $RULER$.capital_province value <= squared_distance_medium } }
+		}
+		trigger_else = {
+			holder.capital_province = { squared_distance = { target = $RULER$.capital_province value <= squared_distance_medium } }
+		}
+	}
+	}
+	trigger_else = { always = no }
+}

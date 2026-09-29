@@ -1,87 +1,87 @@
 ﻿e_the_vale = {
 	5800.1.1 = {
-		holder = Arryn_15
+		holder = Arryn_15 	 # Artys I Arryn
 		effect = {
 			set_title_name = e_the_mountain_and_vale
 		}
 	}
 	5823.1.1 = {
-		holder = Arryn_16
+		holder = Arryn_16 		#Osric I
 	}
 	5835.1.1 = {
-		holder = Arryn_18
+		holder = Arryn_18 	 # Alester I
 	}
 	5846.1.1 = {
-		holder = Arryn_20
+		holder = Arryn_20 		#Roland I
 	}
 	5872.1.1 = {
-		holder = Arryn_21
+		holder = Arryn_21 		#Osric II
 	}
 	5894.1.1 = {
-		holder = Arryn_29
+		holder = Arryn_29 		#Osric III
 	}
 	5904.1.1 = {
-		holder = Arryn_30
+		holder = Arryn_30 		#Roland II
 	}
 	5909.1.1 = {
-		holder = Arryn_31
+		holder = Arryn_31 		#Robin
 	}
 	5962.1.1 = {
-		holder = Arryn_121
+		holder = Arryn_121 		#Steffon
 	}
 	5975.1.1 = {
-		holder = Arryn_39
+		holder = Arryn_39 		#Osric IV
 	}
 	5979.1.1 = {
-		holder = Arryn_43
+		holder = Arryn_43 		#Oswell I
 	}
 	6017.1.1 = {
-		holder = Arryn_40
+		holder = Arryn_40 		#Osric V
 	}
 	6200.1.1 = {
-		holder = Arryn_32
+		holder = Arryn_32 		#Hugh
 	}
 	6223.1.1 = {
-		holder = Arryn_33
+		holder = Arryn_33 		#Mathos I
 	}
 	6230.1.1 = {
-		holder = Arryn_34
+		holder = Arryn_34 		#Hugo
 	}
 	6250.1.1 = {
-		holder = Arryn_35
+		holder = Arryn_35 	 # Alester II
 	}
 	6285.1.1 = {
-		holder = Arryn_36
+		holder = Arryn_36 		#Mathos II
 	}
 	6301.1.1 = {
-		holder = Arryn_37
+		holder = Arryn_37 		#Oswell II
 	}
 	6349.1.1 = {
-		holder = Arryn_41
+		holder = Arryn_41 		#Osgood
 	}
 	6420.1.1 = {
-		holder = Arryn_42
+		holder = Arryn_42 		#Oswin
 	}
 	7813.1.1 = {
-		holder = Arryn_45
+		holder = Arryn_45	 # Artys II
 	}
 	7868.1.1 = {
-		holder = Arryn_46
+		holder = Arryn_46		#Rodrik
 	}
 	7880.1.1 = {
-		holder = Arryn_48
+		holder = Arryn_48		#Ronnel I
 	}
 	7931.1.1 = {
-		holder = Arryn_49
+		holder = Arryn_49 	 # Artys III
 	}
 	7965.1.1 = {
-		holder = Arryn_55
+		holder = Arryn_55 		#Oswell II
 	}
 	7990.1.1 = {
-		holder = Arryn_57
+		holder = Arryn_57 		#Joffrey
 	}
 	7995.1.1 = {
-		holder = Arryn_61
+		holder = Arryn_61 #Ronnel Arryn - The Arryn that bent the knee. Last person to wear the Falcon Crown.
 	}
 	8000.12.15 = {
 		liege = h_the_iron_throne
@@ -162,90 +162,90 @@
 }
 
 k_the_vale = {
-	5799.1.1 = {
+	5799.1.1 = { # Robar II Royce
 		holder = Royce_18
 	}
 	5800.1.1 = {
-		holder = Arryn_15
+		holder = Arryn_15 	 # Artys I Arryn
 		liege = e_the_vale
 	}
 	5823.1.1 = {
-		holder = Arryn_16
+		holder = Arryn_16 		#Osric I
 	}
 	5835.1.1 = {
-		holder = Arryn_18
+		holder = Arryn_18 	 # Alester I
 	}
 	5846.1.1 = {
-		holder = Arryn_20
+		holder = Arryn_20 		#Roland I
 	}
 	5872.1.1 = {
-		holder = Arryn_21
+		holder = Arryn_21 		#Osric II
 	}
 	5894.1.1 = {
-		holder = Arryn_29
+		holder = Arryn_29 		#Osric III
 	}
 	5904.1.1 = {
-		holder = Arryn_30
+		holder = Arryn_30 		#Roland II
 	}
 	5909.1.1 = {
-		holder = Arryn_31
+		holder = Arryn_31 		#Robin
 	}
 	5962.1.1 = {
-		holder = Arryn_121
+		holder = Arryn_121 		#Steffon
 	}
 	5975.1.1 = {
-		holder = Arryn_39
+		holder = Arryn_39 		#Osric IV
 	}
 	5979.1.1 = {
-		holder = Arryn_43
+		holder = Arryn_43 		#Oswell I
 	}
 	6017.1.1 = {
-		holder = Arryn_40
+		holder = Arryn_40 		#Osric V
 	}
 	6200.1.1 = {
-		holder = Arryn_32
+		holder = Arryn_32 		#Hugh
 	}
 	6223.1.1 = {
-		holder = Arryn_33
+		holder = Arryn_33 		#Mathos I
 	}
 	6230.1.1 = {
-		holder = Arryn_34
+		holder = Arryn_34 		#Hugo
 	}
 	6250.1.1 = {
-		holder = Arryn_35
+		holder = Arryn_35 	 # Alester II
 	}
 	6285.1.1 = {
-		holder = Arryn_36
+		holder = Arryn_36 		#Mathos II
 	}
 	6301.1.1 = {
-		holder = Arryn_37
+		holder = Arryn_37 		#Oswell II
 	}
 	6349.1.1 = {
-		holder = Arryn_41
+		holder = Arryn_41 		#Osgood
 	}
 	6420.1.1 = {
-		holder = Arryn_42
+		holder = Arryn_42 		#Oswin
 	}
 	7813.1.1 = {
-		holder = Arryn_45
+		holder = Arryn_45	 # Artys II
 	}
 	7868.1.1 = {
-		holder = Arryn_46
+		holder = Arryn_46		#Rodrik
 	}
 	7880.1.1 = {
-		holder = Arryn_48
+		holder = Arryn_48		#Ronnel I
 	}
 	7931.1.1 = {
-		holder = Arryn_49
+		holder = Arryn_49 	 # Artys III
 	}
 	7965.1.1 = {
-		holder = Arryn_55
+		holder = Arryn_55 		#Oswell II
 	}
 	7990.1.1 = {
-		holder = Arryn_57
+		holder = Arryn_57 		#Joffrey
 	}
 	7995.1.1 = {
-		holder = Arryn_61
+		holder = Arryn_61 #Ronnel Arryn - The Arryn that bent the knee. Last person to wear the Falcon Crown.
 	}
 	8037.9.9 = {
 		holder = Arryn_62
@@ -295,65 +295,65 @@ d_the_giants_lance = {
 		holder = 0
 	}
 	5800.1.1 = {
-		holder = Arryn_15
+		holder = Arryn_15 	 # Artys I Arryn
 		liege = e_the_vale
 	}
 	5823.1.1 = {
-		holder = Arryn_16
+		holder = Arryn_16 		#Osric I
 	}
 	5835.1.1 = {
-		holder = Arryn_18
+		holder = Arryn_18 	 # Alester I
 	}
 	5846.1.1 = {
-		holder = Arryn_20
+		holder = Arryn_20 		#Roland I
 	}
 	5872.1.1 = {
-		holder = Arryn_21
+		holder = Arryn_21 		#Osric II
 	}
 	5894.1.1 = {
-		holder = Arryn_29
+		holder = Arryn_29 		#Osric III
 	}
 	5904.1.1 = {
-		holder = Arryn_30
+		holder = Arryn_30 		#Roland II
 	}
 	5909.1.1 = {
-		holder = Arryn_31
+		holder = Arryn_31 		#Robin
 	}
 	5962.1.1 = {
-		holder = Arryn_121
+		holder = Arryn_121 		#Steffon
 	}
 	5975.1.1 = {
-		holder = Arryn_39
+		holder = Arryn_39 		#Osric IV
 	}
 	5979.1.1 = {
-		holder = Arryn_43
+		holder = Arryn_43 		#Oswell I
 	}
 	6017.1.1 = {
-		holder = Arryn_40
+		holder = Arryn_40 		#Osric V
 	}
 	6200.1.1 = {
-		holder = Arryn_32
+		holder = Arryn_32 		#Hugh
 	}
 	6223.1.1 = {
-		holder = Arryn_33
+		holder = Arryn_33 		#Mathos I
 	}
 	6230.1.1 = {
-		holder = Arryn_34
+		holder = Arryn_34 		#Hugo
 	}
 	6250.1.1 = {
-		holder = Arryn_35
+		holder = Arryn_35 	 # Alester II
 	}
 	6285.1.1 = {
-		holder = Arryn_36
+		holder = Arryn_36 		#Mathos II
 	}
 	6301.1.1 = {
-		holder = Arryn_37
+		holder = Arryn_37 		#Oswell II
 	}
 	6349.1.1 = {
-		holder = Arryn_41
+		holder = Arryn_41 		#Osgood
 	}
 	6420.1.1 = {
-		holder = Arryn_42
+		holder = Arryn_42 		#Oswin
 	}
 	7813.1.1 = {
 		holder = Arryn_45
@@ -422,64 +422,64 @@ c_the_eyrie = {
 		holder = Griffin_1
 	}
 	5800.1.1 = {
-		holder = Arryn_15
+		holder = Arryn_15 	 # Artys I Arryn
 	}
 	5823.1.1 = {
-		holder = Arryn_16
+		holder = Arryn_16 		#Osric I
 	}
 	5835.1.1 = {
-		holder = Arryn_18
+		holder = Arryn_18 	 # Alester I
 	}
 	5846.1.1 = {
-		holder = Arryn_20
+		holder = Arryn_20 		#Roland I
 	}
 	5872.1.1 = {
-		holder = Arryn_21
+		holder = Arryn_21 		#Osric II
 	}
 	5894.1.1 = {
-		holder = Arryn_29
+		holder = Arryn_29 		#Osric III
 	}
 	5904.1.1 = {
-		holder = Arryn_30
+		holder = Arryn_30 		#Roland II
 	}
 	5909.1.1 = {
-		holder = Arryn_31
+		holder = Arryn_31 		#Robin
 	}
 	5962.1.1 = {
-		holder = Arryn_121
+		holder = Arryn_121 		#Steffon
 	}
 	5975.1.1 = {
-		holder = Arryn_39
+		holder = Arryn_39 		#Osric IV
 	}
 	5979.1.1 = {
-		holder = Arryn_43
+		holder = Arryn_43 		#Oswell I
 	}
 	6017.1.1 = {
-		holder = Arryn_40
+		holder = Arryn_40 		#Osric V
 	}
 	6200.1.1 = {
-		holder = Arryn_32
+		holder = Arryn_32 		#Hugh
 	}
 	6223.1.1 = {
-		holder = Arryn_33
+		holder = Arryn_33 		#Mathos I
 	}
 	6230.1.1 = {
-		holder = Arryn_34
+		holder = Arryn_34 		#Hugo
 	}
 	6250.1.1 = {
-		holder = Arryn_35
+		holder = Arryn_35 	 # Alester II
 	}
 	6285.1.1 = {
-		holder = Arryn_36
+		holder = Arryn_36 		#Mathos II
 	}
 	6301.1.1 = {
-		holder = Arryn_37
+		holder = Arryn_37 		#Oswell II
 	}
 	6349.1.1 = {
-		holder = Arryn_41
+		holder = Arryn_41 		#Osgood
 	}
 	6420.1.1 = {
-		holder = Arryn_42
+		holder = Arryn_42 		#Oswin
 	}
 	7813.1.1 = {
 		holder = Arryn_45
@@ -607,64 +607,64 @@ c_godsroost = {
 		holder = Griffin_1
 	}
 	5800.1.1 = {
-		holder = Arryn_15
+		holder = Arryn_15 	 # Artys I Arryn
 	}
 	5823.1.1 = {
-		holder = Arryn_16
+		holder = Arryn_16 		#Osric I
 	}
 	5835.1.1 = {
-		holder = Arryn_18
+		holder = Arryn_18 	 # Alester I
 	}
 	5846.1.1 = {
-		holder = Arryn_20
+		holder = Arryn_20 		#Roland I
 	}
 	5872.1.1 = {
-		holder = Arryn_21
+		holder = Arryn_21 		#Osric II
 	}
 	5894.1.1 = {
-		holder = Arryn_29
+		holder = Arryn_29 		#Osric III
 	}
 	5904.1.1 = {
-		holder = Arryn_30
+		holder = Arryn_30 		#Roland II
 	}
 	5909.1.1 = {
-		holder = Arryn_31
+		holder = Arryn_31 		#Robin
 	}
 	5962.1.1 = {
-		holder = Arryn_121
+		holder = Arryn_121 		#Steffon
 	}
 	5975.1.1 = {
-		holder = Arryn_39
+		holder = Arryn_39 		#Osric IV
 	}
 	5979.1.1 = {
-		holder = Arryn_43
+		holder = Arryn_43 		#Oswell I
 	}
 	6017.1.1 = {
-		holder = Arryn_40
+		holder = Arryn_40 		#Osric V
 	}
 	6200.1.1 = {
-		holder = Arryn_32
+		holder = Arryn_32 		#Hugh
 	}
 	6223.1.1 = {
-		holder = Arryn_33
+		holder = Arryn_33 		#Mathos I
 	}
 	6230.1.1 = {
-		holder = Arryn_34
+		holder = Arryn_34 		#Hugo
 	}
 	6250.1.1 = {
-		holder = Arryn_35
+		holder = Arryn_35 	 # Alester II
 	}
 	6285.1.1 = {
-		holder = Arryn_36
+		holder = Arryn_36 		#Mathos II
 	}
 	6301.1.1 = {
-		holder = Arryn_37
+		holder = Arryn_37 		#Oswell II
 	}
 	6349.1.1 = {
-		holder = Arryn_41
+		holder = Arryn_41 		#Osgood
 	}
 	6420.1.1 = {
-		holder = Arryn_42
+		holder = Arryn_42 		#Oswin
 	}
 	7813.1.1 = {
 		holder = Arryn_45
@@ -725,64 +725,64 @@ c_moongates = {
 		holder = Griffin_1
 	}
 	5800.1.1 = {
-		holder = Arryn_15
+		holder = Arryn_15 	 # Artys I Arryn
 	}
 	5823.1.1 = {
-		holder = Arryn_16
+		holder = Arryn_16 		#Osric I
 	}
 	5835.1.1 = {
-		holder = Arryn_18
+		holder = Arryn_18 	 # Alester I
 	}
 	5846.1.1 = {
-		holder = Arryn_20
+		holder = Arryn_20 		#Roland I
 	}
 	5872.1.1 = {
-		holder = Arryn_21
+		holder = Arryn_21 		#Osric II
 	}
 	5894.1.1 = {
-		holder = Arryn_29
+		holder = Arryn_29 		#Osric III
 	}
 	5904.1.1 = {
-		holder = Arryn_30
+		holder = Arryn_30 		#Roland II
 	}
 	5909.1.1 = {
-		holder = Arryn_31
+		holder = Arryn_31 		#Robin
 	}
 	5962.1.1 = {
-		holder = Arryn_121
+		holder = Arryn_121 		#Steffon
 	}
 	5975.1.1 = {
-		holder = Arryn_39
+		holder = Arryn_39 		#Osric IV
 	}
 	5979.1.1 = {
-		holder = Arryn_43
+		holder = Arryn_43 		#Oswell I
 	}
 	6017.1.1 = {
-		holder = Arryn_40
+		holder = Arryn_40 		#Osric V
 	}
 	6200.1.1 = {
-		holder = Arryn_32
+		holder = Arryn_32 		#Hugh
 	}
 	6223.1.1 = {
-		holder = Arryn_33
+		holder = Arryn_33 		#Mathos I
 	}
 	6230.1.1 = {
-		holder = Arryn_34
+		holder = Arryn_34 		#Hugo
 	}
 	6250.1.1 = {
-		holder = Arryn_35
+		holder = Arryn_35 	 # Alester II
 	}
 	6285.1.1 = {
-		holder = Arryn_36
+		holder = Arryn_36 		#Mathos II
 	}
 	6301.1.1 = {
-		holder = Arryn_37
+		holder = Arryn_37 		#Oswell II
 	}
 	6349.1.1 = {
-		holder = Arryn_41
+		holder = Arryn_41 		#Osgood
 	}
 	6420.1.1 = {
-		holder = Arryn_42
+		holder = Arryn_42 		#Oswin
 	}
 	7813.1.1 = {
 		holder = Arryn_45
@@ -918,64 +918,64 @@ c_the_bloody_gate = {
 		liege = d_the_giants_lance
 	}
 	5800.1.1 = {
-		holder = Arryn_15
+		holder = Arryn_15 	 # Artys I Arryn
 	}
 	5823.1.1 = {
-		holder = Arryn_16
+		holder = Arryn_16 		#Osric I
 	}
 	5835.1.1 = {
-		holder = Arryn_18
+		holder = Arryn_18 	 # Alester I
 	}
 	5846.1.1 = {
-		holder = Arryn_20
+		holder = Arryn_20 		#Roland I
 	}
 	5872.1.1 = {
-		holder = Arryn_21
+		holder = Arryn_21 		#Osric II
 	}
 	5894.1.1 = {
-		holder = Arryn_29
+		holder = Arryn_29 		#Osric III
 	}
 	5904.1.1 = {
-		holder = Arryn_30
+		holder = Arryn_30 		#Roland II
 	}
 	5909.1.1 = {
-		holder = Arryn_31
+		holder = Arryn_31 		#Robin
 	}
 	5962.1.1 = {
-		holder = Arryn_121
+		holder = Arryn_121 		#Steffon
 	}
 	5975.1.1 = {
-		holder = Arryn_39
+		holder = Arryn_39 		#Osric IV
 	}
 	5979.1.1 = {
-		holder = Arryn_43
+		holder = Arryn_43 		#Oswell I
 	}
 	6017.1.1 = {
-		holder = Arryn_40
+		holder = Arryn_40 		#Osric V
 	}
 	6200.1.1 = {
-		holder = Arryn_32
+		holder = Arryn_32 		#Hugh
 	}
 	6223.1.1 = {
-		holder = Arryn_33
+		holder = Arryn_33 		#Mathos I
 	}
 	6230.1.1 = {
-		holder = Arryn_34
+		holder = Arryn_34 		#Hugo
 	}
 	6250.1.1 = {
-		holder = Arryn_35
+		holder = Arryn_35 	 # Alester II
 	}
 	6285.1.1 = {
-		holder = Arryn_36
+		holder = Arryn_36 		#Mathos II
 	}
 	6301.1.1 = {
-		holder = Arryn_37
+		holder = Arryn_37 		#Oswell II
 	}
 	6349.1.1 = {
-		holder = Arryn_41
+		holder = Arryn_41 		#Osgood
 	}
 	6420.1.1 = {
-		holder = Arryn_42
+		holder = Arryn_42 		#Oswin
 	}
 	7813.1.1 = {
 		holder = Arryn_45
@@ -1873,64 +1873,64 @@ c_giants_scar = {
 		liege = d_the_giants_lance
 	}
 	5800.1.1 = {
-		holder = Arryn_15
+		holder = Arryn_15 	 # Artys I Arryn
 	}
 	5823.1.1 = {
-		holder = Arryn_16
+		holder = Arryn_16 		#Osric I
 	}
 	5835.1.1 = {
-		holder = Arryn_18
+		holder = Arryn_18 	 # Alester I
 	}
 	5846.1.1 = {
-		holder = Arryn_20
+		holder = Arryn_20 		#Roland I
 	}
 	5872.1.1 = {
-		holder = Arryn_21
+		holder = Arryn_21 		#Osric II
 	}
 	5894.1.1 = {
-		holder = Arryn_29
+		holder = Arryn_29 		#Osric III
 	}
 	5904.1.1 = {
-		holder = Arryn_30
+		holder = Arryn_30 		#Roland II
 	}
 	5909.1.1 = {
-		holder = Arryn_31
+		holder = Arryn_31 		#Robin
 	}
 	5962.1.1 = {
-		holder = Arryn_121
+		holder = Arryn_121 		#Steffon
 	}
 	5975.1.1 = {
-		holder = Arryn_39
+		holder = Arryn_39 		#Osric IV
 	}
 	5979.1.1 = {
-		holder = Arryn_43
+		holder = Arryn_43 		#Oswell I
 	}
 	6017.1.1 = {
-		holder = Arryn_40
+		holder = Arryn_40 		#Osric V
 	}
 	6200.1.1 = {
-		holder = Arryn_32
+		holder = Arryn_32 		#Hugh
 	}
 	6223.1.1 = {
-		holder = Arryn_33
+		holder = Arryn_33 		#Mathos I
 	}
 	6230.1.1 = {
-		holder = Arryn_34
+		holder = Arryn_34 		#Hugo
 	}
 	6250.1.1 = {
-		holder = Arryn_35
+		holder = Arryn_35 	 # Alester II
 	}
 	6285.1.1 = {
-		holder = Arryn_36
+		holder = Arryn_36 		#Mathos II
 	}
 	6301.1.1 = {
-		holder = Arryn_37
+		holder = Arryn_37 		#Oswell II
 	}
 	6349.1.1 = {
-		holder = Arryn_41
+		holder = Arryn_41 		#Osgood
 	}
 	6420.1.1 = {
-		holder = Arryn_42
+		holder = Arryn_42 		#Oswin
 	}
 	7813.1.1 = {
 		holder = Arryn_45
@@ -2751,7 +2751,7 @@ k_gulltown = {
 	5776.1.1 = {
 		holder = Grafton_12
 	}
-	5798.1.2 = {
+	5798.1.2 = { # Flavorization bugfix
 		holder = 0
 	}
 }
@@ -3067,7 +3067,7 @@ k_the_fingers = {
 	5797.1.1 = {
 		holder = 0
 	}
-	5799.1.1 = {
+	5799.1.1 = { # Robar II Royce
 		holder = Royce_18
 	}
 	5800.1.1 = {
@@ -4653,20 +4653,20 @@ k_runestone = {
 	5770.1.1 = {
 		holder = Royce_17
 	}
-	5795.12.1 = {
+	5795.12.1 = { # Robar II Royce
 		holder = Royce_18
 	}
-	5800.1.1 = {
+	5800.1.1 = { # Royce vassalization
 		liege = e_the_vale
 		effect = {
 			agot_turn_westerosi_kingdom_into_lordship_history_effect = { YEAR = 5800 }
 		}
 	}
 	7453.1.1 = {
-		holder = Royce_116
+		holder = Royce_116 # Eldred Royce
 	}
 	7485.1.1 = {
-		holder = Royce_115
+		holder = Royce_115 # Robin Royce
 	}
 	7853.1.1 = {
 		holder = Royce_21
@@ -4764,10 +4764,10 @@ d_runestone = {
 		holder = Royce_18
 	}
 	7453.1.1 = {
-		holder = Royce_116
+		holder = Royce_116 # Eldred Royce
 	}
 	7485.1.1 = {
-		holder = Royce_115
+		holder = Royce_115 # Robin Royce
 	}
 	7853.1.1 = {
 		holder = Royce_21
@@ -4863,10 +4863,10 @@ c_runestone = {
 		holder = Royce_18
 	}
 	7453.1.1 = {
-		holder = Royce_116
+		holder = Royce_116 # Eldred Royce
 	}
 	7485.1.1 = {
-		holder = Royce_115
+		holder = Royce_115 # Robin Royce
 	}
 	7853.1.1 = {
 		holder = Royce_21
@@ -5132,25 +5132,25 @@ d_witch_isle = {
 		holder = Upcliff_8
 	}
 	7639.1.1 = {
-		holder = Upcliff_47
+		holder = Upcliff_47 # Aelwyn
 	}
 	7655.1.1 = {
-		holder = Upcliff_46
+		holder = Upcliff_46 # Arlyn
 	}
 	7673.1.1 = {
-		holder = Upcliff_45
+		holder = Upcliff_45 # Jaime
 	}
 	7703.1.1 = {
-		holder = Upcliff_44
+		holder = Upcliff_44 # Uthor
 	}
 	7740.1.1 = {
-		holder = Upcliff_42
+		holder = Upcliff_42 # Qarlton
 	}
 	7783.1.1 = {
-		holder = Upcliff_41
+		holder = Upcliff_41 # Triston
 	}
 	7804.1.1 = {
-		holder = Upcliff_40
+		holder = Upcliff_40 # Dalwyn
 	}
 	7827.1.1 = {
 		holder = Upcliff_39
@@ -5221,25 +5221,25 @@ c_witch_isle = {
 		holder = Upcliff_8
 	}
 	7639.1.1 = {
-		holder = Upcliff_47
+		holder = Upcliff_47 # Aelwyn
 	}
 	7655.1.1 = {
-		holder = Upcliff_46
+		holder = Upcliff_46 # Arlyn
 	}
 	7673.1.1 = {
-		holder = Upcliff_45
+		holder = Upcliff_45 # Jaime
 	}
 	7703.1.1 = {
-		holder = Upcliff_44
+		holder = Upcliff_44 # Uthor
 	}
 	7740.1.1 = {
-		holder = Upcliff_42
+		holder = Upcliff_42 # Qarlton
 	}
 	7783.1.1 = {
-		holder = Upcliff_41
+		holder = Upcliff_41 # Triston
 	}
 	7804.1.1 = {
-		holder = Upcliff_40
+		holder = Upcliff_40 # Dalwyn
 	}
 	7827.1.1 = {
 		holder = Upcliff_39
@@ -6496,6 +6496,7 @@ d_strongstone = {
 	}
 	5800.1.1 = {
 		liege = e_the_vale
+		holder = Redfort_47
 	}
 	7837.1.1 = {
 		holder = Redfort_8
@@ -6547,6 +6548,9 @@ c_the_redfort = {
 	5780.1.1 = {
 		liege = d_strongstone
 		holder = Redfort_6
+	}
+	5800.1.1 = {
+		holder = Redfort_47
 	}
 	7837.1.1 = {
 		holder = Redfort_8
@@ -6893,6 +6897,9 @@ c_breckland = {
 	5780.1.1 = {
 		liege = d_strongstone
 		holder = Redfort_6
+	}
+	5800.1.1 = {
+		holder = Redfort_47
 	}
 	7837.1.1 = {
 		holder = Redfort_8
@@ -9380,262 +9387,10 @@ b_weather_toft = {
 	}
 }
 k_the_mountains_of_the_moon = {
-	5799.1.1 = {
+	5799.1.1 = { # Robar II Royce
 		holder = Royce_18
 	}
 	5800.1.1 = {
 		holder = 0
-	}
-}
-
-b_elwynbrook = {
-	7798.1.1 = {
-		holder = Upshall_1
-	}
-	7803.1.1 = {
-		holder = Upshall_2
-	}
-	7804.1.1 = {
-		holder = Upshall_4
-	}
-	7844.1.1 = {
-		holder = Upshall_12
-	}
-	7862.1.1 = {
-		holder = Upshall_13
-	}
-	7895.1.1 = {
-		holder = Upshall_17
-	}
-	7943.1.1 = {
-		holder = Upshall_19
-	}
-	7967.1.1 = {
-		holder = Upshall_26
-	}
-	8002.1.1 = {
-		holder = Upshall_54
-	}
-	8060.1.1 = {
-		holder = Upshall_59
-	}
-	8075.1.1 = {
-		holder = Upshall_62
-	}
-	8112.1.1 = {
-		holder = Upshall_63
-	}
-	8114.1.1 = {
-		holder = Upshall_68
-	}
-	8153.1.1 = {
-		holder = Upshall_75
-	}
-	8205.1.1 = {
-		holder = Upshall_76
-	}
-	8207.1.1 = {
-		holder = Upshall_79
-	}
-	8253.1.1 = {
-		holder = Upshall_82
-	}
-	8263.1.1 = {
-		holder = Upshall_84
-	}
-	8293.1.1 = {
-		holder = Upshall_85
-	}
-}
-
-b_mallow_tower = {
-	7784.1.1 = {
-		holder = Amersham_1
-	}
-	7823.1.1 = {
-		holder = Amersham_2
-	}
-	7862.1.1 = {
-		holder = Amersham_7
-	}
-	7880.1.1 = {
-		holder = Amersham_13
-	}
-	7936.1.1 = {
-		holder = Amersham_14
-	}
-	7958.1.1 = {
-		holder = Amersham_16
-	}
-	7989.1.1 = {
-		holder = Amersham_18
-	}
-	7997.1.1 = {
-		holder = Amersham_24
-	}
-	8018.1.1 = {
-		holder = Amersham_25
-	}
-	8076.1.1 = {
-		holder = Amersham_32
-	}
-	8136.1.1 = {
-		holder = Amersham_33
-	}
-	8156.1.1 = {
-		holder = Amersham_38
-	}
-	8170.1.1 = {
-		holder = Amersham_39
-	}
-	8202.1.1 = {
-		holder = Amersham_44
-	}
-	8234.1.1 = {
-		holder = Amersham_46
-	}
-	8257.1.1 = {
-		holder = Amersham_52
-	}
-	8291.1.1 = {
-		holder = Amersham_58
-	}
-}
-
-b_breaknabb = {
-	7814.1.1 = {
-		holder = Ildermont_1
-	}
-	7825.1.1 = {
-		holder = Ildermont_3
-	}
-	7851.1.1 = {
-		holder = Ildermont_6
-	}
-	7864.1.1 = {
-		holder = Ildermont_7
-	}
-	7890.1.1 = {
-		holder = Ildermont_9
-	}
-	7902.1.1 = {
-		holder = Ildermont_10
-	}
-	7909.1.1 = {
-		holder = Ildermont_11
-	}
-	7956.1.1 = {
-		holder = Ildermont_12
-	}
-	7986.1.1 = {
-		holder = Ildermont_15
-	}
-	7997.1.1 = {
-		holder = Ildermont_17
-	}
-	8050.1.1 = {
-		holder = Ildermont_18
-	}
-	8052.1.1 = {
-		holder = Ildermont_19
-	}
-	8073.1.1 = {
-		holder = Ildermont_22
-	}
-	8107.1.1 = {
-		holder = Ildermont_28
-	}
-	8127.1.1 = {
-		holder = Ildermont_33
-	}
-	8134.1.1 = {
-		holder = Ildermont_35
-	}
-	8192.1.1 = {
-		holder = Ildermont_40
-	}
-	8210.1.1 = {
-		holder = Ildermont_41
-	}
-	8233.1.1 = {
-		holder = Ildermont_42
-	}
-	8263.1.1 = {
-		holder = Ildermont_43
-	}
-	8299.1.1 = {
-		holder = Ildermont_44
-	}
-}
-
-b_tormore_island = {
-	7870.1.1 = {
-		holder = Loreley_6
-	}
-	7912.1.1 = {
-		holder = Loreley_7
-	}
-	7924.1.1 = {
-		holder = Loreley_8
-	}
-	7935.1.1 = {
-		holder = Loreley_21
-	}
-	7987.1.1 = {
-		holder = Loreley_22
-	}
-	8001.1.1 = {
-		holder = Loreley_23
-	}
-	8018.1.1 = {
-		holder = Loreley_24
-	}
-	8040.1.1 = {
-		holder = Loreley_9
-	}
-	8056.1.1 = {
-		holder = Loreley_10
-	}
-	8078.1.1 = {
-		holder = Loreley_11
-	}
-	8098.1.1 = {
-		holder = Loreley_12
-	}
-	8110.1.1 = {
-		holder = Loreley_13
-	}
-	8131.1.1 = {
-		holder = Loreley_14
-	}
-	8135.1.1 = {
-		holder = Loreley_15
-	}
-	8176.1.1 = {
-		holder = Loreley_16
-	}
-	8213.1.1 = {
-		holder = Loreley_17
-	}
-	8220.1.1 = {
-		holder = Loreley_18
-	}
-	8257.1.1 = {
-		holder = Loreley_19
-	}
-	8267.1.1 = {
-		holder = Loreley_20
-	}
-	8281.1.1 = {
-		holder = Loreley_25
-	}
-}
-
-b_scritchway = {
-	8282.9.1 = {
-		holder = Jesper_47
-	}
-	8292.1.1 = {
-		holder = Jesper_51
 	}
 }

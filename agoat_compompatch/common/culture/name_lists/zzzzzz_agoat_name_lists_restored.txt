@@ -419,3 +419,1832 @@ name_list_high_valyrian_targ_influence = {
 	mercenary_names = {
 	}
 }
+
+name_list_high_valyrian = {
+	dynasty_names = {
+		{ "dynn_Anogaryen" } { "dynn_Atroksiarys" } { "dynn_Daomiorys" } { "dynn_Embaryen" } { "dynn_Gelenkys" }
+		{ "dynn_Gelionar" } { "dynn_Gryvetheon" } { "dynn_Hoskagys" } { "dynn_Haedaryen" } { "dynn_Ilirigys" }
+		{ "dynn_Jelmazeon" } { "dynn_Jentys" } { "dynn_Kastaryen" } { "dynn_Kostagar" } { "dynn_Mazigonys" }
+		{ "dynn_Namorghulilaryen" } { "dynn_Ondoryen" } { "dynn_Perzys" } { "dynn_Qogrorys" } { "dynn_Syzeon" }
+		{ "dynn_Tresys" } { "dynn_Belaerys" } { "dynn_Zaldrizyen" } { "dynn_Manaereon" } { "dynn_Urnebar" }
+		{ "dynn_Sonaryen" } { "dynn_Kessatheon" } { "dynn_Bevilar" } { "dynn_Ezimatheon" } { "dynn_Laeseon" }
+		{ "dynn_Jenqeleon" } { "dynn_Pirtiryen" } { "dynn_Sytivilar" } { "dynn_Tistaleon" } { "dynn_Qupteneon" }
+		{ "dynn_Nuqiryen" } { "dynn_Orbareon" } { "dynn_Quvyar" } { "dynn_Valzyren" } { "dynn_Ilontheon" }
+		{ "dynn_Boniryen" } { "dynn_Jorraezys" } { "dynn_Quptys" } { "dynn_Tyvar" } { "dynn_Jomozar" }
+		{ "dynn_Huretheon" } { "dynn_Ruakys" } { "dynn_Celereon" } { "dynn_Jaeganyon" } { "dynn_Arranion" }
+		{ "dynn_Vezenkar" } { "dynn_Unendia" } { "dynn_Voksia" } { "dynn_Galgaeron" } { "dynn_Laergyr" }
+		{ "dynn_Enreos" } { "dynn_Merntys" } { "dynn_Maznareon" } { "dynn_Henaeris" } { "dynn_Ronnon" }
+		{ "dynn_Haeteros" } { "dynn_Gevgarys" } { "dynn_Hurys" } { "dynn_Pyllyr" } { "dynn_Raegaros" }
+		{ "dynn_arghurys" } { "dynn_belmurtys" } { "dynn_azantarion" } { "dynn_dohaerion" } { "dynn_daerarion" }
+		{ "dynn_darilarion" } { "dynn_qelbrarys" } { "dynn_volonqarion" } { "dynn_mentarion" } { "dynn_runagarys" }
+		{ "dynn_galrygar" } { "dynn_abrazarion" } { "dynn_aeksarion" } { "dynn_teptarion" } { "dynn_buzdarion" }
+		{ "dynn_numalys" } { "dynn_laehyrys" } { "dynn_albarys" } { "dynn_albilion" } { "dynn_daemarion" }
+		{ "dynn_daemonyar" } { "dynn_gelenkarys" } { "dynn_melarion" } { "dynn_melinyar" } { "dynn_sindrilys" }
+		{ "dynn_timparion" } { "dynn_vokarion" } { "dynn_zobrygar" } { "dynn_aderys" } { "dynn_aenarys" }
+		{ "dynn_aertarys" } { "dynn_biarion" } { "dynn_dokimarys" } { "dynn_donarys" } { "dynn_drejarys" }
+		{ "dynn_eglion" } { "dynn_gevarys" } { "dynn_gidarys" } { "dynn_haksarys" } { "dynn_harengar" }
+		{ "dynn_hunarys" } { "dynn_ilion" } { "dynn_jaehenkys" } { "dynn_kiringar" } { "dynn_labrenkys" }
+		{ "dynn_ledarys" } { "dynn_lumarion" } { "dynn_mandarys" } { "dynn_merparys" } { "dynn_mibarys" }
+		{ "dynn_morgharion" } { "dynn_morqitys" } { "dynn_namorgharys" } { "dynn_nudarys" } { "dynn_orejarys" }
+		{ "dynn_paezarion" } { "dynn_prumiarys" } { "dynn_punilarys" } { "dynn_qrimbrosys" } { "dynn_qrinunarion" }
+		{ "dynn_qubarion" } { "dynn_raparys" } { "dynn_rhedesarys" } { "dynn_rovarion" } { "dynn_rovegrion" }
+		{ "dynn_rytsarion" } { "dynn_suenarion" } { "dynn_syzarion" } { "dynn_tegonys" } { "dynn_tolmihys" }
+		{ "dynn_udrimion" } { "dynn_ueparion" } { "dynn_valenkarys" } { "dynn_vamiharys" } { "dynn_vaogenkys" }
+		{ "dynn_voskarys" } { "dynn_ygharion" } { "dynn_yrdarys" } { "dynn_zirtarys" } { "dynn_aegaeryen" }
+		{ "dynn_aegoryen" } { "dynn_aelaeryon" } { "dynn_aeloryen" } { "dynn_aenaryen" } { "dynn_aenoryen" }
+		{ "dynn_anaryen" } { "dynn_auriyen" } { "dynn_averiyon" } { "dynn_baelyon" } { "dynn_balaeryen" }
+		{ "dynn_caraxyon" } { "dynn_daegaryon" } { "dynn_daegonyon" } { "dynn_daemonyon" } { "dynn_daenaryen" }
+		{ "dynn_daeniryen" } { "dynn_daeronyen" } { "dynn_gaelithyen" } { "dynn_gaemonyon" } { "dynn_gaeronyon" }
+		{ "dynn_geliyon" } { "dynn_geviyon" } { "dynn_haegaryen" } { "dynn_haenaryon" } { "dynn_haenoryen" }
+		{ "dynn_jacaeryen" } { "dynn_jaekaryon" } { "dynn_jaenaryen" } { "dynn_jedaryon" } { "dynn_jelaeryen" }
+		{ "dynn_luceryen" } { "dynn_maegaryon" } { "dynn_maegoryon" } { "dynn_maekaryen" } { "dynn_maeloryen" }
+		{ "dynn_maenaryon" } { "dynn_mataryon" } { "dynn_melvaryon" } { "dynn_meraxyon" } { "dynn_monteryen" }
+		{ "dynn_naegonyen" } { "dynn_naeloryon" } { "dynn_nymeriyen" } { "dynn_nuceryen" } { "dynn_paemonyon" }
+		{ "dynn_pelaryon" } { "dynn_perzonyen" } { "dynn_rhaegaryen" } { "dynn_rhaegonyen" } { "dynn_rhaenoryon" }
+		{ "dynn_rhogaryon" } { "dynn_shrykyon" } { "dynn_syraxyen" } { "dynn_taegonyen" } { "dynn_taeloryen" }
+		{ "dynn_taenoryon" } { "dynn_tessaryon" } { "dynn_tyraxyon" } { "dynn_vaegonyon" } { "dynn_vaekaryon" }
+		{ "dynn_vaemiryen" } { "dynn_vaemonyon" } { "dynn_vaenaryen" } { "dynn_vaenoryen" } { "dynn_vermaxyon" }
+		{ "dynn_vermithen" } { "dynn_vhagaryen" } { "dynn_vhaegyon" } { "dynn_viseryen" } { "dynn_zaeloryen" }
+	}
+	male_names = {
+		15 = {
+			Aegon Bearaxes Beargar Bearlerion Daeron Jaehaerys Viserys
+		}
+		50 = {
+			Aegor Aelor Aelyx Aemon Aemond Aenar Aenys Aerion Aeryn Aerys Aethan Aurion Ayrmidon Baelon Baelor Baenar
+			Daemion Daemon Gaelar Gaemon Haegon Jacaerys Laenor Lucerys Maegon Maegor Maekar Maelor Maelys Maenar Maeron
+			Matarys Orys Rhaegar Rhaegel Rhogar Vaegon Vaellyn Vaemond Valarr Valerion
+		}
+		35 = {
+			Aedor Aeganys Aegar Aegaron Aelix Aemarys Aemor Aenarr Aenyx Aeragar Aeranyx Aerarion Aeravar Aerydar Aerygon
+			Aerymar Aerymion Aerymond Aeryrys Aevor Annarion Azagor Azemion Baegel Baemorys Baeryn Baesegarys Baesemor
+			Balaegor Balaemor Balaenyx Balaeron Baseimion Daegar Daekar Daelarys Daelor Daemalon Daemaraenar Daemavar
+			Daenar Daeragon Daeranyx Gaelyx Gaeron Gahaemorys Gahaenys Gahaenyx Gahaeron Galaemar Galaerys Garaelor Haerys
+			Jacaelar Jaeglys Jaegon Jaekar Jaelarys Jaemar Jaemion Jaemond Jaenar Jaenyx Jaeremion Jaerevon Jaevor Janys
+			Laegon Laelar Laemond Laenarr Laerion Lucaegaron Lucaelar Maehamon Maehanor Maelyx Maerion Maerys Maevon
+			Malaemond Malaenar Mamion Mamyx Maraenar Matadar Matagar Matalor Matamion Matamor Matamorys Naeryx Nucerys
+			Olzonys Ovonys Paelor Raegar Raegel Raelor Raelyx Raerion Ragaemon Rahaedar Rahaemyx Rahaerion Rahaerys
+			Rhaemar Rhaemon Rhaenar Taecedar Taedar Taegon Taemarys Taenarr Taerion Taeron Tahaegaron Tahaegor Tahaelor
+			Tahaemarr Tahaevon Talaemorys Tyraemion Tyraemon Tyraenyx Tyraerys Tyraevar Vadar Vaegor Vaekar Vaemarys
+			Vaermon Vaeron Vagaron Vahaedor Vahaenys Valyx Vanarr Vanor Vanys Vimion Virys Visegel Visemar Yraemond
+			Yraenar Zaelys Abralon Abramor Abrathas Abrenath Adelor Ademar Aderion Aderys Aegon_Hash Aegyr Aegilion Aekar
+			Aexilor Aexion Aelys Aelar Aelenys Aelarion Aelon Aelydas Aemys Aemyvas Aenor Aenarion Aeridon Aerimor Aezor
+			Aezarr Aezimar Aezilor Aezorys Ajaenor Ajeherys Ajaethan Ajethas Albor Albarion Albaelor Albaerys Alymor
+			Alyvon Alyvoras Alynaevor Amazar Amazaelor Amarion Amarr Amaerys Amazael Amathas Anogar Anogarion Anokar
+			Anomaelor Anor Anorys Aramar Araemor Aramyr Araelon Araethar Arghain Arghenor Arghithor Arghulon Arghun Arilor
+			Arilion Arilithas Arilyx Arilaenar Arlimor Arlaegas Arlion Arlaenys Arligor Arlydon Atrovor Atrokion Atraon
+			Atraedon Atraenys Atraexar Aurvane Auraelys Aurnor Auron Avermond Aveherys Averael Averys Avenaedas Avelor
+			Averaen Averion Ayr Ayrion Ayrhaegor Ayras Azandar Azadion Azaendar Azaevon Azael Azar Azaendas Baelar Baelion
+			Baenor Bael Baemond Baelys Balon Balarr Balaemar Balaenys Balaeryx Balinor Baleryn Bamor Bamaelor Bamvenas
+			Bamaenys Bamidion Banor Bantorys Bantyr Banardys Baneryn Banaothas Baraegor Baraelas Barion Barathys Baran
+			Bevion Bevaelor Bevael Bevaerys Bevaelas Biaron Bianor Biarys Bialas Bisaelor Bisaethas Bisaerion Bisaerys
+			Bodar Bodaenor Bodion Bodethas Braelon Braedelas Braenar Braegor Braevyn Bykar Bykaerion Bykaelas Bykarax
+			Daemarr Daemarys Daemas Daemryn Daenarr Daenydar Daenor Daenyr Daenathys Daenagan Daenryn Daerion Daerikar
+			Daeremor Daeraethas Daerax Daerovas Daerimor Daerandor Dakor Dakarion Dakaonor Dakorys Dacaerys Daimar Daimion
+			Daimor Daimontas Daimaethys Daimaerond Daimax Daimryn Daran Daraenor Daraelor Darathys Daraedys Darael Darys
+			Dekaemor Dekurion Dekaelan Dekorys Decaeryn Deron Derebor Deraemar Deraethys Deraemas Derys Dijaelor Dijaekar
+			Dijorys Dijarion Dokar Dokion Dokimar Dokaemor Dokaenys Donys Donakarys Donaemor Donaevas Donaerys Donaeryn
+			Dontaen Dorane Dorion Doraelys Doraelas Doraenor Dorvaelon Dranaevyn Dranys Drandyr Dranaomyrr Drandas Drejor
+			Drejaenys Drejaen Drajandor Drivion Drivaesar Drivaethas Driviorys Drivaethan Drunarr Drumaedas Drucaerys
+			Drudas Ebrys Ebrion Ebraelor Ebraellas Ebrinor Edrion Edraethys Edraelyn Edras Eglion Eglor Eglaeron Egron
+			Egrion Egrys Elaegor Elaenor Elevion Elaenidor Elenas Elaehaerys Eledaenor Elaerion Elaevyr Elior Elian Elirys
+			Eliqoras Elithaenys Eliandor Endhaerys Endion Endor Endaekar Endaomar Endaerys Endryn Endaevas Epvaerion
+			Epvion Epvoqar Epvaothas Epvaonyr Epvaenor Gaemion Gaemenys Gaemyr Gaemathys Gaemorys Gaelor Gaelon Gaen
+			Gaerelas Gaerion Gaeryn Galar Galdran Galaemas Galaorys Galaethas Galryx Galvion Galon Garamond Garon Garaomar
+			Garvaemon Garaevas Gebaen Gebaeron Gebion Geborys Gebaelor Gebor Gelion Gelor Gelaenys Gelaenar Geliathor
+			Gevion Gevaenor Gevaelon Gevrys Gevialas Gevoraen Gidion Gidmarr Gidaethan Gidaekar Gidhaerys Gidaeron
+			Gidaelas Gidane Gierys Gieran Gieraelor Gierael Giedran Gievas Gieraenor Gievaelas Gihor Gihaenor Gihael
+			Gilaekon Glaeserys Glaesor Glaevyr Glaerys Glaevas Glaevel Glaethas Grovaegor Groveon Grovaenar Grovaenys
+			Grolaegas Grolaenor Gryvion Gryvaemor Gryvaenys Grynaelor Grynaelas Grynaovar Guron Gureon Guraendar Guraelas
+			Guraedon Gurane Haekar Hael Haemond Haenor Haerelas Haegar Haevarys Haekorys Hakaegon Hakaomaer Hakarr Hakon
+			Hakaenor Hakael Hannar Hanaegon Hanaovar Hanaemor Hanaedon Hanaemond Hanraelas Harion Haraendar Harivion
+			Haraethys Harmael Haryndor Haraelas Haraovarr Haraethan Havor Havon Havar Havael Havaolas Hedar Hedion Heddas
+			Hedys Hedraen Helaeryn Helion Helivar Helaedas Helandar Helon Helaedon Hemaendar Hemor Hemaerdas Hemaelys
+			Hemael Henor Henaevion Hendaeron Henaomor Henys Henaethor Hekon Heqaelys Heqorys Heqarion Hezion Hezor Hezikar
+			Hezaenys Hilar Hilkarys Hilaenys Hilion Hilaenor Hilaendar Hisar Hisaegon Hisaevor Hisaelor Hisaethas
+			Hisaondar Hiverys Hivaeryn Honarr Honaelor Honaogar Honterys Honataenys Hontorys Hozarr Hozion Hozinar
+			Hozaemar Hozaelys Hozaendar Hozaryn Huemion Huemyr Huemaelor Huemagon Huemarax Huraen Huraegar Huraenor
+			Hurelion Huraelys Hurys Hunaekar Hunaogor Hunaegas Hunor Hunaelys Hunaelor Hunasaeron Hunorys Hylarr Hylion
+			Hylor Hylaekar Hylaedon Hylax Hylaenys Idarr Idarys Idakaelon Idavarys Idathas Idamaerys Idran Idreon
+			Idraethas Idraomor Idravarr Idresane Idraegel Idraevyr Ilian Ilidon Ilimaeron Ilidaekar Ilivaenor Iliraendar
+			Ilonar Ilondar Iloron Ilondas Ilonaedon Ilvorys Ilvaeran Ilvoryx Imandarr Ilmaedion Ilmaenor Ilmaethas
+			Imunaerys Imundas Indirion Indar Indaegon Indaekor Indaeryn Indaerys Iorion Ioraemar Iorthas Iroaendor Iorys
+			Ioraegar Ioraelys Irugarr Irugorys Irunor Irumaenor Irunaerys Iruvaeron Irukorys Isarr Isahaegon Isaemar
+			Isathys Isaendor Isaemion Isahaerys Isaemas Jaederys Jaedan Jaedomar Jaecen Jaegal Jaedas Jaedorys Jaehaelor
+			Jaelar Jaelion Jael Jaelor Jaemon Jaenarr Jaelathas Jaelerys Jaqar Jaqaedas Jaqaelor Jaqandar Jaqerys Jedor
+			Jedion Jedaekar Jedaenor Jedaelys Jedaelyx Jedorys Jedaen Jehar Jehion Hehaemar Jehaekar Jehaerys Jehaerdon
+			Jelor Jelaemor Jelaethys Jelaedas Jelaevion Jemar Jemael Jeminor Jemaendar Jemorys Jenaerys Jenaerion Jereas
+			Jeraemal Jeron Jeraenor Jeraethas Jeraedon Jereon Jeraekor Jesor Jesael Jesaegon Jesaevion Jesaendar Jesaerys
+			Jiondar Jioran Jioreon Jioraondar Jioraelys Jiorys Jiorgar Jimhaelys Jimhaerys Jokarr Jokorion Jokaodas
+			Jokorys Jokaerys Jokael Joran Joreon Jorathys Jordaen Jordas Joraethor Josar Josion Josaemar Josenys Josaeth
+			Josyndar Josaelon Josorys Josaemon Josax Juron Jurovion Juraenys Jurys Jurmaedon Jurnorys Jurvas Juraevor
+			Carael Caraellas Caraendar Caraendor Carmor Kalaerys Karael Karaendor Karion Karlys Karthys Calaeryn Caedon
+			Cael Caelarr Caedas Caelon Caelyr Caemond Caenar Caeson Kael Kaelar Kaelion Kaemon Kaenor Kaedas Kasaendar
+			Kasion Kastar Kason Kasaenor Cazar Cazion Cazaokor Cazidas Casaedor Cazaen Cazerys Cazor Celaenar Celaeryn
+			Celaedar Kelaenor Kelan Kelion Kelaevas Cemael Kemaelor Kemandar Kemion Kesar Kesaevion Kesaelon Kesaraelys
+			Cesarion Cesaevas Kior Kion Kiothas Kioron Cimyr Cirandor Kimirys Kiranys Kivar Kivion Kivaemor Kivaethys
+			Kivandar Cobaenar Conaedar Conaedas Conarr Konaerys Konaerion Konraen Coraelas Coraelon Coraezar Corlys Korael
+			Koraelys Kor Korazar Korian Korzaendor Cosaemyr Cosaendor Cosarr Costaedas Costaelas Kosaenys Kosandor Kosar
+			Kosion Kosaethys Kostas Cusaemor Cusaendar Kusaenor Kuseon Kynor Kyndar Kydaevas Kynaedyr Kyvarr Kyvion
+			Kyvaemon Kyvaendor Kyvellas Kyvaerys Kyvoraen Kyvaethas Labraen Labraemor Laeryn Laenar Laeshyr Laehor
+			Laerallas Laedan Lanar Lanaerion lanaemor Lanor Lanaevas Laodyr Laodion Laonor Laodas Laryn Lareon Laressar
+			Laraelys Laraedas Laraelan Laran Laraemor Lendrys Ledaenar Lenaedas Lenaeron Lenaelas Livaemor Livaelor
+			Livaerys Livaethys Livan Livaenax Lireon Liraomar Liraenor Liraendor Litar Litaerion Litaevas Litaendor Lokion
+			Lokor Lokaemar Locaerys Lokaedas Lotarr Lotaer Lotaerra Lotaellas Lotaella Lotaerys Lukaerys Lucaen Lukelon
+			Lukaerion Lucelas Lykas Lykion Lykaethas Lykaen Lykaelor Lykaendor Lykaenys Lytaer Lytaegar Lytaevas Lytaedas
+			Lythan Lytaoras Lytaedar Mael Maelarr Maghar Maghaelon Maghaerys Maglor Majarr Majaeqon Majax Majaerys
+			Majaelor Majaethan Majionor Manaedar Mandion Mandor Mandaerys Mandaelon Manaedas Manaokar Mandaenor Martarion
+			Martas Martaerys Maraevas Maraevor Maraenor Mataedon Matorys Mataelys Mataerion Mataevas Mazar Mazaendar Mazor
+			Mazaerys Mazaekar Mazaethas Medar Medion Medaerys Medaelor Medaenor Medhaen Melaekar Melinar Melion Melor
+			Melaerys Melaedas Melindar Memaerion Memaenor Memaerys Mentyr Menael Mentaerys Menaetas Mentaenar Mentar
+			Meraelas Meraovar Meraelon Meraenys Meraethas Meeraenor Misor Misaekor Misaelyn Misorys Misaegon Misaelys
+			Molryon Molraedas Molaenor Molaendar Monar Monaeryn Montaelon Monterys Montaenys Montelyx Moran Moraendas
+			Morgion Moraekar Morgharys Mortaemor Munnar Munaedar Munaelys Munadar Myrdar Myrdeon Myron Myraelys Myrdaekar
+			Myraevas Nabarr Nabion Nabaemyr Nabaokar Nabaethys Naekar Nael Naemor Naethys Naevas Naerandor Naeryn Nagon
+			Nagaemon Nagaethys Nakor Nakeon Nakaen Nakaethan Nakaendor Nakaenys Namyrr Namon Namidon Namaethys Namaendor
+			Namorys Navor Naveon Navakar Navaethys Navaenor Navandor Navaermidon Nedar Nedon Nedaekas Nedaenor Nedaenys
+			Nedas Nekion Nekaeron Nekaethys Nekaendar Nenar Nenion Nenaerys Nenaethys Nenaedor Nenaedas Nenorys Nopar
+			Nopaedas Nopaerys Nudaevas Nudaemar Nudaekar Nudaenvor Numar Numion Numaenyr Numaetor Numoraen Numorys Obaedas
+			Obarthys Obaervon Odraelas Odaenys Odaeryn Ohilion Ohiraenys Ohilvas Ohilvar Ohivor Ojaedar Ojaenor Ojaenys
+			Oktiomar Oktaegon Oktaevas Octaedas Octaenys Olvar Olvaegon Olvaekar Olvaendor Olyvndar Olsaevion Olsaemar
+			Olsolas Olsaendor Olsaerys Ondor Ondion Ondaevas Ondaelgar Ondaegon Ondaerys Onqar Onyverys Onqarys Onqys
+			Orbar Orbion Orbaethys Orbaedas Orband Orbaryn Orenor Orevaegon Oraekar Oraenor Oreonys Oresaedas Ossion
+			Osraelor Ossaekys Ossaron Otar Otaekar Otaerys Otaegor Otaemar Otorys Ovaen Ovaedas Ovaenor Ozor Ozarion
+			Ozaemar Ozaendor Ozaenys Paegon Paezor Paerion Paghar Paghorys Pagion Pagherys Palor Palaedas Palaegon
+			Palandor Palaemyr Paron Pamaerys Paraemon Paraemel Parmydas Pasaevor Pasaendor Pasaryn Pasor Pelarr Pelarion
+			Pelaedas Pelador Pelorys Pelaenys Pejar Pejorys Pelaerys Pejaeryx Penaeryn Penzerys Pendorys Penaeryx Peron
+			Perzivel Perlas Permaelas Peraendor Perryn Pisaedon Praevendar Praevel Praevon Pradaekar Pramaodarr Pramaenys
+			Prumyrr Prudaerys Prunaelor Prumathys Prumor Prysaekor Prythion Prydaeron Prytor Pryoran Purion Purys
+			Purtaenys Purvaedor Pyranth Pythaerys Pyraendas Pyrthaen Pytaer Qhaerion Qhaedys Qhuarys Qhaevandar Qanar
+			Qanaeron Qanathys Qandor Qanaegon Qan Qelan Qelaedas Qeldon Qelaegon Qelemor Quelarr Qibar Qibelas Qibarys
+			Qibaolar Qinor Qindar Qinaevas Qinaethan Qinsel Qizion Qizaerys Qizaondar Qizaegon Qopaerys Qopaendar Qopaelas
+			Qopaeryn Qridar Qrilion Qrithaelas Qrindor Qrivaegon Raenadel Raenar Raedan Raen Raedamor Raedys Raeth
+			Raevendar Raenamar Raekanys Raqar Raqion Raqaenor Raqaerys Raqellon Raqaelas Rekor Rekan Rekaethys Rekaenar
+			Rekaedar Rekaedas Remarr Remion Remaelor Remorys Remandor Remys Remnor Rhaelor Rhaenor Rhaegor Rhaegon Rhavan
+			Rhaelon Rhaegan Rhaelar Rhaelarys Rhaekar Rhakar Rhakon Rhakyr Rhakandar Rhakaerys Rhakenor Rhakaen Redarr
+			Redaemyr Redaegon Redaenar Rholaen Rholaenor Rholys Rholerys Rhovaezan Rhovaegon Rhudar Rhuqion Rhudor
+			Rhudaerys Rhudaegor Rhuqael Rigarr Rigaelion Rigaelor Rigerys Rigevon Rilor Rolar Ronael Rolaeryn Rolan
+			Rolaendas Roldan Rovenyr Rovarr Rovandor Rovaenys Rovaeron Rukael Rukaenor Rukolys Rukar Rukaenys Runyr
+			Runorys Runarel Runaelor Runarr Rys Rysandor Rysaedar Ryslan Ryzion Ryzaendor Ryzaegon Ryzdar Ryznor Saeron
+			Saelyron Saelidas Saen Saeth Saerys Saeryn Saemarr Sahor Saholas Saharys Sahyndor Sahenys Samaerys Samon Samyr
+			Samael Samaevas Samor Setorion Setiandor Setaenel Setiadas Setys Setaenor Silkaeryn Sikaendar Sikaedas Sikael
+			Shaen Shaekor Shaenyr Shaelys Shaelydon Simaevion Simael Simenor Skor Skolas Skoraedas Skoraenor Skorion
+			Sombyr Somaedon Somaendar Somon Somaelor Sonaekar Sonyar Sonsaelys Sonidas Sonaemor Sonaevon Sonerys Sopiokor
+			Sopaekar Sopaovas Sovar Sovaenys Sovaekon Soverys Sovaendar Sovion Staendar Stavor Stavron Stavyn Staegor
+			Suedar Suenadas Suedaran Suenarys Suvar Suvaen Suvaelys Suvaedran Suvion Sylas Sylaenor Sylvaestor Sylvaenas
+			Sylvan Sylverys Sylorion Synar Syndor Syndael Synaekar Synthas Synaerion Syron Syvaerys Syras Syraegar
+			Syraevor Syvaelor Syvaedar Taemas Taemor Taerenys Taemond Temon Temaevel Temoran Temaekas Temyr Temolon Tepor
+			Tepaelor Tepaevel Teppan Tepaevyr Terran Teraetas Terys Teravas Termaerys Tesor Tesaeron Tesaerys Tesaevas
+			Tesaelon Tetaevas Tetaenys Tetaerel Tetaetor Tikael Tikar Tikerys Tikoron Tikaedon Tikaeys Tinaedas Tinrion
+			Tinaedar Tinaevas Tinarys Tinor Tindaeron Tinodael Tinderys Tolan Tolor Tolaerys Tolkaen Torokor Toraekar
+			Torael Toraemond Truvor Trusyr Truan Trudaevas Trudaenor Trumion Ubrion Ubraevon Ubraevor Ubraemon Udrion
+			Udrael Udraemon Udraenar Udraevar Udravyn Ulaeron Ulian Uliandor Uliavas Uliadyr Urnar Urnerys Unaemon Unaevor
+			Umaedas Vaedron Vaelor Vaemon Vaedion Vaenar Vaenathas Valon Vaerys Valaonar Vaoron Vaon Vaoqor Vaokerys
+			Vaonor Vasan Vaserys Vasaelor Vasaelas Vasael Vedran Vedeon Vedas Vedaelas Vedaelyr Veran Verdan Veraedas
+			Vermond Vermaendar Verdys Vesnor Vesqion Vesaerys Vesaendar Vesaelor Vesaryn Veziron Vezaenor Vezaen Vesaelys
+			Vezar Vhalor Vhalys Vhal Vhaerys Vhanaedas Vhasaevon Visaendar Visaenor Visarion Visagor Visaenys Visagion
+			Visandor Visaelarr Visemond Vokar Vokion Vokaelas Vokaenor Vokan Volion Volaemar Volarr Volaekar Volessar
+			Volaenys Voldaemon Voskyr Vosar Vosarael Vosaerys Vosaekion Ydron Ydras Ydrelas Ydraenys Ydraemon Ydrakor
+			Ydraeval Yrdan Yrdeon Yrdaekar Yrdaelor Yrdaeryn Ysar Yson Ysaelor Ysaendar Ysaerion Ysaevel Ysaryn Zaen Zael
+			Zaedel Zaegon Zaekar Zaekarys Zaehaerys Zaevion Zalor Zakaederys Zalaendar Zalaemas Zaldyn Zalarian Zalys
+			Zaraen Zaraedar Zaraelor Zaraekas Zarimor Zarindor Zarolas Zean Zeamon Zeavan Zeadon Zaerys Zeavarys Zeavor
+			Zeryn Zerdan Zerel Zeraelon Zeraekor Zeralas Zerys Zerian Zeredor Zokarr Zokor Zokion Zokaelor Zokerys Zokyr
+			Zokaevon Zyron Zraegon Zyrion Zyrael Zyraelas Zyraekys Zyraelan Haenar Luceron Maegar Rhaegal Aegalon Aegorion
+			Aethon Baeron Caerys Cerys Daegon Daemond Daenir Denys Gaemond Jaehaeron Jaenor Jelaeron Jaqiarys Jedarys
+			Kelonys Kostys Kaenys Laerys Maenor Maegonys Mandys Mazilarys Melvarys Misys Naegon Naelor Naerys Nymerion
+			Naqessys Paemon Pelar Perzon Rhaemond Rhaelyx Taelor Taenor Vaenor Vhaegon Vaelyx Vaemir Zaelyx Zaelor Arrax
+			Balerion Caraxes Syrax Vermax Vermithor Meraxes
+		}
+	}
+	female_names = {
+		15 = {
+			Daenerys Rhaena Rhaenys
+		}
+		50 = {
+			Aelinor Aelora Aemma Aenesa Aerea Aerena Alysanne Alyssa Alaerys Baela Baenys Daella Daena Daenaera Daenys
+			Daeryssa Daesanne Elaena Elaenyra Gael Helaena Jaehaera Jaenara Laena Larissa Lianna Maegelle Maemys Mhaegen
+			Naerys Rhae Rhaella Rhaelle Rhaenyra Saera Shaena Shaera Vaella Valaena Visenya Viserra
+		}
+		35 = {
+			Aenehnae Aenehrys Aenela Aenerya Aeriana Alaenla Alaenya Alaenys Alaera Alaesanne Alaesys Alearys Allyria
+			Alyhna Alynna Baelora Baena Baenna Baesa Bahra Banera Bara Bassa Bhaela Bhaelys Bhaenla Bhaenyra Caena Cyeana
+			Cymella Daemys Daenea Daenehyrs Daenella Daenera Daenerya Daenora Daeoril Delaehrys Delaenyra Elaela Elaemera
+			Elaeryn Elaerys Elaesella Eraemera Haehnae Haehra Haelena Haelerla Haemera Haenyra Haera Hemys Henya Hessa
+			Jacaena Jaehyrs Jaelala Jaelanys Jaelassa Jaemala Jaerya Jaesys Jahaena Jelaehra Jelaenya Jelaenys Laenara
+			Laenesa Maega Maelerys Maelora Maena Maera Maesanne Maesys Malaehra Malaenyra Malaernera Malaesa Naelarla
+			Naena Naenera Naenla Naeressa Naesella Naesenya Nelaella Nelaemys Nelaenys Nelaerya Nesaehnae Nesaenys
+			Nesaesanne Nesaessa Raenenyra Relaechnae Relaera Relaesa Relaesanne Renaerla Rhaehra Rhaelinor Rhaenella
+			Rhaenemera Rhaenla Rhaenna Rhaera Rhaesa Rhaessa Rhaeys Saechnae Saehra Saelara Saelasa Saena Saenehna
+			Saenelys Saenessa Saenrys Saenyra Saenys Saerena Saerla Salamera Selaela Shaelora Shaelys Syaella Vaehra Vaela
+			Vaena Vaenera Vaera Vaerla Vaesys Viselle Visenae Vysaela Vysehnae Vysella Abraesha Abraelys Abraelle Abrenae
+			Aderra Aderaelle Aderinna Adelia Aegella Aegaera Aegora Aegelle Aekaerys Aexilora Aexora Aelia Aela Aelarra
+			Aelaenys Aelerys Aemaella Aemaenys Aemyssa Aemyva Aenara Aenella Aenora Aenerys Aerina Aerella Aerenys
+			Aeraenia Aera Aezelle Aeza Aezima Aezitha Aezerys Ajera Ajehaera Ajaenya Ajehaelle Albora Albia Albaella Alba
+			Alyvaenne Alynaerys Amazira Amazaella Amarra Amae Amaenerys Amavaelle Amanyra Anogara Anosia Anokaerys
+			Anomaella Anogaerys Anolaera Araella Araenys Aranora Aralaena Araenyra Argha Arghulla Arghora Arghine
+			Argoraelle Arilla Arilia Arilyna Arilaena Arilaenys Arlemma Arlaega Arlaena Arlynaera Arligyra Arlinya Atroxa
+			Atrokia Atra Atraelys Atraenya Atrokaella Aurea Aurqaella Auraella Auraenna Aurelle Avera Avea Averaella
+			Avenyra Averenya Averae Avella Averia Ayria Ayrona Ayraena Ayravaera Ayraenys Azanna Azadaena Azandaera
+			Azaenne Azaella Azaelia Azannora Baegelle Baelara Baenara Baelerys Baerella Baelyssa Balona Balora Balaenna
+			Balaerys Balonara Balessa Bamaela Bamaeva Bamvena Bamina Bamaedra Bana Bantaelle Bantyra Banedra Banaerys
+			Banaedra Barra Baragaella Baraelle Baraetha Barana Bevena Bevra Bevaelle Beverlae Bevaera Biarena Biana
+			Bianaerys Bianora Biserra Bismyra Bisaerias Bisilia Boda Bodaela Bodenna Bodessa Braella Braelynne Braenara
+			Braegra Braemma Bykaera Bykaelle Bykala Bykaerys Daemma Daemara Daelora Daemaella Daemyra Daenydra Daenelle
+			Daerella Daeressa Daerenys Daerys Daera Daerithae Daerimora Daerynna Dakea Dakarra Dakaella Dakynne Dakaenys
+			Daima Daimora Daimella Daimarys Daimissa Daimanaerys Daimoraelle Daimaerys Daria Daranella Daraenys Daranissa
+			Darlaena Daravana Darvona Dekaerys Dekaelara Daekyssa Dekaela Deklaena Derea Deraesha Deraeva Deraetha Deraema
+			Derra Dijaera Dijae Dijaerys Dijora Doka Dikira Doqaerra Dokaera Dokyssa Donara Donyssa Donaemra Donaeva
+			Donaeryssa Donaraelle Dontaena Doria Doraenna Doraella Dorathae Doriana Doraessa Drania Dranella Dranaelys
+			Dranaelle Dranalae Drejaella Dreja Drejaeva Drejiva Drivaessa Drivora Drivaerys Drivaella Driviola Drulaena
+			Drulora Drusanne Druvaerys Ebra Ebriola Ebraella Ebrinaerys Ebrinora Edrea Edraenys Edrunaella Edrilyna Elgea
+			Eglaena Egla Egra Egria Egryssa Elaera Elaenara Elenaerys Elaenor Elaenora Elenaera Elaenys Eliandra Eliora
+			Eliana Elisaenne Elinaerys Eliraela Enda Endira Endaella Endora Endaenys Endoraen Enya Endaera Epva Epvaela
+			Epvaora Epvaerys Epvia Epvaenyra Gaemma Gaemara Gaemella Gaemora Gaemyssa Gaemyra Gaelenia Gaelenys Gaena
+			Gaenaera Gaeria Gaerenys Gaerra Gala Galaera Galynne Galaora Galaenys Galaena Galaeka Galenna Garaelyn Garaona
+			Garaessa Garaenys Garaena Gebora Gebaella Gebaerys Geboraen Gebanae Gebyra Gelia Gelorra Gelaendra Gelessa
+			Gelinaerys Gevora Gevella Gevia Gevaerys Geva Gevyra Gidora Gidaella Gidyssa Gidaenys Gidoraen Gidathae
+			Gidaenna Gidyra Giera Gierona Gierella Gieryssa Gierynne Gienaela Ginaera Giena Giha Gihaerra Gihanaerys
+			Gihyra Glaessa Glaesora Glsaesaenys Glaenys Glaesadia Glaedys Grova Grovaela Grovaerys Grolanne Grolaora
+			Gryvora Gryvaelda Gryvaelle Grynaerys Grynaerra Grynaova Gura Gurataena Guryssa Guraella Guraeda Guranea
+			Haessa Haela Haelea Haeleys Haenora Haenna Haelynn Haenessa Haenys Haevana Hakaona Hakaella Hakaedra Hakaira
+			Hakaema Hakorya Hanna Hannora Hanaerys Hanaella Hannara Hanaedra Hanraela Hara Haraessa Harivia Haraenys
+			Haraenne Haralynne Haraelya Haraendra Haraova Hava Havora Havaella Havaenne Havaendra Hedda Hedora Hedenna
+			Hedaerys Hedyra Helora Helyra Helaerys Helaedia Helara Helaenora Helia Hemaera Hemaerys Hemora Hemaedra Hema
+			Henna Henaevelle Hendaera Henora Henaerys Heniara Hekona Heqia Heqira Heqaria Hezora Hezaelle Hezaedra Hezenna
+			Hila Hilaerys Hilaena Hilaenne Hilarra Hilaendra Hisa Hisaena Hisaevara Hisaelle Hisaerys Hivaenys Hivraelle
+			Honaera Honia Honaerys Honataenys Hontoraelle Hoza Hozora Hozia Hozaerys Hozaenys Hozaendra Hozaeryssa Huemora
+			Huemana Huemaerys Huemaelle Humyra Hura Hurena Huraelle Huraenne Huraenys Huraeva Hunaessa Hunaelora Hunaevra
+			Hunaerys Hunaedia Hunyra Hunasaera Hulia Hylora Hylaena Hylaerys Hyloraen Hylaessa Hylaenne Ida Idaryna
+			Idakaerys Idavana Idathea Idavia Idria Idraevia Idretha Idrionia Idraenys Idryssa Idraemma Idraella Ilia
+			Iligora Ilimaera Ilidaenne Ilivaena Ilinaerys Ilona Ilonora Ilonaella Ilonaerys Ilonia Ilvaenys Ilvraena
+			Ilvoryna Ilmania Ilmaenodra Ilmaella Imaerys Imuvaenys Imunora Indira Indra Indaora Indaella Indoraenys Indora
+			Ioraona Ioraella Ioraenys Ioraendria Ioryssa Ioraegra Ioria Irugora Irunaella Irugaerys Iruvaela Iruvaerys
+			Irulia Irugrya Isa Isahaera Isaenne Isaerys Isaelle Isanyra Isanaessa Isarina Jaeda Jaederia Jaedenys Jaecea
+			Jaedanna Jaedra Jaedira Jaedora Jaela Jaehaella Jaelora Jaelenys Jaelaena Jaehella Jaenys Jaerea Jaenelle
+			Jaqea Jaqorra Jaqaerys Jaqara Jaqaera Jeda Jedora Jedaerys Jedaendra Jedaesia Jedia Jedyra Jedaeva Jeha Jehora
+			Jehaelia Jehaenys Jehaera Jehysaerys Jela Jelaerys Jelaena Jelyssa Jelmyra Jemaella Jemaenys Jemora Jaemaendra
+			Jemyra Jenaessa Jenaelle Jeraelynne Jerdella Jeraenna Jeraenne Jeressa Jeraesha Jeraenys Jessora Jesaenys
+			Jessaeka Jesaora Jesilanne Jesoraelle Jioria Jiondra Jiorella Jioraenys Jiorenna Jioraetha Jioraella Joka
+			Jokora Jokaenys Jokyra Jokaeva Jokaella Joraenda Joraella Joraenys Jordaena Jorana Jorea Josa Josaoria Josella
+			Josaerys Josaevra Josoraen Josaena Josira Josae Josyna Jurra Jurnea Jurnaella Jurnaerys Juraelys Nurnyssa
+			Jurvysa Juraevia Calaena Camaella Carra Caraenya Carmaella Kara Karaena Kamaella Karla Karlaena Caraelyn
+			Caedynne Caelessa Caella Caelona Caelys Caenara Caenerys Caerys Kaela Kaelona Kaelora Kaenna Kaera Kaerys
+			Kasaendra Kasora Kasella Kasaerys Kasia Cazia Cazora Cazaokyra Cazina Cazaedra Cazella Cazaenne Casaevra
+			Celaenys Celaerina Celdaera Kelaendra Kelda Kelior Kelaevra Cemaela Kemaerra Kemandra Kemora Kessa Kesha
+			Kesanne Kessarae Cesae Cesaelys Kiora Kionne Kiona Kioraella Cimyra Cirandra Kimyra Kironaera Kiva Kivora
+			Kivaerys Kivaenna Kivenya Cobaena Conaella Conaedra Conaerys Konaella Konaevra Konraenys Coraelea Coraelena
+			Coraezia Corlaena Koraella Koraelle Kora Korazra Koria Korzaendra Cosia Cosaella Cosaerra Costaella Costaenne
+			Kosaerys Kosaemma Kosira Kosora Kostiya Kosyra Cusaella Cusaelle Kusaenys Kusilla Kyna Kyndra Kydraenys
+			Kynaeda Kyva Kyvora Kyvaenys Kyvenna Kyvanne Kyvaelle Kyvissa Kyvanaerys Labraenna Labraessa Laela Laesha
+			Laenora Laerra Laeda Laeselle Lana Lanora Lanaella Lanaerys Lanaevra Laoda Laodora Laodaerys Laodyra Lara
+			Laraena Laressa Laraenys Laraemora Laraelanne Laryna Laraenerys Lea Ledaendra Lenia Lenora Lenaerys Lena
+			Lilaova Liliona Lilaenys Livaena Lilarra Lilaenor Lirona Liraella Liria Liraendra Litaelys Litaera Litaesha
+			Litaella Loka Lokaora Lokaera Locaella Lokyra Lotaevia Lotaerra Lotaella Lotaenys Lucaena Lukaeva Lunaerys
+			Lukaera Lukaelle Lucelle Lyka Lykorra Lykaerys Lykaenna Lykia Lykaendra Lykaelle Lyta Lytaella Lytaenys
+			Lytaendra Lytova Lytaenne Lytia Maella Maerys Maerika Maegara Maegaerys Maegynne Maelyssa Magaena Maghella
+			Maghaenys Maghira Maja Majaeqa Majaella Majora Majaelys Majira Majaevia Manda Mandora Mandaelanne Mandaenys
+			Mandaenne Mandria Mandessa Mandarya Mara Marella Maraenys Maraelyn Maraelys Maraena Mataerys Matea Matenya
+			Mataevia Mataeva Mataenne Mazia Mazaendra Mazora Mazella Mazaera Mazenne Medyssa Medora Medaera Medaelle
+			Medaenys Medira Melina Melinora Melinaella Melora Melaenys Melaenor Melindra Memaena Memora Memaenys Memira
+			Menia Menaedra Menaerys Mentaenys Mentyssa Mentira Merra Meria Meraova Maraella Meryssa Meraenya Misa Misaelyn
+			Misaella Misaeria Misyrra Molrya Molavora Molaenys Molaendra Mona Monaeva Montaera Montaenys Monaerys Mora
+			Morgaena Morghora Morgaella Morghaen Morena Munna Munaedra Munira Mundaelle Myrda Myrdea Myrona Myrdaella
+			Myrdaenys Myraena Naba Nabora Nabaella Nabaerys Nabaenna Naenora Naelle Naeryssa Naevara Naerra Naga Nagaelle
+			Nagaenys Naka Nakora Nakaerys Nakyra Nakaedia Nakaella Namia Namora Namaella Namaerys Namira Namissa Nava
+			Navaora Navaerys Navenna Navaella Navaerra Navaenne Nedora Nedaelya Nedaerys Nedyra Nedaendra Nedaella
+			Nekaelys Nekaerys Nekaeva Nekaella Nena Nenora Nenaelys Nenaeva Nenyra Nenaelle Nenoraella Nopra Nopaetha
+			Nopyrra Nudora Nudaella Nudaerys Nudyra Numa Numora Numaella Numaera Numaetra Numaenne Obaeda Obaeva Obaella
+			Odaerys Odaessa Odraella Ohilora Ohinaerys Ohivaelle Ohilaenne Ohinyra Ojaerys Ojoraen Ojaella Oktaegra
+			Oktaerys Oktaenne Octaelle Olva Olvaegra Olvaerys Olvyra Olvaella Olsora Olsenya Olsaenor Olsaeva Olsorana
+			Onda Ona Onaerya Ondaenys Ondyra Ondaella Onqa Onya Onqaenys Onysaedia Orba Orbaena Orbaerys Orbea Orbania
+			Orbianne Orea Oraella Oraelys Oraena Oreonyssa Oresanya Ossenya Osraella Ossaella Ossarona Ota Otarra Otaevia
+			Otaegra Otaevara Otaelle Ovora Ovaenys Ovaella Oza Ozorna Ozaerys Ozaendra Ozaella Paerys Paezora Paerelys
+			Pagha Paghenna Paghara Paghaerys Palora Palaedia Palaena Palyra Pala Para Pamaela Pamaerya Paraema Paraendra
+			Pasaova Pasaebra Pasaella Pasora Pella Pelora Pelaerys Peldora Pelina Pelaenor Peja Pejora Pejaelys Pejaevia
+			Penaerea Penaerys Penyra Penzaenne Pera Peraenna Perla Permaelia Peraendra Peraegelle Pia Praevendra Praevelle
+			Pravina Pradaeka Pramoda Pramaelys Pruma Prudaenys Prunaella Prumathea Prumora Prysaella Prytha Prydaenys
+			Prytoria Pryora Puraelle Puraelys Purtaenya Purvaedys Pyrantha Pythaenya Pyronia Pyrthaena Pytaerys Qhaerra
+			Qhaenys Qhaerella Qhaelenna Qanora Qnea Qanyssa Qanaerys Qanaeda Qanaelle Qelia Qelda Qeldra Qelaegra Qelemma
+			Qelaenya Qibia Qibaelle Qibarra Qibaolla Qinara Qinda Qinvara Qinaelys Qinsaella Qizea Qizella Qizessa
+			Qizaegra Qopalia Qopaelle Qopaela Qopyra Qridelle Qrilaena Qrilenya Qrindae Qridaerys Qrinya Raenada Rae Raena
+			Raenne Raemma Raenys Raevella Raevendra Raenya Raeda Raqa Raqoria Raqaenelle Raqaelle Raqella Raqaenys Rekana
+			Rekorra Rekaela Rekandra Rekelle Rekona Remmia Remora Remaella Remyra Remandra Remionya Remaenora Rhalla
+			Rhaegella Rhaelara Rhaenerys Rhaevenne Rhakael Rhakora Rhakelle Rhakandra Rhakaenys Rhakenne Rhakaena Redania
+			Dedaena Redaenys Redora Rhola Rholaena Rholaetha Rholaenys Rhova Rhovaelle Rhudra Rhuqia Rhudaenys Rhudyra
+			Rhudaegra Rhuqaelys Riga Ria Rigalea Rigaelys Rigeva Rilora Rolenne Roelle Rolaerya Rolaenys Rolaenda Roldana
+			Rovena Rova Rovaelys Rovaenne Rovalaena Rukaelle Rukaenora Rukolya Rukara Rukenia Runa Runaessa Runarea
+			Runaedra Runora Rysa Rysaenora Rysaedra Rysenne Ryza Ryzaentha Ryzelle Ryzdaella Ryzena Saelina Saela Saelys
+			Saerina Saevella Saenelle Saha Sahora Sahyra Sahyndra Sahina Samea Samitha Samyra Samaella Samaera Samaenys
+			Seraena Setna Setia Setaenna Setiandra Setiya Setaena Sikaella Sikaendra Sikaera Sikaerys Shaenys Shaerys
+			Shaeryssa Simaenna Simaenys Simaenara Skora Skoraelys Skoraelle Skorona Skorna Somaya Somaedia Somaendra
+			Somonya Somaelle Sonya Sonsyara Sonaerys Sonelle Sonaema Sonaeve Sonaedra Sopora Sopyra Sopavora Sopaelle
+			Sovora Sovenne Sovaena Sovaerys Sovaenerys Sovraelle Staendra Stavora Stavrona Stavaenys Staegelle Suetha
+			Suena Suedarna Suenaria Suva Suvarna Suvaena Suvaella Suvaerys Syla Sylaena Sylvaesta Sylvaenia Sylvia
+			Sylenara Syloria Syna Syndae Synaella Synaeka Syntha Synaevia Syraena Syraelys Syrae Syraevia Syvaera Syvaelle
+			Syvaedra Taemyra Taena Taegenne Taerynne Taemona Tema Temaeva Temora Temaerys Temelle Temaeka Teppa Tepaendra
+			Tepevaela Tepaelle Tepenya Terra Teratae Teraessa Teraeva Termaera Tessa Tesaelle Tesaenys Tessaelys Tesiana
+			Tetaerys Tetiana Tetea Tetora Tikaela Tikona Tikaenys Tikea Tikaendra Tikaelle Tindyra Tindra Tinaedra Tinessa
+			Tinaelys Tinaya Tindaeria Tinsaelle Tinarea Tola Tolaora Tolaenys Tolkaena Toroka Toraeka Toraelle Torina
+			Truenne Truselle Truda Trudae Trudaena Trumora Ubriona Ubraeva Ubraelle Ubraenna Udaera Udraella Udraemia
+			Udraenne Udrava Udraevya Ulla Ulaerona Ulianne Uliava Uliadra Urna Urnessa Urnaema Urnaedra Umaedra Vaedra
+			Vaegelle Vaelyra Vaelora Vaedina Vaenora Vaenytha Valea Vala Valaenys Valaora Valnora Vaora Vaonara Vaoqelle
+			Vaokaenys Vaonora Vasa Vasaelora Vasaelle Vasanya Vasaelynn Vedra Vediona Vedaessa Vedaela Vedelle Verana
+			Veraenda Verdaena Veraedia Vermaenda Vermalia Vesia Vestyra Vesaenys Vesaendra Vessaela Vesarra Vezia Vezaenya
+			Vezaerys Vezarra Vhalla Vhalyssa Vhara Vhaenys Vhanaerys Vhaonelle Visaendra Visaena Visarya Visaelys
+			Visaenara Visandra Visenaera Visenora Vokea Vokorra Vokaela Vokaena Vokaelys Voliona Volamaena Vola Vosaera
+			Volessa Volmaerys Voldaemra Voskyra Vosarra Vosraelle Vosaelys Vosakia Ydra Ydria Ydraelle Ydraelys Ydraemona
+			Ydraenyra Ydravella Yrda Yrdora Ydraela Yrdaenys Yrdea Yssa Ysaenella Ysadora Ysaendra Ysoria Ysavella Ysarra
+			Zaena Zaelana Zaedella Zaegona Zaekra Zaerys Zaehara Zaeva Zala Zalaena Zalaenda Zalmaya Zalessa Zalaria
+			Zalora Zarana Zaraeda Zaryna Zaraenys Zarima Zarinda Zarella Zea Zeamona Zeara Zeadona Zeanna Zeadaenys
+			Zeavora Zera Zeraya Zerelia Zeraela Zeraelle Zeryna Zeraelys Zeriana Zeressa Zoka Zokora Zokiona Zokaela
+			Zokessa Zokaenys Zokaeva Zraenys Zyra Zyriona Zyraela Zyria Zyranna Zyraelle Gaela Lucenya Laeysa Maerella
+			Naela Rhaelys Aella Aelyla Aelyra Aemara Aena Anora Aerebella Averea Balaena Baelys Baeryn Cenya Cyana
+			Aelenora Nora Helaea Haena Jaena Jaehia Jedaria Larysa Lytsera Lykara Lyksera Malaena Mae Melvaria Mysenna
+			Maelorys Nyxara Naqessia Numyna Pelaria Perzyna Olzonia Ovonia Qaressa Qaenella Serra Sambella Sylvina Meleys
+			Tessarion Vhagar Tyraxes Shrykos
+		}
+	}
+	dynasty_of_location_prefix = "dynnp_of"
+	pat_grf_name_chance = 10
+	mat_grf_name_chance = 5
+	father_name_chance = 5
+	pat_grm_name_chance = 10
+	mat_grm_name_chance = 5
+	mother_name_chance = 5
+	mercenary_names = {
+	}
+}
+
+name_list_eastern_valyrian = {
+	dynasty_names = {
+		{ "dynn_Anogaryen" } { "dynn_Atroksiarys" } { "dynn_Daomiorys" } { "dynn_Embaryen" } { "dynn_Gelenkys" }
+		{ "dynn_Gelionar" } { "dynn_Gryvetheon" } { "dynn_Hoskagys" } { "dynn_Haedaryen" } { "dynn_Ilirigys" }
+		{ "dynn_Jelmazeon" } { "dynn_Jentys" } { "dynn_Kastaryen" } { "dynn_Kostagar" } { "dynn_Mazigonys" }
+		{ "dynn_Namorghulilaryen" } { "dynn_Ondoryen" } { "dynn_Perzys" } { "dynn_Qogrorys" } { "dynn_Syzeon" }
+		{ "dynn_Tresys" } { "dynn_Belaerys" } { "dynn_Zaldrizyen" } { "dynn_Manaereon" } { "dynn_Urnebar" }
+		{ "dynn_Sonaryen" } { "dynn_Kessatheon" } { "dynn_Bevilar" } { "dynn_Ezimatheon" } { "dynn_Laeseon" }
+		{ "dynn_Jenqeleon" } { "dynn_Pirtiryen" } { "dynn_Sytivilar" } { "dynn_Tistaleon" } { "dynn_Qupteneon" }
+		{ "dynn_Nuqiryen" } { "dynn_Orbareon" } { "dynn_Quvyar" } { "dynn_Valzyren" } { "dynn_Ilontheon" }
+		{ "dynn_Boniryen" } { "dynn_Jorraezys" } { "dynn_Quptys" } { "dynn_Tyvar" } { "dynn_Jomozar" }
+		{ "dynn_Huretheon" } { "dynn_Ruakys" } { "dynn_Celereon" } { "dynn_Jaeganyon" } { "dynn_Arranion" }
+		{ "dynn_Vezenkar" } { "dynn_Unendia" } { "dynn_Voksia" } { "dynn_Galgaeron" } { "dynn_Laergyr" }
+		{ "dynn_Enreos" } { "dynn_Merntys" } { "dynn_Maznareon" } { "dynn_Henaeris" } { "dynn_Ronnon" }
+		{ "dynn_Haeteros" } { "dynn_Gevgarys" } { "dynn_Hurys" } { "dynn_Pyllyr" } { "dynn_Raegaros" }
+		{ "dynn_aegalaren" } { "dynn_aegaron" } { "dynn_aegonen" } { "dynn_aegoren" } { "dynn_aegoron" }
+		{ "dynn_aelaren" } { "dynn_aelaron" } { "dynn_aelyxen" } { "dynn_aenaren" } { "dynn_aenaron" }
+		{ "dynn_aeriphon" } { "dynn_aurionen" } { "dynn_baelaren" } { "dynn_baelaron" } { "dynn_baelyxen" }
+		{ "dynn_baenaren" } { "dynn_baenoren" } { "dynn_baeraxon" } { "dynn_baeronen" } { "dynn_baerynen" }
+		{ "dynn_baerysen" } { "dynn_belmurten" } { "dynn_calaren" } { "dynn_calaron" } { "dynn_caraxon" }
+		{ "dynn_carynen" } { "dynn_caryoson" } { "dynn_daegonen" } { "dynn_daelaron" } { "dynn_daelonen" }
+		{ "dynn_daeneryen" } { "dynn_daenyson" } { "dynn_daeronen" } { "dynn_daerynen" } { "dynn_daeryson" }
+		{ "dynn_draegonen" } { "dynn_draqoren" } { "dynn_donaren" } { "dynn_ebrien" } { "dynn_eglien" }
+		{ "dynn_egrosen" } { "dynn_elenyson" } { "dynn_haegonen" } { "dynn_lyqanonen" } { "dynn_lyqsonen" }
+		{ "dynn_maegoren" } { "dynn_maegoron" } { "dynn_maelaxon" } { "dynn_maeloren" } { "dynn_maelysen" }
+		{ "dynn_maenaren" } { "dynn_maeqaren" } { "dynn_mataren" } { "dynn_melaren" } { "dynn_naegonen" }
+		{ "dynn_naegronen" } { "dynn_naenoren" } { "dynn_nuceren" } { "dynn_paranen" } { "dynn_pariosen" }
+		{ "dynn_parioson" } { "dynn_qaegonen" } { "dynn_qaemonen" } { "dynn_qaenysen" } { "dynn_qadaroson" }
+		{ "dynn_qelonysen" } { "dynn_qostysen" } { "dynn_releqoren" } { "dynn_rhaegaren" } { "dynn_rhaegonen" }
+		{ "dynn_salloren" } { "dynn_symoren" } { "dynn_taegonen" } { "dynn_taegoren" } { "dynn_taeloren" }
+		{ "dynn_taelyson" } { "dynn_taelyxen" } { "dynn_taemonen" } { "dynn_taenaren" } { "dynn_taenyson" }
+		{ "dynn_tychoren" } { "dynn_tygalen" } { "dynn_tygaren" } { "dynn_tygellen" } { "dynn_tymaxon" }
+		{ "dynn_tygonen" } { "dynn_tynysen" } { "dynn_tregonen" } { "dynn_urlyxen" } { "dynn_urmaxon" }
+		{ "dynn_urraxon" } { "dynn_vaelonen" } { "dynn_vaeloren" } { "dynn_valenon" } { "dynn_vaemaren" }
+		{ "dynn_vaemonn" } { "dynn_vaenoren" } { "dynn_vaeraxon" } { "dynn_vaeronen" } { "dynn_vaerysen" }
+		{ "dynn_vermaxon" } { "dynn_verraxen" } { "dynn_vermithen" } { "dynn_vhaegonen" } { "dynn_vhaeloren" }
+		{ "dynn_vhaelenon" } { "dynn_vhaelyxon" } { "dynn_vhaemonen" } { "dynn_vhaeraxen" } { "dynn_vhaeronen" }
+		{ "dynn_vyronoson" } { "dynn_viselen" } { "dynn_visenen" } { "dynn_viseraxon" } { "dynn_zaeloren" }
+		{ "dynn_Abrazaros" } { "dynn_Aeksaros" } { "dynn_Albarion" } { "dynn_Albilos" } { "dynn_Arghorys" }
+		{ "dynn_Azantaros" } { "dynn_Belmorys" } { "dynn_Buzdaros" } { "dynn_Daemaros" } { "dynn_Daemonyros" }
+		{ "dynn_Daeraryos" } { "dynn_Darilaros" } { "dynn_Galrygos" } { "dynn_Laehyrys" } { "dynn_Melaros" }
+		{ "dynn_Melinyros" } { "dynn_Mentaros" } { "dynn_Numarys" } { "dynn_Qelbraros" } { "dynn_Runagaris" }
+		{ "dynn_Syndrilys" } { "dynn_Teptaros" } { "dynn_Timparos" } { "dynn_Vokaros" } { "dynn_Volonqorys" }
+		{ "dynn_Zobrygos" } { "dynn_aderes" } { "dynn_aenares" } { "dynn_aertaphos" } { "dynn_biaros" }
+		{ "dynn_desarphos" } { "dynn_doqimares" } { "dynn_donaros" } { "dynn_drejaros" } { "dynn_egloros" }
+		{ "dynn_gevaros" } { "dynn_gidares" } { "dynn_haqsares" } { "dynn_harenqor" } { "dynn_hunares" }
+		{ "dynn_iloros" } { "dynn_jaehenqos" } { "dynn_labrenqos" } { "dynn_ledares" } { "dynn_lumaroros" }
+		{ "dynn_mandaros" } { "dynn_merparos" } { "dynn_mibares" } { "dynn_morgharos" } { "dynn_morqitos" }
+		{ "dynn_namorgharos" } { "dynn_nudares" } { "dynn_orejaphos" } { "dynn_paezaros" } { "dynn_prumaros" }
+		{ "dynn_punilaros" } { "dynn_qirines" } { "dynn_qribrosos" } { "dynn_qrinaros" } { "dynn_qrinoros" }
+		{ "dynn_qubaros" } { "dynn_quboros" } { "dynn_raparos" } { "dynn_rhesarphos" } { "dynn_rovaros" }
+		{ "dynn_rovoros" } { "dynn_rovegoros" } { "dynn_rytsaros" } { "dynn_rystoros" } { "dynn_senaros" }
+		{ "dynn_sunoros" } { "dynn_syzaros" } { "dynn_syzoros" } { "dynn_tegonos" } { "dynn_tolmihahr" }
+		{ "dynn_udrimoros" } { "dynn_ueparos" } { "dynn_ueporos" } { "dynn_valenqares" } { "dynn_vagenqos" }
+		{ "dynn_vamiharphos" } { "dynn_vogenqos" } { "dynn_vosqares" } { "dynn_ygharoros" } { "dynn_yrdarphos" }
+		{ "dynn_zirtares" } { "dynn_Abrazar" } { "dynn_Albar" } { "dynn_Albil" } { "dynn_Argor" } { "dynn_Belmor" }
+		{ "dynn_Buzdar" } { "dynn_Darar" } { "dynn_Daril" } { "dynn_Demar" } { "dynn_Demonir" } { "dynn_Dohaer" }
+		{ "dynn_Eksar" } { "dynn_Galrig" } { "dynn_Gelnar" } { "dynn_Lahyr" } { "dynn_Melar" } { "dynn_Melinor" }
+		{ "dynn_Mentar" } { "dynn_Numar" } { "dynn_Runagar" } { "dynn_Syndril" } { "dynn_Teptar" } { "dynn_Timpar" }
+		{ "dynn_Vokar" } { "dynn_Volonkor" } { "dynn_Zantar" } { "dynn_Zobrig" }
+	}
+	male_names = {
+		40 = {
+			Aegon Aegor Aelor Aelyx Aemon Aemond Aenar Aenys Aerion Aeryn Aerys Aethan Aurion Ayrmidon Baelon Baelor
+			Baenar Bearaxes Beargar Bearlerion Daemion Daemon Daeron Gaelar Gaemon Haegon Jacaerys Jaehaerys Laenor
+			Lucerys Maegon Maegor Maekar Maelor Maelys Maenar Maeron Matarys Orys Rhaegar Rhaegel Rhogar Vaegon Vaellyn
+			Vaemond Valarr Valerion Viserys
+		}
+		40 = {
+			Adareno Adaros Aerano Aerio Aeriphos Aeryio Aeryro Alios Arano Aricho Arillos Aronos Aryos Aryrio Asporio
+			Balderico Balleno Ballio Basporio Belano Belapho Beleqor Belesso Belicho Belodos Belono Beloquo Belyrio
+			Bhalaso Boronno Brachanos Bracharo Brachyllo Cadaros Carios Caryos Cassano Colloquo Conicho Coqorro Coronno
+			Cossoquo Cybero Danilo Darios Davo Demetio Donano Donaro Donelos Donicho Donio Doniphos Doronno Draqano
+			Draqoros Dynario Essalos Essanos Esselo Essorio Esyrno Eysano Ezzano Ezzario Garios Garridos Gasporio Genesio
+			Goqorro Goranys Goronno Gyllonos Halaso Harios Harlano Haronno Hasporio Horio Horonno Hybario Illario Illaro
+			Illeno Illio Illonar Illoquo Illoros Innario Innyllo Ironno Irricho Irrio Jalaquo Jaqario Jaqaro Jasporio
+			Jhalaso Jorapho Joraquo Joronno Jybero Kasporio Laraquo Larazo Larios Lazano Loqorro Loronno Lothorio Lybero
+			Lysenno Lysiros Malano Malaquo Malero Mallaquo Malonaro Marano Maraphos Marqelo Melio Methyso Mhalaso Mollono
+			Moronno Nakano Nakaquo Nakeo Nakodos Narios Nereo Noqorro Norello Noroquo Nyessano Nyessos Padaro Paranys
+			Parios Parquello Pazano Phalaso Poqorro Poronno Pupolo Pyrio Qarrano Qhalaso Qorello Qoronno Relapho Releqor
+			Relyrio Rhalaso Rybero Salloros Sarios Soronno Stallaquo Stalleno Stallorno Sybero Syrano Syricho Tario Tazal
+			Thalaso Thoreno Thorio Thoronno Toronno Tregaquo Tregonos Tregyllo Tregyros Tybero Tychano Tychoros Tyssano
+			Valoquo Vargano Vargello Vargio Vargorno Vario Variphos Vhalaso Vogarro Vogorno Voqorro Voronno Vyresso
+			Vyronos Yaqeo Yasporio Yoqorro Yoronno Yorys Zarapho Zaraquo Zargano Zarios Zeleqor Zhalaso Zonario Zoronno
+			Zyrio
+		}
+		20 = {
+			Aedor Aeganys Aegar Aegaron Aelix Aemarys Aemor Aenarr Aenyx Aeragar Aeranyx Aerarion Aeravar Aerydar Aerygon
+			Aerymar Aerymion Aerymond Aeryrys Aevor Annarion Azagor Azemion Baegel Baemorys Baeryn Baesegarys Baesemor
+			Balaegor Balaemor Balaenyx Balaeron Baseimion Daegar Daekar Daelarys Daelor Daemalon Daemaraenar Daemavar
+			Daenar Daeragon Daeranyx Gaelyx Gaeron Gahaemorys Gahaenys Gahaenyx Gahaeron Galaemar Galaerys Garaelor Haerys
+			Jacaelar Jaeglys Jaegon Jaekar Jaelarys Jaemar Jaemion Jaemond Jaenar Jaenyx Jaeremion Jaerevon Jaevor Janys
+			Laegon Laelar Laemond Laenarr Laerion Lucaegaron Lucaelar Maehamon Maehanor Maelyx Maerion Maerys Maevon
+			Malaemond Malaenar Mamion Mamyx Maraenar Matadar Matagar Matalor Matamion Matamor Matamorys Naeryx Nucerys
+			Olzonys Ovonys Paelor Raegar Raegel Raelor Raelyx Raerion Ragaemon Rahaedar Rahaemyx Rahaerion Rahaerys
+			Rhaemar Rhaemon Rhaenar Taecedar Taedar Taegon Taemarys Taenarr Taerion Taeron Tahaegaron Tahaegor Tahaelor
+			Tahaemarr Tahaevon Talaemorys Tyraemion Tyraemon Tyraenyx Tyraerys Tyraevar Vadar Vaegor Vaekar Vaemarys
+			Vaermon Vaeron Vagaron Vahaedor Vahaenys Valyx Vanarr Vanor Vanys Vimion Virys Visegel Visemar Yraemond
+			Yraenar Zaelys Abralon Abramor Abrathas Adelaeron Ademar Adenaerys Aegnar Aegyr Aekosion Aelarion Aeligor
+			Aelydas Aenlor Aenor Aenyras Aerasarr Aerimor Aexiomor Aezimon Aezon Aezorys Ajaethan Ajehar Albilas Amarion
+			Amazar Amazorys Anogalas Araemor Arilor Arilys Arlaenys Arlarr Arlion Arlydon Atraon Atrothas Auraemon Averaen
+			Averon Ayraolar Ayrdelon Ayrhaegor Ayrion Azaendas Azandar Baenathys Baerelas Balaenys Bamaelor Banisyr
+			Baraegor Baraend Baraolor Barion Bartaegar Bevaelas Bevion Bevron Biaron Biarys Bisaethas Bisor Bodaemar
+			Bodaen Boderys Bodion Bodyn Braedelas Braehaerys Braevyn Bykaeherys Bykarax Caelarr Calaeryn Carael Carsaen
+			Celaovor Cemaelor Cemarr Cesaerys Cesaovor Cestas Ciraogodas Cirimaelys Cobaevas Conaedas Coraenys Coraethas
+			Coraezar Corlys Cosaenys Coseon Cosorys Costaedas Daemarr Daemas Daemryn Daenax Daerax Daerovas Daimax
+			Daimenys Daimion Dakarion Dakas Dakon Daraedys Dekor Dekys Deraebon Deraemas Derebor Derys Dijaekar Dijaelor
+			Dijimar Dijorys Dokimas Donaevas Dranaevyn Drandyr Drane Drejor Drivenor Drudas Drusaenys Ebraelor Ebrion
+			Edraekar Egronys Egrys Elaenidor Elian Eliandor Eliron Elithaenys Endion Epvaenor Epvaonyr Epvion Ezidaekar
+			Galaorys Galmor Garaekar Garaevas Garaomar Garon Gebaelor Gebaeron Gebhaerys Gelaenar Geliathor Gelion Gelkas
+			Gelterys Gevoryn Gievaelas Gihorys Gihyrr Glaeryn Glaerys Glaethas Grovaegor Grynaelas Grynaelor Grynaovar
+			Gryvor Guron Haemond Hakarr Hakomaer Haraendar Hedandar Hedar Hedlor Hedor Hekon Helaedas Helys Hemaebar
+			Hemaendar Hemaenor Hemor Henor Hezaenys Hezmaeron Hilaenor Hilivyrr Hivaegon Hivaeryn Hiverys Honaelor Hozion
+			Huemagon Huemarax Hunasaeron Hurenlor Idakryn Idarys Idraevyr Idresane Imandarr Imudorys Imunor Indaegon
+			Indaekor Indar Ioraelys Ioraemar Iorion Irumaenor Iruvaeron Isathys Jaedomar Jaelathys Jaelimor Jaelor
+			Jaqaelys Jaqaonor Jedaekar Jedaelys Jehaerys Jehar Jehorys Jehynor Jemar Jeminor Jemirys Jemyr Jenithor
+			Jeremaen Jereon Jesaendar Jeserys Jesoryn Jioran Jiorgar Jokael Jorathys Josax Juraevor Juron Kaedas Kaerael
+			Kasion Kasothys Kelorys Kemaethys Kessalas Kestor Kiorys Kiosaerys Kiran Kivion Konaerion Konorys Koraelys
+			Korian Kortan Korzaendor Kosaemas Kosaokar Kydraenkar Kyndar Kynlor Kyvaemon Kyvaendor Kyvellas Kyvon Kyvoraen
+			Labaedas Labaeryn Laban Labar Labraemor Laenar Lanaevas Lanar Lanorys Laodas Laodylas Laonor Ledhaerys Lironys
+			Litaerys Litor Livaenyr Livaerys Lokaemar Lucelor Lykion Lykor Magaelon Magaenor Maghar Maghyr Maglor
+			Mandaenor Maraenor Maraevas Markas Martarr Martas Marvor Mataegon Mataerion Matys Mazaerys Mazelor Medaenor
+			Medar Medon Melaekar Mentaerion Mentaerys Mentys Mentyx Meraenor Misagael Mivaegond Molaen Molaethor Molas
+			Montelyx Monterys Morgharys Munerys Munnar Munnor Myras Myron Nabaendor Nabarr Naelon Naemor Naevas Nagaethys
+			Nagaevas Nagon Nagorys Nakaethan Namaendor Namorys Namryn Navaerran Navakar Navinys Nedas Nekaeron Nekarr
+			Nekryn Nopaelor Nopaeron Nudaenys Nudaerax Nudaevas Numaevelys Numar Numryn Obaedas Obnor Obvaerys Odrivar
+			Ohilvar Ohiraenys Ohivor Ojaenys Ojar Oktiomar Olsaemar Olsor Olvyn Olvys Ondirys Ondor Onqaothas Onyrr
+			Orbaegon Orbaenys Orelys Orevaegon Osperys Otaerys Ovodas Ovorys Ozaemar Paerelas Paevas Paezor Palandor
+			Paleryn Pamaerys Paraserys Pasaebar Pasaqael Pejar Pelador Pelaegeys Pelaenys Pelarr Pelorys Perzivel Pisygion
+			Pradaenys Pramaenys Prudaemor Prumandor Prumathys Prunaelor Pryskaelryn Prytor Purion Purvaedor Pylor
+			Pymaelarr Pyranth Pytaer Qanaegon Qanar Qanathys Qandor Qelaegyr Qelarr Qhaegar Qhaetelys Qib Qibarys Qinaevas
+			Qindar Qinvyrr Qinyras Qopaelas Qopanys Qrithaelas Qrivaegon Raedan Raenas Raevendar Raqion Redyr Rekaedar
+			Rekaedas Rekorys Remarr Remnor Rhaegon Rhaelon Rhaelyrr Rhaemond Rholys Rhuqael Rolaendas Rolar Rovelor Rukael
+			Rukyrr Runador Runaekas Runaelor Runaerys Runarr Runyr Rysor Rysotor Rystaerys Ryzdar Ryzion Saeron Saevyrr
+			Sahedion Saholas Samaerys Scovael Seterys Setorion Sikaedas Sikael Sikaeryn Sikimyr Simaegond Skor Skorion
+			Solan Solaovyr Somaedon Somaelor Somon Somonarr Sonaerand Sonidas Sovaedas Sovaendar Soverys Sovys Stamaerys
+			Stamyrr Suebaekar Suebor Suenarion Suverys Sylverys Syraegar Syras Syron Syvaosor Temolon Tepaendar Teperys
+			Terran Tetaevas Tetyrdon Tikaelys Tikion Tinaedar Tinderys Tinrion Tolimon Tolvydas Torenys Toromaonys
+			Trumaend Trumar Trusyr Ubraldas Ubranys Ubrion Ubryn Ubyrr Udraenar Udraenel Ulaerys Ulian Unaemon Unaraekas
+			Urnar Vaedion Vaenathas Valaegon Valaezyr Valdon Vaokolas Vaonor Vaorys Vasael Vasamon Vaserys Vesaerys
+			Vesaryn Vesarys Vesemond Vesor Vezenas Vezenys Vhaeryn Vhalys Vhorys Visagor Vokaelas Vokion Volardas
+			Vosaekion Vosaerys Vosar Ydronys Yrdaekar Yrdaen Yrdaeryn Yrdys Ysaerion Ysenyrr Yson Ysoras Zaedel Zaekar
+			Zaekarys Zalys Zaraen Zarindor Zarolas Zealys Zearaen Zeavan Zeryn Zokaelor Zokaorion Zyraelan Zyrion Zyron
+			Adelmo Adenio Agono Agreo Alanno Alario Alassimo Aldareo Allaquo Allaro Allo Allorano Allynio Amarro Anagros
+			Anarro Andanys Andrio Anello Aro Argo Arhane Arneo Aurio Baderos Bahar Balarro Balbano Ballabar Bambarro
+			Bandaro Baranor Barghas Basarro Bassiro Baybarso Beqqo Beldeqo Belaquo Bellio Beloro Bencano Benerro Benkano
+			Bessaro Borso Bosqo Brono Brudo Brunarro Bylar Bylaro Casuto Clario Collio Collo Copho Corenno Corso Costos
+			Craghas Cossomo Daallo Daario Dadano Dallaro Danaro Danbaro Daronno Dello Dellono Demio Denano Denelo Dinisio
+			Dinio Dokkello Dorallos Dorellan Doran Dorseo Dragoso Drako Dranas Drasaro Drasono Drazendro Drazenko Drakhos
+			Durio Durso Dylo Egar Egor Egoros Eladon Elarro Ellandor Eloros Eloro Elyo Ergys Errano Errio Erys Essario
+			Ezelio Ezodio Fallo Falyrio Fanendro Faro Favario Fenio Fenneso Ferrio Fillio Fodio Fotio Fredo Gaherys Gadros
+			Gaharo Galendro Galeran Gamallo Garros Garynos Geralio Geras Gerinello Gerio Gerolo Gessio Getho Ghazaro
+			Gheraro Ghilorros Ghirio Ghorgho Ghovan Gonapho Gondo Gorgo Gorlas Gothos Gotho Gorys Groleo Gosto Gyran Haego
+			Halarro Handallo Harako Harayn Harpalo Helidono Hercleo Herrio Hevio Hukko Hyllio Idario Illyrio Jaharo Jakko
+			Jepeo Jeremo Jonos Jorio Joro Joronelo Jorso Joso Jospo Josto Jotho Kaamaro Kallio Kasso Kendrako Khados
+			Khorane Khosarro Korvio Kossio Kyano Kysollo Ladono Landro Leferio Lereo Liomond Lokasso Lorenio Lopelo
+			Loserys Losayn Lotharo Lotho Luco Lukkio Lynorro Lysallos Lysandro Lysanor Lysaro Lysendos Lysenko Lyseno
+			Lyseo Lyserio Lysono Lytheon Lyppio Luro Majoreo Malko Mallor Malo Malys Manto Mardono Marello Marono Masandro
+			Massio Matheo Matiro Matteno Mavario Mavrolo Mazio Medeo Mekko Menallio Menario Menio Mennio Merensio Mero
+			Moleo Mollos Moniro Moqorro Morgo Morlano Moro Morosh Morgonio Morgoso Morro Mosaphos Murso Myrio Myrmello
+			Myro Mytio Naqano Narbo Nassaros Nassario Navaphos Navys Nebrophos Nello Nemarro Nenbarro Nenio Nerrio Nevario
+			Nevio Nevosso Nisario Novenko Nyrio Nysseos Oddio Oledo Ollo Oppo Ordello Ormallos Orsillio Orsio Orsyllio
+			Orybaso Padaros Pallio Pallos Palennio Palysio Pandeto Pandulo Parmello Parnio Paro Paryos Pellaro Pello
+			Pereno Pharasos Plaso Prellio Prendos Progonio Pulenio Pyrisio Pytho Qadano Qaeros Qalavo Qarrash Qarphos
+			Qasqos Qavo Qelaano Qonane Qos Quallo Racallio Ragono Rallaro Rallo Rallos Ranfaro Ravelo Reggio Rego Remio
+			Rennio Rhesos Rheono Rhaskos Rhogarro Ricasso Rodo Rodello Rogaro Roggerio Rogo Rogoso Rogosh Rolloquo Rolano
+			Rollo Roro Rovarro Rovayn Runello Ryllo Rykario Saathor Saathos Salladhor Salloreon Salassor Samarro Sambarro
+			Sambor Samorio Sanno Sargoso Sarvato Sassano Sathandro Sathasor Savario Savolio Sazarro Seqqo Setimio Shadir
+			Shaharo Shanaro Sharako Shasavo Shotho Silvario Stanio Stevano Stamatys Sullathos Sullehman Syssilio Talandor
+			Tello Tenesio Teppo Terelas Terrio Tessario Tesilio Tevio Therono Thoros Thrasos Tigaro Tibruso Tobio Togosh
+			Tomarro Torreo Toveo Tregar Trebar Trellio Ternio Tritio Trombo Trigo Tybarro Tybio Tyrenzo Tysio Tythio Tymeo
+			Tyros Ullo Uravio Urosh Vaario Valdane Valerio Vanio Varys Vasandro Vasenko Vastanio Vatho Vhalerro Verallio
+			Veranio Vesillan Visario Vyrano Vysarro Yandro Yansilo Yollo Yonno Yorko Yoro Yosso Yossio Yotho Yovonio
+			Zaanio Zyllio Aegalon Aeronos Baelyx Baeron Baerys Baenor Baelegar Baelarr Baerax Belmurtys Carax Caryn Calarr
+			Daerys Daeryn Daelarr Daegon Daelon Daenys Draegon Donaros Eglion Egros Elenys Lykanon Lyksion Melarr Maelax
+			Qaegon Qaemon Qadaros Qelonys Qostys Qaenys Symoros Taemon Taemond Taegor Taelyx Taenys Taelys Taenar Tyxes
+			Tygar Tygal Tygelle Tygon Tynys Tymax Tregal Urmax Urlyx Urrax Urkar Vhaelon Vhaelor Vaelyx Vhaemon Verrax
+			Vhaeron Vhaegon Vhaerax Visenys Viserax Vhaenor Viselys Vaelon Valenys Vaemar Vaerax Vhalax Arrax Balerion
+			Caraxes Syrax Vermax Vermithor Meraxes
+		}
+	}
+	female_names = {
+		40 = {
+			Aelinor Aelora Aemma Aenesa Aerea Aerena Alaerys Alysanne Alyssa Baela Baenys Daella Daena Daenaera Daenerys
+			Daenys Daeryssa Daesanne Elaena Elaenyra Gael Helaena Jaehaera Jaenara Laena Larissa Lianna Maegelle Maemys
+			Mhaegen Naerys Rhae Rhaella Rhaelle Rhaena Rhaenyra Rhaenys Saera Shaena Shaera Vaella Valaena Visenya Viserra
+		}
+		40 = {
+			Aena Ahraena Ahrianna Ahrysa Alea Aleah Arenela Arraya Arreyana Bysaria Daenala Daenirah Daenyea Dileah Dora
+			Doresa Doreza Dorianna Dysaria Elaera Elaya Elynea Enesa Erola Eyolana Faeyella Faeyila Faeyolana Feria
+			Ferylea Ferysa Firaneah Firanela Firania Firanissa Firanya Gaena Haena Harraya Harreyana Helanea Helissa
+			Helyea Hena Henaleah Henerah Henolana Ilia Ilola Ilona Inerylla Irylla Laensa Laenysha Lanesa Laresha Leaysa
+			Leresa Lessella Lessera Lessynea Licya Lucrezzia Lysaria Melala Melina Mellianna Melolla Melylla Melyna
+			Meshaena Meshaleah Milaya Minanea Minelna Mineya Moreya Morylea Nereah Nesa Neseyana Nesianna Nesila Nesissa
+			Nesora Nesoreah Nesynea Nilde Nilina Nilora Nilyna Nolona Norianna Nysaria Onalella Onalona Onalya Onalyna
+			Orala Penyla Phenaria Phenolana Phenoreah Philario Philona Phireah Phirella Phirona Pysaria Qaena Raena Ranira
+			Saella Saelysha Selaesori Sera Seraena Serera Serola Serylla Sirana Siranah Siraya Sireya Sirona Sirysha
+			Taenolana Taenya Taeynea Talisa Tirola Tirora Tiryna Tirysha Trianira Trianna Triannolla Triannya Tysaria
+			Vaerosha Velle Vellena Vellona Vellya Venusta Voreya Vorylea Vorynea Wenela Wenyla Wyna Wynesa Yaena Zaarina
+			Zaena Zargana Zarya Zoronna
+		}
+		20 = {
+			Aenehnae Aenehrys Aenela Aenerya Aeriana Alaenla Alaenya Alaenys Alaera Alaesanne Alaesys Alearys Allyria
+			Alyhna Alynna Baelora Baena Baenna Baesa Bahra Banera Bara Bassa Bhaela Bhaelys Bhaenla Bhaenyra Caena Cyeana
+			Cymella Daemys Daenea Daenehyrs Daenella Daenera Daenerya Daenora Daeoril Delaehrys Delaenyra Elaela Elaemera
+			Elaeryn Elaerys Elaesella Eraemera Haehnae Haehra Haelena Haelerla Haemera Haenyra Haera Hemys Henya Hessa
+			Jacaena Jaehyrs Jaelala Jaelanys Jaelassa Jaemala Jaerya Jaesys Jahaena Jelaehra Jelaenya Jelaenys Laenara
+			Laenesa Maega Maelerys Maelora Maena Maera Maesanne Maesys Malaehra Malaenyra Malaernera Malaesa Naelarla
+			Naena Naenera Naenla Naeressa Naesella Naesenya Nelaella Nelaemys Nelaenys Nelaerya Nesaehnae Nesaenys
+			Nesaesanne Nesaessa Raenenyra Relaechnae Relaera Relaesa Relaesanne Renaerla Rhaehra Rhaelinor Rhaenella
+			Rhaenemera Rhaenla Rhaenna Rhaera Rhaesa Rhaessa Rhaeys Saechnae Saehra Saelara Saelasa Saena Saenehna
+			Saenelys Saenessa Saenrys Saenyra Saenys Saerena Saerla Salamera Selaela Shaelora Shaelys Syaella Vaehra Vaela
+			Vaena Vaenera Vaera Vaerla Vaesys Viselle Visenae Vysaela Vysehnae Vysella Abraelys Abraesha Abrenae Adenaella
+			Aderaelle Aderaenya Aegessa Aegora Aelaenys Aelerys Aelyssa Aenalor Aenne Aenya Aeraenia Aerenys Aerithaen
+			Aexenne Aexirae Aezerys Aezinora Aezira Ajaenya Ajehaelle Albaenyra Amae Amaezenne Amazaella Anogara Arakaerra
+			Arilaeka Arilla Arla Arligyra Arlinya Arlynaera Atra Atrynne Auraevra Avella Averaenys Ayraelys Ayraena
+			Ayranaerys Ayravaera Azanna Azannora Baelryna Balaerys Bamaeva Banelle Baraegella Baraelle Baraenda Barbaenne
+			Barra Bevaera Bevaerlys Bevena Bianaerys Biarena Bismyra Bisora Bodaevera Bodenna Bodenya Bodora Bondaenys
+			Braedaenys Braelynne Braemma Bykaera Bykaerys Caella Calea Caraelyn Carra Celaenys Cemaela Cemorra Cesaelys
+			Cesaora Cesyna Ciralaenys Cirsaenya Cobaenria Conaella Coraeva Coraezia Coraezra Corlaena Cosaerra Costae
+			Costaella Costaenne Daemaella Daemara Daemora Daemyra Daenytha Daera Daerimora Daimanaerys Daimora Daimoraelle
+			Dakaenna Dakarra Dakona Darlaena Deka Deqorya Deraema Deraenne Deraesha Dereynra Dijae Dijaelle Dijaera
+			Dijaerys Dokaenne Donaeva Dranaelle Dranaelys Drania Drejaella Drivaenna Drunaerys Druvaerys Ebraella Ebriola
+			Edruna Egrona Egryssa Elenia Eliora Elira Eliraela Elvira Endira Epvae Epvaela Epvia Ezidea Galaora Galarya
+			Gara Garaena Garaessa Garaona Gebaella Gebanae Gebiona Gelaerys Gelessa Gelia Gelinaerys Gelyra Gevaenra Giena
+			Gihaevra Gihenna Glaedys Glaenys Glaesae Grova Grynaerra Grynaerys Grynaova Gryvaerys Gura Haeleys Hakaedra
+			Hakaella Haraessa Hedda Hedella Hedenna Hedyndra Hekona Hela Helaenne Hema Hemaera Hemaerys Hemyra Henna
+			Hezenna Hezyna Hilaerea Hilarra Hivaenys Hivaessa Hivraelle Honia Hozora Huemaelle Huemyra Hunyra Huraeva
+			Idakora Idaryna Idraella Idrava Imania Imudaenna Imuvaenys Indaella Indaora Indra Ioraella Ioraona Ioria
+			Irulia Iruvaela Isaerys Jae Jaedenys Jaelaena Jaena Jaqenna Jaqoraen Jedaerys Jedaesia Jeha Jehaeraen
+			Jeharaella Jehira Jemaedia Jemma Jemora Jenraella Jenraenys Jeraesha Jerdaerys Jesaora Jesenya Jessyra Jiondra
+			Jioraella Jokaella Joraenys Josyna Juraevia Jurra Kaeressa Kaerydra Kasenna Kasora Kelora Kemaerys Kessala
+			Kestora Kiosaenya Kiosyra Kirandra Kivora Konora Konoressa Koraella Koraonia Korbaena Korzaendra Kosa
+			Kostaella Kydra Kyndra Kynorra Kyvaedra Kyvaella Kyvaenys Kyvanne Kyvissa Laba Labaerys Labraessa Labrelle
+			Labyra Lana Lanaeva Lanoraella Laodaerys Laodona Laodyra Ledaenna Lilaena Lilaenys Lirenna Litaenia Litaenyra
+			Lokaenys Lucia Lykaelle Lykorra Maelyra Magaelynne Magaena Magaenys Maghaenna Maghella Mandarya Maraelle
+			Maraelyn Maraena Maraenne Marella Marissa Mataenne Mataeva Mataevia Mazaekra Mazella Medaelle Medora Medria
+			Melia Menaerys Mentaenys Mentaera Mentira Meraecia Misaerys Mivora Molaena Molia Molyrae Monaerys Monaetra
+			Moraenys Mundaelle Mundaena Munna Myraonara Myrona Naba Nabyra Naeleys Naelle Naeryssa Naga Nagaenys Nagaovra
+			Nagenna Nakanne Namira Namissa Namyra Navaella Navaenne Navaerys Nedaella Neka Nekaerys Nekoraella Nophia
+			Nopraodia Nudaenna Nudora Nudoraella Numa Numaerys Numina Obaeda Oboraella Obvia Odraendra Ohilaenne Ohinaerys
+			Ohinyra Oja Ojaella Oktaegra Olsa Olsenya Olvia Olvora Onda Ondaella Onqoria Onyvaessa Oraella Orbella Orbyra
+			Orestha Ospaenys Otaevia Ovaenne Ovodaessa Ozaemra Paerys Paezelle Paezoraen Palora Palyra Pamaela Paraendra
+			Pasaova Pasvaona Peja Pelaenor Pelenna Pelina Pella Pelyra Peraenna Pisella Pramaelys Pranaerys Prudaemra
+			Prumana Prumathea Prunaella Pryskaelle Prytoria Puraelle Purvaedys Pylora Pymaela Pyrantha Pytaerys Qanaeda
+			Qanaerys Qanea Qanyssa Qelaenne Qelaenya Qhaelenna Qhaerella Qibarra Qibia Qinaethia Qinaeya Qinda Qinvara
+			Qopaela Qopaendra Qridaerys Qrilenya Raevella Raevendra Raqoria Redyra Rekelle Rekona Rekyra Remaenora Remmia
+			Rhaegella Rhaelora Rhaelys Rhaenerys Rholaetha Rhuqaelys Roelle Rolaenda Rova Rukaene Rukaerys Runaedra
+			Runaeka Runaelys Runaessa Rundaella Rundora Rysaelle Rysella Rysena Ryzaora Ryzdaella Sahnys Sahora Samea
+			Scovaela Setianys Setna Sika Sikaella Sikaera Sikaerys Simaendra Skora Skoriona Sola Solavyra Somaedia Somelle
+			Somonara Somonya Sonaera Sonelle Sovaenerys Sovaerys Sovora Sovraelle Stavaelys Stavaenys Suebae Suebenne
+			Suenaria Suvaedna Sylenara Syrae Syraena Syraevia Syvaenys Temaeka Tepiva Teprea Terra Tetaerys Tetiarda
+			Tikona Tikorona Tinaedra Tinarea Tindra Tolvyda Tolymia Toraelys Toromaona Truma Trumaena Truselle Ubra
+			Ubraetha Ubrilynne Ubriona Ubyra Udraenessa Udraenne Ulaenys Ulaerona Unadora Unaema Urna Vaelyra Vaenora
+			Vaenytha Valaenys Valdonya Valea Valia Vaokona Vaonora Vaoryssa Vasaelora Vasaelynn Vasama Vesaemona Vesaenys
+			Vesarra Vesorae Vestea Vezencia Vezenne Vhalarra Vhalyssa Vhanya Visaetha Vokaela Vokorra Volaerys Vosaelys
+			Vosarra Vosia Ydraena Yrdaelra Yrdaeva Yrdea Yrdira Ysaenella Ysaenna Ysalaenia Ysoria Zaedella Zaekra Zaerys
+			Zalora Zarana Zarima Zarinda Zealyssa Zeara Zearaena Zera Zokaela Zokaorina Zyraelle Zyraenys Zyriona Shiera
+			Dyanna Alethea Aletheia Alethya Adana Adyssa Albana Aldarea Allana Allia Alia Alyandra Alyrrah Alyssia Amana
+			Amara Amarante Amaryllis Amyrela Andyria Aniya Annara Annelys Arana Ariella Armidora Arrella Ashaella Ashera
+			Aya Bazola Belandra Bellona Calla Callosa Clea Conosa Candaela Candia Cassia Cassiane Celaesta Cyrella Danara
+			Darisa Donaria Delyna Dessa Domenia Doreah Dorela Dorina Droselka Elara Elora Emyria Essela Elynara Elysande
+			Elysiana Fadrana Faloria Farana Ferria Fillia Firanna Fornella Galyssane Genia Gentyana Grana Herria Innaria
+			Ilyanna Irea Irogenia Irenia Irilia Irria Irrikah Iryanna Jenara Jeyne Jorone Josana Jyana Kiera Laendra
+			Laressa Larrane Larra Lenalle Lenera Lianne Lusana Lynna Lyra Lysadra Lysadora Lysana Lysanora Lysara Lyseah
+			Lysendra Maenylla Maelis Maeris Marcila Marra Megelle Melane Melaen Melisande Mendrea Mireille Monsola Myana
+			Mylla Myrmadora Myria Mysaria Naila Narha Nevia Nerria Nerys Neryssa Nessaria Nyessa Noressia Orria Orsyllia
+			Palonna Qorella Raelle Ralla Rheana Rhalla Ricassa Rohanne Rylea Rylora Sadella Sarria Sathia Sellia Semerra
+			Senerra Serena Seren Serenite Serenna Serala Seria Serra Shana Silva Soleia Soranna Susenia Syrana Syrella
+			Taela Taena Talia Tiaelle Tiressa Thaelassa Thalia Tennia Tregia Trifyssa Tyanna Tyrilla Ushanora Vivyne
+			Vyrana Yalla Yasabaela Yolla Yonna Yossia Zabella Aenessa Aenerys Areya Baelyx Daerys Haerys Haelora Jaenyra
+			Jaera Jaenys Lucenya Lucenora Lucenyra Montenora Montena Menys Merys Pelaria Perzyna Olzonia Ovonia Qaressa
+			Qaenella Qaerys Saeryx Saeryn Saelys Syla Shaela Synora Tyrea Tyrra Urrea Unora Varea Vaelanora Vaenyra
+			Vanaerys Valaexes Vaelagelle Meleys Tessarion Vhagar Tyraxes Shrykos
+		}
+	}
+	dynasty_of_location_prefix = "dynnp_of"
+	pat_grf_name_chance = 15
+	mat_grf_name_chance = 5
+	father_name_chance = 5
+	pat_grm_name_chance = 10
+	mat_grm_name_chance = 15
+	mother_name_chance = 5
+	mercenary_names = {
+	}
+}
+
+name_list_elyrian = {
+	dynasty_names = {
+		{ "dynn_Anogaryen" } { "dynn_Atroksiarys" } { "dynn_Daomiorys" } { "dynn_Embaryen" } { "dynn_Gelenkys" }
+		{ "dynn_Gelionar" } { "dynn_Gryvetheon" } { "dynn_Hoskagys" } { "dynn_Haedaryen" } { "dynn_Ilirigys" }
+		{ "dynn_Jelmazeon" } { "dynn_Jentys" } { "dynn_Kastaryen" } { "dynn_Kostagar" } { "dynn_Mazigonys" }
+		{ "dynn_Namorghulilaryen" } { "dynn_Ondoryen" } { "dynn_Perzys" } { "dynn_Qogrorys" } { "dynn_Syzeon" }
+		{ "dynn_Tresys" } { "dynn_Belaerys" } { "dynn_Zaldrizyen" } { "dynn_Manaereon" } { "dynn_Urnebar" }
+		{ "dynn_Sonaryen" } { "dynn_Kessatheon" } { "dynn_Bevilar" } { "dynn_Ezimatheon" } { "dynn_Laeseon" }
+		{ "dynn_Jenqeleon" } { "dynn_Pirtiryen" } { "dynn_Sytivilar" } { "dynn_Tistaleon" } { "dynn_Qupteneon" }
+		{ "dynn_Nuqiryen" } { "dynn_Orbareon" } { "dynn_Quvyar" } { "dynn_Valzyren" } { "dynn_Ilontheon" }
+		{ "dynn_Boniryen" } { "dynn_Jorraezys" } { "dynn_Quptys" } { "dynn_Tyvar" } { "dynn_Jomozar" }
+		{ "dynn_Huretheon" } { "dynn_Ruakys" } { "dynn_Celereon" } { "dynn_Jaeganyon" } { "dynn_Arranion" }
+		{ "dynn_Vezenkar" } { "dynn_Unendia" } { "dynn_Voksia" } { "dynn_Galgaeron" } { "dynn_Laergyr" }
+		{ "dynn_Enreos" } { "dynn_Merntys" } { "dynn_Maznareon" } { "dynn_Henaeris" } { "dynn_Ronnon" }
+		{ "dynn_Haeteros" } { "dynn_Gevgarys" } { "dynn_Hurys" } { "dynn_Pyllyr" } { "dynn_Raegaros" }
+		{ "dynn_geralbar" } { "dynn_gevives" } { "dynn_gryves" } { "dynn_guese" } { "dynn_gurentir" }
+		{ "dynn_heltar" } { "dynn_hontes" } { "dynn_hunes" } { "dynn_hura" } { "dynn_hurenka" } { "dynn_ibyr" }
+		{ "dynn_iedar" } { "dynn_illion" } { "dynn_iorves" } { "dynn_iotaptenon" } { "dynn_jaedos" }
+		{ "dynn_jaelarys" } { "dynn_jaos" } { "dynn_jaqiarzir" } { "dynn_jeda" } { "dynn_jehar" } { "dynn_jehikarys" }
+		{ "dynn_jelazma" } { "dynn_kaerinnon" } { "dynn_kelir" } { "dynn_konor" } { "dynn_kostion" }
+		{ "dynn_kostoba" } { "dynn_kydrenka" } { "dynn_loktys" } { "dynn_lopor" } { "dynn_nombes" } { "dynn_onos" }
+		{ "dynn_peldys" } { "dynn_prumia" } { "dynn_qaedar" } { "dynn_qelbar" } { "dynn_qelitsos" } { "dynn_qelos" }
+		{ "dynn_qintir" } { "dynn_raedes" } { "dynn_raqnon" } { "dynn_reko" } { "dynn_rhovio" } { "dynn_ruklo" }
+		{ "dynn_setys" } { "dynn_sonys" } { "dynn_sydor" } { "dynn_tembys" } { "dynn_tikos" } { "dynn_tembyr" }
+		{ "dynn_tindonys" } { "dynn_tomitsos" } { "dynn_tyvaros" } { "dynn_velkrys" } { "dynn_voljes" }
+		{ "dynn_zaeres" } { "dynn_zea" } { "dynn_zokia" }
+	}
+	male_names = {
+		Aedor Aeganys Aegar Aegaron Aegon Aegor Aelix Aelor Aelyx Aemarys Aemon Aemond Aemor Aenar Aenarr Aenys Aenyx
+		Aeragar Aeranyx Aerarion Aeravar Aerion Aerydar Aerygon Aerymar Aerymion Aerymond Aeryn Aeryrys Aerys Aethan
+		Aevor Annarion Aurion Ayrmidon Azagor Azemion Baegel Baelon Baelor Baemorys Baenar Baeryn Baesegarys Baesemor
+		Balaegor Balaemor Balaenyx Balaeron Baseimion Bearaxes Beargar Bearlerion Daegar Daekar Daelarys Daelor
+		Daemalon Daemaraenar Daemavar Daemion Daemon Daenar Daeragon Daeranyx Daeron Gaelar Gaelyx Gaemon Gaeron
+		Gahaemorys Gahaenys Gahaenyx Gahaeron Galaemar Galaerys Garaelor Haegon Haerys Jacaelar Jacaerys Jaeglys
+		Jaegon Jaehaerys Jaekar Jaelarys Jaemar Jaemion Jaemond Jaenar Jaenyx Jaeremion Jaerevon Jaevor Janys Laegon
+		Laelar Laemond Laenarr Laenor Laerion Lucaegaron Lucaelar Lucerys Maegon Maegor Maehamon Maehanor Maekar
+		Maelor Maelys Maelyx Maenar Maerion Maeron Maerys Maevon Malaelar Malaemar Malaemond Malaenar Mamion Mamyx
+		Maraenar Matadar Matagar Matalor Matamion Matamor Matamorys Matarys Naeryx Nucerys Olzonys Orys Ovonys Paelor
+		Raegar Raegel Raelor Raelyx Raerion Ragaemon Rahaedar Rahaemyx Rahaerion Rahaerys Rhaegar Rhaegel Rhaemar
+		Rhaemon Rhaenar Rhogar Taecedar Taedar Taegon Taemarys Taenarr Taerion Taeron Tahaegaron Tahaegor Tahaelor
+		Tahaemarr Tahaevon Talaemorys Tyraemion Tyraemon Tyraenyx Tyraerys Tyraevar Vadar Vaegon Vaegor Vaekar Vaellyn
+		Vaemarys Vaemond Vaermon Vaeron Vagaron Vahaedor Vahaenys Valarr Valerion Valyx Vanarr Vanor Vanys Vimion
+		Virys Visegel Visemar Viserys Yraemond Yraenar Zaelys Qoherys Rahaedys Jayns Balaenyz Raegys Ahlaq Azzak
+		Bezzaq Bhakaz Chezdhar Dazdhan Dazghan Dazghar Daznak Dazrak Dezhor Dhazak Dhazzar Douquor Draqaz Eqnaz
+		Faezhar Ghael Ghazdor Ghrazz Goghor Gorghan Gorghaz Gorkhaz Gorzhak Gorzhar Grazdahl Grazdan Grazdar Grazghar
+		Grazhar Graznak Harghaz Hazdan Hazghan Hazghar Hazghaz Hazkar Haznaq Hazrak Hizdahr Hizghan Hiznak Hizraq
+		Kandaq Khrazdar Khrazz Kraghaz Krazdan Kraznak Kraznys Larraq Lezhahl Liznuq Loraq Maezon Marghan Marghaz
+		Marhaz Marzak Marzhar Mazdahl Mazdhan Mazghan Mazghar Maznak Mazrak Merreq Miklaz Mordhan Morghar Morghaz
+		Morkaz Nakloz Naqqan Oznak Paezhar Prendahl Qaggaz Qorzo Razdahl Rezdar Reznak Rhazdar Skahaz Skahdan Skazak
+		Skazhar Ulzak Ulzhar Yezdahr Yezdan Yezghan Yezghar Yezghaz Yeznak Yezrak Yezzan Yunzak Yurkhaz Yurzak Yurzhar
+		Zharaq
+	}
+	female_names = {
+		Aenehnae Aenela Aenerya Aenesa Aerena Alaenla Alaenya Alaenys Alaera Alaesanne Alaesys Alearys Allyria Alynna
+		Baenna Baenys Baesa Bahra Banera Bara Bassa Bassa Bhaela Bhaelys Bhaenla Bhaenyra Cyeana Cymella Daehrys
+		Daehyrs Daella Daemys Daenea Daenehyrs Daenella Daenera Daenerya Daeoril Daesanne Delaehrys Delaenyra Elaela
+		Elaena Elaerys Eraemera Haehnae Haehra Haelena Haelerla Haemera Haenyra Hemys Henya Hessa Jaehyrs Jaelala
+		Jaelanys Jaelassa Jaemala Jaerya Jelaehra Jelaenya Jelaenys Leaysa Maelerys Maena Maesanne Maesys Malaehra
+		Malaenyra Malaernera Malaesa Naelarla Naenera Naenla Naeressa Naerys Naesella Nelaella Nelaenys Nelaerya
+		Nesaehnae Nesaenys Nesaesanne Nesaessa Raenenyra Relaechnae Relaera Relaesa Relaesanne Renaerla Rhae Rhaehra
+		Rhaelinor Rhaelle Rhaenella Rhaenemera Rhaenla Rhaenna Rhaera Rhaessa Rhaeys Saechnae Saehra Saelara Saelasa
+		Saena Saenehna Saenelys Saenessa Saenrys Saenys Saerla Salamera Selaela Vaehra Vaena Vaenera Vaerla Vaesys
+		Vysehnae Vysella Daenerys Rhaena Rhaenys Aelinor Aelora Aemma Aerea Alysanne Alyssa Alaerys Baela Daena
+		Daenaera Daenys Daeryssa Gael Helaena Jaehaera Jaenara Maegelle Rhaella Rhaenyra Saera Shaena Shaera Vaella
+		Valaena Visenya Viserra Syaella Amaya Barsena Berra Beshka Bezza Elara Elerra Elezza Elmea Elza Elzane Elzara
+		Elzea Elzina Ezzara Ezzea Ezzene Ezzina Galara Galashka Galazza Galea Galina Hazmya Hazzana Hazzara Hazzea
+		Jezha Jezhene Jezhina Jhezane Jhezara Jhezea Kezhka Kezmya Malara Malazhka Malazza Malea Malene Mezza Mezzane
+		Mezzara Mezzea Qalla Qezza Qezzane Qezzara Qezzia Senane Senazza Senea Senerra Zahrina Zalla Zashka Zerra
+	}
+	dynasty_of_location_prefix = "dynnp_of"
+	pat_grf_name_chance = 15
+	mat_grf_name_chance = 5
+	father_name_chance = 5
+	pat_grm_name_chance = 10
+	mat_grm_name_chance = 15
+	mother_name_chance = 5
+	mercenary_names = {
+	}
+}
+
+name_list_essarian = {
+	dynasty_names = {
+		{ "dynn_Anogaryen" } { "dynn_Atroksiarys" } { "dynn_Daomiorys" } { "dynn_Embaryen" } { "dynn_Gelenkys" }
+		{ "dynn_Gelionar" } { "dynn_Gryvetheon" } { "dynn_Hoskagys" } { "dynn_Haedaryen" } { "dynn_Ilirigys" }
+		{ "dynn_Jelmazeon" } { "dynn_Jentys" } { "dynn_Kastaryen" } { "dynn_Kostagar" } { "dynn_Mazigonys" }
+		{ "dynn_Namorghulilaryen" } { "dynn_Ondoryen" } { "dynn_Perzys" } { "dynn_Qogrorys" } { "dynn_Syzeon" }
+		{ "dynn_Tresys" } { "dynn_Belaerys" } { "dynn_Zaldrizyen" } { "dynn_Manaereon" } { "dynn_Urnebar" }
+		{ "dynn_Sonaryen" } { "dynn_Kessatheon" } { "dynn_Bevilar" } { "dynn_Ezimatheon" } { "dynn_Laeseon" }
+		{ "dynn_Jenqeleon" } { "dynn_Pirtiryen" } { "dynn_Sytivilar" } { "dynn_Tistaleon" } { "dynn_Qupteneon" }
+		{ "dynn_Nuqiryen" } { "dynn_Orbareon" } { "dynn_Quvyar" } { "dynn_Valzyren" } { "dynn_Ilontheon" }
+		{ "dynn_Boniryen" } { "dynn_Jorraezys" } { "dynn_Quptys" } { "dynn_Tyvar" } { "dynn_Jomozar" }
+		{ "dynn_Huretheon" } { "dynn_Ruakys" } { "dynn_Celereon" } { "dynn_Jaeganyon" } { "dynn_Arranion" }
+		{ "dynn_Vezenkar" } { "dynn_Unendia" } { "dynn_Voksia" } { "dynn_Galgaeron" } { "dynn_Laergyr" }
+		{ "dynn_Enreos" } { "dynn_Merntys" } { "dynn_Maznareon" } { "dynn_Henaeris" } { "dynn_Ronnon" }
+		{ "dynn_Haeteros" } { "dynn_Gevgarys" } { "dynn_Hurys" } { "dynn_Pyllyr" } { "dynn_Raegaros" }
+		{ "dynn_geralbar" } { "dynn_gevives" } { "dynn_gryves" } { "dynn_guese" } { "dynn_gurentir" }
+		{ "dynn_heltar" } { "dynn_hontes" } { "dynn_hunes" } { "dynn_hura" } { "dynn_hurenka" } { "dynn_ibyr" }
+		{ "dynn_iedar" } { "dynn_illion" } { "dynn_iorves" } { "dynn_iotaptenon" } { "dynn_jaedos" }
+		{ "dynn_jaelarys" } { "dynn_jaos" } { "dynn_jaqiarzir" } { "dynn_jeda" } { "dynn_jehar" } { "dynn_jehikarys" }
+		{ "dynn_jelazma" } { "dynn_kaerinnon" } { "dynn_kelir" } { "dynn_konor" } { "dynn_kostion" }
+		{ "dynn_kostoba" } { "dynn_kydrenka" } { "dynn_loktys" } { "dynn_lopor" } { "dynn_nombes" } { "dynn_onos" }
+		{ "dynn_peldys" } { "dynn_prumia" } { "dynn_qaedar" } { "dynn_qelbar" } { "dynn_qelitsos" } { "dynn_qelos" }
+		{ "dynn_qintir" } { "dynn_raedes" } { "dynn_raqnon" } { "dynn_reko" } { "dynn_rhovio" } { "dynn_ruklo" }
+		{ "dynn_setys" } { "dynn_sonys" } { "dynn_sydor" } { "dynn_tembys" } { "dynn_tikos" } { "dynn_tembyr" }
+		{ "dynn_tindonys" } { "dynn_tomitsos" } { "dynn_tyvaros" } { "dynn_velkrys" } { "dynn_voljes" }
+		{ "dynn_zaeres" } { "dynn_zea" } { "dynn_zokia" }
+	}
+	male_names = {
+		Adarano Adaros Aedor Aeganys Aegar Aegaron Aegon Aegor Aelix Aelor Aelyx Aemarys Aemon Aemond Aemor Aenar
+		Aenarr Aenys Aenyx Aeradhor Aeragar Aeranyx Aerarion Aeravar Aerion Aeriphos Aerydar Aerygon Aerymar Aerymion
+		Aerymond Aeryn Aeryrys Aerys Aethan Aevor Annarion Aran Aurion Ayrmidon Azagor Azemion Baegel Baelon Baelor
+		Baemorys Baenar Baeryn Baesegarys Baesemor Balaegor Balaemor Balaenyx Balaeron Ballos Baseimion Bearaxes
+		Beargar Bearlerion Belano Belapho Beleqor Belidos Belonos Beloquo Belyrio Belys Caezar Cassan Conicho Conos
+		Copho Daegar Daekar Daelarys Daelor Daemalon Daemaraenar Daemavar Daemion Daemon Daenar Daeragon Daeranyx
+		Daeron Donano Donar Donelos Donio Draqan Esodos Essalos Essanos Essel Essorio Esyrno Eysan Ezzaloro Ezzan
+		Ezzario Ezzlyso Ezzo Gaelar Gaelyx Gaemon Gaeron Gahaemorys Gahaenys Gahaenyx Gahaeron Galaemar Galaerys
+		Garaelor Garrenhor Garridos Garro Gyellso Gyllen Gyllo Haegon Haemon Haerys Halaro Harlano Harlyrio Haronno
+		Illadhor Illario Illen Illonar Inno Innyllo Irricho Irrio Jacaelar Jacaerys Jaeglys Jaegon Jaehaerys Jaekar
+		Jaelarys Jaemar Jaemion Jaemond Jaenar Jaenyx Jaeremion Jaeresso Jaerevon Jaevor Janys Jaqenhor Jayns Jorapho
+		Joraquo Joroe Kasporio Laegon Laelar Laemond Laenarr Laenor Laerion Larazar Larazys Lazan Laziros Lothorio
+		Lucaegaron Lucaelar Lucerys Lysan Lysar Maegon Maegor Maehamon Maehanor Maekar Maelor Maelys Maelyx Maenar
+		Maerion Maeron Maerys Maevon Malaelar Malaemar Malaemond Malaenar Malan Malero Mallaquo Malonar Mamion Mamyx
+		Maraenar Marano Maraphos Maren Marohr Maryllo Matadar Matagar Matalor Matamion Matamor Matamorys Matarys Melio
+		Moro Naeryx Nakano Nakaquo Nakaro Nakeo Nakodos Nakorno Nakys Norello Noro Noroquo Nucerys Nyessan Nyessapho
+		Nyessonar Olzonys Orys Ovonys Padaros Paelor Pallos Paranys Parridos Parro Paryos Pazan Pydos Pylan Pyllo
+		Pyrios Raegar Raegel Raelor Raelyx Raerion Raezar Ragaemon Rahaedar Rahaemyx Rahaerion Rahaerys Rallos Rano
+		Rapho Relapho Releqor Relidos Relyrio Relys Rhaegar Rhaegel Rhaemar Rhaemon Rhaenar Rhogar Rono Ryllo Ryos
+		Taecedar Taedar Taegon Taemarys Taenarr Taerion Taeron Tahaegaron Tahaegor Tahaelor Tahaemarr Tahaevon
+		Talaemorys Tybero Tyraemion Tyraemon Tyraenyx Tyraerys Tyraevar Vadar Vaegon Vaegor Vaekar Vaellyn Vaemarys
+		Vaemond Vaermon Vaeron Vagaron Vahaedor Vahaenys Valarr Valerion Valyx Vanarr Vanor Vanys Varan Vareo Vargano
+		Vargio Vargorno Variphos Vimion Virys Visegel Visemar Viserys Vogo Vogys Vyran Vyrano Vyrenhor Vyresso Vyronos
+		Vyroros Yraemond Yraenar Zaelys
+	}
+	female_names = {
+		Aelinor Aelora Aemma Aenehnae Aenehrys Aenela Aenerya Aenesa Aerea Aerena Aeriana Ahrysha Alaenla Alaenya
+		Alaenys Alaera Alaerys Alaesanne Alaesys Alearys Allyria Alyhna Alynna Alysanne Alyssa Baela Baelora Baena
+		Baenna Baenys Baesa Bahra Banera Bara Bassa Bellona Bhaela Bhaelys Bhaenla Bhaenyra Caena Calena Callosa
+		Conosa Cyeana Cymella Daehrys Daehyrs Daella Daemys Daena Daenaera Daenea Daenehyrs Daenella Daenera Daenerah
+		Daenerya Daenerys Daenora Daenys Daenysa Daeoril Daeryssa Daesanne Darria Delaehrys Delaenyra Dilona Donaria
+		Donelia Dorella Dorelna Elaela Elaemera Elaena Elaenyra Elaeryn Elaerys Elaesella Eraemera Essela Eysania
+		Ezzana Firanira Firanyna Gael Gyella Gylla Haehnae Haehra Haelena Haelerla Haemera Haenyra Haera Harlania
+		Helaena Hemys Henona Henya Henysa Hessa Horia Hororia Illarah Illenia Illosa Inna Innaria Innysa Irria Jacaena
+		Jaehaera Jaehyrs Jaelala Jaelanys Jaelassa Jaemala Jaenara Jaerya Jaesys Jahaena Jaqeah Jaqena Jaqira Jelaehra
+		Jelaenya Jelaenys Joraphia Jorea Jorylla Jyssana Laena Laenanah Laenara Laenesa Laenylea Larissa Lazana Lianna
+		Lysani Lysarah Lysirah Maega Maegelle Maelerys Maelora Maemys Maena Maera Maesanne Maesys Malaehra Malaenyra
+		Malaernera Malaesa Malani Malerah Maloni Maryllah Meshola Mhaegen Minala Minysha Naelarla Naena Naenera Naenla
+		Naeressa Naerys Naesella Naesenya Nakani Naki Nakodi Nakornah Nelaella Nelaemys Nelaenys Nelaerya Nesaehnae
+		Nesaenys Nesaesanne Nesaessa Neseah Nesola Nesysha Nilerah Nilolla Norelli Nyessa Oranea Parrah Pazani
+		Pheneyana Pylani Qarrana Qira Qirani Qorella Qysarah Raenenyra Relaechnae Relaera Relaesa Relaesanne Renaerla
+		Rhae Rhaehra Rhaelinor Rhaella Rhaelle Rhaena Rhaenella Rhaenemera Rhaenla Rhaenna Rhaenyra Rhaenys Rhaera
+		Rhaesa Rhaessa Rhaeys Rohana Rohani Rylea Saechnae Saehra Saela Saelara Saelasa Saena Saenehna Saenelys
+		Saenessa Saenrys Saenyra Saenys Saera Saerena Saerla Salamera Salasha Selaela Sereah Shaelora Shaelys Shaena
+		Shaera Sireyana Siria Sirila Syaella Syrana Syrani Syria Taenanea Thora Thorena Tirelna Tiresa Tora Ushanora
+		Vaehra Vaela Vaella Vaena Vaenera Vaera Vaerana Vaerla Vaesys Valaena Varea Viselle Visenae Visenya Viserra
+		Voraria Vorysa Vyrana Vysaela Vysehnae Vysella Waeraena Wenina Wyneah Wynella Yaqea Yarah Yonah Yonica
+	}
+	dynasty_of_location_prefix = "dynnp_of"
+	pat_grf_name_chance = 15
+	mat_grf_name_chance = 5
+	father_name_chance = 5
+	pat_grm_name_chance = 10
+	mat_grm_name_chance = 15
+	mother_name_chance = 5
+	mercenary_names = {
+	}
+}
+
+name_list_mantaryan = {
+	dynasty_names = {
+		{ "dynn_Anogaryen" } { "dynn_Atroksiarys" } { "dynn_Daomiorys" } { "dynn_Embaryen" } { "dynn_Gelenkys" }
+		{ "dynn_Gelionar" } { "dynn_Gryvetheon" } { "dynn_Hoskagys" } { "dynn_Haedaryen" } { "dynn_Ilirigys" }
+		{ "dynn_Jelmazeon" } { "dynn_Jentys" } { "dynn_Kastaryen" } { "dynn_Kostagar" } { "dynn_Mazigonys" }
+		{ "dynn_Namorghulilaryen" } { "dynn_Ondoryen" } { "dynn_Perzys" } { "dynn_Qogrorys" } { "dynn_Syzeon" }
+		{ "dynn_Tresys" } { "dynn_Belaerys" } { "dynn_Zaldrizyen" } { "dynn_Manaereon" } { "dynn_Urnebar" }
+		{ "dynn_Sonaryen" } { "dynn_Kessatheon" } { "dynn_Bevilar" } { "dynn_Ezimatheon" } { "dynn_Laeseon" }
+		{ "dynn_Jenqeleon" } { "dynn_Pirtiryen" } { "dynn_Sytivilar" } { "dynn_Tistaleon" } { "dynn_Qupteneon" }
+		{ "dynn_Nuqiryen" } { "dynn_Orbareon" } { "dynn_Quvyar" } { "dynn_Valzyren" } { "dynn_Ilontheon" }
+		{ "dynn_Boniryen" } { "dynn_Jorraezys" } { "dynn_Quptys" } { "dynn_Tyvar" } { "dynn_Jomozar" }
+		{ "dynn_Huretheon" } { "dynn_Ruakys" } { "dynn_Celereon" } { "dynn_Jaeganyon" } { "dynn_Arranion" }
+		{ "dynn_Vezenkar" } { "dynn_Unendia" } { "dynn_Voksia" } { "dynn_Galgaeron" } { "dynn_Laergyr" }
+		{ "dynn_Enreos" } { "dynn_Merntys" } { "dynn_Maznareon" } { "dynn_Henaeris" } { "dynn_Ronnon" }
+		{ "dynn_Haeteros" } { "dynn_Gevgarys" } { "dynn_Hurys" } { "dynn_Pyllyr" } { "dynn_Raegaros" }
+		{ "dynn_geralbar" } { "dynn_gevives" } { "dynn_gryves" } { "dynn_guese" } { "dynn_gurentir" }
+		{ "dynn_heltar" } { "dynn_hontes" } { "dynn_hunes" } { "dynn_hura" } { "dynn_hurenka" } { "dynn_ibyr" }
+		{ "dynn_iedar" } { "dynn_illion" } { "dynn_iorves" } { "dynn_iotaptenon" } { "dynn_jaedos" }
+		{ "dynn_jaelarys" } { "dynn_jaos" } { "dynn_jaqiarzir" } { "dynn_jeda" } { "dynn_jehar" } { "dynn_jehikarys" }
+		{ "dynn_jelazma" } { "dynn_kaerinnon" } { "dynn_kelir" } { "dynn_konor" } { "dynn_kostion" }
+		{ "dynn_kostoba" } { "dynn_kydrenka" } { "dynn_loktys" } { "dynn_lopor" } { "dynn_nombes" } { "dynn_onos" }
+		{ "dynn_peldys" } { "dynn_prumia" } { "dynn_qaedar" } { "dynn_qelbar" } { "dynn_qelitsos" } { "dynn_qelos" }
+		{ "dynn_qintir" } { "dynn_raedes" } { "dynn_raqnon" } { "dynn_reko" } { "dynn_rhovio" } { "dynn_ruklo" }
+		{ "dynn_setys" } { "dynn_sonys" } { "dynn_sydor" } { "dynn_tembys" } { "dynn_tikos" } { "dynn_tembyr" }
+		{ "dynn_tindonys" } { "dynn_tomitsos" } { "dynn_tyvaros" } { "dynn_velkrys" } { "dynn_voljes" }
+		{ "dynn_zaeres" } { "dynn_zea" } { "dynn_zokia" }
+	}
+	male_names = {
+		70 = {
+			Aegon Aegor Aelor Aelyx Aemon Aemond Aenar Aenys Aerion Aeryn Aerys Aethan Aurion Ayrmidon Baelon Baelor
+			Baenar Bearaxes Beargar Bearlerion Daemion Daemon Daeron Gaelar Gaemon Haegon Jacaerys Jaehaerys Laenor
+			Lucerys Maegon Maegor Maekar Maelor Maelys Maenar Maeron Matarys Orys Rhaegar Rhaegel Rhogar Vaegon Vaellyn
+			Vaemond Valarr Valerion Viserys
+		}
+		30 = {
+			Aedor Aeganys Aegar Aegaron Aelix Aemarys Aemor Aenarr Aenyx Aeragar Aeranyx Aerarion Aeravar Aerydar Aerygon
+			Aerymar Aerymion Aerymond Aeryrys Aevor Annarion Azagor Azemion Baegel Baemorys Baeryn Baesegarys Baesemor
+			Balaegor Balaemor Balaenyx Balaeron Baseimion Daegar Daekar Daelarys Daelor Daemalon Daemaraenar Daemavar
+			Daenar Daeragon Daeranyx Gaelyx Gaeron Gahaemorys Gahaenys Gahaenyx Gahaeron Galaemar Galaerys Garaelor Haerys
+			Jacaelar Jaeglys Jaegon Jaekar Jaelarys Jaemar Jaemion Jaemond Jaenar Jaenyx Jaeremion Jaerevon Jaevor Janys
+			Laegon Laelar Laemond Laenarr Laerion Lucaegaron Lucaelar Maehamon Maehanor Maelyx Maerion Maerys Maevon
+			Malaemond Malaenar Mamion Mamyx Maraenar Matadar Matagar Matalor Matamion Matamor Matamorys Naeryx Nucerys
+			Olzonys Ovonys Paelor Raegar Raegel Raelor Raelyx Raerion Ragaemon Rahaedar Rahaemyx Rahaerion Rahaerys
+			Rhaemar Rhaemon Rhaenar Taecedar Taedar Taegon Taemarys Taenarr Taerion Taeron Tahaegaron Tahaegor Tahaelor
+			Tahaemarr Tahaevon Talaemorys Tyraemion Tyraemon Tyraenyx Tyraerys Tyraevar Vadar Vaegor Vaekar Vaemarys
+			Vaermon Vaeron Vagaron Vahaedor Vahaenys Valyx Vanarr Vanor Vanys Vimion Virys Visegel Visemar Yraemond
+			Yraenar Zaelys Aenarys Aegion Adema Daervon Qoherys Aegalon Aegorion Aelarion Averion Balaenys Malaelar Jayns
+			Malaemar Aelys Aenor Aethon Baethon Baeron Caerys Cerys Daegon Daemond Daenir Denys Ebrion Eglion Egros Elenys
+			Gaemond Gelion Gevion Haenor Jaehaeron Jaenor Jaelaron Jaqiarys Jedarys Kelonys Kostys Kaenys Laerys Litsys
+			Lykanon Lyksion Maeloris Maenor Monterys Maegonys Mandys Mazilarys Melvarys Misys Naegon Naelor Naerys
+			Nymerion Naqessys Paemon Pelar Perzon Rhaegon Rhaenor Rhaelyx Rhaelor Rhovan Robys Sambion Sylvion Taelor
+			Taenor Vaenar Vaenor Vhaegon Vaelyx Vaemir Zaelyx Zaelor
+		}
+	}
+	female_names = {
+		70 = {
+			Aelinor Aelora Aemma Aenesa Aerea Aerena Alaerys Alysanne Alyssa Baela Baenys Daella Daena Daenaera Daenerys
+			Daenys Daeryssa Daesanne Elaena Elaenyra Gael Helaena Jaehaera Jaenara Laena Larissa Lianna Maegelle Maemys
+			Mhaegen Naerys Rhae Rhaella Rhaelle Rhaena Rhaenyra Rhaenys Saera Shaena Shaera Vaella Valaena Visenya Viserra
+		}
+		30 = {
+			Aenehnae Aenehrys Aenela Aenerya Aeriana Alaenla Alaenya Alaenys Alaera Alaesanne Alaesys Alearys Allyria
+			Alyhna Alynna Baelora Baena Baenna Baesa Bahra Banera Bara Bassa Bhaela Bhaelys Bhaenla Bhaenyra Caena Cyeana
+			Cymella Daemys Daenea Daenehyrs Daenella Daenera Daenerya Daenora Daeoril Delaehrys Delaenyra Elaela Elaemera
+			Elaeryn Elaerys Elaesella Eraemera Haehnae Haehra Haelena Haelerla Haemera Haenyra Haera Hemys Henya Hessa
+			Jacaena Jaehyrs Jaelala Jaelanys Jaelassa Jaemala Jaerya Jaesys Jahaena Jelaehra Jelaenya Jelaenys Laenara
+			Laenesa Maega Maelerys Maelora Maena Maera Maesanne Maesys Malaehra Malaenyra Malaernera Malaesa Naelarla
+			Naena Naenera Naenla Naeressa Naesella Naesenya Nelaella Nelaemys Nelaenys Nelaerya Nesaehnae Nesaenys
+			Nesaesanne Nesaessa Raenenyra Relaechnae Relaera Relaesa Relaesanne Renaerla Rhaehra Rhaelinor Rhaenella
+			Rhaenemera Rhaenla Rhaenna Rhaera Rhaesa Rhaessa Rhaeys Saechnae Saehra Saelara Saelasa Saena Saenehna
+			Saenelys Saenessa Saenrys Saenyra Saenys Saerena Saerla Salamera Selaela Shaelora Shaelys Syaella Vaehra Vaela
+			Vaena Vaenera Vaera Vaerla Vaesys Viselle Visenae Vysaela Vysehnae Vysella Leaysa Aelynna Aerys Baesegarya
+			Baesys Daenysa Dorelna Elaerya Essela Ezzana Firanira Firanyna Gahaenys Galaema Garenhys Gaera Gahaera Gaelys
+			Gylla Gyella Harlania Henysa Horia Hororia Illaria Innaria Innysa Jaelara Jaeremia Jaqena Joraphia Kain
+			Laetrix Laenarra Laenylea Malaera Matamora Matadarys Matalora Memyx Nakea Naelara Naerana Naesysa Nesola Oren
+			Parrah Pylani Qira Qirani Raenysa Renaela Rhaenara Rhaemara Rylea Saeena Saenysa Sereah Sireyana Syria Thorena
+			Tirelna Vaerana Valya Vanysa Varea Vyrana Wyneah Yara Yonic Yaqea Yraenar Zara Aella Aelyra Aemara Aenara
+			Aenora Aena Anora Aerebella Averillea Aevera Baelara Balaena Baelys Baeryn Cenya Daria Elaenora Laenora Nora
+			Ellila Gelia Gevia Helaea Haena Jaena Jaehia Jedaria Karessa Kaenella Litsera Lykara Lyksera Malaena Mae
+			Mandella Marilaria Melvaria Misenna Nyxara Naqessia Numina Pelaria Perzyna Olzonia Ovonia Raqnia Rekia Serra
+			Sambella Sylvina Vaelora
+		}
+	}
+	dynasty_of_location_prefix = "dynnp_of"
+	pat_grf_name_chance = 15
+	mat_grf_name_chance = 5
+	father_name_chance = 5
+	pat_grm_name_chance = 10
+	mat_grm_name_chance = 15
+	mother_name_chance = 5
+	mercenary_names = {
+	}
+}
+
+name_list_tolosi = {
+	dynasty_names = {
+		{ "dynn_Anogaryen" } { "dynn_Atroksiarys" } { "dynn_Daomiorys" } { "dynn_Embaryen" } { "dynn_Gelenkys" }
+		{ "dynn_Gelionar" } { "dynn_Gryvetheon" } { "dynn_Hoskagys" } { "dynn_Haedaryen" } { "dynn_Ilirigys" }
+		{ "dynn_Jelmazeon" } { "dynn_Jentys" } { "dynn_Kastaryen" } { "dynn_Kostagar" } { "dynn_Mazigonys" }
+		{ "dynn_Namorghulilaryen" } { "dynn_Ondoryen" } { "dynn_Perzys" } { "dynn_Qogrorys" } { "dynn_Syzeon" }
+		{ "dynn_Tresys" } { "dynn_Belaerys" } { "dynn_Zaldrizyen" } { "dynn_Manaereon" } { "dynn_Urnebar" }
+		{ "dynn_Sonaryen" } { "dynn_Kessatheon" } { "dynn_Bevilar" } { "dynn_Ezimatheon" } { "dynn_Laeseon" }
+		{ "dynn_Jenqeleon" } { "dynn_Pirtiryen" } { "dynn_Sytivilar" } { "dynn_Tistaleon" } { "dynn_Qupteneon" }
+		{ "dynn_Nuqiryen" } { "dynn_Orbareon" } { "dynn_Quvyar" } { "dynn_Valzyren" } { "dynn_Ilontheon" }
+		{ "dynn_Boniryen" } { "dynn_Jorraezys" } { "dynn_Quptys" } { "dynn_Tyvar" } { "dynn_Jomozar" }
+		{ "dynn_Huretheon" } { "dynn_Ruakys" } { "dynn_Celereon" } { "dynn_Jaeganyon" } { "dynn_Arranion" }
+		{ "dynn_Vezenkar" } { "dynn_Unendia" } { "dynn_Voksia" } { "dynn_Galgaeron" } { "dynn_Laergyr" }
+		{ "dynn_Enreos" } { "dynn_Merntys" } { "dynn_Maznareon" } { "dynn_Henaeris" } { "dynn_Ronnon" }
+		{ "dynn_Haeteros" } { "dynn_Gevgarys" } { "dynn_Hurys" } { "dynn_Pyllyr" } { "dynn_Raegaros" }
+	}
+	male_names = {
+		70 = {
+			Aegon Aegor Aelor Aelyx Aemon Aemond Aenar Aenys Aerion Aeryn Aerys Aethan Aurion Ayrmidon Baelon Baelor
+			Baenar Bearaxes Beargar Bearlerion Daemion Daemon Daeron Gaelar Gaemon Haegon Jacaerys Jaehaerys Laenor
+			Lucerys Maegon Maegor Maekar Maelor Maelys Maenar Maeron Matarys Orys Rhaegar Rhaegel Rhogar Vaegon Vaellyn
+			Vaemond Valarr Valerion Viserys
+		}
+		30 = {
+			Aedor Aeganys Aegar Aegaron Aelix Aemarys Aemor Aenarr Aenyx Aeragar Aeranyx Aerarion Aeravar Aerydar Aerygon
+			Aerymar Aerymion Aerymond Aeryrys Aevor Annarion Azagor Azemion Baegel Baemorys Baeryn Baesegarys Baesemor
+			Balaegor Balaemor Balaenyx Balaeron Baseimion Daegar Daekar Daelarys Daelor Daemalon Daemaraenar Daemavar
+			Daenar Daeragon Daeranyx Gaelyx Gaeron Gahaemorys Gahaenys Gahaenyx Gahaeron Galaemar Galaerys Garaelor Haerys
+			Jacaelar Jaeglys Jaegon Jaekar Jaelarys Jaemar Jaemion Jaemond Jaenar Jaenyx Jaeremion Jaerevon Jaevor Janys
+			Laegon Laelar Laemond Laenarr Laerion Lucaegaron Lucaelar Maehamon Maehanor Maelyx Maerion Maerys Maevon
+			Malaemond Malaenar Mamion Mamyx Maraenar Matadar Matagar Matalor Matamion Matamor Matamorys Naeryx Nucerys
+			Olzonys Ovonys Paelor Raegar Raegel Raelor Raelyx Raerion Ragaemon Rahaedar Rahaemyx Rahaerion Rahaerys
+			Rhaemar Rhaemon Rhaenar Taecedar Taedar Taegon Taemarys Taenarr Taerion Taeron Tahaegaron Tahaegor Tahaelor
+			Tahaemarr Tahaevon Talaemorys Tyraemion Tyraemon Tyraenyx Tyraerys Tyraevar Vadar Vaegor Vaekar Vaemarys
+			Vaermon Vaeron Vagaron Vahaedor Vahaenys Valyx Vanarr Vanor Vanys Vimion Virys Visegel Visemar Yraemond
+			Yraenar Zaelys Aenarys Aegion Adema Daervon Qoherys Aegalon Aegorion Aelarion Averion Balaenys Malaelar Jayns
+			Malaemar Aelys Aenor Aethon Baethon Baeron Caerys Cerys Daegon Daemond Daenir Denys Ebrion Eglion Egros Elenys
+			Gaemond Gelion Gevion Haenor Jaehaeron Jaenor Jaelaron Jaqiarys Jedarys Kelonys Kostys Kaenys Laerys Litsys
+			Lykanon Lyksion Maeloris Maenor Monterys Maegonys Mandys Mazilarys Melvarys Misys Naegon Naelor Naerys
+			Nymerion Naqessys Paemon Pelar Perzon Rhaegon Rhaenor Rhaelyx Rhaelor Rhovan Robys Sambion Sylvion Taelor
+			Taenor Vaenar Vaenor Vhaegon Vaelyx Vaemir Zaelyx Zaelor
+		}
+	}
+	female_names = {
+		70 = {
+			Aelinor Aelora Aemma Aenesa Aerea Aerena Alaerys Alysanne Alyssa Baela Baenys Daella Daena Daenaera Daenerys
+			Daenys Daeryssa Daesanne Elaena Elaenyra Gael Helaena Jaehaera Jaenara Laena Larissa Lianna Maegelle Maemys
+			Mhaegen Naerys Rhae Rhaella Rhaelle Rhaena Rhaenyra Rhaenys Saera Shaena Shaera Vaella Valaena Visenya Viserra
+		}
+		30 = {
+			Aenehnae Aenehrys Aenela Aenerya Aeriana Alaenla Alaenya Alaenys Alaera Alaesanne Alaesys Alearys Allyria
+			Alyhna Alynna Baelora Baena Baenna Baesa Bahra Banera Bara Bassa Bhaela Bhaelys Bhaenla Bhaenyra Caena Cyeana
+			Cymella Daemys Daenea Daenehyrs Daenella Daenera Daenerya Daenora Daeoril Delaehrys Delaenyra Elaela Elaemera
+			Elaeryn Elaerys Elaesella Eraemera Haehnae Haehra Haelena Haelerla Haemera Haenyra Haera Hemys Henya Hessa
+			Jacaena Jaehyrs Jaelala Jaelanys Jaelassa Jaemala Jaerya Jaesys Jahaena Jelaehra Jelaenya Jelaenys Laenara
+			Laenesa Maega Maelerys Maelora Maena Maera Maesanne Maesys Malaehra Malaenyra Malaernera Malaesa Naelarla
+			Naena Naenera Naenla Naeressa Naesella Naesenya Nelaella Nelaemys Nelaenys Nelaerya Nesaehnae Nesaenys
+			Nesaesanne Nesaessa Raenenyra Relaechnae Relaera Relaesa Relaesanne Renaerla Rhaehra Rhaelinor Rhaenella
+			Rhaenemera Rhaenla Rhaenna Rhaera Rhaesa Rhaessa Rhaeys Saechnae Saehra Saelara Saelasa Saena Saenehna
+			Saenelys Saenessa Saenrys Saenyra Saenys Saerena Saerla Salamera Selaela Shaelora Shaelys Syaella Vaehra Vaela
+			Vaena Vaenera Vaera Vaerla Vaesys Viselle Visenae Vysaela Vysehnae Vysella Leaysa Aelynna Aerys Baesegarya
+			Baesys Daenysa Dorelna Elaerya Essela Ezzana Firanira Firanyna Gahaenys Galaema Garenhys Gaera Gahaera Gaelys
+			Gylla Gyella Harlania Henysa Horia Hororia Illaria Innaria Innysa Jaelara Jaeremia Jaqena Joraphia Kain
+			Laetrix Laenarra Laenylea Malaera Matamora Matadarys Matalora Memyx Nakea Naelara Naerana Naesysa Nesola Oren
+			Parrah Pylani Qira Qirani Raenysa Renaela Rhaenara Rhaemara Rylea Saeena Saenysa Sereah Sireyana Syria Thorena
+			Tirelna Vaerana Valya Vanysa Varea Vyrana Wyneah Yara Yonic Yaqea Yraenar Zara Aella Aelyra Aemara Aenara
+			Aenora Aena Anora Aerebella Averillea Aevera Baelara Balaena Baelys Baeryn Cenya Daria Elaenora Laenora Nora
+			Ellila Gelia Gevia Helaea Haena Jaena Jaehia Jedaria Karessa Kaenella Litsera Lykara Lyksera Malaena Mae
+			Mandella Marilaria Melvaria Misenna Nyxara Naqessia Numina Pelaria Perzyna Olzonia Ovonia Raqnia Rekia Serra
+			Sambella Sylvina Vaelora
+		}
+	}
+	dynasty_of_location_prefix = "dynnp_of"
+	pat_grf_name_chance = 15
+	mat_grf_name_chance = 5
+	father_name_chance = 5
+	pat_grm_name_chance = 10
+	mat_grm_name_chance = 15
+	mother_name_chance = 5
+	mercenary_names = {
+	}
+}
+
+name_list_valyrian_gogossite = {
+	dynasty_names = {
+		{ "dynn_Anogaryen" } { "dynn_Atroksiarys" } { "dynn_Daomiorys" } { "dynn_Embaryen" } { "dynn_Gelenkys" }
+		{ "dynn_Gelionar" } { "dynn_Gryvetheon" } { "dynn_Hoskagys" } { "dynn_Haedaryen" } { "dynn_Ilirigys" }
+		{ "dynn_Jelmazeon" } { "dynn_Jentys" } { "dynn_Kastaryen" } { "dynn_Kostagar" } { "dynn_Mazigonys" }
+		{ "dynn_Namorghulilaryen" } { "dynn_Ondoryen" } { "dynn_Perzys" } { "dynn_Qogrorys" } { "dynn_Syzeon" }
+		{ "dynn_Tresys" } { "dynn_Belaerys" } { "dynn_Zaldrizyen" } { "dynn_Manaereon" } { "dynn_Urnebar" }
+		{ "dynn_Sonaryen" } { "dynn_Kessatheon" } { "dynn_Bevilar" } { "dynn_Ezimatheon" } { "dynn_Laeseon" }
+		{ "dynn_Jenqeleon" } { "dynn_Pirtiryen" } { "dynn_Sytivilar" } { "dynn_Tistaleon" } { "dynn_Qupteneon" }
+		{ "dynn_Nuqiryen" } { "dynn_Orbareon" } { "dynn_Quvyar" } { "dynn_Valzyren" } { "dynn_Ilontheon" }
+		{ "dynn_Boniryen" } { "dynn_Jorraezys" } { "dynn_Quptys" } { "dynn_Tyvar" } { "dynn_Jomozar" }
+		{ "dynn_Huretheon" } { "dynn_Ruakys" } { "dynn_Celereon" } { "dynn_Jaeganyon" } { "dynn_Arranion" }
+		{ "dynn_Vezenkar" } { "dynn_Unendia" } { "dynn_Voksia" } { "dynn_Galgaeron" } { "dynn_Laergyr" }
+		{ "dynn_Enreos" } { "dynn_Merntys" } { "dynn_Maznareon" } { "dynn_Henaeris" } { "dynn_Ronnon" }
+		{ "dynn_Haeteros" } { "dynn_Gevgarys" } { "dynn_Hurys" } { "dynn_Pyllyr" } { "dynn_Raegaros" }
+		{ "dynn_geralbar" } { "dynn_gevives" } { "dynn_gryves" } { "dynn_guese" } { "dynn_gurentir" }
+		{ "dynn_heltar" } { "dynn_hontes" } { "dynn_hunes" } { "dynn_hura" } { "dynn_hurenka" } { "dynn_ibyr" }
+		{ "dynn_iedar" } { "dynn_illion" } { "dynn_iorves" } { "dynn_iotaptenon" } { "dynn_jaedos" }
+		{ "dynn_jaelarys" } { "dynn_jaos" } { "dynn_jaqiarzir" } { "dynn_jeda" } { "dynn_jehar" } { "dynn_jehikarys" }
+		{ "dynn_jelazma" } { "dynn_kaerinnon" } { "dynn_kelir" } { "dynn_konor" } { "dynn_kostion" }
+		{ "dynn_kostoba" } { "dynn_kydrenka" } { "dynn_loktys" } { "dynn_lopor" } { "dynn_nombes" } { "dynn_onos" }
+		{ "dynn_peldys" } { "dynn_prumia" } { "dynn_qaedar" } { "dynn_qelbar" } { "dynn_qelitsos" } { "dynn_qelos" }
+		{ "dynn_qintir" } { "dynn_raedes" } { "dynn_raqnon" } { "dynn_reko" } { "dynn_rhovio" } { "dynn_ruklo" }
+		{ "dynn_setys" } { "dynn_sonys" } { "dynn_sydor" } { "dynn_tembys" } { "dynn_tikos" } { "dynn_tembyr" }
+		{ "dynn_tindonys" } { "dynn_tomitsos" } { "dynn_tyvaros" } { "dynn_velkrys" } { "dynn_voljes" }
+		{ "dynn_zaeres" } { "dynn_zea" } { "dynn_zokia" }
+	}
+	male_names = {
+		Adarano Adaros Aedor Aeganys Aegar Aegaron Aegon Aegor Aelix Aelor Aelyx Aemarys Aemon Aemond Aemor Aenar
+		Aenarr Aenys Aenyx Aeradhor Aeragar Aeranyx Aerarion Aeravar Aerion Aeriphos Aerydar Aerygon Aerymar Aerymion
+		Aerymond Aeryn Aeryrys Aerys Aethan Aevor Annarion Aran Aurion Ayrmidon Azagor Azemion Azzak Baegel Baelon
+		Baelor Baemorys Baenar Baeryn Baesegarys Baesemor Balaegor Balaemor Balaenyx Balaeron Ballos Baseimion
+		Bearaxes Beargar Bearlerion Belano Belapho Beleqor Belidos Belonos Beloquo Belyrio Belys Bharkaz Caezar Cassan
+		Conicho Conos Copho Daegar Daekar Daelarys Daelor Daemalon Daemaraenar Daemavar Daemion Daemon Daenar Daeragon
+		Daeranyx Daeron Dhazzar Donano Donar Donelos Donio Draqan Esodos Essalos Essanos Essel Essorio Esyrno Eysan
+		Ezzaloro Ezzan Ezzario Ezzlyso Ezzo Faezhar Gaelar Gaelyx Gaemon Gaeron Gahaemorys Gahaenys Gahaenyx Gahaeron
+		Galaemar Galaerys Garaelor Garrenhor Garrido Garro Gorghan Gyellso Gyllen Gyllo Haegon Haemon Haerys Halaro
+		Harghaz Harlano Harlyrio Haronno Illadhor Illario Illen Inno Innyllo Irrio Jacaelar Jacaerys Jaeglys Jaegon
+		Jaehaerys Jaekar Jaelarys Jaemar Jaemion Jaemond Jaenar Jaenyx Jaeremion Jaeresso Jaerevon Jaevor Janys
+		Jaqenhor Jayns Jorapho Joraquo Joror Kasporio Laegon Laelar Laemond Laenarr Laenor Laerion Larazar Larazys
+		Larraq Lazan Laziros Lothorio Lucaegaron Lucaelar Lucerys Lysan Lysar Maegon Maegor Maehamon Maehanor Maekar
+		Maelor Maelys Maelyx Maenar Maerion Maeron Maerys Maevon Maezon Malaelar Malaemar Malaemond Malaenar Malan
+		Malero Mallaquo Malonar Mamion Mamyx Maraenar Marano Maraphos Maren Marohr Maryllo Matadar Matagar Matalor
+		Matamion Matamor Matamorys Matarys Melio Miklaz Moro Naeryx Nakano Nakaquo Nakaro Nakeo Nakodos Nakorno Nakys
+		Norello Noro Noroquo Nucerys Nyessan Nyessapho Olzonys Orys Ovonys Oznak Padaros Paelor Pallos Paranys
+		Parridos Parro Paryos Pazan Pydos Pylan Pyllo Pyrios Raegar Raegel Raelor Raelyx Raerion Raezar Ragaemon
+		Rahaedar Rahaemyx Rahaerion Rahaerys Rallos Rano Rapho Relapho Releqor Relidos Relyrio Relys Rhaegar Rhaegel
+		Rhaemar Rhaemon Rhaenar Rhogar Rono Ryllo Ryos Taecedar Taedar Taegon Taemarys Taenarr Taerion Taeron
+		Tahaegaron Tahaegor Tahaelor Tahaemarr Tahaevon Talaemorys Tybero Tyraemion Tyraemon Tyraenyx Tyraerys
+		Tyraevar Vadar Vaegon Vaegor Vaekar Vaellyn Vaemarys Vaemond Vaermon Vaeron Vagaron Vahaedor Vahaenys Valarr
+		Valerion Valyx Vanarr Vanor Vanys Varan Vareo Vargano Vargio Vargorno Variphos Vimion Virys Visegel Visemar
+		Viserys Vogo Vogys Vyran Vyrano Vyrenhor Vyresso Vyronos Vyroros Yraemond Yraenar Zaelys Aenarys Aegion Adema
+		Daervon Qoherys Aegalon Aegorion Aelarion Averion Balaenys Ahlaq Bezzaq Bhakaz Chezdhar Dazdhan Dazghan
+		Dazghar Daznak Dazrak Dezhor Dhazak Douquor Draqaz Eqnaz Ghael Ghazdor Ghrazz Goghor Gorghaz Gorkhaz Gorzhak
+		Gorzhar Grazdahl Grazdan Grazdar Grazghar Grazhar Graznak Hazdan Hazghan Hazghar Hazghaz Hazkar Haznaq Hazrak
+		Hizdahr Hizghan Hiznak Hizraq Kandaq Khrazdar Khrazz Kraghaz Krazdan Kraznak Kraznys Lezhahl Liznuq Loraq
+		Marghan Marghaz Marhaz Marzak Marzhar Mazdahl Mazdhan Mazghan Mazghar Maznak Mazrak Merreq Mordhan Morghar
+		Morghaz Morkaz Nakloz Naqqan Paezhar Prendahl Qaggaz Qorzo Razdahl Rezdar Reznak Rhazdar Skahaz Skahdan Skazak
+		Skazhar Ulzak Ulzhar Yezdahr Yezdan Yezghan Yezghar Yezghaz Yeznak Yezrak Yezzan Yunzak Yurkhaz Yurzak Yurzhar
+		Zharaq Bharghaz Srozdaz Abdiz Abimazan Abum Ahimelek Alam Aghazaros Allamu Amatnim Aghezon Ammidikagh Amukkan
+		Ahnoz Anzar Aoz Apzu Ardoragh Arduzin Arua Azardin Azagh Barisruk Balludhu Burnaburyaz Cit Daghan Dakhe Dakhos
+		Dakurdagh Dibbarragh Dir Dunnusaidu Emeduranok Etazh Ghadatas Ghazal Ghazzimir Ghobryaz Ghinzirus Ghosmabekiz
+		Ghumiz Hammuraz Harbighizu Hakiz Hezaban Immertum Irib Irighibel Irshuzin Izdukhar Kandalanu Lighakas Makru
+		Marduz Merodach Nebo Nerzal Nukzu Orghamus Pakhas Ramman Riizvul Rimaghu Saar Shazzar Shagarakh Shemesh Sutur
+		Tammuz Tamiz Tir Ubarat Ulam Ulbas Urhamsi Zinsaid Zursin
+	}
+	female_names = {
+		Aelinor Aelora Aemma Aenehnae Aenehrys Aenela Aenerya Aenesa Aerea Aerena Aeriana Ahrysha Alaenla Alaenya
+		Alaenys Alaera Alaerys Alaesanne Alaesys Alearys Allyria Alyhna Alynna Alysanne Alyssa Baela Baelora Baena
+		Baenna Baenys Baesa Bahra Banera Bara Bassa Bellona Bhaela Bhaelys Bhaenla Bhaenyra Caena Calena Callosa
+		Conosa Cyeana Cymella Daehrys Daehyrs Daella Daemys Daena Daenaera Daenea Daenehyrs Daenella Daenera Daenerah
+		Daenerya Daenerys Daenora Daenys Daenysa Daeoril Daeryssa Daesanne Darria Delaehrys Delaenyra Dilona Donaria
+		Donelia Dorella Dorelna Elaela Elaemera Elaena Elaenyra Elaeryn Elaerys Elaesella Eraemera Essela Eysania
+		Ezzana Ezzara Faezara Firanira Firanyna Gael Gezzella Gyella Gylla Haehnae Haehra Haelena Haelerla Haemera
+		Haenyra Haera Harlania Helaena Hemys Henona Henya Henysa Hessa Horia Hororia Illarah Illenia Illosa Inna
+		Innaria Innysa Irria Jacaena Jaehaera Jaehyrs Jaelala Jaelanys Jaelassa Jaemala Jaenara Jaerya Jaesys Jahaena
+		Jaqeah Jaqena Jaqira Jelaehra Jelaenya Jelaenys Jezhane Joraphia Jorea Jorylla Jyssana Kezmya Korraqa Laena
+		Laenanah Laenara Laenesa Laenylea Larissa Lazana Lianna Lysani Lysarah Lysirah Maega Maegelle Maelerys Maelora
+		Maemys Maena Maera Maesanne Maesys Malaehra Malaenyra Malaernera Malaesa Malani Malerah Maloni Maryllah
+		Meshola Mhaegen Minala Minysha Naelarla Naena Naenera Naenla Naeressa Naerys Naesella Naesenya Nakani Naki
+		Nakodi Nakornah Nelaella Nelaemys Nelaenys Nelaerya Nesaehnae Nesaenys Nesaesanne Nesaessa Neseah Nesola
+		Nesysha Nilerah Nilolla Norelli Nyessa Oranea Paezhara Parrah Pazani Pheneyana Pylani Qarrana Qira Qirani
+		Qorella Qysarah Raenenyra Relaechnae Relaera Relaesa Relaesanne Renaerla Rhae Rhaehra Rhaelinor Rhaella
+		Rhaelle Rhaena Rhaenella Rhaenemera Rhaenla Rhaenna Rhaenyra Rhaenys Rhaera Rhaesa Rhaessa Rhaeys Rohana
+		Rohani Rylea Saechnae Saehra Saela Saelara Saelasa Saena Saenehna Saenelys Saenessa Saenrys Saenyra Saenys
+		Saera Saerena Saerla Salamera Salasha Selaela Sereah Shaelora Shaelys Shaena Shaera Sireyana Siria Sirila
+		Syaella Syrana Syrani Syria Taenanea Thora Thorena Tirelna Tiresa Tora Ushanora Vaehra Vaela Vaella Vaena
+		Vaenera Vaera Vaerana Vaerla Vaesys Valaena Varea Viselle Visenae Visenya Viserra Voraria Vorysa Vyrana
+		Vysaela Vysehnae Vysella Waeraena Wenina Wyneah Wynella Yaqea Yarah Yezza Yonah Yonica Leaysa Aelynna Aerys
+		Baesegarya Baesys Elaerya Gahaenys Galaema Garenhys Gaera Gahaera Gaelys Illaria Jaelara Jaeremia Kain Laetrix
+		Laenarra Malaera Matamora Matadarys Matalora Memyx Nakea Naelara Naerana Naesysa Oren Raenysa Renaela Rhaenara
+		Rhaemara Saeena Saenysa Valya Vanysa Yara Yonic Yraenar Zara Amaya Barsena Berra Beshka Bezza Elara Elerra
+		Elezza Elmea Elza Elzane Elzara Elzea Elzina Ezzea Ezzene Ezzina Galara Galashka Galazza Galea Galina Hazmya
+		Hazzana Hazzara Hazzea Jezha Jezhene Jezhina Jhezane Jhezara Jhezea Kezhka Malara Malazhka Malazza Malea
+		Malene Mezza Mezzane Mezzara Mezzea Qalla Qezza Qezzane Qezzara Qezzia Senane Senazza Senea Senerra Zahrina
+		Zalla Zashka Zerra Azzea Azzara Bharkaza Chezzara Faezarra Qazella Sezqa Sezza Tezza Zhanasha Zazhezza Abza
+		Aghaza Amatni Agheza Ammidi Amukka Ahnoza Anzara Aru Azagha Barizh Balladhi Burnaburza Dagha Dakhi Dakha
+		Dakuri Dibbarrazh Dipti Dunzi Dunnu Duzi Emeduri Etaza Ghadi Ghazi Ghazzima Ghobryza Ghinzira Ghosmabeki
+		Ghumai Hammuraza Harbighiza Hakiza Hezabani Immerta Ira Iriba Irighibli Irshuza Iva Izdhukhara Kandalani
+		Khahea Lighaka Makra Marduzi Merodagh Nebi Nerzi Nukza Pakhza Ramma Rhiiza Rimaghi Saza Shazzara Shagarakh
+		Shamash Shukura Sutura Tammzi Tamiza Tira Ubara Ulama Ulbaza Urhamzi Zursi
+	}
+	dynasty_of_location_prefix = "dynnp_of"
+	pat_grf_name_chance = 15
+	mat_grf_name_chance = 5
+	father_name_chance = 5
+	pat_grm_name_chance = 10
+	mat_grm_name_chance = 15
+	mother_name_chance = 5
+	mercenary_names = {
+	}
+}
+
+name_list_velosi = {
+	dynasty_names = {
+		{ "dynn_Anogaryen" } { "dynn_Atroksiarys" } { "dynn_Daomiorys" } { "dynn_Embaryen" } { "dynn_Gelenkys" }
+		{ "dynn_Gelionar" } { "dynn_Gryvetheon" } { "dynn_Hoskagys" } { "dynn_Haedaryen" } { "dynn_Ilirigys" }
+		{ "dynn_Jelmazeon" } { "dynn_Jentys" } { "dynn_Kastaryen" } { "dynn_Kostagar" } { "dynn_Mazigonys" }
+		{ "dynn_Namorghulilaryen" } { "dynn_Ondoryen" } { "dynn_Perzys" } { "dynn_Qogrorys" } { "dynn_Syzeon" }
+		{ "dynn_Tresys" } { "dynn_Belaerys" } { "dynn_Zaldrizyen" } { "dynn_Manaereon" } { "dynn_Urnebar" }
+		{ "dynn_Sonaryen" } { "dynn_Kessatheon" } { "dynn_Bevilar" } { "dynn_Ezimatheon" } { "dynn_Laeseon" }
+		{ "dynn_Jenqeleon" } { "dynn_Pirtiryen" } { "dynn_Sytivilar" } { "dynn_Tistaleon" } { "dynn_Qupteneon" }
+		{ "dynn_Nuqiryen" } { "dynn_Orbareon" } { "dynn_Quvyar" } { "dynn_Valzyren" } { "dynn_Ilontheon" }
+		{ "dynn_Boniryen" } { "dynn_Jorraezys" } { "dynn_Quptys" } { "dynn_Tyvar" } { "dynn_Jomozar" }
+		{ "dynn_Huretheon" } { "dynn_Ruakys" } { "dynn_Celereon" } { "dynn_Jaeganyon" } { "dynn_Arranion" }
+		{ "dynn_Vezenkar" } { "dynn_Unendia" } { "dynn_Voksia" } { "dynn_Galgaeron" } { "dynn_Laergyr" }
+		{ "dynn_Enreos" } { "dynn_Merntys" } { "dynn_Maznareon" } { "dynn_Henaeris" } { "dynn_Ronnon" }
+		{ "dynn_Haeteros" } { "dynn_Gevgarys" } { "dynn_Hurys" } { "dynn_Pyllyr" } { "dynn_Raegaros" }
+		{ "dynn_geralbar" } { "dynn_gevives" } { "dynn_gryves" } { "dynn_guese" } { "dynn_gurentir" }
+		{ "dynn_heltar" } { "dynn_hontes" } { "dynn_hunes" } { "dynn_hura" } { "dynn_hurenka" } { "dynn_ibyr" }
+		{ "dynn_iedar" } { "dynn_illion" } { "dynn_iorves" } { "dynn_iotaptenon" } { "dynn_jaedos" }
+		{ "dynn_jaelarys" } { "dynn_jaos" } { "dynn_jaqiarzir" } { "dynn_jeda" } { "dynn_jehar" } { "dynn_jehikarys" }
+		{ "dynn_jelazma" } { "dynn_kaerinnon" } { "dynn_kelir" } { "dynn_konor" } { "dynn_kostion" }
+		{ "dynn_kostoba" } { "dynn_kydrenka" } { "dynn_loktys" } { "dynn_lopor" } { "dynn_nombes" } { "dynn_onos" }
+		{ "dynn_peldys" } { "dynn_prumia" } { "dynn_qaedar" } { "dynn_qelbar" } { "dynn_qelitsos" } { "dynn_qelos" }
+		{ "dynn_qintir" } { "dynn_raedes" } { "dynn_raqnon" } { "dynn_reko" } { "dynn_rhovio" } { "dynn_ruklo" }
+		{ "dynn_setys" } { "dynn_sonys" } { "dynn_sydor" } { "dynn_tembys" } { "dynn_tikos" } { "dynn_tembyr" }
+		{ "dynn_tindonys" } { "dynn_tomitsos" } { "dynn_tyvaros" } { "dynn_velkrys" } { "dynn_voljes" }
+		{ "dynn_zaeres" } { "dynn_zea" } { "dynn_zokia" }
+	}
+	male_names = {
+		15 = {
+			Aemon Daeron Jaehaerys Viserys Bearaxes Bearlerion Beargar
+		}
+		65 = {
+			Aegor Aelor Aelyx Aenar Aenys Aerion Aeryn Aerys Aethan Baelon Baelor Daemion Daemon Gaemon Haegon Maegon
+			Maekar Maelor Maelys Maenar Matarys Rhaegar Rhaegel Vaegon Valarr Valerion Aenarys Aelix Aegion Adema Daegar
+			Daervon Haerys Jaekar Orys Qoherys Vaeron Vaekar Vaermon Jaegon Jaemond Gaelar Aegalon Aeganys Aegar Aegaron
+			Aegorion Aelarion Aeranyx Aerydar Aeryrys Aerymion Aemor Annarion Aenarr Averion Balaemor Baemorys Baesegarys
+			Balaenys Balaegor Jaenyx Rahaerion Taeron Taegon Tahaelor Matadar Rahaedar Jaelarys Laelar Malaelar Laemond
+			Mamyx Aerygon Gahaenyx Jaemar Vaemarys Jayns Laerion Garaelor Jacaelar Daemalon Tyraenyx Daemavar Laegon
+			Malaenar Galaerys Maehamon Matalor Tyraerys Raegel Tahaegor Aeravar Visemar Rahaemyx Tahaevon Taedar Maraenar
+			Maevon Matamor Aedor Jaeremion Tyraemion Raerion Daeranyx Aeragar Matamorys Tahaegaron Matamion Malaemar Vanor
+			Vaegor Lucaegaron Gaelyx Virys Vimion Visegel Gahaeron Baegel Vadar Jaerevon Jaemion Tyraevar Gahaemorys
+			Laenarr Ragaemon Vahaenys Aerarion Rhaemar Jaenar Vanys Galaemar Aevor Vagaron Yraenar Baesemor Baseimion
+			Tyraemon Maelyx Rahaerys Taecedar Tahaemarr Maerion Daeragon Taenarr Rhaenar Aelys Aenor Aenyx Aethon Baenar
+			Baethon Balaeron Baeron Caerys Cerys Daegon Daemond Daenar Daenir Denys Ebrion Eglion Egros Elenys Gaemond
+			Gaeron Gelion Gevion Haenor Jaehaeron Jaenor Jaelaron Jaqiarys Jedarys Kelonys Kostys Kaenys Laerys Laenor
+			Litsys Lykanon Lyksion Maeloris Maenor Monterys Maerys Maegonys Mandys Mazilarys Melvarys Misys Naegon Naelor
+			Naerys Nymerion Naqessys Olzonys Ovonys Paelor Paemon Pelar Perzon Rhaegon Rhaenor Rhaelyx Rhogar Rhaelor
+			Rhovan Robys Sambion Sylvion Taelor Taenor Vaenar Vaenor Vhaegon Vaelyx Vaemond Vaemir Zaelyx Zaelor
+		}
+		5 = {
+			Aemond Maegor
+		}
+	}
+	female_names = {
+		20 = {
+			Daenerys Rhaena Rhaenys
+		}
+		80 = {
+			Aelinor Aelora Aemma Aerea Alysanne Alyssa Alaerys Baela Daella Daena Daenaera Daenys Daeryssa Elaena Gael
+			Helaena Jaehaera Jaenara Maegelle Naerys Rhae Rhaella Rhaelle Rhaenyra Saera Shaena Shaera Vaella Valaena
+			Visenya Viserra Allyria Alearys Cyeana Cymella Daeoril Leaysa Rhaeys Rhaelinor Saenrys Syaella Aelynna
+			Alaesanne Alaenla Alaesys Aenela Aenesa Aenerya Aerys Bahra Bassa Baenna Baesegarya Baesys Bhaela Bhaelys
+			Bhaenla Bhaenyra Banera Daenerya Daemys Daenella Daenysa Daesanne Delaehrys Delaenyra Dorelna Elaela Elaerya
+			Essela Ezzana Firanira Firanyna Gahaenys Galaema Garenhys Gaera Gahaera Gaelys Gylla Gyella Haehnae Haehra
+			Haenyra Harlania Henya Henysa Horia Hororia Illaria Innaria Innysa Jaelala Jaelara Jaemala Jaeremia Jaqena
+			Joraphia Jelaenya Jelaehra Kain Laetrix Laenarra Laenylea Malaera Malaesa Malaehra Malaenyra Maena Maesanne
+			Matamora Matadarys Matalora Memyx Nakea Naelara Naerana Naesella Naesysa Nesola Nesaenys Nesaehnae Nesaessa
+			Nelaenys Nelaella Oren Parrah Pylani Qira Qirani Raenysa Renaela Rhaenara Rhaemara Rhaenla Rhaehra Rhaessa
+			Rhaenemera Rylea Saeena Saehra Saenelys Saenysa Saerla Salamera Sereah Sireyana Syria Thorena Tirelna Vaesys
+			Vaerana Valya Vanysa Varea Vyrana Wyneah Yara Yonic Yaqea Yraenar Zara Aella Aelyra Aemara Aenara Aenora Aena
+			Anora Aerebella Averillea Aevera Baena Baelara Balaena Baelys Baenys Baeryn Cenya Daria Elaenora Laenora Nora
+			Ellila Gelia Gevia Helaea Haera Haena Jaena Jahaena Jaehia Jedaria Karessa Kaenella Larissa Lianna Litsera
+			Lykara Lyksera Malaena Mae Mandella Marilaria Melvaria Misenna Nyxara Naqessia Numina Pelaria Perzyna Olzonia
+			Ovonia Raqnia Rekia Serra Sambella Sylvina Vaena Vaelora
+		}
+	}
+	dynasty_of_location_prefix = "dynnp_of"
+	pat_grf_name_chance = 15
+	mat_grf_name_chance = 5
+	father_name_chance = 5
+	pat_grm_name_chance = 10
+	mat_grm_name_chance = 15
+	mother_name_chance = 5
+	mercenary_names = {
+	}
+}
+
+name_list_westerosi_valyrian = {
+	dynasty_names = {
+		{ "dynn_Azantys" } { "dynn_Jentys" } { "dynn_Qelbar" } { "dynn_Lentorys" } { "dynn_Pyghageon" }
+		{ "dynn_Drace" } { "dynn_Zygar" } { "dynn_Correy" } { "dynn_Tolvys" } { "dynn_Tembyre" } { "dynn_Sparosyon" }
+		{ "dynn_Rinatheon" } { "dynn_Kios" } { "dynn_Jaedar" } { "dynn_Geronys" } { "dynn_Edrugonar" }
+		{ "dynn_Daomio" } { "dynn_Qohlarys" } { "dynn_Tartigar" } { "dynn_Naeltheon" } { "dynn_Raheris" }
+		{ "dynn_Naryreos" } { "dynn_Callarys" } { "dynn_Agaeris" } { "dynn_Lennalys" } { "dynn_Agtalos" }
+		{ "dynn_Calanyon" } { "dynn_Raeniar" } { "dynn_Ellaryon" } { "dynn_Vorreon" } { "dynn_Codarrion" }
+		{ "dynn_Almarrion" } { "dynn_Vytalion" } { "dynn_Byssar" } { "dynn_Berlaeris" } { "dynn_Eghon" }
+		{ "dynn_Naqabrar" } { "dynn_Gitigar" } { "dynn_Barrtir" } { "dynn_Maldeks" } { "dynn_Ozakses" }
+		{ "dynn_Morghraenos" } { "dynn_Onrepsa" } { "dynn_Kymion" } { "dynn_Mitheos" } { "dynn_Samtheon" }
+		{ "dynn_Taentar" } { "dynn_Kotion" } { "dynn_Erdrizes" } { "dynn_Kaegaris" } { "dynn_Menitheos" }
+		{ "dynn_Doraez" } { "dynn_Qhaenalys" } { "dynn_Iliurdon" } { "dynn_Eriareon" } { "dynn_Baeleris" }
+		{ "dynn_Dornir" } { "dynn_Gargarys" } { "dynn_Malnebion" } { "dynn_Myreneos" } { "dynn_Onnon" }
+		{ "dynn_Barennis" } { "dynn_Gevros" } { "dynn_Ovaleos" } { "dynn_Nohmion" } { "dynn_geralbar" }
+		{ "dynn_gevives" } { "dynn_gryves" } { "dynn_guese" } { "dynn_gurentir" } { "dynn_heltar" } { "dynn_hontes" }
+		{ "dynn_hunes" } { "dynn_hura" } { "dynn_hurenka" } { "dynn_ibyr" } { "dynn_iedar" } { "dynn_illion" }
+		{ "dynn_iorves" } { "dynn_iotaptenon" } { "dynn_jaedos" } { "dynn_jaelarys" } { "dynn_jaos" }
+		{ "dynn_jaqiarzir" } { "dynn_jeda" } { "dynn_jehar" } { "dynn_jehikarys" } { "dynn_jelazma" }
+		{ "dynn_kaerinnon" } { "dynn_kelir" } { "dynn_konor" } { "dynn_kostion" } { "dynn_kostoba" }
+		{ "dynn_kydrenka" } { "dynn_loktys" } { "dynn_lopor" } { "dynn_nombes" } { "dynn_onos" } { "dynn_peldys" }
+		{ "dynn_prumia" } { "dynn_qaedar" } { "dynn_qelitsos" } { "dynn_qelos" } { "dynn_qintir" } { "dynn_raedes" }
+		{ "dynn_raqnon" } { "dynn_reko" } { "dynn_rhovio" } { "dynn_ruklo" } { "dynn_setys" } { "dynn_sonys" }
+		{ "dynn_sydor" } { "dynn_tembys" } { "dynn_tikos" } { "dynn_tembyr" } { "dynn_tindonys" } { "dynn_tomitsos" }
+		{ "dynn_tyvaros" } { "dynn_velkrys" } { "dynn_voljes" } { "dynn_zaeres" } { "dynn_zea" } { "dynn_zokia" }
+	}
+	male_names = {
+		40 = {
+			Aegon Aegor Aelor Aelyx Aemon Aemond Aenar Aenys Aerion Aeryn Aerys Aethan Aurion Ayrmidon Baelon Baelor
+			Baenar Bearaxes Beargar Bearlerion Daemion Daemon Daeron Gaelar Gaemon Haegon Jacaerys Jaehaerys Laenor
+			Lucerys Maegon Maegor Maekar Maelor Maelys Maenar Maeron Matarys Orys Rhaegar Rhaegel Rhogar Vaegon Vaellyn
+			Vaemond Valarr Valerion Viserys
+		}
+		45 = {
+			Adam Addam Adron Aethelmure Alan Alard Alaric Alesander Alester Alford Allar Allard Aloran Alton Alvyn Alyn
+			Alyx Ambrose Amrell Andahar Andrey Andrian Androw Anguy Annos Anson Arbert Ardrian Argos Argrave Arlan
+			Armistead Arryk Arthor Artys Arwood Arwyn Athos Aurane Axel Axon Balman Banfrey Barion Barre Bartimos Belgrave
+			Bellos Ben Benedict Benethon Benfrey Benjicot Bennard Bennet Bennifer Bernarr Beslon Boros Bradamar Bryan
+			Bryar Bryen Brynden Bryne Cavan Cetheres Clarence Clayton Clement Cleos Cleyson Colmar Connor Corlys Cormond
+			Corwyn Cosgrove Creighton Crispian Crispin Criston Dafyn Damon Danos Danwell Davos Dennett Denys Deremond
+			Derrick Desmond Dickon Donnel Dontos Drox Dudley Duncan Duram Ebrose Eddam Eddyn Edmund Edmure Edmyn Edwell
+			Edwyn Ellard Ellery Elmar Elwood Elyas Elys Emmon Enger Ermen Erreg Erron Estion Euson Florian Forrest
+			Franklyn Galfrid Gargon Garibald Garrett Garse Garyn Gaston Geremy Gerold Gillam Gorgon Guncer Gwayne Gyles
+			Halion Halmon Harbert Harry Harsley Harstyn Harwin Harys Hendry Hibald Hobert Hollis Hosteen Hoster Hubard
+			Hugh Hugo Hugor Humfrey Igon Illifer Jacelyn Jaime Jammos Jamos Janos Jared Jarman Jarmen Jason Jeffory
+			Joffrey John Jon Jonn Jonos Jonothor Jonthor Jorgen Jorin Joseth Josua Jothos Justin Kaelon Kaeron Karyl Kedge
+			Kelis Kennoth Kenric Kirth Larys Lennocks Leon Leslyn Lewys Lister Lothar Lothor Lucamore Lucan Lucas Luceon
+			Lucias Lucos Luke Lyman Lymond Lyonel Madden Malentine Malion Malliard Malwyn Mance Manfred Manfryd Marell
+			Maric Marq Martyn Mathis Matthos Maynard Medgar Melwys Meribald Merrett Mohor Monford Monterys Morgan Morland
+			Morros Myles Narbert Ned Norbert Ollidor Olver Olyvar Orland Oscar Osmund Osmynd Oswell Othan Otho Owen Pate
+			Patrek Perwyn Petyr Philbert Pyron Qarl Qarlon Qarlton Quenton Quentyn Quincy Qyle Rawney Raymond Raymun
+			Raymund Redwyn Rennifer Robert Robeson Robin Roderick Roger Roland Rolland Ronald Ronel Rormund Rorran Ryan
+			Ryger Ryman Samwell Sandor Sefton Simon Simons Steffon Stevron Symeon Symon Symond Tasmund Terin Terrence
+			Thaddeus Theo Theomar Thoren Tion Togarion Tomas Tommard Tommen Toren Torrence Tristan Tristifer Triston
+			Trystane Tyler Tymond Tytos Ulmer Utherydes Veran Victor Vorian Walder Walton Waltyr Wendel Whalen Wilbert
+			Will Willam Willamen Willard Willem William Willis Willum Wyl Wynton Zachery
+		}
+		15 = {
+			Aedor Aeganys Aegar Aegaron Aelix Aemarys Aemor Aenarr Aenyx Aeragar Aeranyx Aerarion Aeravar Aerydar Aerygon
+			Aerymar Aerymion Aerymond Aeryrys Aevor Annarion Azagor Azemion Baegel Baemorys Baeryn Baesegarys Baesemor
+			Balaegor Balaemor Balaenyx Balaeron Baseimion Daegar Daekar Daelarys Daelor Daemalon Daemaraenar Daemavar
+			Daenar Daeragon Daeranyx Gaelyx Gaeron Gahaemorys Gahaenys Gahaenyx Gahaeron Galaemar Galaerys Garaelor Haerys
+			Jacaelar Jaeglys Jaegon Jaekar Jaelarys Jaemar Jaemion Jaemond Jaenar Jaenyx Jaeremion Jaerevon Jaevor Janys
+			Laegon Laelar Laemond Laenarr Laerion Lucaegaron Lucaelar Maehamon Maehanor Maelyx Maerion Maerys Maevon
+			Malaemond Malaenar Mamion Mamyx Maraenar Matadar Matagar Matalor Matamion Matamor Matamorys Naeryx Nucerys
+			Olzonys Ovonys Paelor Raegar Raegel Raelor Raelyx Raerion Ragaemon Rahaedar Rahaemyx Rahaerion Rahaerys
+			Rhaemar Rhaemon Rhaenar Taecedar Taedar Taegon Taemarys Taenarr Taerion Taeron Tahaegaron Tahaegor Tahaelor
+			Tahaemarr Tahaevon Talaemorys Tyraemion Tyraemon Tyraenyx Tyraerys Tyraevar Vadar Vaegor Vaekar Vaemarys
+			Vaermon Vaeron Vagaron Vahaedor Vahaenys Valyx Vanarr Vanor Vanys Vimion Virys Visegel Visemar Yraemond
+			Yraenar Zaelys Elaerion Rhaego Taelor Ademion Aderon Adervan Aegionar Aeksior Aereban Ajonor Albieron Annar
+			Averillar Averion Azantyon Bantian Bantion Bartannion Bartanys Begoron Braedon Daervon Daryson Drakar Drivon
+			Ebrion Edrunon Egron Eledron Elekor Embar Erinnon Gelinon Geron Glaeson Grozior Gryvion Gueson Gurent Heltaron
+			Hontys Hunion Hurys Ibyrion Jaedon Jaqiar Jedion Jeharion Jentyon Kaston Kelon Klion Konorys Korzion Kostys
+			Kynion Lirinon Logor Lykson Mandion Massion Mazilar Mendonon Meleon Melvarion Mentyon Milion Mison Myrdion
+			Naqession Navarion Nedyon Numion Orbarion Ovonion Parmon Pelarian Peldion Perzyon Qaedarion Qelbarion Rhovan
+			Robys Sambar Sovion Sylvion Tikosion Vezon Dantos Mathos
+		}
+	}
+	female_names = {
+		40 = {
+			Aelinor Aelora Aemma Aenesa Aerea Aerena Alaerys Alysanne Alyssa Baela Baenys Daella Daena Daenaera Daenerys
+			Daenys Daeryssa Daesanne Elaena Elaenyra Gael Helaena Jaehaera Jaenara Laena Larissa Lianna Maegelle Maemys
+			Mhaegen Naerys Rhae Rhaella Rhaelle Rhaena Rhaenyra Rhaenys Saera Shaena Shaera Vaella Valaena Visenya Viserra
+		}
+		45 = {
+			Aemira Aglantine Agnes Alanna Alannis Alannys Alayne Albetha Alera Aleria Alerie Alessa Alianne Alicent Alina
+			Alise Alison Alla Alle Allise Allona Allyne Alora Alyce Alynna Alynne Alys Alyx Amabel Amaena Amalia Amanda
+			Amane Amarei Amarys Amena Amera Amerei Ammara Amyana Amyra Andara Andrya Anna Annara Annet Anya Arelle Arianne
+			Ariela Arrana Arria Arwen Arwyn Arysa Aryse Ashara Ashera Aurana Baena Barba Barbara Barra Bea Becca Belandra
+			Belarra Belenna Belissa Bella Bellara Belle Bellena Benfria Beony Berenda Bess Bessa Beth Betha Bethany Brella
+			Brianne Brienne Briony Bronwyn Calla Carellen Carene Cariah Carina Carissa Carolei Cass Cassana Cassandra
+			Catelyn Celianne Cerelle Cerena Cerenna Cerissa Cersei Ceryse Charlotte Cindra Cissy Clara Colianne Corenna
+			Corrine Cymoril Cynthea Cyrene Cyrenna Dalla Damana Damina Danelle Danisa Daria Darianne Darla Darlessa Deana
+			Delana Delanne Delena Della Demerei Denyse Desmera Desmerei Desmona Diana Dolessa Donella Donyse Dorcas Dorna
+			Dyna Eddyne Edmera Edmerei Edmyne Edwina Eglantine Eionne Elanei Elanna Eldrane Eleanor Elena Elene Elenei
+			Elenora Elenya Elesa Eleyne Elina Elinor Ella Elleria Ellery Ellyn Elonne Else Elspeth Elyana Elyanna Elyn
+			Elyra Elyria Emberlei Emma Emmara Emphyria Ermesande Esme Estalia Ethel Falena Falia Falora Falyse Fiona Flora
+			Freya Fruella Frynne Galene Gallisa Ganna Gella Genna Grenna Gretchel Grisel Gwenda Gwenna Gwyn Gwyneth
+			Halanna Hamaria Harra Helena Helicent Helya Helyna Henrietta Hostella Idana Idera Idona Ilysa Ilyse Irya
+			Isabel Ismyra Jacene Jalona Jancia Jane Janei Janesa Janna Jannia Janyce Janye Janyra Jarella Jayne Jeane Jena
+			Jenette Jenna Jennelyn Jennis Jeona Jerane Jerene Jessamyn Jeyn Jeyne Joanna Joanne Jocelyn Johanna Jonella
+			Jonnela Jonquil Jorena Joy Joyeuse Junia Jyana Jyanna Jyrenna Kalyra Karella Karene Karolyn Karyn Kayla
+			Kelarra Keleria Kella Kellyn Kelyce Kerelle Kyra Lacey Lanalla Lanna Lara Layna Leana Leila Lelia Lemore
+			Lenora Leomella Leona Leonella Leonette Leonylla Leslyn Leyla Lia Liane Liona Lira Lollys Lorea Lorell Lorenna
+			Lorra Lucia Luna Lyessa Lymaria Lynessa Lynesse Lynora Lyra Lysa Lysana Lyseria Lysessa Lyssa Lythene Maelane
+			Maella Maenylla Maerie Maery Maia Malessa Malora Manysa Mara Marei Marelle Margaery Margot Marianne Marilda
+			Maris Marissa Mariya Marla Marlena Marsella Mary Marya Masha Matrice Mavis Megga Mela Melantha Melene Melesa
+			Melessa Melicent Melissa Mellara Mena Meredith Meredyth Meria Merianne Merisa Meryne Mhaegan Millicent Mina
+			Minisa Moelle Monica Mordane Morya Moryssa Mya Mychella Mylenda Mylessa Mynalla Myra Myranda Myrcella Myrielle
+			Myrren Mysanna Nerys Nessa Nolla Norella Nynia Obela Obyra Odette Olana Olanei Olene Olenna Olyra Oreyne
+			Orissa Oryne Oryssa Osmerei Osmeria Paege Parella Parra Patrice Pella Peony Perianne Perra Perriane Philena
+			Phillipa Pia Polianne Priscilla Prudence Prunella Pya Qyrene Randa Ravella Reyna Rhalla Rhea Rhialta Rhonda
+			Rianne Rienne Riona Roelle Rohanne Rolenna Rolessa Ronella Ronessa Rosamund Roslin Rowena Ryella Rylena Rylene
+			Rylla Sabitha Sabrina Sabrine Salanne Sallei Sanora Saranella Sarra Sarya Saryanna Scolera Selyse Semella
+			Senelle Serella Serena Serenei Serina Serra Sharei Sharena Sharna Sharra Shella Sherene Sherlyse Shiera
+			Shireen Shirei Shyra Simona Sirona Sybell Sylana Sylvia Sylwa Syrella Syrona Talla Tanda Tania Tanselle
+			Tarissa Teora Theona Tilly Tinessa Tiona Tya Tyana Tyene Tyiah Tynissa Tyressa Tysane Tysha Tyshara Tyta
+			Unella Ursula Valiete Victaria Victoria Violet Walda Wylera Wylla Wynafrei Yolanda Yorena Ysila Ysilla Yve
+			Zhoe Zia
+		}
+		15 = {
+			Aenehnae Aenehrys Aenela Aenerya Aeriana Alaenla Alaenya Alaenys Alaera Alaesanne Alaesys Alearys Allyria
+			Alyhna Alynna Baelora Baena Baenna Baesa Bahra Banera Bara Bassa Bhaela Bhaelys Bhaenla Bhaenyra Caena Cyeana
+			Cymella Daemys Daenea Daenehyrs Daenella Daenera Daenerya Daenora Daeoril Delaehrys Delaenyra Elaela Elaemera
+			Elaeryn Elaerys Elaesella Eraemera Haehnae Haehra Haelena Haelerla Haemera Haenyra Haera Hemys Henya Hessa
+			Jacaena Jaehyrs Jaelala Jaelanys Jaelassa Jaemala Jaerya Jaesys Jahaena Jelaehra Jelaenya Jelaenys Laenara
+			Laenesa Maega Maelerys Maelora Maena Maera Maesanne Maesys Malaehra Malaenyra Malaernera Malaesa Naelarla
+			Naena Naenera Naenla Naeressa Naesella Naesenya Nelaella Nelaemys Nelaenys Nelaerya Nesaehnae Nesaenys
+			Nesaesanne Nesaessa Raenenyra Relaechnae Relaera Relaesa Relaesanne Renaerla Rhaehra Rhaelinor Rhaenella
+			Rhaenemera Rhaenla Rhaenna Rhaera Rhaesa Rhaessa Rhaeys Saechnae Saehra Saelara Saelasa Saena Saenehna
+			Saenelys Saenessa Saenrys Saenyra Saenys Saerena Saerla Salamera Selaela Shaelora Shaelys Syaella Vaehra Vaela
+			Vaena Vaenera Vaera Vaerla Vaesys Viselle Visenae Vysaela Vysehnae Vysella Elaenys Ademma Aderina Adervina
+			Aegiona Aeksiona Aerebia Annadea Ariella Averillia Averella Bartanella Begora Bianora Braedia Daemiria Daeria
+			Daeza Dynessa Ebriona Edruna Eglina Eledra Eleka Ellila Emba Erinna Gelina Gerona Glaesella Grozia Gryvella
+			Helta Honta Huna Huria Ibyra Ieda Jaeda Jaqiara Jedia Jehara Jentyra Kastera Kela Klia Konora Korza Kostia
+			Kostera Lirina Logora Lyksa Mandia Massina Mazilara Medonia Meleya Melvara Mentya Milia Misa Myrdyna Naqella
+			Navaria Nedyra Numina Orbessa Ovona Parmona Pelara Peldina Perzyna Rekella Sambara Sovia Sylvera Veza
+			Algantine Tyanna Elaenor Elia Leontte
+		}
+	}
+	dynasty_of_location_prefix = "dynnp_of"
+	pat_grf_name_chance = 15
+	mat_grf_name_chance = 5
+	father_name_chance = 5
+	pat_grm_name_chance = 10
+	mat_grm_name_chance = 15
+	mother_name_chance = 5
+	mercenary_names = {
+	}
+}
+
+name_list_dragon = {
+	dynasty_names = {
+		{ " " } { " " }
+	}
+	male_names = {
+		Acranion Adereon Aderex Aderion Aegal Aegax Aeksion Aemax Aenion Aeriax Aestion Aetrox Alatoraxes Althorio
+		Anaxigon Ancalion Ancylagon Angogon Anogaron Anogaros Aquos Archon Archonei Arhugon Arryn Artaxes Atsiox
+		Azantyr Azantys Azuron Baelal Baelax Baeliphax Bakkalon Bamuxes Bantis Bantisdaria Banzolkal Belmurtys
+		Blackclaw Blackfyre Blackhorn Blackwing Blazoron Bloodfyre Braedax Braedazma Braedion Bullbreaker Chalfyre
+		Chroyax Daemax Daenal Daenaryon Daerax Daomio Darilaros Darkfyre Darkscale Darkwing Darondarys Darys Deathwing
+		Deltherion Demagon Doom Draggox Drakaryx Drythron Duskfyre Dynax Eberron Ebrion Egros Elaenal Elenixes Elyrion
+		Embarelion Erinnon Errkos Essarix Essoval Fafnar Falkael Famlyre Fangrys Fasharyon Fellfang Fenrion
+		Firecatcher Firestorm Firkrax Firzon Forgesong Fornaxes Fusrodax Fyrax Galeglider Galry Gelenka Geliondaria
+		Gemtail Gevives Ghiscar Glaurax Glimmer Gloombringer Goldfyre Goldscale Gorgorkos Gorgosson Gorthalon Grace
+		Gravefyre Greencomet Greyfyre Greyscale Grymax Gurogon Haedar Haryz Heartfyre Hegagon Helfyre Henkirix
+		Highagon Hugo Hurax Idanax Ignerion Illithinos Ilthax Ioragon Irudyx Issilgor Jadewing Jaedos Jaeherion Jaehio
+		Jaesax Jaharix Jaqiarzir Jedrien Jehikagon Jehikarys Jelmazma Jentyx Johagon Kaerinax Kastakonir Kastax
+		Keligon Keliothor Kepaxes Knightslayer Konoron Korzion Kostobion Krythax Laehurlion Laengar Laenion Laraxes
+		Lifefyre Likaxes Lilagon Limagon Litse Loramon Lorcan Lovghar Luciferon Lykax Lys Maegal Maekal Maelar
+		Maelstral Majesty Malrax Malys Mandiax Mantaryon Matarion Melexes Merbugon Mhysa Midnight Monerys Moonblaze
+		Moonfyre Moonshadow Morghon Mountdweller Munax Myr Naejos Naerion Naqes Nasex Nedenkon Nedys Nektogon
+		Neltharion Nightdancer Nightfyre Nightpyre Nightwind Obaraxes Odikagon Oktinuqir Ondordarys Ondorion Onos
+		Orbarion Orion Oros Orzadrize Ossenaxes Osygon Ozzalagon Pantera Parklon Peasantslayer Peldion Pentos
+		Perzypeldax Perzys Pestyre Porkchop Porungar Predatorion Provorpion Prumiax Pryagon Pryjagon Pythax Qanax
+		Qelos Qelovaedar Qilonarion Qridron Rainbow Rainfyre Raqagon Raqiron Raqnon Raselion Razys Rehitys Rhaeal
+		Rhaegax Rhaellax Rhaenal Rhaenar Rhaenion Rhaenyral Rhaetherion Rhovagon Rhoynar Rhyos Rinax Rizaxes Rovax
+		Ruklon Rune Ryax Saagael Sambaron Saphirax Sapphire Sarnor Scales Seawing Selhoron Senagon Serporoth Shraynor
+		Sililex Skydancer Skysailor Skysong Slythe Smaugon Snow Solstice Solthys Sonax Soulblaze Sovegon Sparkle
+		Sphinx Spyrax Starfyre Starhunter Starwing Steelwing Stormwyrm Sundancer Sunshine Suvion Sylviax Taegar Taeral
+		Taerion Talaxes Tallfyre Telarion Telfyre Thaxilix Tiamaxes Tikun Timerion Timpax Tolosion Toothless Tormoxen
+		Tresyx Trogdax Turgon Tyriax Tyrosh Tyvaron Vaedagon Vaedar Vaegelion Vaelax Valax Valeryx Valonqar Valryon
+		Valyrion Valysarion Valzyryx Vandis Vassarion Vejes Velkrys Velos Vermithrax Verathion Vesteros Vezojaes
+		Vezolkys Vhaegal Vidysaor Visenion Viserax Vishyap Volantix Volgavys Volon Whiteclaw Whitewing Winged_Stranger
+		Wolfbane Wraithwing Wyrmchild Yndros Zaenor Zaeral Zalagon Zalagys Zaldrizaria Zaldrizarys Zaldrizes Ziragon
+		Zobrigon Zobrinogar Zobrughul Zoklax Zoksax Zugerion Zuvdar Castlebane Coldnight Deathdealer Demonfyre
+		Dreadfyre Deaths_Embrace Gildedwing Godkiller Godsbane Hellbane Lossbringer Nightbringer Peasantbane Reaper
+		Shadowflame Skylord Smitebringer Summersky Sunbane Sunbringer Terrorwing Warbringer Baron Harbinger Sovereign
+		Suzerain
+	}
+	female_names = {
+		Acranion Adereon Aderex Aderion Aegal Aegax Aeksion Aemax Aenion Aeriax Aestion Aetrox Alatoraxes Althorio
+		Anaxigon Ancalion Ancylagon Angogon Anogaron Anogaros Aquos Archon Archonei Arhugon Arryn Artaxes Atsiox
+		Azantyr Azantys Azuron Baelal Baelax Baeliphax Bakkalon Bamuxes Bantis Bantisdaria Banzolkal Belmurtys
+		Blackclaw Blackfyre Blackhorn Blackwing Blazoron Bloodfyre Braedax Braedazma Braedion Bullbreaker Chalfyre
+		Chroyax Daemax Daenal Daenaryon Daerax Daomio Darilaros Darkfyre Darkscale Darkwing Darondarys Darys Deathwing
+		Deltherion Demagon Doom Draggox Drakaryx Drythron Duskfyre Dynax Eberron Ebrion Egros Elaenal Elenixes Elyrion
+		Embarelion Erinnon Errkos Essarix Essoval Fafnar Falkael Famlyre Fangrys Fasharyon Fellfang Fenrion
+		Firecatcher Firestorm Firkrax Firzon Forgesong Fornaxes Fusrodax Fyrax Galeglider Galry Gelenka Geliondaria
+		Gemtail Gevives Ghiscar Glaurax Glimmer Gloombringer Goldfyre Goldscale Gorgorkos Gorgosson Gorthalon Grace
+		Gravefyre Greencomet Greyfyre Greyscale Grymax Gurogon Haedar Haryz Heartfyre Hegagon Helfyre Henkirix
+		Highagon Hugo Hurax Idanax Ignerion Illithinos Ilthax Ioragon Irudyx Issilgor Jadewing Jaedos Jaeherion Jaehio
+		Jaesax Jaharix Jaqiarzir Jedrien Jehikagon Jehikarys Jelmazma Jentyx Johagon Kaerinax Kastakonir Kastax
+		Keligon Keliothor Kepaxes Knightslayer Konoron Korzion Kostobion Krythax Laehurlion Laengar Laenion Laraxes
+		Lifefyre Likaxes Lilagon Limagon Litse Loramon Lorcan Lovghar Luciferon Lykax Lys Maegal Maekal Maelar
+		Maelstral Majesty Malrax Malys Mandiax Mantaryon Matarion Melexes Merbugon Mhysa Midnight Monerys Moonblaze
+		Moonfyre Moonshadow Morghon Mountdweller Munax Myr Naejos Naerion Naqes Nasex Nedenkon Nedys Nektogon
+		Neltharion Nightdancer Nightfyre Nightpyre Nightwind Obaraxes Odikagon Oktinuqir Ondordarys Ondorion Onos
+		Orbarion Orion Oros Orzadrize Ossenaxes Osygon Ozzalagon Pantera Parklon Peasantslayer Peldion Pentos
+		Perzypeldax Perzys Pestyre Porkchop Porungar Predatorion Provorpion Prumiax Pryagon Pryjagon Pythax Qanax
+		Qelos Qelovaedar Qilonarion Qridron Rainbow Rainfyre Raqagon Raqiron Raqnon Raselion Razys Rehitys Rhaeal
+		Rhaegax Rhaellax Rhaenal Rhaenar Rhaenion Rhaenyral Rhaetherion Rhovagon Rhoynar Rhyos Rinax Rizaxes Rovax
+		Ruklon Rune Ryax Saagael Sambaron Saphirax Sapphire Sarnor Scales Seawing Selhoron Senagon Serporoth Shraynor
+		Sililex Skydancer Skysailor Skysong Slythe Smaugon Snow Solstice Solthys Sonax Soulblaze Sovegon Sparkle
+		Sphinx Spyrax Starfyre Starhunter Starwing Steelwing Stormwyrm Sundancer Sunshine Suvion Sylviax Taegar Taeral
+		Taerion Talaxes Tallfyre Telarion Telfyre Thaxilix Tiamaxes Tikun Timerion Timpax Tolosion Toothless Tormoxen
+		Tresyx Trogdax Turgon Tyriax Tyrosh Tyvaron Vaedagon Vaedar Vaegelion Vaelax Valax Valeryx Valonqar Valryon
+		Valyrion Valysarion Valzyryx Vandis Vassarion Vejes Velkrys Velos Vermithrax Verathion Vesteros Vezojaes
+		Vezolkys Vhaegal Vidysaor Visenion Viserax Vishyap Volantix Volgavys Volon Whiteclaw Whitewing Winged_Stranger
+		Wolfbane Wraithwing Wyrmchild Yndros Zaenor Zaeral Zalagon Zalagys Zaldrizaria Zaldrizarys Zaldrizes Ziragon
+		Zobrigon Zobrinogar Zobrughul Zoklax Zoksax Zugerion Zuvdar Coldnight Bloodreaper Deathsong Deaths_Embrace
+		Fatedealer Gildedwing Gildedsong Lossbringer Manbane Moonlight Nightsong Nightbringer Shadowflame Seabreeze
+		Sirenia Sirensong Summersky Sunbane Sunbringer Empress Sovereign Harbinger Suzerain
+	}
+	dynasty_of_location_prefix = "dynnp_of"
+	pat_grf_name_chance = 15
+	mat_grf_name_chance = 5
+	father_name_chance = 5
+	pat_grm_name_chance = 10
+	mat_grm_name_chance = 15
+	mother_name_chance = 5
+	mercenary_names = {
+	}
+}
+
+name_list_ghiscari = {
+	cadet_dynasty_names = {
+		{ "dynn_na_Ghezn" } { "dynn_zo_Grazdan" }
+	}
+	dynasty_names = {
+		{ "dynn_na_Ghezn" } { "dynn_zo_Grazdan" } { "dynn_zo_Kraznak" } { "dynn_zo_Buzra" } { "dynn_na_Zahik" }
+		{ "dynn_zo_aguragas" } { "dynn_zo_amarsin" } { "dynn_ghi_anunnaki" } { "dynn_na_anunnaak" }
+		{ "dynn_zo_apason" } { "dynn_ilu_ubaratu" } { "dynn_zo_assoros" } { "dynn_na_sarkizn" } { "dynn_ilu_athtor" }
+		{ "dynn_na_belbaladina" } { "dynn_ghi_belibni" } { "dynn_zo_uzra" } { "dynn_zo_belsakim" }
+		{ "dynn_ghi_belzarbi" } { "dynn_zo_boktnassar" } { "dynn_zo_sargozh" } { "dynn_ilu_cagagilgaat" }
+		{ "dynn_na_dapinu" } { "dynn_na_durigalzu" } { "dynn_zo_aguura" } { "dynn_zo_ibilsin" } { "dynn_ghi_ilgi" }
+		{ "dynn_na_dipuun" } { "dynn_na_yazn" } { "dynn_zo_ishma" } { "dynn_zo_ishum" } { "dynn_ilu_kassat" }
+		{ "dynn_zo_kabdh" } { "dynn_na_murazn" } { "dynn_na_krazn" } { "dynn_ghi_khamourabi" } { "dynn_na_kurigalzu" }
+		{ "dynn_zo_moumis" } { "dynn_zo_amaarzi" } { "dynn_zo_merodach" } { "dynn_na_muranu" } { "dynn_na_nabu" }
+		{ "dynn_na_nabuun" } { "dynn_ilu_namtar" } { "dynn_zo_nannar" } { "dynn_zo_sargas" } { "dynn_na_murazh" }
+		{ "dynn_ghi_sarili" } { "dynn_na_sarkimuna" } { "dynn_ghi_tassi" } { "dynn_na_nabizn" } { "dynn_zo_yahrak" }
+		{ "dynn_na_sarkimuun" } { "dynn_na_belbaladizn" } { "dynn_na_kurigalzn" } { "dynn_zo_urukh" }
+		{ "dynn_zo_uzzur" } { "dynn_na_yanzu" } { "dynn_na_durigalzn" } { "dynn_na_zamaam" } { "dynn_na_zamaan" }
+		{ "dynn_na_zamama" } { "dynn_na_zamana" }
+	}
+	male_names = {
+		Ahlaq Azzak Azzhak Barghaz Barkhaz Bezzaq Bhakaz Bharkaz Chezdhar Dazdhan Dazghan Dazghar Daznak Dazrak Dezhor
+		Dhazak Dhazzar Douquor Draqaz Drazdahr Eqnaz Faezdhar Faezhar Fendahl Fharaq Gadhaz Garnhak Gazhaq Ghael
+		Ghazdor Ghrazz Gighak Goghor Gorghan Gorghaz Gorkhaz Gorzhak Gorzhar Grazdahl Grazdan Grazdar Grazdhan
+		Grazghar Grazhar Graznak Grozlal Haezhar Haghdon Harghaz Harnaz Hazdan Hazghan Hazghar Hazghaz Hazkar Haznak
+		Haznaq Hazrak Hizdahr Hizghan Hiznak Hizraq Kaezon Kandaq Kargaz Karghaz Kazak Kaznak Kendahl Kharaq Kharkaz
+		Khezdhar Khrazdar Khrazz Korghan Korghaz Kraghaz Krazdan Kraznak Kraznys Larraq Leshahl Lezhahl Liznuq Loraq
+		Maezhar Maezon Maklan Marghan Marghaz Marhaz Marzak Marzhar Mazdahl Mazdhan Mazghan Mazghar Maznak Mazrak
+		Merreq Miklaz Miznahl Mordhan Morghar Morghaz Morkaz Nakloz Naqqan Ohzrak Omdhaz Omkhaz Orhghaz Ozdhan Oznak
+		Ozzak Ozzan Paezhar Prendahl Qaggaz Qorzo Raqnak Razdahl Razdal Razdar Razlahr Rezdar Rezmohl Reznak Rhazdar
+		Shakdhan Shakhar Shernar Skahaz Skahdan Skazak Skazhar Srozdaz Ulzak Ulzhar Urkhaz Yardhar Yarkaz Yarkhaz
+		Yazzak Yezdahr Yezdan Yezghan Yezghar Yezghaz Yeznak Yezrak Yezzan Yunzak Yurkhaz Yurzak Yurzhar Zadrak Zharaq
+		Zhezzan Bharghaz Abdiz Abimazan Abum Ahimelek Alam Aghazaros Allamu Amatnim Aghezon Ammidikagh Amukkan Ahnoz
+		Anzar Aoz Apzu Ardoragh Arduzin Arua Azardin Azagh Barisruk Balludhu Burnaburyaz Cit Daghan Dakhe Dakhos
+		Dakurdagh Dibbarragh Dir Dunnusaidu Emeduranok Etazh Ghadatas Ghazal Ghazzimir Ghobryaz Ghinzirus Ghosmabekiz
+		Ghumiz Hammuraz Harbighizu Hakiz Hezaban Immertum Irib Irighibel Irshuzin Izdukhar Kandalanu Lighakas Makru
+		Marduz Merodach Nebo Nerzal Nukzu Orghamus Pakhas Ramman Riizvul Rimaghu Saar Shazzar Shagarakh Shemesh Sutur
+		Tammuz Tamiz Tir Ubarat Ulam Ulbas Urhamsi Zinsaid Zursin
+	}
+	female_names = {
+		Amaya Azhara Azhene Azzara Azzea Baezhara Balazza Barsena Bazella Belza Berra Beshka Bezhene Bezqa Bezza
+		Bharkaza Bhezzara Chazella Chekaza Chezzara Dazzaga Dezella Dezzara Dhakazza Dhazzara Elara Elerra Elezza
+		Ellezzara Elmea Elza Elzane Elzara Elzea Elzina Ezzara Ezzea Ezzene Ezzina Faezarra Falazza Galara Galashka
+		Galazza Galea Galina Gazzara Gazzea Gezzella Gorgazza Grazdarra Halazza Hazmya Hazzaara Hazzana Hazzara Hazzea
+		Helza Hezhene Hezza Hezzela Jezha Jezhane Jezhene Jezhina Jhezane Jhezara Jhezea Kezhka Kezmya Korraqa
+		Laqhezna Maezhara Malara Malazhka Malazza Malea Malene Mellezzara Mezza Mezzala Mezzane Mezzara Mezzea
+		Morgazza Paezhara Pezhazha Prandaqha Qaezhara Qalla Qazella Qezza Qezzane Qezzara Qezzia Razliqha Saezhara
+		Sassazla Selezzqa Senane Senazza Senea Senerra Sezqa Sezza Silaqna Skahaza Taezarra Talazza Tazzara Tazzea
+		Tellezzara Telza Tezhene Tezza Yezhene Yezza Zahrina Zalla Zashka Zazhezza Zellazara Zellazza Zerra Zhanasha
+		Abza Aghaza Amatni Agheza Ammidi Amukka Ahnoza Anzara Aru Azagha Barizh Balladhi Burnaburza Dagha Dakhi Dakha
+		Dakuri Dibbarrazh Dipti Dunzi Dunnu Duzi Emeduri Etaza Ghadi Ghazi Ghazzima Ghobryza Ghinzira Ghosmabeki
+		Ghumai Hammuraza Harbighiza Hakiza Hezabani Immerta Ira Iriba Irighibli Irshuza Iva Izdhukhara Kandalani
+		Khahea Lighaka Makra Marduzi Merodagh Nebi Nerzi Nukza Pakhza Ramma Rhiiza Rimaghi Saza Shazzara Shagarakh
+		Shamash Shukura Sutura Tammzi Tamiza Tira Ubara Ulama Ulbaza Urhamzi Zursi
+	}
+	pat_grf_name_chance = 15
+	mat_grf_name_chance = 5
+	father_name_chance = 5
+	pat_grm_name_chance = 10
+	mat_grm_name_chance = 15
+	mother_name_chance = 5
+	mercenary_names = {
+	}
+}
+
+name_list_qohorik = {
+	cadet_dynasty_names = {
+		"dynn_Hoat" "dynn_Mott" dynn_Voard dynn_Bhuogr dynn_Inra dynn_Onkao dynn_Qoutaok dynn_Unkaott dynn_Alvoa
+		dynn_Duott dynn_Suanrunk dynn_Uamaupoa dynn_Oarbu dynn_Pautt dynn_Zaov dynn_Rauvol dynn_Moad dynn_Omho
+		dynn_Bhounk dynn_Skonoun dynn_Aosr dynn_Tuorn dynn_Zord dynn_Saor dynn_Ograo dynn_Oahosh dynn_Otta dynn_Aon
+		dynn_Dwuam dynn_Grupaog dynn_Onguanan dynn_Doaz dynn_Haunk dynn_Joaz dynn_Odwi dynn_Oumhuos dynn_Magr
+		dynn_Ngaumhaun dynn_Oaqouskao dynn_Bhaors dynn_Ivaott dynn_Aosriduo dynn_Uask dynn_Loah dynn_Nruongorn
+		dynn_Maoraz dynn_Iqavlat dynn_Woard dynn_Gaong dynn_Oud dynn_Aoqonk dynn_Abaorso dynn_Oaqa dynn_Voam
+		dynn_Bagnam dynn_Ush dynn_Mautuas dynn_Imohgour dynn_Ghoudaos dynn_Iqisk dynn_Auvol dynn_Hoamous dynn_Ik_Lav
+		dynn_Vos_Koar dynn_Doam dynn_Toanq dynn_Groadwoudr dynn_Isrosivl dynn_Aumu dynn_Qoapuodr dynn_Unrou dynn_Muavr
+		dynn_Aubhuom dynn_Uamorud dynn_Ruzr
+	}
+	dynasty_names = {
+		"dynn_Hoat" "dynn_Mott" dynn_Voard dynn_Bhuogr dynn_Inra dynn_Onkao dynn_Qoutaok dynn_Unkaott dynn_Alvoa
+		dynn_Duott dynn_Suanrunk dynn_Uamaupoa dynn_Oarbu dynn_Pautt dynn_Zaov dynn_Rauvol dynn_Moad dynn_Omho
+		dynn_Bhounk dynn_Skonoun dynn_Aosr dynn_Tuorn dynn_Zord dynn_Saor dynn_Ograo dynn_Oahosh dynn_Otta dynn_Aon
+		dynn_Dwuam dynn_Grupaog dynn_Onguanan dynn_Doaz dynn_Haunk dynn_Joaz dynn_Odwi dynn_Oumhuos dynn_Magr
+		dynn_Ngaumhaun dynn_Oaqouskao dynn_Bhaors dynn_Ivaott dynn_Aosriduo dynn_Uask dynn_Loah dynn_Nruongorn
+		dynn_Maoraz dynn_Iqavlat dynn_Woard dynn_Gaong dynn_Oud dynn_Aoqonk dynn_Abaorso dynn_Oaqa dynn_Voam
+		dynn_Bagnam dynn_Ush dynn_Mautuas dynn_Imohgour dynn_Ghoudaos dynn_Iqisk dynn_Auvol dynn_Hoamous dynn_Ik_Lav
+		dynn_Vos_Koar dynn_Doam dynn_Toanq dynn_Groadwoudr dynn_Isrosivl dynn_Aumu dynn_Qoapuodr dynn_Unrou dynn_Muavr
+		dynn_Aubhuom dynn_Uamorud dynn_Ruzr
+	}
+	male_names = {
+		Abast Abo Adarano Adaren Adaros Adayrs Adelgardo Aerio Aeriphos Aeryio Ahrno Alios Allaquo Anto Antogo Arago
+		Aran Arar Areo Argo Aricho Arillos Aro Aronos Aryos Aryrio Arzago Arzero Aurio Balderigo Baldo Ballen Ballio
+		Ballos Bambarer Barbos Bargo Barnago Barzo Belano Belapho Beleqor Belesso Bello Belonos Beloquo Belyrio Belys
+		Beqqo Bhano Bheli Bhelo Bhosos Bhryo Bobhar Bobho Bosolo Brachanos Bracharo Brusco Bryzo Byan Bydos Bylan
+		Bylar Byllo Byllos Byresso Byrios Bysan Cadho Caezar Callen Callos Cargo Caryos Cassan Cobho Collio Conicho
+		Cono Copho Cossomo Daarillos Daario Daaro Daavino Daghjerjo Daglo Dar Dargo Delgo Demetio Denyo Denzo Dhokoth
+		Dobho Donan Donar Donelo Donicho Donio Dono Dorasar Doro Drak Draqan Draqorro Drazjenk Dynerro Ehso Esodos
+		Essel Eysan Ezzaloro Ezzan Ezzelyno Ezzlyso Ezzo Ferrego Ferro Gajesh Garraro Garrenhor Garrid Garro Gavano
+		Genesgo Gesso Gobho Gonaro Goranys Gorgoro Gorvot Goryar Gozanto Grego Groleo Groyo Gyellso Gyleno Gyllar
+		Gyllen Gyllo Gyllonos Gyloro Gyraro Hargo Harlan Harlano Harlo Harlyrio Haron Haros Hasaro Hobho Horio Horro
+		Horvo Ilaro Illado Illario Illen Illio Illobho Illonar Illoquo Illoros Illos Illur Illyrio Innario Inno
+		Innyllo Innys Irricho Irrio Izembaro Izqoro Jaereo Jaeresso Jaezar Jago Jaharo Jaharos Jaqario Jaqaro Jaqen
+		Jaqenhor Jaqeo Jaqiros Jaqmaq Jobho Jorapho Joraquo Joreo Joror Joryo Jorys Joss Josto Jyllo Jyssan Kasporio
+		Korani Koval Kraghas Lado Larazar Larazys Largo Lazan Lazyllo Lisar Lisweno Llaro Lobho Losorgo Lotho Lothorio
+		Luco Lyrgo Lysan Lysar Lysenno Lysiros Lysodos Malan Malero Malo Malonar Manvero Marano Maraphos Maren Margo
+		Marohr Marro Maryllo Mattino Mazoro Melampo Melio Meralyn Meraqos Mered Meresh Merik Mero Methyso Mir Mobho
+		Mollono Moredo Moreo Morgo Moro Moroggo Myrmello Nakano Nakaq Nakaro Nakeo Nako Nakod Nakor Nakys Narap Narbo
+		Nargo Nelugo Nereo Nevo Nobho Noho Norel Noro Noroquo Obardo Oghigher Ollo Oppo Orbelo Ordello Ordjell Ores
+		Orgodo Oro Orzogo Orzono Oyo Padaros Pallos Paranys Pargo Parridos Parro Paryos Pazan Perino Pobho Pupolo
+		Pydos Pylan Pyllo Pynto Pyrios Pytho Qalgaro Qargo Qarlo Qarran Qarro Qavo Qiran Qiros Qobho Qollo Qonsano
+		Qorado Qorello Qos Qoso Qycho Qysar Radogayo Raezar Rallo Rallos Ranaro Rano Rapho Rargo Regho Rego Relapho
+		Releqor Relidos Relyrio Relys Rind Robho Rogaro Roggo Rono Roro Rovogo Rufo Rygaro Ryllo Ryos Sadoro Sahayos
+		Sallello Salloros Sallos Saloro Salozo Samarur Sanjaro Sarago Sargo Sargos Saruradwehor Shilvar Shodo Shwerak
+		Simago Sobho Soquo Sparal Stallen Syran Syrar Syricho Syrio Syrno Syrodos Tagganaro Taggoro Tago Tantal Targo
+		Tedar Teddo Teghar Ternesio Terro Thoren Thorenhor Thorio Thoronar Thoronno Tireghar Tobho Toggoro Toqodo
+		Torban Torgo Torgoro Tormo Torodos Tregaquo Tregar Trego Tregonos Tregys Twerembo Tybero Tychan Tycho Tychoros
+		Tykko Tyros Ubired Urho Vabhoro Vaggoro Valano Valyro Vanarzo Varan Varanq Vardo Vareo Vargan Vargano Vargello
+		Vargio Vargo Vargorno Vargoro Variphos Varro Varus Vogarro Vogo Vogolo Vogys Vonoggoro Vorto Vosebo Vygo Vyran
+		Vyrano Vyrenhor Vyronno Vyronos Vysso Vyto Yaaro Yaqeo Yaran Yarridos Ylloros Yonicho Yonos Yorko Zaario
+		Zandaro Zarapho Zaraquo Zargano Zargo Zarqo Zarys Zeleqor Zenaro Zirnomo Zobho Zogro Zolgo Zollio Zollo
+		Zonario Zonio Zontos Zorapho Zoraphos Zoro Zoronno Zosebho Zulano Zyrio Anorari Arghol Dajer Dhamer Dhamett
+		Dharus Dwehor Dwentajo Emondar Gajesho Gevorun Haratt Hondar Kembur Larerus Leon Majentor Merett Mibharus
+		Mirro Nikonus Odajerro Odajerus Ogigher Ogon Pamajerus Pasarun Qonajer Qoseo Sirajeman Stamer Swevor Tiravas
+		Varanar
+	}
+	female_names = {
+		Aena Ahraena Ahrianna Ahrysa Ahrysha Alea Aleah Alia Arana Arenela Arraya Arreyana Belia Bellegere Bellona
+		Bellonara Betharios Brea Bysaria Caena Calena Calla Callosa Conosa Cossoma Daenala Daenerah Daenirah Daenyea
+		Daenysa Danara Darria Denia Dileah Dilona Donaria Donelia Dora Doreah Dorella Dorelna Doresa Doreza Dorianna
+		Dysaria Elaera Elaya Elora Elynea Emphyria Emyria Enesa Erola Essela Eyolana Eysania Ezzana Ezzere Faeyella
+		Faeyila Faeyolana Feri Ferrega Ferylea Ferysa Firaneah Firanela Firania Firanira Firanissa Firanya Firanyna
+		Gaena Gyella Gylenios Gylla Gylora Haena Harlania Harraya Harreyana Helanea Helissa Helyea Hena Henaleah
+		Henerah Henolana Henona Henysa Horia Hororia Ilia Illarah Illenia Illosa Ilola Ilona Inerylla Inna Innaria
+		Innysa Irea Irria Irylla Izembara Jaqea Jaqeah Jaqena Jaqira Joraphia Jorea Jorylla Jyana Jyssana Karra Korra
+		Laenanah Laenesa Laensa Laenylea Laenysha Lanesa Lanna Laresha Laressa Lazana Leresa Lessella Lessera Lessynea
+		Lianna Licya Loreah Lotha Lothea Lucerre Lucrezzia Lysani Lysarah Lysaria Lysirah Maena Malani Malerah Maloni
+		Maryllah Melala Melane Melina Mellario Mellianna Melolla Melylla Melyna Mera Meralyia Meshaena Meshaleah
+		Meshola Milaya Minala Minanea Minelna Mineya Minysha Moredea Moreya Morylea Mylla Myrmellios Naena Nakani Naki
+		Nakodi Nakornah Narba Narbha Nereah Nesa Neseah Neseyana Nesianna Nesila Nesissa Nesola Nesora Nesoreah
+		Nesynea Nesysha Nilde Nilerah Nilina Nilolla Nilora Nilyna Nohia Nolona Noreah Norelli Norianna Nyessa Nysaria
+		Onalella Onalona Onalya Onalyna Orala Oranea Orbela Orios Ornela Palea Parrah Pazani Penyla Phenaria Pheneyana
+		Phenolana Phenoreah Philario Philona Phireah Phirella Phirona Prea Pylani Pynta Pysaria Qaena Qarrana Qarria
+		Qira Qirani Qorella Qysarah Raena Ralla Ranira Rogga Rohana Rohani Rylea Saea Saela Saella Saelysha Saena
+		Salasha Salea Sera Seraena Serala Sereah Serenei Serera Serola Serra Serylla Shana Sirana Siranah Siraya
+		Sireya Sireyana Siria Sirila Sirona Sirysha Soreah Syrana Syrani Syrea Syrella Syria Taena Taenanea Taenolana
+		Taenya Taeynea Tagganaria Talea Ternesia Terrios Thora Thorena Tirelna Tiresa Tirola Tirora Tiryna Tirysha
+		Tora Torma Trianira Triannolla Triannya Tycha Tysaria Umma Ushanora Vaena Vaerana Vaerosha Varea Velle Vellena
+		Vellona Vellya Venusta Voraria Voreya Vorylea Vorynea Vorysa Vyrana Waeraena Wenela Wenina Wenyla Wyna Wyneah
+		Wynella Wynesa Yaena Yaqea Yarah Yna Yonah Yonica Yorka Zaarina Zaena Zargana Zarya Zoronna Adhira Ajezma Anoa
+		Aoremma Arghol Aurajerus Avajenna Dajenor Drevir Drova Edhano Ereshna Esanurra Eydwena Gajemma Gajeya Gehjenna
+		Hagajell Haghana Harevo Hebhish Irejenor Ismo Iyva Jedena Jemo Jenna Jesmu Jestajma Jezon Jornajerus Jwesar
+		Kersana Korena Laruna Mireva Nodhur Novam Obhreya Olva Omma Oris Orunu Ozmea Qarish Qebhall Qemmerani Qezwer
+		Qobaya Qoshemor Qovakka Regha Rizina Rokoa Sahorra Sanosu Skorena Skorna Sovarna Swebho Swevenna Tidembo Troma
+	}
+	pat_grf_name_chance = 15
+	mat_grf_name_chance = 5
+	father_name_chance = 5
+	pat_grm_name_chance = 10
+	mat_grm_name_chance = 15
+	mother_name_chance = 5
+	mercenary_names = {
+	}
+}
+
+name_list_lorathi = {
+	cadet_dynasty_names = {
+		{ "dynn_D_pst_han" }
+	}
+	dynasty_names = {
+		{ "dynn_D_pst_han" } { "dynn_Merion" } "dynn_Reltis" "dynn_Oloryon" "dynn_Vazollen" "dynn_N_ghan"
+		"dynn_Delyios" "dynn_D_hel" "dynn_B_ghar" "dynn_Dh_rohr"
+	}
+	male_names = {
+		80 = {
+			Agn Agath Aghaer Aghne Aghe Amn Amn_d Anth Ans Ar_ath Ar_yks Arthn Athdthn Athn Athne Aths Athyn Bar_a Bar_n
+			Bar_ath Bathdhe Br_decath Brase Ch_vyalthan Damn Dathn Diens Faln Galethn Gamn Gathgn Gathr_s Gaths Geths
+			Ghahaths Ghakaths Gyghn Kadhn Kar_n Kathn Kathr_s Knan Kthiespn Kthwyn Lethghn_ce Liemn Magath Maghr_r Magn
+			Makath Malaths Maln_liene Mar_ath Mar_ne Mar_ys Marr_th Mathn Mathr_nd Mleths N_fathd Niefeth Nieka Qaghn
+			R_theths R_ys Rana Ranth Saqen Thagath Thaqen Thyn Thys Thystne Thr_rnd Tghebath Valethn Vagn Vethn Vieseths
+			Br_deccath Gahaths Gahkaths Hagn R_a Vaethn
+		}
+		20 = {
+			Adarano Adaren Adaros Adayrs Adelgardo Aeradhor Aerano Aerio Aeriphos Aeryio Allaquo Araldo Aran Arar Aricho
+			Arillos Aro Aronos Aryos Aryrio Balderico Ballen Ballio Balliros Ballos Belano Belapho Beleqor Belesso Belidos
+			Belodos Belonos Beloquo Belyrio Belys Beqqo Brachadhor Brachanos Bracharo Brachyllo Brusco Byan Cadaros Caezar
+			Callen Callos Caryos Cassan Collio Conicho Conos Copho Cossomo Cossoquo Daarelos Daarillos Daario Daarius
+			Daaro Daavino Danilo Demetio Denyo Denzo Donano Donar Donelos Donicho Donio Donos Draqan Draqoros Draqorro
+			Dynaario Dynerro Esodos Essalos Essanos Essel Essorio Esyrno Eysan Ezzaloro Ezzan Ezzario Ezzelyno Ezzlyso
+			Ezzo Ferrego Garraro Garrenhor Garridos Garro Garryros Genesio Goranys Groleo Gyellso Gyleno Gyllar Gyllen
+			Gyllo Gyllonos Gyloro Harlan Harlano Harlaro Harlelo Harlyrio Haronno Haros Hasaro Horio Horos Horyros
+			Illadhor Illario Illaro Illen Illio Illonar Illoquo Illoros Illos Illyrio Innario Inno Innyllo Innys Irricho
+			Irrio Izembaro Jaereo Jaeresso Jaezar Jaqaro Jaqen Jaqenhor Jaqeo Jaqiros Jorapho Joraquo Joreo Joror Joryllo
+			Jorys Joss Jyllo Jyssan Kaspario Larazar Larazo Larazys Lazan Laziros Lazyllo Lotho Lothorio Luco Lysan Lysar
+			Lysenno Lysiros Lysodos Malan Malero Mallaquo Malonar Marano Maraphos Maren Marohr Maryllo Melio Mellario
+			Meralyn Mero Mollono Moredo Moreo Moro Myrmello Nakano Nakaquo Nakaro Nakeo Nakodos Nakorno Nakys Narbo Nereo
+			Noho Norapho Norello Noro Norophos Noroquo Nyessan Nyessapho Nyessonar Ollo Orbelo Ordello Oro Padaros Pallos
+			Paranys Parridos Parro Paryos Pazan Pupolo Pydos Pylan Pyllo Pynto Pyrios Pytho Qarran Qarro Qiran Qiros
+			Qorello Qycho Qysar Raezar Rallos Rano Rapho Relapho Releqor Relidos Relyrio Relys Roggo Rono Roro Rufo Ryllo
+			Ryos Sallello Salloros Sallos Stallaquo Stallen Stallonno Stallorno Syran Syrar Syricho Syrio Syrno Syrodos
+			Tagganaro Ternesio Terro Thoren Thorenhor Thorio Thoronar Thoronno Tormo Torodos Tregaquo Tregar Trego
+			Tregonos Tregyllo Tregyros Tregys Tybero Tychan Tycho Tychoros Tychyros Tyros Tyssano Varan Vareo Vargano
+			Vargello Vargio Vargorno Variphos Vogo Vogys Vyran Vyrano Vyrenhor Vyresso Vyronno Vyronos Yaaro Yaqeo Yaran
+			Yarridos Ylloros Yonicho Yonos Yorko
+		}
+	}
+	female_names = {
+		80 = {
+			Abghe Adgha Agha Al_n_th Als Amana Amietha Amma Amyna Ar_atha Ar_ls Arn_na Arysha Arysn_ne Asaera Ashetha
+			Athna Dana Damn Danatha Dans Danths Dar_ra Dathysha Dnys Eln_th Eln_tha Gaen Gar_n Ghaghr_ra Ghahatha Ghantha
+			Gharona Ghathnie Ghomiera Gn_na G_ne G_ntle Gyne H_r_ana Iesabr_ Karra Kathr_ L_brynth Ln_na Magr_le Manyrra
+			Mar_ra Mazze Miethsr_a N_dhetha Naths Niemona R_a R_ana R_lethuh R_thiesha Sam_n_tha Satha Sathghn_na Shaetha
+			Shana Shatha Shiemona Shienthie Sm_ra Tha Thana Thans Thanytha Thar_le Thar_ra Tharra Thagr Theghien
+			Thoshienn_lae V_laena Vamn_d Var_ra Varana Varth Viesetha Viesny Aln_th Ar_als Iesabr Kathr Sam_ntha Thagath
+		}
+		20 = {
+			Aena Ahraena Ahrianna Ahrysa Ahrysha Alea Aleah Alia Arenela Arraya Arreyana Bellegere Bellona Bellonara
+			Betharios Brea Bysaria Caena Calena Callosa Conosa Cossoma Daenala Daenerah Daenirah Daenyea Daenysa Darria
+			Denia Dileah Dilona Donaria Donelia Dora Dorella Dorelna Doresa Doreza Dorianna Dysaria Elaera Elaya Elynea
+			Enesa Erola Essela Eyolana Eysania Ezzana Ezzere Faeyella Faeyila Faeyolana Feria Ferrega Ferylea Ferysa
+			Firaneah Firanela Firania Firanira Firanissa Firanya Firanyna Gaena Gyella Gylenios Gylla Gylora Haena
+			Harlania Harraya Harreyana Helanea Helissa Helyea Hena Henaleah Henerah Henolana Henona Henysa Horia Hororia
+			Ilia Illarah Illenia Illosa Ilola Ilona Inerylla Inna Innaria Innysa Irria Irylla Izembara Jaqea Jaqeah Jaqena
+			Jaqira Joraphia Jorea Jorylla Jyssana Laenanah Laenesa Laensa Laenylea Laenysha Lanesa Lanna Laresha Lazana
+			Leresa Lessella Lessera Lessynea Licya Loreah Lothea Lucerre Lucrezzia Lysani Lysarah Lysaria Lysirah Maena
+			Malani Malerah Maloni Maryllah Melala Melina Mellianna Melolla Melylla Melyna Mera Meralyia Meshaena Meshaleah
+			Meshola Milaya Minala Minanea Minelna Mineya Minysha Moredea Moreya Morylea Myrmellios Naena Nakani Naki
+			Nakodi Nakornah Narba Nereah Nesa Neseah Neseyana Nesianna Nesila Nesissa Nesola Nesora Nesoreah Nesynea
+			Nesysha Nilde Nilerah Nilina Nilolla Nilora Nilyna Nohia Nolona Noreah Norelli Norianna Nyessa Nysaria
+			Onalella Onalona Onalya Onalyna Orala Oranea Orbela Orios Palea Parrah Pazani Penyla Phenaria Pheneyana
+			Phenolana Phenoreah Philario Philona Phireah Phirella Phirona Prea Pylani Pynta Pysaria Qaena Qarrana Qarria
+			Qira Qirani Qorella Qysarah Raena Ranira Rogga Rohana Rohani Rylea Saea Saela Saella Saelysha Saena Salasha
+			Salea Sera Seraena Sereah Serera Serola Serylla Sirana Siranah Siraya Sireya Sireyana Siria Sirila Sirona
+			Sirysha Soreah Syrana Syrani Syrea Syria Taenanea Taenolana Taenya Taeynea Tagganaria Talea Ternesia Terrios
+			Thora Thorena Tirelna Tiresa Tirola Tirora Tiryna Tirysha Tora Torma Trianira Triannolla Triannya Tycha
+			Tysaria Umma Ushanora Vaena Vaerana Vaerosha Varea Velle Vellena Vellona Vellya Venusta Voraria Voreya Vorylea
+			Vorynea Vorysa Vyrana Waeraena Wenela Wenina Wenyla Wyna Wyneah Wynella Wynesa Yaena Yaqea Yarah Yna Yonah
+			Yonica Yorka Zaarina Zaena Zargana Zarya Zoronna
+		}
+	}
+	pat_grf_name_chance = 15
+	mat_grf_name_chance = 5
+	father_name_chance = 5
+	pat_grm_name_chance = 10
+	mat_grm_name_chance = 15
+	mother_name_chance = 5
+	mercenary_names = {
+	}
+}
+
+name_list_ibbenese = {
+	dynasty_names = {
+		dynn_Akio dynn_Aslak dynn_Balt dynn_Biera dynn_Boine dynn_Bred dynn_Crodh dynn_Fjell dynn_Flink dynn_Gaski
+		dynn_Gaup dynn_Haetta dynn_Hassi dynn_Joks dynn_Joth dynn_Korr dynn_Kvit dynn_Labba dynn_Mogat dynn_Niilas
+		dynn_Pieski dynn_Ravna dynn_Sarakka dynn_Somby dynn_Sunna dynn_Turi dynn_Utsi dynn_Valk dynn_Vog dynn_Aakiq
+		dynn_Aan_Ot dynn_Aarr dynn_Aashgar dynn_Adgret dynn_Ak_Aai dynn_Aqid dynn_Arr_Oro dynn_Arr_Rejmish dynn_Baai
+		dynn_Baanqi dynn_Basaa dynn_Caaggat dynn_Cagran dynn_Cerbaakh dynn_Cet_Oqigh dynn_Citikh dynn_Co_Nqibb
+		dynn_Dafa dynn_Ddaa dynn_Ddagrghir dynn_Dino dynn_Dogor_Moq dynn_Dograk dynn_Ebbaag dynn_Ebin dynn_Eg_gim
+		dynn_Ek_Gim dynn_Ekef_Gor dynn_Epdec dynn_Erhaash dynn_Es_Ek_Gim dynn_Es_Gek_ko dynn_Es_Ikhton dynn_Es_Ki_faa
+		dynn_Es_Omi dynn_Es_Paaqh dynn_Es_Qab dynn_Es_Ragg dynn_Es_Rrio dynn_Es_aa_qhe dynn_Et_Qhaagr dynn_Fa_Sec
+		dynn_Fogg_ggo dynn_Gegrttaf dynn_Ggeq_Igraa dynn_Ggikh_khaa dynn_Gha dynn_Ghaa dynn_Ghaaqig dynn_Ghifsis
+		dynn_Ghigh dynn_Ghithkoqh dynn_Gogh dynn_Gon dynn_Grako dynn_Gretak dynn_Gretas dynn_Ibbaap dynn_Iddse
+		dynn_If_Pakmi dynn_Ihrrab dynn_Je_Ggogi dynn_Jirkhesh dynn_Jitsib dynn_Jo dynn_Jo_Eghhaab dynn_Kadh_Agg
+		dynn_Khash dynn_Kherrogg dynn_Khip dynn_Kidh_dhet dynn_Maak_ket dynn_Madsah dynn_Mebaa dynn_Miiq dynn_Moqhggo
+		dynn_Na_Aja dynn_Najghagh dynn_Naqhaa dynn_Not dynn_Notsaag dynn_Nqigrros dynn_O_ek dynn_Og_grid dynn_Oghriq
+		dynn_Oigg_Bo dynn_Oqaa dynn_Ot_Mat dynn_Paas dynn_Pofog dynn_Qab dynn_Qap dynn_Qejiq dynn_Qhattgo
+		dynn_Qhi_Aban dynn_Qi_it dynn_Qih dynn_Qisjik dynn_Rat_Qaad dynn_Rena dynn_Rimtter dynn_Roti dynn_Rraa
+		dynn_Saak dynn_Saar dynn_Saarrtim dynn_Ser_Kogg dynn_Sirr_rri dynn_Sis_Faas dynn_Sis_Nidd dynn_Sis_Nog_gi
+		dynn_Sis_Osh dynn_Sis_Qhed dynn_Sis_Sie_Ethen dynn_Sogge dynn_Taaqh dynn_Tan
+	}
+	male_names = {
+		Aigin Ande Bede Casso Defa Emel Filpa Feles Gaktu Huko Issat Juho Karr Larsa Lavo Lemet Migot Nihko Olen Osku
+		Otto Piera Rede Rugi Selen Togg Uhku Vigu Aaf Aaf_Osag Agrip Aso Baash Bogr Cod Daam Deo Dish_sha Ekhdogh Eshi
+		Fa_Qa Ga Gaqggo Ggigr Ggigr_Maa Ggom Ggom_Ik_kib Ghott Gord_Egr Gord_Jaa Gra_Tiq Grogri Hetakh Ijif Ikragg
+		Ikgrik Ishaa Jik Jiren Jiret Jo Kaa Kaan Kag_ga Kagg Kagg_Griq Kash Kebos Khah Mibaaj Miceg Mimigr Mith Moth
+		Naaj Naarsha Nabros Narr Nomgha Oghor Opigg Qaf Qagrnaan Qeg_Dikk Qhaa Qheh Qhig Qhob Rat_te Roggdof Rraadsok
+		Rrej Rrojegg Saagg_Shagh Samgo Seghigh Sej_Qo Sig_grin So Tag_Agr Ther Thiir Tic Tioth Tisko Ttika
+	}
+	female_names = {
+		Assadora Aila Bika Biret Cuve Dora Erva Flora Gare Gora Hana Inga Jaska Kalla Lavra Lilja Lotta Maddja Nanna
+		Oaja Rihtta Ruhte Saben Sanna Selggo Solla Tilda Tua Ulla Aag_ge Abiqh Abresh Agr Agr_To Bassa Begrik_ki Berra
+		Berra_Eji Bet Boos Buruma Cimir Ciqi Cirri Cirri_Oim Cirri_Se_Gib Ddorbet Dhaggage Dhossad Dof Ejiji Emdi
+		Faathir Get Get_Cogr Ggasmaa Girrik Gobba Gorraa Graafa Greddtti Griggot Grok Groteb Haa Hia Iddish Igrpassa
+		Ish Ishis Ishis_Reshid Ishissi Itsap Jac_Ofeb Kagraqha Khim_ma Kimshi Madd_dda Mag_ged Marr_rresh Naad_Ca_ad
+		Naad_Dheo Naasta Naasta_Ib Naasta_Re Ninsiqqa Nodto Nqarri Omon Omon_Naa Osi Pa_Hia Perttat Pinqik Qeq_qah
+		Qharrji Reshid Rroe Sacshi Saikh Sanogg Satt_tta Se_Gib Shao_Nqe She Shethacca Shit_tha Shograan Sibtan Soridh
+		The The_She To To_Nogg Tadqharr Tafett_Ib
+	}
+	dynasty_of_location_prefix = "dynnp_of"
+	pat_grf_name_chance = 15
+	mat_grf_name_chance = 5
+	father_name_chance = 5
+	pat_grm_name_chance = 10
+	mat_grm_name_chance = 15
+	mother_name_chance = 5
+	mercenary_names = {
+	}
+}
+
+name_list_andalosi = {
+	dynasty_names = {
+		"dynn_Sunderchane" "dynn_Capalde" "dynn_Mondagne" "dynn_Bridmanys" "dynn_Higborne" "dynn_Hopeo" "dynn_Josso"
+		"dynn_Eudane" "dynn_Pagane" "dynn_Panetyn" "dynn_Nestoren" "dynn_Goranis" "dynn_Baringo" "dynn_Cravane"
+		"dynn_Egertonis" "dynn_Ivaniro" "dynn_Syenwaris" "dynn_Lamberis" "dynn_Lorassyon" "dynn_Sevenstar"
+		"dynn_Hornsby" "dynn_Thorpe" "dynn_Jaswell" "dynn_Carlet" "dynn_Folman" "dynn_Carnaby" "dynn_Laxley"
+		"dynn_Rutland" "dynn_Egelston" "dynn_Ysley" "dynn_Chamberlyng" "dynn_Mackelsworth" "dynn_Chacewell"
+		"dynn_Cynders" "dynn_Felton" "dynn_Dedwyck" "dynn_Stockwayn" "dynn_Burdyck" "dynn_Paston" "dynn_Clint"
+		"dynn_Layton" "dynn_Mendham" "dynn_Wyckling" "dynn_Rumbold" "dynn_Morholt" "dynn_Bradgood" "dynn_Pendric"
+		"dynn_Brakenell" "dynn_Lindingham" "dynn_Ashwick" "dynn_Overdam" "dynn_Rockson" "dynn_Rockemar" "dynn_Maeson"
+		"dynn_Seltar" "dynn_Lanser" "dynn_Merchin" "dynn_Campiron" "dynn_Linster" "dynn_Crooke" "dynn_Farheart"
+		"dynn_Hearock" "dynn_Cinderton" "dynn_Redwyck" "dynn_Hendy" "dynn_Lychfield" "dynn_Grindell" "dynn_Merion"
+		"dynn_Hallamore" "dynn_Shearer" "dynn_Emmerwyck" "dynn_Landsdale" "dynn_Bentley" "dynn_Tydwell" "dynn_Cadmond"
+		"dynn_Clovering" "dynn_Harwell" "dynn_Werrell" "dynn_Tavott" "dynn_Endicott" "dynn_Kolten" "dynn_Gallister"
+		"dynn_Pelgrin" "dynn_Stewarr" "dynn_Hayard" "dynn_Andal" "dynn_Elurestu" "dynn_Sklefas" "dynn_Gharest"
+		"dynn_Jorefet" "dynn_Semthas" "dynn_Sel" "dynn_Semas" "dynn_Kann" "dynn_Aru" "dynn_Aster" "dynn_Steled"
+		"dynn_Aastiz" "dynn_Laeli" "dynn_Lathnom" "dynn_Shavner" "dynn_Hath" "dynn_Soth" "dynn_Ospeed" "dynn_Sajevo"
+		"dynn_Joreled" "dynn_Tavuth" "dynn_Thaspera" "dynn_Bo" "dynn_Isitir" "dynn_Kethos" "dynn_Saveth"
+		"dynn_Unteses" "dynn_Taelath" "dynn_Noeka" "dynn_Sklesser" "dynn_Azepol" "dynn_Aevkod" "dynn_Ivefith"
+		"dynn_Haethu" "dynn_Eoal" "dynn_Oonet" "dynn_Alkespo" "dynn_Meti_So" "dynn_Semuse" "dynn_Bokthan"
+		"dynn_Lengtehek" "dynn_Uremed" "dynn_Spelur" "dynn_Gek" "dynn_Jongespin" "dynn_Skelat" "dynn_Ulith"
+		"dynn_Sleng" "dynn_Usean" "dynn_Oolthe" "dynn_Hool" "dynn_Jeluth" "dynn_Hek_Terkos" "dynn_Vehath" "dynn_Uusmu"
+		"dynn_Urpessa" "dynn_Thoom" "dynn_Dath" "dynn_Sperir" "dynn_Jrest" "dynn_Isperip" "dynn_Medjivir"
+	}
+	male_names = {
+		Alester Argos Armistead Artys Corwyn Drox Erreg Gerold Jaime Joffrey Hugo Hugor Morgan Oswell Robeson Rolland
+		Togarion Qarlon Qyle Vorian Atam Arhnol Aarhtis Aeko Anooler Arhlaekas Alpet Antethar Benetar Ben Caavas
+		Caemor Darhnol Dennis Doonel Dero Donten Dorhmed Elbir Eliiz Embir Etamor Elad Elseghos Ghavorin Gotik Gled
+		Hondar Honetho Imundar Isaavok Jarri Jon Kinaeris Klaeman Kalor Kar Kell Larooris Liithu Lokku Lothaeris
+		Lukhas Montaeris Maentor Metaris Maarin Marok Nakhonis Ontethar Oluvem Orson Ossiverh Pamaeris Pasarin
+		Pevendar Plaesas Pithir Pim Qonaero Qushu Raemo Ris Revar Remar Rober Robiin Sovooro Stamir Saemin Slorh Stevo
+		Ummal Wilzam Willam Vetaris Votho
+	}
+	female_names = {
+		Ael Alanna Alannis Alen Albatha Alrha Alzan Alin Aloona Aloora Alis Allsa Amanda Andara Annara Anja Arana Aro
+		Aen Ariis Bekke Bellsa Belara Benla Benethrho Bese Bath Bo Bonin Coolzan Curiin Kaae Karise Karoole Krho
+		Krhiine Prhende Selzan Serhshii Shishii Shintho Benetha Civira Demiisa Digyaelis Ellse Elaera Enloora Eva
+		Glaesa Gyaeca Gyaettora Havaenis Hunaeris Itakhora Konaela Koshira Kara Norpha Nutaele Ondaelrha Ondaenis
+		Oonya Prende Qaelona Qible Qofalla Qoshira Raenye Retano Rolrho Sunsey Tathiina Tolvita Uriisa Yela Zorina
+	}
+	dynasty_of_location_prefix = "dynnp_of"
+	pat_grf_name_chance = 15
+	mat_grf_name_chance = 5
+	father_name_chance = 5
+	pat_grm_name_chance = 10
+	mat_grm_name_chance = 15
+	mother_name_chance = 5
+}
+
+name_list_ironborn = {
+	dynasty_names = {
+		{ "dynn_Ironfoot" } { "dynn_Reaver" } { "dynn_Darken" } { "dynn_Firestone" } { "dynn_Blackiron" }
+		{ "dynn_Breston" } { "dynn_Greatiron" } { "dynn_Yalman" } { "dynn_Grimmins" } { "dynn_Rothbone" }
+		{ "dynn_Mastley" } { "dynn_Farlyn" } { "dynn_Setbone" } { "dynn_Mottingly" } { "dynn_Tilden" }
+		{ "dynn_Gargrave" } { "dynn_Seaman" } { "dynn_Blackram" } { "dynn_Stonekyme" } { "dynn_Barrows" }
+		{ "dynn_Staves" } { "dynn_Stayr" } { "dynn_Folwynd" } { "dynn_Flagg" } { "dynn_Vyx" } { "dynn_Shields" }
+		{ "dynn_Mistwater" } { "dynn_Seabury" } { "dynn_Lynch" } { "dynn_Hake" } { "dynn_Pews" } { "dynn_Burrows" }
+		{ "dynn_Sharpley" } { "dynn_Meade" } { "dynn_Grix" } { "dynn_Irondale" } { "dynn_Tidebreaker" }
+		{ "dynn_Breakwater" } { "dynn_Breakiron" } { "dynn_Ironbreaker" } { "dynn_Seadrinker" } { "dynn_Thralltaker" }
+		{ "dynn_Farwater" } { "dynn_Ironwater" } { "dynn_Pisswater" }
+	}
+	male_names = {
+		Adrack Aeron Aggar Agil Aladale Alester Alton Alvyn Alyn Ambrode Andrik Artag Arthur Audrik Baelor Balder
+		Balon Bennarion Bennick Beron Borcas Boremund Burton Cadwyl Cerrick Cotter Craghorn Cragorn Cromm Daegon
+		Dagbert Dagmer Dagon Dagur Dale Dalton Dan Denys Donel Donnel Donnor Drennan Dunstan Dykk Earl Eerl Eldiss
+		Eldred Emmond Endehar Erich Erik Erne Eurik Euron Falki Faste Fergon Fradwyr Fralegg Galon Garmon Gelmarr
+		Germund Gevin Godric Goren Gorm Gormond Gorold Gran Greydon Grimm Gunnar Gunthor Gylbert Gyles Gynir Haereg
+		Hagen Hagon Hake Hakon Halleck Harl Harlan Harlon Harmund Harrag Harrald Harras Harren Harrock Harron Harwyn
+		Herrock Hilmar Horgan Hotho Hrolf Hrothgar Jon Jorl Joron Joseran Kell Kemmett Kenned Konrad Kromm Lenwood
+		Lodos Loron Lorren Lucas Lucimore Manfryd Marlon Maron Mats Meldred Meldrik Norfryd Norjen Norne Nute Odd Ormm
+		Othgar Ottar Pate Qalen Qarl Qhored Qhorin Qhorwyn Quellon Quenton Rafe Ragnal Ragnor Ralf Rance Ravos Regnar
+		Robin Rodmar Rodrik Roggon Rogin Rognar Rolfe Romny Rook Roryn Rurik Rus Rymolf Sam Sargon Sauron Sawane
+		Sigfry Sigfryd Sigmund Sigrik Sigrin Skyte Stavryn Steffar Steffarion Stygg Sylas Symond Tarle Theomore Theon
+		Theron Thormor Thoryn Todric Toke Tom Torbund Torgon Tormund Toron Torwold Torwyn Tristifer Triston Tymor Ulf
+		Uller Urek Urragon Urras Urrathon Urrigon Urron Urzen Veron Vickon Victarion Waldon Werlag Wex Will Wulfe
+		Wulfgar Ygon Yohn Andagg Andahar Arik Burtold Dogmer Dunrik Duron Endrik Endron Ennock Falon Faron Flyte Garon
+		Gyrik Gundahar Harrod Igon Jorik Jormund Kyte Logon Madogg Meron Narbrode Nargon Norik Ogon Othram Patrik
+		Paddar Qhargon Qharras Qherik Qheron Rogon Ronfryd Soryn Staggon Taron Thargon Thauron Urgon Urrithon Vargon
+		Verik
+	}
+	female_names = {
+		Abni Addila Agmuna Agnis Alannys Alla Alrya Aly Ana Arana Arsa Arwyn Arya Asa Asgrima Asha Asharra Aslaka
+		Astrid Aynika Ayssi Barana Barbrey Barrya Barsa Beinerra Belona Beony Bhurta Brella Carys Ceyri Cholvi Corah
+		Cromma Dacey Dags Disa Dorna Dyssa Eddara Efla Ela Erana Erika Ernmunda Errika Errya Ersa Esgred Estred Falia
+		Falyse Farra Ferny Frenya Frida Frynne Gella Gerika Gertrud Ghaela Ghauda Ghulmi Gremma Gretchel Grisel
+		Grisella Gritha Gudrun Gwin Gwynesse Gwyneth Gysella Hagnaeh Hanna Harma Harra Hegga Helgarda Helya Herrika
+		Hilda Hilde Inga Ingrid Irica Jeyne Jhena Johsi Jolfa Jomara Jonella Jonna Jonnela Jorelle Jyanna Katla Kella
+		Keryn Larana Laransa Larsa Larya Lil Lyssa Mabs Maeva Malora Margadra Margot Megga Mera Meredyth Mhaegan
+		Mhaegen Millga Moelle Morissa Morna Munda Myrielle Myrna Nanna Narrana Narrsa Narrya Nessa Noshi Olma Ora
+		Orrana Orrsa Orya Oshara Perra Raddera Raly Ranni Ransa Ravella Rhiannyn Rhonda Riga Rina Roelle Rokah
+		Rosalynd Ryella Ryka Ryloka Sallei Selyse Shaella Shera Shierle Sif Siglind Siglynd Sigrid Skati Skeyga Skoni
+		Snela Sona Soyni Steffaria Suna Syansa Syga Syganna Sygara Sygarda Syri Talla Tanda Tansa Tarya Tekkeda Thalvi
+		Thesa Thoki Toraka Trabi Tralmi Turri Tyosa Ulfara Ulfhild Unella Urriga Ursila Utmara Valy Varana Victaria
+		Wylla Wynafrei Wynafryd Yara Yasha Ynys Ysilla Zansa Zia Zosha Briannyn Calannys Cara Dyrra Eularia Eva Fenwy
+		Fynhil Gwynil Harria Istrid Lyerra Mara Qarra Urrathia Yanny
+	}
+	dynasty_of_location_prefix = "dynnp_of"
+	pat_grf_name_chance = 15
+	mat_grf_name_chance = 5
+	father_name_chance = 5
+	pat_grm_name_chance = 10
+	mat_grm_name_chance = 15
+	mother_name_chance = 5
+	mercenary_names = {
+		{ name = "mercenary_company_border_reavers_band" } { name = "mercenary_company_thrall_takers" }
+		{ name = "mercenary_company_red_reavers" } { name = "mercenary_company_lorons_legion" }
+		{ name = "mercenary_company_company_of_the_cruel" } { name = "mercenary_company_black_blooded_pirates" }
+		{ name = "mercenary_company_drowned_gods_vengeance" }
+	}
+}

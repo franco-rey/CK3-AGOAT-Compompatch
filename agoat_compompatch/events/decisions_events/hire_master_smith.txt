@@ -16,7 +16,7 @@ hire_master_smith.0001 = {
 		animation = idle
 	}
 
-	trigger = { # If the delayed event's ruler lost their realm, they can no longer employ a smith.
+	trigger = { #If I lost it before I got this event, I shouldn't get a physician
 		is_landed = yes
 		exists = capital_province
 	}
@@ -81,9 +81,12 @@ hire_master_smith.0001 = {
 			}
 			#Else just straight up appoint
 			else = {
-				appoint_court_position = {
-					recipient = scope:smith
-					court_position = court_smith_court_position
+				if = {
+					limit = { can_employ_court_position_type = court_smith_court_position }
+					appoint_court_position = {
+						recipient = scope:smith
+						court_position = court_smith_court_position
+					}
 				}
 				reverse_add_opinion = {
 					target = scope:smith

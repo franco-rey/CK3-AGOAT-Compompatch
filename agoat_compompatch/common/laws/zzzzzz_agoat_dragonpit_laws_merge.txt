@@ -1,0 +1,236 @@
+﻿@dragonpit_law_cooldown_years = 5
+
+dragonpit_laws = {
+	can_change_law_group = { dragonlord_council_direct_law_change_allowed_trigger = yes }
+	default = dragonpit_close_family_law
+	cumulative = no
+	flag = all_realm_law
+	flag = agot_realm_law
+	flag = admin_law
+
+	dragonpit_ruler_law = {
+		flag = dragonpit_ruler
+		can_have = {
+			OR = {
+				has_government = dragonlord_oligarchy_government
+				any_held_title = {
+					has_variable = has_dragonkeeper_order
+				}
+				domicile ?= { has_variable = has_dragonkeeper_order }
+			}
+		}
+		can_pass = {
+			dragonlord_council_direct_law_change_allowed_trigger = yes
+			custom_description = {
+				subject = root
+				text = "has_dragonpit_law_cooldown"
+				NOT = { has_variable = dragonpit_law_cooldown }
+			}
+		}
+
+		pass_cost = {
+			prestige = increase_crown_authority_prestige_cost
+		}
+
+		on_pass = {
+			set_variable = {
+				name = dragonpit_law_cooldown
+				years = @dragonpit_law_cooldown_years
+			}
+		}
+
+		can_keep = {
+			OR = {
+				has_government = dragonlord_oligarchy_government
+				any_held_title = {
+					has_variable = has_dragonkeeper_order
+				}
+				domicile ?= { has_variable = has_dragonkeeper_order }
+			}
+		}
+
+		ai_will_do = {
+			value = 0
+		}
+	}
+
+	dragonpit_close_family_law = {
+		flag = dragonpit_close_family
+
+		can_have = {
+			OR = {
+				has_government = dragonlord_oligarchy_government
+				any_held_title = {
+					has_variable = has_dragonkeeper_order
+				}
+				domicile ?= { has_variable = has_dragonkeeper_order }
+			}
+		}
+
+		should_start_with = {
+			always = yes
+		}
+
+		can_pass = {
+			dragonlord_council_direct_law_change_allowed_trigger = yes
+			custom_description = {
+				subject = root
+				text = "has_dragonpit_law_cooldown"
+				NOT = { has_variable = dragonpit_law_cooldown }
+			}
+		}
+
+		pass_cost = {
+			prestige = increase_crown_authority_prestige_cost
+		}
+
+		on_pass = {
+			set_variable = {
+				name = dragonpit_law_cooldown
+				years = @dragonpit_law_cooldown_years
+			}
+		}
+
+		ai_will_do = {
+			value = 25
+		}
+	}
+
+	dragonpit_house_law = {
+		flag = dragonpit_house
+		can_have = {
+			OR = {
+				has_government = dragonlord_oligarchy_government
+				any_held_title = {
+					has_variable = has_dragonkeeper_order
+				}
+				domicile ?= { has_variable = has_dragonkeeper_order }
+			}
+		}
+		can_pass = {
+			dragonlord_council_direct_law_change_allowed_trigger = yes
+			custom_description = {
+				subject = root
+				text = "has_dragonpit_law_cooldown"
+				NOT = { has_variable = dragonpit_law_cooldown }
+			}
+		}
+
+		pass_cost = {
+			prestige = increase_crown_authority_prestige_cost
+		}
+
+		on_pass = {
+			set_variable = {
+				name = dragonpit_law_cooldown
+				years = @dragonpit_law_cooldown_years
+			}
+		}
+
+		can_keep = {
+			OR = {
+				has_government = dragonlord_oligarchy_government
+				any_held_title = {
+					has_variable = has_dragonkeeper_order
+				}
+				domicile ?= { has_variable = has_dragonkeeper_order }
+			}
+		}
+
+		ai_will_do = {
+			value = 0
+		}
+	}
+
+	dragonpit_dynasty_law = {
+		flag = dragonpit_dynasty
+		can_have = {
+			OR = {
+				has_government = dragonlord_oligarchy_government
+				any_held_title = {
+					has_variable = has_dragonkeeper_order
+				}
+				domicile ?= { has_variable = has_dragonkeeper_order }
+			}
+		}
+		can_pass = {
+			dragonlord_council_direct_law_change_allowed_trigger = yes
+			custom_description = {
+				subject = root
+				text = "has_dragonpit_law_cooldown"
+				NOT = { has_variable = dragonpit_law_cooldown }
+			}
+		}
+
+		pass_cost = {
+			prestige = increase_crown_authority_prestige_cost
+		}
+
+		on_pass = {
+			set_variable = {
+				name = dragonpit_law_cooldown
+				years = @dragonpit_law_cooldown_years
+			}
+		}
+
+		can_keep = {
+			OR = {
+				has_government = dragonlord_oligarchy_government
+				any_held_title = {
+					has_variable = has_dragonkeeper_order
+				}
+				domicile ?= { has_variable = has_dragonkeeper_order }
+			}
+		}
+
+		ai_will_do = {
+			value = 0
+		}
+	}
+
+	dragonpit_everyone_law = {
+		flag = dragonpit_everyone
+		can_have = {
+			OR = {
+				has_government = dragonlord_oligarchy_government
+				any_held_title = {
+					has_variable = has_dragonkeeper_order
+				}
+				domicile ?= { has_variable = has_dragonkeeper_order }
+			}
+		}
+		can_pass = {
+			dragonlord_council_direct_law_change_allowed_trigger = yes
+			custom_description = {
+				subject = root
+				text = "has_dragonpit_law_cooldown"
+				NOT = { has_variable = dragonpit_law_cooldown }
+			}
+		}
+
+		pass_cost = {
+			prestige = increase_crown_authority_prestige_cost
+		}
+
+		on_pass = {
+			set_variable = {
+				name = dragonpit_law_cooldown
+				years = @dragonpit_law_cooldown_years
+			}
+		}
+
+		can_keep = {
+			OR = {
+				has_government = dragonlord_oligarchy_government
+				any_held_title = {
+					has_variable = has_dragonkeeper_order
+				}
+				domicile ?= { has_variable = has_dragonkeeper_order }
+			}
+		}
+
+		ai_will_do = {
+			value = 0
+		}
+	}
+}

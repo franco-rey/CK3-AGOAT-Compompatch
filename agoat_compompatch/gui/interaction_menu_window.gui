@@ -1,11 +1,13 @@
 @max_height_before_scrolling = 920
 
 
+#adjustment to make scrollbar appear as if outside window
 @scrollbar_outside_tweak = 15
 @scrollbar_outside_tweak_negative = -15
 @scrollbar_outside_tweak_negative_plus_8 = -7
 
 
+#### THE WINDOW
 window = {
 	gfxtype = windowgfx
 	name = "character_interaction_menu_window"
@@ -13,15 +15,18 @@ window = {
 	movable = no
 
 
+	#this is the offset from the character portrait
 	position = { 420 70 }
 	alwaystransparent = yes
 	layer = top
 	allow_outside = yes
 
 
+	# widget_anchor is set dynamically by code
 	using = Animation_ShowHide_Quick
 
 
+	# Not shown to the player, but is used by the hotkey system
 	button_normal = {
 		name = "button_close"
 		size = { 0 0 }
@@ -45,7 +50,9 @@ window = {
 				spriteborder = { 11 11 }
 				spriteborder_top = 49
 				margin = { 8 14 }
-				margin_right = @scrollbar_outside_tweak_negative_plus_8
+				
+				# don't resize the bg if the menu is empty: outside of diplo range and don't have debug interactions
+				margin_right = "[Select_int32(And(CharacterInteractionMenuWindow.OutsideDiplomaticRange, Not(InDebugMode)), '(int32)0', '(int32)-14')]"
 
 				modify_texture = {
 					name = "overlay"
@@ -105,6 +112,8 @@ window = {
 							visible = "[And(And(Not(ObjectsEqual( Character.Self, GetPlayer.MakeScope.Var('SPO').Char.Self )), Character.IsAlive), Not(And(Not(GetPlayer.MakeScope.Var('SPO').IsSet), Character.IsLocalPlayer)))]"
 
 
+							#i.e., only show the button if this character (1) isn't already being tracked, (2) is alive, and (3) isn't the player WHILE nobody is being tracked.
+							#This is why I don't program for a living.
 							onclick = "[GetScriptedGui('sgui_SPO_set').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).AddScope( 'character', Character.MakeScope ).End)]"
 							size = { 25 25 }
 
@@ -214,6 +223,7 @@ window = {
 				scrollwidget = {
 					flowcontainer = {
 
+						# name used in code
 						name = "category_interaction_list"
 
 						datamodel = "[CharacterInteractionMenuWindow.GetCategoryItems]"
@@ -230,6 +240,7 @@ window = {
 		}
 
 
+		### MORE INTERACTIONS
 		container = {
 			alwaystransparent = no
 			visible = "[CharacterInteractionMenuWindow.AreMoreInteractionsVisisble]"
@@ -237,6 +248,7 @@ window = {
 
 			container = {
 
+				#this is used in code as an offset to its position
 				position = { -5 30 }
 
 				background = {

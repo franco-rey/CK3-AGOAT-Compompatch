@@ -1,6 +1,4 @@
-﻿# AGOT: Royal Guards can record a battle for legacy or otherwise uninitialised
-# guards. Initialise its service counter before incrementing it.
-agot_guard_positions_record_battle_victory_effect = {
+﻿agot_guard_positions_record_battle_victory_effect = {
 	if = { limit = { is_kingsguard_trigger = yes } create_character_memory = { type = agot_kingsguard_service_battle_victory_memory } }
 	else_if = { limit = { has_character_flag = agot_guard_positions_rainbow_guard_member } create_character_memory = { type = agot_rainbow_guard_battle_victory_memory } }
 	else_if = { limit = { has_character_flag = agot_guard_positions_battleguard_member } create_character_memory = { type = agot_battleguard_battle_victory_memory } }
@@ -20,8 +18,6 @@ agot_guard_positions_record_battle_victory_effect = {
 	agot_guard_positions_update_specialisation_effect = yes
 }
 
-# Eyes of the Old Gods runs this for every birth, including children for whom
-# one or both parent scopes do not exist.
 eotog_inherit_skinchanger_effect = {
 	random = {
 		chance = 3
@@ -40,4 +36,213 @@ eotog_inherit_skinchanger_effect = {
 		}
 		add_trait = skinchanger
 	}
+}
+
+agot_guard_positions_record_mission_success_effect = {
+	if = { limit = { is_kingsguard_trigger = yes } create_character_memory = { type = agot_kingsguard_service_mission_success_memory participants = { guard_holder = $HOLDER$ } } }
+	else_if = { limit = { has_character_flag = agot_guard_positions_rainbow_guard_member } create_character_memory = { type = agot_rainbow_guard_mission_success_memory participants = { guard_holder = $HOLDER$ } } }
+	else_if = { limit = { has_character_flag = agot_guard_positions_battleguard_member } create_character_memory = { type = agot_battleguard_mission_success_memory participants = { guard_holder = $HOLDER$ } } }
+	else_if = { limit = { has_character_flag = agot_guard_positions_winged_knight_member } create_character_memory = { type = agot_winged_knight_mission_success_memory participants = { guard_holder = $HOLDER$ } } }
+	else_if = { limit = { has_character_flag = agot_guard_positions_kingsmen_member } create_character_memory = { type = agot_kingsman_mission_success_memory participants = { guard_holder = $HOLDER$ } } }
+	else_if = { limit = { has_character_flag = agot_guard_positions_queensguard_member } create_character_memory = { type = agot_queensguard_mission_success_memory participants = { guard_holder = $HOLDER$ } } }
+	else_if = { limit = { has_character_flag = agot_guard_positions_greenhand_member } create_character_memory = { type = agot_greenhand_mission_success_memory participants = { guard_holder = $HOLDER$ } } }
+	else_if = { limit = { has_character_flag = agot_guard_positions_tully_guard_member } create_character_memory = { type = agot_tully_guard_mission_success_memory participants = { guard_holder = $HOLDER$ } } }
+	agot_guard_order_book_append_mission_success_effect = yes
+	if = {
+		limit = { NOT = { has_variable = agot_guard_positions_service_mission_successes } }
+		set_variable = { name = agot_guard_positions_service_mission_successes value = 0 }
+	}
+	change_variable = { name = agot_guard_positions_service_mission_successes add = 1 }
+}
+
+agot_guard_positions_record_mission_failure_effect = {
+	if = { limit = { is_kingsguard_trigger = yes } create_character_memory = { type = agot_kingsguard_service_mission_failure_memory participants = { guard_holder = $HOLDER$ } } }
+	else_if = { limit = { has_character_flag = agot_guard_positions_rainbow_guard_member } create_character_memory = { type = agot_rainbow_guard_mission_failure_memory participants = { guard_holder = $HOLDER$ } } }
+	else_if = { limit = { has_character_flag = agot_guard_positions_battleguard_member } create_character_memory = { type = agot_battleguard_mission_failure_memory participants = { guard_holder = $HOLDER$ } } }
+	else_if = { limit = { has_character_flag = agot_guard_positions_winged_knight_member } create_character_memory = { type = agot_winged_knight_mission_failure_memory participants = { guard_holder = $HOLDER$ } } }
+	else_if = { limit = { has_character_flag = agot_guard_positions_kingsmen_member } create_character_memory = { type = agot_kingsman_mission_failure_memory participants = { guard_holder = $HOLDER$ } } }
+	else_if = { limit = { has_character_flag = agot_guard_positions_queensguard_member } create_character_memory = { type = agot_queensguard_mission_failure_memory participants = { guard_holder = $HOLDER$ } } }
+	else_if = { limit = { has_character_flag = agot_guard_positions_greenhand_member } create_character_memory = { type = agot_greenhand_mission_failure_memory participants = { guard_holder = $HOLDER$ } } }
+	else_if = { limit = { has_character_flag = agot_guard_positions_tully_guard_member } create_character_memory = { type = agot_tully_guard_mission_failure_memory participants = { guard_holder = $HOLDER$ } } }
+	agot_guard_order_book_append_mission_failure_effect = yes
+	if = {
+		limit = { NOT = { has_variable = agot_guard_positions_service_mission_failures } }
+		set_variable = { name = agot_guard_positions_service_mission_failures value = 0 }
+	}
+	change_variable = { name = agot_guard_positions_service_mission_failures add = 1 }
+}
+
+agot_guard_camp_begin_effect = {
+ if = {
+  limit = { agot_guard_camp_selection_valid_trigger = yes exists = var:agot_guard_camp_selected_guard var:agot_guard_camp_selected_guard = { agot_guard_positions_guard_available_for_mission_trigger = { COURT_OWNER = root } agot_guard_camp_fighter_trigger = yes } }
+  save_scope_as = camp_ruler
+  set_variable = { name = agot_guard_camp_target value = var:agot_guard_camp_selected }
+  set_variable = { name = agot_guard_camp_commander value = var:agot_guard_camp_selected_guard }
+  var:agot_guard_camp_selected = {
+   save_scope_as = camp_leader
+   set_variable = { name = agot_guard_camp_targeted_by value = scope:camp_ruler }
+   primary_title = { save_scope_as = camp_title }
+   domicile.domicile_location = { save_scope_as = camp_location }
+  }
+  set_variable = { name = agot_guard_camp_title value = scope:camp_title }
+ scope:camp_title = { set_variable = { name = agot_guard_camp_targeted_by value = scope:camp_ruler } }
+  set_variable = { name = agot_guard_camp_location value = scope:camp_location }
+  clear_variable_list = agot_guard_camp_members
+  clear_variable_list = agot_guard_camp_guards
+  add_to_variable_list = { name = agot_guard_camp_members target = scope:camp_leader }
+  var:agot_guard_camp_selected = { every_courtier = { limit = { is_alive = yes is_human = yes } scope:camp_ruler = { add_to_variable_list = { name = agot_guard_camp_members target = prev } } } }
+  add_to_variable_list = { name = agot_guard_camp_guards target = var:agot_guard_camp_selected_guard }
+  var:agot_guard_camp_selected_guard = {
+   add_character_flag = agot_guard_positions_on_mission
+   add_character_modifier = agot_guard_positions_away_on_mission
+   set_variable = { name = agot_guard_camp_mission_ruler value = scope:camp_ruler }
+   set_location = scope:camp_location
+  }
+  agot_guard_camp_clear_selection_effect = yes
+  trigger_event = { id = agot_guard_camps.0010 days = { 10 20 } }
+ }
+}
+
+agot_guard_positions_resolve_academy_house_honours_effect = {
+	set_variable = { name = agot_guard_house_lion_score value = 0 }
+	set_variable = { name = agot_guard_house_stag_score value = 0 }
+	set_variable = { name = agot_guard_house_falcon_score value = 0 }
+	set_variable = { name = agot_guard_house_tower_score value = 0 }
+	remove_character_flag = agot_guard_house_lion_champion
+	remove_character_flag = agot_guard_house_stag_champion
+	remove_character_flag = agot_guard_house_falcon_champion
+	remove_character_flag = agot_guard_house_tower_champion
+	scope:activity = {
+		every_attending_character = {
+			limit = { agot_guard_positions_is_training_for_active_order_trigger = { OWNER = root } }
+			if = { limit = { agot_guard_positions_academy_house_first_trigger = yes } root = { change_variable = { name = agot_guard_house_lion_score add = prev.var:agot_guard_positions_training_merit } } }
+			else_if = { limit = { agot_guard_positions_academy_house_second_trigger = yes } root = { change_variable = { name = agot_guard_house_stag_score add = prev.var:agot_guard_positions_training_merit } } }
+			else_if = { limit = { agot_guard_positions_academy_house_third_trigger = yes } root = { change_variable = { name = agot_guard_house_falcon_score add = prev.var:agot_guard_positions_training_merit } } }
+			else_if = { limit = { agot_guard_positions_academy_house_fourth_trigger = yes } root = { change_variable = { name = agot_guard_house_tower_score add = prev.var:agot_guard_positions_training_merit } } }
+		}
+	}
+	if = { limit = { var:agot_guard_house_lion_score >= var:agot_guard_house_stag_score var:agot_guard_house_lion_score >= var:agot_guard_house_falcon_score var:agot_guard_house_lion_score >= var:agot_guard_house_tower_score } add_character_flag = agot_guard_house_lion_champion }
+	else_if = { limit = { var:agot_guard_house_stag_score >= var:agot_guard_house_falcon_score var:agot_guard_house_stag_score >= var:agot_guard_house_tower_score } add_character_flag = agot_guard_house_stag_champion }
+	else_if = { limit = { var:agot_guard_house_falcon_score >= var:agot_guard_house_tower_score } add_character_flag = agot_guard_house_falcon_champion }
+	else = { add_character_flag = agot_guard_house_tower_champion }
+	scope:activity = {
+		ordered_attending_character = {
+			position = 0
+			limit = {
+				agot_guard_positions_is_training_for_active_order_trigger = { OWNER = root }
+				OR = {
+					AND = { root = { has_character_flag = agot_guard_house_lion_champion } agot_guard_positions_academy_house_first_trigger = yes }
+					AND = { root = { has_character_flag = agot_guard_house_stag_champion } agot_guard_positions_academy_house_second_trigger = yes }
+					AND = { root = { has_character_flag = agot_guard_house_falcon_champion } agot_guard_positions_academy_house_third_trigger = yes }
+					AND = { root = { has_character_flag = agot_guard_house_tower_champion } agot_guard_positions_academy_house_fourth_trigger = yes }
+				}
+			}
+			order_by = var:agot_guard_positions_training_merit
+			save_scope_as = academy_house_honours_captain
+		}
+	}
+	scope:academy_house_honours_captain ?= { add_prestige = 75 }
+	trigger_event = agot_guard_school_activity.0005
+}
+
+agot_guard_positions_resolve_four_academy_house_melee_effect = {
+	set_variable = { name = agot_guard_house_lion_score value = 0 }
+	set_variable = { name = agot_guard_house_stag_score value = 0 }
+	set_variable = { name = agot_guard_house_falcon_score value = 0 }
+	set_variable = { name = agot_guard_house_tower_score value = 0 }
+	remove_character_flag = agot_guard_house_lion_champion
+	remove_character_flag = agot_guard_house_stag_champion
+	remove_character_flag = agot_guard_house_falcon_champion
+	remove_character_flag = agot_guard_house_tower_champion
+	scope:activity = {
+		every_attending_character = {
+			limit = { agot_guard_positions_is_training_for_active_order_trigger = { OWNER = root } }
+			set_variable = { name = agot_guard_positions_melee_contribution value = prowess }
+			change_variable = { name = agot_guard_positions_melee_contribution add = martial }
+			change_variable = { name = agot_guard_positions_melee_contribution add = var:agot_guard_positions_training_merit }
+			if = { limit = { agot_guard_positions_academy_house_first_trigger = yes } root = { change_variable = { name = agot_guard_house_lion_score add = prev.var:agot_guard_positions_melee_contribution } } }
+			else_if = { limit = { agot_guard_positions_academy_house_second_trigger = yes } root = { change_variable = { name = agot_guard_house_stag_score add = prev.var:agot_guard_positions_melee_contribution } } }
+			else_if = { limit = { agot_guard_positions_academy_house_third_trigger = yes } root = { change_variable = { name = agot_guard_house_falcon_score add = prev.var:agot_guard_positions_melee_contribution } } }
+			else_if = { limit = { agot_guard_positions_academy_house_fourth_trigger = yes } root = { change_variable = { name = agot_guard_house_tower_score add = prev.var:agot_guard_positions_melee_contribution } } }
+			remove_variable = agot_guard_positions_melee_contribution
+		}
+	}
+	if = { limit = { var:agot_guard_house_lion_score >= var:agot_guard_house_stag_score var:agot_guard_house_lion_score >= var:agot_guard_house_falcon_score var:agot_guard_house_lion_score >= var:agot_guard_house_tower_score } add_character_flag = agot_guard_house_lion_champion }
+	else_if = { limit = { var:agot_guard_house_stag_score >= var:agot_guard_house_falcon_score var:agot_guard_house_stag_score >= var:agot_guard_house_tower_score } add_character_flag = agot_guard_house_stag_champion }
+	else_if = { limit = { var:agot_guard_house_falcon_score >= var:agot_guard_house_tower_score } add_character_flag = agot_guard_house_falcon_champion }
+	else = { add_character_flag = agot_guard_house_tower_champion }
+	scope:activity = {
+		ordered_attending_character = {
+			position = 0
+			limit = {
+				agot_guard_positions_is_training_for_active_order_trigger = { OWNER = root }
+				OR = {
+					AND = { root = { has_character_flag = agot_guard_house_lion_champion } agot_guard_positions_academy_house_first_trigger = yes }
+					AND = { root = { has_character_flag = agot_guard_house_stag_champion } agot_guard_positions_academy_house_second_trigger = yes }
+					AND = { root = { has_character_flag = agot_guard_house_falcon_champion } agot_guard_positions_academy_house_third_trigger = yes }
+					AND = { root = { has_character_flag = agot_guard_house_tower_champion } agot_guard_positions_academy_house_fourth_trigger = yes }
+				}
+			}
+			order_by = { value = prowess add = martial add = var:agot_guard_positions_training_merit }
+			save_scope_as = academy_house_melee_winner
+		}
+		every_attending_character = {
+			limit = {
+				agot_guard_positions_is_training_for_active_order_trigger = { OWNER = root }
+				OR = {
+					AND = { root = { has_character_flag = agot_guard_house_lion_champion } agot_guard_positions_academy_house_first_trigger = yes }
+					AND = { root = { has_character_flag = agot_guard_house_stag_champion } agot_guard_positions_academy_house_second_trigger = yes }
+					AND = { root = { has_character_flag = agot_guard_house_falcon_champion } agot_guard_positions_academy_house_third_trigger = yes }
+					AND = { root = { has_character_flag = agot_guard_house_tower_champion } agot_guard_positions_academy_house_fourth_trigger = yes }
+				}
+			}
+			agot_guard_positions_add_training_merit_effect = { AMOUNT = 4 }
+			agot_guard_positions_update_training_rank_effect = yes
+		}
+	}
+	scope:academy_house_melee_winner ?= {
+		agot_guard_positions_add_training_merit_effect = { AMOUNT = 8 }
+		if = { limit = { prowess < 40 } add_prowess_skill = 1 }
+		agot_guard_positions_update_training_rank_effect = yes
+	}
+}
+
+agot_guard_positions_resolve_national_team_effect = {
+	scope:activity = {
+		every_attending_character = {
+			limit = { agot_guard_positions_is_actively_enrolled_in_any_academy_trigger = yes }
+			var:agot_guard_positions_training_owner = { set_variable = { name = agot_guard_positions_national_team_score value = 0 } }
+		}
+		every_attending_character = {
+			limit = { agot_guard_positions_is_actively_enrolled_in_any_academy_trigger = yes }
+			var:agot_guard_positions_training_owner = {
+				add_to_list = academy_national_team_holders
+			}
+			var:agot_guard_positions_training_owner = { change_variable = { name = agot_guard_positions_national_team_score add = prev.$PRIMARY$ } }
+			var:agot_guard_positions_training_owner = { change_variable = { name = agot_guard_positions_national_team_score add = prev.$SECONDARY$ } }
+		}
+	}
+	ordered_in_list = {
+		list = academy_national_team_holders
+		position = 0
+		order_by = var:agot_guard_positions_national_team_score
+		save_scope_as = academy_national_winning_school
+	}
+	scope:activity = {
+		ordered_attending_character = {
+			position = 0
+			limit = { has_variable = agot_guard_positions_training_owner var:agot_guard_positions_training_owner ?= scope:academy_national_winning_school }
+			order_by = { value = $PRIMARY$ add = $SECONDARY$ add = var:agot_guard_positions_training_merit }
+			save_scope_as = academy_national_winner
+		}
+	}
+	scope:academy_national_winning_school ?= {
+		if = {
+			limit = { NOT = { has_variable = agot_guard_positions_national_points } }
+			set_variable = { name = agot_guard_positions_national_points value = 0 }
+		}
+		change_variable = { name = agot_guard_positions_national_points add = $POINTS$ }
+		remove_variable = agot_guard_positions_national_team_score
+	}
+	scope:academy_national_winner ?= { agot_guard_positions_add_training_merit_effect = { AMOUNT = $MERIT$ } add_prestige = 50 agot_guard_positions_update_training_rank_effect = yes }
 }

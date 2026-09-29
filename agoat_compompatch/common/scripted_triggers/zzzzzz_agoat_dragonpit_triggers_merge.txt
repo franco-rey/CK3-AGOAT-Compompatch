@@ -1,0 +1,83 @@
+﻿dragonlord_title_is_conventional_active_dragonpit = {
+	tier = tier_county
+	any_county_province = {
+		OR = {
+			lv_has_dragon_pit_building = yes
+			AND = {
+				has_holding_type = castle_holding
+				has_building_or_higher = generic_dragon_pit_01
+			}
+			has_building_or_higher = dragonpit_01
+			has_building_or_higher = dragonpit_ruins_03
+			has_building = agot_dragonmont_01
+		}
+	}
+	has_variable = has_dragonkeeper_order
+}
+
+agot_can_use_dragonpit_amenities = {
+	OR = {
+		dragonlord_has_topless_towers_dragonpit = yes
+		any_held_county = { dragonlord_title_is_conventional_active_dragonpit = yes }
+	}
+}
+
+agot_has_an_active_dragonpit = {
+	OR = {
+		domicile ?= { has_domicile_parameter = camp_unlocks_dragonkeeper }
+		dragonlord_has_topless_towers_dragonpit = yes
+		any_held_county = { dragonlord_title_is_conventional_active_dragonpit = yes }
+	}
+}
+
+agot_has_multiple_active_dragonpits = {
+	OR = {
+		any_held_county = {
+			dragonlord_title_is_conventional_active_dragonpit = yes
+			count > 1
+		}
+		AND = {
+			dragonlord_has_topless_towers_dragonpit = yes
+			any_held_county = {
+				dragonlord_title_is_conventional_active_dragonpit = yes
+				count > 0
+			}
+		}
+	}
+}
+
+agot_title_is_an_active_dragonpit = {
+	tier = tier_county
+	OR = {
+		dragonlord_is_topless_towers_dragonpit_county = yes
+		dragonlord_title_is_conventional_active_dragonpit = yes
+	}
+}
+
+has_any_dragonpits = {
+	OR = {
+		lv_has_dragon_pit_building = yes
+		has_building_or_higher = generic_dragon_pit_01
+		has_building_or_higher = dragonpit_01
+		has_building_or_higher = dragonpit_ruins_03
+		has_building = agot_dragonmont_01
+		county = {
+			dragonlord_is_topless_towers_dragonpit_county = yes
+		}
+	}
+}
+
+dragonlord_is_topless_towers_dragonpit_county = {
+	tier = tier_county
+	exists = holder
+	OR = {
+		AND = {
+			holder = { dragonlord_has_topless_towers_dragonpit = yes }
+			holder.domicile.domicile_location.county ?= this
+		}
+		AND = {
+			holder.house.house_head ?= { dragonlord_has_topless_towers_dragonpit = yes }
+			holder.house.house_head.domicile.domicile_location.county ?= this
+		}
+	}
+}

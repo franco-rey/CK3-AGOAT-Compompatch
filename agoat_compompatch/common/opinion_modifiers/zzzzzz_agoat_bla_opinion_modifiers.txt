@@ -1,0 +1,51 @@
+﻿agot_celtigar_false_accusation_opinion_bla = {
+	opinion = -15
+}
+
+agot_darklyn_duskendale_claimant_opinion_bla = {
+	opinion = -25
+}
+
+agot_darklyn_mocked_rule_opinion_bla = {
+	opinion = -20
+}
+
+attended_trident_council_bla = {
+	opinion = 3
+}
+
+disappointed_by_trident_lord_bla = {
+	opinion = -10
+}
+
+insulted_by_trident_lord_bla = {
+	opinion = -10
+}
+
+intimidated_by_trident_lord_bla = {
+	opinion = 10
+}
+
+betrayed_opinion = {
+	opinion = -50
+}
+
+cultural_disapproval_opinion = {
+	opinion = -25
+}
+
+exposed_criminal_opinion = {
+	opinion = -40
+}
+
+fear_opinion = {
+	opinion = 15
+}
+
+rival_opinion = {
+	opinion = -40
+}
+
+uneasy_court_opinion = {
+	opinion = -10
+}

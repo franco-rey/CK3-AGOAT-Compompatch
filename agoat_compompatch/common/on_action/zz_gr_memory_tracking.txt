@@ -1097,19 +1097,12 @@ gr_internal_execution_tracking = {
 			limit = {
 				exists = scope:killer
 				scope:killer = { gr_is_tracked_character = yes }
-				OR = {
-					death_reason = death_execution
-					death_reason = death_execution_blood_eagle
-				}
 			}
+			save_scope_as = gr_executed_character
 			scope:killer = {
-				if = {
-					limit = { NOT = { has_variable = gr_succession_lock } }
-					if = {
-						limit = { NOT = { has_variable = gr_execution_count } }
-						set_variable = { name = gr_execution_count value = 0 }
-					}
-					change_variable = { name = gr_execution_count add = 1 }
+				trigger_event = {
+					id = agoat_gr_execution.0001
+					days = 1
 				}
 			}
 		}

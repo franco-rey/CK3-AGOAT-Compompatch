@@ -1,4 +1,5 @@
 ﻿
+### Essos
 tradition_agot_essosi_valyrian = {
 	category = regional
 
@@ -23,8 +24,9 @@ tradition_agot_essosi_valyrian = {
 
 	character_modifier = {
 		different_culture_opinion = 5
+		chariot_cavalry_maintenance_mult = -0.10
 		elephant_cavalry_maintenance_mult = -0.10
-		monthly_piety_gain_per_dread_mult = 0.1
+		monthly_piety_gain_per_dread_mult = 0.0025
 		domain_tax_different_faith_mult = 0.1
 		monthly_influence = 0.5
 	}
@@ -69,7 +71,7 @@ tradition_agot_volantene = {
 	character_modifier = {
 		pikemen_maintenance_mult = -0.1
 		different_culture_opinion = 5
-		monthly_prestige_gain_per_dread_mult = 0.1
+		monthly_prestige_gain_per_dread_mult = 0.0025
 		domain_tax_different_faith_mult = 0.1
 		army_siege_value_mult = 0.1
 	}
@@ -115,7 +117,7 @@ tradition_agot_braavosi = {
 		different_faith_opinion = 5
 		skirmishers_damage_add = 10
 		monthly_influence = 0.1
-		levy_reinforcement_rate = 0.1
+		levy_reinforcement_rate = 0.05
 		coastal_advantage = 5
 	}
 
@@ -157,7 +159,7 @@ tradition_agot_pentoshi = {
 	}
 
 	character_modifier = {
-		skirmishers_maintenance_mult = 0.1
+		skirmishers_maintenance_mult = -0.1
 		courtier_and_guest_opinion = 20
 		monthly_income_mult = 0.1
 		owned_personal_scheme_success_chance_add = 10
@@ -334,7 +336,7 @@ tradition_agot_hartalari = {
 
 	parameters = {
 		unlock_maa_disputant_scouts = yes
-		better_farm_estate_bonuses = yes
+		better_farm_estates_bonuses = yes
 	}
 
 	character_modifier = {
@@ -385,7 +387,7 @@ tradition_agot_andal = {
 		same_faith_opinion = 10
 		heavy_infantry_damage_add = 10
 		men_at_arms_recruitment_cost = -0.1
-		enemy_terrain_advantage = -2
+		enemy_terrain_advantage = -0.1
 		uncontrolled_province_advantage = 2
 	}
 
@@ -430,8 +432,8 @@ tradition_agot_andalosi = {
 		same_faith_opinion = 10
 		skirmishers_screen_add = 10
 		retreat_losses = -0.1
-		faith_conversion_piety_cost_mult = 0.1
-		army_siege_value_mult = -0.1
+		faith_conversion_piety_cost_mult = -0.1
+		army_siege_value_mult = 0.1
 	}
 
 	cost = {
@@ -501,7 +503,7 @@ tradition_agot_norvoshi = {
 	category = regional
 
 	layers = {
-		0 = learning
+		0 = martial
 		1 = western
 		4 = jirga.dds
 	}
@@ -566,7 +568,7 @@ tradition_agot_qohorik = {
 	}
 
 	character_modifier = {
-		monthly_piety_gain_per_dread_mult = 0.01
+		monthly_piety_gain_per_dread_mult = 0.0025
 		ignore_opinion_of_different_faith = yes
 		defender_advantage = 2
 		pikemen_screen_add = 10
@@ -794,7 +796,7 @@ tradition_agot_rhoynish = {
 	character_modifier = {
 		independent_ruler_opinion = 10
 		skirmishers_screen_add = 10
-		owned_hostile_scheme_success_chance_add = -10
+		owned_hostile_scheme_success_chance_add = 10
 		defender_advantage = 2
 		diplomatic_range_mult = 0.1
 	}
@@ -1016,6 +1018,9 @@ tradition_agot_sarar = {
 }
 
 
+##############################################
+##############################################
+#Dreams of Essos - Culture Specific Traditions
 tradition_agot_axemen = {
 	category = regional
 
@@ -1110,6 +1115,7 @@ tradition_agot_noynar = {
 	}
 
 	parameters = {
+		# unlock_maa_wild_wardens = yes
 	}
 
 	character_modifier = {
@@ -1150,6 +1156,8 @@ tradition_agot_valyrian_original = {
 
 	parameters = {
 		unlock_maa_slave_legion = yes
+		#AGOT TODO
+		# more_likely_to_accept_vassalization_from_dragonrider = yes
 	}
 
 	character_modifier = {
@@ -1215,6 +1223,7 @@ tradition_agot_nonteloshi = {
 	}
 }
 
+#Ib
 tradition_agot_ibbenese = {
 	category = regional
 
@@ -1513,7 +1522,6 @@ tradition_agot_rivermen_main = {
 
 	parameters = {
 		unlock_maa_river_bows = yes
-		unlock_maa_river_bows = yes
 		unlock_maa_river_footmen = yes
 		unlock_maa_river_scouts = yes
 		unlock_maa_riverlands_patrols = yes
@@ -1644,6 +1652,7 @@ tradition_agot_high_valyrian = {
 		unlock_maa_dragon_spears = yes
 		extra_language_cap = yes
 		cheaper_tour_activity = yes
+		harder_to_hybridize = yes
 	}
 
 	character_modifier = {
@@ -1931,6 +1940,7 @@ tradition_agot_wolfswood_clansmen = {
 		taiga_travel_danger = taiga_low_danger_reduction
 
 		liege_opinion = 20
+		archers_toughness_mult = 0.1
 	}
 
 	cost = {
@@ -2047,10 +2057,12 @@ tradition_agot_stoneborn = {
 		culture_can_raid_at_sea_even_if_feudal_no_restrictions = yes
 		quarries_building_bonuses = yes
 		cannibal_trait_is_more_common = yes
+		hill_farms_building_bonuses = yes
 	}
 
 	character_modifier = {
 		different_culture_opinion = -30
+		raid_speed = 0.1
 	}
 
 	cost = {
@@ -2129,7 +2141,7 @@ tradition_agot_crannogmen = {
 
 	character_modifier = {
 		opinion_of_liege = 20
-		the_bog_travel_danger = the_bog_high_danger_reduction
+		monthly_county_control_growth_add = 0.3
 		controlled_province_advantage = 5
 	}
 
@@ -2165,6 +2177,7 @@ tradition_agot_harbormen = {
 		unlock_maa_green_hand = yes
 		doesnt_care_about_culture_faith_in_factions = yes
 		city_holdings_more_taxes = yes
+		better_bakeries_bonuses = yes
 	}
 
 	character_modifier = {
@@ -2245,6 +2258,7 @@ tradition_agot_marcher = {
 	}
 
 	parameters = {
+		unlock_maa_vulture_killers = yes
 		unlock_maa_marcher_longbowmen = yes
 		outposts_building_bonuses = yes
 		poet_trait_more_valued = yes
@@ -2673,6 +2687,7 @@ tradition_agot_frozen_shoremen = {
 		uses_animal_milk_names = yes
 		maritime_mercantilism_coastal_holdings = yes
 		next_level_trade_ports = yes
+		gluttonous_trait_bonuses = yes
 	}
 
 	character_modifier = {
@@ -3209,7 +3224,6 @@ tradition_agot_arbormen = {
 		next_level_trade_ports = yes
 		reveler_traits_increased_opinion = yes
 		reveler_traits_more_valued = yes
-		unlock_maa_arbor_marines = yes
 	}
 
 	character_modifier = {

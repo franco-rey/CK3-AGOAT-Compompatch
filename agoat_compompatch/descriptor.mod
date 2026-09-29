@@ -6,8 +6,6 @@ tags={
 	"Compatibility"
 }
 dependencies={
-	"Advanced Cheat Menu"
-	"Beautiful Portraits"
 	"Invite Debutantes"
 	"Invite Nobles"
 	"Custom Nickname"
@@ -31,7 +29,6 @@ dependencies={
 	"Great Empire Wars"
 	"Warden Vassal Contract"
 	"More Building Slots"
-	"Patch AGOT - MBS"
 	"Active Courtiers"
 	"Active Courtiers AGOT Compatibility"
 	"Search & Trade Artifacts"

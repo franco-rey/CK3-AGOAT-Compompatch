@@ -1,0 +1,40 @@
+﻿naval_combat_can_use_sea_raid_trigger = {
+	OR = {
+		AND = {
+			naval_combat_player_landless_adventurer_trigger = yes
+			has_realm_law = camp_purpose_brigands
+		}
+		AND = {
+			naval_combat_player_landless_adventurer_trigger = no
+			OR = {
+				naval_combat_can_build_longship_trigger = yes
+			}
+		}
+	}
+}
+
+# Only these AI rulers receive a persistent flagship during the one-time
+# initial fleet seeding. Other AI command ships remain an abstract battle aid.
+naval_combat_ai_initial_real_flagship_trigger = {
+	is_ai = yes
+	is_independent_ruler = yes
+	naval_combat_can_manage_navy_trigger = yes
+	NOT = { var:naval_combat_flagship_constructed ?= 1 }
+	OR = {
+		has_title = title:e_the_iron_islands
+		has_title = title:k_braavos
+		has_title = title:k_tyrosh
+	}
+}
+
+naval_combat_can_build_longship_trigger = {
+	always = no
+}
+
+naval_combat_can_build_greek_fire_ship_trigger = {
+	always = no
+}
+
+naval_combat_can_build_tower_ship_trigger = {
+	always = no
+	}

@@ -1,7 +1,4 @@
-﻿# AGOAT Compompatch: the dead do not visit living courts as ordinary guests.
-# This is AGOT's current guest_allowed_to_arrive_trigger with the two Long Night traits excluded.
-
-guest_allowed_to_arrive_trigger = {
+﻿guest_allowed_to_arrive_trigger = {
 	trigger_if = {
 		limit = { exists = var:last_visited_ruler }
 		NOT = { var:last_visited_ruler = $HOST$ }
@@ -14,8 +11,6 @@ guest_allowed_to_arrive_trigger = {
 	NOT = { has_relation_rival = $HOST$ }
 	NOT = { has_trait = other_trait }
 	NOT = { has_trait = wight_trait }
-	# AGOT's source trigger enters both faith scopes unconditionally. Special/incomplete
-	# characters can have no faith, producing a failed context switch on every guest scan.
 	exists = faith
 	$HOST$ = { exists = faith }
 	faith = {

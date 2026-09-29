@@ -11,13 +11,18 @@ oathbound_sway_vassals_outcome.0001 = {
 			scope:target = {
 				if = {
 					limit = {
-						exists = scope:owner
-						scope:owner ?= { has_variable = val_oathholder }
+						is_alive = yes
+						scope:owner ?= { is_alive = yes }
 					}
-					add_opinion = {
-						target = scope:owner.var:val_oathholder
-						modifier = scheme_sway_opinion
-						opinion = sway_opinion_increase_per_success
+					if = {
+						limit = {
+							scope:owner = { has_variable = val_oathholder }
+						}
+						add_opinion = {
+							target = scope:owner.var:val_oathholder
+							modifier = scheme_sway_opinion
+							opinion = sway_opinion_increase_per_success
+						}
 					}
 				}
 			}

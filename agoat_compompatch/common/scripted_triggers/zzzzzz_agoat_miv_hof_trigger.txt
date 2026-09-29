@@ -1,0 +1,46 @@
+﻿can_create_temporal_head_of_faith_title_trigger = {
+	trigger_if = {
+		limit = {
+			NOT = {
+				has_game_rule = miv_head_of_faith_miv_enabled
+			}
+		}
+		num_realm_holy_sites_faithful_holders = {
+			COUNT = holy_sites_to_create_temporal_head_of_faith
+			CHARACTER = ROOT
+		}
+	}
+	root = {
+		piety_level >= high_piety_level
+	}
+	trigger_if = {
+		limit = {
+			root = {
+				top_liege != this
+			}
+		}
+		custom_description = {
+			text = cannot_create_hof_title_at_or_above_liege_tier
+			root.liege.primary_title.tier > tier_duchy
+		}
+	}
+	#AGOT Added
+	trigger_if = {
+		limit = {
+			root = { has_variable = agot_pwl_direct }
+		}
+		custom_description = {
+			text = cannot_create_hof_title_during_megawar
+			NOT = {
+				root = { has_variable = agot_pwl_direct }
+			}
+		}
+	}
+	#AGOT Added
+	trigger_if = {
+		limit = {
+			root.faith = faith:fc_pan_bearded
+		}
+		always = no
+	}
+}

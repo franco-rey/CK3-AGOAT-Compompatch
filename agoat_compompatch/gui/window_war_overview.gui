@@ -57,6 +57,7 @@
 					parentanchor = bottom|left
 
 
+					### FADE IN/OUT FROM LEFT ###
 					state = {
 						name = "war_overview_show"
 						next = b
@@ -64,7 +65,7 @@
 						alpha = 0
 					}
 
-					state = {
+					state = {   ####### default ####
 						name = "b"
 						next = "c"
 						duration = 0.25
@@ -86,7 +87,7 @@
 						alpha = 1
 					}
 
-					state = {
+					state = {  ####### default ####
 						name = "d"
 						duration = 0.25
 						using = Animation_Curve_Default
@@ -105,6 +106,7 @@
 					}
 
 
+					### BOTTOM CORNER BACKGROUND LEFT ###
 					widget = {
 						name = "background_corner_left"
 						size = { 474 280 }
@@ -144,6 +146,7 @@
 					}
 
 
+					### BOTTOM RECTANGLE BACKGROUND LEFT ###
 					widget = {
 						name = "background_rectangle_left"
 						size = { 350 280 }
@@ -201,7 +204,7 @@
 						alpha = 0
 					}
 
-					state = {
+					state = {   ####### default ####
 						name = "b"
 						next = "c"
 						duration = 0.25
@@ -223,7 +226,7 @@
 						alpha = 1
 					}
 
-					state = {
+					state = {  ####### default ####
 						name = "d"
 						duration = 0.25
 						using = Animation_Curve_Default
@@ -242,6 +245,7 @@
 					}
 
 
+					### BOTTOM RECTANGLE BACKGROUND RIGHT ###
 					widget = {
 						name = "background_rectangle_right"
 						size = { 350 280 }
@@ -280,6 +284,7 @@
 					}
 
 
+					### BOTTOM CORNER BACKGROUND RIGHT ###
 					widget = {
 						name = "background_corner_right"
 						size = { 474 280 }
@@ -365,6 +370,7 @@
 						}
 
 
+						### ATTACKERS INFO LEFT ###
 						vbox = {
 							name = "attackers_info_left"
 							margin_bottom = 65
@@ -437,18 +443,18 @@
 								}
 							}
 
-							text_single = {
+							text_single = { 
 								layoutpolicy_horizontal = expanding
-								text = "[WarOverviewWindow.GetWarStanceName( WarOverviewWindow.GetLeftSideLeaderItem.IsAttacker )]"
-								tooltip = "[WarOverviewWindow.GetWarStanceDesc( WarOverviewWindow.GetLeftSideLeaderItem.IsAttacker )]"
-								using = Font_Size_Medium
+								text = "[WarOverviewWindow.GetWarStanceName( WarOverviewWindow.GetLeftSideLeaderItem.IsAttacker )]" 
+								tooltip = "[WarOverviewWindow.GetWarStanceDesc( WarOverviewWindow.GetLeftSideLeaderItem.IsAttacker )]" 
+								using = Font_Size_Medium 
 								default_format = "#high"
-								align = nobaseline
-								autoresize = yes
+								align = nobaseline 
+								autoresize = yes 
 								max_width = 230
 								margin_left = 7
 								margin_bottom = 5
-							}
+							} 
 
 							vbox = {
 								layoutpolicy_horizontal = expanding
@@ -513,6 +519,7 @@
 						using = Background_WarOverview_Ally
 
 
+						### FIX: render the full participant list inline instead of relying on the broken floating allies subwindow ###
 						scrollbox = {
 							name = "allies_inline_left"
 							visible = "[GetVariableSystem.Exists( 'characterlist_left')]"
@@ -533,7 +540,9 @@
 												datacontext = "[WarParticipantItem.GetCharacter]"
 												blockoverride "opinion_box" {}
 												blockoverride "portrait_button_template_tooltip" {
-													tooltip = "[WarParticipantItem.GetParticipantTooltip]"
+													#AGOT Modified
+													# tooltip = "[WarParticipantItem.GetParticipantTooltip]"
+													tooltipwidget = { using = agot_war_portrait_dragon_army_comp }
 												}
 											}
 
@@ -552,6 +561,7 @@
 						expand = {}
 
 
+						### Multiple participants
 						hbox = {
 							minimumsize = { 250 160 }
 							visible = "[Not(GetVariableSystem.Exists( 'characterlist_left'))]"
@@ -581,6 +591,7 @@
 						}
 
 
+						### +Allies ###
 						hbox = {
 							layoutpolicy_horizontal = expanding
 
@@ -622,6 +633,7 @@
 			}
 
 
+			### EXPANDER FOR CENTER WIDGET ###
 			widget = {
 				size = { 790 300 }
 			}
@@ -663,6 +675,7 @@
 						using = Background_WarOverview_Ally
 
 
+						### FIX: render the full participant list inline instead of relying on the broken floating allies subwindow ###
 						scrollbox = {
 							name = "allies_inline_right"
 							visible = "[GetVariableSystem.Exists( 'characterlist_right')]"
@@ -683,7 +696,9 @@
 												datacontext = "[WarParticipantItem.GetCharacter]"
 												blockoverride "opinion_box" {}
 												blockoverride "portrait_button_template_tooltip" {
-													tooltip = "[WarParticipantItem.GetParticipantTooltip]"
+													#AGOT Modified
+													# tooltip = "[WarParticipantItem.GetParticipantTooltip]"
+													tooltipwidget = { using = agot_war_portrait_dragon_army_comp }
 												}
 											}
 
@@ -702,6 +717,7 @@
 						expand = {}
 
 
+						### multiple participants
 						overlappingitembox = {
 							datamodel = "[WarOverviewWindow.GetRightSideMainParticipantItems]"
 							visible = "[Not(GetVariableSystem.Exists( 'characterlist_right'))]"
@@ -728,6 +744,7 @@
 						}
 
 
+						### +Allies ###
 						hbox = {
 							layoutpolicy_horizontal = expanding
 
@@ -802,6 +819,7 @@
 						}
 
 
+						### DEFENDERS INFO RIGHT ###
 						vbox = {
 							name = "defenders_info_right"
 							margin_bottom = 65
@@ -876,18 +894,18 @@
 								expand = {}
 							}
 
-							text_single = {
-								layoutpolicy_horizontal = expanding
-								text = "[WarOverviewWindow.GetWarStanceName( WarOverviewWindow.GetRightSideLeaderItem.IsAttacker )]"
-								tooltip = "[WarOverviewWindow.GetWarStanceDesc( WarOverviewWindow.GetRightSideLeaderItem.IsAttacker )]"
+							text_single = { 
+								layoutpolicy_horizontal = expanding 
+								text = "[WarOverviewWindow.GetWarStanceName( WarOverviewWindow.GetRightSideLeaderItem.IsAttacker )]" 
+								tooltip = "[WarOverviewWindow.GetWarStanceDesc( WarOverviewWindow.GetRightSideLeaderItem.IsAttacker )]" 
 								using = Font_Size_Medium
 								default_format = "#high"
-								align = nobaseline
-								autoresize = yes
-								max_width = 230
+								align = nobaseline 
+								autoresize = yes 
+								max_width = 230 
 								margin_left = 7
 								margin_bottom = 5
-							}
+							} 
 
 							hbox = {
 								layoutpolicy_horizontal = expanding
@@ -952,6 +970,7 @@
 		}
 
 
+		### MAIN CENTER PANEL ###
 		widget = {
 			name = "main_center_panel"
 			size = { 622 0 }
@@ -1261,6 +1280,7 @@
 				}
 
 
+				### FRAME DECORATION TOP ###
 				icon = {
 					visible = "[Not(WarOverviewWindow.IsGreatHolyWar)]"
 					texture = "gfx/interface/window_war/tile_frame_top_war.dds"
@@ -1282,6 +1302,7 @@
 				}
 
 
+				### GHW ###
 				widget = {
 					name = "title_frame_ghw"
 					visible = "[WarOverviewWindow.IsGreatHolyWar]"
@@ -1292,6 +1313,8 @@
 				}
 
 
+				#### SIDEFRAMES ####
+				### Right
 				background = {
 					texture = "gfx/interface/component_tiles/tile_frame_subwindow_01.dds"
 					spriteType = Corneredtiled
@@ -1320,6 +1343,7 @@
 				}
 
 
+				### Left
 				background = {
 					name = "frame_border_left"
 					texture = "gfx/interface/component_tiles/tile_frame_subwindow_01.dds"
@@ -1350,6 +1374,7 @@
 				}
 
 
+				#### MAIN CENTER PANEL CONTENTS ####
 				vbox = {
 					name = "center_panel_contents"
 					set_parent_size_to_minimum = yes
@@ -1358,11 +1383,13 @@
 					margin = { 10 0 }
 
 
+					#### WAR OVERVIEW HEADER ####
 					vbox = {
 						name = "war_score_details"
 						layoutpolicy_horizontal = expanding
 
 
+						### CENTER PANEL HEADER ###
 						war_overview_center_panel_header = {}
 
 						spacer = {
@@ -1370,11 +1397,13 @@
 						}
 
 
+						### CENTER PANEL WAR SCORE DETAILS ###
 						war_overview_center_panel_war_score_details = {}
 
 						war_overview_center_panel_losses = {}
 
 
+						### CENTER PANEL CONTRIBUTION AS ALLIED ###
 						war_overview_center_panel_contribution_as_allied = {}
 					}
 
@@ -1383,9 +1412,11 @@
 					}
 
 
+					### CENTER PANEL WAR END TERMS ###
 					war_overview_center_panel_war_end_terms = {}
 
 
+					### SURRENDER | WHITE PEACE | ENFORCE DEMANDS ###
 					hbox = {
 						name = "tab_buttons"
 						ignoreinvisible = yes
@@ -1460,6 +1491,7 @@
 			}
 
 
+			#### STATUE LEFT ####
 			icon = {
 				name = "statue_left_defender"
 				texture = "gfx/interface/window_war/decoration_defender.dds"
@@ -1484,6 +1516,7 @@
 			}
 
 
+			#### STATUE RIGHT ####
 			icon = {
 				name = "statue_right_defender"
 				texture = "gfx/interface/window_war/decoration_attacker.dds"
@@ -1516,9 +1549,11 @@
 	}
 
 
+	### HOSTAGE EXCHANGE CHILD WINDOW ###
 	war_overview_exchange_hostage_window = {}
 
 
+	#### ALLIES LIST LEFT ####
 	widget = {
 		name = "allies_list_left"
 		using = Window_Background_Subwindow
@@ -1530,7 +1565,7 @@
 		widgetanchor = right|vcenter
 
 		focuspolicy = click
-		visible = no
+		visible = no # FIX: inline list is used instead
 		allow_outside = yes
 
 		state = {
@@ -1643,6 +1678,7 @@
 	}
 
 
+	#### ALLIES LIST RIGHT ####
 	widget = {
 		name = "allies_list_right"
 		using = Window_Background_Subwindow
@@ -1654,7 +1690,7 @@
 		widgetanchor = left|vcenter
 
 		focuspolicy = click
-		visible = no
+		visible = no # FIX: inline list is used instead
 		allow_outside = yes
 
 		state = {
@@ -1887,6 +1923,7 @@ template Background_WarOverview_3
 }
 
 
+### ANIMATIONS
 template Animation_WarOverview_Blood
 {
 	state = {
@@ -2191,6 +2228,7 @@ types WarOverView
 				}
 
 
+				#### WAR SCORE PROGRESSBAR ###
 				widget = {
 					size = { 450 20 }
 
@@ -2201,6 +2239,7 @@ types WarOverView
 						hbox = {
 
 
+							#### BAR FILL LEFT ####
 							widget = {
 								layoutpolicy_horizontal = expanding
 								layoutpolicy_vertical = expanding
@@ -2261,6 +2300,7 @@ types WarOverView
 								}
 
 
+								### GHW BAR ###
 								icon = {
 									visible = "[WarOverviewWindow.IsGreatHolyWar]"
 									size = { 100% 100% }
@@ -2367,6 +2407,7 @@ types WarOverView
 								}
 
 
+								### PROGRESS BAR EFFECTS LEFT ###
 								widget = {
 									visible = "[GreaterThanOrEqualTo_float( WarOverviewWindow.GetProgressbarWarScore, '(float)50' )]"
 									size = { 100% 100% }
@@ -2424,6 +2465,7 @@ types WarOverView
 							}
 
 
+							#### BAR FILL RIGHT ####
 							widget = {
 								layoutpolicy_horizontal = expanding
 								layoutpolicy_vertical = expanding
@@ -2483,6 +2525,7 @@ types WarOverView
 								}
 
 
+								### PROGRESS BAR EFFECTS RIGHT ###
 								icon = {
 									visible = "[GreaterThanOrEqualTo_float( WarOverviewWindow.GetProgressbarWarScore, '(float)50' )]"
 									using = Animation_ShowHide_Standard
@@ -2751,6 +2794,8 @@ types WarOverView
 				size = { 35 20 }
 
 
+				# default_format = "[]"
+				# alpha = "[Select_float( NotZero(WarSide.GetCharactersLost), '(float)1.0', '(float)0.5' )]"
 				block "characters" {
 					raw_text = "[Select_CString(NotZero(WarSide.GetCharactersLost), '#n', '#low')] [WarSide.GetCharactersLost]"
 				}
@@ -2890,12 +2935,14 @@ types WarOverView
 
 		vbox = {
 
+			### CENTER PANEL HOSTAGE EXCHANGE ###
 			spacer = {
 				size = { 0 4 }
 			}
 			war_overview_center_panel_hostage_exchange = {}
 
 
+			### CENTER PANEL WAR END TERMS ###
 			margin = { 5 0 }
 			vbox = {
 				layoutpolicy_horizontal = expanding
@@ -2990,6 +3037,7 @@ types WarOverView
 				}
 
 
+				### SEND BUTTON
 				button_primary = {
 					name = "send_button"
 					visible = "[WarOverviewWindow.IsPlayerParticipant]"
@@ -3108,6 +3156,7 @@ types WarOverView
 				visible = "[And( WarOverviewWindow.DoesAllowHostages, Not( WarOverviewWindow.GetPlayer.GetGovernment.IsType( 'landless_adventurer_government' )))]"
 
 
+				### HOSTAGE PORTRAIT LEFT ###
 				vbox = {
 					margin_left = 24
 					war_overview_empty_hostage_portrait = {
@@ -3140,6 +3189,7 @@ types WarOverView
 				}
 
 
+				### EXCHANGE HOSTAGE SUMMARY ###
 				vbox = {
 					margin_left = 15
 
@@ -3166,6 +3216,7 @@ types WarOverView
 				expand = {}
 
 
+				### HOSTAGE PORTRAIT RIGHT ###
 				vbox = {
 					margin_right = 24
 					war_overview_empty_hostage_portrait = {
@@ -3308,6 +3359,7 @@ types WarOverView
 		}
 
 
+		### List
 		vbox_character_list = {
 			layoutpolicy_horizontal = expanding
 			layoutpolicy_vertical = expanding
@@ -3322,6 +3374,7 @@ types WarOverView
 
 					item = {
 
+						### Character List Items ###
 						war_overview_hostage_list_item = {
 							block "item_size" {
 								size = { 650 110 }
@@ -3448,6 +3501,7 @@ types WarOverView
 			layoutpolicy_horizontal = expanding
 
 
+			### Left
 			margin_left = 30
 			portrait_shoulders = {
 				name = "left_background_portrait"
@@ -3471,6 +3525,7 @@ types WarOverView
 			expand = {}
 
 
+			### Right
 			margin_right = 30
 			portrait_shoulders = {
 				name = "right_background_portrait"
@@ -3494,6 +3549,7 @@ types WarOverView
 			expand = {}
 
 
+			### CLEAR BUTTON
 			container = {
 				button_round = {
 					name = "clear_hostage_character"
@@ -3575,6 +3631,7 @@ types WarOverView
 							layoutpolicy_vertical = expanding
 
 
+							# Name and age
 							vbox = {
 								layoutpolicy_horizontal = expanding
 								layoutpolicy_vertical = expanding
@@ -3619,6 +3676,7 @@ types WarOverView
 							}
 
 
+							# Dynasty
 							hbox = {
 								layoutpolicy_horizontal = expanding
 								layoutpolicy_vertical = expanding
@@ -3634,6 +3692,7 @@ types WarOverView
 								}
 
 
+								# Traits
 								fixedgridbox = {
 									name = "traits_grid"
 									datamodel = "[CharacterListItem.GetTraits]"
@@ -3683,6 +3742,7 @@ types WarOverView
 							margin_right = 5
 
 
+							# Skills
 							hbox = {
 								name = "skills_grid"
 								layoutpolicy_horizontal = expanding
@@ -3708,6 +3768,7 @@ types WarOverView
 									layoutpolicy_vertical = expanding
 
 
+									# Realm
 									widget = {
 										size = { 55 58 }
 										visible = "[Not( IsDataModelEmpty( CharacterListItem.GetTitleItems ) )]"
@@ -3762,6 +3823,7 @@ types WarOverView
 									expand = {}
 
 
+									# Religion
 									vbox = {
 										layoutpolicy_vertical = expanding
 
@@ -3813,6 +3875,7 @@ types WarOverView
 										visible = "[Not(HostageExchangeWindow.GetRecipient.IsPlayer)]"
 
 
+										### Will Accept ###
 										icon = {
 											visible = "[HostageExchangeWindow.WouldPotentiallyAcceptHostage( CharacterListItem.Self )]"
 											size = { 45 45 }
@@ -3824,6 +3887,7 @@ types WarOverView
 										}
 
 
+										### Will Not Accept ###
 										icon = {
 											visible = "[Not(HostageExchangeWindow.WouldPotentiallyAcceptHostage( CharacterListItem.Self ))]"
 											size = { 45 45 }

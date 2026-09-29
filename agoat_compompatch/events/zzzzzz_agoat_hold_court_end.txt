@@ -1,0 +1,109 @@
+﻿namespace = agoat_hold_court
+
+# Played at the end of the activity to clean it up.
+agoat_hold_court.0021 = {
+	type = court_event
+	title =	hold_court.0021.t
+	desc = hold_court.0021.desc
+	theme = realm
+	override_sound = { reference = event:/SFX/Events/Themes/sfx_event_theme_type_generic }
+	court_scene = {
+		button_position_character = root
+		court_event_force_open = yes
+		show_timeout_info = no
+		should_pause_time = yes
+		# roles = {
+		# 	root = {
+		# 		role = ruler
+		# 		animation = throne_room_ruler
+		# 	}
+		# }
+	}
+
+	widget = {
+		gui = "event_window_widget_event_chain_progress"
+		container = "custom_widgets_container"
+		controller = event_chain_progress
+	}
+
+
+	immediate = {
+		# Clean up the ol' variable.
+		remove_variable = petitioner_current_progress
+		remove_character_flag = holding_court_character_flag
+		# Update the widget one last time.
+		save_scope_value_as = {
+			name = event_chain_progress
+			value = petitioner_total_chain_length_value
+		}
+		root = { apply_hold_court_grace_effect = yes }
+	}
+
+	option = { 
+		name = hold_court.0021.a2
+		# Guaranteed small grandeur reward, in addition to any from events
+		change_current_court_grandeur = minor_court_grandeur_gain
+		# LEGITIMACY GAIN FROM HOLDING COURT
+		if = {
+			limit = {
+				has_legitimacy = yes
+			}
+			add_legitimacy = minor_legitimacy_gain
+		}
+
+		if = {
+			limit = {
+				has_court_type = court_diplomatic
+			}
+			add_character_modifier = {
+				modifier = gptc_court_diplomatic
+				years = 5
+			}
+		}
+		if = {
+			limit = {
+				has_court_type = court_warlike
+			}
+			add_character_modifier = {
+				modifier = gptc_court_warlike
+				years = 5
+			}
+		}
+		if = {
+			limit = {
+				has_court_type = court_administrative
+			}
+			add_character_modifier = {
+				modifier = gptc_court_administrative
+				years = 5
+			}
+		}
+		if = {
+			limit = {
+				has_court_type = court_intrigue
+			}
+			add_character_modifier = {
+				modifier = gptc_court_intrigue
+				years = 5
+			}
+		}
+		if = {
+			limit = {
+				has_court_type = court_scholarly
+			}
+			add_character_modifier = {
+				modifier = gptc_court_scholarly
+				years = 5
+			}
+		}
+		if = {
+			limit = {
+				has_court_type = court_tribal
+			}
+			add_character_modifier = {
+				modifier = gptc_court_tribal
+				years = 5
+			}
+		}
+	}
+}

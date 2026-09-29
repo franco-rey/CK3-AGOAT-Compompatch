@@ -1,0 +1,308 @@
+﻿agot_cider_hall_01 = {
+	construction_time = slow_construction_time
+
+	type_icon = "icon_building_inn.dds"
+
+	can_construct_potential = {
+		building_requirement_tribal = no
+	}
+
+	is_enabled = {
+		agot_generic_is_special_building_enabled = yes
+	}
+
+	cost_gold = expensive_building_tier_3_cost
+
+	asset = {
+		type = pdxmesh
+		name = "fp4_legendary_hunting_lodge_01_a_mesh"
+	}
+
+	character_modifier = {
+		diplomacy_per_prestige_level = 1
+		diplomacy_scheme_phase_duration = minor_scheme_phase_duration_bonus_value
+		development_growth_factor = 0.05
+		stewardship_per_prestige_level = 1
+	}
+
+	province_modifier = {
+		monthly_income = good_building_tax_tier_6
+	}
+
+	county_modifier = {
+		development_growth_factor = 0.20
+		travel_danger = -10
+	}
+
+	ai_value = {
+		base = 100
+		culture_likely_to_fortify_modifier = yes
+	}
+
+	type = special
+
+	flag = travel_point_of_interest_diplomatic
+}
+
+agot_cuy_01 = {
+	construction_time = slow_construction_time
+
+	type_icon = "icon_building_tradeport.dds"
+
+	can_construct_potential = {
+		building_requirement_tribal = no
+	}
+
+	is_enabled = {
+		agot_generic_is_special_building_enabled = yes
+	}
+
+	asset = {
+		type = pdxmesh
+		name = "port_2_mesh"
+	}
+
+	cost_gold = expensive_building_tier_5_cost
+
+	county_holder_character_modifier = {
+		monthly_stewardship_lifestyle_xp_gain_mult = 0.10
+		diplomatic_range_mult = 0.15
+		development_growth_factor = 0.05
+		stewardship = 1
+	}
+
+	character_modifier = {
+		monthly_stewardship_lifestyle_xp_gain_mult = 0.15
+		stewardship_per_prestige_level = 1
+		diplomatic_range_mult = 0.20
+		development_growth_factor = 0.10
+	}
+
+	county_modifier = {
+		development_growth_factor = 0.20
+		tax_mult = good_building_tax_mult_tier_4
+		supply_limit_mult = 0.25
+	}
+
+	effect_desc = agot_sailing_activity_cost_discount_special_desc
+
+	ai_value = {
+		base = 100
+		culture_likely_to_fortify_modifier = yes
+	}
+
+	type = special
+
+	flag = port_building
+	flag = travel_point_of_interest_economic
+}
+
+agot_hoare_castle_02 = {
+	construction_time = very_slow_construction_time
+
+	can_construct_potential = {
+		building_requirement_tribal = no
+	}
+
+	can_construct = {
+		has_holding_type = castle_holding
+		OR = {
+			scope:holder = { has_title = title:k_ironmans_bay }
+			scope:holder = { has_title = title:k_great_wyk }
+			scope:holder = { has_title = title:k_two_wyks }
+			scope:holder = { has_title = title:e_the_iron_islands }
+		}
+		scope:holder = { has_title = title:b_hoare_castle }
+	}
+
+	is_enabled = {
+		agot_generic_is_special_building_enabled = yes
+	}
+
+	cost_gold = expensive_building_tier_6_cost
+
+	character_modifier = {
+		prisoner_opinion = -30
+		court_grandeur_baseline_add = 5
+		ironborn_opinion = -15
+		raid_speed = 0.30
+		dread_gain_mult = 0.20
+	}
+
+	province_modifier = {
+		fort_level = 6
+		stationed_heavy_infantry_damage_mult = 1
+	}
+
+	effect_desc = agot_sailing_activity_cost_discount_special_desc
+
+	ai_value = {
+		base = 100
+		culture_likely_to_fortify_modifier = yes
+	}
+
+	type = special
+
+	flag = port_building
+	flag = travel_point_of_interest_martial
+}
+
+agot_plankytown_01 = {
+
+    construction_time = slow_construction_time
+
+    can_construct_potential = {
+        building_requirement_tribal = no
+    }
+
+    asset = {
+        type = pdxmesh
+        name = "planky_town_mesh"
+    }
+    is_enabled = {
+        agot_generic_is_special_building_enabled = yes
+    }
+
+    # asset = {
+    # 	type = pdxmesh
+    # 	name = ""
+    # }
+
+    cost_gold = 500
+
+	province_modifier = {
+		monthly_income = copper_mine_building_tax_tier_2
+		floodplains_development_growth_factor = 0.20
+	}
+
+	character_modifier = {
+		embarkation_cost_mult = -0.30
+		diplomatic_range_mult = 0.30
+		naval_movement_speed_mult = 0.2
+		the_mother_religion_opinion = 20
+		monthly_stewardship_lifestyle_xp_gain_mult = 0.2
+		stewardship_per_prestige_level = 1
+		tax_mult = 0.20
+		floodplains_development_growth_factor = 0.10
+	}
+
+	county_holder_character_modifier = {
+		embarkation_cost_mult = -0.15
+		diplomatic_range_mult = 0.10
+		naval_movement_speed_mult = 0.1
+		the_mother_religion_opinion = 10
+	}
+
+    type = special
+
+    type_icon = "icon_structure_planky_town.dds"
+
+	effect_desc = agot_sailing_activity_cost_discount_special_desc
+
+    ai_value = {
+        base = 100
+        culture_likely_to_fortify_modifier = yes
+    }
+
+	flag = port_building
+    flag = travel_point_of_interest_economic
+}
+
+agot_redwyne_port_01 = {
+	construction_time = slow_construction_time
+
+	type_icon = "icon_building_fleet.dds"
+
+	can_construct_potential = {
+		building_requirement_tribal = no
+	}
+
+	is_enabled = {
+		agot_generic_is_special_building_enabled = yes
+	}
+
+	asset = {
+		type = pdxmesh
+		name = "agot_now_ports_01_mesh"
+	}
+
+	cost_gold = expensive_building_tier_7_cost
+
+	county_holder_character_modifier = {
+		naval_movement_speed_mult = 0.4
+		embarkation_cost_mult = -0.35
+		diplomatic_range_mult = 0.5
+	}
+
+	character_modifier = {
+		naval_movement_speed_mult = 0.4
+		embarkation_cost_mult = -0.35
+		diplomatic_range_mult = 0.5
+	}
+
+	county_modifier = {
+		tax_mult = good_building_tax_mult_tier_6
+		development_growth_factor = 0.2
+	}
+
+	effect_desc = agot_sailing_activity_cost_discount_special_desc
+
+	ai_value = {
+		base = 100
+		culture_likely_to_fortify_modifier = yes
+	}
+
+	type = special
+
+	flag = port_building
+	flag = travel_point_of_interest_economic
+}
+
+agot_whispers_02 = {
+	construction_time = very_slow_construction_time
+
+	type_icon = "icon_structure_the_whispers.dds"
+
+	can_construct_potential = {
+		building_requirement_tribal = no
+	}
+
+	can_construct = {
+		has_holding_type = castle_holding
+		scope:holder = { has_title = title:k_the_claw }
+		scope:holder = { has_title = title:b_whispers }
+	}
+
+	is_enabled = {
+		agot_generic_is_special_building_enabled = yes
+	}
+
+	cost_gold = expensive_building_tier_4_cost
+
+	character_modifier = {
+		dread_gain_mult = 0.3
+		dread_baseline_add = 10
+		owned_legend_spread_mult = 0.15
+		knight_effectiveness_per_dread = 0.0015
+	}
+
+	province_modifier = {
+		fort_level = 4
+		stationed_heavy_infantry_damage_mult = 0.40
+		stationed_heavy_infantry_toughness_mult = 0.40
+	}
+
+	county_modifier = {
+		defender_holding_advantage = 5
+		hostile_raid_time = 0.5
+	}
+
+	ai_value = {
+		base = 100
+		culture_likely_to_fortify_modifier = yes
+	}
+
+	type = special
+
+	flag = travel_point_of_interest_martial
+}

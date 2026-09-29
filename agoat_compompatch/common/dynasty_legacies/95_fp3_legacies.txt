@@ -8,6 +8,7 @@
 
 
 					has_dynasty_perk = fp3_khvarenah_legacy_1
+					has_dynasty_perk = hth_fp3_khvarenah_legacy_1
 
 
 					always = no

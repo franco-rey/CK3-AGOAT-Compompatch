@@ -1,4 +1,4 @@
-﻿on_death_relation_oathbound = {
+﻿on_death_relation_oathbound = { # Triggers from person that died. So we use scope:target to get the actor (us). -- Oathholder dies essentially.
 	on_actions = {
 		the_forced_oathbound_heir
 
@@ -12,13 +12,13 @@
 	}
 }
 
-the_forced_oathbound_heir = {
+the_forced_oathbound_heir = { # Ambitious characters only.
 	trigger = {
 		exists = scope:target
 		exists = primary_heir
 		scope:target ?= { exists = primary_heir }
 		AND = {
-			NOT = {
+			NOT = { 
 				scope:target = { has_character_flag = oathbound_heir }
 				scope:target = { has_character_modifier = permanent_oath }
 			}
@@ -50,7 +50,7 @@ the_permanent_oath_oathholder_perspective = {
 		exists = scope:target
 		exists = primary_heir
 		exists = primary_heir.dynasty
-		scope:target = { has_character_modifier = permanent_oath }
+		scope:target = { has_character_modifier = permanent_oath } # Oathbound has permanent_oath
 		primary_heir.dynasty = root.dynasty
 	}
 	effect = {
@@ -61,7 +61,7 @@ the_permanent_oath_oathholder_perspective = {
             remove_trait = disloyal
 
             add_opinion = {
-                target = root.primary_heir
+                target = root.primary_heir 
                 modifier = oath_holder_opinion
             }
             set_relation_oathholder = {
@@ -69,6 +69,7 @@ the_permanent_oath_oathholder_perspective = {
             }
 
 
+            # Switch into the heir's scope
             root.primary_heir = {
                 oathkeeper_assigned = { CHARACTER = scope:target }
 
@@ -112,12 +113,14 @@ the_permanent_oath_oathholder_perspective = {
 the_permanent_oath_oathholder_perspective_not_valid = {
 	trigger = {
 		exists = scope:target
-		exists = primary_heir
-		exists = primary_heir.dynasty
-		scope:target = { has_character_modifier = permanent_oath }
+		scope:target = { has_character_modifier = permanent_oath } # Oathbound has permanent_oath
+		trigger_if = {
+			limit = { exists = primary_heir.dynasty }
 		NOT = {
 			primary_heir.dynasty = root.dynasty
 		}
+		}
+		trigger_else = { always = yes }
 
 
 	}
@@ -126,6 +129,7 @@ the_permanent_oath_oathholder_perspective_not_valid = {
 			trigger_event = {
 				id = oathbound_permanent_events.0004
 
+				#days = 1
 			}
 		}
 	}
@@ -151,7 +155,7 @@ oathholders_cleanup = {
         scope:target = {
             if = {
                 limit = {
-                    has_relation_oathholder = root
+                    has_relation_oathholder = root 
                 }
                 remove_relation_oathholder = root
             }
@@ -171,13 +175,13 @@ oathholders_cleanup = {
 			}
 			if = {
                 limit = {
-                    has_character_flag = oathbound_on_travel_job
+                    has_character_flag = oathbound_on_travel_job 
                 }
                 remove_character_flag = oathbound_on_travel_job
             }
 			if = {
                 limit = {
-                    has_character_flag = oathbound_control_job
+                    has_character_flag = oathbound_control_job 
                 }
                 remove_character_flag = oathbound_control_job
             }
@@ -190,19 +194,20 @@ oathholders_task_cleanup = {
         scope:target = {
 
 
+            # --- 1. TRAVEL JOB CLEANUP (Enforce Control) --- #
             if = {
                 limit = {
                     OR = {
-                        has_character_flag = oathbound_on_travel_job
-                        has_character_flag = oathbound_control_job
+                        has_character_flag = oathbound_on_travel_job 
+                        has_character_flag = oathbound_control_job 
                     }
                 }
                 if = {
                     limit = { has_variable = oathbound_control_task_county_var }
-                    var:oathbound_control_task_county_var = {
-                        remove_county_modifier = oathbound_enforcing_order_weak
-                        remove_county_modifier = oathbound_enforcing_order_normal
-                        remove_county_modifier = oathbound_enforcing_order_strong
+                var:oathbound_control_task_county_var = {
+                    remove_county_modifier = oathbound_enforcing_order_weak
+                    remove_county_modifier = oathbound_enforcing_order_normal
+                    remove_county_modifier = oathbound_enforcing_order_strong
                     }
                 }
                 remove_character_flag = oathbound_on_travel_job
@@ -211,6 +216,7 @@ oathholders_task_cleanup = {
             }
 
 
+            ## --- 2. STATIONARY JOB CLEANUP (Sway Vassal) --- #
             if = {
                 limit = {
                     OR = {
@@ -222,24 +228,26 @@ oathholders_task_cleanup = {
 
                 if = {
                     limit = { has_variable = oathbound_sway_task_target_var }
-                    every_scheme = {
-                        limit = {
-                            scheme_type = oathbound_sway_vassals
-                            scheme_target_character = {
+                every_scheme = {
+                    limit = {
+                        scheme_type = oathbound_sway_vassals
+                        scheme_target_character = {
                                 this = scope:target.var:oathbound_sway_task_target_var
-                            }
                         }
-                        end_scheme = yes
+                    }
+                    end_scheme = yes
                     }
                 }
 
 
+                # Clean up the Player's Flags and Variables
                 remove_character_flag = oathbound_on_stationary_job
                 remove_character_flag = oathbound_sway_job
                 remove_variable = oathbound_sway_task_target_var
             }
 
 
+            # --- 3. STATIONARY JOB CLEANUP (Kill Rival) --- #
             if = {
                 limit = {
                     OR = {
@@ -251,23 +259,25 @@ oathholders_task_cleanup = {
 
                 if = {
                     limit = { has_variable = oathbound_kill_task_target_var }
-                    every_scheme = {
-                        limit = {
-                            scheme_type = murder
-                            scheme_target_character = {
+                every_scheme = {
+                    limit = {
+                        scheme_type = murder
+                        scheme_target_character = {
                                 this = scope:target.var:oathbound_kill_task_target_var
-                            }
                         }
-                        end_scheme = yes
+                    }
+                    end_scheme = yes
                     }
                 }
 
 
+                # Clean up the Player's Flags and Variables
                 remove_character_flag = oathbound_on_stationary_job
                 remove_character_flag = oathbound_kill_job
                 remove_variable = oathbound_kill_task_target_var
             }
 
+            # --- 4. TRAVEL JOB CLEANUP (Duel Rival) --- #
             if = {
                 limit = {
                     OR = {

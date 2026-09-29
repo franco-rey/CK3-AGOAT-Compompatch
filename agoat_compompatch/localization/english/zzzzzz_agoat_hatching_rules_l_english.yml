@@ -1,0 +1,6 @@
+﻿l_english:
+ rule_agoat_dragonless_hatching_ceremony:0 "Hatching Ceremony Without a Dragon"
+ setting_agoat_dragonless_hatching_ceremony_on:0 "Always Allowed"
+ setting_agoat_dragonless_hatching_ceremony_on_desc:0 "A character who has no tamed dragon may hold a Hatching Ceremony with any dragon egg, even while dragons live (AGOT - Can Always Use Egg Hatching Ceremony). More Dragon Eggs' 'Are Hatching Ceremonies Always Available' rule still decides for characters who have a dragon."
+ setting_agoat_dragonless_hatching_ceremony_off:0 "Follow More Dragon Eggs"
+ setting_agoat_dragonless_hatching_ceremony_off_desc:0 "Only More Dragon Eggs' 'Are Hatching Ceremonies Always Available' rule decides. With it set to No, no Hatching Ceremony can be held while dragons live, as in AGOT."

@@ -1,0 +1,45 @@
+﻿the_citadel_government = {
+	government_rules = {
+		create_cadet_branches = no
+		rulers_should_have_dynasty = no
+		dynasty_named_realms = no
+		court_generate_spouses = no
+		allow_accolades = no
+	}
+
+	court_generate_commanders = no
+
+	primary_holding = city_holding
+
+	can_get_government = {
+		trigger_if = {
+			limit = {
+				exists = global_var:citadel_title
+			}
+			has_title = global_var:citadel_title
+		}
+		trigger_else = {
+			has_title = title:b_the_citadel
+		}
+		has_trait = archmaester
+	}
+
+	ai = {
+		arrange_marriage = no
+		use_goals = no
+		use_scripted_guis = no
+		perform_religious_reformation = no
+	}
+
+	flags = {
+		government_is_the_citadel
+		government_is_settled
+		government_is_default #For grouping governments that should use the regular lifestyle perks.
+	}
+	character_modifier = {
+		knight_limit = -100
+		levy_size = -1
+	}
+
+	color = hsv{ 0.00 1.00 0.98 }
+}

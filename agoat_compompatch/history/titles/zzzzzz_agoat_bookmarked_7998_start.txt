@@ -1,0 +1,183 @@
+﻿k_dragonstone = {
+	7998.1.1 = {
+		effect = {
+			if = {
+				limit = { game_start_date = 7998.1.2 }
+				character:Targaryen_27 = {
+					save_scope_as = agoat_bm7998_aegon
+					create_title_and_vassal_change = {
+						type = created
+						save_scope_as = agoat_bm7998_created
+						add_claim_on_loss = no
+					}
+					title:h_the_iron_throne = {
+						change_title_holder = {
+							holder = scope:agoat_bm7998_aegon
+							change = scope:agoat_bm7998_created
+						}
+					}
+					title:e_the_crownlands = {
+						change_title_holder = {
+							holder = scope:agoat_bm7998_aegon
+							change = scope:agoat_bm7998_created
+						}
+					}
+					resolve_title_and_vassal_change = scope:agoat_bm7998_created
+					create_title_and_vassal_change = {
+						type = conquest
+						save_scope_as = agoat_bm7998_taken
+						add_claim_on_loss = no
+					}
+					title:c_kings_landing = {
+						change_title_holder = {
+							holder = scope:agoat_bm7998_aegon
+							change = scope:agoat_bm7998_taken
+							take_baronies = yes
+						}
+					}
+					resolve_title_and_vassal_change = scope:agoat_bm7998_taken
+					set_realm_capital = title:c_dragonstone
+					if = {
+						limit = { has_dlc_feature = royal_court }
+						set_court_language = language_agot_westeros
+						if = {
+							limit = { NOT = { knows_court_language_of = this } }
+							learn_court_language_of = this
+						}
+					}
+				}
+				title:h_the_iron_throne = {
+					set_variable = agot_is_paramountcy_realm
+					set_variable = kingsguard
+				}
+				title:e_the_crownlands = {
+					set_de_jure_liege_title = title:h_the_iron_throne
+					save_title_name_change_data = { TRANSFER_VAR = no }
+					set_title_name = e_the_crownlands
+				}
+				title:d_kings_landing = {
+					save_title_name_change_data = { TRANSFER_VAR = no }
+					reset_title_name = yes
+				}
+				title:c_kings_landing = {
+					save_title_name_change_data = { TRANSFER_VAR = no }
+					reset_title_name = yes
+				}
+				title:b_the_red_keep = {
+					save_title_name_change_data = { TRANSFER_VAR = no }
+					set_title_name = b_aegonfort
+				}
+				title:b_rhaenyss_hill = {
+					save_title_name_change_data = { TRANSFER_VAR = no }
+					reset_title_name = yes
+				}
+				title:b_visenyas_hill = {
+					save_title_name_change_data = { TRANSFER_VAR = no }
+					reset_title_name = yes
+				}
+				title:b_hookmarket = {
+					save_title_name_change_data = { TRANSFER_VAR = no }
+					set_title_name = b_kings_landing
+				}
+				title:b_landingfield = {
+					save_title_name_change_data = { TRANSFER_VAR = no }
+					reset_title_name = yes
+				}
+				title:b_flea_bottom = {
+					save_title_name_change_data = { TRANSFER_VAR = no }
+					reset_title_name = yes
+				}
+				title:c_blackstripe = {
+					set_de_jure_liege_title = title:d_kings_landing
+				}
+				character:Grand_Maester_1 ?= {
+					if = {
+						limit = { is_alive = yes }
+						set_employer = scope:agoat_bm7998_aegon
+						remove_trait = archmaester_bronze
+						make_trait_inactive = grandmaester
+					}
+				}
+				character:Targaryen_27 ?= { remove_trait = incestuous }
+				character:Targaryen_28 ?= { remove_trait = incestuous }
+				character:Targaryen_29 ?= { remove_trait = incestuous }
+			}
+		}
+	}
+	7998.1.2 = {
+		effect = {
+			if = {
+				limit = {
+					game_start_date = 7998.1.2
+					exists = title:h_the_iron_throne.holder
+					character:Velaryon_15 ?= { is_alive = yes }
+				}
+				title:h_the_iron_throne.holder = {
+					save_scope_as = agoat_bm7998_king
+				}
+				character:Velaryon_15 = {
+					save_scope_as = agoat_bm7998_lc
+					create_title_and_vassal_change = {
+						type = created
+						save_scope_as = agoat_bm7998_kg
+						add_claim_on_loss = no
+					}
+					title:d_kingsguard = {
+						change_title_holder = {
+							holder = scope:agoat_bm7998_lc
+							change = scope:agoat_bm7998_kg
+						}
+					}
+					resolve_title_and_vassal_change = scope:agoat_bm7998_kg
+					if = {
+						limit = {
+							NOT = { liege ?= scope:agoat_bm7998_king }
+						}
+						create_title_and_vassal_change = {
+							type = swear_fealty
+							save_scope_as = agoat_bm7998_kg_fealty
+							add_claim_on_loss = no
+						}
+						change_liege = {
+							liege = scope:agoat_bm7998_king
+							change = scope:agoat_bm7998_kg_fealty
+						}
+						resolve_title_and_vassal_change = scope:agoat_bm7998_kg_fealty
+					}
+					add_trait = knight
+					agot_set_signature_weapon_history_effect = { WEAPON = flag:sword_and_shield }
+					agot_join_kingsguard_char_history_effect = { KING = character:Targaryen_27 }
+					agot_lc_kingsguard_char_history_effect = { KING = character:Targaryen_27 }
+				}
+			}
+		}
+	}
+}
+d_sharp_point = {
+	7998.1.1 = {
+		effect = {
+			if = {
+				limit = { game_start_date = 7998.1.2 }
+				set_de_jure_liege_title = title:k_dragonstone
+				holder ?= {
+					if = {
+						limit = {
+							NOT = { this = character:Targaryen_27 }
+							NOT = { target_is_liege_or_above = character:Targaryen_27 }
+						}
+						create_title_and_vassal_change = {
+							type = swear_fealty
+							save_scope_as = agoat_bm7998_fealty
+							add_claim_on_loss = no
+						}
+						change_liege = {
+							liege = character:Targaryen_27
+							change = scope:agoat_bm7998_fealty
+						}
+						resolve_title_and_vassal_change = scope:agoat_bm7998_fealty
+					}
+				}
+			}
+		}
+	}
+}

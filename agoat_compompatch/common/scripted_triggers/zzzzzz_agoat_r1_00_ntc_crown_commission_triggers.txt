@@ -1,0 +1,135 @@
+﻿ntc_orysbaratheon_crown_limited_trigger = {
+	NOR = {
+		any_artifact = {
+			has_variable = crown_orysbaratheon_artifact
+			artifact_owner = root
+		}
+		is_ai = yes
+	}
+	OR = {
+		has_game_rule = unlimited_hybrd_crowns_enabled
+		AND = {
+			father ?= {
+				OR = {
+					dynasty ?= dynasty:dynn_Baratheon
+					dynasty ?= dynasty:dynn_Durrandon
+				}
+			}
+			mother ?= {
+				dynasty ?= dynasty:dynn_Targaryen
+			}
+		}
+		AND = {
+			father ?= {
+				dynasty ?= dynasty:dynn_Targaryen
+			}
+			mother ?= {
+				OR = {
+					dynasty ?= dynasty:dynn_Baratheon
+					dynasty ?= dynasty:dynn_Durrandon
+				}
+			}
+		}
+		AND = {
+			exists = primary_spouse
+			primary_spouse ?= {
+				OR = {
+					dynasty ?= dynasty:dynn_Baratheon
+					dynasty ?= dynasty:dynn_Durrandon
+				}
+			}
+			dynasty ?= dynasty:dynn_Targaryen
+		}
+		AND = {
+			exists = primary_spouse
+			primary_spouse ?= {
+				dynasty ?= dynasty:dynn_Targaryen
+			}
+			OR = {
+				dynasty ?= dynasty:dynn_Baratheon
+				dynasty ?= dynasty:dynn_Durrandon
+			}
+		}
+		OR = {
+			AND = {
+				culture ?= culture:stormlander_main
+				dynasty ?= dynasty:dynn_Targaryen
+			}
+			AND = {
+				culture ?= { has_cultural_pillar = heritage_valyrian }
+				OR = {
+					dynasty ?= dynasty:dynn_Baratheon
+					dynasty ?= dynasty:dynn_Durrandon
+				}
+			}
+		}
+	}
+}
+
+ntc_reindeer_crown_trigger = {
+	NOR = {
+		any_artifact = {
+			has_variable = reindeer_crown_artifact
+			artifact_owner = root
+		}
+		is_ai = yes
+	}
+	OR = {
+		has_game_rule = unlimited_hybrd_crowns_enabled
+		AND = {
+			father ?= {
+				OR = {
+					dynasty ?= dynasty:dynn_Baratheon
+					dynasty ?= dynasty:dynn_Durrandon
+				}
+			}
+			mother ?= {
+				dynasty ?= dynasty:dynn_Stark
+			}
+		}
+		AND = {
+			father ?= {
+				dynasty ?= dynasty:dynn_Stark
+			}
+			mother ?= {
+				OR = {
+					dynasty ?= dynasty:dynn_Baratheon
+					dynasty ?= dynasty:dynn_Durrandon
+				}
+			}
+		}
+		AND = {
+			exists = primary_spouse
+			primary_spouse ?= {
+				OR = {
+					dynasty ?= dynasty:dynn_Baratheon
+					dynasty ?= dynasty:dynn_Durrandon
+				}
+			}
+			dynasty ?= dynasty:dynn_Stark
+		}
+		AND = {
+			exists = primary_spouse
+			primary_spouse ?= {
+				dynasty ?= dynasty:dynn_Stark
+			}
+			OR = {
+				dynasty ?= dynasty:dynn_Baratheon
+				dynasty ?= dynasty:dynn_Durrandon
+			}
+		}
+		OR = {
+			AND = {
+				culture ?= culture:stormlander_main
+				dynasty ?= dynasty:dynn_Stark
+			}
+			AND = {
+				culture ?= { has_cultural_pillar = heritage_first_man }
+				OR = {
+					dynasty ?= dynasty:dynn_Baratheon
+					dynasty ?= dynasty:dynn_Durrandon
+				}
+			}
+		}
+	}
+}

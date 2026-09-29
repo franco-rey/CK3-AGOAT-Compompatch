@@ -1,6 +1,8 @@
-﻿barbershop_background = {
+﻿# texture and enviroment should be added in pairs. In code they will be stored in separate arrays, but their index will match up giving each texture correct lighting
+barbershop_background = {
 	
 
+	##########################################
 	texture = {
 		reference = "main_menu/tgp_frontend_japan.dds"
 	}
@@ -9,6 +11,7 @@
 	}
 	
 
+	##########################################
 	texture = {
 		reference = "main_menu/mpo_frontend_nomad.dds"
 	}
@@ -17,6 +20,7 @@
 	}
 	
 
+	##########################################
 	texture = {
 		reference = "main_menu/ep3_frontend_byzantine.dds"
 	}
@@ -25,6 +29,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "main_menu/fp3_frontend_iranian.dds"
 	}
@@ -33,6 +38,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "main_menu/fp2_frontend_iberian.dds"
 	}
@@ -41,6 +47,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "main_menu/frontend_tribal.dds"
 	}
@@ -49,6 +56,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "main_menu/fp1_frontend_tribal.dds"
 	}
@@ -57,6 +65,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "main_menu/fp1_frontend_nontribal.dds"
 	}
@@ -65,14 +74,16 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "main_menu/frontend_mediterranean.dds"
 	}
 	environment = {
-		reference = "environment_southern_essos_high"
+		reference = "environment_cw_mediterranean_throneroom_main"
 	}
 
 
+	##########################################
 	texture = {
 		reference = "main_menu/frontend_east.dds"
 	}
@@ -81,6 +92,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "main_menu/frontend_india.dds"
 	}
@@ -89,14 +101,18 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "main_menu/frontend_west.dds"
 	}
 	environment = {
+		#AGOT Modified
+		#reference = "environment_frontend_west_main"
 		reference = "environment_cw_west"
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/alley.dds"
 	}
@@ -105,6 +121,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/alley_day.dds"
 	}
@@ -113,6 +130,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/armory.dds"
 	}
@@ -121,6 +139,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/battlefield.dds"
 	}
@@ -129,6 +148,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/fp2_temple.dds"
 	}
@@ -137,6 +157,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/church.dds"
 	}
@@ -145,6 +166,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/mosque.dds"
 	}
@@ -153,6 +175,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/fp1_tribal_temple.dds"
 	}
@@ -161,6 +184,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/temple.dds"
 	}
@@ -169,6 +193,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/fp2_corridor_night.dds"
 	}
@@ -177,6 +202,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/bp1_corridor_indian_night.dds"
 	}
@@ -185,6 +211,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/corridor.dds"
 	}
@@ -193,6 +220,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/fp2_corridor_day.dds"
 	}
@@ -201,6 +229,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/fp1_tribal_corridor.dds"
 	}
@@ -209,6 +238,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/bp1_corridor_indian_day.dds"
 	}
@@ -217,6 +247,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/corridor_day.dds"
 	}
@@ -225,6 +256,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/councilchamber.dds"
 	}
@@ -235,6 +267,14 @@
 
 
 
+	##########################################
+	#texture = {
+	#	reference = "event_scenes/fp2_courtyard.dds"
+	#}
+	#environment = {
+	#	reference = "environment_event_fp2_courtyard"
+	#}
+	##########################################
 	texture = {
 		reference = "event_scenes/bp1_courtyard_indian.dds"
 	}
@@ -243,6 +283,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/bp1_courtyard_mena.dds"
 	}
@@ -251,6 +292,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/courtyard.dds"
 	}
@@ -259,6 +301,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/fp2_prison.dds"
 	}
@@ -267,6 +310,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/fp1_tribal_prison.dds"
 	}
@@ -275,6 +319,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/dungeon.dds"
 	}
@@ -283,6 +328,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/bp1_desert.dds"
 	}
@@ -291,6 +337,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/ep2_hunt_snowy_forest.dds"
 	}
@@ -299,6 +346,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/forest_pine.dds"
 	}
@@ -307,6 +355,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/forest.dds"
 	}
@@ -315,6 +364,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/mountains.dds"
 	}
@@ -323,6 +373,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/steppe.dds"
 	}
@@ -331,6 +382,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/drylands.dds"
 	}
@@ -339,6 +391,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/bp1_wetlands.dds"
 	}
@@ -347,6 +400,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/bp1_jungle.dds"
 	}
@@ -355,6 +409,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/bp1_plains.dds"
 	}
@@ -365,6 +420,14 @@
 
 
 
+	##########################################
+	#texture = {
+	#	reference = "event_scenes/bp1_hills.dds"
+	#}
+	#environment = {
+	#	reference = "environment_event_bp1_hills"
+	#}
+	##########################################
 	texture = {
 		reference = "event_scenes/fp1_ocean_norse.dds"
 	}
@@ -373,6 +436,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/fp1_ocean.dds"
 	}
@@ -381,6 +445,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/farms.dds"
 	}
@@ -389,6 +454,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/ep2_travel_bridge.dds"
 	}
@@ -397,6 +463,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/ep2_travel_farm.dds"
 	}
@@ -405,6 +472,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/desert_settlement.dds"
 	}
@@ -413,6 +481,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/desert_nomad.dds"
 	}
@@ -421,6 +490,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/ep2_travel_desert.dds"
 	}
@@ -429,6 +499,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/ep2_travel_mountains.dds"
 	}
@@ -437,6 +508,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/ep2_travel_steppe.dds"
 	}
@@ -445,6 +517,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/ep2_travel_hills.dds"
 	}
@@ -453,6 +526,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/bp1_docks_tribal.dds"
 	}
@@ -461,6 +535,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/docks.dds"
 	}
@@ -469,6 +544,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/bp1_bonfire.dds"
 	}
@@ -477,6 +553,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/bp1_kitchen_western.dds"
 	}
@@ -485,6 +562,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/fp1_viking_feast.dds"
 	}
@@ -493,6 +571,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/ep2_feast_indian.dds"
 	}
@@ -501,6 +580,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/ep2_feast_mena.dds"
 	}
@@ -509,6 +589,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/ep2_feast_steppe.dds"
 	}
@@ -517,6 +598,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/ep2_feast_sub_saharan.dds"
 	}
@@ -525,6 +607,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/feast.dds"
 	}
@@ -533,6 +616,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/gallows.dds"
 	}
@@ -541,6 +625,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/fp2_garden.dds"
 	}
@@ -549,6 +634,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/garden.dds"
 	}
@@ -557,6 +643,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/market_east.dds"
 	}
@@ -565,6 +652,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/market_tribal.dds"
 	}
@@ -573,6 +661,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/market_west.dds"
 	}
@@ -583,6 +672,14 @@
 
 
 
+	##########################################
+	#texture = {
+	#	reference = "event_scenes/market_india.dds"
+	#}
+	#environment = {
+	#	reference = "environment_event_market_west"
+	#}
+	##########################################
 	texture = {
 		reference = "event_scenes/raid_burning.dds"
 	}
@@ -591,6 +688,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/fp2_relaxing_room.dds"
 	}
@@ -599,6 +697,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/sittingroom.dds"
 	}
@@ -607,6 +706,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/ep2_wedding_bedroom_indian.dds"
 	}
@@ -615,6 +715,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/ep2_wedding_bedroom_mena.dds"
 	}
@@ -623,6 +724,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/bedchamber.dds"
 	}
@@ -631,6 +733,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/fp1_steward_study.dds"
 	}
@@ -639,6 +742,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/study.dds"
 	}
@@ -647,6 +751,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/bp1_relaxing_room_mena.dds"
 	}
@@ -655,6 +760,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/bp1_relaxing_room_western.dds"
 	}
@@ -663,6 +769,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/study_physician.dds"
 	}
@@ -671,14 +778,102 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/tavern.dds"
 	}
 	environment = {
 		reference = "environment_event_tavern"
 	}
+	
+	texture = {
+		reference = "event_scenes/bp1_crossroads_inn.dds"
+	}
+	environment = {
+		reference = "environment_event_bp1_crossroads_inn"
+	}
+	
+	texture = {
+		reference = "event_scenes/bp1_wine_cellar.dds"
+	}
+	environment = {
+		reference = "environment_event_bp1_wine_cellar"
+	}
 
 
+	###########################################
+	#
+	#texture = {
+	#	reference = "event_scenes/fp2_throneroom.dds"
+	#}
+	#environment = {
+	#	reference = "environment_event_fp2_throneroom"
+	#}
+	#
+	###########################################
+	#
+	#texture = {
+	#	reference = "event_scenes/fp1_throneroom_tribal.dds"
+	#}
+	#environment = {
+	#	reference = "environment_event_fp1_throneroom_tribal"
+	#}
+	#
+	###########################################
+	#
+	#texture = {
+	#	reference = "event_scenes/throneroom_tribal.dds"
+	#}
+	#environment = {
+	#	reference = "environment_frontend_tribal_main"
+	#}
+	#
+	###########################################
+	#
+	#texture = {
+	#	reference = "event_scenes/fp1_throneroom_nontribal.dds"
+	#}
+	#environment = {
+	#	reference = "environment_event_fp1_throneroom_nontribal"
+	#}
+	#
+	###########################################
+	#
+	#texture = {
+	#	reference = "event_scenes/throneroom_east.dds"
+	#}
+	#environment = {
+	#	reference = "environment_frontend_east_main"
+	#}
+	#
+	###########################################
+	#
+	#texture = {
+	#	reference = "event_scenes/throneroom_india.dds"
+	#}
+	#environment = {
+	#	reference = "environment_frontend_india_main"
+	#}
+	#
+	###########################################
+	#
+	#texture = {
+	#	reference = "event_scenes/throneroom_mediterranean.dds"
+	#}
+	#environment = {
+	#	reference = "environment_frontend_mediterranean_main"
+	#}
+	#
+	###########################################
+	#
+	#texture = {
+	#	reference = "event_scenes/throneroom_west.dds"
+	#}
+	#environment = {
+	#	reference = "environment_frontend_west_main"
+	#}
+	#
+	###########################################
 	texture = {
 		reference = "event_scenes/genericcamp.dds"
 	}
@@ -687,6 +882,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/fp1_runestone.dds"
 	}
@@ -695,6 +891,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/fp1_runestone_circle.dds"
 	}
@@ -703,6 +900,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/fp1_beached_longship.dds"
 	}
@@ -711,6 +909,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/ep2_village_festival_western.dds"
 	}
@@ -719,6 +918,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/ep2_holysite_mena.dds"
 	}
@@ -727,6 +927,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/ep2_holysite_indian.dds"
 	}
@@ -735,6 +936,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/ep2_holysite_western.dds"
 	}
@@ -743,6 +945,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/ep2_holysite_tribal.dds"
 	}
@@ -751,6 +954,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/ep2_holysite_jerusalem.dds"
 	}
@@ -759,6 +963,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/ep2_holysite_mecca.dds"
 	}
@@ -767,6 +972,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/ep2_hunt_generic.dds"
 	}
@@ -775,6 +981,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/ep2_hunt_forest_managed.dds"
 	}
@@ -783,6 +990,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/ep2_hunt_cave_entrance.dds"
 	}
@@ -791,6 +999,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/ep2_hunt_falconry_mews.dds"
 	}
@@ -799,6 +1008,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/ep2_hunt_foggy_forest.dds"
 	}
@@ -807,6 +1017,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/ep2_hunt_poachers_camp.dds"
 	}
@@ -815,6 +1026,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/ep2_dog_kennels.dds"
 	}
@@ -823,6 +1035,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/ep2_wedding_ceremony_mena.dds"
 	}
@@ -831,6 +1044,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/ep2_wedding_ceremony_indian.dds"
 	}
@@ -839,6 +1053,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/ep2_wedding_ceremony_western.dds"
 	}
@@ -847,6 +1062,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/ep2_tournament_india.dds"
 	}
@@ -855,6 +1071,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/ep2_tournament_mena.dds"
 	}
@@ -863,6 +1080,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/ep2_tournament_tribal.dds"
 	}
@@ -871,6 +1089,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/ep2_tournament_western.dds"
 	}
@@ -879,6 +1098,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "activity_backgrounds/contest_bg_melee.dds"
 	}
@@ -887,6 +1107,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "activity_backgrounds/contest_bg_horseracing.dds"
 	}
@@ -895,6 +1116,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "activity_backgrounds/contest_bg_boardgames.dds"
 	}
@@ -903,6 +1125,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "activity_backgrounds/contest_bg_archery.dds"
 	}
@@ -911,6 +1134,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/bp2_courtyard.dds"
 	}
@@ -919,6 +1143,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/bp2_study_indian.dds"
 	}
@@ -927,6 +1152,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/bp2_indian_garden.dds"
 	}
@@ -935,6 +1161,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/bp2_tavern_mena.dds"
 	}
@@ -943,6 +1170,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/bp2_university.dds"
 	}
@@ -951,6 +1179,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/bp2_nursery.dds"
 	}
@@ -959,6 +1188,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/bp2_university_mena.dds"
 	}
@@ -967,6 +1197,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/fp3_bathhouse.dds"
 	}
@@ -975,6 +1206,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/fp3_cave.dds"
 	}
@@ -983,6 +1215,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/fp3_temple.dds"
 	}
@@ -991,6 +1224,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/fp3_docks.dds"
 	}
@@ -999,6 +1233,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/fp3_courtyard_night.dds"
 	}
@@ -1007,6 +1242,7 @@
 	}
 
 	
+	##########################################
 	texture = {
 		reference = "event_scenes/fp4_catacombs.dds"
 	}
@@ -1015,6 +1251,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/fp4_condemned_village.dds"
 	}
@@ -1023,6 +1260,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/fp4_funeral_pyre.dds"
 	}
@@ -1031,6 +1269,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/fp4_legendary_battlefield.dds"
 	}
@@ -1038,6 +1277,7 @@
 		reference = "environment_ce1_legendary_battlefield"
 	}
 
+	##########################################
 	texture = {
 		reference = "event_scenes/fp4_legendary_oasis.dds"
 	}
@@ -1046,6 +1286,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/fp4_physician_tribal.dds"
 	}
@@ -1054,6 +1295,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/fp4_study_physician_indian.dds"
 	}
@@ -1062,6 +1304,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/fp4_study_physician_mena.dds"
 	}
@@ -1070,6 +1313,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/fp4_legendary_spring.dds"
 	}
@@ -1078,6 +1322,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/ep3_holysite_orthodox.dds"
 	}
@@ -1086,6 +1331,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/ep3_constantinople.dds"
 	}
@@ -1094,6 +1340,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/ep3_constantinople_riot.dds"
 	}
@@ -1102,6 +1349,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/ep3_hippodrome_chariot_race.dds"
 	}
@@ -1110,6 +1358,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/ep3_chariots_track.dds"
 	}
@@ -1118,6 +1367,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/ep3_hagia_sophia.dds"
 	}
@@ -1126,6 +1376,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/ep3_feast_byzantine.dds"
 	}
@@ -1134,6 +1385,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/ep3_city_gate.dds"
 	}
@@ -1142,6 +1394,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/ep3_medi_estate.dds"
 	}
@@ -1150,6 +1403,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/ep3_relaxing_room.dds"
 	}
@@ -1158,6 +1412,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/ep3_relaxing_tent.dds"
 	}
@@ -1166,6 +1421,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/ep3_medi_market.dds"
 	}
@@ -1174,6 +1430,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/ep3_camp_arid_terrain.dds"
 	}
@@ -1182,6 +1439,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "main_menu/ep3_frontend_adventurer.dds"
 	}
@@ -1190,6 +1448,7 @@
 	}
 	
 
+	##########################################
 	texture = {
 		reference = "event_scenes/ep3_medi_study.dds"
 	}
@@ -1198,6 +1457,7 @@
 	}
 	
 
+	##########################################
 	texture = {
 		reference = "event_scenes/ep3_military_tent.dds"
 	}
@@ -1206,6 +1466,7 @@
 	}
 	
 
+	##########################################
 	texture = {
 		reference = "event_scenes/ep3_campfire.dds"
 	}
@@ -1214,6 +1475,7 @@
 	}
 	
 
+	##########################################
 	texture = {
 		reference = "event_scenes/bp3_coast.dds"
 	}
@@ -1222,6 +1484,7 @@
 	}
 	
 
+	##########################################
 	texture = {
 		reference = "event_scenes/bp3_hills_winter.dds"
 	}
@@ -1230,6 +1493,7 @@
 	}
 	
 
+	##########################################
 	texture = {
 		reference = "event_scenes/bp3_mountain_winter.dds"
 	}
@@ -1238,6 +1502,7 @@
 	}
 	
 
+	##########################################
 	texture = {
 		reference = "event_scenes/bp3_plains_winter.dds"
 	}
@@ -1246,6 +1511,7 @@
 	}
 	
 
+	##########################################
 	texture = {
 		reference = "event_scenes/bp3_riverside.dds"
 	}
@@ -1254,6 +1520,7 @@
 	}
 	
 
+	##########################################
 	texture = {
 		reference = "event_scenes/bp3_steppe_winter.dds"
 	}
@@ -1262,6 +1529,7 @@
 	}
 	
 
+	##########################################
 	texture = {
 		reference = "event_scenes/bp3_wetlands_winter.dds"
 	}
@@ -1270,6 +1538,7 @@
 	}
 	
 
+	##########################################
 	texture = {
 		reference = "event_scenes/mpo_camp_steppe.dds"
 	}
@@ -1278,6 +1547,7 @@
 	}
 	
 
+	##########################################
 	texture = {
 		reference = "event_scenes/mpo_campfire_steppe.dds"
 	}
@@ -1286,6 +1556,7 @@
 	}
 	
 
+	##########################################
 	texture = {
 		reference = "event_scenes/mpo_city_steppe.dds"
 	}
@@ -1294,6 +1565,7 @@
 	}
 	
 
+	##########################################
 	texture = {
 		reference = "event_scenes/mpo_hunt_steppe.dds"
 	}
@@ -1302,6 +1574,7 @@
 	}
 	
 
+	##########################################
 	texture = {
 		reference = "event_scenes/mpo_raid_burning_asian.dds"
 	}
@@ -1310,6 +1583,7 @@
 	}
 	
 
+	##########################################
 	texture = {
 		reference = "event_scenes/mpo_rural_village_asian.dds"
 	}
@@ -1318,6 +1592,7 @@
 	}
 	
 
+	##########################################
 	texture = {
 		reference = "event_scenes/mpo_steppe_evening.dds"
 	}
@@ -1326,6 +1601,7 @@
 	}
 	
 
+	##########################################
 	texture = {
 		reference = "event_scenes/mpo_temple_steppe.dds"
 	}
@@ -1334,6 +1610,7 @@
 	}
 	
 
+	##########################################
 	texture = {
 		reference = "event_scenes/mpo_tent_interior_mongol.dds"
 	}
@@ -1342,6 +1619,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/tgp_alley_day_asia.dds"
 	}
@@ -1350,6 +1628,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/tgp_alley_night_asia.dds"
 	}
@@ -1358,6 +1637,7 @@
 	}
 	
 
+	##########################################
 	texture = {
 		reference = "event_scenes/tgp_asia_estate.dds"
 	}
@@ -1366,6 +1646,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/tgp_camp_asia.dds"
 	}
@@ -1374,6 +1655,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/tgp_chinese_city.dds"
 	}
@@ -1382,6 +1664,7 @@
 	}
 	
 
+	##########################################
 	texture = {
 		reference = "event_scenes/tgp_chinese_corridor_day.dds"
 	}
@@ -1390,6 +1673,7 @@
 	}
 	
 
+	##########################################
 	texture = {
 		reference = "event_scenes/tgp_chinese_corridor_night.dds"
 	}
@@ -1398,6 +1682,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/tgp_courtyard_asia.dds"
 	}
@@ -1406,6 +1691,7 @@
 	}
 	
 
+	##########################################
 	texture = {
 		reference = "event_scenes/tgp_crossroad_inn_asia.dds"
 	}
@@ -1414,6 +1700,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/tgp_docks_asia.dds"
 	}
@@ -1422,6 +1709,7 @@
 	}
 	
 
+	##########################################
 	texture = {
 		reference = "event_scenes/tgp_examination_room.dds"
 	}
@@ -1430,6 +1718,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/tgp_farm_asia.dds"
 	}
@@ -1438,6 +1727,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/tgp_feast_asia.dds"
 	}
@@ -1446,6 +1736,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/tgp_festival_ritual_japan.dds"
 	}
@@ -1454,6 +1745,7 @@
 	}
 	
 
+	##########################################
 	texture = {
 		reference = "event_scenes/tgp_garden_asia.dds"
 	}
@@ -1462,6 +1754,7 @@
 	}
 	
 
+	##########################################
 	texture = {
 		reference = "event_scenes/tgp_holysite_asia.dds"
 	}
@@ -1470,6 +1763,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/tgp_hunt_generic_asia.dds"
 	}
@@ -1478,6 +1772,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/tgp_japanese_city.dds"
 	}
@@ -1486,6 +1781,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/tgp_japan_throne_room.dds"
 	}
@@ -1494,6 +1790,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/tgp_asia_throne_room.dds"
 	}
@@ -1502,6 +1799,7 @@
 	}
 	
 
+	##########################################
 	texture = {
 		reference = "event_scenes/tgp_kitchen_asia.dds"
 	}
@@ -1510,6 +1808,7 @@
 	}
 	
 
+	##########################################
 	texture = {
 		reference = "event_scenes/tgp_market_asia.dds"
 	}
@@ -1518,6 +1817,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/tgp_moon_festival_japan.dds"
 	}
@@ -1526,6 +1826,7 @@
 	}
 	
 
+	##########################################
 	texture = {
 		reference = "event_scenes/tgp_overflowing_river.dds"
 	}
@@ -1534,6 +1835,7 @@
 	}
 	
 
+	##########################################
 	texture = {
 		reference = "event_scenes/tgp_physician_asia.dds"
 	}
@@ -1542,6 +1844,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/tgp_relaxing_room_asia.dds"
 	}
@@ -1550,6 +1853,7 @@
 	}
 	
 
+	##########################################
 	texture = {
 		reference = "event_scenes/tgp_rice_fields.dds"
 	}
@@ -1558,6 +1862,7 @@
 	}
 	
 
+	##########################################
 	texture = {
 		reference = "event_scenes/tgp_ruined_holding.dds"
 	}
@@ -1566,6 +1871,7 @@
 	}
 	
 
+	##########################################
 	texture = {
 		reference = "event_scenes/tgp_study_asia.dds"
 	}
@@ -1574,6 +1880,7 @@
 	}
 	
 
+	##########################################
 	texture = {
 		reference = "event_scenes/tgp_study_japan.dds"
 	}
@@ -1582,6 +1889,7 @@
 	}
 	
 
+	##########################################
 	texture = {
 		reference = "event_scenes/tgp_tavern_asia.dds"
 	}
@@ -1590,6 +1898,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/tgp_tanabata_festival_japan.dds"
 	}
@@ -1598,6 +1907,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/tgp_tanabata_festival_night_japan.dds"
 	}
@@ -1606,6 +1916,7 @@
 	}
 	
 
+	##########################################
 	texture = {
 		reference = "event_scenes/tgp_temple_asia.dds"
 	}
@@ -1614,6 +1925,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/tgp_village_sea.dds"
 	}
@@ -1622,6 +1934,7 @@
 	}
 	
 
+	##########################################
 	texture = {
 		reference = "event_scenes/tgp_wedding_bedroom_asia.dds"
 	}
@@ -1630,6 +1943,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/tgp_wedding_ceremony_asia.dds"
 	}
@@ -1638,6 +1952,8 @@
 	}
 
 
+	#AGOT Added
+	##########################################
 	texture = {
 		reference = "event_scenes/agot_ep3_relaxing_tent_day.dds"
 	}
@@ -1646,6 +1962,7 @@
 	}
 	
 
+	##########################################
 	texture = {
 		reference = "event_scenes/frozen_forest.dds"
 	}
@@ -1654,6 +1971,7 @@
 	}
 	
 
+	##########################################
 	texture = {
 		reference = "event_scenes/bg_dragon_forest_clearing.dds"
 	}
@@ -1662,12 +1980,6 @@
 	}
 	
 
-	texture = {
-		reference = "event_scenes/bg_dragon_forest_clearing.dds"
-	}
-	environment = {
-		reference = "environment_dragon_outside_sun"
-	}
 
 
 	texture = {
@@ -1678,6 +1990,7 @@
 	}
 	
 	
+	##########################################
 	texture = {
 		reference = "event_scenes/agot_dragonstone_cave.dds"
 	}
@@ -1686,6 +1999,7 @@
 	}
 	
 	
+	##########################################
 	texture = {
 		reference = "event_scenes/agot_councilchamber_night.dds"
 	}
@@ -1694,6 +2008,7 @@
 	}
 	
 	
+	##########################################
 	texture = {
 		reference = "event_scenes/agot_bp1_crossroads_inn_night.dds"
 	}
@@ -1702,6 +2017,7 @@
 	}
 	
 	
+	##########################################
 	texture = {
 		reference = "event_scenes/agot_forest_night.dds"
 	}
@@ -1710,6 +2026,7 @@
 	}
 	
 	
+	##########################################
 	texture = {
 		reference = "event_scenes/agot_bedchamber_night.dds"
 	}
@@ -1718,6 +2035,7 @@
 	}
 	
 	
+	##########################################
 	texture = {
 		reference = "event_scenes/the_wall.dds"
 	}
@@ -1727,6 +2045,7 @@
 	}
 	
 
+	##########################################
 	texture = {
 		reference = "event_scenes/beyond_the_wall.dds"
 	}
@@ -1737,6 +2056,25 @@
 	
 
 	texture = {
+		reference = "event_scenes/weirwood_event.dds"
+	}
+
+	environment = {
+		reference = "environment_event_forest"
+	}
+	
+
+	texture = {
+		reference = "event_scenes/weirwood_event_night.dds"
+	}
+
+	environment = {
+		reference = "environment_event_agot_outside_night"
+	}
+	
+
+	##########################################
+	texture = {
 		reference = "event_scenes/alley_day_kingslanding.dds"
 	}
 	environment = {
@@ -1744,6 +2082,7 @@
 	}
 	
 
+	##########################################
 	texture = {
 		reference = "event_scenes/agot_npk_tree_of_crowns.dds"
 	}
@@ -1752,6 +2091,7 @@
 	}
 	
 
+	##########################################
 	texture = {
 		reference = "event_scenes/tower_of_joy.dds"
 	}
@@ -1760,6 +2100,7 @@
 	}
 	
 
+	##########################################
 	texture = {
 		reference = "event_scenes/bg_stone_hedge.dds"
 	}
@@ -1768,6 +2109,7 @@
 	}
 	
 
+	##########################################
 	texture = {
 		reference = "event_scenes/bg_casterly_rock.dds"
 	}
@@ -1776,6 +2118,7 @@
 	}
 	
 
+	##########################################
 	texture = {
 		reference = "event_scenes/bg_highgarden.dds"
 	}
@@ -1783,6 +2126,7 @@
 		reference = "environment_event_farms"
 	}
 
+	##########################################
 	texture = {
 		reference = "event_scenes/bg_the_eyrie.dds"
 	}
@@ -1790,6 +2134,7 @@
 		reference = "environment_event_mountains"
 	}
 
+	##########################################
 	texture = {
 		reference = "event_scenes/bg_the_trident.dds"
 	}
@@ -1798,6 +2143,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/bg_storms_end.dds"
 	}
@@ -1806,6 +2152,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/ironthrone/throneroom_ironthrone.dds"
 	}
@@ -1814,6 +2161,7 @@
 	}
 	
 
+	##########################################
 	texture = {
 		reference = "event_scenes/north/throneroom_winterfell.dds"
 	}
@@ -1822,6 +2170,7 @@
 	}
 	
 
+	##########################################
 	texture = {
 		reference = "event_scenes/vale/agot_eyrie_throneroom.dds"
 	}
@@ -1830,6 +2179,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/west/casterly_rock.dds"
 	}
@@ -1838,6 +2188,7 @@
 	}
 	
 
+	##########################################
 	texture = {
 		reference = "event_scenes/ironborn/pyke.dds"
 	}
@@ -1846,6 +2197,7 @@
 	}
 	
 
+	##########################################
 	texture = {
 		reference = "event_scenes/reach/highgarden.dds"
 	}
@@ -1854,6 +2206,7 @@
 	}
 	
 
+	##########################################
 	texture = {
 		reference = "event_scenes/agot_dragonstone_throneroom.dds"
 	}
@@ -1862,6 +2215,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/the_wall.dds"
 	}
@@ -1870,6 +2224,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/beyondwall/throneroom_beyond_wall_high.dds"
 	}
@@ -1878,6 +2233,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/north/throneroom_north_high.dds"
 	}
@@ -1886,6 +2242,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/ironborn/throneroom_ironborn_high.dds"
 	}
@@ -1894,6 +2251,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/riverlands/throneroom_riverlands_high.dds"
 	}
@@ -1902,6 +2260,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/vale/throneroom_vale_high.dds"
 	}
@@ -1910,6 +2269,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/stormlands/throneroom_stormlands_high.dds"
 	}
@@ -1918,6 +2278,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/crownlands/throneroom_crownlands_low.dds"
 	}
@@ -1926,6 +2287,7 @@
 	}
 	
 
+	##########################################
 	texture = {
 		reference = "event_scenes/crownlands/throneroom_crownlands_mid.dds"
 	}
@@ -1934,6 +2296,7 @@
 	}
 	
 
+	##########################################
 	texture = {
 		reference = "event_scenes/crownlands/throneroom_crownlands_high.dds"
 	}
@@ -1942,6 +2305,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/dorne/throneroom_dorne_high.dds"
 	}
@@ -1950,6 +2314,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/reach/throneroom_reach_high.dds"
 	}
@@ -1958,6 +2323,7 @@
 	}
 
 
+	##########################################
 	texture = {
 		reference = "event_scenes/west/throneroom_west_high.dds"
 	}
@@ -1966,138 +2332,173 @@
 	}
 	
 
+	##########################################
+	#										 #
+	#			 COW Added Below			 #
+	#										 #
+	##########################################
+	##AGOT More Backgrounds ADDED
 	texture = {
 		reference = "event_scenes/throneroom_old_ironthrone.dds"
 	}
+	##AGOT Added
 	environment = {
 		reference = "environment_throneroom_iron_throne"
 	}
 	
 
+	##########################################
+	##AGOT More Backgrounds ADDED
 	texture = {
 		reference = "event_scenes/throneroom_redkeep_door.dds"
 	}
+	##AGOT More Backgrounds ADDED
 	environment = {
 		reference = "environment_throneroom_iron_throne"
 	}
 	
 
+	##########################################
+	##AGOT More Backgrounds ADDED
 	texture = {
 		reference = "event_scenes/throneroom_redkeep_pillars.dds"
 	}
+	##AGOT More Backgrounds ADDED
 	environment = {
 		reference = "environment_throneroom_iron_throne"
 	}
 	
 
+	##########################################
+	##AGOT More Backgrounds ADDED
 	texture = {
 		reference = "event_scenes/throneroom_therock.dds"
 	}
+	##AGOT More Backgrounds ADDED
 	environment = {
 		reference = "environment_cw_east_main"
 	}
 	
 
+	##########################################
+	##AGOT More Backgrounds ADDED
 	texture = {
 		reference = "event_scenes/throneroom_therock_door.dds"
 	}
+	##AGOT More Backgrounds ADDED
 	environment = {
 		reference = "environment_cw_east_main"
 	}
 	
 
+	##########################################
+	##AGOT More Backgrounds ADDED
 	texture = {
 		reference = "event_scenes/throneroom_pyke1.dds"
 	}
+	##AGOT More Backgrounds ADDED
 	environment = {
 		reference = "environment_event_gallows"
 	}
 	
 
+	##########################################
+	##AGOT More Backgrounds ADDED
 	texture = {
 		reference = "event_scenes/throneroom_pyke2.dds"
 	}
+	##AGOT More Backgrounds ADDED
 	environment = {
 		reference = "environment_event_gallows"
 	}
 	
 
+	##########################################
+	##AGOT More Backgrounds ADDED
 	texture = {
 		reference = "event_scenes/throneroom_pyke3.dds"
 	}
+	##AGOT More Backgrounds ADDED
 	environment = {
 		reference = "environment_event_gallows"
 	}
 	
 
+	##########################################
+	##AGOT More Backgrounds ADDED
 	texture = {
 		reference = "event_scenes/throneroom_dragonstone_throne.dds"
 	}
+	##AGOT More Backgrounds ADDED
 	environment = {
 		reference = "environment_frontend_west_main"
 	}
 	
 
+	##########################################
+	##AGOT More Backgrounds ADDED
 	texture = {
 		reference = "event_scenes/throneroom_dragonstone_table1.dds"
 	}
+	##AGOT More Backgrounds ADDED
 	environment = {
 		reference = "environment_frontend_west_main"
 	}
 	
 
+	##########################################
+	##AGOT More Backgrounds ADDED
 	texture = {
 		reference = "event_scenes/throneroom_dragonstone_table2.dds"
 	}
+	##AGOT More Backgrounds ADDED
 	environment = {
 		reference = "environment_frontend_west_main"
 	}
 	
 
+	##########################################
+	##AGOT More Backgrounds ADDED
 	texture = {
 		reference = "event_scenes/throneroom_highgarden_old_1.dds"
 	}
+	##AGOT More Backgrounds ADDED
 	environment = {
 		reference = "environment_throneroom_reach_high"
 	}
 	
 
+	##########################################
+	##AGOT More Backgrounds ADDED
 	texture = {
 		reference = "event_scenes/throneroom_highgarden_new_1.dds"
 	}
+	##AGOT More Backgrounds ADDED
 	environment = {
 		reference = "environment_throneroom_reach_high"
 	}
 	
 
+	##########################################
+	##AGOT More Backgrounds ADDED
 	texture = {
 		reference = "event_scenes/throneroom_highgarden_old_2.dds"
 	}
+	##AGOT More Backgrounds ADDED
 	environment = {
 		reference = "environment_throneroom_reach_high"
 	}
 	
 
+	##########################################
+	##AGOT More Backgrounds ADDED
 	texture = {
 		reference = "event_scenes/throneroom_highgarden_new_2.dds"
 	}
+	##AGOT More Backgrounds ADDED
 	environment = {
 		reference = "environment_throneroom_reach_high"
 	}
 	
 
-	texture = {
-		reference = "event_scenes/the_wall.dds"
-	}
-	environment = {
-		reference = "environment_the_wall"
-	}
-
-
-	texture = {
-		reference = "event_scenes/beyondwall/throneroom_beyond_wall_high.dds"
-	}
-	environment = {
-		reference = "environment_throneroom_beyond_wall_high"
-	}
 }

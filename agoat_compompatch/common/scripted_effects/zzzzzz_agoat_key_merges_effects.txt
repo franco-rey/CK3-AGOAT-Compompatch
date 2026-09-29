@@ -1,0 +1,1850 @@
+﻿agot_become_a_knight_effect = {
+	$KNIGHT_TO_BE$ = {
+		# Add knight leveled trait
+		if = {
+			limit = {
+				has_trait = squire
+			}
+			add_trait_xp = {
+				trait = squire
+				track = knight
+				value = 100
+			}
+		}
+		else_if = {
+			limit = {
+				NOT = {
+					has_trait = squire
+				}
+			}
+			add_trait = squire
+			add_trait_xp = {
+				trait = squire
+				track = knight
+				value = 100
+			}
+		}
+		if = {
+			limit = {
+				has_character_flag = agot_knighthood_knightless_squire_flag
+			}
+			remove_character_flag = agot_knighthood_knightless_squire_flag
+		}
+		# Remove Relations Where Possible
+		if = {
+			limit = { has_relation_agot_knight = $KNIGHT_MAKER$ }
+			$KNIGHT_MAKER$ = {
+				agot_manage_knight_location_post_squirehood_effect = { KNIGHT_TO_BE = $KNIGHT_TO_BE$ }
+				remove_relation_agot_squire = $KNIGHT_TO_BE$
+			}
+			agot_manage_squire_location_post_squirehood_effect = { KNIGHT_MAKER = $KNIGHT_MAKER$ }
+		}
+		else_if = { # Edgecase where you are knighted elsewhere by someone else other than your knight
+			limit = {
+				any_relation = {
+					type = agot_knight
+					this != $KNIGHT_MAKER$
+				}
+			}
+			every_relation = {
+				type = agot_knight
+				save_scope_as = edgecase_knight
+				agot_manage_knight_location_post_squirehood_effect = { KNIGHT_TO_BE = $KNIGHT_TO_BE$ }
+				remove_relation_agot_squire = $KNIGHT_TO_BE$
+			}
+			agot_manage_squire_location_post_squirehood_effect = { KNIGHT_MAKER = scope:edgecase_knight }
+		}
+		# End the squire ongoing story
+		if = {
+			limit = {
+				OR = {
+					has_character_flag = had_ongoing_squire_story
+					any_owned_story = {
+						story_type = story_agot_squire_ongoing
+					}
+				}
+			}
+			random_owned_story = {
+				limit = {
+					story_type = story_agot_squire_ongoing
+				}
+				end_story = yes
+			}
+		}
+		# Notify close family of your becoming of a knight
+		save_scope_as = my_relation
+		if = {
+			limit = {
+				any_close_family_member = {
+					exists = yes
+				}
+			}
+			every_close_family_member = {
+				limit = {
+					opinion = {
+						target = scope:my_relation
+						value >= 10
+					}
+				}
+				trigger_event = {
+					id = agot_knighthood.0320
+					days = 1
+				}
+			}
+		}
+		# Add Memories & Prestige & Piety & Opinion
+		if = {
+			limit = {
+				has_character_flag = agot_bought_knighthood
+			}
+			add_prestige = 25
+			create_character_memory = {
+				type = agot_bought_knighthood
+				participants = {
+					purchaser = $KNIGHT_TO_BE$
+				}
+			}
+		}
+		else = {
+			# Record who did the knighting for the Knight trait tooltip. Skipped for any
+			# self-knighting path, not just the bought flag, and set only once so a re-fire
+			# (Kingsguard, trial of seven) can't overwrite the original knighter.
+			if = {
+				limit = {
+					NOT = { this = $KNIGHT_MAKER$ }
+					NOT = { has_variable = agot_knighted_by }
+				}
+				set_variable = {
+					name = agot_knighted_by
+					value = $KNIGHT_MAKER$
+				}
+			}
+			$KNIGHT_MAKER$ = {
+				if = {
+					limit = {
+						$KNIGHT_TO_BE$ = {
+							has_character_flag = agot_knighthood_as_tourney_prize
+						}
+					}
+					create_character_memory = {
+						type = agot_knighted_someone_as_tourney_prize
+						participants = {
+							squire = $KNIGHT_TO_BE$
+						}
+					}
+				}
+				else = {
+					create_character_memory = {
+						type = agot_knighted_someone
+						participants = {
+							squire = $KNIGHT_TO_BE$
+						}
+					}
+				}
+				if = {
+					limit = {
+						is_alive = yes # Stops RTE during death-bed knightings
+					}
+					add_opinion = {
+						target = $KNIGHT_TO_BE$
+						modifier = i_made_you_a_knight_opinion
+						opinion = 25
+					}
+					if = {
+						limit = {
+							faith = { has_doctrine_parameter = can_grant_knighthood }
+						}
+						add_piety = 25
+					}
+				}
+			}
+			if = {
+				limit = {
+					$KNIGHT_MAKER$ = {
+						is_alive = yes
+					}
+				}
+				if = {
+					limit = {
+						faith = { has_doctrine_parameter = can_grant_knighthood }
+					}
+					add_opinion = {
+						target = $KNIGHT_MAKER$
+						modifier = knighted_me_opinion
+						opinion = 50
+					}
+				}
+				else = {
+					add_opinion = {
+						target = $KNIGHT_MAKER$
+						modifier = knighted_me_opinion
+						opinion = 25
+					}
+				}
+			}
+			if = {
+				limit = {
+					has_character_flag = agot_knighthood_as_tourney_prize
+				}
+				create_character_memory = {
+					type = agot_was_knighted_as_tourney_prize
+					participants = {
+						knight = $KNIGHT_MAKER$
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					has_character_flag = agot_had_battlefield_knighthood
+				}
+				create_character_memory = {
+					type = agot_was_knighted_on_the_battlefield
+					participants = {
+						knight = $KNIGHT_MAKER$
+					}
+				}
+				scope:new_memory = {
+					set_variable = {
+						name = battle_location
+						value = scope:battle_province
+					}
+				}
+			}
+			else = {
+				create_character_memory = {
+					type = agot_was_knighted
+					participants = {
+						knight = $KNIGHT_MAKER$
+					}
+				}
+			}
+			# Add Prestige
+			agot_add_become_a_knight_prestige_effect = {
+				KNIGHT_MAKER = $KNIGHT_MAKER$
+				KNIGHT_TO_BE = $KNIGHT_TO_BE$
+			}
+			if = {
+				limit = {
+					faith = {
+						has_doctrine_parameter = can_grant_knighthood
+					}
+				}
+				add_piety = 75
+			}
+		}
+		# Lowborns get Personal COA
+		if = {
+			limit = {
+				is_lowborn = yes
+			}
+			hidden_effect = {
+				random_list = {
+					25 = {
+						agot_create_personal_coa = yes
+					}
+					75 = {}
+				}
+			}
+		}
+		# SOTM
+		if = {
+			limit = {
+				is_lowborn = no
+				exists = dynasty
+				dynasty ?= dynasty:dynn_Dayne
+				dynasty = { exists = dynast }
+				NOT = { this = dynasty.dynast }
+			}
+			dynasty.dynast = {
+				trigger_event = {
+					id = agot_valyrian_steel.0001
+					days = 1
+				}
+			}
+		}
+		# Dark Sister
+		if = {
+			limit = {
+				is_lowborn = no
+				exists = dynasty
+				dynasty ?= dynasty:dynn_Targaryen
+				OR = {
+					has_trait = education_martial_prowess_4
+					has_trait = education_martial_prowess_5
+					AND = {
+						has_trait = lifestyle_blademaster
+						age < 16
+					}
+				}
+				any_artifact = {
+					has_artifact_modifier = vs_dark_sister_modifier
+					artifact_owner = {
+						is_ai = yes
+						house ?= $KNIGHT_TO_BE$.house
+						any_character_artifact = {
+							has_artifact_modifier = vs_blackfyre_modifier
+						}
+					}
+				}
+			}
+			random_artifact = {
+				limit = { has_artifact_modifier = vs_dark_sister_modifier }
+				artifact_owner = {
+					trigger_event = {
+						id = agot_valyrian_steel.3010
+						days = 1
+					}
+				}
+			}
+		}
+	}
+	if = {
+		limit = { $KNIGHT_TO_BE$ = { has_character_flag = skip_tree_assignment } }
+		$KNIGHT_TO_BE$ = { remove_character_flag = skip_tree_assignment }
+	}
+	else = { agot_add_to_knight_tree = { KNIGHT = $KNIGHT_MAKER$ SQUIRE = $KNIGHT_TO_BE$ } }
+}
+
+accolades_activity_complete_coronation_glory_effect = {
+	save_scope_as = accolade_owner
+	save_scope_as = acclaimed_knight
+	# Much glory if you did a magnificent wedding
+	if = {
+		limit = {
+			scope:root_scope = {
+				is_acclaimed = yes
+				#this acclaimed knight's liege is not present
+				exists = liege
+				NOT = {
+					scope:root_scope.location = liege.location
+				}
+			}
+			scope:activity = {
+				# perfect options
+				has_activity_option = {
+					category = wedding_option_entertainment
+					option = wedding_entertainment_good
+				}
+				has_activity_option = {
+					category = wedding_option_food
+					option = wedding_food_good
+				}
+				has_activity_option = {
+					category = coronation_option_pomp
+					option = coronation_pomp_grandiose
+				}
+			}
+		}
+		scope:activity = {
+			add_activity_log_entry = {
+				key = knight_accolade_glory_reward
+				tags = { completed }
+				score = 10
+				# this line below adds the entry to the Effects section of the conclusion UI
+				show_in_conclusion = yes
+				character = scope:root_scope
+
+				#more glory gain if primary participant
+				if = {
+					limit = {
+						scope:root_scope = {
+							this = scope:host
+						}
+					}
+					scope:root_scope = {
+						accolade = { add_glory = massive_glory_gain }
+					}
+				}
+				else = {
+					scope:root_scope = {
+						accolade = { add_glory = minor_glory_gain }
+					}
+				}
+			}
+		}
+	}
+	# Much glory if you did a magnificent wedding
+	else_if = {
+		limit = {
+			scope:activity = {
+				any_attending_character = {
+					is_knight_of = scope:root_scope
+					is_acclaimed = yes
+				}
+			}
+			scope:activity = {
+				# perfect options
+				has_activity_option = {
+					category = wedding_option_entertainment
+					option = wedding_entertainment_good
+				}
+				has_activity_option = {
+					category = wedding_option_food
+					option = wedding_food_good
+				}
+				has_activity_option = {
+					category = coronation_option_pomp
+					option = coronation_pomp_grandiose
+				}
+			}
+		}
+		scope:activity = {
+			add_activity_log_entry = {
+				key = liege_accolades_glory_reward
+				tags = { completed }
+				score = 10
+				# this line below adds the entry to the Effects section of the conclusion UI
+				show_in_conclusion = yes
+				character = scope:root_scope
+
+				#more glory gain if you are primary participant
+				if = {
+					limit = {
+						scope:root_scope = scope:host
+					}
+					every_attending_character = {
+						limit = {
+							is_knight_of = scope:root_scope
+							is_acclaimed = yes
+						}
+						if = {
+							limit = {
+								this = scope:host
+							}
+							accolade = { add_glory = massive_glory_gain }
+						}
+						else = {
+							accolade = { add_glory = medium_glory_gain }
+						}
+					}
+				}
+				# more glory for a primary participant knight
+				else = {
+					every_attending_character = {
+						limit = {
+							is_knight_of = scope:root_scope
+							is_acclaimed = yes
+						}
+						if = {
+							limit = {
+								this = scope:host
+							}
+							accolade = { add_glory = massive_glory_gain }
+						}
+						else = {
+							accolade = { add_glory = minor_glory_gain }
+						}
+					}
+				}
+			}
+		}
+	}
+	# Decent glory if acclaimed knights went to a nice wedding without liege
+	else_if = {
+		limit = {
+			scope:root_scope = {
+				is_acclaimed = yes
+				#this acclaimed knight's liege is not present
+				exists = liege
+				NOT = {
+					scope:root_scope.location = liege.location
+				}
+			}
+			scope:activity = {
+				OR = {
+					AND = {
+						# at least two tier threes
+						has_activity_option = {
+							category = wedding_option_entertainment
+							option = wedding_entertainment_good
+						}
+						has_activity_option = {
+							category = wedding_option_food
+							option = wedding_food_good
+						}
+					}
+					AND = {
+						has_activity_option = {
+							category = wedding_option_entertainment
+							option = wedding_entertainment_good
+						}
+						has_activity_option = {
+							category = coronation_option_pomp
+							option = coronation_pomp_grandiose
+						}
+					}
+					AND = {
+						has_activity_option = {
+							category = coronation_option_pomp
+							option = coronation_pomp_grandiose
+						}
+						has_activity_option = {
+							category = wedding_option_food
+							option = wedding_food_good
+						}
+					}
+					# a tier 3 and two tier 2s
+					AND = {
+						has_activity_option = {
+							category = wedding_option_entertainment
+							option = wedding_entertainment_good
+						}
+						has_activity_option = {
+							category = wedding_option_food
+							option = wedding_food_normal
+						}
+						has_activity_option = {
+							category = coronation_option_pomp
+							option = coronation_pomp_impressive
+						}
+					}
+					AND = {
+						has_activity_option = {
+							category = wedding_option_food
+							option = wedding_food_good
+						}
+						has_activity_option = {
+							category = wedding_option_entertainment
+							option = wedding_entertainment_normal
+						}
+						has_activity_option = {
+							category = coronation_option_pomp
+							option = coronation_pomp_impressive
+						}
+					}
+					AND = {
+						has_activity_option = {
+							category = coronation_option_pomp
+							option = coronation_pomp_grandiose
+						}
+						has_activity_option = {
+							category = wedding_option_entertainment
+							option = wedding_entertainment_normal
+						}
+						has_activity_option = {
+							category = wedding_option_food
+							option = wedding_food_normal
+						}
+					}
+				}
+			}
+		}
+		scope:activity = {
+			add_activity_log_entry = {
+				key = knight_accolade_glory_reward
+				tags = { completed }
+				score = 10
+				# this line below adds the entry to the Effects section of the conclusion UI
+				show_in_conclusion = yes
+				character = scope:root_scope
+
+				#more glory gain if primary participant
+				if = {
+					limit = {
+						scope:root_scope = {
+							scope:root_scope = scope:host
+						}
+					}
+					scope:root_scope = {
+						accolade = { add_glory = major_glory_gain }
+					}
+				}
+				else = {
+					scope:root_scope = {
+						accolade = { add_glory = minimal_glory_gain }
+					}
+				}
+			}
+		}
+	}
+	# Decent glory if you went to a nice wedding with acclaimed knights
+	else_if = {
+		limit = {
+			scope:activity = {
+				any_attending_character = {
+					is_knight_of = scope:root_scope
+					is_acclaimed = yes
+				}
+			}
+			scope:activity = {
+				OR = {
+					AND = {
+						# at least two tier threes
+						has_activity_option = {
+							category = wedding_option_entertainment
+							option = wedding_entertainment_good
+						}
+						has_activity_option = {
+							category = wedding_option_food
+							option = wedding_food_good
+						}
+					}
+					AND = {
+						has_activity_option = {
+							category = wedding_option_entertainment
+							option = wedding_entertainment_good
+						}
+						has_activity_option = {
+							category = coronation_option_pomp
+							option = coronation_pomp_grandiose
+						}
+					}
+					AND = {
+						has_activity_option = {
+							category = coronation_option_pomp
+							option = coronation_pomp_grandiose
+						}
+						has_activity_option = {
+							category = wedding_option_food
+							option = wedding_food_good
+						}
+					}
+					# a tier 3 and two tier 2s
+					AND = {
+						has_activity_option = {
+							category = wedding_option_entertainment
+							option = wedding_entertainment_good
+						}
+						has_activity_option = {
+							category = wedding_option_food
+							option = wedding_food_normal
+						}
+						has_activity_option = {
+							category = coronation_option_pomp
+							option = coronation_pomp_impressive
+						}
+					}
+					AND = {
+						has_activity_option = {
+							category = wedding_option_food
+							option = wedding_food_good
+						}
+						has_activity_option = {
+							category = wedding_option_entertainment
+							option = wedding_entertainment_normal
+						}
+						has_activity_option = {
+							category = coronation_option_pomp
+							option = coronation_pomp_impressive
+						}
+					}
+					AND = {
+						has_activity_option = {
+							category = coronation_option_pomp
+							option = coronation_pomp_grandiose
+						}
+						has_activity_option = {
+							category = wedding_option_entertainment
+							option = wedding_entertainment_normal
+						}
+						has_activity_option = {
+							category = wedding_option_food
+							option = wedding_food_normal
+						}
+					}
+				}
+			}
+		}
+		scope:activity = {
+			add_activity_log_entry = {
+				key = liege_accolades_glory_reward
+				tags = { completed }
+				score = 10
+				# this line below adds the entry to the Effects section of the conclusion UI
+				show_in_conclusion = yes
+				character = scope:root_scope
+
+				#more glory gain if you are primary participant
+				if = {
+					limit = {
+						scope:root_scope = scope:host
+					}
+					every_attending_character = {
+						limit = {
+							is_knight_of = scope:root_scope
+							is_acclaimed = yes
+						}
+						if = {
+							limit = {
+								this = scope:host
+							}
+							accolade = { add_glory = major_glory_gain }
+						}
+						else = {
+							accolade = { add_glory = minor_glory_gain }
+						}
+					}
+				}
+				# more glory for a primary participant knight
+				else = {
+					every_attending_character = {
+						limit = {
+							is_knight_of = scope:root_scope
+							is_acclaimed = yes
+						}
+						if = {
+							limit = {
+								this = scope:host
+							}
+							accolade = { add_glory = major_glory_gain }
+						}
+						else = {
+							accolade = { add_glory = minimal_glory_gain }
+						}
+					}
+				}
+			}
+		}
+	}
+	# An ok amount for a sort of grand wedding, knights without attending liege
+	else_if = {
+		limit = {
+			scope:root_scope = {
+				is_acclaimed = yes
+				#this acclaimed knight's liege is not present
+				exists = liege
+				NOT = {
+					scope:root_scope.location = liege.location
+				}
+			}
+			scope:activity = {
+				# 1 tier 3 option
+				OR = {
+					has_activity_option = {
+						category = wedding_option_entertainment
+						option = wedding_entertainment_good
+					}
+					has_activity_option = {
+						category = wedding_option_food
+						option = wedding_food_good
+					}
+					has_activity_option = {
+						category = coronation_option_pomp
+						option = coronation_pomp_grandiose
+					}
+					# 2 tier 2 options
+					AND = {
+						has_activity_option = {
+							category = wedding_option_entertainment
+							option = wedding_entertainment_normal
+						}
+						has_activity_option = {
+							category = wedding_option_food
+							option = wedding_food_normal
+						}
+					}
+					AND = {
+						has_activity_option = {
+							category = wedding_option_entertainment
+							option = wedding_entertainment_normal
+						}
+						has_activity_option = {
+							category = coronation_option_pomp
+							option = coronation_pomp_impressive
+						}
+					}
+					AND = {
+						has_activity_option = {
+							category = coronation_option_pomp
+							option = coronation_pomp_impressive
+						}
+						has_activity_option = {
+							category = wedding_option_food
+							option = wedding_food_normal
+						}
+					}
+				}
+			}
+		}
+		scope:activity = {
+			add_activity_log_entry = {
+				key = knight_accolade_glory_reward
+				tags = { completed }
+				score = 10
+				# this line below adds the entry to the Effects section of the conclusion UI
+				show_in_conclusion = yes
+				character = scope:root_scope
+
+				#more glory gain if primary participant
+				if = {
+					limit = {
+						scope:root_scope = {
+							this = scope:host
+						}
+					}
+					scope:root_scope = {
+						accolade = { add_glory = medium_glory_gain }
+					}
+				}
+				else = {
+					scope:root_scope = {
+						accolade = { add_glory = sub_minimal_glory_gain }
+					}
+				}
+			}
+		}
+	}
+	# An ok amount for a sort of grand wedding, liege with attending knights
+	else_if = {
+		limit = {
+			scope:activity = {
+				any_attending_character = {
+					is_knight_of = scope:root_scope
+					is_acclaimed = yes
+				}
+			}
+			scope:activity = {
+				#this
+				OR = {
+					has_activity_option = {
+						category = wedding_option_entertainment
+						option = wedding_entertainment_good
+					}
+					has_activity_option = {
+						category = wedding_option_food
+						option = wedding_food_good
+					}
+					has_activity_option = {
+						category = coronation_option_pomp
+						option = coronation_pomp_grandiose
+					}
+					# 2 tier 2 options
+					AND = {
+						has_activity_option = {
+							category = wedding_option_entertainment
+							option = wedding_entertainment_normal
+						}
+						has_activity_option = {
+							category = wedding_option_food
+							option = wedding_food_normal
+						}
+					}
+					AND = {
+						has_activity_option = {
+							category = wedding_option_entertainment
+							option = wedding_entertainment_normal
+						}
+						has_activity_option = {
+							category = coronation_option_pomp
+							option = coronation_pomp_impressive
+						}
+					}
+					AND = {
+						has_activity_option = {
+							category = coronation_option_pomp
+							option = coronation_pomp_impressive
+						}
+						has_activity_option = {
+							category = wedding_option_food
+							option = wedding_food_normal
+						}
+					}
+				}
+			}
+		}
+		scope:activity = {
+			add_activity_log_entry = {
+				key = liege_accolades_glory_reward
+				tags = { completed }
+				score = 10
+				# this line below adds the entry to the Effects section of the conclusion UI
+				show_in_conclusion = yes
+				character = scope:root_scope
+
+				#more glory gain if primary participant
+				if = {
+					limit = {
+						scope:root_scope = scope:host
+					}
+					every_attending_character = {
+						limit = {
+							is_knight_of = scope:root_scope
+							is_acclaimed = yes
+						}
+						if = {
+							limit = {
+								this = scope:host
+							}
+							accolade = { add_glory = medium_glory_gain }
+						}
+						else = {
+							accolade = { add_glory = minimal_glory_gain }
+						}
+					}
+				}
+				# more glory for a primary participant knight
+				else = {
+					every_attending_character = {
+						limit = {
+							is_knight_of = scope:root_scope
+							is_acclaimed = yes
+						}
+						if = {
+							limit = {
+								this = scope:host
+							}
+							accolade = { add_glory = medium_glory_gain }
+						}
+						else = {
+							accolade = { add_glory = sub_minimal_glory_gain }
+						}
+					}
+				}
+			}
+		}
+	}
+	# Otherwise, attending knights without liege only get glory as a spouse
+	else_if = {
+		limit = {
+			scope:root_scope = {
+				this = scope:host
+				is_acclaimed = yes
+				#this acclaimed knight's liege is not present
+				exists = liege
+				NOT = {
+					scope:root_scope.location = liege.location
+				}
+			}
+		}
+		scope:activity = {
+			add_activity_log_entry = {
+				key = knight_accolade_glory_reward
+				tags = { completed }
+				score = 10
+				# this line below adds the entry to the Effects section of the conclusion UI
+				show_in_conclusion = yes
+				character = scope:root_scope
+
+				scope:root_scope = {
+					accolade = { add_glory = minor_glory_gain }
+				}
+			}
+		}
+	}
+	# attending knights of liege get scraps
+	else_if = {
+		limit = {
+			scope:activity = {
+				any_attending_character = {
+					is_knight_of = scope:root_scope
+					is_acclaimed = yes
+				}
+			}
+		}
+		scope:activity = {
+			add_activity_log_entry = {
+				key = liege_accolades_glory_reward
+				tags = { completed }
+				score = 10
+				# this line below adds the entry to the Effects section of the conclusion UI
+				show_in_conclusion = yes
+				character = scope:root_scope
+
+				#more glory gain if primary participant
+				if = {
+					limit = {
+						scope:root_scope = scope:host
+					}
+					every_attending_character = {
+						limit = {
+							is_knight_of = scope:root_scope
+							is_acclaimed = yes
+						}
+						if = {
+							limit = {
+								this = scope:host
+							}
+							accolade = { add_glory = minor_glory_gain }
+						}
+						else = {
+							accolade = { add_glory = sub_minimal_glory_gain }
+						}
+					}
+				}
+				# more glory for a primary participant knight
+				else = {
+					every_attending_character = {
+						limit = {
+							is_knight_of = scope:root_scope
+							is_acclaimed = yes
+							this = scope:host
+						}
+						accolade = { add_glory = minor_glory_gain }
+					}
+				}
+			}
+		}
+	}
+}
+
+display_correct_education_trait_gain_tooltip_effect = {
+	if = {
+		limit = { has_trait = education_diplomacy_1 }
+		show_as_tooltip = {
+			add_trait_force_tooltip = education_diplomacy_1
+		}
+	}
+	if = {
+		limit = { has_trait = education_diplomacy_2 }
+		show_as_tooltip = {
+			add_trait_force_tooltip = education_diplomacy_2
+		}
+	}
+	if = {
+		limit = { has_trait = education_diplomacy_3 }
+		show_as_tooltip = {
+			add_trait_force_tooltip = education_diplomacy_3
+		}
+	}
+	if = {
+		limit = { has_trait = education_diplomacy_4 }
+		show_as_tooltip = {
+			add_trait_force_tooltip = education_diplomacy_4
+		}
+	}
+	if = {
+		limit = { has_trait = education_diplomacy_5 }
+		show_as_tooltip = {
+			add_trait_force_tooltip = education_diplomacy_5
+		}
+	}
+	if = {
+		limit = { has_trait = education_martial_1 }
+		show_as_tooltip = {
+			add_trait_force_tooltip = education_martial_1
+		}
+	}
+	if = {
+		limit = { has_trait = education_martial_2 }
+		show_as_tooltip = {
+			add_trait_force_tooltip = education_martial_2
+		}
+	}
+	if = {
+		limit = { has_trait = education_martial_3 }
+		show_as_tooltip = {
+			add_trait_force_tooltip = education_martial_3
+		}
+	}
+	if = {
+		limit = { has_trait = education_martial_4 }
+		show_as_tooltip = {
+			add_trait_force_tooltip = education_martial_4
+		}
+	}
+	if = {
+		limit = { has_trait = education_martial_5 }
+		show_as_tooltip = {
+			add_trait_force_tooltip = education_martial_5
+		}
+	}
+	if = {
+		limit = { has_trait = education_stewardship_1 }
+		show_as_tooltip = {
+			add_trait_force_tooltip = education_stewardship_1
+		}
+	}
+	if = {
+		limit = { has_trait = education_stewardship_2 }
+		show_as_tooltip = {
+			add_trait_force_tooltip = education_stewardship_2
+		}
+	}
+	if = {
+		limit = { has_trait = education_stewardship_3 }
+		show_as_tooltip = {
+			add_trait_force_tooltip = education_stewardship_3
+		}
+	}
+	if = {
+		limit = { has_trait = education_stewardship_4 }
+		show_as_tooltip = {
+			add_trait_force_tooltip = education_stewardship_4
+		}
+	}
+	if = {
+		limit = { has_trait = education_stewardship_5 }
+		show_as_tooltip = {
+			add_trait_force_tooltip = education_stewardship_5
+		}
+	}
+	if = {
+		limit = { has_trait = education_intrigue_1 }
+		show_as_tooltip = {
+			add_trait_force_tooltip = education_intrigue_1
+		}
+	}
+	if = {
+		limit = { has_trait = education_intrigue_2 }
+		show_as_tooltip = {
+			add_trait_force_tooltip = education_intrigue_2
+		}
+	}
+	if = {
+		limit = { has_trait = education_intrigue_3 }
+		show_as_tooltip = {
+			add_trait_force_tooltip = education_intrigue_3
+		}
+	}
+	if = {
+		limit = { has_trait = education_intrigue_4 }
+		show_as_tooltip = {
+			add_trait_force_tooltip = education_intrigue_4
+		}
+	}
+	if = {
+		limit = { has_trait = education_intrigue_5 }
+		show_as_tooltip = {
+			add_trait_force_tooltip = education_intrigue_5
+		}
+	}
+	if = {
+		limit = { has_trait = education_learning_1 }
+		show_as_tooltip = {
+			add_trait_force_tooltip = education_learning_1
+		}
+	}
+	if = {
+		limit = { has_trait = education_learning_2 }
+		show_as_tooltip = {
+			add_trait_force_tooltip = education_learning_2
+		}
+	}
+	if = {
+		limit = { has_trait = education_learning_3 }
+		show_as_tooltip = {
+			add_trait_force_tooltip = education_learning_3
+		}
+	}
+	if = {
+		limit = { has_trait = education_learning_4 }
+		show_as_tooltip = {
+			add_trait_force_tooltip = education_learning_4
+		}
+	}
+	if = {
+		limit = { has_trait = education_learning_5 }
+		show_as_tooltip = {
+			add_trait_force_tooltip = education_learning_5
+		}
+	}
+	if = { # Knighthood innovation
+		limit = { has_trait = education_martial_prowess_1 }
+		show_as_tooltip = {
+			add_trait_force_tooltip = education_martial_prowess_1
+		}
+	}
+	if = {
+		limit = { has_trait = education_martial_prowess_2 }
+		show_as_tooltip = {
+			add_trait_force_tooltip = education_martial_prowess_2
+		}
+	}
+	if = {
+		limit = { has_trait = education_martial_prowess_3 }
+		show_as_tooltip = {
+			add_trait_force_tooltip = education_martial_prowess_3
+		}
+	}
+	if = {
+		limit = { has_trait = education_martial_prowess_4 }
+		show_as_tooltip = {
+			add_trait_force_tooltip = education_martial_prowess_4
+		}
+	}
+	#AGOT Added
+	if = {
+		limit = { has_trait = education_martial_prowess_5 }
+		show_as_tooltip = {
+			add_trait_force_tooltip = education_martial_prowess_5
+		}
+	}
+	if = { # Esotericism Tenet
+		limit = { has_trait = lifestyle_mystic }
+		show_as_tooltip = {
+			add_trait_force_tooltip = lifestyle_mystic
+		}
+	}
+	if = {
+		limit = {
+			has_trait = logistician
+		}
+		show_as_tooltip = {
+			add_trait_force_tooltip = logistician
+		}
+	}
+	if = {
+		limit = {
+			has_trait = military_engineer
+		}
+		show_as_tooltip = {
+			add_trait_force_tooltip = military_engineer
+		}
+	}
+	if = {
+		limit = {
+			has_trait = aggressive_attacker
+		}
+		show_as_tooltip = {
+			add_trait_force_tooltip = aggressive_attacker
+		}
+	}
+	if = {
+		limit = {
+			has_trait = unyielding_defender
+		}
+		show_as_tooltip = {
+			add_trait_force_tooltip = unyielding_defender
+		}
+	}
+	if = {
+		limit = {
+			has_trait = forder
+		}
+		show_as_tooltip = {
+			add_trait_force_tooltip = forder
+		}
+	}
+	if = {
+		limit = {
+			has_trait = flexible_leader
+		}
+		show_as_tooltip = {
+			add_trait_force_tooltip = flexible_leader
+		}
+	}
+	if = {
+		limit = {
+			has_trait = desert_warrior
+		}
+		show_as_tooltip = {
+			add_trait_force_tooltip = desert_warrior
+		}
+	}
+	if = {
+		limit = {
+			has_trait = jungle_stalker
+		}
+		show_as_tooltip = {
+			add_trait_force_tooltip = jungle_stalker
+		}
+	}
+	if = {
+		limit = {
+			has_trait = winter_soldier
+		}
+		show_as_tooltip = {
+			add_trait_force_tooltip = winter_soldier
+		}
+	}
+	if = {
+		limit = {
+			has_trait = reaver
+		}
+		show_as_tooltip = {
+			add_trait_force_tooltip = reaver
+		}
+	}
+	if = {
+		limit = {
+			has_trait = reckless
+		}
+		show_as_tooltip = {
+			add_trait_force_tooltip = reckless
+		}
+	}
+	if = {
+		limit = {
+			has_trait = holy_warrior
+		}
+		show_as_tooltip = {
+			add_trait_force_tooltip = holy_warrior
+		}
+	}
+	if = {
+		limit = {
+			has_trait = rough_terrain_expert
+		}
+		show_as_tooltip = {
+			add_trait_force_tooltip = rough_terrain_expert
+		}
+	}
+	if = {
+		limit = { has_trait = organizer }
+		show_as_tooltip = { add_trait_force_tooltip = organizer }
+	}
+	if = {
+		limit = { has_trait = forest_fighter }
+		show_as_tooltip = { add_trait_force_tooltip = forest_fighter }
+	}
+	if = {
+		limit = { has_trait = cautious_leader }
+		show_as_tooltip = { add_trait_force_tooltip = cautious_leader }
+	}
+	if = {
+		limit = { has_trait = open_terrain_expert }
+		show_as_tooltip = { add_trait_force_tooltip = open_terrain_expert }
+	}
+	if = {
+		limit = { has_trait = education_republican_knowledge_1 }
+		show_as_tooltip = { add_trait_force_tooltip = education_republican_knowledge_1 }
+	}
+	if = {
+		limit = { has_trait = education_republican_knowledge_2 }
+		show_as_tooltip = { add_trait_force_tooltip = education_republican_knowledge_2 }
+	}
+	if = {
+		limit = { has_trait = education_republican_knowledge_3 }
+		show_as_tooltip = { add_trait_force_tooltip = education_republican_knowledge_3 }
+	}
+	if = {
+		limit = { has_trait = education_republican_knowledge_4 }
+		show_as_tooltip = { add_trait_force_tooltip = education_republican_knowledge_4 }
+	}
+	if = {
+		limit = { has_trait = lcxp_education_law_1 }
+		show_as_tooltip = {
+			add_trait_force_tooltip = lcxp_education_law_1
+		}
+	}
+	if = {
+		limit = { has_trait = lcxp_education_law_2 }
+		show_as_tooltip = {
+			add_trait_force_tooltip = lcxp_education_law_2
+		}
+	}
+	if = {
+		limit = { has_trait = lcxp_education_law_3 }
+		show_as_tooltip = {
+			add_trait_force_tooltip = lcxp_education_law_3
+		}
+	}
+	if = {
+		limit = { has_trait = lcxp_education_law_4 }
+		show_as_tooltip = {
+			add_trait_force_tooltip = lcxp_education_law_4
+		}
+	}
+	if = {
+		limit = { has_trait = lcxp_education_law_5 }
+		show_as_tooltip = {
+			add_trait_force_tooltip = lcxp_education_law_5
+		}
+	}
+	if = {
+		limit = { has_trait = lcxp_education_culture_1 }
+		show_as_tooltip = {
+			add_trait_force_tooltip = lcxp_education_culture_1
+		}
+	}
+	if = {
+		limit = { has_trait = lcxp_education_culture_2 }
+		show_as_tooltip = {
+			add_trait_force_tooltip = lcxp_education_culture_2
+		}
+	}
+	if = {
+		limit = { has_trait = lcxp_education_culture_3 }
+		show_as_tooltip = {
+			add_trait_force_tooltip = lcxp_education_culture_3
+		}
+	}
+	if = {
+		limit = { has_trait = lcxp_education_culture_4 }
+		show_as_tooltip = {
+			add_trait_force_tooltip = lcxp_education_culture_4
+		}
+	}
+	if = {
+		limit = { has_trait = lcxp_education_culture_5 }
+		show_as_tooltip = {
+			add_trait_force_tooltip = lcxp_education_culture_5
+		}
+	}
+}
+
+agot_spawn_owned_hatchling_from_egg_effect = {
+	$OWNER$ = { save_scope_as = owner }
+	$EGG$ = { save_scope_as = egg }
+
+	# MDE Added - after Drogon hatches first in a hatching ceremony (agot_dragon_hatching.0401), this hatchling is made female
+	if = {
+		limit = { exists = scope:mde_next_hatchling_female }
+		clear_saved_scope = mde_next_hatchling_female
+		save_scope_value_as = { name = dragon_gender value = flag:female }
+		save_scope_value_as = { name = mde_clear_dragon_gender value = yes }
+	}
+
+	if = {
+		limit = { scope:egg = { has_variable = ac_destined_dragon } }
+		fab_egg_assign_canon_parents_effect = { EGG = scope:egg }
+		if = {
+			limit = { scope:egg.var:ac_destined_dragon = flag:bloodfyre }
+			fab_spawn_bloodfyre_effect = yes
+		}
+		else_if = {
+			limit = { scope:egg.var:ac_destined_dragon = flag:quicksilver }
+			agot_spawn_quicksilver_effect = yes
+		}
+		else_if = {
+			limit = { scope:egg.var:ac_destined_dragon = flag:dreamfyre }
+			agot_spawn_dreamfyre_effect = yes
+		}
+		else_if = {
+			limit = { scope:egg.var:ac_destined_dragon = flag:vermithor }
+			agot_spawn_vermithor_effect = yes
+		}
+		else_if = {
+			limit = { scope:egg.var:ac_destined_dragon = flag:silverwing }
+			agot_spawn_silverwing_effect = yes
+		}
+		else_if = {
+			limit = { scope:egg.var:ac_destined_dragon = flag:meleys }
+			agot_spawn_meleys_effect = yes
+		}
+		else_if = {
+			limit = { scope:egg.var:ac_destined_dragon = flag:cannibal }
+			agot_spawn_cannibal_effect = yes
+		}
+		else_if = {
+			limit = { scope:egg.var:ac_destined_dragon = flag:caraxes }
+			agot_spawn_caraxes_effect = yes
+		}
+		else_if = {
+			limit = { scope:egg.var:ac_destined_dragon = flag:sheepstealer }
+			agot_spawn_sheepstealer_effect = yes
+		}
+		else_if = {
+			limit = { scope:egg.var:ac_destined_dragon = flag:laengar }
+			agot_spawn_aerea_1_effect = yes
+		}
+		else_if = {
+			limit = { scope:egg.var:ac_destined_dragon = flag:moonfyre }
+			agot_spawn_aerea_2_effect = yes
+		}
+		else_if = {
+			limit = { scope:egg.var:ac_destined_dragon = flag:adereon }
+			agot_spawn_aerea_3_effect = yes
+		}
+		else_if = {
+			limit = { scope:egg.var:ac_destined_dragon = flag:drogon }
+			agot_spawn_drogon_effect = yes
+		}
+		else_if = {
+			limit = { scope:egg.var:ac_destined_dragon = flag:rhaegal }
+			agot_spawn_rhaegal_effect = yes
+		}
+		else_if = {
+			limit = { scope:egg.var:ac_destined_dragon = flag:viserion }
+			agot_spawn_viserion_effect = yes
+		}
+		else = {
+			create_character = {
+				location = $OWNER$.location
+				template = agot_dragon_hatchling_template
+				random_traits = no
+				save_scope_as = dragon
+			}
+		}
+		scope:dragon = {
+			add_character_flag = {
+				flag = agot_no_silly_name
+				months = 1
+			}
+		}
+	}
+	else_if = {
+		limit = {
+			agot_canon_dragons_enabled = yes
+			scope:egg = { has_variable = dragon_embryo }
+		}
+		mde_spawn_canon_dragon_from_egg_effect = { EGG = scope:egg }
+	}
+	else_if = {
+		limit = {
+			agot_canon_dragons_enabled = yes
+			exists = scope:cradlemate
+			scope:cradlemate ?= {
+				agot_has_canon_cradle_egg = yes
+				NOT = { has_character_flag = hatched_canon_dragon }
+			}
+		}
+		scope:cradlemate = { add_character_flag = hatched_canon_dragon }
+		agot_spawn_canon_cradle_dragon_effect = { CRADLEMATE = scope:cradlemate }
+		scope:dragon = {
+			add_character_flag = {
+				flag = agot_no_silly_name
+				months = 1
+			}
+		}
+	}
+	else_if = {
+		limit = {
+			agot_canon_dragons_enabled = yes
+			agot_is_valid_unpaired_canon_dragon_birth = { EGG = scope:egg }
+		}
+		agot_spawn_unpaired_canon_dragon = { EGG = scope:egg }
+		scope:dragon = {
+			add_character_flag = {
+				flag = agot_no_silly_name
+				months = 1
+			}
+		}
+	}
+	else = {
+		create_character = {
+			location = $OWNER$.location
+			template = agot_dragon_hatchling_template
+			random_traits = no
+			save_scope_as = dragon
+		}
+	}
+	if = { # MDE Added
+		limit = { exists = scope:mde_clear_dragon_gender }
+		clear_saved_scope = dragon_gender
+		clear_saved_scope = mde_clear_dragon_gender
+	}
+	clear_saved_scope = canon_gender # MDE Added
+
+
+	hidden_effect = {
+		agot_set_as_owned_dragon = {
+			OWNER = scope:owner
+			DRAGON = scope:dragon
+		}
+	}
+
+	$OWNER$ = {
+		send_interface_message = {
+			type = event_generic_good_text
+			title = agot_spawn_dragon_effect.interface.t
+			desc = agot_spawn_dragon_effect.interface.desc
+
+			left_icon = scope:dragon
+		}
+	}
+
+	agot_set_dragon_parents = { EGG = $EGG$ }
+	agot_dragon_tree_creation_effect = { DRAGON = scope:dragon }
+	custom_tooltip = {
+		text = agot_dragon_hatched_from_egg_effect_tt
+		agot_remove_dragon_egg = { EGG = $EGG$ }
+	}
+}
+
+concubine_offer_on_accept_effect = {
+	scope:secondary_recipient = {
+		trigger_event = marriage_interaction.0040
+		if = {
+			# Victim is angry for being forced into concubinage.
+			limit = {
+				is_imprisoned = yes
+			}
+			add_character_flag = {
+				flag = block_release_from_prison_event
+				days = 3
+			}
+			release_from_prison = yes
+			add_opinion = {
+				target = scope:actor
+				modifier = forced_me_concubine_marriage_opinion
+			}
+
+			# Family members of victim are also angry that you've forced them into concubinage.
+			every_close_family_member = {
+				if = {
+					limit = { 
+						this != scope:actor # Don't hate yourself.
+					}
+					add_opinion = {
+						target = scope:actor
+						modifier = forced_family_concubine_marriage_opinion
+					}
+					hidden_effect = {
+						send_interface_message = {
+							type = msg_family_became_concubine
+							title = msg_close_family_member_offered_as_concubine_title
+							right_icon = scope:actor
+							left_icon = scope:secondary_actor
+							show_as_tooltip = { scope:actor = { make_concubine = scope:secondary_actor } }
+						}
+					}
+
+					# Family members are even *more* angry if they don't believe in concubines/polyamory (different from polygamy). Also if they don't accept same-sex relationships
+					if = {
+						limit = { 
+							OR = {
+								NOT = { faith = { has_doctrine = doctrine_concubines } }
+								NOT = { faith = { has_doctrine = tenet_polyamory } }
+								AND = {
+									allowed_to_marry_same_sex_trigger = no
+									scope:recipient = { sex_same_as = scope:secondary_recipient }
+								}
+							}
+						}
+						add_opinion = {
+							target = scope:actor
+							modifier = relative_in_blasphemous_union_opinion
+						}
+					}
+				}
+			}
+					
+			# Spouses, if any exist, are also furious.
+			if = {
+				limit = {
+					is_married = yes
+					#A check to make sure you haven't somehow married them during the consideration time
+					NOT = { any_spouse = { this = scope:recipient } }
+				}
+				every_spouse = {
+					add_opinion = {
+						target = scope:actor
+						modifier = forced_spouse_concubine_marriage_opinion
+					}
+					divorce = scope:secondary_recipient # no additional opinion hit, no scripted effect
+					save_scope_value_as = { # For tooltips in the coming event
+						name = was_spouse
+						value = yes
+					}
+					trigger_event = marriage_interaction.0043
+				}
+			}
+					
+			# Stealing concubines pisses the former concubinist off.
+			if = {
+				limit = {
+					is_concubine = yes
+					#A check to make sure you haven't somehow gotten them as concubine during the consideration time
+					NOT = { any_consort = { this = scope:recipient } }
+				}
+				this.concubinist = {
+					if = {
+						limit = {
+							this != scope:actor
+						}
+						add_opinion = {
+							target = scope:actor
+							modifier = stole_concubine_opinion
+						}
+						remove_concubine = scope:secondary_recipient # no additional opinion hit, no scripted effect
+						save_scope_value_as = { # For tooltips in the coming event
+							name = was_concubine
+							value = yes
+						}
+						trigger_event = marriage_interaction.0043
+					}
+					else = {
+						remove_concubine = scope:secondary_recipient # no additional opinion hit, no scripted effect
+					}
+				}
+			}
+
+			# Break any betrothals which may exist (without additional opinion penalties).
+			if = {
+				limit = {
+					exists = betrothed
+					#A check to make sure you haven't somehow gotten betrothed to them during the consideration time
+					betrothed != scope:recipient
+				}
+				betrothed = { trigger_event = marriage_interaction.0043 }
+				break_betrothal = betrothed
+			}
+
+			# Having concubines means they're now no longer yours.
+			if = {
+				limit = { number_of_concubines > 0	}
+				every_concubine = {
+					scope:secondary_recipient = {
+						remove_concubine = prev
+					}
+				}
+			}
+		}
+		if = {
+			limit = {
+				is_concubine_of = scope:actor
+			}
+			scope:actor = {
+				remove_concubine = scope:secondary_recipient
+			}
+		}
+		remove_character_flag = has_been_offered_as_concubine
+	}
+
+	# Send us a notification about what we just did. If the secondary_recipient somehow ended up as a consort (spouse/concubine) or betrothed to recipient during the consideration time of this request we'll send a message about that instead (should only happen to AI tho)
+	if = {
+		limit = { #Invalidation message
+			scope:secondary_recipient = {
+				OR = {
+					any_consort = { }
+					exists = betrothed
+				}
+			}
+		}
+		scope:secondary_recipient = {
+			# If they've somehow already become entangled with the recipient we tell this
+			if = {
+				limit = {
+					OR = {
+						is_consort_of = scope:recipient
+						betrothed ?= scope:recipient
+					}
+				}
+				scope:recipient = {
+					save_scope_as = spouse
+				}
+			}
+			# Else, if they've married or gotten betrothed to someone else, we say this
+			else_if = {
+				limit = {
+					exists = betrothed
+				}
+				betrothed = {
+					save_scope_as = spouse
+				}
+			}
+			else = {
+				random_consort = {
+					limit = {
+						this = scope:secondary_recipient.primary_spouse
+					}
+					alternative_limit = {
+						always = yes
+					}
+					save_scope_as = spouse
+				}
+			}
+		}
+		scope:actor = {
+			send_interface_toast = {
+				type = event_toast_effect_neutral
+				title = msg_concubine_offered_invalidated_title
+				right_icon = scope:recipient
+				left_icon = scope:secondary_recipient
+				if = {
+					limit = {
+						scope:secondary_recipient = { is_consort_of = scope:spouse }
+					}
+					custom_tooltip = msg_concubine_offered_invalidated_consort
+				}
+				else = {
+					custom_tooltip = msg_concubine_offered_invalidated_betrothed
+				}
+			}
+		}
+		scope:recipient = {
+			send_interface_toast = {
+				type = event_toast_effect_neutral
+				title = msg_concubine_offered_invalidated_recipient_title
+				right_icon = scope:actor
+				left_icon = scope:secondary_recipient
+				if = {
+					limit = {
+						scope:secondary_recipient = { is_consort_of = scope:spouse }
+					}
+					custom_tooltip = msg_concubine_offered_invalidated_consort
+				}
+				else = {
+					custom_tooltip = msg_concubine_offered_invalidated_betrothed
+				}
+			}
+		}
+	}
+	else = { #Proper notification
+		scope:actor = {
+			send_interface_toast = {
+				type = event_toast_effect_neutral
+				title = msg_concubine_offered_title
+				right_icon = scope:recipient
+				left_icon = scope:secondary_recipient
+				scope:recipient = {
+					make_concubine = scope:secondary_recipient
+					#AGOT Added
+					if = {
+						limit = {
+							has_opinion_modifier = {
+								target = scope:actor
+								modifier = offered_concubine_opinion
+							}
+						}
+						custom_tooltip = already_offered_concubine_warning
+					}
+
+					if = { #Scale opinion gain a bit depending on how cool the concubine is
+						limit = {
+							scope:secondary_recipient = {
+								OR = {
+									has_trait = beauty_good_2
+									has_trait = beauty_good_3
+									num_of_good_genetic_traits > 1
+									has_relation_lover = scope:recipient
+									has_relation_soulmate = scope:recipient
+								}
+								trigger_if = {
+									limit = {
+										is_female = yes
+									}
+									age < define:NChildbirth|MAX_FEMALE_REPRODUCTION_AGE
+								}
+							}
+						}
+						add_opinion = {
+							target = scope:actor
+							#AGOT Modified
+							#modifier = grateful_opinion
+							modifier = offered_concubine_opinion
+							opinion = 40
+						}
+					}
+					else_if = {
+						limit = {
+							scope:secondary_recipient = {
+								OR = {
+									is_lowborn = no
+									has_trait = beauty_good_1
+									num_of_good_genetic_traits > 0
+									has_relation_friend = scope:recipient
+									has_relation_best_friend = scope:recipient
+								}
+								trigger_if = {
+									limit = {
+										is_female = yes
+									}
+									age < define:NChildbirth|MAX_FEMALE_REPRODUCTION_AGE
+								}
+							}
+						}
+						add_opinion = {
+							target = scope:actor
+							#AGOT Modified
+							#modifier = grateful_opinion
+							modifier = offered_concubine_opinion
+							opinion = 30
+						}
+					}
+					else = {
+						add_opinion = {
+							target = scope:actor
+							#AGOT Modified
+							#modifier = grateful_opinion
+							modifier = offered_concubine_opinion
+							opinion = 20
+						}
+					}
+				}
+			}
+		}
+	}
+	#### MOD BEGIN ####
+	scope:secondary_actor = {
+		hidden_effect = {
+			if = {
+				limit = { scope:actor.dynasty = scope:secondary_actor.dynasty }
+				remove_trait = concubine
+				add_trait = concubine_elevated
+			}
+		}
+	}
+	#### MOD END ####
+}

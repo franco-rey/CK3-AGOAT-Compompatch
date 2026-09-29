@@ -1,0 +1,8 @@
+﻿agot_human_held_ruin_county = {
+	is_shown = {
+		county.holder ?= { is_human = yes }
+		county.title_province ?= {
+			NOT = { has_holding_type = ruin_holding }
+		}
+	}
+}

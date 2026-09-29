@@ -1,6 +1,10 @@
 ﻿
+######################################################
+################## PORTRAIT TYPES ####################
+######################################################
 types PlayerOpinionPortraitTypes
 {
+	## Opinion box for portraits
 	type portrait_opinion = flowcontainer {
 		name = "tutorial_highlight_portrait_opinion"
 		visible = "[And(And(Character.IsValid, Not(IsCharacterDragon)), And(Character.IsAlive, Not(Character.IsLocalPlayer)))]"
@@ -63,7 +67,6 @@ types PlayerOpinionPortraitTypes
 			default_format = "#true_white"
 
 			block "player_opinion_text" {
-				visible = "[Not(IsCharacterDragon)]"
 				text = "[GetPlayer.GetOpinionOf(Character.Self)|=]"
 				fonttintcolor = "[GetPlayer.GetOpinionOfTint(Character.Self)]"
 			}
@@ -80,7 +83,6 @@ types PlayerOpinionPortraitTypes
 			default_format = "#true_white"
 
 			block "nonplayer_opinion_text" {
-				visible = "[Not(IsCharacterDragon)]"
 				text = "[GetPlayer.MakeScope.Var('SPO').Char.GetOpinionOf( Character.Self )|=]"
 				fonttintcolor = "[GetPlayer.MakeScope.Var('SPO').Char.GetOpinionOfTint( Character.Self )]"
 			}
@@ -141,7 +143,6 @@ types PlayerOpinionPortraitTypes
 			default_format = "#true_white"
 
 			block "player_opinion_text" {
-				visible = "[Not(IsCharacterDragon)]"
 				text = "[GetPlayer.GetOpinionOf(Character.Self)|=]"
 				fonttintcolor = "[GetPlayer.GetOpinionOfTint(Character.Self)]"
 			}
@@ -159,7 +160,6 @@ types PlayerOpinionPortraitTypes
 			default_format = "#true_white"
 
 			block "nonplayer_opinion_text" {
-				visible = "[Not(IsCharacterDragon)]"
 				text = "[GetPlayer.MakeScope.Var('SPO').Char.GetOpinionOf( Character.Self )|=]"
 				fonttintcolor = "[GetPlayer.MakeScope.Var('SPO').Char.GetOpinionOfTint( Character.Self )]"
 			}

@@ -1,0 +1,78 @@
+﻿### Hiraeth Dynasty Legacies - Northern Lords Patch ###
+# ADVENTURE LEGACIES
+hth_fp1_adventure_legacy_1 = { # Beyond the Sea
+	legacy = fp1_adventure_legacy_track
+
+	can_be_picked = { 
+		hth_adventure_1_legacy_trigger = yes
+		eligible_for_fp1_dynasty_legacies_trigger = yes
+		OR = {
+			has_game_rule = hth_adventure_legacy_track_available_all
+			agot_fp1_adventure_legacy_track_trigger = yes
+		}
+	}
+	character_modifier = {
+		diplomatic_range_mult = 0.25
+		stewardship = 1
+		diplomacy = 1
+		ai_energy = 20
+	}
+	effect = { 
+		custom_description_no_bullet = { ## AI
+			text = hth_adventure_legacy_1_ai_effect
+		}
+		custom_description_no_bullet = { ## Legacy Requirement
+			text = hth_adventure_legacy_1_req_effect
+		}
+	}
+	ai_chance = {
+		value = 11
+		if = {
+			limit = {
+				can_start_new_legacy_track_trigger = no
+			}
+			multiply = 0
+		}
+	}
+}
+
+fp1_pillage_legacy_1 = { # Sea-Wolves
+	legacy = fp1_pillage_legacy_track
+
+	can_be_picked = { 
+		OR = {
+			has_game_rule = hth_pillage_legacy_track_available_all
+			agot_fp1_pillage_legacy_track_trigger = yes
+		}
+		hth_pillage_1_legacy_trigger = yes
+		eligible_for_fp1_dynasty_legacies_trigger = yes
+	}
+	character_modifier = {
+		name = hth_fp1_pillage_legacy_1_name
+		martial = 1
+		prowess = 3
+		ai_greed = 20
+
+		# prestige bonus
+	}
+	effect = { 
+		custom_description_no_bullet = { ## Custom Effect
+			text = hth_pillage_legacy_1_effect
+		}
+		custom_description_no_bullet = { ## AI
+			text = hth_pillage_legacy_1_ai_effect
+		}
+		custom_description_no_bullet = { ## Legacy Requirement
+			text = hth_pillage_legacy_1_req_effect
+		}
+	}
+	ai_chance = {
+		value = 11
+		if = {
+			limit = {
+				can_start_new_legacy_track_trigger = no
+			}
+			multiply = 0
+		}
+	}
+}

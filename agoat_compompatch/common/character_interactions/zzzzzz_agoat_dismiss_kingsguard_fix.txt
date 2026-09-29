@@ -1,0 +1,152 @@
+﻿asoiaf_dismiss_kingsguard_interaction = {
+	icon = icon_kingsguard
+	category = interaction_category_diplomacy
+	desc = asoiaf_dismiss_kingsguard_interaction_desc
+	use_diplomatic_range = no
+	
+	#cooldown = { years = 1 }
+
+	is_shown = {
+		OR = {
+			scope:actor = { #you are the king himself
+				primary_title = {
+					has_variable = kingsguard
+				}
+			}
+			AND = { #you are the king's regent
+				scope:actor = {
+					exists = liege
+					is_diarch_of_target = liege
+				}
+				scope:actor.liege = {
+					primary_title = {
+						has_variable = kingsguard
+					}
+				}
+			}
+		}
+		scope:recipient = {
+			is_human = yes
+			has_trait = kingsguard
+			OR = {
+				top_liege = scope:actor #for if actor is king
+				top_liege = scope:actor.liege #for if actor is regent
+			}
+		}
+	}
+	
+	auto_accept = yes
+
+	is_valid_showing_failures_only = {
+		scope:actor = {
+			NOT = { has_trait = incapable }
+		}
+		custom_tooltip = {
+			text = asoiaf_is_in_entrenched_regency
+			trigger_if = {
+				NOT = {
+					scope:actor = { #specifically the king, not the king's regent
+						primary_title = {
+							has_variable = kingsguard
+						}
+						has_diarchy_active_parameter = diarchy_type_is_entrenched_regency
+					}
+				}
+			}
+		}
+	}
+
+	on_accept = {
+		if = { #if actor is the king himself, save scope for later
+			limit = {
+				scope:actor = {
+					primary_title = {
+						has_variable = kingsguard
+					}
+				}
+			}
+			scope:actor = { save_scope_as = asoiaf_dismissing_monarch }
+		}
+		if = { #if actor's title doesn't have kingsguard variable (ie, so he's not the king), save his top liege as the dismissing monarch
+			limit = {
+				scope:actor = {
+					primary_title = {
+						NOT = { has_variable = kingsguard }
+					}
+				}
+			}
+			scope:actor.top_liege = { save_scope_as = asoiaf_dismissing_monarch }
+		}
+		scope:asoiaf_dismissing_monarch = {
+			send_interface_toast = {
+				title = asoiaf_kingsguard_dismissal_notification
+				left_icon = scope:asoiaf_dismissing_monarch					
+				right_icon = scope:recipient
+				
+				add_prestige = { subtract = 1500 }
+				add_tyranny = massive_tyranny_value
+			}
+		}
+		if = { #King's regent dismissal effects
+			limit = {
+				AND = {
+					scope:actor = {
+						exists = liege
+						is_diarch_of_target = liege
+					}
+					scope:actor.liege = {
+						primary_title = {
+							has_variable = kingsguard
+						}
+					}
+				}
+			}
+			scope:actor = {
+				reverse_add_opinion = { #kingsguard hates you for illegally dismissing them, especially since you're not even the king!
+					target = scope:recipient
+					modifier = hate_opinion
+					opinion = -60
+				}
+				add_prestige = { subtract = 1500 }
+				change_strife_opinion = monumental_strife_gain #miniscule; minor; medium; major; massive; monumental
+			}
+		}
+		scope:recipient = { #general effects on recipient kingsguard
+			agot_remove_kingsguard_effect = { KINGSGUARD = scope:recipient }
+			create_character_memory = {
+				type = asoiaf_kingsguard_dismissal_memory
+				participants = {
+					king = scope:asoiaf_dismissing_monarch
+				}
+			}
+			add_prestige_level = -2 #lowers level of fame by 2
+			set_relation_grudge = { reason = asoiaf_dismissed_from_kingsguard_desc target = scope:asoiaf_dismissing_monarch }
+			scope:actor.house ?= {
+					change_house_relation_effect = {
+						HOUSE = scope:recipient.house
+						VALUE = -1
+						REASON = asoiaf_dismissed_from_kingsguard
+						CHAR = scope:recipient.house.house_head
+						TARGET_CHAR = scope:actor
+						TITLE = scope:dummy_gender
+					}
+				}
+		}
+		every_player = {
+			limit = {
+				NOT = { this = scope:actor } #no double notifications for the dismisser
+				#location = {
+				#	geographical_region = world_westeros_seven_kingdoms
+				#}
+				is_vassal_or_below_of = scope:asoiaf_dismissing_monarch #only those in the King's realm
+			}
+			send_interface_toast = {
+				type = msg_created_new_house #just so it appears
+				title = asoiaf_kingsguard_dismissal_notification
+				left_icon = scope:asoiaf_dismissing_monarch
+				right_icon = scope:recipient
+				desc = asoiaf_kingsguard_dismissal_notification_desc
+			}
+		}
+	}
+}

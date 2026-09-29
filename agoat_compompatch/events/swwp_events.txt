@@ -1,0 +1,89 @@
+﻿namespace = sleep_with_wife_plus
+
+sleep_with_wife_plus.1000 = {
+	type = character_event
+	title = sleep_with_wife_plus.1000.title
+	desc = sleep_with_wife_plus.1000.desc
+	theme = lover_relation
+
+	left_portrait = {
+		character = root
+		animation = love
+	}
+
+	right_portrait = {
+		character = scope:recipient
+		animation = flirtation_left
+	}
+
+	immediate = {
+		save_scope_as = swwp_actor
+	}
+
+	option = {
+		name = sleep_with_wife_plus.1000.stress
+
+		add_stress = -30
+		add_character_flag = {
+			flag = swwp_no_pregnancy_sleep_cooldown
+			months = 3
+		}
+		scope:recipient = {
+			add_opinion = {
+				target = scope:swwp_actor
+				modifier = swwp_spent_night_opinion
+			}
+		}
+	}
+
+	option = {
+		name = sleep_with_wife_plus.1000.pregnancy
+		trigger = {
+			OR = {
+				AND = {
+					root = { is_male = yes }
+					scope:recipient = {
+						is_female = yes
+						is_pregnant = no
+					}
+				}
+				AND = {
+					root = {
+						is_female = yes
+						is_pregnant = no
+					}
+					scope:recipient = { is_male = yes }
+				}
+			}
+		}
+
+		if = {
+			limit = {
+				root = { is_male = yes }
+				scope:recipient = {
+					is_female = yes
+					is_pregnant = no
+				}
+			}
+			scope:recipient = {
+				make_pregnant = { father = scope:swwp_actor }
+			}
+		}
+		else_if = {
+			limit = {
+				root = {
+					is_female = yes
+					is_pregnant = no
+				}
+				scope:recipient = { is_male = yes }
+			}
+			make_pregnant = { father = scope:recipient }
+		}
+		scope:recipient = {
+			add_opinion = {
+				target = scope:swwp_actor
+				modifier = swwp_spent_night_opinion
+			}
+		}
+	}
+}

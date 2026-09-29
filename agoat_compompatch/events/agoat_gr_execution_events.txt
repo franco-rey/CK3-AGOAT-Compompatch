@@ -1,0 +1,28 @@
+﻿namespace = agoat_gr_execution
+
+agoat_gr_execution.0001 = {
+	type = character_event
+	hidden = yes
+
+	trigger = {
+		exists = scope:gr_executed_character
+		scope:gr_executed_character = {
+			is_alive = no
+			OR = {
+				death_reason = death_execution
+				death_reason = death_execution_blood_eagle
+			}
+		}
+	}
+
+	immediate = {
+		if = {
+			limit = { NOT = { has_variable = gr_succession_lock } }
+			if = {
+				limit = { NOT = { has_variable = gr_execution_count } }
+				set_variable = { name = gr_execution_count value = 0 }
+			}
+			change_variable = { name = gr_execution_count add = 1 }
+		}
+	}
+}

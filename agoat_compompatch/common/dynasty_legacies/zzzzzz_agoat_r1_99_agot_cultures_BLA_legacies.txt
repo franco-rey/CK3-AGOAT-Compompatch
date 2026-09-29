@@ -1,0 +1,41 @@
+﻿high_valyrian_legacy_track = {
+	is_shown = {
+		OR = {
+			dynasty = { has_dynasty_perk = high_valyrian_legacy_1 }
+			culture = {
+				OR = {
+					this = culture:high_valyrian
+					any_parent_culture = {
+						OR = {
+							this = culture:high_valyrian
+						}
+					}
+				}
+			}
+		}
+		NOT = {
+			OR = {
+				culture = culture:valyrian_original
+				culture = culture:westerosi_valyrian
+				culture = culture:essosi_valyrian
+				culture = culture:lyseni
+				culture = culture:pentoshi
+				culture = culture:braavosi
+				culture = culture:myrish
+				culture = culture:tyroshi
+				culture = culture:volantene
+				culture = culture:hartalari
+				culture = culture:norvoshi
+				culture = culture:gogossite
+				culture = culture:mantaryan
+				culture = culture:tolosi
+				culture = culture:elyrian
+				culture = culture:orosi
+				culture = culture:astapori
+				culture = culture:meereenese
+				culture = culture:yunkaii
+				culture = culture:painted_clansman
+			}
+		}
+ 	}
+}

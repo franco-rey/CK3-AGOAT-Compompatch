@@ -1,0 +1,1047 @@
+﻿@crown_authority_cooldown_years = 20
+@god_kings_crown_authority_cooldown_years = 3
+@imperial_bureaucracy_cooldown_years_1 = 10
+@imperial_bureaucracy_cooldown_years_2 = 20
+@imperial_bureaucracy_cooldown_years_3 = 30
+@tribal_authority_cooldown_years = 10
+
+crown_authority = {
+	default = crown_authority_1
+	cumulative = yes
+	flag = realm_law
+	#AGOT Added
+	flag = all_realm_law
+	
+	crown_authority_0 = {
+		modifier = {
+			belligerent_opinion = -10
+			barons_and_minor_landholders_opinion = 20
+			glory_hound_opinion = 10
+			parochial_opinion = 10
+			courtly_opinion = 5
+		}
+		flag = uses_crown_authority
+
+		can_keep = {
+			realm_law_use_crown_authority = yes
+			trigger_if = {
+				limit = {
+					government_allows = administrative
+					top_liege != this
+				}
+				liege = { has_realm_law = crown_authority_0 }
+			}
+		}
+
+		on_pass = {
+			# Remove modifiers.
+			remove_law_related_modifiers_effect = yes
+		}
+	}
+	
+	crown_authority_1 = {
+		modifier = {
+			belligerent_opinion = 10
+			barons_and_minor_landholders_opinion = -40
+			glory_hound_opinion = -20
+			parochial_opinion = -20
+			courtly_opinion = -5
+			minority_opinion = -20
+		}
+		flag = title_revocation_allowed
+		flag = vassal_retraction_allowed
+		flag = can_have_tributaries
+		flag = can_change_partition_succession_laws
+		flag = diarchs_want_to_subsidise_without_this_flag
+
+		can_keep = {
+			realm_law_use_crown_authority = yes
+			trigger_if = {
+				limit = {
+					government_allows = administrative
+					top_liege != this
+				}
+				liege = { has_realm_law = crown_authority_1 }
+			}
+		}
+
+		can_pass = {
+			trigger_if = {
+				limit = { has_realm_law = crown_authority_0 }
+				custom_description = {
+					subject = root
+					text = "has_crown_authority_cooldown"
+					NAND = {
+						has_variable = crown_authority_cooldown
+						NOT = {
+							culture = { has_innovation = innovation_all_things }
+						}
+					}
+				}
+			}
+			can_pass_law_ca1_trigger = yes
+		}
+		
+		pass_cost = {
+			prestige = {
+				if = {
+					limit = {
+						NOR = {
+							has_realm_law = crown_authority_2
+							has_realm_law = crown_authority_3
+						}
+					}
+					add = increase_crown_authority_prestige_cost
+				}
+			}
+		}
+		
+		on_pass = {
+			# Increment cooldown breaker tally, if appropriate.
+			calculate_authority_cooldown_break_effect = yes
+			# Set regular cooldown.
+			set_variable = {
+				name = crown_authority_cooldown
+				years = @crown_authority_cooldown_years
+			}
+			# Remove modifiers.
+			remove_law_related_modifiers_effect = yes
+
+			#AGOT Added
+			if = {
+				limit = {
+					faith = { has_doctrine_parameter = can_change_realm_authority_frequently }
+				}
+				set_variable = {
+					name = crown_authority_cooldown
+					years = @god_kings_crown_authority_cooldown_years
+				}
+			}
+		}
+
+		ai_will_do = {
+			if = {
+				limit = { has_realm_law = crown_authority_0 }
+				value = 1
+			}
+		}
+	}
+	
+	crown_authority_2 = {
+		modifier = {
+			belligerent_opinion = 20
+			barons_and_minor_landholders_opinion = -45
+			glory_hound_opinion = -40
+			parochial_opinion = -40
+			courtly_opinion = -5
+			zealot_opinion = -35
+			minority_opinion = -45
+			vassal_tax_contribution_mult = 0.1
+			vassal_levy_contribution_mult = 0.1
+		}
+		flag = vassal_internal_wars_banned
+		flag = vassal_refusal_is_treason
+		flag = can_change_succession_laws
+		flag = titles_cannot_leave_realm_on_succession # Hardcoded flag
+		
+		can_keep = {
+			realm_law_use_crown_authority = yes
+			trigger_if = {
+				limit = {
+					government_allows = administrative
+					top_liege != this
+				}
+				liege = { has_realm_law = crown_authority_2 }
+			}
+		}
+
+		can_pass = {
+			trigger_if = {
+				limit = {
+					NOT = { has_realm_law = crown_authority_3 }
+					NAND = {
+						government_allows = administrative
+						top_liege != this
+					}
+				}
+				has_realm_law = crown_authority_1
+				custom_description = {
+					subject = root
+					text = "has_crown_authority_cooldown"
+					NAND = {
+						has_variable = crown_authority_cooldown
+						NOT = {
+							culture = { has_innovation = innovation_all_things }
+						}
+					}
+				}
+			}
+			can_pass_law_ca2_trigger = yes
+		}
+
+		pass_cost = {
+			prestige = {
+				if = {
+					limit = {
+						NOT = { has_realm_law = crown_authority_3 }
+					}
+					add = increase_crown_authority_prestige_cost
+				}
+			}
+		}
+		
+		on_pass = {
+			# Increment cooldown breaker tally, if appropriate.
+			calculate_authority_cooldown_break_effect = yes
+			# Set regular cooldown.
+			set_variable = {
+				name = crown_authority_cooldown
+				years = @crown_authority_cooldown_years
+			}
+			# Remove modifiers.
+			remove_law_related_modifiers_effect = yes
+
+			#AGOT Added
+			if = {
+				limit = {
+					faith = { has_doctrine_parameter = can_change_realm_authority_frequently }
+				}
+				set_variable = {
+					name = crown_authority_cooldown
+					years = @god_kings_crown_authority_cooldown_years
+				}
+			}
+		}
+
+		ai_will_do = {
+			if = {
+				limit = { has_realm_law = crown_authority_1 }
+				value = 1
+			}
+		}
+	}
+	
+	crown_authority_3 = {
+		modifier = {
+			belligerent_opinion = 30
+			barons_and_minor_landholders_opinion = -35
+			glory_hound_opinion = -50
+			parochial_opinion = -50
+			courtly_opinion = -25
+			zealot_opinion = -40
+			minority_opinion = -60
+			vassal_tax_contribution_mult = 0.25
+			#AGOT Modified
+			#vassal_levy_contribution_mult = 0.25
+			vassal_levy_contribution_mult = 0.2
+		}
+		flag = vassal_all_wars_banned
+		flag = can_designate_heirs
+		flag = max_authority_level
+		
+		can_keep = {
+			realm_law_use_crown_authority = yes
+			trigger_if = {
+				limit = {
+					government_allows = administrative
+					top_liege != this
+				}
+				liege = { has_realm_law = crown_authority_3 }
+			}
+		}
+
+		can_pass = {
+			trigger_if = {
+				limit = {
+					NAND = {
+						government_allows = administrative
+						top_liege != this
+					}
+				}
+				has_realm_law = crown_authority_2
+				custom_description = {
+					subject = root
+					text = "has_crown_authority_cooldown"
+					NAND = {
+						has_variable = crown_authority_cooldown
+						NOT = {
+							culture = { has_innovation = innovation_all_things }
+						}
+					}
+				}
+			}
+			can_pass_law_ca3_trigger = yes
+		}
+		
+		pass_cost = {
+			prestige = {
+				if = {
+					limit = {
+						NOT = { has_realm_law = crown_authority_3 }
+					}
+					add = increase_crown_authority_prestige_cost
+				}
+			}
+		}
+		
+		on_pass = {
+			# Increment cooldown breaker tally, if appropriate.
+			calculate_authority_cooldown_break_effect = yes
+			# Set regular cooldown.
+			set_variable = {
+				name = crown_authority_cooldown
+				years = @crown_authority_cooldown_years
+			}
+			# Remove modifiers.
+			remove_law_related_modifiers_effect = yes
+
+			#AGOT Added
+			if = {
+				limit = {
+					faith = { has_doctrine_parameter = can_change_realm_authority_frequently }
+				}
+				set_variable = {
+					name = crown_authority_cooldown
+					years = @god_kings_crown_authority_cooldown_years
+				}
+			}
+		}
+	}
+}
+
+tribal_authority = {
+	default = tribal_authority_1
+	cumulative = yes
+	flag = realm_law
+	
+	tribal_authority_0 = {
+		modifier = {
+			glory_hound_opinion = 10
+			parochial_opinion = 10
+			courtly_opinion = 5
+			belligerent_opinion = -15
+		}
+		flag = uses_tribal_authority
+		flag = imprisonment_toggle_enable
+
+		can_keep = { realm_law_use_tribal_authority = yes }
+
+		#Imprisonment is disabled if you have this law. Script is in the interaction, currently in 00_prison_interactions.
+		on_pass = {
+			# Remove modifiers.
+			remove_law_related_modifiers_effect = yes
+		}
+	}
+	
+	tribal_authority_1 = {
+		modifier = {
+			glory_hound_opinion = -20
+			parochial_opinion = -20
+			courtly_opinion = -5
+			minority_opinion = -20
+			belligerent_opinion = 10
+		}
+		flag = can_have_tributaries
+		flag = can_change_succession_laws
+		flag = imprisonment_toggle_on
+
+		can_keep = {
+			realm_law_use_tribal_authority = yes
+		}
+
+		can_pass = {
+			trigger_if = {
+				limit = { has_realm_law = tribal_authority_0 }
+				custom_description = {
+					subject = root
+					text = "has_tribal_authority_cooldown"
+					NAND = {
+						has_variable = tribal_authority_cooldown
+						NOT = {
+							culture = { has_innovation = innovation_all_things }
+						}
+					}
+				}
+			}
+		}
+		
+		pass_cost = {
+			prestige = {
+				if = {
+					limit = {
+						NOR = {
+							has_realm_law = tribal_authority_2
+							has_realm_law = tribal_authority_3
+						}
+					}
+					add = increase_tribal_authority_prestige_cost
+				}
+			}
+		}
+		
+		on_pass = {
+			# Increment cooldown breaker tally, if appropriate.
+			calculate_authority_cooldown_break_effect = yes
+			# Set regular cooldown.
+			set_variable = {
+				name = tribal_authority_cooldown
+				years = @tribal_authority_cooldown_years
+			}
+			# Remove modifiers.
+			remove_law_related_modifiers_effect = yes
+
+			#AGOT Added
+			if = {
+				limit = {
+					faith = { has_doctrine_parameter = can_change_realm_authority_frequently }
+				}
+				set_variable = {
+					name = tribal_authority_cooldown
+					years = @god_kings_crown_authority_cooldown_years
+				}
+			}
+		}
+
+		ai_will_do = {
+			if = {
+				limit = { has_realm_law = tribal_authority_0 }
+				value = 1
+			}
+		}
+	}
+	
+	tribal_authority_2 = {
+		modifier = {
+			glory_hound_opinion = -25
+			parochial_opinion = -25
+			courtly_opinion = -10
+			zealot_opinion = -25
+			minority_opinion = -30
+			belligerent_opinion = 30
+		}
+		flag = title_revocation_allowed
+		flag = vassal_retraction_allowed
+		flag = diarchs_want_to_subsidise_without_this_flag
+		
+		can_keep = {
+			realm_law_use_tribal_authority = yes
+			trigger_if = {
+				limit = {
+					NOT = {
+						culture = {
+							has_cultural_parameter = forming_confederations_is_easier 
+						}
+					}
+				}
+			NOT = {
+				is_confederation_member = yes
+				}
+			}
+		}
+		
+		can_pass = {
+			trigger_if = {
+				limit = {
+					NOT = { has_realm_law = tribal_authority_3 }
+				}
+				has_realm_law = tribal_authority_1
+				custom_description = {
+					subject = root
+					text = "has_tribal_authority_cooldown"
+					NAND = {
+						has_variable = tribal_authority_cooldown
+						NOT = {
+							culture = { has_innovation = innovation_all_things }
+						}
+					}
+				}
+			}
+		}
+
+		pass_cost = {
+			prestige = {
+				if = {
+					limit = {
+						NOT = { has_realm_law = tribal_authority_3 }
+					}
+					add = increase_tribal_authority_prestige_cost
+				}
+			}
+		}
+		
+		on_pass = {
+			# Increment cooldown breaker tally, if appropriate.
+			calculate_authority_cooldown_break_effect = yes
+			# Set regular cooldown.
+			set_variable = {
+				name = tribal_authority_cooldown
+				years = @tribal_authority_cooldown_years
+			}
+			# Remove modifiers.
+			remove_law_related_modifiers_effect = yes
+
+			#AGOT Added
+			if = {
+				limit = {
+					faith = { has_doctrine_parameter = can_change_realm_authority_frequently }
+				}
+				set_variable = {
+					name = tribal_authority_cooldown
+					years = @god_kings_crown_authority_cooldown_years
+				}
+			}
+		}
+
+		ai_will_do = {
+			if = {
+				limit = { has_realm_law = tribal_authority_1 }
+				value = 1
+			}
+		}
+	}
+	
+	tribal_authority_3 = {
+		modifier = {
+			glory_hound_opinion = -65
+			parochial_opinion = -65
+			courtly_opinion = -20
+			zealot_opinion = -75
+			minority_opinion = -50
+			belligerent_opinion = 40
+		}
+		flag = max_authority_level
+		
+		#Settling is disabled unless you have this law. Script is in the decisions, currently in 80_major_decisions.
+		#Reforming pagan religions (but not creating other faiths) is disabled unless you have this law. Script is in the reformation prereqs, currently in 00_rules.
+		can_keep = {
+			realm_law_use_tribal_authority = yes
+			trigger_if = {
+				limit = {
+					NOT = {
+						culture = {
+							has_cultural_parameter = forming_confederations_is_easier 
+						}
+					}
+				}
+			NOT = {
+				is_confederation_member = yes
+				}
+			}
+		}
+		
+		can_pass = {
+			has_realm_law = tribal_authority_2
+			custom_description = {
+				subject = root
+				text = "has_tribal_authority_cooldown"
+				NAND = {
+						has_variable = tribal_authority_cooldown
+						NOT = {
+							culture = { has_innovation = innovation_all_things }
+						}
+					}
+			}
+		}
+		
+		pass_cost = { prestige = increase_tribal_authority_prestige_cost }
+		
+		on_pass = {
+			# Increment cooldown breaker tally, if appropriate.
+			calculate_authority_cooldown_break_effect = yes
+			# Set regular cooldown.
+			set_variable = {
+				name = tribal_authority_cooldown
+				years = @tribal_authority_cooldown_years
+			}
+			# Remove modifiers.
+			remove_law_related_modifiers_effect = yes
+
+			#AGOT Added
+			if = {
+				limit = {
+					faith = { has_doctrine_parameter = can_change_realm_authority_frequently }
+				}
+				set_variable = {
+					name = tribal_authority_cooldown
+					years = @god_kings_crown_authority_cooldown_years
+				}
+			}
+		}
+
+		ai_will_do = {
+			if = {
+				limit = { has_realm_law = tribal_authority_2 }
+				value = 1
+			}
+			#AGOT Disabled
+			# if = { # Genghis is fundamentally uninterested in settling as feudal, and doesn't care for the additional -20 vassal opinion!
+			# 	limit = { has_title = title:e_mongol_empire }
+			# 	value = -10
+			# }
+		}
+	}
+}
+
+imperial_bureaucracy = {
+	can_change_law_group = { dragonlord_council_direct_law_change_allowed_trigger = yes }
+	default = imperial_bureaucracy_1
+	cumulative = yes
+	flag = realm_law
+	
+	imperial_bureaucracy_0 = {
+		modifier = {
+			belligerent_opinion = -10
+			barons_and_minor_landholders_opinion = 20
+			glory_hound_opinion = 10
+			parochial_opinion = 10
+			courtly_opinion = 5
+		}
+		flag = uses_imperial_bureaucracy
+		flag = can_have_tributaries
+		flag = titles_cannot_leave_realm_on_succession # Hardcoded flag
+
+		can_keep = {
+			realm_law_use_imperial_bureaucracy = yes
+			trigger_if = {
+				limit = {
+					top_liege != this
+				}
+				liege = { has_realm_law = imperial_bureaucracy_0 }
+			}
+		}
+		
+		can_pass = {
+			dragonlord_council_direct_law_change_allowed_trigger = yes
+			trigger_if = {
+				limit = {
+					top_liege != this
+					liege = { has_realm_law = imperial_bureaucracy_0 }
+				}
+				custom_tooltip = {
+					text = imperial_bureaucracy_pending_law_change
+					always = no
+				}
+			}
+		}
+
+		on_pass = {
+			# Remove modifiers.
+			remove_law_related_modifiers_effect = yes
+		}
+	}
+	
+	imperial_bureaucracy_1 = {
+		modifier = {
+			belligerent_opinion = 10
+			barons_and_minor_landholders_opinion = -45
+			glory_hound_opinion = -20
+			parochial_opinion = -20
+			courtly_opinion = -5
+			minority_opinion = -25
+			vassal_limit = 100
+		}
+		flag = can_have_tributaries
+		flag = title_revocation_allowed
+		flag = vassal_retraction_allowed
+		flag = can_change_partition_succession_laws
+		flag = vassal_internal_wars_banned
+		flag = diarchs_want_to_subsidise_without_this_flag
+
+		can_keep = {
+			realm_law_use_imperial_bureaucracy = yes
+			trigger_if = {
+				limit = {
+					top_liege != this
+				}
+				liege = { has_realm_law = imperial_bureaucracy_1 }
+			}
+		}
+
+		can_pass = {
+			dragonlord_council_direct_law_change_allowed_trigger = yes
+			trigger_if = {
+				limit = {
+					has_realm_law = imperial_bureaucracy_0
+					top_liege = this
+				}
+				custom_description = {
+					subject = root
+					text = "has_imperial_bureaucracy_cooldown"
+					NAND = {
+						has_variable = imperial_bureaucracy_cooldown
+						NOT = {
+							culture = { has_innovation = innovation_all_things }
+						}
+					}
+				}
+			}
+			trigger_if = {
+				limit = {
+					top_liege != this
+					liege = { has_realm_law = imperial_bureaucracy_1 }
+				}
+				custom_tooltip = {
+					text = imperial_bureaucracy_pending_law_change
+					always = no
+				}
+			}
+			can_pass_law_ca1_trigger = yes
+		}
+		
+		pass_cost = {
+			prestige = {
+				if = {
+					limit = {
+						NOR = {
+							has_realm_law = imperial_bureaucracy_2
+							has_realm_law = imperial_bureaucracy_3
+						}
+					}
+					add = increase_crown_authority_prestige_cost
+				}
+			}
+		}
+		
+		on_pass = {
+			# Increment cooldown breaker tally, if appropriate.
+			calculate_authority_cooldown_break_effect = yes
+			# Set regular cooldown.
+			set_variable = {
+				name = imperial_bureaucracy_cooldown
+				years = @imperial_bureaucracy_cooldown_years_1
+			}
+			# Remove modifiers.
+			remove_law_related_modifiers_effect = yes
+			#AGOT Added
+			if = {
+				limit = {
+					faith = { has_doctrine_parameter = can_change_realm_authority_frequently }
+				}
+				set_variable = {
+					name = imperial_bureaucracy_cooldown
+					years = @god_kings_crown_authority_cooldown_years
+				}
+			}
+		}
+
+		ai_will_do = {
+			if = {
+				limit = { has_realm_law = imperial_bureaucracy_0 }
+				value = 1
+			}
+		}
+	}
+	
+	imperial_bureaucracy_2 = {
+		modifier = {
+			belligerent_opinion = 20
+			barons_and_minor_landholders_opinion = -25
+			glory_hound_opinion = -25
+			parochial_opinion = -25
+			courtly_opinion = -10
+			zealot_opinion = -25
+			minority_opinion = -25
+			republic_government_tax_contribution_add = 0.05
+			vassal_limit = 100
+		}
+		flag = vassal_refusal_is_treason
+		flag = can_change_succession_laws
+		flag = vassal_all_wars_banned
+		flag = admin_change_vassal_gov_cheaper
+		flag = admin_title_troop_cost_reduction
+		
+		can_keep = {
+			realm_law_use_imperial_bureaucracy = yes
+			trigger_if = {
+				limit = {
+					top_liege != this
+				}
+				liege = { has_realm_law = imperial_bureaucracy_2 }
+			}
+		}
+
+		can_pass = {
+			dragonlord_council_direct_law_change_allowed_trigger = yes
+			trigger_if = {
+				limit = {
+					NOT = { has_realm_law = imperial_bureaucracy_3 }
+					top_liege = this
+				}
+				has_realm_law = imperial_bureaucracy_1
+				custom_description = {
+					subject = root
+					text = "has_imperial_bureaucracy_cooldown"
+					NAND = {
+						has_variable = imperial_bureaucracy_cooldown
+						NOT = {
+							culture = { has_innovation = innovation_all_things }
+						}
+					}
+				}
+			}
+			trigger_if = {
+				limit = {
+					top_liege != this
+					liege = { has_realm_law = imperial_bureaucracy_2 }
+				}
+				custom_tooltip = {
+					text = imperial_bureaucracy_pending_law_change
+					always = no
+				}
+			}
+			can_pass_law_ca2_trigger = yes
+		}
+
+		pass_cost = {
+			prestige = {
+				if = {
+					limit = {
+						NOT = { has_realm_law = imperial_bureaucracy_3 }
+					}
+					add = increase_crown_authority_prestige_cost
+				}
+			}
+		}
+		
+		on_pass = {
+			# Increment cooldown breaker tally, if appropriate.
+			calculate_authority_cooldown_break_effect = yes
+			# Set regular cooldown.
+			set_variable = {
+				name = imperial_bureaucracy_cooldown
+				years = @imperial_bureaucracy_cooldown_years_2
+			}
+			# Remove modifiers.
+			remove_law_related_modifiers_effect = yes
+			#AGOT Added
+			if = {
+				limit = {
+					faith = { has_doctrine_parameter = can_change_realm_authority_frequently }
+				}
+				set_variable = {
+					name = imperial_bureaucracy_cooldown
+					years = @god_kings_crown_authority_cooldown_years
+				}
+			}
+		}
+
+		ai_will_do = {
+			if = {
+				limit = { has_realm_law = imperial_bureaucracy_1 }
+				value = 1
+			}
+		}
+	}
+	
+	imperial_bureaucracy_3 = {
+		modifier = {
+			belligerent_opinion = 30
+			barons_and_minor_landholders_opinion = -50
+			glory_hound_opinion = -65
+			parochial_opinion = -65
+			courtly_opinion = -25
+			zealot_opinion = -50
+			minority_opinion = -75
+			republic_government_tax_contribution_add = 0.05
+			vassal_limit = 200
+		}
+		flag = vassal_all_wars_banned_permanent
+		flag = max_authority_level
+		flag = admin_title_troop_cost_reduction_high
+		
+		can_keep = {
+			realm_law_use_imperial_bureaucracy = yes
+			trigger_if = {
+				limit = {
+					top_liege != this
+				}
+				liege = { has_realm_law = imperial_bureaucracy_3 }
+			}
+		}
+
+		can_pass = {
+			dragonlord_council_direct_law_change_allowed_trigger = yes
+			trigger_if = {
+				limit = {
+					top_liege = this
+				}
+				has_realm_law = imperial_bureaucracy_2
+				custom_description = {
+					subject = root
+					text = "has_imperial_bureaucracy_cooldown"
+					NAND = {
+						has_variable = imperial_bureaucracy_cooldown
+						NOT = {
+							culture = { has_innovation = innovation_all_things }
+						}
+					}
+				}
+			}
+			trigger_if = {
+				limit = {
+					top_liege != this
+					liege = { has_realm_law = imperial_bureaucracy_3 }
+				}
+				custom_tooltip = {
+					text = imperial_bureaucracy_pending_law_change
+					always = no
+				}
+			}
+			can_pass_law_ca3_trigger = yes
+		}
+		
+		pass_cost = {
+			prestige = {
+				if = {
+					limit = {
+						NOT = { has_realm_law = imperial_bureaucracy_3 }
+					}
+					add = increase_crown_authority_prestige_cost
+				}
+			}
+		}
+		
+		on_pass = {
+			# Increment cooldown breaker tally, if appropriate.
+			calculate_authority_cooldown_break_effect = yes
+			# Set regular cooldown.
+			set_variable = {
+				name = imperial_bureaucracy_cooldown
+				years = @imperial_bureaucracy_cooldown_years_3
+			}
+			# Remove modifiers.
+			remove_law_related_modifiers_effect = yes
+			#AGOT Added
+			if = {
+				limit = {
+					faith = { has_doctrine_parameter = can_change_realm_authority_frequently }
+				}
+				set_variable = {
+					name = imperial_bureaucracy_cooldown
+					years = @god_kings_crown_authority_cooldown_years
+				}
+			}
+		}
+	}
+}
+
+crowned_laws = {
+	default = uncrowned
+	cumulative = no
+	flag = realm_law
+	flag = realm_law_no_number
+	flag = realm_no_pass
+
+	uncrowned = {
+		can_keep = {
+			coronation_trigger = yes
+			NOT = {
+				has_game_rule = coronation_laws_off
+			}
+		}
+		can_have = { 
+			coronation_trigger = yes
+			NOT = {
+				has_game_rule = coronation_laws_off
+			}
+		}
+		modifier = {
+			vassal_opinion = -30
+			legitimacy_gain_mult = -0.25
+			monthly_legitimacy_add = -2.5
+			ai_war_chance = -100
+		}
+		can_pass = {
+			custom_tooltip = {
+				text = can_only_be_lost_through_losing_titles
+				NOR = {
+					has_realm_law = crowned_king
+					has_realm_law = crowned_emperor
+				}
+			}
+		}
+		potential = {
+			coronation_trigger = yes
+			NOT = {
+				has_game_rule = coronation_laws_off
+			}
+		}
+	}
+
+	crowned_king = {
+		can_keep = {
+			coronation_trigger = yes
+			NOT = {
+				has_game_rule = coronation_laws_off
+			}
+		}
+		can_have = { 
+			coronation_trigger = yes
+			NOT = {
+				has_game_rule = coronation_laws_off
+			}
+		}
+		modifier = {
+			courtly_opinion = 5
+			barons_and_minor_landholders_opinion = 5
+		}
+		can_pass = {
+			# If you have a worse Coronation law, we will tell the player they can gain this with a Coronation
+			custom_tooltip = {
+				text = can_only_be_passed_through_coronation
+				NOT = { has_realm_law = uncrowned }
+			}
+			# If you have a better Coronation law, we will tell the player this is pointless for them
+			custom_tooltip = {
+				text = already_better_coronation
+				NOT = { has_realm_law = crowned_emperor }
+			}
+		}
+		potential = {
+			coronation_trigger = yes
+			NOT = {
+				has_game_rule = coronation_laws_off
+			}
+		}
+	}
+
+	crowned_emperor = {
+		can_keep = {
+			coronation_trigger = yes
+			NOT = {
+				has_game_rule = coronation_laws_off
+			}
+		}
+		can_have = { 
+			coronation_trigger = yes
+			NOT = {
+				has_game_rule = coronation_laws_off
+			}
+		}
+		modifier = {
+			courtly_opinion = 10
+			barons_and_minor_landholders_opinion = 10
+			zealot_opinion = 5
+		}
+		can_pass = {
+			# If you have a worse Coronation law, we will tell the player they can gain this with a Coronation
+			custom_tooltip = {
+				text = can_only_be_passed_through_coronation
+				NOR = {
+					has_realm_law = uncrowned
+					has_realm_law = crowned_king
+				}
+			}
+		}
+		should_start_with = {
+			always = no
+		}
+		potential = {
+			coronation_trigger = yes
+			NOT = {
+				has_game_rule = coronation_laws_off
+			}
+		}
+
+	}
+}

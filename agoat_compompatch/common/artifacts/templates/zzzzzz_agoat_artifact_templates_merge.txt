@@ -1,0 +1,107 @@
+﻿dragon_horn_template = {
+	can_equip = {
+		trigger_if = {
+			limit= {
+				scope:artifact = { artifact_type = dragon_horn NOT = { has_variable = dragon_horn_color } }
+			}
+			custom_tooltip = {
+				text = agot_must_bind_horn.tt
+				scope:artifact = {
+					OR = {
+						AND = {
+							var:binder ?= artifact_owner
+							exists = var:binding_strength
+							var:binding_strength > 0
+						}
+						any_in_list = {
+							variable = attempted_binding
+							this = root
+						}
+					}
+				}
+			}
+		}
+	}
+
+	# can this character benefit from the full modifiers of the artifact?
+	can_benefit = {
+
+		trigger_if = {
+			limit = { 
+				OR = {
+					has_game_rule = dragon_dragonblood_2_gen
+					has_game_rule = dragon_dragonblood_3_gen 
+					has_game_rule = dragon_valyrian_2_gen 
+					has_game_rule = dragon_valyrian_3_gen 
+				}
+			}
+			custom_tooltip = {
+				text = is_dragon_blood
+				agot_has_dragonblood_heritage = yes
+			}
+		}
+	}
+
+	# if a given character does not pass the "can_benefit" trigger then this modifier will be applied instead.
+	fallback = {
+		monthly_prestige = 0.05
+		monthly_piety_gain_mult = 0.05
+		monthly_dread = 0.05
+	}
+	unique = yes
+	ai_score = {
+		value = 100
+	}
+}
+
+dragon_skull_template = {
+	can_equip = {
+		trigger_if = {
+			limit= {
+				has_game_rule = amsb_dragon_skulls_free
+			}
+			always = yes
+		}
+		trigger_else = {
+			custom_tooltip = {
+				text = zz_valyria_dragon_skulls.tt
+				is_alive = yes
+				OR = {
+					capital_province = title:b_the_red_keep.title_province
+					capital_county = title:c_valyria
+					capital_county = title:c_ilvonys
+					capital_county = title:c_kastaryia
+				}
+			}
+		}
+	}
+	can_benefit = {
+	}
+	fallback = {
+	}
+	unique = yes
+	ai_score = {
+		value = 100
+	}
+}
+
+kingsguard_armor_template = {
+	can_equip = {
+		OR = {
+			has_trait = kingsguard
+			has_trait = agot_queensguard
+		}
+	}
+	# can this character benefit from the full modifiers of the artifact?
+	can_benefit = {
+		always = yes
+	}
+	# if a given character does not pass the "can_benefit" trigger then this modifier will be applied instead.
+	fallback = {
+		#always = yes
+	}
+	unique = yes
+	ai_score = {
+		value = 100
+	}
+}

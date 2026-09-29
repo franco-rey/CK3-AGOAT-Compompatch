@@ -1,0 +1,9 @@
+﻿acs_se_create_religion_lists = {
+	every_religion_global = {
+		add_to_global_variable_list = { name = acs_gvl_rf_other target = this }
+	}
+}
+
+acs_se_update_rf = {
+	acs_set_update_rf = { FAMILY = other }
+}

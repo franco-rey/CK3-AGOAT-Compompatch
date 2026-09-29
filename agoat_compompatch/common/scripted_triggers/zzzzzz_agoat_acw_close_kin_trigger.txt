@@ -1,0 +1,12 @@
+﻿acw_dotd_green_close_kin_trigger = {
+	acw_dotd_green_fallback_trigger = yes
+	trigger_if = {
+		limit = { exists = scope:acw_dotd_black }
+		is_close_or_extended_family_of = scope:acw_dotd_black
+	}
+	trigger_else_if = {
+		limit = { exists = character:Targaryen_60 }
+		is_close_or_extended_family_of = character:Targaryen_60
+	}
+	trigger_else = { always = no }
+}

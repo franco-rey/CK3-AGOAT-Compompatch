@@ -1,9 +1,4 @@
-﻿# AGOAT Compompatch: bind AGOT Seasons of Ice and Fire to the supernatural Long Night.
-# Registered in the patch's existing monthly_playable_pulse declaration in
-# dragonlord_oligarchy_on_actions.txt. Keeping one declaration prevents CK3 from discarding one of
-# two same-mod definitions instead of merging their on_actions lists.
-
-agoat_ln_seasons_monthly_sync = {
+﻿agoat_ln_seasons_monthly_sync = {
 	trigger = {
 		is_ai = no
 		has_global_variable = AGOT_seasons_is_loaded

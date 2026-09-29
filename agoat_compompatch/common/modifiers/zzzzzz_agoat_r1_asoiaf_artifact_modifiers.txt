@@ -1,0 +1,7 @@
+﻿asoiaf_oathkeeper_modifier = { #DELETE WHEN AGOT TEAM ADDS THEIRS!
+	prowess_no_portrait = 9
+	monthly_dynasty_prestige_mult = 0.05
+	monthly_prestige = 0.2
+
+	westerman_main_opinion = 20
+}

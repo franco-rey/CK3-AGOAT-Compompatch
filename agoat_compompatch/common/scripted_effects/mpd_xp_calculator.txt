@@ -26,7 +26,7 @@
 
 				modifier = { add = 10  any_parent = { has_trait = $TRAIT$ } }
 
-				modifier = { add = 35  has_variable = mpd_trait_from_guardian_influence }
+				modifier = { add = 35  trigger_if = { limit = { is_alive = yes } has_variable = mpd_trait_from_guardian_influence } trigger_else = { always = no } }
 
 				modifier = {
 					add = 20
@@ -79,7 +79,7 @@
 				modifier = { add = -10 faith = { trait_is_sin = $TRAIT$ } }
 				modifier = { add = 10  guardian_or_court_tutor_trait = { TRAIT = $TRAIT$ } }
 				modifier = { add = 5   any_parent = { has_trait = $TRAIT$ } }
-				modifier = { add = 25  has_variable = mpd_trait_from_guardian_influence }
+				modifier = { add = 25  trigger_if = { limit = { is_alive = yes } has_variable = mpd_trait_from_guardian_influence } trigger_else = { always = no } }
 				modifier = {
 					add = 15
 					court_owner ?= {
@@ -114,8 +114,11 @@
 
 
 		if = {
-			limit = { has_variable = mpd_trait_from_guardian_influence }
-			remove_variable = mpd_trait_from_guardian_influence
+			limit = { is_alive = yes }
+			if = {
+				limit = { has_variable = mpd_trait_from_guardian_influence }
+				remove_variable = mpd_trait_from_guardian_influence
+			}
 		}
 	}
 }

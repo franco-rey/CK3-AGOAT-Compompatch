@@ -1,0 +1,37 @@
+﻿tgc_blackfyre_equipment_trigger = {
+    OR = {
+        AND = {
+            has_game_rule = tgc_blackfyre_enabled
+            is_tgc_loaded_trigger = yes
+            is_male = yes
+            portrait_wear_armor_trigger = yes
+            OR = {
+                AND = {
+                    exists = title:e_blackfyre_rebellion.holder
+                    OR = {
+                        employer ?= title:e_blackfyre_rebellion.holder
+                        liege ?= title:e_blackfyre_rebellion.holder
+                        this = title:e_blackfyre_rebellion.holder
+                    }
+                }
+            }  
+        }
+        AND = {
+            has_game_rule = tgc_faegon_enabled
+            is_tgc_loaded_trigger = yes
+            is_male = yes
+            portrait_wear_armor_trigger = yes
+            OR = {
+                AND = {
+                    exists = title:e_targaryen_host_title.holder
+                    title:e_targaryen_host_title.holder.house = house:house_Blackfyre
+                    OR = {
+                        employer ?= title:e_targaryen_host_title.holder
+                        liege ?= title:e_targaryen_host_title.holder
+                        this = title:e_targaryen_host_title.holder
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,39 @@
+﻿raindancer_modifier = {
+	prowess_no_portrait = 9
+	monthly_dynasty_prestige_mult = 0.05
+	monthly_prestige = 0.2
+	forest_advantage = 5
+	majorroad_forest_advantage = 5
+	minorroad_forest_advantage = 5
+	cloudforest_advantage = 5
+	majorroad_cloudforest_advantage = 5
+	minorroad_cloudforest_advantage = 5
+}
+
+glover_modifier = {
+	prowess_no_portrait = 9
+	monthly_dynasty_prestige_mult = 0.05
+	monthly_prestige = 0.2
+	forest_advantage = 5
+	majorroad_forest_advantage = 5
+	minorroad_forest_advantage = 5
+	cloudforest_advantage = 5
+	majorroad_cloudforest_advantage = 5
+	minorroad_cloudforest_advantage = 5
+}
+
+volmark_modifier = {
+	prowess_no_portrait = 9
+	monthly_dynasty_prestige_mult = 0.05
+	monthly_prestige = 0.2
+	ironborn_opinion = 10
+	raid_speed = 0.05
+}
+
+moonfell_modifier = {
+	prowess_no_portrait = 9
+	monthly_dynasty_prestige_mult = 0.05
+	monthly_prestige = 0.2
+	martial = 2
+	valeman_main_opinion = 10
+}

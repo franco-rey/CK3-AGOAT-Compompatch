@@ -1,9 +1,10 @@
-﻿
-
-
-asoiaf_Svennis = {
+﻿#########################
+### VANITY CHARACTERS ###
+#########################
+asoiaf_Svennis = { #Svennis
 	name = Sven
-
+	dna = asoiaf_Svennis
+	
 	religion = old_gods_wnw
 	culture = northman
 	sexuality = heterosexual
@@ -34,23 +35,23 @@ asoiaf_Svennis = {
 			set_focus = education_learning
 		}
 	}
-	8282.1.1 = {
+	8282.1.1 = { #squire of Wendel Manderly at 13
 		effect = {
-			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:Manderly_8 }
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:Manderly_8 } #Wendel Manderly (son of Wyman)
 		}
 	}
-	8289.1.1 = {
+	8289.1.1 = { #knight at 20
 		trait = knight
 	}
 }
 
-
-
-
-asoiaf_Toth_1 = {
+#############################
+### EASTER EGG CHARACTERS ###
+#############################
+asoiaf_Toth_1 = { #Istvan's father
 	name = Alliser
 	dynasty = dynn_Toth
-
+	
 	religion = fots_seven
 	culture = valeman_main
 
@@ -71,16 +72,16 @@ asoiaf_Toth_1 = {
 	8265.1.1 = {
 		add_spouse = asoiaf_Toth_rs_1
 	}
-	8282.12.12 = {
+	8282.12.12 = { #Siege of Gulltown takes place and Toth is orphaned; joins the service of the new Lord Gerold
 		death = {
 			death_reason = death_siege
 		}
 	}
 }
-asoiaf_Toth_rs_1 = {
+asoiaf_Toth_rs_1 = { #Istvan's mother
 	name = Melody
 	female = yes
-
+	
 	religion = fots_seven
 	culture = valeman_main
 
@@ -98,18 +99,18 @@ asoiaf_Toth_rs_1 = {
 			agot_safe_set_location_history_effect = { CASTLE = title:c_osgoodswell }
 		}
 	}
-	8282.12.12 = {
+	8282.12.12 = { #Siege of Gulltown takes place and Toth is orphaned; joins the service of the new Lord Gerold
 		death = {
 			death_reason = death_siege
 		}
 	}
 }
-asoiaf_Toth_2 = {
+asoiaf_Toth_2 = { #Istvan Toth
 	name = Istvan
 	dynasty = dynn_Toth
 	dna = asoiaf_Toth_2
 	sexuality = homosexual
-
+	
 	religion = fots_seven
 	culture = valeman_main
 
@@ -146,40 +147,40 @@ asoiaf_Toth_2 = {
 			set_focus = education_intrigue
 		}
 	}
-	8282.12.12 = {
+	8282.12.12 = { #Siege of Gulltown takes place and Toth is orphaned; joins the service of the new Lord Gerold
 		effect = {
 			agot_safe_set_location_history_effect = { CASTLE = title:c_gulltown }
-			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:Grafton_3 }
-			set_relation_grudge = { reason = asoiaf_istvan_robert_grudge_desc target = character:Baratheon_2 }
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:Grafton_3 } #Gerold Grafton (son of Randyll)
+			set_relation_grudge = { reason = asoiaf_istvan_robert_grudge_desc target = character:Baratheon_2 } #Robert I Baratheon
 		}
 	}
-	8298.12.21 = {
+	8298.12.21 = { #War of the Five Kings starts and he seeks opportunity in the Young Wolf's service based in Riverrun
 		effect = {
 			agot_safe_set_location_history_effect = { CASTLE = title:c_riverrun }
 		}
 	}
-	8284.1.1 = {
+	8284.1.1 = { #knight at 17
 		trait = knight
 	}
-	8288.1.1 = {
+	8288.1.1 = { #met Erik at 21
 		effect = {
 			set_relation_friend = character:asoiaf_Erik
-			set_relation_lover = { reason = asoiaf_istvan_erik_lover_desc target = character:asoiaf_Erik }
+			set_relation_lover = { reason = asoiaf_istvan_erik_lover_desc target = character:asoiaf_Erik } #Erik
 		}
 	}
-
-
-
-	8299.12.15 = {
+	#8299.1.1 = { #leads the raid on Henry's village, killing his parents
+	#	trait = murderer
+	#}
+	8299.12.15 = { #Henry kills him during the chaos of the Red Wedding after hunting him down
 		death = {
 			death_reason = death_duel
-			killer = asoiaf_Kobyla_2
+			killer = asoiaf_Kobyla_2 #Henry of Skalitz
 		}
 	}
 }
-asoiaf_Erik_father = {
+asoiaf_Erik_father = { #Erik father
 	name = Bernard
-
+	
 	religion = fots_seven
 	culture = valeman_main
 
@@ -200,16 +201,16 @@ asoiaf_Erik_father = {
 	8262.1.1 = {
 		add_spouse = asoiaf_Erik_mother
 	}
-	8282.12.12 = {
+	8282.12.12 = { #Siege of Gulltown takes place and Erik is orphaned
 		death = {
 			death_reason = death_siege
 		}
 	}
 }
-asoiaf_Erik_mother = {
+asoiaf_Erik_mother = { #Erik mother
 	name = Flora
 	female = yes
-
+	
 	religion = fots_seven
 	culture = valeman_main
 
@@ -227,17 +228,17 @@ asoiaf_Erik_mother = {
 			agot_safe_set_location_history_effect = { CASTLE = title:c_gulltown }
 		}
 	}
-	8282.12.12 = {
+	8282.12.12 = { #Siege of Gulltown takes place and Erik is orphaned
 		death = {
 			death_reason = death_siege
 		}
 	}
 }
-asoiaf_Erik = {
+asoiaf_Erik = { #Erik
 	name = Erik
 	dna = asoiaf_Erik
 	sexuality = homosexual
-
+	
 	religion = fots_seven
 	culture = valeman_main
 
@@ -275,25 +276,25 @@ asoiaf_Erik = {
 	}
 	8288.1.1 = {
 		effect = {
-			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Toth_2 }
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Toth_2 } #Istvan Toth
 		}
 	}
-	8298.12.21 = {
+	8298.12.21 = { #Joins Istvan in Riverrun
 		effect = {
 			agot_safe_set_location_history_effect = { CASTLE = title:c_riverrun }
 		}
 	}
-	8299.12.15 = {
+	8299.12.15 = { #Henry kills Istvan during the chaos of the Red Wedding; Erik vows revenge
 		effect = {
-			set_relation_nemesis = { reason = asoiaf_erik_henry_nemesis_desc target = character:asoiaf_Kobyla_2 }
+			set_relation_nemesis = { reason = asoiaf_erik_henry_nemesis_desc target = character:asoiaf_Kobyla_2 } #Henry of Skalitz
 		}
 	}
 }
-asoiaf_Henry_mother = {
-	name = Hazel
+asoiaf_Henry_mother = { #Henry's mother
+	name = Hazel #random name
 	female = yes
 	sexuality = heterosexual
-
+	
 	religion = fots_seven
 	culture = westerman_main
 
@@ -324,22 +325,22 @@ asoiaf_Henry_mother = {
 			set_focus = education_diplomacy
 		}
 	}
-
-	8281.1.1 = {
+	#8280.1.1 = { #romance with Radzig Kobyla at 23
+	8281.1.1 = { #Becomes pregnant with Radzig's child and Martin agrees to marry her
 		trait = fornicator
 		add_spouse = asoiaf_Martin
 	}
-	8299.1.1 = {
+	8299.1.1 = { #dies in a raid during the War of the Five Kings
 		death = {
 			death_reason = death_raid
-			killer = asoiaf_Toth_2
+			killer = asoiaf_Toth_2 #Istvan Toth
 		}
 	}
 }
-asoiaf_Martin = {
+asoiaf_Martin = { #Martin the Blacksmith
 	name = Martin
 	sexuality = heterosexual
-
+	
 	religion = fots_seven
 	culture = westerman_main
 
@@ -370,7 +371,7 @@ asoiaf_Martin = {
 			set_focus = education_stewardship
 		}
 	}
-	8281.1.1 = {
+	8281.1.1 = { #Marries Henry's mother and settles down as a blacksmith
 		effect = {
 			agot_appoint_as_court_position_for_castle_history_effect = {
 				CASTLE = title:c_deadwater
@@ -378,18 +379,18 @@ asoiaf_Martin = {
 			}
 		}
 	}
-	8299.1.1 = {
+	8299.1.1 = { #dies in a raid during the War of the Five Kings
 		death = {
 			death_reason = death_raid
-			killer = asoiaf_Toth_2
+			killer = asoiaf_Toth_2 #Istvan Toth
 		}
 	}
 }
-asoiaf_Kobyla_1 = {
+asoiaf_Kobyla_1 = { #Radzig Kobyla (father of Henry)
 	name = Radzig
 	dynasty = dynn_Kobyla
 	sexuality = heterosexual
-
+	
 	religion = fots_seven
 	culture = westerman_main
 
@@ -422,15 +423,15 @@ asoiaf_Kobyla_1 = {
 			set_focus = education_martial
 		}
 	}
-	8274.1.1 = {
+	8274.1.1 = { #squire of Lord Bermond Bettley at 12
 		effect = {
-			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:Bettley_1 }
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:Bettley_1 } #Bermond Bettley (son of Osbert)
 		}
 	}
-	8278.1.1 = {
+	8278.1.1 = { #knight at 16
 		effect = {
-			agot_knighted_char_history_effect = { KNIGHT = character:Bettley_1 }
-			set_relation_friend = character:asoiaf_Leipa_12
+			agot_knighted_char_history_effect = { KNIGHT = character:Bettley_1 } #Bermond Bettley (son of Osbert)
+			set_relation_friend = character:asoiaf_Leipa_12 #Hanush of Leipa
 		}
 		trait = knight
 	}
@@ -442,22 +443,22 @@ asoiaf_Kobyla_1 = {
 			}
 		}
 	}
-	8280.1.1 = {
+	8280.1.1 = { #romance with Henry's mother at 21
 		effect = {
 			set_relation_lover = character:asoiaf_Henry_mother
 			set_relation_friend = character:asoiaf_Martin
 		}
 	}
-	8281.1.1 = {
+	8281.1.1 = { #Henry's mother becomes pregnant and Martin agrees to marry her
 		trait = fornicator
 		effect = { remove_relation_lover = character:asoiaf_Henry_mother }
 	}
 }
-asoiaf_Kobyla_2 = {
+asoiaf_Kobyla_2 = { #Henry of Skalitz
 	name = Henry
 	dynasty = dynn_Kobyla
 	dna = asoiaf_Kobyla_2
-
+	
 	religion = fots_seven
 	culture = westerman_main
 
@@ -493,25 +494,25 @@ asoiaf_Kobyla_2 = {
 			set_focus = education_martial
 		}
 		effect = {
-			agot_set_as_ward_history_effect = { GUARDIAN = character:asoiaf_Martin }
+			agot_set_as_ward_history_effect = { GUARDIAN = character:asoiaf_Martin } #Martin
 		}
 	}
-	8299.1.1 = {
+	8299.1.1 = { #squire of Hans Capon + vengence for dead parents
 		trait = vengeful
 		effect = {
-			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Capon_2 }
-			set_relation_best_friend = { reason = asoiaf_henry_hans_best_friend_desc target = character:asoiaf_Capon_2 }
-			set_relation_nemesis = { reason = asoiaf_henry_istvan_nemesis_desc target = character:asoiaf_Toth_2 }
-			set_relation_grudge = { reason = asoiaf_henry_robb_grudge_desc target = character:Stark_6 }
-
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Capon_2 } #Hans Capon
+			set_relation_best_friend = { reason = asoiaf_henry_hans_best_friend_desc target = character:asoiaf_Capon_2 } #Hans Capon
+			set_relation_nemesis = { reason = asoiaf_henry_istvan_nemesis_desc target = character:asoiaf_Toth_2 } #Istvan Toth
+			set_relation_grudge = { reason = asoiaf_henry_robb_grudge_desc target = character:Stark_6 } #Robb Stark (son of Eddard)
+			#romance with Hans ONLY if both are bi (randomly set by the game)
 		}
 	}
 }
 
-asoiaf_Ronov_1 = {
+asoiaf_Ronov_1 = { #Smil Ronov
 	name = Smil
 	dynasty = dynn_Ronov
-
+	
 	religion = fots_seven
 	culture = westerman_main
 
@@ -531,7 +532,7 @@ asoiaf_Ronov_1 = {
 	}
 	8110.1.1 = {
 		effect = {
-			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:Bettley_1 }
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:Bettley_1 } #Bermond Bettley (son of Osbert); a young lord at the time
 		}
 	}
 	8114.1.1 = {
@@ -542,10 +543,10 @@ asoiaf_Ronov_1 = {
 		death = { death_reason = death_natural_causes }
 	}
 }
-asoiaf_Ronov_rs_1 = {
+asoiaf_Ronov_rs_1 = { #Wife of Smil Ronov
 	name = Theresa
 	female = yes
-
+	
 	religion = fots_seven
 	culture = westerman_main
 
@@ -567,10 +568,10 @@ asoiaf_Ronov_rs_1 = {
 		death = { death_reason = death_natural_causes }
 	}
 }
-asoiaf_Ronov_2 = {
+asoiaf_Ronov_2 = { #Castolov Ronov (son of Smil)
 	name = Castolov
 	dynasty = dynn_Ronov
-
+	
 	religion = fots_seven
 	culture = westerman_main
 
@@ -599,7 +600,7 @@ asoiaf_Ronov_2 = {
 	}
 	8133.1.1 = {
 		effect = {
-			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Ronov_1 }
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Ronov_1 } #father
 		}
 	}
 	8142.1.1 = {
@@ -610,10 +611,10 @@ asoiaf_Ronov_2 = {
 		death = { death_reason = death_natural_causes }
 	}
 }
-asoiaf_Ronov_rs_2 = {
+asoiaf_Ronov_rs_2 = { #Wife of Castolov Ronov
 	name = Obetta
 	female = yes
-
+	
 	religion = fots_seven
 	culture = westerman_main
 
@@ -635,10 +636,10 @@ asoiaf_Ronov_rs_2 = {
 		death = { death_reason = death_natural_causes }
 	}
 }
-asoiaf_Ronov_3 = {
+asoiaf_Ronov_3 = { #Henry Ronov (son of Smil)
 	name = Henry
 	dynasty = dynn_Ronov
-
+	
 	religion = fots_seven
 	culture = westerman_main
 
@@ -667,7 +668,7 @@ asoiaf_Ronov_3 = {
 	}
 	8139.1.1 = {
 		effect = {
-			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Ronov_1 }
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Ronov_1 } #father
 		}
 	}
 	8143.1.1 = {
@@ -678,10 +679,10 @@ asoiaf_Ronov_3 = {
 		death = { death_reason = death_natural_causes }
 	}
 }
-asoiaf_Ronov_rs_3 = {
+asoiaf_Ronov_rs_3 = { #Wife of Henry Ronov
 	name = Lily
 	female = yes
-
+	
 	religion = fots_seven
 	culture = westerman_main
 
@@ -703,10 +704,10 @@ asoiaf_Ronov_rs_3 = {
 		death = { death_reason = death_natural_causes }
 	}
 }
-asoiaf_Ronov_4 = {
+asoiaf_Ronov_4 = { #Henry Ronov (son of Castolov)
 	name = Henry
 	dynasty = dynn_Ronov
-
+	
 	religion = fots_seven
 	culture = westerman_main
 
@@ -729,7 +730,7 @@ asoiaf_Ronov_4 = {
 	}
 	8161.1.1 = {
 		effect = {
-			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Ronov_2 }
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Ronov_2 } #father
 		}
 	}
 	8162.1.1 = {
@@ -739,10 +740,10 @@ asoiaf_Ronov_4 = {
 		death = { death_reason = death_natural_causes }
 	}
 }
-asoiaf_Ronov_5 = {
+asoiaf_Ronov_5 = { #Castolov Ronov (son of Castolov)
 	name = Castolov
 	dynasty = dynn_Ronov
-
+	
 	religion = fots_seven
 	culture = westerman_main
 
@@ -765,7 +766,7 @@ asoiaf_Ronov_5 = {
 	}
 	8162.1.1 = {
 		effect = {
-			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Ronov_2 }
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Ronov_2 } #father
 		}
 	}
 	8163.1.1 = {
@@ -775,10 +776,10 @@ asoiaf_Ronov_5 = {
 		death = { death_reason = death_natural_causes }
 	}
 }
-asoiaf_Leipa_1 = {
+asoiaf_Leipa_1 = { #Chval of Leipa (son of Castolov)
 	name = Chval
 	dynasty_house = house_Leipa
-
+	
 	religion = fots_seven
 	culture = westerman_main
 
@@ -804,7 +805,7 @@ asoiaf_Leipa_1 = {
 	}
 	8164.1.1 = {
 		effect = {
-			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Ronov_1 }
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Ronov_1 } #gradnfather
 		}
 	}
 	8165.1.1 = {
@@ -815,10 +816,10 @@ asoiaf_Leipa_1 = {
 		death = { death_reason = death_natural_causes }
 	}
 }
-asoiaf_Leipa_rs_1 = {
+asoiaf_Leipa_rs_1 = { #Wife of Chval
 	name = Alerie
 	female = yes
-
+	
 	religion = fots_seven
 	culture = westerman_main
 
@@ -840,10 +841,10 @@ asoiaf_Leipa_rs_1 = {
 		death = { death_reason = death_natural_causes }
 	}
 }
-asoiaf_Ronov_6 = {
+asoiaf_Ronov_6 = { #Smil of Lichtenburg (son of Henry)
 	name = Smil
 	dynasty_house = house_Lichtenburg
-
+	
 	religion = fots_seven
 	culture = westerman_main
 
@@ -866,7 +867,7 @@ asoiaf_Ronov_6 = {
 	}
 	8157.1.1 = {
 		effect = {
-			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Ronov_3 }
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Ronov_3 } #father
 		}
 	}
 	8162.1.1 = {
@@ -880,10 +881,10 @@ asoiaf_Ronov_6 = {
 		death = { death_reason = death_natural_causes }
 	}
 }
-asoiaf_Ronov_rs_6 = {
+asoiaf_Ronov_rs_6 = { #Elizabeth (wife of Smil)
 	name = Elizabeth
 	female = yes
-
+	
 	religion = fots_seven
 	culture = westerman_main
 
@@ -910,10 +911,10 @@ asoiaf_Ronov_rs_6 = {
 		death = { death_reason = death_natural_causes }
 	}
 }
-asoiaf_Leipa_2 = {
+asoiaf_Leipa_2 = { #Cenek of Leipa (son of Chval)
 	name = Cenek
 	dynasty_house = house_Leipa
-
+	
 	religion = fots_seven
 	culture = westerman_main
 
@@ -936,7 +937,7 @@ asoiaf_Leipa_2 = {
 	}
 	8187.1.1 = {
 		effect = {
-			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Leipa_1 }
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Leipa_1 } #father
 		}
 	}
 	8191.1.1 = {
@@ -947,10 +948,10 @@ asoiaf_Leipa_2 = {
 		death = { death_reason = death_natural_causes }
 	}
 }
-asoiaf_Leipa_rs_2 = {
+asoiaf_Leipa_rs_2 = { #Wife of Cenek
 	name = Austa
 	female = yes
-
+	
 	religion = fots_seven
 	culture = westerman_main
 
@@ -972,10 +973,10 @@ asoiaf_Leipa_rs_2 = {
 		death = { death_reason = death_natural_causes }
 	}
 }
-asoiaf_Leipa_3 = {
+asoiaf_Leipa_3 = { #Henry of Leipa (son of Cenek)
 	name = Henry
 	dynasty_house = house_Leipa
-
+	
 	religion = fots_seven
 	culture = westerman_main
 
@@ -1009,7 +1010,7 @@ asoiaf_Leipa_3 = {
 	}
 	8208.1.1 = {
 		effect = {
-			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Leipa_2 }
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Leipa_2 } #father
 		}
 	}
 	8214.1.1 = {
@@ -1023,10 +1024,10 @@ asoiaf_Leipa_3 = {
 		death = { death_reason = death_natural_causes }
 	}
 }
-asoiaf_Leipa_rs_3 = {
+asoiaf_Leipa_rs_3 = { #Elizabeth (wife of Henry)
 	name = Elizabeth
 	female = yes
-
+	
 	religion = fots_seven
 	culture = westerman_main
 
@@ -1054,10 +1055,10 @@ asoiaf_Leipa_rs_3 = {
 		death = { death_reason = death_natural_causes }
 	}
 }
-asoiaf_Leipa_4 = {
+asoiaf_Leipa_4 = { #Henry of Leipa (son of Henry)
 	name = Henry
 	dynasty_house = house_Leipa
-
+	
 	religion = fots_seven
 	culture = westerman_main
 
@@ -1088,7 +1089,7 @@ asoiaf_Leipa_4 = {
 	8234.1.1 = {
 		give_nickname = nick_the_iron_one
 		effect = {
-			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Leipa_3 }
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Leipa_3 } #father
 		}
 	}
 	8240.1.1 = {
@@ -1099,10 +1100,10 @@ asoiaf_Leipa_4 = {
 		death = { death_reason = death_natural_causes }
 	}
 }
-asoiaf_Leipa_rs_4 = {
+asoiaf_Leipa_rs_4 = { #Agnes (wife of Henry)
 	name = Agnes
 	female = yes
-
+	
 	religion = fots_seven
 	culture = westerman_main
 
@@ -1124,11 +1125,11 @@ asoiaf_Leipa_rs_4 = {
 		death = { death_reason = death_natural_causes }
 	}
 }
-asoiaf_Leipa_5 = {
+asoiaf_Leipa_5 = { #Clara of Leipa (daughter of Henry)
 	name = Clara
 	dynasty_house = house_Leipa
 	female = yes
-
+	
 	religion = fots_seven
 	culture = westerman_main
 
@@ -1153,11 +1154,11 @@ asoiaf_Leipa_5 = {
 		death = { death_reason = death_natural_causes }
 	}
 }
-asoiaf_Leipa_6 = {
+asoiaf_Leipa_6 = { #Margaret of Leipa (daughter of Henry)
 	name = Margaret
 	dynasty_house = house_Leipa
 	female = yes
-
+	
 	religion = fots_seven
 	culture = westerman_main
 
@@ -1182,10 +1183,10 @@ asoiaf_Leipa_6 = {
 		death = { death_reason = death_natural_causes }
 	}
 }
-asoiaf_Leipa_7 = {
+asoiaf_Leipa_7 = { #John of Leipa (son of Henry)
 	name = John
 	dynasty_house = house_Leipa
-
+	
 	religion = fots_seven
 	culture = westerman_main
 
@@ -1208,7 +1209,7 @@ asoiaf_Leipa_7 = {
 	}
 	8240.1.1 = {
 		effect = {
-			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Leipa_3 }
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Leipa_3 } #father
 		}
 	}
 	8245.1.1 = {
@@ -1218,11 +1219,11 @@ asoiaf_Leipa_7 = {
 		death = { death_reason = death_natural_causes }
 	}
 }
-asoiaf_Leipa_8 = {
+asoiaf_Leipa_8 = { #Katherine of Leipa (daughter of Henry)
 	name = Katherine
 	dynasty_house = house_Leipa
 	female = yes
-
+	
 	religion = fots_seven
 	culture = westerman_main
 
@@ -1247,10 +1248,10 @@ asoiaf_Leipa_8 = {
 		death = { death_reason = death_natural_causes }
 	}
 }
-asoiaf_Leipa_9 = {
+asoiaf_Leipa_9 = { #Berthold of Leipa (son of Henry)
 	name = Berthold
 	dynasty_house = house_Leipa
-
+	
 	religion = fots_seven
 	culture = westerman_main
 
@@ -1273,7 +1274,7 @@ asoiaf_Leipa_9 = {
 	}
 	8243.1.1 = {
 		effect = {
-			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:Bettley_22 }
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:Bettley_22 } #Osbert Bettley (son of Bermond)
 		}
 	}
 	8247.1.1 = {
@@ -1283,10 +1284,10 @@ asoiaf_Leipa_9 = {
 		death = { death_reason = death_natural_causes }
 	}
 }
-asoiaf_Leipa_10 = {
+asoiaf_Leipa_10 = { #Cenek of Leipa (son of Henry; grandfather of Hans)
 	name = Cenek
 	dynasty_house = house_Leipa
-
+	
 	religion = fots_seven
 	culture = westerman_main
 
@@ -1309,7 +1310,7 @@ asoiaf_Leipa_10 = {
 	}
 	8245.1.1 = {
 		effect = {
-			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:Bettley_22 }
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:Bettley_22 } #Osbert Bettley (son of Bermond)
 		}
 	}
 	8249.1.1 = {
@@ -1320,10 +1321,10 @@ asoiaf_Leipa_10 = {
 		death = { death_reason = death_natural_causes }
 	}
 }
-asoiaf_Leipa_rs_10 = {
+asoiaf_Leipa_rs_10 = { #Judith (grandmother of Hans)
 	name = Judith
 	female = yes
-
+	
 	religion = fots_seven
 	culture = westerman_main
 
@@ -1345,10 +1346,10 @@ asoiaf_Leipa_rs_10 = {
 		death = { death_reason = death_natural_causes }
 	}
 }
-asoiaf_Leipa_11 = {
+asoiaf_Leipa_11 = { #Henry of Leipa (son of Henry the Iron One)
 	name = Henry
 	dynasty_house = house_Leipa
-
+	
 	religion = fots_seven
 	culture = westerman_main
 
@@ -1371,7 +1372,7 @@ asoiaf_Leipa_11 = {
 	}
 	8256.1.1 = {
 		effect = {
-			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Leipa_4 }
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Leipa_4 } #father
 		}
 	}
 	8264.1.1 = {
@@ -1382,10 +1383,10 @@ asoiaf_Leipa_11 = {
 		death = { death_reason = death_natural_causes }
 	}
 }
-asoiaf_Leipa_rs_11 = {
+asoiaf_Leipa_rs_11 = { #Ofca (wife of Henry)
 	name = Ofca
 	female = yes
-
+	
 	religion = fots_seven
 	culture = westerman_main
 
@@ -1410,10 +1411,10 @@ asoiaf_Leipa_rs_11 = {
 		death = { death_reason = death_natural_causes }
 	}
 }
-asoiaf_Capon_1 = {
+asoiaf_Capon_1 = { #Henry Capon (father of Hans)
 	name = Henry
 	dynasty_house = house_Capon
-
+	
 	religion = fots_seven
 	culture = westerman_main
 
@@ -1436,12 +1437,12 @@ asoiaf_Capon_1 = {
 			agot_safe_set_location_history_effect = { CASTLE = title:c_deadwater }
 		}
 		effect = {
-			agot_set_as_ward_history_effect = { GUARDIAN = character:asoiaf_Leipa_10 }
+			agot_set_as_ward_history_effect = { GUARDIAN = character:asoiaf_Leipa_10 } #Cenek of Leipa (grandfather of Hans)
 		}
 	}
 	8272.1.1 = {
 		effect = {
-			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Leipa_10 }
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Leipa_10 } #Cenek of Leipa (grandfather of Hans)
 		}
 	}
 	8276.1.1 = {
@@ -1458,10 +1459,10 @@ asoiaf_Capon_1 = {
 		death = { death_reason = death_horse_riding_accident }
 	}
 }
-asoiaf_Capon_rs_1 = {
+asoiaf_Capon_rs_1 = { #Hedvika (mother of Hans)
 	name = Hedvika
 	female = yes
-
+	
 	religion = fots_seven
 	culture = westerman_main
 
@@ -1486,11 +1487,12 @@ asoiaf_Capon_rs_1 = {
 		}
 	}
 }
-asoiaf_Leipa_12 = {
+asoiaf_Leipa_12 = { #Hanush of Leipa (uncle of Hans)
 	name = Hanush
 	dynasty_house = house_Leipa
+	dna = asoiaf_Leipa_12
 	sexuality = heterosexual
-
+	
 	religion = fots_seven
 	culture = westerman_main
 
@@ -1527,18 +1529,18 @@ asoiaf_Leipa_12 = {
 	}
 	8274.1.1 = {
 		effect = {
-			agot_set_as_ward_history_effect = { GUARDIAN = character:asoiaf_Leipa_10 }
+			agot_set_as_ward_history_effect = { GUARDIAN = character:asoiaf_Leipa_10 } #Cenek of Leipa (grandfather of Hans)
 		}
 	}
 	8277.1.1 = {
 		trait = knight
 	}
 }
-asoiaf_Capon_2 = {
+asoiaf_Capon_2 = { #Hans Capon
 	name = Hans
 	dynasty_house = house_Capon
 	dna = asoiaf_Capon_2
-
+	
 	religion = fots_seven
 	culture = westerman_main
 
@@ -1575,25 +1577,25 @@ asoiaf_Capon_2 = {
 			set_focus = education_martial
 		}
 		effect = {
-			agot_set_as_ward_history_effect = { GUARDIAN = character:asoiaf_Capon_1 }
+			agot_set_as_ward_history_effect = { GUARDIAN = character:asoiaf_Capon_1 } #Henry Capon (father of Hans)
 		}
 	}
 	8292.1.1 = {
 		effect = {
-			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Capon_1 }
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Capon_1 } #Henry Capon (father of Hans)
 		}
 	}
 	8296.1.1 = {
 		trait = knight
 	}
-
-
+	#friendship with Henry is handled in Henry's character block
+	#lover relationship with Henry is handled by scripted effect, not in character history
 }
-asoiaf_Leipa_13 = {
+asoiaf_Leipa_13 = { #Agnes of Leipa (daughter of Henry)
 	name = Agnes
 	dynasty_house = house_Leipa
 	female = yes
-
+	
 	religion = fots_seven
 	culture = westerman_main
 
@@ -1618,10 +1620,10 @@ asoiaf_Leipa_13 = {
 		death = { death_reason = death_natural_causes }
 	}
 }
-asoiaf_Leipa_14 = {
+asoiaf_Leipa_14 = { #Henry of Leipa (son of Henry)
 	name = Henry
 	dynasty_house = house_Leipa
-
+	
 	religion = fots_seven
 	culture = westerman_main
 
@@ -1644,7 +1646,7 @@ asoiaf_Leipa_14 = {
 	}
 	8281.1.1 = {
 		effect = {
-			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Leipa_12 }
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Leipa_12 } #Hanush of Leipa
 		}
 	}
 	8286.1.1 = {
@@ -1654,10 +1656,10 @@ asoiaf_Leipa_14 = {
 		death = { death_reason = death_natural_causes }
 	}
 }
-asoiaf_Leipa_15 = {
+asoiaf_Leipa_15 = { #Berthold of Leipa (son of Henry)
 	name = Berthold
 	dynasty_house = house_Leipa
-
+	
 	religion = fots_seven
 	culture = westerman_main
 
@@ -1680,7 +1682,7 @@ asoiaf_Leipa_15 = {
 	}
 	8283.1.1 = {
 		effect = {
-			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Leipa_12 }
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Leipa_12 } #Hanush of Leipa
 		}
 	}
 	8288.1.1 = {
@@ -1690,11 +1692,11 @@ asoiaf_Leipa_15 = {
 		death = { death_reason = death_natural_causes }
 	}
 }
-asoiaf_Leipa_16 = {
+asoiaf_Leipa_16 = { #Helena of Leipa (daughter of Henry)
 	name = Helena
 	dynasty_house = house_Leipa
 	female = yes
-
+	
 	religion = fots_seven
 	culture = westerman_main
 
@@ -1719,10 +1721,10 @@ asoiaf_Leipa_16 = {
 		death = { death_reason = death_natural_causes }
 	}
 }
-asoiaf_Leipa_17 = {
+asoiaf_Leipa_17 = { #Cenek of Leipa (son of Henry)
 	name = Cenek
 	dynasty_house = house_Leipa
-
+	
 	religion = fots_seven
 	culture = westerman_main
 
@@ -1745,7 +1747,7 @@ asoiaf_Leipa_17 = {
 	}
 	8290.1.1 = {
 		effect = {
-			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Leipa_14 }
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Leipa_14 } #eldest brother
 		}
 	}
 	8293.1.1 = {
@@ -1756,11 +1758,11 @@ asoiaf_Leipa_17 = {
 	}
 }
 
-
-asoiaf_Lichtenburg_1 = {
+#HOUSE OF LICHTENBURG
+asoiaf_Lichtenburg_1 = { #Henry of Lichtenburg (son of Smil)
 	name = Henry
 	dynasty_house = house_Lichtenburg
-
+	
 	religion = fots_seven
 	culture = westerman_main
 
@@ -1783,24 +1785,24 @@ asoiaf_Lichtenburg_1 = {
 	}
 	8182.1.1 = {
 		effect = {
-			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Ronov_6 }
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Ronov_6 } #father
 		}
 	}
 	8189.1.1 = {
 		trait = knight
-		add_spouse = asoiaf_Lichtenburg_rs_1
+		add_spouse = asoiaf_Lichtenburg_rs_1 #Domaslava
 	}
 	8193.1.1 = {
-		add_spouse = asoiaf_Lichtenburg_rs_2
+		add_spouse = asoiaf_Lichtenburg_rs_2 #Matilda
 	}
 	8218.1.1 = {
 		death = { death_reason = death_natural_causes }
 	}
 }
-asoiaf_Lichtenburg_rs_1 = {
+asoiaf_Lichtenburg_rs_1 = { #Domaslava (wife of Henry of Lichtenburg)
 	name = Domaslava
 	female = yes
-
+	
 	religion = fots_seven
 	culture = westerman_main
 
@@ -1822,10 +1824,10 @@ asoiaf_Lichtenburg_rs_1 = {
 		death = { death_reason = death_childbirth }
 	}
 }
-asoiaf_Lichtenburg_rs_2 = {
+asoiaf_Lichtenburg_rs_2 = { #Matilda (wife of Henry of Lichtenburg)
 	name = Matilda
 	female = yes
-
+	
 	religion = fots_seven
 	culture = westerman_main
 
@@ -1850,10 +1852,10 @@ asoiaf_Lichtenburg_rs_2 = {
 		death = { death_reason = death_natural_causes }
 	}
 }
-asoiaf_Lichtenburg_2 = {
+asoiaf_Lichtenburg_2 = { #Smil of Lichtenburg (son of Smil)
 	name = Smil
 	dynasty_house = house_Lichtenburg
-
+	
 	religion = fots_seven
 	culture = westerman_main
 
@@ -1876,7 +1878,7 @@ asoiaf_Lichtenburg_2 = {
 	}
 	8186.1.1 = {
 		effect = {
-			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:Tetting_36 }
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:Tetting_36 } #Addam Tetting (son of Willem)
 		}
 	}
 	8190.1.1 = {
@@ -1886,10 +1888,10 @@ asoiaf_Lichtenburg_2 = {
 		death = { death_reason = death_accident }
 	}
 }
-asoiaf_Lichtenburg_3 = {
+asoiaf_Lichtenburg_3 = { #Oldrich of Lichtenburg (son of Smil)
 	name = Oldrich
 	dynasty_house = house_Lichtenburg
-
+	
 	religion = fots_seven
 	culture = westerman_main
 
@@ -1912,7 +1914,7 @@ asoiaf_Lichtenburg_3 = {
 	}
 	8186.1.1 = {
 		effect = {
-			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:Tetting_36 }
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:Tetting_36 } #Addam Tetting (son of Willem)
 		}
 	}
 	8194.1.1 = {
@@ -1923,10 +1925,10 @@ asoiaf_Lichtenburg_3 = {
 		death = { death_reason = death_natural_causes }
 	}
 }
-asoiaf_Lichtenburg_rs_3 = {
+asoiaf_Lichtenburg_rs_3 = { #Wife of Oldrich of Lichtenburg
 	name = Lobella
 	female = yes
-
+	
 	religion = fots_seven
 	culture = westerman_main
 
@@ -1948,10 +1950,10 @@ asoiaf_Lichtenburg_rs_3 = {
 		death = { death_reason = death_natural_causes }
 	}
 }
-asoiaf_Lichtenburg_4 = {
+asoiaf_Lichtenburg_4 = { #Raymond Bitov (son of Smil)
 	name = Raymond
 	dynasty_house = house_Bitov
-
+	
 	religion = fots_seven
 	culture = westerman_main
 
@@ -1974,7 +1976,7 @@ asoiaf_Lichtenburg_4 = {
 	}
 	8189.1.1 = {
 		effect = {
-			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:Tetting_36 }
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:Tetting_36 } #Addam Tetting (son of Willem)
 		}
 	}
 	8194.1.1 = {
@@ -1988,10 +1990,10 @@ asoiaf_Lichtenburg_4 = {
 		death = { death_reason = death_natural_causes }
 	}
 }
-asoiaf_Lichtenburg_rs_4 = {
+asoiaf_Lichtenburg_rs_4 = { #Adele (wife of Raymond of Lichtenburg)
 	name = Adele
 	female = yes
-
+	
 	religion = fots_seven
 	culture = westerman_main
 
@@ -2018,10 +2020,10 @@ asoiaf_Lichtenburg_rs_4 = {
 		death = { death_reason = death_natural_causes }
 	}
 }
-asoiaf_Lichtenburg_5 = {
+asoiaf_Lichtenburg_5 = { #Hynek of Lichtenburg (son of Henry)
 	name = Hynek
 	dynasty_house = house_Krusina
-
+	
 	religion = fots_seven
 	culture = westerman_main
 
@@ -2044,7 +2046,7 @@ asoiaf_Lichtenburg_5 = {
 	}
 	8204.1.1 = {
 		effect = {
-			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Lichtenburg_1 }
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Lichtenburg_1 } #father
 		}
 	}
 	8209.1.1 = {
@@ -2055,10 +2057,10 @@ asoiaf_Lichtenburg_5 = {
 		death = { death_reason = death_natural_causes }
 	}
 }
-asoiaf_Lichtenburg_rs_5 = {
+asoiaf_Lichtenburg_rs_5 = { #Wife of Hynek of Lichtenburg (son of Henry)
 	name = Marianne
 	female = yes
-
+	
 	religion = fots_seven
 	culture = westerman_main
 
@@ -2080,10 +2082,10 @@ asoiaf_Lichtenburg_rs_5 = {
 		death = { death_reason = death_natural_causes }
 	}
 }
-asoiaf_Zleb_1 = {
+asoiaf_Zleb_1 = { #Wenceslaus Zleb (son of Henry)
 	name = Wenceslaus
 	dynasty_house = house_Zleb
-
+	
 	religion = fots_seven
 	culture = westerman_main
 
@@ -2106,7 +2108,7 @@ asoiaf_Zleb_1 = {
 	}
 	8205.1.1 = {
 		effect = {
-			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Lichtenburg_1 }
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Lichtenburg_1 } #father
 		}
 	}
 	8212.1.1 = {
@@ -2117,10 +2119,10 @@ asoiaf_Zleb_1 = {
 		death = { death_reason = death_natural_causes }
 	}
 }
-asoiaf_Zleb_rs_1 = {
+asoiaf_Zleb_rs_1 = { #Agnes (wife of Wencesclaus Zleb)
 	name = Agnes
 	female = yes
-
+	
 	religion = fots_seven
 	culture = westerman_main
 
@@ -2142,10 +2144,10 @@ asoiaf_Zleb_rs_1 = {
 		death = { death_reason = death_natural_causes }
 	}
 }
-asoiaf_Lichtenburg_6 = {
+asoiaf_Lichtenburg_6 = { #Smil of Lichtenburg (son of Henry)
 	name = Smil
 	dynasty_house = house_Lichtenburg
-
+	
 	religion = fots_seven
 	culture = westerman_main
 
@@ -2168,7 +2170,7 @@ asoiaf_Lichtenburg_6 = {
 	}
 	8207.1.1 = {
 		effect = {
-			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Lichtenburg_1 }
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Lichtenburg_1 } #father
 		}
 	}
 	8213.1.1 = {
@@ -2178,10 +2180,10 @@ asoiaf_Lichtenburg_6 = {
 		death = { death_reason = death_natural_causes }
 	}
 }
-asoiaf_Lichtenburg_7 = {
+asoiaf_Lichtenburg_7 = { #Cenek of Lichtenburg (son of Henry)
 	name = Cenek
 	dynasty_house = house_Lichtenburg
-
+	
 	religion = fots_seven
 	culture = westerman_main
 
@@ -2204,7 +2206,7 @@ asoiaf_Lichtenburg_7 = {
 	}
 	8209.1.1 = {
 		effect = {
-			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Lichtenburg_1 }
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Lichtenburg_1 } #father
 		}
 	}
 	8216.1.1 = {
@@ -2215,10 +2217,10 @@ asoiaf_Lichtenburg_7 = {
 		death = { death_reason = death_accident }
 	}
 }
-asoiaf_Lichtenburg_rs_7 = {
+asoiaf_Lichtenburg_rs_7 = { #Agnes (wife of Cenek of Lichtenburg)
 	name = Agnes
 	female = yes
-
+	
 	religion = fots_seven
 	culture = westerman_main
 
@@ -2243,10 +2245,10 @@ asoiaf_Lichtenburg_rs_7 = {
 		death = { death_reason = death_natural_causes }
 	}
 }
-asoiaf_Lichtenburg_8 = {
+asoiaf_Lichtenburg_8 = { #Henry of Lichtenburg (son of Oldrich)
 	name = Henry
 	dynasty_house = house_Lichtenburg
-
+	
 	religion = fots_seven
 	culture = westerman_main
 
@@ -2269,7 +2271,7 @@ asoiaf_Lichtenburg_8 = {
 	}
 	8209.1.1 = {
 		effect = {
-			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Lichtenburg_3 }
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Lichtenburg_3 } #father
 		}
 	}
 	8216.1.1 = {
@@ -2280,11 +2282,11 @@ asoiaf_Lichtenburg_8 = {
 	}
 }
 
-
-asoiaf_Bitov_1 = {
+#House Bitov
+asoiaf_Bitov_1 = { #Henry Bitov (son of Raymond)
 	name = Henry
 	dynasty_house = house_Bitov
-
+	
 	religion = fots_seven
 	culture = westerman_main
 
@@ -2307,7 +2309,7 @@ asoiaf_Bitov_1 = {
 	}
 	8208.1.1 = {
 		effect = {
-			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Lichtenburg_4 }
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Lichtenburg_4 } #father
 		}
 	}
 	8215.1.1 = {
@@ -2318,10 +2320,10 @@ asoiaf_Bitov_1 = {
 		death = { death_reason = death_natural_causes }
 	}
 }
-asoiaf_Bitov_rs_1 = {
+asoiaf_Bitov_rs_1 = { #Wife of Henry Bitov
 	name = Melara
 	female = yes
-
+	
 	religion = fots_seven
 	culture = westerman_main
 
@@ -2343,10 +2345,10 @@ asoiaf_Bitov_rs_1 = {
 		death = { death_reason = death_natural_causes }
 	}
 }
-asoiaf_Bitov_2 = {
+asoiaf_Bitov_2 = { #Cenek Bitov (son of Raymond)
 	name = Cenek
 	dynasty_house = house_Bitov
-
+	
 	religion = fots_seven
 	culture = westerman_main
 
@@ -2369,7 +2371,7 @@ asoiaf_Bitov_2 = {
 	}
 	8209.1.1 = {
 		effect = {
-			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Lichtenburg_4 }
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Lichtenburg_4 } #father
 		}
 	}
 	8216.1.1 = {
@@ -2379,10 +2381,10 @@ asoiaf_Bitov_2 = {
 		death = { death_reason = death_natural_causes }
 	}
 }
-asoiaf_Bitov_3 = {
+asoiaf_Bitov_3 = { #Smil Bitov (son of Raymond)
 	name = Smil
 	dynasty_house = house_Bitov
-
+	
 	religion = fots_seven
 	culture = westerman_main
 
@@ -2405,7 +2407,7 @@ asoiaf_Bitov_3 = {
 	}
 	8213.1.1 = {
 		effect = {
-			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Lichtenburg_4 }
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Lichtenburg_4 } #father
 		}
 	}
 	8220.1.1 = {
@@ -2416,10 +2418,10 @@ asoiaf_Bitov_3 = {
 		death = { death_reason = death_natural_causes }
 	}
 }
-asoiaf_Bitov_rs_3 = {
+asoiaf_Bitov_rs_3 = { #Anna (wife of Smil Bitov)
 	name = Anna
 	female = yes
-
+	
 	religion = fots_seven
 	culture = westerman_main
 
@@ -2441,11 +2443,11 @@ asoiaf_Bitov_rs_3 = {
 		death = { death_reason = death_natural_causes }
 	}
 }
-asoiaf_Bitov_4 = {
+asoiaf_Bitov_4 = { #Margaret Bitov (daughter of Raymond)
 	name = Margaret
 	dynasty_house = house_Bitov
 	female = yes
-
+	
 	religion = fots_seven
 	culture = westerman_main
 
@@ -2473,11 +2475,11 @@ asoiaf_Bitov_4 = {
 		death = { death_reason = death_natural_causes }
 	}
 }
-asoiaf_Bitov_5 = {
+asoiaf_Bitov_5 = { #Serra Bitov (daughter of Raymond)
 	name = Serra
 	dynasty_house = house_Bitov
 	female = yes
-
+	
 	religion = fots_seven
 	culture = westerman_main
 
@@ -2502,10 +2504,10 @@ asoiaf_Bitov_5 = {
 		death = { death_reason = death_natural_causes }
 	}
 }
-asoiaf_Bitov_6 = {
+asoiaf_Bitov_6 = { #John Bitov (son of Henry)
 	name = John
 	dynasty_house = house_Bitov
-
+	
 	religion = fots_seven
 	culture = westerman_main
 
@@ -2528,7 +2530,7 @@ asoiaf_Bitov_6 = {
 	}
 	8233.1.1 = {
 		effect = {
-			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Bitov_1 }
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Bitov_1 } #father
 		}
 	}
 	8239.1.1 = {
@@ -2538,10 +2540,10 @@ asoiaf_Bitov_6 = {
 		death = { death_reason = death_accident }
 	}
 }
-asoiaf_Bitov_7 = {
+asoiaf_Bitov_7 = { #Smil (bastard of Cenek)
 	name = Smil
 	dynasty_house = house_Bitov
-
+	
 	religion = fots_seven
 	culture = westerman_main
 
@@ -2566,7 +2568,7 @@ asoiaf_Bitov_7 = {
 	}
 	8236.1.1 = {
 		effect = {
-			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Bitov_2 }
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Bitov_2 } #father
 		}
 	}
 	8241.1.1 = {
@@ -2576,10 +2578,10 @@ asoiaf_Bitov_7 = {
 		death = { death_reason = death_natural_causes }
 	}
 }
-asoiaf_Bitov_8 = {
+asoiaf_Bitov_8 = { #Henry Bitov (son of Smil)
 	name = Henry
 	dynasty_house = house_Bitov
-
+	
 	religion = fots_seven
 	culture = westerman_main
 
@@ -2602,7 +2604,7 @@ asoiaf_Bitov_8 = {
 	}
 	8235.1.1 = {
 		effect = {
-			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Bitov_3 }
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Bitov_3 } #father
 		}
 	}
 	8240.1.1 = {
@@ -2613,10 +2615,10 @@ asoiaf_Bitov_8 = {
 		death = { death_reason = death_natural_causes }
 	}
 }
-asoiaf_Bitov_rs_8 = {
+asoiaf_Bitov_rs_8 = { #Anezka (wife of Henry Bitov)
 	name = Anezka
 	female = yes
-
+	
 	religion = fots_seven
 	culture = westerman_main
 
@@ -2638,10 +2640,10 @@ asoiaf_Bitov_rs_8 = {
 		death = { death_reason = death_natural_causes }
 	}
 }
-asoiaf_Bitov_9 = {
+asoiaf_Bitov_9 = { #Hynek Bitov (son of Smil)
 	name = Hynek
 	dynasty_house = house_Bitov
-
+	
 	religion = fots_seven
 	culture = westerman_main
 
@@ -2669,10 +2671,10 @@ asoiaf_Bitov_9 = {
 		death = { death_reason = death_natural_causes }
 	}
 }
-asoiaf_Bitov_10 = {
+asoiaf_Bitov_10 = { #John Bitov (son of Smil)
 	name = John
 	dynasty_house = house_Bitov
-
+	
 	religion = fots_seven
 	culture = westerman_main
 
@@ -2695,7 +2697,7 @@ asoiaf_Bitov_10 = {
 	}
 	8235.1.1 = {
 		effect = {
-			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Bitov_3 }
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Bitov_3 } #father
 		}
 	}
 	8242.1.1 = {
@@ -2705,10 +2707,10 @@ asoiaf_Bitov_10 = {
 		death = { death_reason = death_natural_causes }
 	}
 }
-asoiaf_Bitov_11 = {
+asoiaf_Bitov_11 = { #George Bitov (son of Smil)
 	name = George
 	dynasty_house = house_Bitov
-
+	
 	religion = fots_seven
 	culture = westerman_main
 
@@ -2731,7 +2733,7 @@ asoiaf_Bitov_11 = {
 	}
 	8237.1.1 = {
 		effect = {
-			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Bitov_3 }
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Bitov_3 } #father
 		}
 	}
 	8244.1.1 = {
@@ -2742,10 +2744,10 @@ asoiaf_Bitov_11 = {
 		death = { death_reason = death_natural_causes }
 	}
 }
-asoiaf_Bitov_rs_11 = {
+asoiaf_Bitov_rs_11 = { #Sybell (wife of George Bitov)
 	name = Sybell
 	female = yes
-
+	
 	religion = fots_seven
 	culture = westerman_main
 
@@ -2767,10 +2769,10 @@ asoiaf_Bitov_rs_11 = {
 		death = { death_reason = death_natural_causes }
 	}
 }
-asoiaf_Bitov_12 = {
+asoiaf_Bitov_12 = { #Albert Bitov (son of Henry)
 	name = Albert
 	dynasty_house = house_Bitov
-
+	
 	religion = fots_seven
 	culture = westerman_main
 
@@ -2793,7 +2795,7 @@ asoiaf_Bitov_12 = {
 	}
 	8257.1.1 = {
 		effect = {
-			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Bitov_8 }
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Bitov_8 } #father
 		}
 	}
 	8263.1.1 = {
@@ -2804,10 +2806,10 @@ asoiaf_Bitov_12 = {
 		death = { death_reason = death_natural_causes }
 	}
 }
-asoiaf_Bitov_rs_12 = {
+asoiaf_Bitov_rs_12 = { #Jeyne (wife of Albert Bitov)
 	name = Jeyne
 	female = yes
-
+	
 	religion = fots_seven
 	culture = westerman_main
 
@@ -2829,10 +2831,10 @@ asoiaf_Bitov_rs_12 = {
 		death = { death_reason = death_natural_causes }
 	}
 }
-asoiaf_Bitov_13 = {
+asoiaf_Bitov_13 = { #Henry Bitov (son of Henry)
 	name = Henry
 	dynasty_house = house_Bitov
-
+	
 	religion = fots_seven
 	culture = westerman_main
 
@@ -2855,7 +2857,7 @@ asoiaf_Bitov_13 = {
 	}
 	8258.1.1 = {
 		effect = {
-			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Bitov_8 }
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Bitov_8 } #father
 		}
 	}
 	8264.1.1 = {
@@ -2865,10 +2867,10 @@ asoiaf_Bitov_13 = {
 		death = { death_reason = death_natural_causes }
 	}
 }
-asoiaf_Bitov_14 = {
+asoiaf_Bitov_14 = { #Smil Bitov (son of Henry)
 	name = Smil
 	dynasty_house = house_Bitov
-
+	
 	religion = fots_seven
 	culture = westerman_main
 
@@ -2891,7 +2893,7 @@ asoiaf_Bitov_14 = {
 	}
 	8260.1.1 = {
 		effect = {
-			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Bitov_8 }
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Bitov_8 } #father
 		}
 	}
 	8266.1.1 = {
@@ -2901,10 +2903,10 @@ asoiaf_Bitov_14 = {
 		death = { death_reason = death_accident }
 	}
 }
-asoiaf_Bitov_15 = {
+asoiaf_Bitov_15 = { #Hanush Bitov (son of George)
 	name = Hanush
 	dynasty_house = house_Bitov
-
+	
 	religion = fots_seven
 	culture = westerman_main
 
@@ -2927,7 +2929,7 @@ asoiaf_Bitov_15 = {
 	}
 	8257.1.1 = {
 		effect = {
-			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Bitov_11 }
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Bitov_11 } #father
 		}
 	}
 	8262.1.1 = {
@@ -2937,10 +2939,10 @@ asoiaf_Bitov_15 = {
 		death = { death_reason = death_natural_causes }
 	}
 }
-asoiaf_Bitov_16 = {
+asoiaf_Bitov_16 = { #George Bitov (son of George)
 	name = George
 	dynasty_house = house_Bitov
-
+	
 	religion = fots_seven
 	culture = westerman_main
 
@@ -2963,7 +2965,7 @@ asoiaf_Bitov_16 = {
 	}
 	8258.1.1 = {
 		effect = {
-			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Bitov_11 }
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Bitov_11 } #father
 		}
 	}
 	8264.1.1 = {
@@ -2973,10 +2975,10 @@ asoiaf_Bitov_16 = {
 		death = { death_reason = death_accident }
 	}
 }
-asoiaf_Bitov_17 = {
+asoiaf_Bitov_17 = { #Hynek Bitov (son of George)
 	name = Hynek
 	dynasty_house = house_Bitov
-
+	
 	religion = fots_seven
 	culture = westerman_main
 
@@ -2999,7 +3001,7 @@ asoiaf_Bitov_17 = {
 	}
 	8259.1.1 = {
 		effect = {
-			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Bitov_11 }
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Bitov_11 } #father
 		}
 	}
 	8266.1.1 = {
@@ -3010,10 +3012,10 @@ asoiaf_Bitov_17 = {
 		death = { death_reason = death_natural_causes }
 	}
 }
-asoiaf_Bitov_rs_17 = {
+asoiaf_Bitov_rs_17 = { #Wife of Hynek Bitov
 	name = Tanda
 	female = yes
-
+	
 	religion = fots_seven
 	culture = westerman_main
 
@@ -3035,10 +3037,10 @@ asoiaf_Bitov_rs_17 = {
 		death = { death_reason = death_natural_causes }
 	}
 }
-asoiaf_Bitov_18 = {
+asoiaf_Bitov_18 = { #Litholt Bitov (son of George)
 	name = Litholt
 	dynasty_house = house_Bitov
-
+	
 	religion = fots_seven
 	culture = westerman_main
 
@@ -3061,7 +3063,7 @@ asoiaf_Bitov_18 = {
 	}
 	8261.1.1 = {
 		effect = {
-			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Bitov_11 }
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Bitov_11 } #father
 		}
 	}
 	8265.1.1 = {
@@ -3072,10 +3074,10 @@ asoiaf_Bitov_18 = {
 		death = { death_reason = death_natural_causes }
 	}
 }
-asoiaf_Bitov_rs_18 = {
+asoiaf_Bitov_rs_18 = { #Wife of Litholt Bitov
 	name = Magda
 	female = yes
-
+	
 	religion = fots_seven
 	culture = westerman_main
 
@@ -3097,10 +3099,10 @@ asoiaf_Bitov_rs_18 = {
 		death = { death_reason = death_natural_causes }
 	}
 }
-asoiaf_Bitov_19 = {
+asoiaf_Bitov_19 = { #Henry Bitov (son of George)
 	name = Henry
 	dynasty_house = house_Bitov
-
+	
 	religion = fots_seven
 	culture = westerman_main
 
@@ -3123,7 +3125,7 @@ asoiaf_Bitov_19 = {
 	}
 	8261.1.1 = {
 		effect = {
-			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Bitov_11 }
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Bitov_11 } #father
 		}
 	}
 	8269.1.1 = {
@@ -3133,10 +3135,10 @@ asoiaf_Bitov_19 = {
 		death = { death_reason = death_natural_causes }
 	}
 }
-asoiaf_Bitov_20 = {
+asoiaf_Bitov_20 = { #Smil Bitov (son of George)
 	name = Smil
 	dynasty_house = house_Bitov
-
+	
 	religion = fots_seven
 	culture = westerman_main
 
@@ -3159,7 +3161,7 @@ asoiaf_Bitov_20 = {
 	}
 	8263.1.1 = {
 		effect = {
-			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Bitov_11 }
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Bitov_11 } #father
 		}
 	}
 	8268.1.1 = {
@@ -3169,11 +3171,11 @@ asoiaf_Bitov_20 = {
 		death = { death_reason = death_natural_causes }
 	}
 }
-asoiaf_Bitov_21 = {
+asoiaf_Bitov_21 = { #Margaret Bitov (daughter of Albert)
 	name = Margaret
 	dynasty_house = house_Bitov
 	female = yes
-
+	
 	religion = fots_seven
 	culture = westerman_main
 
@@ -3198,10 +3200,10 @@ asoiaf_Bitov_21 = {
 		death = { death_reason = death_natural_causes }
 	}
 }
-asoiaf_Bitov_22 = {
+asoiaf_Bitov_22 = { #Stephen Bitov (son of Albert)
 	name = Stephen
 	dynasty_house = house_Bitov
-
+	
 	religion = fots_seven
 	culture = westerman_main
 
@@ -3224,7 +3226,7 @@ asoiaf_Bitov_22 = {
 	}
 	8278.1.1 = {
 		effect = {
-			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Bitov_12 }
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Bitov_12 } #father
 		}
 	}
 	8284.1.1 = {
@@ -3234,10 +3236,10 @@ asoiaf_Bitov_22 = {
 		death = { death_reason = death_natural_causes }
 	}
 }
-asoiaf_Bitov_23 = {
+asoiaf_Bitov_23 = { #Smil Bitov (son of Albert)
 	name = Smil
 	dynasty_house = house_Bitov
-
+	
 	religion = fots_seven
 	culture = westerman_main
 
@@ -3260,7 +3262,7 @@ asoiaf_Bitov_23 = {
 	}
 	8280.1.1 = {
 		effect = {
-			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Bitov_12 }
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Bitov_12 } #father
 		}
 	}
 	8286.1.1 = {
@@ -3270,10 +3272,10 @@ asoiaf_Bitov_23 = {
 		death = { death_reason = death_natural_causes }
 	}
 }
-asoiaf_Bitov_24 = {
+asoiaf_Bitov_24 = { #Jan Bitov (son of Albert)
 	name = Jan
 	dynasty_house = house_Bitov
-
+	
 	religion = fots_seven
 	culture = westerman_main
 
@@ -3296,7 +3298,7 @@ asoiaf_Bitov_24 = {
 	}
 	8282.1.1 = {
 		effect = {
-			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Bitov_12 }
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Bitov_12 } #father
 		}
 	}
 	8289.1.1 = {
@@ -3307,10 +3309,10 @@ asoiaf_Bitov_24 = {
 		death = { death_reason = death_natural_causes }
 	}
 }
-asoiaf_Bitov_rs_24 = {
+asoiaf_Bitov_rs_24 = { #Wife of Jan Bitov
 	name = Alanna
 	female = yes
-
+	
 	religion = fots_seven
 	culture = westerman_main
 
@@ -3332,10 +3334,10 @@ asoiaf_Bitov_rs_24 = {
 		death = { death_reason = death_natural_causes }
 	}
 }
-asoiaf_Bitov_25 = {
+asoiaf_Bitov_25 = { #Franek Bitov (son of Albert)
 	name = Franek
 	dynasty_house = house_Bitov
-
+	
 	religion = fots_seven
 	culture = westerman_main
 
@@ -3358,7 +3360,7 @@ asoiaf_Bitov_25 = {
 	}
 	8284.1.1 = {
 		effect = {
-			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Bitov_12 }
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Bitov_12 } #father
 		}
 	}
 	8290.1.1 = {
@@ -3368,10 +3370,10 @@ asoiaf_Bitov_25 = {
 		death = { death_reason = death_natural_causes }
 	}
 }
-asoiaf_Bitov_26 = {
+asoiaf_Bitov_26 = { #Jirik Bitov (son of Albert)
 	name = Jirik
 	dynasty_house = house_Bitov
-
+	
 	religion = fots_seven
 	culture = westerman_main
 
@@ -3394,7 +3396,7 @@ asoiaf_Bitov_26 = {
 	}
 	8285.1.1 = {
 		effect = {
-			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Bitov_12 }
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Bitov_12 } #father
 		}
 	}
 	8291.1.1 = {
@@ -3404,11 +3406,11 @@ asoiaf_Bitov_26 = {
 		death = { death_reason = death_natural_causes }
 	}
 }
-asoiaf_Bitov_27 = {
+asoiaf_Bitov_27 = { #Barbora Bitov (daughter of Hynek)
 	name = Barbora
 	dynasty_house = house_Bitov
 	female = yes
-
+	
 	religion = fots_seven
 	culture = westerman_main
 
@@ -3433,11 +3435,11 @@ asoiaf_Bitov_27 = {
 		death = { death_reason = death_natural_causes }
 	}
 }
-asoiaf_Bitov_28 = {
+asoiaf_Bitov_28 = { #Klara Bitov (daughter of Hynek)
 	name = Klara
 	dynasty_house = house_Bitov
 	female = yes
-
+	
 	religion = fots_seven
 	culture = westerman_main
 
@@ -3462,10 +3464,10 @@ asoiaf_Bitov_28 = {
 		death = { death_reason = death_natural_causes }
 	}
 }
-asoiaf_Bitov_29 = {
+asoiaf_Bitov_29 = { #Smil Bitov (son of Litholt)
 	name = Smil
 	dynasty_house = house_Bitov
-
+	
 	religion = fots_seven
 	culture = westerman_main
 
@@ -3488,7 +3490,7 @@ asoiaf_Bitov_29 = {
 	}
 	8280.1.1 = {
 		effect = {
-			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Bitov_18 }
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Bitov_18 } #father
 		}
 	}
 	8285.1.1 = {
@@ -3499,10 +3501,10 @@ asoiaf_Bitov_29 = {
 		death = { death_reason = death_natural_causes }
 	}
 }
-asoiaf_Bitov_rs_29 = {
+asoiaf_Bitov_rs_29 = { #Wife of Smil Bitov
 	name = Mary
 	female = yes
-
+	
 	religion = fots_seven
 	culture = westerman_main
 
@@ -3524,10 +3526,10 @@ asoiaf_Bitov_rs_29 = {
 		death = { death_reason = death_natural_causes }
 	}
 }
-asoiaf_Bitov_30 = {
+asoiaf_Bitov_30 = { #Jan Bitov (son of Litholt)
 	name = Jan
 	dynasty_house = house_Bitov
-
+	
 	religion = fots_seven
 	culture = westerman_main
 
@@ -3550,7 +3552,7 @@ asoiaf_Bitov_30 = {
 	}
 	8283.1.1 = {
 		effect = {
-			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Bitov_18 }
+			agot_set_as_ward_and_squire_history_effect = { KNIGHT = character:asoiaf_Bitov_18 } #father
 		}
 	}
 	8288.1.1 = {

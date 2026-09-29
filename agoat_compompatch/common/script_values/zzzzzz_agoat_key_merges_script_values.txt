@@ -1,0 +1,110 @@
+﻿base_court_amenities_cost = {
+	value = 15
+	add = {
+		value = monthly_character_income
+		multiply = 2
+	}
+	add = {
+		value = sub_realm_size
+	#AGOT Added, cap realm size effects
+	if = {
+		limit = { sub_realm_size > 200 }
+		value = 200
+	}
+		multiply = 0.5
+	}
+	divide = {
+		add = 4
+		subtract = {
+			add = 0.25
+			multiply = court_grandeur_current_level
+		}
+	}
+	if = { # Add a baseline depending on rank
+		limit = {
+			highest_held_title_tier = tier_empire
+		}
+		add = 8
+	}
+	if = { # Add a baseline depending on rank
+		limit = {
+			highest_held_title_tier = tier_kingdom
+		}
+		add = 10
+	}
+	if = { # Add a baseline depending on rank
+		limit = {
+			highest_held_title_tier = tier_duchy
+		}
+		add = 12
+	}
+	if = {
+		limit = {
+			culture = {
+				has_cultural_era_or_later = culture_era_late_medieval
+			}
+		}
+		multiply = {
+			value = 1.75
+		}
+	}
+	else_if = {
+		limit = {
+			culture = {
+				has_cultural_era_or_later = culture_era_high_medieval
+			}
+		}
+		multiply = {
+			value = 1.5
+		}
+	}
+	else_if = {
+		limit = {
+			culture = {
+				has_cultural_era_or_later = culture_era_early_medieval
+			}
+		}
+		multiply = {
+			value = 1.25
+		} 
+	}
+	if = {
+		limit = {
+			has_game_rule = hard_difficulty
+			is_ai = yes
+		}
+		multiply = 0.75
+	}
+	else_if = {
+		limit = {
+			has_game_rule = very_hard_difficulty
+			is_ai = yes
+		}
+		multiply = 0.5
+	}
+}
+
+standard_hunting_cooldown_time = {
+	value = 2
+	if = {
+		limit = {
+			root.culture = { has_cultural_parameter = more_frequent_hunts }
+		}
+		multiply = 0.5
+	}
+	if = {
+		limit = {
+			root.culture = {
+				has_cultural_parameter = final_hunts
+			}
+		}
+		multiply = 2
+	}
+	#AGOT Added
+	if = {
+		limit = {
+			root.culture = { has_cultural_parameter = hunts_cd_ten_percent_quicker }
+		}
+		multiply = 0.9
+	}
+}

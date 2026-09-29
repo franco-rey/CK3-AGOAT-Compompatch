@@ -77,8 +77,6 @@ culture_conversion.0001 = {
 		}
 	}
 
-	# A delayed notification can outlive one of its saved scopes. Close it safely
-	# instead of evaluating culture comparisons against a destroyed object.
 	option = {
 		name = culture_conversion.0001.a
 		trigger = {

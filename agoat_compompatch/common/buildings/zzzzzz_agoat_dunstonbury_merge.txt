@@ -1,0 +1,99 @@
+﻿agot_dunstonbury_01 = {
+    construction_time = slow_construction_time
+
+    asset = {
+        type = pdxmesh
+        name = "dunstonbury_mesh"
+    }
+    is_enabled = {
+        agot_generic_is_special_building_enabled = yes
+    }
+
+    type_icon = "icon_structure_hotin_fortress.dds"
+
+    can_construct_potential = {
+        building_requirement_tribal = no
+    }
+
+    max_garrison = 150
+    province_modifier = {
+        defender_holding_advantage = 3
+        fort_level = 2
+        monthly_income = 0.5
+    }
+    county_modifier = {
+        tax_mult = 0.1
+        development_growth_factor = 0.1
+        levy_size = 0.1
+    }
+
+    cost_gold = expensive_building_tier_1_cost
+
+    next_building = agot_dunstonbury_02
+
+    ai_value = {
+        base = 100
+        culture_likely_to_fortify_modifier = yes
+    }
+
+    type = special
+
+    flag = travel_point_of_interest_diplomatic
+}
+
+agot_dunstonbury_02 = {
+	construction_time = very_slow_construction_time
+
+	asset = {
+		type = pdxmesh
+		name = "dunstonbury_mesh"
+	}
+
+	type_icon = "icon_structure_great_mosque_of_cordoba.dds"
+
+	can_construct_potential = {
+		building_requirement_tribal = no
+	}
+
+	can_construct = {
+		title:b_dunstonbury = { holder.dynasty = dynasty:dynn_Manderly }
+		has_building_or_higher = castle_03
+	}
+
+	is_enabled = {
+		agot_generic_is_special_building_enabled = yes
+	}
+
+	cost_gold = expensive_building_tier_6_cost
+
+	character_modifier = {
+		monthly_dynasty_prestige_mult = 0.05
+		knight_limit = 2
+		stress_gain_mult = -0.05
+		court_grandeur_baseline_add = 10
+		powerful_vassal_opinion = 5
+	}
+
+	max_garrison = 150
+	province_modifier = {
+		defender_holding_advantage = 3
+		monthly_income = good_building_tax_tier_5
+		fort_level = 2
+		garrison_size = 0.15
+	}
+
+	county_modifier = {
+		tax_mult = 0.1
+		development_growth_factor = 0.1
+		levy_size = 0.1
+	}
+
+	ai_value = {
+		base = 100
+		culture_likely_to_fortify_modifier = yes
+	}
+
+	type = special
+
+	flag = travel_point_of_interest_diplomatic
+}

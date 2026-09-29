@@ -1,0 +1,3 @@
+﻿l_english:
+ fund_expedition_0001_t:0 "A journey into the Smoking Sea"
+ fund_expedition_0001_desc:0 "Word of my interest in funding a voyage to Old Valyria has spread quickly within my realm. Despite the danger posed by travelling there, a handful of brave souls have answered my call.\n\n[optionOne.GetFirstName], [optionTwo.GetFirstName], and [optionThree.GetFirstName] stand before me, each petitioning me to lead the expedition."

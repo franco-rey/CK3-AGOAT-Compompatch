@@ -1,0 +1,32 @@
+﻿hold_court_queue_post_event_effect = {
+	# Sort the ending counter.
+	## If there's no ending counter, create one.
+	if = {
+		limit = {
+			NOT = { has_variable = petitioners_dealt_with_count }
+		}
+		set_variable = {
+			name = petitioners_dealt_with_count
+			value = 1
+		}
+	}
+	## Else if there is a counter below the total petitioner tally, increment it.
+	else_if = {
+		limit = { var:petitioners_dealt_with_count < initial_petitioners_value }
+		change_variable = {
+			name = petitioners_dealt_with_count
+			add = 1
+		}
+	}
+	## If appropriate, run the end stuff.
+	if = {
+		limit = {
+			exists = var:petitioners_dealt_with_count
+			var:petitioners_dealt_with_count >= initial_petitioners_value
+		}
+		# Remove the counter.
+		remove_variable = petitioners_dealt_with_count
+		# Launch into cleanup.
+		trigger_event = agoat_hold_court.0021
+	}
+}

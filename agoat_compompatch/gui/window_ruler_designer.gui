@@ -142,9 +142,11 @@ window = {
 			layoutpolicy_vertical = expanding
 
 
+			# margin = { 20 20 }
 			using =  Animation_Tab_Switch
 
 
+			# left panel
 			vbox = {
 				layoutpolicy_vertical = expanding
 				max_width = 530
@@ -445,6 +447,7 @@ window = {
 																layoutpolicy_horizontal = expanding
 																text = "[Culture.GetHeritage.GetNameNoTooltip]"
 
+																# raw_text = "LOREM_IPSUM_TITLE"
 																max_width = 200
 																default_format = "#bold"
 
@@ -467,6 +470,7 @@ window = {
 																layoutpolicy_horizontal = expanding
 																text = "[Culture.GetNameNoTooltip]"
 
+																# raw_text = "LOREM_IPSUM_TITLE"
 																max_width = 200
 
 																margin_bottom = 5
@@ -752,6 +756,8 @@ window = {
 
 					button_standard_back = {
 						onclick = "[RulerDesignerWindow.Close]"
+						#AGOT Added
+						onclick = "[GetVariableSystem.Clear( 'pirate_designer' )]"
 						shortcut = "close_window"
 
 						blockoverride "text"
@@ -950,6 +956,8 @@ window = {
 
 									button_standard_hover = {
 										layoutpolicy_horizontal = expanding
+										#AGOT Added
+										visible = "[Not( ObjectsEqual( CulturePillar.GetNameNoTooltip, Localize('heritage_elder_races_name')))]"
 
 										size = { 0 40 }
 										onclick = "[CollapsibleCultureListGroup.ToggleChildrenVisible]"
@@ -1031,12 +1039,14 @@ window = {
 			}
 
 
+			# portrait
 			widget = {
 				name = "middle_portrait"
 				layoutpolicy_horizontal = expanding
 				layoutpolicy_vertical = expanding
 
 
+				# error_horse = { }
 				portrait_body_brd = {}
 
 				portrait_controls_brd = {
@@ -1080,6 +1090,7 @@ window = {
 					texture = "gfx/interface/buttons/button_verb_primary.dds"
 
 
+	        # clicksound = "event:/SFX/UI/Generic/sfx_ui_generic_confirm"
 	        buttonText = {
 	            text_single = {
 	                size = { 100% 100% }
@@ -1184,6 +1195,7 @@ window = {
 			}
 
 
+			# main right side
 			vbox = {
 				max_width = 530
 				layoutpolicy_vertical = expanding
@@ -1298,6 +1310,7 @@ window = {
 											layoutpolicy_horizontal = expanding
 
 
+											# spacing = 15
 											vbox = {
 												layoutpolicy_horizontal = expanding
 												spacing = 10
@@ -1807,6 +1820,7 @@ window = {
 						name = "wrong_gender_for_governor_warning"
 
 
+						# if you are already huangdi or governor, no need to warn
 						visible = "[RulerDesignerWindow.IsDesigningLandless]"
 
 						text_label_center = {
@@ -1834,11 +1848,17 @@ window = {
 				button_primary_big = {
 					size = { 520 40 }
 					text = "RULER_DESIGNER_FINALIZE"
+					#AGOT Added
+					visible = "[Not(GetVariableSystem.Exists('pirate_designer'))]"
 
 					enabled = "[RulerDesignerWindow.CanFinalize]"
 					tooltip = "[RulerDesignerWindow.GetFinalizeTooltip]"
 
 					onclick = "[RulerDesignerWindow.FinalizeOverwrite]"
+				}
+				#AGOT Added
+				agot_pirate_finalze_big_button = {
+					size = { 520 40 }
 				}
 			}
 		}
@@ -1852,6 +1872,7 @@ window = {
 			using =  Animation_Tab_Switch
 
 
+			# ethnicities
 			widget = {
 				size = { 300 0 }
 				layoutpolicy_vertical = expanding
@@ -1896,6 +1917,7 @@ window = {
 							text = RULDER_DESIGNER_ETHNICITY_LABEL
 							using = Font_Size_Medium
 
+							# margin_left = 10
 						}
 					}
 
@@ -1928,6 +1950,7 @@ window = {
 											onclick = "[RulerDesignerWindow.SetEthnicity( Ethnicity.Self )]"
 											onclick = "[PdxGuiTriggerAllAnimations('ruler_designer_portrait_refresh')]"
 
+											# tooltip = "[Ethnicity.GetName]"
 										}
 									}
 								}
@@ -1942,6 +1965,7 @@ window = {
 						spacing = 5
 
 
+						# margin = { 10 0 }
 						button_standard = {
 							text = "RULER_DESIGNER_SAVE_RULER"
 							layoutpolicy_horizontal = expanding
@@ -1987,6 +2011,7 @@ window = {
 			}
 
 
+			# left side
 			widget = {
 				size = { 200 0 }
 				layoutpolicy_vertical = expanding
@@ -2037,6 +2062,7 @@ window = {
 						name = "main_customizer"
 						spacing = 10
 
+						# margin_top = 5
 						layoutpolicy_vertical = expanding
 						layoutpolicy_horizontal = expanding
 
@@ -2092,6 +2118,7 @@ window = {
 													item = {
 														button_standard = {
 
+															# [Add_int32(PdxGuiWidget.GetIndexInDataModel, '(int32)1')]
 															text = "[Localize( Concatenate( 'RULER_DESIGNER_GROUP_' , RulerDesignerGeneGroup.GetGroup ) )]"
 															onclick = "[VariableSystem.Set( 'appearance_customization_side_tab_open', RulerDesignerGeneGroup.GetGroup )]"
 															onclick = "[VariableSystem.Set( 'appearance_customization_portrait_view', RulerDesignerGeneGroup.GetCamera )]"
@@ -2190,6 +2217,10 @@ window = {
 									visible = "[And(GetVariableSystem.HasValue('appearance_customization_portrait_view', 'face' ), Not(GetVariableSystem.Exists('profile_brd')))]"
 
 
+									# text_single = {
+									# 	layoutpolicy_horizontal = expanding
+									# 	raw_text = "profiles_brd"
+									# }
 									text_label_left = {
 										margin_left = 10
 										layoutpolicy_horizontal = expanding
@@ -2308,6 +2339,7 @@ window = {
 
 						vbox = {
 
+							# margin = { 10 0 }
 							layoutpolicy_horizontal = expanding
 							spacing = 5
 
@@ -2378,6 +2410,7 @@ window = {
 			}
 
 
+			# portrait
 			widget = {
 				name = "portrait_view"
 				layoutpolicy_horizontal = expanding
@@ -2385,6 +2418,7 @@ window = {
 
 				widget = {
 
+					# need this widget to avoid the portrait going in front of controls
 					size = { 100% 100% }
 					visible = "[VariableSystem.HasValue( 'appearance_customization_portrait_view', 'face' )]"
 
@@ -2396,6 +2430,7 @@ window = {
 						parentanchor = center
 
 
+						# using = Animation_ShowHide_Standard
 						state = {
 							name = "reset_position_body_brd"
 							position = { 0 0 }
@@ -2407,6 +2442,7 @@ window = {
 							position = { 0 -80 }
 
 
+							# texture = "[RulerDesignerWindow.GetPortrait( 'environment_head', 'camera_head', PdxGetWidgetScreenSize( PdxGuiWidget.Self ) )]"
 							texture = "[RulerDesignerWindow.GetPortrait(Select_CString( GetVariableSystem.Exists('environment'), GetVariableSystem.Get('environment'), 'environment_head'), Concatenate('camera_', Concatenate(Concatenate(Concatenate('1_', Character.Custom('tilt_angle_brd')), '_'), Character.Custom('camera_angle_brd'))), PdxGetWidgetScreenSize(PdxGuiWidget.Self))]"
 
 							using = Animation_ShowHide_Quick
@@ -2435,6 +2471,7 @@ window = {
 						parentanchor = center
 
 
+						# using = Animation_ShowHide_Standard
 						state = {
 							name = "reset_position_body_brd"
 							position = { 0 0 }
@@ -2447,6 +2484,7 @@ window = {
 							spacing = -250
 
 
+							# left profile
 							widget = {
 								using = Animation_ShowHide_Quick
 								size = { 500 700 }
@@ -2457,6 +2495,7 @@ window = {
 									size = { 500 700 }
 
 
+									# texture = "[RulerDesignerWindow.GetPortrait( 'environment_head', 'camera_ruler_designer_head_profile', PdxGetWidgetScreenSize( PdxGuiWidget.Self ) )]"
 									texture = "[RulerDesignerWindow.GetPortrait(Select_CString( GetVariableSystem.Exists('environment'), GetVariableSystem.Get('environment'), 'environment_head'), Concatenate('camera_', Concatenate(Concatenate(Concatenate('1_', Character.Custom('tilt_angle_brd')), '_'), '265')), PdxGetWidgetScreenSize(PdxGuiWidget.Self))]"
 
 									modify_texture = {
@@ -2476,6 +2515,7 @@ window = {
 									size = { 500 700 }
 
 
+									# texture = "[RulerDesignerWindow.GetPortrait( 'environment_head', 'camera_ruler_designer_head_profile', PdxGetWidgetScreenSize( PdxGuiWidget.Self ) )]"
 									texture = "[RulerDesignerWindow.GetPortrait(Select_CString( GetVariableSystem.Exists('environment'), GetVariableSystem.Get('environment'), 'environment_head'), Concatenate('camera_', Concatenate(Concatenate(Concatenate('1_', Character.Custom('tilt_angle_brd')), '_'), '305')), PdxGetWidgetScreenSize(PdxGuiWidget.Self))]"
 
 									modify_texture = {
@@ -2492,10 +2532,12 @@ window = {
 							}
 
 
+							# center
 							icon = {
 								size = { 500 700 }
 
 
+								# texture = "[RulerDesignerWindow.GetPortrait( 'environment_head', 'camera_head', PdxGetWidgetScreenSize( PdxGuiWidget.Self ) )]"
 								texture = "[RulerDesignerWindow.GetPortrait(Select_CString( GetVariableSystem.Exists('environment'), GetVariableSystem.Get('environment'), 'environment_head'), Concatenate('camera_', Concatenate(Concatenate(Concatenate('1_', Character.Custom('tilt_angle_brd')), '_'), Character.Custom('camera_angle_brd'))), PdxGetWidgetScreenSize(PdxGuiWidget.Self))]"
 
 								modify_texture = {
@@ -2509,11 +2551,13 @@ window = {
 								using = Animation_ShowHide_Quick
 								visible = "[Not(GetVariableSystem.Exists('profile_brd_right'))]"
 
+								# default profile
 								icon = {
 									visible = "[Not(GetVariableSystem.Exists('profile_brd_straight'))]"
 									size = { 500 700 }
 
 
+									# texture = "[RulerDesignerWindow.GetPortrait( 'environment_head', 'camera_ruler_designer_head_profile', PdxGetWidgetScreenSize( PdxGuiWidget.Self ) )]"
 									texture = "[RulerDesignerWindow.GetPortrait(Select_CString( GetVariableSystem.Exists('environment'), GetVariableSystem.Get('environment'), 'environment_head'), Concatenate('camera_', Concatenate(Concatenate(Concatenate('1_', Character.Custom('tilt_angle_brd')), '_'), '45')), PdxGetWidgetScreenSize(PdxGuiWidget.Self))]"
 
 									modify_texture = {
@@ -2528,11 +2572,13 @@ window = {
 								}
 
 
+								# straight profile
 								icon = {
 									visible = "[GetVariableSystem.Exists('profile_brd_straight')]"
 									size = { 500 700 }
 
 
+									# texture = "[RulerDesignerWindow.GetPortrait( 'environment_head', 'camera_ruler_designer_head_profile', PdxGetWidgetScreenSize( PdxGuiWidget.Self ) )]"
 									texture = "[RulerDesignerWindow.GetPortrait(Select_CString( GetVariableSystem.Exists('environment'), GetVariableSystem.Get('environment'), 'environment_head'), Concatenate('camera_', Concatenate(Concatenate(Concatenate('1_', Character.Custom('tilt_angle_brd')), '_'), '85')), PdxGetWidgetScreenSize(PdxGuiWidget.Self))]"
 
 									modify_texture = {
@@ -2613,6 +2659,7 @@ window = {
 							onclick = "[RulerDesignerWindow.RandomizeEthnicityDnaFromCurrent]"
 							onclick = "[PdxGuiTriggerAllAnimations('ruler_designer_portrait_refresh')]"
 
+							# visible = "[Not(VariableSystem.HasValue( 'appearance_customization_window_open', 'ethnicity_selection' ))]"
 							text = "RULER_DESIGNER_REGENERATE_PORTRAIT"
 
 							button_randomize = {
@@ -2668,6 +2715,7 @@ window = {
 			}
 
 
+			# right side
 			widget = {
 				layoutpolicy_vertical = expanding
 				size = { 560 0 }
@@ -2684,6 +2732,7 @@ window = {
 
 					vbox = {
 
+						# margin_top = 5
 						name = "gene_editor"
 						layoutpolicy_vertical = expanding
 						layoutpolicy_horizontal = expanding
@@ -2719,6 +2768,9 @@ window = {
 						}
 
 
+						# divider_light = {
+						# 	layoutpolicy_horizontal = expanding
+						# }
 						scrollbox = {
 							name = "gene_sliders"
 							layoutpolicy_vertical = expanding
@@ -2811,6 +2863,19 @@ window = {
 													visible = "[GeneCategory.IsType( 'morph' )]"
 
 
+													# background = {
+													# 	visible = "[GreaterThan_int32( GetDataModelSize( RulerDesignerWindow.GetMorphTemplatesByGene( GeneCategory.Self ) ), '(int32)1' )]"
+													# 	using = Background_Frame
+													# }
+													# text_single = {
+													# 	raw_text = "[Multiply_float( Add_float( Character.CalcMorphGeneAttribute('gene_height', 'body_height'), '(float)1' ), FixedPointToFloat(GuiScope.SetRoot(Character.MakeScope).ScriptValue('sex_height')) )|0v] [Localize('cm')]"
+													# }
+													# text_single = {
+													# 	raw_text = "([Multiply_float( Add_float( Character.CalcMorphGeneAttribute('gene_height', 'body_height'), '(float)1' ), FixedPointToFloat(GuiScope.SetRoot(Character.MakeScope).ScriptValue('height_feet')) )|1v] [Localize('feet')])"
+													# }
+													# RulerDesignerWindow.IsFemale
+													# RulerDesignerWindow.HasTrait( Arg0 )
+													# RulerDesignerWindow.GetAge
 													hbox = {
 														layoutpolicy_horizontal = expanding
 
@@ -3032,6 +3097,108 @@ types ruler_designer_types
 	}
 
 
+	# type vbox_header_with_line = vbox
+	# {
+	# 	vbox = {
+	# 		layoutpolicy_horizontal = expanding
+	# 		spacing = 3
+	# 		hbox = {
+	# 			layoutpolicy_horizontal = expanding
+	# 			margin_left = 3
+	# 			text_label_left = {
+	# 				block "header_label" { }
+	# 				layoutpolicy_horizontal = expanding
+	# 				using = Font_Size_Medium
+	# 				block "autoresize"
+	# 				{
+	# 					autoresize = no
+	# 				}
+	# 			}
+	# 			expand = { }
+	# 		}
+	# 		divider_light = {
+	# 			layoutpolicy_horizontal = expanding
+	# 		}
+	# 	}
+	# }
+	# type vbox_labelled_entry = vbox
+	# {
+	# 	vbox_header_with_line = {
+	# 		layoutpolicy_horizontal = expanding
+	# 	}
+	# 	hbox = {
+	# 		layoutpolicy_horizontal = expanding
+	# 		margin_left = 5
+	# 		hbox = {
+	# 			layoutpolicy_horizontal = expanding
+	# 			spacing = 10
+	# 			margin_top = 3
+	# 			block "tooltip_area"
+	# 			{
+	# 			}
+	# 			block "item_icon_entry"
+	# 			{
+	# 				icon = {
+	# 					name = "item_icon"
+	# 					size = { 60 60 }
+	# 					block "item_icon_texture"
+	# 					{
+	# 						texture = "gfx/interface/_debug/pink_square_chill.png"
+	# 					}
+	# 				}
+	# 			}
+	# 			vbox = {
+	# 				layoutpolicy_horizontal = expanding
+	# 				block "item_data"
+	# 				{
+	# 					hbox = {
+	# 						layoutpolicy_horizontal = expanding
+	# 						text_single = {
+	# 							name = "item_name"
+	# 							#layoutpolicy_horizontal = expanding
+	# 							default_format = "#bold"
+	# 							margin_right = 5
+	# 							margin_bottom = 5
+	# 							#autoresize = no
+	# 							block "item_name_label"
+	# 							{
+	# 								raw_text = "#D FILL ME IN#!"
+	# 							}
+	# 						}
+	# 						block "item_button"
+	# 						{
+	# 							button_replace = {
+	# 								name = "reset"
+	# 								block "reset_button" { }
+	# 							}
+	# 						}
+	# 						expand = { }
+	# 					}
+	# 					text_single = {
+	# 						name = "item_info"
+	# 						layoutpolicy_horizontal = expanding
+	# 						default_format = "#high"
+	# 						autoresize = no
+	# 						using = Font_Size_Medium
+	# 						margin_bottom = 5
+	# 						block "item_info_text"
+	# 						{
+	# 							raw_text = "#D FILL ME IN#!"
+	# 						}
+	# 					}
+	# 				}
+	# 			}
+	# 		}
+	# 		expand = { }
+	# 		# block "item_button"
+	# 		# {
+	# 		# 	button_replace = {
+	# 		# 		name = "reset"
+	# 		# 		block "reset_button" { }
+	# 		# 	}
+	# 		# }
+	# 	}
+	# }
 	type scrollbar_value_slider = scrollbar
 	{
 		direction = horizontal
@@ -3126,7 +3293,7 @@ types ruler_designer_types
 
 	type scrollbar_morph_gene = scrollbar_value_slider
 	{
-		min = 0
+		min = 0 # You should probably not change these min and max values, the code relies on them being uint8s
 		max = 255
 
 		onvaluechanged = "[RulerDesignerWindow.OnMorphGeneChange( GeneCategory.Self, PdxGuiWidget.Self )]"
@@ -3636,6 +3803,7 @@ types BarbershopTypes {
 				using = Color_Black
 				alpha =  0.5
 
+				# visible = "[Or(GetVariableSystem.HasValue('appearance_customization_portrait_view', 'full_body' ), Not(GetVariableSystem.Exists('appearance_customization_portrait_view')))]"
 			}
 
 			state = {
@@ -3947,6 +4115,7 @@ types BarbershopTypes {
 			}
 
 
+			# silent shortcuts
 			widget = {
 				button_silent = {
 					shortcut = increase_speed_2
@@ -3967,18 +4136,21 @@ types BarbershopTypes {
 					parentanchor = hcenter
 					onclick = "[GetScriptedGui('rotate_portrait_up_brd').Execute( GuiScope.SetRoot( Character.MakeScope ).End )]"
 
+					#+W
 					shortcut = map_mode_10
 				}
 				button_silent = {
 					parentanchor = hcenter|bottom
 					onclick = "[GetScriptedGui('rotate_portrait_down_brd').Execute( GuiScope.SetRoot( Character.MakeScope ).End )]"
 
+					#+S
 					shortcut = mapmode_culture_secondary
 				}
 				button_silent = {
 					parentanchor = vcenter
 					onclick = "[GetScriptedGui('rotate_portrait_left_brd').Execute( GuiScope.SetRoot( Character.MakeScope ).End )]"
 
+					#+A
 					shortcut = mapmode_faith_secondary
 					shortcut = character_finder
 				}
@@ -3986,17 +4158,20 @@ types BarbershopTypes {
 					parentanchor = vcenter|right
 					onclick = "[GetScriptedGui('rotate_portrait_right_brd').Execute( GuiScope.SetRoot( Character.MakeScope ).End )]"
 
+					#+D
 					shortcut = mapmode_house_secondary
 					shortcut = find_title_shortcut
 				}
 
 
+				####
 				button_silent = {
 					parentanchor = hcenter
 					onclick = "[GetScriptedGui('rotate_portrait_down_brd').Execute( GuiScope.SetRoot( Character.MakeScope ).End )]"
 					onclick = "[GetScriptedGui('rotate_portrait_down_brd').Execute( GuiScope.SetRoot( Character.MakeScope ).End )]"
 					onclick = "[GetScriptedGui('rotate_portrait_down_brd').Execute( GuiScope.SetRoot( Character.MakeScope ).End )]"
 
+					#+W
 					shortcut = map_mode_14
 				}
 				button_silent = {
@@ -4005,6 +4180,7 @@ types BarbershopTypes {
 					onclick = "[GetScriptedGui('rotate_portrait_up_brd').Execute( GuiScope.SetRoot( Character.MakeScope ).End )]"
 					onclick = "[GetScriptedGui('rotate_portrait_up_brd').Execute( GuiScope.SetRoot( Character.MakeScope ).End )]"
 
+					#+S
 					shortcut = map_mode_7
 				}
 				button_silent = {
@@ -4015,6 +4191,7 @@ types BarbershopTypes {
 					onclick = "[GetScriptedGui('rotate_portrait_right_brd').Execute( GuiScope.SetRoot( Character.MakeScope ).End )]"
 					onclick = "[GetScriptedGui('rotate_portrait_right_brd').Execute( GuiScope.SetRoot( Character.MakeScope ).End )]"
 
+					#+A
 					shortcut = map_mode_13
 				}
 				button_silent = {
@@ -4025,6 +4202,7 @@ types BarbershopTypes {
 					onclick = "[GetScriptedGui('rotate_portrait_left_brd').Execute( GuiScope.SetRoot( Character.MakeScope ).End )]"
 					onclick = "[GetScriptedGui('rotate_portrait_left_brd').Execute( GuiScope.SetRoot( Character.MakeScope ).End )]"
 
+					#+D
 					shortcut = map_mode_6
 				}
 			}
@@ -4075,6 +4253,7 @@ types BarbershopTypes {
 				visible = "[Not(GetVariableSystem.HasValue('portrait_brd', 'height'))]"
 				parentanchor = hcenter
 
+				# texture = "[RulerDesignerWindow.GetPortrait( 'environment_head', 'camera_0_-180_0', PdxGetWidgetScreenSize( PdxGuiWidget.Self ) )]"
 				block "texture_body" {
 					texture = "[RulerDesignerWindow.GetPortrait(Select_CString( GetVariableSystem.Exists('environment'), GetVariableSystem.Get('environment'), 'environment_body'), Concatenate('camera_', Concatenate(Concatenate(Concatenate('0_', Character.Custom('tilt_angle_brd')), '_'), Character.Custom('camera_angle_brd'))), PdxGetWidgetScreenSize(PdxGuiWidget.Self))]"
 				}
@@ -4101,12 +4280,23 @@ types BarbershopTypes {
 				}
 
 
+				# height_line_brd = {
+				# 	position = { 0 -600 }
+				# 	blockoverride "parent" {
+				# 		parentanchor = bottom|right
+				# 	}
+				# 	blockoverride "text" {
+				# 		raw_text = "2 m"
+				# 	}
+				# }
+				# height lines
 				flowcontainer = {
 					ignoreinvisible = yes
 
 					parentanchor = bottom|hcenter
 
 
+					# feet
 					flowcontainer = {
 						ignoreinvisible = yes
 						direction = vertical
@@ -4161,6 +4351,7 @@ types BarbershopTypes {
 					}
 
 
+					# meters
 					flowcontainer = {
 						ignoreinvisible = yes
 						direction = vertical
@@ -4351,6 +4542,7 @@ types BarbershopTypes {
 
 	type 5_height_lines_brd = fixedgridbox {
 
+		# why is this not working???
 		addrow = 15
 		addcolumn = 700
 		parentanchor = bottom
@@ -4358,6 +4550,7 @@ types BarbershopTypes {
 		datamodel = "[GetNullCharacterDataModel('(int32)5')]"
 
 
+		# I don't understand why it refuses to show more than 5 items
 		item = {
 			widget = {
 				size = { 700 15 }
@@ -4387,6 +4580,7 @@ types BarbershopTypes {
 
 	type button_left_brd = button_standard {
 
+		# size = { 180 35 }
 		layoutpolicy_horizontal = expanding
 		align = left|nobaseline
 		margin_left = 10
@@ -4422,68 +4616,4 @@ template background_no_edge_bdr {
 			blend_mode = overlay
 		}
 	}
-}
-
-types AGOTCompatRestore {
-
-		type button_rd_environment = button_standard {
-			layoutpolicy_horizontal = expanding
-
-			onclick = "[GetVariableSystem.SetOrToggle('rd_environment', PdxGuiWidget.GetName )]"
-			down = "[GetVariableSystem.HasValue('rd_environment', PdxGuiWidget.GetName )]"
-
-			align = left|nobaseline
-
-			icon = {
-				name = "texture"
-				parentanchor = right
-				size = { 65% 100% }
-
-				alpha = 0.3
-
-				background = {
-					block "texture" {}
-					using = Mask_Rough_Edges
-					fittype = centercrop
-
-					modify_texture = {
-						texture = "gfx/interface/component_masks/mask_fade_horizontal_thick.dds"
-						blend_mode = alphamultiply
-						rotate_uv = 3
-						mirror = horizontal
-					}
-				}
-			}
-		}
-
-
-		type button_rotate_ruler_designer = button {
-			texture = "gfx/interface/buttons/button_standard.dds"
-			spriteType = Corneredtiled
-			spriteborder = { 4 4 }
-			framesize = { 252 80 }
-			size = { 36 36 }
-
-			button_icon = {
-				parentanchor = center
-				size = { 20 20 }
-				alwaystransparent = yes
-
-				block "mirror" {}
-				block "texture" {
-					texture = "gfx/interface/icons/flat_icons/window_back.dds"
-				}
-			}
-			using = tooltip_ne
-		}
-
-
-		type text_ruler_designer_label = text_label_left {
-			layoutpolicy_horizontal = expanding
-			max_width = 300
-			margin_left = 45
-			margin_top = 5
-			align = nobaseline
-			using = Font_Size_Medium
-		}
 }

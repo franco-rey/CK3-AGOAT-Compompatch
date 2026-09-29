@@ -1,0 +1,55 @@
+﻿			battlefield_duel_imprison_escape_effect = {
+
+				hidden_effect = {
+					scope:actor = {
+						bdp_battlefield_chronicle_mark_latest_victory_outcome_effect = {
+							OUTCOME = spared
+							OPPONENT = scope:enemy_knight
+						}
+					}
+				}
+
+				scope:enemy_knight = {	
+					progress_towards_rival_effect = { 
+						REASON = rival_lost_duel
+						CHARACTER = scope:actor 
+						OPINION = 0 
+					} 	
+				}
+
+				hidden_effect = {
+					random_list = {
+
+							10 = {
+								hidden_effect = {
+								send_interface_message = {
+									type = battlefield_duel_feed_martial_bad
+									title = battlefield_duel_enemy_escape_notification
+									desc = battlefield_duel_imprison_failure_chaos_toast
+									left_icon = scope:actor		
+									right_icon = scope:enemy_knight
+								}
+								}
+							}
+
+							0 = {
+								modifier = {
+									add = 300
+									scope:enemy_knight = {
+										this.intrigue >= { value = root.intrigue multiply = 1.2 }
+									}
+								}
+								scope:actor = {	increase_wounds_effect = { REASON = battle } }
+								hidden_effect = {
+								send_interface_message = {
+									type = battlefield_duel_feed_martial_bad
+									title = battlefield_duel_enemy_escape_notification
+									desc = battlefield_duel_imprison_failure_intrigue_toast
+									left_icon = scope:actor		
+									right_icon = scope:enemy_knight
+								}
+								}
+							}
+					}	
+				}
+			}

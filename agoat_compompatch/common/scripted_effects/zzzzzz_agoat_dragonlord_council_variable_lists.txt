@@ -1,0 +1,194 @@
+﻿dragonlord_council_rebuild_development_target_pool_effect = {
+	clear_variable_list = dragonlord_council_development_county_candidates
+	clear_variable_list = dragonlord_council_development_estate_candidates
+	remove_variable = dragonlord_council_selected_development_target
+	remove_variable = dragonlord_council_selected_estate_target
+	dragonlord_council_rebuild_development_contributors_effect = yes
+
+	if = {
+		limit = { var:dragonlord_council_selected_development_type = flag:dragonlord_city_development }
+		every_sub_realm_county = {
+			limit = {
+				holder = { dragonlord_is_registered_family_member_trigger = yes }
+				NOT = { has_county_modifier = dragonlord_council_city_development_modifier }
+			}
+			save_scope_as = dragonlord_council_development_county
+			root = {
+				add_to_variable_list = {
+					name = dragonlord_council_development_county_candidates
+					target = scope:dragonlord_council_development_county
+				}
+			}
+		}
+	}
+	else_if = {
+		limit = { var:dragonlord_council_selected_development_type = flag:dragonlord_territorial_recovery }
+		every_sub_realm_county = {
+			limit = {
+				county_control < 100
+				holder = { dragonlord_is_registered_family_member_trigger = yes }
+				NOT = { has_county_modifier = dragonlord_council_territorial_recovery_modifier }
+			}
+			save_scope_as = dragonlord_council_development_county
+			root = {
+				add_to_variable_list = {
+					name = dragonlord_council_development_county_candidates
+					target = scope:dragonlord_council_development_county
+				}
+			}
+		}
+	}
+	else_if = {
+		limit = { var:dragonlord_council_selected_development_type = flag:dragonlord_estate_subsidy }
+		every_in_list = {
+			variable = dragonlord_council_development_contributors
+			if = {
+				limit = {
+					exists = domicile
+					NOT = { has_character_modifier = dragonlord_council_estate_subsidy_modifier }
+				}
+				save_scope_as = dragonlord_council_development_estate
+				root = {
+					add_to_variable_list = {
+						name = dragonlord_council_development_estate_candidates
+						target = scope:dragonlord_council_development_estate
+					}
+				}
+			}
+		}
+		# A family-title holder and its current House head can briefly differ in
+		# administrative successions. If none of the contributor representatives
+		# owns a domicile, use registered landed estate owners in the realm.
+		if = {
+			limit = { variable_list_size = { name = dragonlord_council_development_estate_candidates value = 0 } }
+			if = {
+				limit = {
+					is_alive = yes
+					dragonlord_is_registered_family_member_trigger = yes
+					exists = domicile
+					NOT = { has_character_modifier = dragonlord_council_estate_subsidy_modifier }
+				}
+				save_scope_as = dragonlord_council_development_estate
+				add_to_variable_list = {
+					name = dragonlord_council_development_estate_candidates
+					target = scope:dragonlord_council_development_estate
+				}
+			}
+			every_vassal_or_below = {
+				limit = {
+					is_alive = yes
+					dragonlord_is_registered_family_member_trigger = yes
+					exists = domicile
+					NOT = { has_character_modifier = dragonlord_council_estate_subsidy_modifier }
+				}
+				save_scope_as = dragonlord_council_development_estate
+				root = {
+					add_to_variable_list = {
+						name = dragonlord_council_development_estate_candidates
+						target = scope:dragonlord_council_development_estate
+					}
+				}
+			}
+		}
+	}
+}
+
+dragonlord_council_ai_prepare_war_agenda_effect = {
+	random_list = {
+		15 = {
+			modifier = { factor = 1.5 has_trait = patient }
+			modifier = { factor = 1.5 has_trait = diligent }
+			set_variable = { name = dragonlord_council_selected_war_type value = flag:dragonlord_colonization_war_agenda }
+		}
+		45 = {
+			modifier = { factor = 1.5 has_trait = ambitious }
+			modifier = { factor = 1.5 has_trait = brave }
+			modifier = { factor = 1.5 has_trait = wrathful }
+			modifier = { factor = 1.5 has_trait = dragonrider }
+			modifier = { factor = 0.5 has_trait = craven }
+			modifier = { factor = 0.5 has_trait = compassionate }
+			set_variable = { name = dragonlord_council_selected_war_type value = flag:dragonlord_conquest_war_agenda }
+		}
+		30 = {
+			modifier = { factor = 1.5 has_trait = greedy }
+			modifier = { factor = 1.25 has_trait = craven }
+			set_variable = { name = dragonlord_council_selected_war_type value = flag:dragonlord_tributary_war_agenda }
+		}
+		10 = {
+			trigger = {
+				has_realm_law = slavery_allowed_law
+				NOR = { has_trait = compassionate has_trait = just }
+			}
+			modifier = { factor = 2 OR = { has_trait = callous has_trait = sadistic } }
+			modifier = { factor = 1.5 has_trait = greedy }
+			set_variable = { name = dragonlord_council_selected_war_type value = flag:dragonlord_slave_raid_war_agenda }
+		}
+	}
+	dragonlord_council_rebuild_war_target_pool_effect = yes
+
+	# A randomly preferred class may have no legal target. Try the common war
+	# classes; the agenda selector will fall back to development if none exist.
+	if = {
+		limit = { variable_list_size = { name = dragonlord_council_target_candidates value = 0 } }
+		set_variable = { name = dragonlord_council_selected_war_type value = flag:dragonlord_conquest_war_agenda }
+		dragonlord_council_rebuild_war_target_pool_effect = yes
+	}
+	if = {
+		limit = { variable_list_size = { name = dragonlord_council_target_candidates value = 0 } }
+		set_variable = { name = dragonlord_council_selected_war_type value = flag:dragonlord_tributary_war_agenda }
+		dragonlord_council_rebuild_war_target_pool_effect = yes
+	}
+	if = {
+		limit = { variable_list_size = { name = dragonlord_council_target_candidates value = 0 } }
+		set_variable = { name = dragonlord_council_selected_war_type value = flag:dragonlord_colonization_war_agenda }
+		dragonlord_council_rebuild_war_target_pool_effect = yes
+	}
+
+	if = {
+		limit = { variable_list_size = { name = dragonlord_council_target_candidates value > 0 } }
+		random_in_list = {
+			variable = dragonlord_council_target_candidates
+			save_scope_as = dragonlord_council_ai_war_target
+		}
+		set_variable = { name = dragonlord_council_pending_agenda value = flag:dragonlord_war_agenda }
+		set_variable = { name = dragonlord_council_pending_war_type value = var:dragonlord_council_selected_war_type }
+		set_variable = { name = dragonlord_council_pending_target value = scope:dragonlord_council_ai_war_target }
+	}
+
+	clear_variable_list = dragonlord_council_target_candidates
+	remove_variable = dragonlord_council_selected_war_type
+}
+
+dragonlord_council_ai_try_development_agenda_effect = {
+	if = {
+		limit = { NOT = { has_variable = dragonlord_council_pending_agenda } }
+		set_variable = { name = dragonlord_council_selected_development_type value = flag:$TYPE$ }
+		dragonlord_council_rebuild_development_target_pool_effect = yes
+
+		if = {
+			limit = {
+				var:dragonlord_council_selected_development_type = flag:dragonlord_estate_subsidy
+				variable_list_size = { name = dragonlord_council_development_estate_candidates value > 0 }
+			}
+			random_in_list = {
+				variable = dragonlord_council_development_estate_candidates
+				save_scope_as = dragonlord_council_ai_development_estate_target
+			}
+			set_variable = { name = dragonlord_council_pending_agenda value = flag:dragonlord_development_agenda }
+			set_variable = { name = dragonlord_council_pending_development_type value = var:dragonlord_council_selected_development_type }
+			set_variable = { name = dragonlord_council_pending_estate_target value = scope:dragonlord_council_ai_development_estate_target }
+			set_variable = { name = dragonlord_council_pending_development_contribution value = dragonlord_council_development_contribution }
+		}
+		else_if = {
+			limit = { variable_list_size = { name = dragonlord_council_development_county_candidates value > 0 } }
+			random_in_list = {
+				variable = dragonlord_council_development_county_candidates
+				save_scope_as = dragonlord_council_ai_development_county_target
+			}
+			set_variable = { name = dragonlord_council_pending_agenda value = flag:dragonlord_development_agenda }
+			set_variable = { name = dragonlord_council_pending_development_type value = var:dragonlord_council_selected_development_type }
+			set_variable = { name = dragonlord_council_pending_development_target value = scope:dragonlord_council_ai_development_county_target }
+			set_variable = { name = dragonlord_council_pending_development_contribution value = dragonlord_council_development_contribution }
+		}
+	}
+}

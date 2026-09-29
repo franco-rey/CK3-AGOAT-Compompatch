@@ -1,4 +1,10 @@
-﻿recruit_court_position_decision = {
+﻿##########################################
+# Hire for a specific Court Position
+# These used to be separate decisions, but are now combined into one
+# by Chad Uhl
+###########################################
+### Recruit for a Court Position ###
+recruit_court_position_decision = {
 	ai_check_interval = 0
 	picture = {
 		trigger = { culture = { has_graphical_east_asia_culture_group_trigger = yes } }
@@ -27,7 +33,7 @@
 
 
 		OR = {
-			is_landed_or_landless_administrative = yes
+		is_landed_or_landless_administrative = yes
 			agot_is_landless_pirate_character = yes
 		}
 	}
@@ -42,7 +48,7 @@
 		decision_to_second_step_button = "CHOOSE_CHARACTER_ROLE_DECISION_NEXT_STEP_BUTTON"
 		show_from_start = yes
 
-		item = {
+		item = { # Court Physician
 			value = hire_physician_decision
 			is_shown = {
 				is_ruler = yes
@@ -68,11 +74,11 @@
 			localization = hire_physician_decision
 			icon = "gfx/interface/icons/court_position_types/court_physician_court_position.dds"
 			ai_chance = { value = 100 }
-		}
-		item = {
+		} 
+		item = { #Caravan Master
 			value = hire_travel_leader_decision
 			is_shown = {
-				exists = primary_title
+				exists = primary_title 
 				primary_title.tier >= tier_county
 				is_landless_adventurer = no
 			}
@@ -103,7 +109,7 @@
 				}
 			}
 		}
-		item = {
+		item = { # Wet Nurse 
 			value = find_wet_nurse_decision
 			is_shown = {
 				is_landed_or_landless_administrative = yes
@@ -125,7 +131,7 @@
 				value = 10
 				if = {
 					limit = {
-						any_child = {
+						any_child = { #more willing if mother of your children is dead, too old or not healthy
 							mother ?= {
 								OR = {
 									is_alive = no
@@ -153,7 +159,7 @@
 				}
 			}
 		}
-		item = {
+		item = { # Charioteer
 			value = hire_charioteer_decision
 			is_shown = {
 				has_ep3_dlc_trigger = yes
@@ -178,7 +184,7 @@
 			icon = "gfx/interface/icons/court_position_types/charioteer_court_position.dds"
 			ai_chance = { value = 100 }
 		}
-		item = {
+		item = { # Bookmaker
 			value = hire_bookmaker_decision
 			is_shown = {
 				has_ep3_dlc_trigger = yes
@@ -203,7 +209,7 @@
 			icon = "gfx/interface/icons/court_position_types/bookmaker_court_position.dds"
 			ai_chance = { value = 100 }
 		}
-		item = {
+		item = { # Eunuch
 			value = hire_eunuch_decision
 			is_shown = {
 				has_ep3_dlc_trigger = yes
@@ -228,7 +234,7 @@
 			icon = "gfx/interface/icons/court_position_types/chief_eunuch_court_position.dds"
 			ai_chance = { value = 100 }
 		}
-		item = {
+		item = { # Gardener
 			value = recruit_gardener_decision
 			is_shown = {
 				culture = {
@@ -252,16 +258,18 @@
 			icon = "gfx/interface/icons/court_position_types/court_gardener_court_position.dds"
 			ai_chance = { value = 100 }
 		}
-		item = {
+		item = { # Linguist (Self)
 			value = invite_a_linguist_self
 			is_shown = {
 
+				# Standard filter checks.
 				is_playable_character = yes
 				has_royal_court = yes
 				has_dlc_feature = royal_court
 
-				NOT = { has_court_language_of_culture = root.culture }
-				any_culture_global = {
+				# Language checks.
+				NOT = { has_court_language_of_culture = root.culture } # No need for linguist
+				any_culture_global = { # Need somewhere to recruit linguist from
 					exists = culture_head
 					root.liege = { has_court_language_of_culture = prev }
 				}
@@ -274,14 +282,14 @@
 				NOT = { knows_court_language_of = root }
 				custom_tooltip = {
 					text = scheming_already
-					NOT = {
-						any_scheme = { type = learn_language }
+					NOT = { # Is not currently learning a language and doesn't know court language
+						any_scheme = { type = learn_language }	
 					}
 				}
 				custom_tooltip = {
 					text = linguist_already_present
 					NOT = {
-						any_courtier = {
+						any_courtier = { # You don't already have a linguist at court
 							has_character_flag = court_linguist_flag
 							knows_court_language_of = root
 						}
@@ -299,35 +307,38 @@
 			icon = "gfx/interface/icons/scheme_types/icon_scheme_learn_language.dds"
 			ai_chance = { value = 100 }
 		}
-		item = {
+		item = { # Linguist (Liege)
 			value = invite_a_linguist_liege
 			is_shown = {
 
+				# Standard filter checks.
 				is_landed_or_landless_administrative = yes
 
+				# Liege checks.
 				top_liege != this
 				liege = { has_royal_court = yes has_dlc_feature = royal_court }
 
+				# Language checks.
 				trigger_if = {
 					limit = { has_royal_court = yes }
-					NOT = { has_same_court_language = liege }
+					NOT = { has_same_court_language = liege } # Can use other decision in this case
 				}
 				NOR = {
-					liege = { has_court_language_of_culture = root.culture }
+					liege = { has_court_language_of_culture = root.culture } # No need to learn your own culture's language
 					AND = {
-						knows_language_of_culture = root.liege.culture
+						knows_language_of_culture = root.liege.culture 
 						trigger_if = {
 							limit = {
 								any_child = { }
 							}
 							any_child = {
 								count > 0
-								knows_language_of_culture = root.liege.culture
+								knows_language_of_culture = root.liege.culture 
 							}
 						}
 					}
 				}
-				any_culture_global = {
+				any_culture_global = { # Need somewhere to recruit linguist from
 					exists = culture_head
 					root.liege = { has_court_language_of_culture = prev }
 				}
@@ -339,14 +350,14 @@
 				is_imprisoned = no
 				custom_tooltip = {
 					text = scheming_already
-					NOT = {
+					NOT = { # Is not currently learning a language and doesn't know court language
 						any_scheme = { type = learn_language }
 					}
 				}
 				custom_tooltip = {
 					text = linguist_already_present
 					NOT = {
-						any_courtier = {
+						any_courtier = { # You don't already have a linguist at court
 							has_character_flag = court_linguist_flag
 							knows_court_language_of = root.liege
 						}
@@ -364,11 +375,11 @@
 			icon = "gfx/interface/icons/scheme_types/icon_scheme_learn_language.dds"
 			ai_chance = { value = 100 }
 		}
-		item = {
+		item = { #Stargazer
 			value = invite_a_stargazer_decision
 			is_shown = {
 				government_has_flag = government_is_nomadic
-				exists = primary_title
+				exists = primary_title 
 				primary_title.tier >= tier_county
 				is_landless_adventurer = no
 			}
@@ -399,11 +410,11 @@
 				}
 			}
 		}
-		item = {
+		item = { # Siege Engineer
 			value = invite_a_siege_engineer_decision
 			is_shown = {
 				government_has_flag = government_is_nomadic
-				exists = primary_title
+				exists = primary_title 
 				primary_title.tier >= tier_county
 				is_landless_adventurer = no
 			}
@@ -434,11 +445,11 @@
 				}
 			}
 		}
-		item = {
+		item = { # Foreign Emissary
 			value = invite_a_foreign_emissary_decision
 			is_shown = {
 				government_has_flag = government_is_nomadic
-				exists = primary_title
+				exists = primary_title 
 				primary_title.tier >= tier_county
 				is_landless_adventurer = no
 			}
@@ -471,11 +482,11 @@
 		}
 
 
-		item = {
+		item = { # Khlon Glan
 			value = invite_a_khlon_glan_decision
 			is_shown = {
 				government_has_flag = government_is_mandala
-				exists = primary_title
+				exists = primary_title 
 				primary_title.tier >= tier_county
 			}
 			is_valid = {
@@ -507,6 +518,7 @@
 		}
 		item = {
 
+			# Court Tutor
 			value = hire_court_tutor_decision
 			is_shown = {
 				is_ruler = yes
@@ -563,6 +575,7 @@
 
 		item = {
 
+			# Court Chronicler
 			value = hire_chronicler_decision
 			is_shown = {
 				is_ruler = yes
@@ -629,6 +642,7 @@
 
 		item = {
 
+			# Lady in Waiting
 			value = hire_lady_in_waiting_decision
 			is_shown = {
 				is_ruler = yes
@@ -656,6 +670,7 @@
 
 		item = {
 
+			# Antiquarian
 			value = hire_antiquarian_decision
 			is_shown = {
 				is_ruler = yes
@@ -712,6 +727,7 @@
 
 		item = {
 
+			# Seneschal
 			value = hire_seneschal_decision
 			is_shown = {
 				is_ruler = yes
@@ -768,6 +784,7 @@
 
 		item = {
 
+			# High Almoner
 			value = hire_high_almoner_decision
 			is_shown = {
 				is_ruler = yes
@@ -826,6 +843,7 @@
 
 		item = {
 
+			# Royal Architect
 			value = hire_royal_architect_decision
 			is_shown = {
 				is_ruler = yes
@@ -866,6 +884,7 @@
 
 		item = {
 
+			# Food Taster
 			value = hire_food_taster_decision
 			is_shown = {
 				is_ruler = yes
@@ -905,6 +924,7 @@
 
 		item = {
 
+			# Court Jester
 			value = hire_court_jester_decision
 			is_shown = {
 				is_ruler = yes
@@ -956,6 +976,7 @@
 
 		item = {
 
+			# Cup Bearer
 			value = hire_cupbearer_decision
 			is_shown = {
 				is_ruler = yes
@@ -984,6 +1005,7 @@
 
 		item = {
 
+			# Court Musician
 			value = hire_court_musician_decision
 			is_shown = {
 				is_ruler = yes
@@ -1012,6 +1034,7 @@
 
 		item = {
 
+			# Court Poet
 			value = hire_court_poet_decision
 			is_shown = {
 				is_ruler = yes
@@ -1040,6 +1063,7 @@
 
 		item = {
 
+			# Executioner
 			value = hire_executioner_decision
 			is_shown = {
 				is_ruler = yes
@@ -1102,7 +1126,7 @@
 		custom_tooltip = recruit_court_position_decision_tt
 		hidden_effect = {
 			custom_tooltip = recruit_court_position_decision_tooltip
-			if = {
+			if = { # Court Physician
 				limit = { scope:hire_physician_decision = yes }
 				hidden_effect = {
 					add_character_flag = {
@@ -1119,7 +1143,7 @@
 					days = { 7 14 }
 				}
 			}
-			else_if = {
+			else_if = { # Travel Leader
 				limit = { scope:hire_travel_leader_decision = yes }
 				add_character_flag = {
 					flag = recruit_travel_leader_cooldown
@@ -1130,7 +1154,7 @@
 					days = { 7 14 }
 				}
 			}
-			else_if = {
+			else_if = { # Wet Nurse
 				limit = { scope:find_wet_nurse_decision = yes }
 				add_character_flag = {
 					flag = recruit_wet_nurse_cooldown
@@ -1141,7 +1165,7 @@
 					days = { 7 14 }
 				}
 			}
-			else_if = {
+			else_if = { # Charioteer
 				limit = { scope:hire_charioteer_decision = yes }
 				add_character_flag = {
 					flag = recruit_charioteer_cooldown
@@ -1162,7 +1186,7 @@
 					id = ep3_decisions_event.1010
 				}
 			}
-			else_if = {
+			else_if = { # Eunuch
 				limit = { scope:hire_eunuch_decision = yes }
 				add_character_flag = {
 					flag = recruit_eunuch_cooldown
@@ -1173,7 +1197,7 @@
 					days = { 7 14 }
 				}
 			}
-			else_if = {
+			else_if = { # Court Gardener 
 				limit = { scope:recruit_gardener_decision = yes }
 				hidden_effect = {
 					if = {
@@ -1183,7 +1207,7 @@
 								province = root.capital_province
 								stewardship >= medium_skill_rating
 								culture = root.culture
-								opinion = {
+								opinion = { # Just to make sure you don't pull in rivals or similar
 									value >= -30
 									target = root
 								}
@@ -1194,7 +1218,7 @@
 							limit = {
 								stewardship >= medium_skill_rating
 								culture = root.culture
-								opinion = {
+								opinion = { # Just to make sure you don't pull in rivals or similar
 									value >= -30
 									target = root
 								}
@@ -1207,7 +1231,7 @@
 								}
 								add_trait = lifestyle_gardener
 							}
-							save_scope_as = new_commander
+							save_scope_as = new_commander # Ignore the name, it's to save on localisation
 						}
 					}
 					else = {
@@ -1300,7 +1324,7 @@
 					years = 1
 				}
 			}
-			else_if = {
+			else_if = { # Stargazer
 				limit = { scope:invite_a_stargazer_decision = yes }
 				add_character_flag = {
 					flag = recruit_court_astrologer_cooldown
@@ -1311,7 +1335,7 @@
 					days = { 7 14 }
 				}
 			}
-			else_if = {
+			else_if = { # Siege Engineer
 				limit = { scope:invite_a_siege_engineer_decision = yes }
 				add_character_flag = {
 					flag = recruit_siege_engineer_cooldown
@@ -1322,7 +1346,7 @@
 					days = { 7 14 }
 				}
 			}
-			else_if = {
+			else_if = { # Foreign Emissary
 				limit = { scope:invite_a_foreign_emissary_decision = yes }
 				add_character_flag = {
 					flag = recruit_foreign_emissary_cooldown
@@ -1335,7 +1359,7 @@
 			}
 
 
-			else_if = {
+			else_if = { # Court Brahmin
 				limit = { scope:invite_a_khlon_glan_decision = yes }
 				add_character_flag = {
 					flag = recruit_khlon_glan_cooldown
@@ -1348,6 +1372,7 @@
 			}
 			else_if = {
 
+				# Tutor
 				limit = {
 					scope:hire_court_tutor_decision = yes
 				}
@@ -1362,6 +1387,7 @@
 			}
 			else_if = {
 
+				# Chronicler
 				limit = {
 					scope:hire_chronicler_decision = yes
 				}
@@ -1389,6 +1415,7 @@
 			}
 			else_if = {
 
+				# Antiquarian
 				limit = {
 					scope:hire_antiquarian_decision = yes
 				}
@@ -1403,6 +1430,7 @@
 			}
 			else_if = {
 
+				# Seneschal
 				limit = {
 					scope:hire_seneschal_decision = yes
 				}
@@ -1417,6 +1445,7 @@
 			}
 			else_if = {
 
+				# High Almoner
 				limit = {
 					scope:hire_high_almoner_decision = yes
 				}
@@ -1431,6 +1460,7 @@
 			}
 			else_if = {
 
+				# Royal Architect
 				limit = {
 					scope:hire_royal_architect_decision = yes
 				}
@@ -1445,6 +1475,7 @@
 			}
 			else_if = {
 
+				# Food Taster
 				limit = {
 					scope:hire_food_taster_decision = yes
 				}
@@ -1459,6 +1490,7 @@
 			}
 			else_if = {
 
+				# Court Jester
 				limit = {
 					scope:hire_court_jester_decision = yes
 				}
@@ -1473,6 +1505,7 @@
 			}
 			else_if = {
 
+				# Executioner
 				limit = {
 					scope:hire_executioner_decision = yes
 				}
@@ -1487,18 +1520,21 @@
 			}
 			else_if = {
 
+				# Cup Bearer
 				limit = { scope:hire_cupbearer_decision = yes }
 				add_character_flag = { flag = recruit_cupbearer_cooldown years = 1 }
 				trigger_event = { id = hire.0011 days = { 7 14 } }
 			}
 			else_if = {
 
+				# Court Musician
 				limit = { scope:hire_court_musician_decision = yes }
 				add_character_flag = { flag = recruit_court_musician_cooldown years = 1 }
 				trigger_event = { id = hire.0012 days = { 7 14 } }
 			}
 			else_if = {
 
+				# Court Poet
 				limit = { scope:hire_court_poet_decision = yes }
 				add_character_flag = { flag = recruit_court_poet_cooldown years = 1 }
 				trigger_event = { id = hire.0013 days = { 7 14 } }
@@ -1507,12 +1543,13 @@
 	}
 
 	ai_potential = {
-		always = no
+		always = no # Only players can do this. AI vassals go through the normal court events/hold court activity.
 	}
 }
 
 
-gain_weight_decision = {
+### Gain Weight ###
+gain_weight_decision = { #by Linn�a Thimr�n
 	picture = {
 		reference = "gfx/interface/illustrations/decisions/decision_misc.dds"
 	}
@@ -1539,7 +1576,7 @@ gain_weight_decision = {
 			modifier = gaining_weight_modifier
 		}
 
-		trigger_event = {
+		trigger_event = { #To give faster, and steadier, results
 			id = health.5004
 			days = 90
 		}
@@ -1555,7 +1592,8 @@ gain_weight_decision = {
 }
 
 
-stop_gain_weight_decision = {
+### Stop Gaining Weight ###
+stop_gain_weight_decision = { #by Linn�a Thimr�n
 	picture = {
 		reference = "gfx/interface/illustrations/decisions/decision_activity.dds"
 	}
@@ -1582,7 +1620,8 @@ stop_gain_weight_decision = {
 }
 
 
-lose_weight_decision = {
+### Lose Weight ###
+lose_weight_decision = { #by Linn�a Thimr�n
 	picture = {
 		reference = "gfx/interface/illustrations/decisions/decision_activity.dds"
 	}
@@ -1612,7 +1651,7 @@ lose_weight_decision = {
 			modifier = losing_weight_modifier
 		}
 
-		trigger_event = {
+		trigger_event = { #To give faster results
 			id = health.5005
 			days = 180
 		}
@@ -1628,7 +1667,8 @@ lose_weight_decision = {
 }
 
 
-stop_lose_weight_decision = {
+### Stop Losing Weight ###
+stop_lose_weight_decision = { #by Linn�a Thimr�n
 	picture = {
 		reference = "gfx/interface/illustrations/decisions/decision_misc.dds"
 	}
@@ -1655,7 +1695,8 @@ stop_lose_weight_decision = {
 }
 
 
-commit_suicide_decision = {
+### Attempt Suicide ###
+commit_suicide_decision = { #by Linn�a Thimr�n
 	picture = {
 		reference = "gfx/interface/illustrations/decisions/decision_personal_religious.dds"
 	}
@@ -1722,37 +1763,37 @@ commit_suicide_decision = {
 				desc = commit_suicide_decision_desc_stressed
 			}
 			triggered_desc = {
-				trigger = {
-					has_trait = witch
+				trigger = { 
+					has_trait = witch 
 					faith = { has_doctrine_parameter = witchcraft_illegal }
 				}
 				desc = commit_suicide_decision_desc_witch
 			}
 			triggered_desc = {
-				trigger = {
+				trigger = { 
 					has_trait = cannibal
-					NOT = {
+					NOT = { 
 						faith = { has_doctrine_parameter = cannibalism_legal }
 					}
 				}
 				desc = commit_suicide_decision_desc_cannibal
 			}
 			triggered_desc = {
-				trigger = {
+				trigger = { 
 					has_trait = sodomite
 					faith = { has_doctrine_parameter = homosexuality_illegal }
 				}
 				desc = commit_suicide_decision_desc_sodomite
 			}
 			triggered_desc = {
-				trigger = {
+				trigger = { 
 					has_trait = deviant
 					faith = { has_doctrine_parameter = deviancy_illegal }
 				}
 				desc = commit_suicide_decision_desc_deviant
 			}
 			triggered_desc = {
-				trigger = {
+				trigger = { 
 					OR = {
 						has_trait = adulterer
 						has_trait = fornicator
@@ -1792,7 +1833,7 @@ commit_suicide_decision = {
 			has_trait = lunatic
 			has_character_flag = make_suicide_available
 			stress >= extremely_high_stress
-			AND = {
+			AND = { #You have a criminal trait and you are stressed
 				stress >= very_high_stress
 				OR = {
 					AND = {
@@ -1852,12 +1893,12 @@ commit_suicide_decision = {
 			}
 		}
 		else = {
-			show_as_tooltip = {
-				committed_suicide_effect = yes
-			}
-			custom_tooltip = commit_suicide_decision_effect_tooltip
-			trigger_event = {
-				on_action = commit_suicide
+		show_as_tooltip = {
+			committed_suicide_effect = yes
+		}
+		custom_tooltip = commit_suicide_decision_effect_tooltip
+		trigger_event = {
+			on_action = commit_suicide
 			}
 		}
 	}
@@ -1900,7 +1941,8 @@ commit_suicide_decision = {
 }
 
 
-secede_from_empire_decision = {
+### Secede from [ROOT.Char.GetLiege.GetPrimaryTitle.GetNameNoTierNoTooltip] ###
+secede_from_empire_decision = { #by Sean Hughes
 	picture = {
 		reference = "gfx/interface/illustrations/decisions/decision_misc.dds"
 	}
@@ -1923,7 +1965,7 @@ secede_from_empire_decision = {
 			this != root
 		}
 		OR = {
-			liege ?= {
+			liege ?= { # Over 25 years in debt
 				OR = {
 					debt_level >= 7
 					treasury_debt_level >= 7
@@ -1932,9 +1974,9 @@ secede_from_empire_decision = {
 			liege ?= {
 				any_character_war = {
 					primary_attacker = prev
-					war_days >= 9125
+					war_days >= 9125 # Offensive war lasting over 25 years.
 				}
-			}
+			}	
 		}
 		is_landed = yes
 	}
@@ -1942,7 +1984,7 @@ secede_from_empire_decision = {
 	is_valid = {
 		OR = {
 			custom_description = {
-				liege ?= {
+				liege ?= { # Over 25 years in debt
 					OR = {
 						debt_level >= 7
 						treasury_debt_level >= 7
@@ -1952,11 +1994,11 @@ secede_from_empire_decision = {
 				object = root
 				text = secede_from_empire_decision_trigger_debt
 			}
-			custom_description = {
+			custom_description = {		
 				liege = {
 					any_character_war = {
 						primary_attacker = prev
-						war_days >= 9125
+						war_days >= 9125 # Offensive war lasting over 25 years.
 					}
 				}
 				subject = liege
@@ -1972,6 +2014,7 @@ secede_from_empire_decision = {
 
 	effect = {
 
+		# Liege loses debt proportionally to how much realm_size they will lose when you go independent.
 		custom_tooltip = secede_from_empire_decision_effect_tooltip
 		hidden_effect = {
 			liege = {
@@ -1979,10 +2022,10 @@ secede_from_empire_decision = {
 				save_scope_value_as = {
 					name = debt_cleared
 					value = {
-						value = gold
-						multiply = root.sub_realm_size
-						divide = scope:liege.realm_size
-						multiply = -1.1
+						value = gold 						# Example: I am 1000 gold in debt, so we start with -1000
+						multiply = root.sub_realm_size 		# The seceeding vassal has a realm size of 25...
+						divide = scope:liege.realm_size 			# ...while the top liege has a realm size of 100, scaling the value to -250
+						multiply = -1.1 	
 					}
 				}
 				send_interface_toast = {
@@ -1997,8 +2040,9 @@ secede_from_empire_decision = {
 		}
 
 
+		# Go independent
 		create_title_and_vassal_change = {
-			type = independency
+			type = independency 
 			save_scope_as = change
 		}
 		becomes_independent = {
@@ -2013,7 +2057,7 @@ secede_from_empire_decision = {
 	}
 
 	ai_potential = {
-		liege = {
+		liege = { # More than 5 years in debt
 			OR = {
 				debt_level >= 5
 				treasury_debt_level >= 5
@@ -2023,14 +2067,15 @@ secede_from_empire_decision = {
 			limit = {
 				liege = { is_rightful_liege_of = root }
 			}
-			is_powerful_vassal = yes
-			highest_held_title_tier >= tier_county
+			is_powerful_vassal = yes # The strongest vassals go first
+			highest_held_title_tier >= tier_county # Counts should never break away from their rightful liege, though.
 		}
 		trigger_else = {
 			liege = { is_ai = yes }
 
 
-			NOT = {
+			# Slightly different from the rightful liege check, this looks to see if I hold any land at all that De Jure belongs to my liege's empire(s).
+			NOT = {	
 				any_held_title = {
 					title_tier = county
 					exists = empire.holder
@@ -2044,6 +2089,7 @@ secede_from_empire_decision = {
 		base = -40
 
 
+		# Realm Modifiers
 		compare_modifier = {
 			value = sub_realm_size
 			multiplier = 1
@@ -2058,11 +2104,13 @@ secede_from_empire_decision = {
 
 		modifier = {
 
+			# Kings are more likely to seceede
 			add = 25
 			highest_held_title_tier = tier_kingdom
 		}
 
 
+		# 'Soft' Modifiers, e.g., Opinion and Personality
 		ai_value_modifier = {
 			ai_greed = 0.35
 			ai_boldness = 0.35
@@ -2075,6 +2123,7 @@ secede_from_empire_decision = {
 		}
 
 
+		# Faith and Culture Factors
 		modifier = {
 			factor = 1.2
 			NOT = { culture = { has_same_culture_heritage = root.liege.culture }}
@@ -2082,7 +2131,7 @@ secede_from_empire_decision = {
 
 		modifier = {
 			factor = 1.1
-			faith = {
+			faith = {		
 				faith_hostility_level = {
 					target = root.liege.faith
 					value = faith_astray_level
@@ -2092,7 +2141,7 @@ secede_from_empire_decision = {
 
 		modifier = {
 			factor = 1.3
-			faith = {
+			faith = {		
 				faith_hostility_level = {
 					target = root.liege.faith
 					value = faith_hostile_level
@@ -2102,18 +2151,19 @@ secede_from_empire_decision = {
 
 		modifier = {
 			factor = 1.5
-			faith = {
+			faith = {		
 				faith_hostility_level = {
 					target = root.liege.faith
 					value = faith_evil_level
 				}
 			}
 		}
-	}
+	}	
 }
 
 
-pet_dog_decision = {
+### Pet [ROOT.Char.Custom('DogStoryName')] ###
+pet_dog_decision = { #by Linn�a Thimr�n
 	picture = {
 		reference = "gfx/interface/illustrations/decisions/decision_pet_dog.dds"
 	}
@@ -2165,7 +2215,8 @@ pet_dog_decision = {
 }
 
 
-pet_cat_decision = {
+### Pet [ROOT.Char.Custom('CatStoryName')] ###
+pet_cat_decision = { #by Linn�a Thimr�n
 	picture = {
 		reference = "gfx/interface/illustrations/decisions/decision_pet_dog.dds"
 	}
@@ -2217,7 +2268,9 @@ pet_cat_decision = {
 }
 
 
-stress_loss_drunkard_decision = {
+#DECISIONS TO "USE" YOUR STRESS COPING TRAITS TO LOSE STRESS
+### Indulge in Drink ###
+stress_loss_drunkard_decision = { #by Linn�a Thimr�n
 	picture = {
 		reference = "gfx/interface/illustrations/decisions/decision_misc.dds"
 	}
@@ -2246,7 +2299,7 @@ stress_loss_drunkard_decision = {
 
 	effect = {
 		custom_tooltip = stress_loss_drunkard_decision_effect_tooltip
-		show_as_tooltip = { add_prestige = medium_prestige_loss }
+		show_as_tooltip = { add_prestige = medium_prestige_loss } # The effect is actually applied in the event itself
 
 		trigger_event = { on_action = stress_loss_drunkard }
 	}
@@ -2263,7 +2316,8 @@ stress_loss_drunkard_decision = {
 }
 
 
-stress_loss_hashishiyah_decision = {
+### Consume Hashish Cakes ###
+stress_loss_hashishiyah_decision = { #by Linn�a Thimr�n
 	picture = {
 		reference = "gfx/interface/illustrations/decisions/decision_misc.dds"
 	}
@@ -2295,7 +2349,7 @@ stress_loss_hashishiyah_decision = {
 	effect = {
 		custom_tooltip = stress_loss_drunkard_decision_effect_tooltip
 
-		show_as_tooltip = {
+		show_as_tooltip = { #The effect is actually applied in the event itself
 			add_character_modifier = {
 				modifier = stress_hashish_stupor
 				years = 2
@@ -2332,7 +2386,8 @@ stress_loss_hashishiyah_decision = {
 }
 
 
-stress_loss_rakish_decision = {
+### Visit a Brothel ###
+stress_loss_rakish_decision = { #by Linn�a Thimr�n
 	picture = {
 		reference = "gfx/interface/illustrations/decisions/decision_recruitment.dds"
 	}
@@ -2382,6 +2437,7 @@ stress_loss_rakish_decision = {
 		custom_tooltip = stress_threshold.1011.rakish.tt
 
 
+		#So that stress_trait_coping_decisions.2002 can trigger in yearly events too
 		save_scope_value_as = {
 			name = from_stress_loss_decision
 			value = yes
@@ -2392,6 +2448,7 @@ stress_loss_rakish_decision = {
 		}
 
 
+		# Only men have a chance of bastards this way, as real_father cannot be anonymous
 		if = {
 			limit = { is_male = yes }
 			hidden_effect = {
@@ -2399,18 +2456,20 @@ stress_loss_rakish_decision = {
 					name = brothel_bastard_chance
 					value = {
 
+						# 1% chance with a fertility of 0.1
 						value = fertility
 						multiply = 10
 
+						# Men dont 'need' to be fertile (there is always a chance they are not the father)
 						add = 5
-						if = {
+						if = { # Recklessness
 							limit = { ai_boldness != 0 }
 							add = {
 								value = ai_boldness
 								divide = 100
 							}
 						}
-						if = {
+						if = { # Shrewdness
 							limit = { ai_rationality != 0 }
 							add = {
 								value = ai_rationality
@@ -2422,6 +2481,7 @@ stress_loss_rakish_decision = {
 				}
 				random = {
 
+					# 1% chance with a fertility of 0.1
 					chance = scope:brothel_bastard_chance
 					trigger_event = stress_trait_coping_decisions.2003
 				}
@@ -2444,7 +2504,8 @@ stress_loss_rakish_decision = {
 }
 
 
-stress_loss_reclusive_decision = {
+### Seclude Yourself ###
+stress_loss_reclusive_decision = { #by Linn�a Thimr�n
 	picture = {
 		reference = "gfx/interface/illustrations/decisions/decision_personal_religious.dds"
 	}
@@ -2474,7 +2535,7 @@ stress_loss_reclusive_decision = {
 
 		custom_tooltip = stress_loss_drunkard_decision_effect_tooltip
 
-		show_as_tooltip = {
+		show_as_tooltip = { #The effect is actually applied in the event itself
 			add_prestige = medium_prestige_loss
 		}
 
@@ -2498,7 +2559,8 @@ stress_loss_reclusive_decision = {
 }
 
 
-stress_loss_irritable_decision = {
+### Lash Out ###
+stress_loss_irritable_decision = { #by Linn�a Thimr�n
 	picture = {
 		reference = "gfx/interface/illustrations/decisions/decision_realm.dds"
 	}
@@ -2528,7 +2590,7 @@ stress_loss_irritable_decision = {
 
 		custom_tooltip = stress_loss_drunkard_decision_effect_tooltip
 
-		show_as_tooltip = {
+		show_as_tooltip = { #The effect is actually applied in the event itself
 			random_list = {
 				50 = {
 					trigger = {
@@ -2539,9 +2601,9 @@ stress_loss_irritable_decision = {
 				50 = {
 					trigger = {
 						any_vassal = { count < 1 }
-						any_courtier_or_guest = {
+						any_courtier_or_guest = { 
 							count >= 1
-							OR = {
+							OR = { 
 								this != root
 								this = { is_adult = no }
 							}
@@ -2581,13 +2643,15 @@ stress_loss_irritable_decision = {
 }
 
 
-stress_loss_flagellant_decision = {
+### Indulge in Flagellation ###
+stress_loss_flagellant_decision = { #by Linn�a Thimr�n
 	picture = {
 		reference = "gfx/interface/illustrations/decisions/decision_personal_religious.dds"
 	}
 	desc = {
 		first_valid = {
 
+			#Both
 			triggered_desc = {
 				trigger = {
 					has_trait = flagellant
@@ -2596,6 +2660,7 @@ stress_loss_flagellant_decision = {
 				desc = stress_loss_flagellant_exaltation_decision_desc
 			}
 
+			#Exaltation of Pain
 			triggered_desc = {
 				trigger = {
 					faith = { has_doctrine_parameter = self_mutilation_active }
@@ -2603,6 +2668,7 @@ stress_loss_flagellant_decision = {
 				desc = stress_loss_exaltation_decision_desc
 			}
 
+			#Fallback, stress relief
 			desc = stress_loss_flagellant_decision_desc
 		}
 	}
@@ -2624,7 +2690,7 @@ stress_loss_flagellant_decision = {
 		OR = {
 			has_trait = flagellant
 			faith = { has_doctrine_parameter = self_mutilation_active }
-		}
+		}	
 	}
 
 	is_valid_showing_failures_only = {
@@ -2633,7 +2699,7 @@ stress_loss_flagellant_decision = {
 	}
 
 	effect = {
-		show_as_tooltip = {
+		show_as_tooltip = { #The effect is actually applied in the event itself
 			flagellation_decision_effect = yes
 		}
 
@@ -2661,7 +2727,8 @@ stress_loss_flagellant_decision = {
 }
 
 
-stress_loss_profligate_decision = {
+### Visit the Market ###
+stress_loss_profligate_decision = { #by Linn�a Thimr�n
 	picture = {
 		reference = "gfx/interface/illustrations/decisions/decision_spend_money.dds"
 	}
@@ -2690,7 +2757,7 @@ stress_loss_profligate_decision = {
 
 	effect = {
 
-		show_as_tooltip = {
+		show_as_tooltip = { #The effect is actually applied in the event itself
 			remove_short_term_gold = medium_gold_value
 		}
 		custom_tooltip = stress_loss_drunkard_decision_effect_tooltip
@@ -2716,7 +2783,8 @@ stress_loss_profligate_decision = {
 }
 
 
-stress_loss_improvident_decision = {
+### Donate to Charity ###
+stress_loss_improvident_decision = { #by Linn�a Thimr�n
 	picture = {
 		reference = "gfx/interface/illustrations/decisions/decision_misc.dds"
 	}
@@ -2745,7 +2813,7 @@ stress_loss_improvident_decision = {
 
 	effect = {
 
-		show_as_tooltip = {
+		show_as_tooltip = { #The effect is actually applied in the event itself
 			remove_short_term_gold = medium_gold_value
 		}
 		custom_tooltip = stress_loss_drunkard_decision_effect_tooltip
@@ -2771,7 +2839,8 @@ stress_loss_improvident_decision = {
 }
 
 
-stress_loss_contrite_decision = {
+### Confess ###
+stress_loss_contrite_decision = { #by Linn�a Thimr�n
 	picture = {
 		reference = "gfx/interface/illustrations/decisions/decision_misc.dds"
 	}
@@ -2802,7 +2871,7 @@ stress_loss_contrite_decision = {
 
 		custom_tooltip = stress_loss_drunkard_decision_effect_tooltip
 
-		show_as_tooltip = {
+		show_as_tooltip = { #The effect is actually applied in the event itself
 			if = {
 				limit = {
 					any_secret = {
@@ -2839,7 +2908,8 @@ stress_loss_contrite_decision = {
 }
 
 
-stress_loss_comfort_eater_decision = {
+### Indulge in Food ###
+stress_loss_comfort_eater_decision = { #by Linn�a Thimr�n
 	picture = {
 		reference = "gfx/interface/illustrations/decisions/decision_misc.dds"
 	}
@@ -2872,7 +2942,7 @@ stress_loss_comfort_eater_decision = {
 
 	effect = {
 
-		show_as_tooltip = {
+		show_as_tooltip = { #The effect is actually applied in the event itself
 			remove_short_term_gold = medium_gold_value
 		}
 		custom_tooltip = stress_loss_drunkard_decision_effect_tooltip
@@ -2898,7 +2968,8 @@ stress_loss_comfort_eater_decision = {
 }
 
 
-stress_loss_inappetetic_decision = {
+### Shun Food ###
+stress_loss_inappetetic_decision = { #by Linn�a Thimr�n
 	picture = {
 		reference = "gfx/interface/illustrations/decisions/decision_misc.dds"
 	}
@@ -2928,7 +2999,7 @@ stress_loss_inappetetic_decision = {
 
 		custom_tooltip = stress_loss_drunkard_decision_effect_tooltip
 
-		show_as_tooltip = {
+		show_as_tooltip = { #The effect is actually applied in the event itself
 			inappetetic_advance_starvation_effect = yes
 		}
 
@@ -2952,7 +3023,8 @@ stress_loss_inappetetic_decision = {
 }
 
 
-stress_loss_journaller_decision = {
+### Write Thoughts Down ###
+stress_loss_journaller_decision = { #by Linn�a Thimr�n
 	picture = {
 		reference = "gfx/interface/illustrations/decisions/decision_misc.dds"
 	}
@@ -2983,7 +3055,7 @@ stress_loss_journaller_decision = {
 
 		custom_tooltip = stress_loss_drunkard_decision_effect_tooltip
 
-		show_as_tooltip = {
+		show_as_tooltip = { #The effect is actually applied in the event itself
 			add_character_modifier = {
 				modifier = stress_busy_writing
 				years = 1
@@ -3010,7 +3082,8 @@ stress_loss_journaller_decision = {
 }
 
 
-stress_loss_confider_decision = {
+### Talk to Confidant ###
+stress_loss_confider_decision = { #by Linn�a Thimr�n
 	picture = {
 		reference = "gfx/interface/illustrations/decisions/decision_misc.dds"
 	}
@@ -3040,7 +3113,7 @@ stress_loss_confider_decision = {
 
 		custom_tooltip = stress_loss_drunkard_decision_effect_tooltip
 
-		show_as_tooltip = {
+		show_as_tooltip = { #The effect is actually applied in the event itself
 			every_courtier = {
 				custom = all_courtiers_except_confidant
 				limit = {
@@ -3110,7 +3183,8 @@ stress_loss_confider_decision = {
 }
 
 
-stress_loss_athletic_decision = {
+### Work off Some Stress ###
+stress_loss_athletic_decision = { #by Linn�a Thimr�n
 	picture = {
 		reference = "gfx/interface/illustrations/decisions/decision_activity.dds"
 	}
@@ -3134,15 +3208,18 @@ stress_loss_athletic_decision = {
 
 	is_valid_showing_failures_only = {
 		is_available = yes
-		NOT = { has_trait = infirm }
-		NOT = { has_character_modifier = stress_smelling_of_sweat }
+		NOR = {
+			has_trait = infirm
+			has_trait = fragile_bones
+			has_character_modifier = stress_smelling_of_sweat
+		}
 	}
 
 	effect = {
 
 		custom_tooltip = stress_loss_drunkard_decision_effect_tooltip
 
-		show_as_tooltip = {
+		show_as_tooltip = { #The effect is actually applied in the event itself
 			add_character_modifier = {
 				modifier = stress_smelling_of_sweat
 				years = 1

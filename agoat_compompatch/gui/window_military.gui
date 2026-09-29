@@ -1,3 +1,6 @@
+###################################################
+################### MILTARY VIEW #####################
+######################################################
 window = {
 	name = "military_view"
 	widgetid = "military_view"
@@ -36,6 +39,7 @@ window = {
 			size = { 100% 100% }
 
 
+			### WINDOW CONTENT
 			vbox = {
 				using = Window_Margins
 
@@ -89,6 +93,7 @@ window = {
 				}
 
 
+				# Your Armies
 				vbox_military_owned_armies_tab = {
 					visible = "[MilitaryView.IsTabActive( 'owned_armies' )]"
 					layoutpolicy_horizontal = expanding
@@ -96,6 +101,7 @@ window = {
 				}
 
 
+				# Provincial Armies tab
 				vbox_military_provincial_armies_tab = {
 					visible = "[MilitaryView.IsTabActive( 'title_troops' )]"
 					layoutpolicy_horizontal = expanding
@@ -103,6 +109,7 @@ window = {
 				}
 
 
+				# Mercenaries tab
 				vbox_military_mercenaries_tab = {
 					visible = "[MilitaryView.IsTabActive( 'mercenary' )]"
 					layoutpolicy_horizontal = expanding
@@ -114,72 +121,78 @@ window = {
 }
 
 
+######################################################
+################ TYPES AND TEMPLATES #################
+######################################################
 types ArmiesView
 {
 	type hbox_military_automation_controls = hbox {
-							name = "army_automation_controls_tutorial_uses_this"
-							margin = { 10 0 }
-						spacing = 5
+		name = "army_automation_controls_tutorial_uses_this"
+		margin = { 10 0 }
+		spacing = 5
 
-							expand = {}
-							button_toggle_companion_ai = {}
+		expand = {}
+		button_toggle_companion_ai = {}
 
-							button_standard = {
+		button_standard = {
 			size = { 36 36 }
-								onclick = "[MilitaryView.ShowArmyAutomationOptions]"
+			onclick = "[MilitaryView.ShowArmyAutomationOptions]"
 
-								tooltip = "MV_AUTOMATION_SETTINGS_TT"
-								using = tooltip_sw
+			tooltip = "MV_AUTOMATION_SETTINGS_TT"
+			using = tooltip_sw
 
-								button_edit_automation = {
-									parentanchor = center
-									alwaystransparent = yes
-									size = { 28 28 }
-								}
-							}
-						}
+			button_edit_automation = {
+				parentanchor = center
+				alwaystransparent = yes
+				size = { 28 28 }
+			}
+		}
+	}
 
 
 	type hbox_military_troup_controls = hbox {
-							spacing = 5
+		spacing = 5
 		margin_right = 10
 		margin_left = 4
 
-						ignoreinvisible = yes
+		ignoreinvisible = yes
 
 							expand = {}
 
-						button_primary = {
-							name = "tutorial_highlight_raise_troops_button"
+		button_primary = {
+			name = "tutorial_highlight_raise_troops_button"
 
-							datacontext = "[GetPlayer]"
-							onclick = "[PlayerRaiseAllRegiments]"
-							enabled = "[PlayerCanRaiseAnyRallyPoint]"
-								onrightclick = "[PlayerRaiseAllRegimentsAtLocation]"
-								button_ignore = none
+			datacontext = "[GetPlayer]"
+			onclick = "[PlayerRaiseAllRegiments]"
+			enabled = "[PlayerCanRaiseAnyRallyPoint]"
+			onrightclick = "[PlayerRaiseAllRegimentsAtLocation]"
+			button_ignore = none
 			layoutpolicy_horizontal = expanding
-							text = "RAISE_ALL"
+			text = "RAISE_ALL"
 			size = { 1 32}
 
-							tooltip = "[GetPlayerRaiseAllTooltip]"
-							using = tooltip_se
-							clicksound = "event:/SFX/UI/Unit/Army/sfx_ui_raise_army"
+			tooltip = "[GetPlayerRaiseAllTooltip]"
+			using = tooltip_se
+			clicksound = "event:/SFX/UI/Unit/Army/sfx_ui_raise_army"
 
 
-						}
+			# animation_attention_text = {
+			# 	visible = "[And( And( GetPlayer.IsAtWar, PlayerCanRaiseAnyRallyPoint ),Not(GetPlayer.HasRaisedRegiments) )]"
+			# }
+		}
 
 		button_round = {
-							datacontext = "[GetPlayer]"
+			datacontext = "[GetPlayer]"
 			onclick = "[PlayerRaiseAllBarterRegiments]"
 			visible = "[Character.HasBarterGoods]"
 			enabled = "[PlayerCanRaiseAnyBarterRallyPoint]"
 			onrightclick = "[PlayerRaiseAllBarterRegimentsAtLocation]"
-								button_ignore = none
+			button_ignore = none
 			size = { 40 40 }
 
 			tooltip = "[GetPlayerRaiseAllBarterersTooltip]"
-							using = tooltip_se
-							clicksound = "event:/SFX/UI/Unit/Army/sfx_ui_raise_army"
+			using = tooltip_se
+			clicksound = "event:/SFX/UI/Unit/Army/sfx_ui_raise_army"
 
 			button_icon = {
 				texture = "gfx/interface/icons/flat_icons/barter.dds"
@@ -193,33 +206,33 @@ types ArmiesView
 		widget = {
 			size = { 84 40}
 
-							button_standard = {
-								size = { 70 32 }
-								datacontext = "[MilitaryView.GetDefaultRaidIntent]"
-								visible = "[Character.CanRaid]"
+			button_standard = {
+				size = { 70 32 }
+				datacontext = "[MilitaryView.GetDefaultRaidIntent]"
+				visible = "[Character.CanRaid]"
 				parentanchor = center
-								onclick = "[ToggleGameViewData( 'raid_intent_selection_window', GetPlayer )]"
+				onclick = "[ToggleGameViewData( 'raid_intent_selection_window', GetPlayer )]"
 
-								tooltip = "RAID_OPEN_INTENT_WINDOW"
+				tooltip = "RAID_OPEN_INTENT_WINDOW"
 
-								clicksound = "event:/SFX/UI/Generic/sfx_ui_generic_select"
+				clicksound = "event:/SFX/UI/Generic/sfx_ui_generic_select"
 
-									icon = {
-										size = { 24 24 }
-										texture = "[RaidIntent.GetIcon]"
+				icon = {
+					size = { 24 24 }
+					texture = "[RaidIntent.GetIcon]"
 					parentanchor = right
 					position = { -8 4}
-										modify_texture = {
-											texture = "gfx/interface/colors/colors_textured.dds"
-											blend_mode = add
-											framesize = { 96 96 }
+					modify_texture = {
+						texture = "gfx/interface/colors/colors_textured.dds"
+						blend_mode = add
+						framesize = { 96 96 }
 
-											block "master_color_frame" {
-												frame = 1
-											}
-										}
-									}
-								}
+						block "master_color_frame" {
+							frame = 1
+						}
+					}
+				}
+			}
 
 			button_round = {
 				datacontext = "[GetPlayer]"
@@ -239,178 +252,206 @@ types ArmiesView
 					texture = "gfx/interface/icons/flat_icons/army_raid.dds"
 					size = { 30 30 }
 					parentanchor = center
-									alwaystransparent = yes
+					alwaystransparent = yes
 				}
-								}
-							}
+			}
+		}
 
 
-						button_standard = {
-							datacontext = "[GetPlayer]"
+		button_standard = {
+			datacontext = "[GetPlayer]"
 
-							onclick = "[PlayerDisbandAll]"
-							enabled = "[PlayerCanDisbandAll]"
+			onclick = "[PlayerDisbandAll]"
+			enabled = "[PlayerCanDisbandAll]"
 
-							text = "DISBAND_ALL"
+			text = "DISBAND_ALL"
 			size = { 160 32 }
 
-							tooltip = "[GetDisbandAllTooltip]"
-							using = tooltip_se
-							clicksound = "event:/SFX/UI/Unit/Army/sfx_ui_unit_army_disband"
-						}
-					}
+			tooltip = "[GetDisbandAllTooltip]"
+			using = tooltip_se
+			clicksound = "event:/SFX/UI/Unit/Army/sfx_ui_unit_army_disband"
+		}
+	}
 
 
 	type hbox_military_tabs = hbox {
-					margin_bottom = 5
+		margin_bottom = 5
 
-					button_tab = {
-						layoutpolicy_horizontal = expanding
-						onclick = "[MilitaryView.SetActiveTab( 'owned_armies' )]"
-						down = "[MilitaryView.IsTabActive( 'owned_armies' )]"
+		button_tab = {
+			onclick = "[MilitaryView.SetActiveTab( 'owned_armies' )]"
+			down = "[MilitaryView.IsTabActive( 'owned_armies' )]"
+			shortcut = "tab_1"
 
-						text_single = {
-							text = "BANNER_TROOPS_TAB"
-							parentanchor = center
+			alwaystransparent = "[MilitaryView.IsTabActive( 'owned_armies' )]"
 
-							maximumsize = { 400 -1 }
-							default_format = "#low"
-						}
-					}
-
-					button_tab = {
-						name = ra_highlight_imperial_armies
-						widgetid = ra_highlight_imperial_armies
-
-						visible = "[MilitaryView.GetCharacter.GetGovernment.HasRule( 'administrative' )]"
-						layoutpolicy_horizontal = expanding
-
-						onclick = "[MilitaryView.SetActiveTab( 'title_troops' )]"
-						down = "[MilitaryView.IsTabActive( 'title_troops' )]"
-
-						text_single = {
-							parentanchor = center
-							text = "MV_ARMIES_SELECTION_IMPERIAL"
-
-							maximumsize = { 400 -1 }
-							default_format = "#low"
-						}
-					}
-
-					button_tab = {
-						layoutpolicy_horizontal = expanding
-						onclick = "[MilitaryView.SetActiveTab( 'mercenary' )]"
-						down = "[MilitaryView.IsTabActive( 'mercenary' )]"
-
-						text_single = {
-							text = "MV_MERCENARIES"
-							parentanchor = center
-
-							maximumsize = { 400 -1 }
-							default_format = "#low"
+			blockoverride "tab_label"
+			{
+				text = "BANNER_TROOPS_TAB"
+				max_width = 130
 			}
-						}
-					}
+
+			blockoverride "icon_visible" {}
+
+			blockoverride "tab_icon"
+			{
+				texture = "gfx/interface/icons/flat_icons/army.dds"
+				down = "[MilitaryView.IsTabActive( 'owned_armies' )]"
+			}
+		}
+
+		button_tab = {
+			name = ra_highlight_imperial_armies
+			widgetid = ra_highlight_imperial_armies
+
+			shortcut = "tab_2"
+
+			visible = "[MilitaryView.GetCharacter.GetGovernment.HasRule( 'administrative' )]"
+
+			onclick = "[MilitaryView.SetActiveTab( 'title_troops' )]"
+			down = "[MilitaryView.IsTabActive( 'title_troops' )]"
+
+			alwaystransparent = "[MilitaryView.IsTabActive( 'title_troops' )]"
+
+			blockoverride "tab_label"
+			{
+				text = "MV_ARMIES_SELECTION_IMPERIAL"
+				max_width = 130
+			}
+
+			blockoverride "icon_visible" {}
+
+			blockoverride "tab_icon"
+			{
+				texture = "gfx/interface/icons/flat_icons/title_troops.dds"
+				down = "[MilitaryView.IsTabActive( 'title_troops' )]"
+			}
+		}
+
+		button_tab = {
+			onclick = "[MilitaryView.SetActiveTab( 'mercenary' )]"
+			down = "[MilitaryView.IsTabActive( 'mercenary' )]"
+			
+			# this feels much better than setting theme armies to 3
+			shortcut = "[Select_CString(MilitaryView.GetCharacter.GetGovernment.HasRule( 'administrative' ), 'tab_3', 'tab_2')]"
+
+
+			alwaystransparent = "[MilitaryView.IsTabActive( 'mercenary' )]"
+
+			blockoverride "tab_label"
+			{
+				text = "MV_MERCENARIES"
+				max_width = 130
+			}
+
+			blockoverride "icon_visible" {}
+
+			blockoverride "tab_icon"
+			{
+				texture = "gfx/interface/icons/flat_icons/mercenaries.dds"
+				down = "[MilitaryView.IsTabActive( 'mercenary' )]"
+			}
+		}
+	}
 
 
 	type vbox_military_owned_armies_tab = vbox {
-					name = "tab_your_armies"
+		name = "tab_your_armies"
 
-					using = Animation_Tab_Switch
+		using = Animation_Tab_Switch
 
-					scrollbox = {
-						name = "scrollbox_troops"
-						layoutpolicy_horizontal = expanding
-						layoutpolicy_vertical = expanding
+		scrollbox = {
+			name = "scrollbox_troops"
+			layoutpolicy_horizontal = expanding
+			layoutpolicy_vertical = expanding
 
-						background = {
-							texture = "gfx/interface/skinned/illustrations/moving.dds"
-							fittype = end
-							alpha = 0.3
+			background = {
+				texture = "gfx/interface/skinned/illustrations/moving.dds"
+				fittype = end
+				alpha = 0.3
 
-							using = Mask_Rough_Edges
+				using = Mask_Rough_Edges
 
-							modify_texture = {
-								texture = "gfx/interface/component_masks/mask_fade_vertical.dds"
-								blend_mode = alphamultiply
-								mirror = vertical
-							}
-						}
+				modify_texture = {
+					texture = "gfx/interface/component_masks/mask_fade_vertical.dds"
+					blend_mode = alphamultiply
+					mirror = vertical
+				}
+			}
 
-						blockoverride "scrollbox_content" {
-							vbox_your_armies = {
-								visible = "[Or(GetVariableSystem.HasValue( 'military_view_armies', 'personal' ), Or(Not(GetVariableSystem.Exists('military_view_armies')), Not(MilitaryView.GetCharacter.GetGovernment.HasRule( 'administrative' ))))]"
+			blockoverride "scrollbox_content" {
+				vbox_your_armies = {
+					visible = "[Or(GetVariableSystem.HasValue( 'military_view_armies', 'personal' ), Or(Not(GetVariableSystem.Exists('military_view_armies')), Not(MilitaryView.GetCharacter.GetGovernment.HasRule( 'administrative' ))))]"
 
-								layoutpolicy_horizontal = expanding
-								margin = { 10 0 }
-								spacing = 10
-							}
+					layoutpolicy_horizontal = expanding
+					margin = { 10 0 }
+					spacing = 10
+				}
 
 				vbox_military_provincial_armies = {
-								visible = "[GetVariableSystem.HasValue( 'military_view_armies', 'imperial' )]"
-								layoutpolicy_horizontal = expanding
-							}
-						}
-					}
+					visible = "[GetVariableSystem.HasValue( 'military_view_armies', 'imperial' )]"
+					layoutpolicy_horizontal = expanding
+				}
+			}
+		}
 
-					hbox = {
-						visible = "[GetVariableSystem.HasValue( 'military_view_armies', 'imperial' )]"
-						margin_top = 5
-						margin_bottom = -10
-						spacing = 5
+		hbox = {
+			visible = "[GetVariableSystem.HasValue( 'military_view_armies', 'imperial' )]"
+			margin_top = 5
+			margin_bottom = -10
+			spacing = 5
 
-						button_standard = {
-							datacontext = "[GetPlayer]"
-							visible = "[Character.GetGovernment.HasRule( 'administrative' )]"
-							enabled = "[MilitaryView.CanReturnControlledMaA]"
-							onclick = "[MilitaryView.ReturnControlledMaA]"
+			button_standard = {
+				datacontext = "[GetPlayer]"
+				visible = "[Character.GetGovernment.HasRule( 'administrative' )]"
+				enabled = "[MilitaryView.CanReturnControlledMaA]"
+				onclick = "[MilitaryView.ReturnControlledMaA]"
 
-							text = "MV_RETURN_CONTROLLED"
-						}
+				text = "MV_RETURN_CONTROLLED"
+			}
 
-						button_standard = {
-							datacontext = "[GetPlayer]"
-							visible = "[And(Character.GetGovernment.HasRule( 'administrative' ), Character.IsIndependentRuler)]"
-							enabled = "[MilitaryView.CanReturnReassignedMaA]"
-							onclick = "[MilitaryView.ReturnReassignedMaA]"
+			button_standard = {
+				datacontext = "[GetPlayer]"
+				visible = "[And(Character.GetGovernment.HasRule( 'administrative' ), Character.IsIndependentRuler)]"
+				enabled = "[MilitaryView.CanReturnReassignedMaA]"
+				onclick = "[MilitaryView.ReturnReassignedMaA]"
 
-							text = "MV_RETURN_REASSIGNED"
-						}
-					}
+				text = "MV_RETURN_REASSIGNED"
+			}
+		}
 
-					vbox = {
-						name = "rally_points"
-						layoutpolicy_horizontal = expanding
-						margin = { 25 10 }
-						spacing = 5
-						visible = "[Not(GetPlayer.HasActiveCompanionAISetting('raise_armies'))]"
+		vbox = {
+			name = "rally_points"
+			layoutpolicy_horizontal = expanding
+			margin = { 25 10 }
+			spacing = 5
+			visible = "[Not(GetPlayer.HasActiveCompanionAISetting('raise_armies'))]"
 
-						text_single = {
-							layoutpolicy_horizontal = expanding
-							text = "MV_RALLY_POINTS"
-						}
+			text_single = {
+				layoutpolicy_horizontal = expanding
+				text = "MV_RALLY_POINTS"
+			}
 
-						divider_light = {
-							layoutpolicy_horizontal = expanding
-						}
+			divider_light = {
+				layoutpolicy_horizontal = expanding
+			}
 
-						hbox = {
-							layoutpolicy_horizontal = expanding
+			hbox = {
+				layoutpolicy_horizontal = expanding
 
-							hbox = {
-								name = "rally_point_list"
-								datamodel = "[MilitaryView.GetRallyPoints]"
+				hbox = {
+					name = "rally_point_list"
+					datamodel = "[MilitaryView.GetRallyPoints]"
 
-								item = {
-									button = {
-										name = "rally_point_button"
-										datacontext = "[RallyPointItem.GetRallyPoint]"
-										size = { 50 50 }
-										onclick = "[RallyPointItem.OnClick]"
-										tooltip = "MV_RALLY_POINT_TT"
-										using = tooltip_ne
+					item = {
+						button = {
+							name = "rally_point_button"
+							datacontext = "[RallyPointItem.GetRallyPoint]"
+							size = { 50 50 }
+							onclick = "[RallyPointItem.OnClick]"
+							tooltip = "MV_RALLY_POINT_TT"
+							using = tooltip_ne
 
-										tintcolor = "[RallyPoint.GetColor]"
+							tintcolor = "[RallyPoint.GetColor]"
 
 										coa_realm_overlay = {
 											parentanchor = center
@@ -441,118 +482,118 @@ types ArmiesView
 												size = { 10 8 }
 												tintcolor = "[RallyPoint.GetIconColor]"
 										}
-									}
-								}
-							}
+						}
+					}
+				}
 
-							button_plus_small = {
-								name = "add_rally_point"
-								enabled = "[MilitaryView.CanAddRallyPoint]"
-								onclick = "[MilitaryView.OnAddRallyPoint]"
-								tooltip = "[MilitaryView.GetAddRallyPointTooltip]"
-							}
+				button_plus_small = {
+					name = "add_rally_point"
+					enabled = "[MilitaryView.CanAddRallyPoint]"
+					onclick = "[MilitaryView.OnAddRallyPoint]"
+					tooltip = "[MilitaryView.GetAddRallyPointTooltip]"
+				}
 
-							expand = {}
+				expand = {}
+			}
+		}
+
+		vbox = {
+			name = "footer"
+			layoutpolicy_horizontal = expanding
+			margin = { 90 0 }
+			margin_bottom = 10
+
+			background = {
+				using = Background_Bottom_Fade
+				margin_bottom = 20
+			}
+
+			vbox = {
+				layoutpolicy_horizontal = expanding
+				margin = { 10 10 }
+				spacing = 2
+
+				background = {
+					using = Background_Area
+				}
+
+				hbox = {
+					layoutpolicy_horizontal = expanding
+					visible = "[Not( GetPlayer.GetGovernment.HasRule( 'conditional_maa_refill' ))]"
+
+					button_checkbox_label = {
+						onclick = "[MilitaryView.OnMilitaryReinforcementClick]"
+						tooltip = "[MilitaryView.GetMilitaryReinforcementCostTooltip]"
+
+						blockoverride "checkbox"
+						{
+							checked = "[MilitaryView.IsMilitaryReinforcementsEnabled]"
+						}
+
+						blockoverride "text"
+						{
+							text = "MONTHLY_REINFORCEMENT_COST_LABEL"
 						}
 					}
 
-					vbox = {
-						name = "footer"
-						layoutpolicy_horizontal = expanding
-						margin = { 90 0 }
-						margin_bottom = 10
+					expand = {}
+				}
 
-						background = {
-							using = Background_Bottom_Fade
-							margin_bottom = 20
+				hbox = {
+					layoutpolicy_horizontal = expanding
+					visible = "[GetPlayer.GetGovernment.HasRule( 'conditional_maa_refill' )]"
+
+					text_multi = {
+						text = "ADVENTURER_MAINTENANCE_INFO"
+						align = nobaseline
+						autoresize = yes
+									max_width = 350
+						default_format = "#weak"
+					}
+
+					expand = {}
+				}
+
+				divider_light = {
+					layoutpolicy_horizontal = expanding
+				}
+
+				vbox = {
+					layoutpolicy_horizontal = expanding
+
+					hbox = {
+						layoutpolicy_horizontal = expanding
+						spacing = 5
+
+						text_single = {
+							text = "MONTHLY_MAINTENANCE_LABEL"
+										maximumsize = { 400 -1 }
 						}
 
-						vbox = {
-							layoutpolicy_horizontal = expanding
-							margin = { 10 10 }
-							spacing = 2
+						expand = {
+							size = { 28 28 }
+						}
 
-							background = {
-								using = Background_Area
-							}
+						icon = {
+							size = { 28 28 }
+							visible = "[MilitaryView.HasEmbarkedArmies]"
+							texture = "gfx/interface/icons/map_icons/naval_transportation.dds"
+							tooltip = "MV_EMBARKED_TT"
+						}
 
-							hbox = {
-								layoutpolicy_horizontal = expanding
-								visible = "[Not( GetPlayer.GetGovernment.HasRule( 'conditional_maa_refill' ))]"
-
-								button_checkbox_label = {
-									onclick = "[MilitaryView.OnMilitaryReinforcementClick]"
-									tooltip = "[MilitaryView.GetMilitaryReinforcementCostTooltip]"
-
-									blockoverride "checkbox"
-									{
-										checked = "[MilitaryView.IsMilitaryReinforcementsEnabled]"
-									}
-
-									blockoverride "text"
-									{
-										text = "MONTHLY_REINFORCEMENT_COST_LABEL"
-									}
-								}
-
-								expand = {}
-							}
-
-							hbox = {
-								layoutpolicy_horizontal = expanding
-								visible = "[GetPlayer.GetGovernment.HasRule( 'conditional_maa_refill' )]"
-
-								text_multi = {
-									text = "ADVENTURER_MAINTENANCE_INFO"
-									align = nobaseline
-									autoresize = yes
-									max_width = 350
-									default_format = "#weak"
-								}
-
-								expand = {}
-							}
-
-							divider_light = {
-								layoutpolicy_horizontal = expanding
-							}
-
-							vbox = {
-								layoutpolicy_horizontal = expanding
-
-								hbox = {
-									layoutpolicy_horizontal = expanding
-									spacing = 5
-
-									text_single = {
-										text = "MONTHLY_MAINTENANCE_LABEL"
+						text_single = {
+							datacontext = "[MilitaryView.GetGoldMilitaryExpenses]"
+							visible = "[NotEqualTo_CFixedPoint(ValueBreakdown.GetFixedPointValue, '(CFixedPoint)0')]"
+							text = "[ValueBreakdown.GetValue]"
 										maximumsize = { 400 -1 }
-									}
+							default_format = "#high"
 
-									expand = {
-										size = { 28 28 }
-									}
+							tooltipwidget = {
+								recursive = yes
 
-									icon = {
-										size = { 28 28 }
-										visible = "[MilitaryView.HasEmbarkedArmies]"
-										texture = "gfx/interface/icons/map_icons/naval_transportation.dds"
-										tooltip = "MV_EMBARKED_TT"
-									}
-
-									text_single = {
-										datacontext = "[MilitaryView.GetGoldMilitaryExpenses]"
-										visible = "[NotEqualTo_CFixedPoint(ValueBreakdown.GetFixedPointValue, '(CFixedPoint)0')]"
-										text = "[ValueBreakdown.GetValue]"
-										maximumsize = { 400 -1 }
-										default_format = "#high"
-
-										tooltipwidget = {
-											recursive = yes
-
-											widget_value_breakdown_tooltip = {}
-										}
-									}
+								widget_value_breakdown_tooltip = {}
+							}
+						}
 
 						text_single = {
 							datacontext = "[MilitaryView.GetTreasuryMilitaryExpenses]"
@@ -568,33 +609,33 @@ types ArmiesView
 							}
 						}
 
-									text_single = {
-										datacontext = "[MilitaryView.GetPrestigeMilitaryExpenses]"
-										visible = "[NotEqualTo_CFixedPoint(ValueBreakdown.GetFixedPointValue, '(CFixedPoint)0')]"
-										text = "[ValueBreakdown.GetValue]"
+						text_single = {
+							datacontext = "[MilitaryView.GetPrestigeMilitaryExpenses]"
+							visible = "[NotEqualTo_CFixedPoint(ValueBreakdown.GetFixedPointValue, '(CFixedPoint)0')]"
+							text = "[ValueBreakdown.GetValue]"
 										maximumsize = { 400 -1 }
-										default_format = "#high"
+							default_format = "#high"
 
-										tooltipwidget = {
-											recursive = yes
+							tooltipwidget = {
+								recursive = yes
 
-											widget_value_breakdown_tooltip = {}
-										}
-									}
+								widget_value_breakdown_tooltip = {}
+							}
+						}
 
-									text_single = {
-										datacontext = "[MilitaryView.GetPietyMilitaryExpenses]"
-										visible = "[NotEqualTo_CFixedPoint(ValueBreakdown.GetFixedPointValue, '(CFixedPoint)0')]"
-										text = "[ValueBreakdown.GetValue]"
+						text_single = {
+							datacontext = "[MilitaryView.GetPietyMilitaryExpenses]"
+							visible = "[NotEqualTo_CFixedPoint(ValueBreakdown.GetFixedPointValue, '(CFixedPoint)0')]"
+							text = "[ValueBreakdown.GetValue]"
 										maximumsize = { 400 -1 }
-										default_format = "#high"
+							default_format = "#high"
 
-										tooltipwidget = {
-											recursive = yes
+							tooltipwidget = {
+								recursive = yes
 
-											widget_value_breakdown_tooltip = {}
-										}
-									}
+								widget_value_breakdown_tooltip = {}
+							}
+						}
 
 						text_single = {
 							datacontext = "[MilitaryView.GetBarterGoodsMilitaryExpenses]"
@@ -610,49 +651,49 @@ types ArmiesView
 							}
 						}
 
-									text_single = {
-										text = "COST_RESULT_NOTHING"
+						text_single = {
+							text = "COST_RESULT_NOTHING"
 							visible = "[And( EqualTo_CFixedPoint(MilitaryView.GetGoldMilitaryExpenses.GetFixedPointValue, '(CFixedPoint)0'), And( EqualTo_CFixedPoint(MilitaryView.GetTreasuryMilitaryExpenses.GetFixedPointValue, '(CFixedPoint)0'), And( EqualTo_CFixedPoint( MilitaryView.GetPrestigeMilitaryExpenses.GetFixedPointValue, '(CFixedPoint)0'), And( EqualTo_CFixedPoint(MilitaryView.GetPietyMilitaryExpenses.GetFixedPointValue, '(CFixedPoint)0'), EqualTo_CFixedPoint(MilitaryView.GetBarterGoodsMilitaryExpenses.GetFixedPointValue, '(CFixedPoint)0') ) ) ) )]"
+							maximumsize = { 400 -1 }
+							default_format = "#high"
+						}
+					}
+
+					hbox = {
+						visible = "[MilitaryView.HasAnyRaisedMilitaryExpenses]"
+						layoutpolicy_horizontal = expanding
+						spacing = 10
+
+						expand = {}
+
+						text_single = {
+							text = "MONTHLY_MAX_MAINTENANCE_LABEL"
 										maximumsize = { 400 -1 }
-										default_format = "#high"
-									}
-								}
+							tooltip = "MONTHLY_MAX_MAINTENANCE_TT"
+							align = nobaseline
+						}
 
-								hbox = {
-									visible = "[MilitaryView.HasAnyRaisedMilitaryExpenses]"
-									layoutpolicy_horizontal = expanding
-									spacing = 10
-
-									expand = {}
-
-									text_single = {
-										text = "MONTHLY_MAX_MAINTENANCE_LABEL"
+						text_single = {
+							datacontext = "[MilitaryView.GetAllRaisedGoldMilitaryExpenses]"
+							visible = "[MilitaryView.HasAllRaisedGoldMilitaryExpenses]"
+							text = "[ValueBreakdown.GetValue]"
 										maximumsize = { 400 -1 }
-										tooltip = "MONTHLY_MAX_MAINTENANCE_TT"
-										align = nobaseline
-									}
+							default_format = "#high"
+							align = nobaseline
 
-									text_single = {
-										datacontext = "[MilitaryView.GetAllRaisedGoldMilitaryExpenses]"
-										visible = "[MilitaryView.HasAllRaisedGoldMilitaryExpenses]"
-										text = "[ValueBreakdown.GetValue]"
+							tooltipwidget = {
+								recursive = yes
+								widget_value_breakdown_tooltip = {}
+							}
+						}
+
+						text_single = {
+							visible = "[MilitaryView.HasAllRaisedGoldMilitaryExpenses]"
+							text = "MONTHLY_MAX_MAINTENANCE_VIEW"
 										maximumsize = { 400 -1 }
-										default_format = "#high"
-										align = nobaseline
-
-										tooltipwidget = {
-											recursive = yes
-											widget_value_breakdown_tooltip = {}
-										}
-									}
-
-									text_single = {
-										visible = "[MilitaryView.HasAllRaisedGoldMilitaryExpenses]"
-										text = "MONTHLY_MAX_MAINTENANCE_VIEW"
-										maximumsize = { 400 -1 }
-										default_format = "#weak"
-										align = nobaseline
-									}
+							default_format = "#weak"
+							align = nobaseline
+						}
 
 						text_single = {
 							datacontext = "[MilitaryView.GetAllRaisedTreasuryMilitaryExpenses]"
@@ -676,50 +717,50 @@ types ArmiesView
 							align = nobaseline
 						}
 
-									text_single = {
-										datacontext = "[MilitaryView.GetAllRaisedPrestigeMilitaryExpenses]"
-										visible = "[MilitaryView.HasAllRaisedPrestigeMilitaryExpenses]"
-										text = "[ValueBreakdown.GetValue]"
+						text_single = {
+							datacontext = "[MilitaryView.GetAllRaisedPrestigeMilitaryExpenses]"
+							visible = "[MilitaryView.HasAllRaisedPrestigeMilitaryExpenses]"
+							text = "[ValueBreakdown.GetValue]"
 										maximumsize = { 400 -1 }
-										default_format = "#high"
-										align = nobaseline
+							default_format = "#high"
+							align = nobaseline
 
-										tooltipwidget = {
-											recursive = yes
-											widget_value_breakdown_tooltip = {}
-										}
-									}
+							tooltipwidget = {
+								recursive = yes
+								widget_value_breakdown_tooltip = {}
+							}
+						}
 
-									text_single = {
-										datacontext = "[MilitaryView.GetAllRaisedPietyMilitaryExpenses]"
-										visible = "[MilitaryView.HasAllRaisedPietyMilitaryExpenses]"
-										text = "[ValueBreakdown.GetValue]"
+						text_single = {
+							datacontext = "[MilitaryView.GetAllRaisedPietyMilitaryExpenses]"
+							visible = "[MilitaryView.HasAllRaisedPietyMilitaryExpenses]"
+							text = "[ValueBreakdown.GetValue]"
 										maximumsize = { 400 -1 }
-										default_format = "#high"
-										align = nobaseline
+							default_format = "#high"
+							align = nobaseline
 
-										tooltipwidget = {
-											recursive = yes
-											widget_value_breakdown_tooltip = {}
-										}
-									}
-								}
+							tooltipwidget = {
+								recursive = yes
+								widget_value_breakdown_tooltip = {}
 							}
 						}
 					}
-
-					expand = {}
 				}
+			}
+		}
+
+		expand = {}
+	}
 
 
 	type vbox_military_provincial_armies_tab = vbox {
-					name = imperial_armies_ra_uses_this
-					widgetid = imperial_armies_ra_uses_this
-					visible = "[MilitaryView.IsTabActive( 'title_troops' )]"
-					layoutpolicy_horizontal = expanding
-					layoutpolicy_vertical = expanding
+		name = imperial_armies_ra_uses_this
+		widgetid = imperial_armies_ra_uses_this
+		visible = "[MilitaryView.IsTabActive( 'title_troops' )]"
+		layoutpolicy_horizontal = expanding
+		layoutpolicy_vertical = expanding
 
-					using = Animation_Tab_Switch
+		using = Animation_Tab_Switch
 
 		vbox = {
 			visible = "[Character.GetTopLiege.IsPlayerInteractionShown('celestial_request_military_aid_interaction')]"
@@ -756,212 +797,212 @@ types ArmiesView
 			}
 		}
 
-					scrollbox = {
-						name = "scrollbox_troops"
-						layoutpolicy_horizontal = expanding
-						layoutpolicy_vertical = expanding
+		scrollbox = {
+			name = "scrollbox_troops"
+			layoutpolicy_horizontal = expanding
+			layoutpolicy_vertical = expanding
 
-						background = {
-							texture = "gfx/interface/skinned/illustrations/moving.dds"
-							fittype = end
-							alpha = 0.3
+			background = {
+				texture = "gfx/interface/skinned/illustrations/moving.dds"
+				fittype = end
+				alpha = 0.3
 
-							using = Mask_Rough_Edges
+				using = Mask_Rough_Edges
 
-							modify_texture = {
-								texture = "gfx/interface/component_masks/mask_fade_vertical.dds"
-								blend_mode = alphamultiply
-								mirror = vertical
-							}
-						}
+				modify_texture = {
+					texture = "gfx/interface/component_masks/mask_fade_vertical.dds"
+					blend_mode = alphamultiply
+					mirror = vertical
+				}
+			}
 
-						blockoverride "scrollbox_content" {
+			blockoverride "scrollbox_content" {
 				vbox_military_provincial_armies = {
-								layoutpolicy_horizontal = expanding
-								margin = { 10 0 }
-							}
+					layoutpolicy_horizontal = expanding
+					margin = { 10 0 }
+				}
+			}
+		}
+
+		hbox = {
+			layoutpolicy_horizontal = expanding
+			margin = { 20 10 }
+			spacing = 5
+
+			expand = {}
+
+			button_standard = {
+				datacontext = "[GetPlayer]"
+				visible = "[Character.GetGovernment.HasRule( 'administrative' )]"
+				layoutpolicy_horizontal = expanding
+				enabled = "[MilitaryView.CanReturnControlledMaA]"
+				onclick = "[MilitaryView.ReturnControlledMaA]"
+
+				text = "MV_RETURN_CONTROLLED"
+				tooltip = "MV_RETURN_CONTROLLED_TT"
+				using = tooltip_sw
+			}
+
+			button_standard = {
+				datacontext = "[GetPlayer]"
+				visible = "[And(Character.GetGovernment.HasRule( 'administrative' ), Character.IsIndependentRuler)]"
+				layoutpolicy_horizontal = expanding
+				enabled = "[MilitaryView.CanReturnReassignedMaA]"
+				onclick = "[MilitaryView.ReturnReassignedMaA]"
+
+				text = "MV_RETURN_REASSIGNED"
+				tooltip = "MV_RETURN_REASSIGNED_TT"
+				using = tooltip_sw
+			}
+
+			expand = {}
+		}
+
+		vbox = {
+			name = "rally_points"
+			layoutpolicy_horizontal = expanding
+			margin = { 25 0 }
+			margin_bottom = 10
+			spacing = 5
+
+			text_single = {
+				layoutpolicy_horizontal = expanding
+				text = "MV_RALLY_POINTS"
+			}
+
+			divider_light = {
+				layoutpolicy_horizontal = expanding
+			}
+
+			hbox = {
+				layoutpolicy_horizontal = expanding
+
+				hbox = {
+					name = "rally_point_list"
+					datamodel = "[MilitaryView.GetRallyPoints]"
+
+					item = {
+						button = {
+							name = "rally_point_button"
+							datacontext = "[RallyPointItem.GetRallyPoint]"
+							size = { 50 50 }
+							onclick = "[RallyPointItem.OnClick]"
+							tooltip = "MV_RALLY_POINT_TT"
+							using = tooltip_ne
+							texture = "gfx/interface/window_military/banner_icon.dds"
+							tintcolor = "[RallyPoint.GetColor]"
 						}
 					}
+				}
+
+				button_plus_small = {
+					name = "add_rally_point"
+					enabled = "[MilitaryView.CanAddRallyPoint]"
+					onclick = "[MilitaryView.OnAddRallyPoint]"
+					tooltip = "[MilitaryView.GetAddRallyPointTooltip]"
+				}
+
+				expand = {}
+			}
+		}
+
+		vbox = {
+			name = "footer"
+			layoutpolicy_horizontal = expanding
+			margin = { 90 0 }
+			margin_bottom = 10
+
+			background = {
+				using = Background_Bottom_Fade
+				margin_bottom = 20
+			}
+
+			vbox = {
+				layoutpolicy_horizontal = expanding
+				margin = { 10 10 }
+				spacing = 2
+
+				background = {
+					using = Background_Area
+				}
+
+				hbox = {
+					layoutpolicy_horizontal = expanding
+					visible = "[Not(GetPlayer.GetGovernment.IsType( 'landless_adventurer_government' ))]"
+
+					button_checkbox_label = {
+						onclick = "[MilitaryView.OnMilitaryReinforcementClick]"
+						tooltip = "[MilitaryView.GetMilitaryReinforcementCostTooltip]"
+
+						blockoverride "checkbox"
+						{
+							checked = "[MilitaryView.IsMilitaryReinforcementsEnabled]"
+						}
+
+						blockoverride "text"
+						{
+							text = "MONTHLY_REINFORCEMENT_COST_LABEL"
+						}
+					}
+
+					expand = {}
+				}
+
+				hbox = {
+					layoutpolicy_horizontal = expanding
+					visible = "[GetPlayer.GetGovernment.IsType( 'landless_adventurer_government' )]"
+
+					text_multi = {
+						text = "ADVENTURER_MAINTENANCE_INFO"
+						align = nobaseline
+						autoresize = yes
+						max_width = 350
+						default_format = "#weak"
+					}
+
+					expand = {}
+				}
+
+				divider_light = {
+					layoutpolicy_horizontal = expanding
+				}
+
+				vbox = {
+					layoutpolicy_horizontal = expanding
 
 					hbox = {
 						layoutpolicy_horizontal = expanding
-						margin = { 20 10 }
-						spacing = 5
-
-						expand = {}
-
-						button_standard = {
-							datacontext = "[GetPlayer]"
-							visible = "[Character.GetGovernment.HasRule( 'administrative' )]"
-							layoutpolicy_horizontal = expanding
-							enabled = "[MilitaryView.CanReturnControlledMaA]"
-							onclick = "[MilitaryView.ReturnControlledMaA]"
-
-							text = "MV_RETURN_CONTROLLED"
-							tooltip = "MV_RETURN_CONTROLLED_TT"
-							using = tooltip_sw
-						}
-
-						button_standard = {
-							datacontext = "[GetPlayer]"
-							visible = "[And(Character.GetGovernment.HasRule( 'administrative' ), Character.IsIndependentRuler)]"
-							layoutpolicy_horizontal = expanding
-							enabled = "[MilitaryView.CanReturnReassignedMaA]"
-							onclick = "[MilitaryView.ReturnReassignedMaA]"
-
-							text = "MV_RETURN_REASSIGNED"
-							tooltip = "MV_RETURN_REASSIGNED_TT"
-							using = tooltip_sw
-						}
-
-						expand = {}
-					}
-
-					vbox = {
-						name = "rally_points"
-						layoutpolicy_horizontal = expanding
-						margin = { 25 0 }
-						margin_bottom = 10
 						spacing = 5
 
 						text_single = {
-							layoutpolicy_horizontal = expanding
-							text = "MV_RALLY_POINTS"
+							text = "MONTHLY_MAINTENANCE_LABEL"
+							maximumsize = { 400 -1 }
 						}
 
-						divider_light = {
-							layoutpolicy_horizontal = expanding
+						expand = {
+							size = { 28 28 }
 						}
 
-						hbox = {
-							layoutpolicy_horizontal = expanding
-
-							hbox = {
-								name = "rally_point_list"
-								datamodel = "[MilitaryView.GetRallyPoints]"
-
-								item = {
-									button = {
-										name = "rally_point_button"
-										datacontext = "[RallyPointItem.GetRallyPoint]"
-										size = { 50 50 }
-										onclick = "[RallyPointItem.OnClick]"
-										tooltip = "MV_RALLY_POINT_TT"
-										using = tooltip_ne
-										texture = "gfx/interface/window_military/banner_icon.dds"
-										tintcolor = "[RallyPoint.GetColor]"
-									}
-								}
-							}
-
-							button_plus_small = {
-								name = "add_rally_point"
-								enabled = "[MilitaryView.CanAddRallyPoint]"
-								onclick = "[MilitaryView.OnAddRallyPoint]"
-								tooltip = "[MilitaryView.GetAddRallyPointTooltip]"
-							}
-
-							expand = {}
-						}
-					}
-
-					vbox = {
-						name = "footer"
-						layoutpolicy_horizontal = expanding
-						margin = { 90 0 }
-						margin_bottom = 10
-
-						background = {
-							using = Background_Bottom_Fade
-							margin_bottom = 20
+						icon = {
+							size = { 28 28 }
+							visible = "[MilitaryView.HasEmbarkedArmies]"
+							texture = "gfx/interface/icons/map_icons/naval_transportation.dds"
+							tooltip = "MV_EMBARKED_TT"
 						}
 
-						vbox = {
-							layoutpolicy_horizontal = expanding
-							margin = { 10 10 }
-							spacing = 2
+						text_single = {
+							datacontext = "[MilitaryView.GetGoldMilitaryExpenses]"
+							visible = "[NotEqualTo_CFixedPoint(ValueBreakdown.GetFixedPointValue, '(CFixedPoint)0')]"
+							text = "[ValueBreakdown.GetValue]"
+							maximumsize = { 400 -1 }
+							default_format = "#high"
 
-							background = {
-								using = Background_Area
+							tooltipwidget = {
+								recursive = yes
+
+								widget_value_breakdown_tooltip = {}
 							}
-
-							hbox = {
-								layoutpolicy_horizontal = expanding
-								visible = "[Not(GetPlayer.GetGovernment.IsType( 'landless_adventurer_government' ))]"
-
-								button_checkbox_label = {
-									onclick = "[MilitaryView.OnMilitaryReinforcementClick]"
-									tooltip = "[MilitaryView.GetMilitaryReinforcementCostTooltip]"
-
-									blockoverride "checkbox"
-									{
-										checked = "[MilitaryView.IsMilitaryReinforcementsEnabled]"
-									}
-
-									blockoverride "text"
-									{
-										text = "MONTHLY_REINFORCEMENT_COST_LABEL"
-									}
-								}
-
-								expand = {}
-							}
-
-							hbox = {
-								layoutpolicy_horizontal = expanding
-								visible = "[GetPlayer.GetGovernment.IsType( 'landless_adventurer_government' )]"
-
-								text_multi = {
-									text = "ADVENTURER_MAINTENANCE_INFO"
-									align = nobaseline
-									autoresize = yes
-									max_width = 350
-									default_format = "#weak"
-								}
-
-								expand = {}
-							}
-
-							divider_light = {
-								layoutpolicy_horizontal = expanding
-							}
-
-							vbox = {
-								layoutpolicy_horizontal = expanding
-
-								hbox = {
-									layoutpolicy_horizontal = expanding
-									spacing = 5
-
-									text_single = {
-										text = "MONTHLY_MAINTENANCE_LABEL"
-										maximumsize = { 400 -1 }
-									}
-
-									expand = {
-										size = { 28 28 }
-									}
-
-									icon = {
-										size = { 28 28 }
-										visible = "[MilitaryView.HasEmbarkedArmies]"
-										texture = "gfx/interface/icons/map_icons/naval_transportation.dds"
-										tooltip = "MV_EMBARKED_TT"
-									}
-
-									text_single = {
-										datacontext = "[MilitaryView.GetGoldMilitaryExpenses]"
-										visible = "[NotEqualTo_CFixedPoint(ValueBreakdown.GetFixedPointValue, '(CFixedPoint)0')]"
-										text = "[ValueBreakdown.GetValue]"
-										maximumsize = { 400 -1 }
-										default_format = "#high"
-
-										tooltipwidget = {
-											recursive = yes
-
-											widget_value_breakdown_tooltip = {}
-										}
-									}
+						}
 
 						text_single = {
 							datacontext = "[MilitaryView.GetTreasuryMilitaryExpenses]"
@@ -977,76 +1018,76 @@ types ArmiesView
 							}
 						}
 
-									text_single = {
-										datacontext = "[MilitaryView.GetPrestigeMilitaryExpenses]"
-										visible = "[NotEqualTo_CFixedPoint(ValueBreakdown.GetFixedPointValue, '(CFixedPoint)0')]"
-										text = "[ValueBreakdown.GetValue]"
-										maximumsize = { 400 -1 }
-										default_format = "#high"
+						text_single = {
+							datacontext = "[MilitaryView.GetPrestigeMilitaryExpenses]"
+							visible = "[NotEqualTo_CFixedPoint(ValueBreakdown.GetFixedPointValue, '(CFixedPoint)0')]"
+							text = "[ValueBreakdown.GetValue]"
+							maximumsize = { 400 -1 }
+							default_format = "#high"
 
-										tooltipwidget = {
-											recursive = yes
+							tooltipwidget = {
+								recursive = yes
 
-											widget_value_breakdown_tooltip = {}
-										}
-									}
+								widget_value_breakdown_tooltip = {}
+							}
+						}
 
-									text_single = {
-										datacontext = "[MilitaryView.GetPietyMilitaryExpenses]"
-										visible = "[NotEqualTo_CFixedPoint(ValueBreakdown.GetFixedPointValue, '(CFixedPoint)0')]"
-										text = "[ValueBreakdown.GetValue]"
-										maximumsize = { 400 -1 }
-										default_format = "#high"
+						text_single = {
+							datacontext = "[MilitaryView.GetPietyMilitaryExpenses]"
+							visible = "[NotEqualTo_CFixedPoint(ValueBreakdown.GetFixedPointValue, '(CFixedPoint)0')]"
+							text = "[ValueBreakdown.GetValue]"
+							maximumsize = { 400 -1 }
+							default_format = "#high"
 
-										tooltipwidget = {
-											recursive = yes
+							tooltipwidget = {
+								recursive = yes
 
-											widget_value_breakdown_tooltip = {}
-										}
-									}
+								widget_value_breakdown_tooltip = {}
+							}
+						}
 
-									text_single = {
-										text = "COST_RESULT_NOTHING"
+						text_single = {
+							text = "COST_RESULT_NOTHING"
 							visible = "[And( EqualTo_CFixedPoint(MilitaryView.GetGoldMilitaryExpenses.GetFixedPointValue, '(CFixedPoint)0'), And( EqualTo_CFixedPoint(MilitaryView.GetTreasuryMilitaryExpenses.GetFixedPointValue, '(CFixedPoint)0'), And( EqualTo_CFixedPoint( MilitaryView.GetPrestigeMilitaryExpenses.GetFixedPointValue, '(CFixedPoint)0'), And( EqualTo_CFixedPoint(MilitaryView.GetPietyMilitaryExpenses.GetFixedPointValue, '(CFixedPoint)0'), EqualTo_CFixedPoint(MilitaryView.GetBarterGoodsMilitaryExpenses.GetFixedPointValue, '(CFixedPoint)0') ) ) ) )]"
-										default_format = "#high"
-									}
-								}
+							default_format = "#high"
+						}
+					}
 
-								hbox = {
-									visible = "[MilitaryView.HasAnyRaisedMilitaryExpenses]"
-									layoutpolicy_horizontal = expanding
-									spacing = 10
+					hbox = {
+						visible = "[MilitaryView.HasAnyRaisedMilitaryExpenses]"
+						layoutpolicy_horizontal = expanding
+						spacing = 10
 
-									expand = {}
+						expand = {}
 
-									text_single = {
-										text = "MONTHLY_MAX_MAINTENANCE_LABEL"
-										maximumsize = { 400 -1 }
-										tooltip = "MONTHLY_MAX_MAINTENANCE_TT"
-										align = nobaseline
-									}
+						text_single = {
+							text = "MONTHLY_MAX_MAINTENANCE_LABEL"
+							maximumsize = { 400 -1 }
+							tooltip = "MONTHLY_MAX_MAINTENANCE_TT"
+							align = nobaseline
+						}
 
-									text_single = {
-										datacontext = "[MilitaryView.GetAllRaisedGoldMilitaryExpenses]"
-										visible = "[MilitaryView.HasAllRaisedGoldMilitaryExpenses]"
-										text = "[ValueBreakdown.GetValue]"
-										maximumsize = { 400 -1 }
-										default_format = "#high"
-										align = nobaseline
+						text_single = {
+							datacontext = "[MilitaryView.GetAllRaisedGoldMilitaryExpenses]"
+							visible = "[MilitaryView.HasAllRaisedGoldMilitaryExpenses]"
+							text = "[ValueBreakdown.GetValue]"
+							maximumsize = { 400 -1 }
+							default_format = "#high"
+							align = nobaseline
 
-										tooltipwidget = {
-											recursive = yes
-											widget_value_breakdown_tooltip = {}
-										}
-									}
+							tooltipwidget = {
+								recursive = yes
+								widget_value_breakdown_tooltip = {}
+							}
+						}
 
-									text_single = {
-										visible = "[MilitaryView.HasAllRaisedGoldMilitaryExpenses]"
-										text = "MONTHLY_MAX_MAINTENANCE_VIEW"
-										maximumsize = { 400 -1 }
-										default_format = "#weak"
-										align = nobaseline
-									}
+						text_single = {
+							visible = "[MilitaryView.HasAllRaisedGoldMilitaryExpenses]"
+							text = "MONTHLY_MAX_MAINTENANCE_VIEW"
+							maximumsize = { 400 -1 }
+							default_format = "#weak"
+							align = nobaseline
+						}
 
 						text_single = {
 							datacontext = "[MilitaryView.GetAllRaisedTreasuryMilitaryExpenses]"
@@ -1147,7 +1188,7 @@ types ArmiesView
 					down = "[GetVariableSystem.HasValue( 'military_view_mercenaries', 'mercenaries' )]"
 				}
 
-				blockoverride "icon_visible"
+				blockoverride "icon_visible" 
                 {
                     visible = no
                 }
@@ -1175,7 +1216,7 @@ types ArmiesView
 					down = "[GetVariableSystem.HasValue( 'military_view_mercenaries', 'hireable_rulers' )]"
 				}
 
-				blockoverride "icon_visible"
+				blockoverride "icon_visible" 
                 {
                     visible = no
                 }
@@ -1183,6 +1224,40 @@ types ArmiesView
 			}
 
 
+			#AGOT Disabled
+			# button_tab = {
+				# onclick = "[GetVariableSystem.Set( 'military_view_mercenaries', 'holy_orders' )]"
+				# down = "[GetVariableSystem.HasValue( 'military_view_mercenaries', 'holy_orders' )]"
+				# shortcut = "sub_tab_3"
+				# alwaystransparent = "[GetVariableSystem.HasValue( 'military_view_mercenaries', 'holy_orders' )]"
+				# blockoverride "tab_label"
+				# {
+					# text = "MV_HOLY_ORDERS"
+					# alpha = "[Select_float( DataModelHasItems( MilitaryView.GetAllHolyOrders ), '(float)1.0', '(float)0.5' )]"
+					# max_width = 90
+				# }
+				# blockoverride "icon_visible" {}
+				# blockoverride "tab_icon"
+				# {
+					# texture = "gfx/interface/icons/flat_icons/army.dds"
+					# down = "[GetVariableSystem.HasValue( 'military_view_mercenaries', 'hireable_rulers' )]"
+					# alpha = "[Select_float( DataModelHasItems( MilitaryView.GetAllHolyOrders ), '(float)1.0', '(float)0.5' )]"
+				# }
+				# blockoverride "extra_info"
+				# {
+					# text_single = {
+						# text = "[GetDataModelSize(MilitaryView.GetAllHolyOrders)]"
+						# align = nobaseline
+						# default_format = "#low"
+						# margin_top = 3
+						# alpha = "[Select_float( DataModelHasItems( MilitaryView.GetAllHolyOrders ), '(float)1.0', '(float)0.5' )]"
+					# }
+				# }
+				# blockoverride "icon_visible" 
+                # {
+                    # visible = no
+                # }
+			# }
 		}
 
 		scrollbox = {
@@ -1249,6 +1324,7 @@ types ArmiesView
 										datamodel = "[HiredTroopItem.GetRegiments]"
 									}
 
+									#AGOT Added
 									enabled = "[GetScriptedGui('agot_can_hire_mercenaries').IsValid( GuiScope.SetRoot( GetPlayer.MakeScope ).AddScope('merc_company', HiredTroopItem.GetMercenaryCompany.GetHomeCounty.MakeScope).End)]"
 								}
 							}
@@ -1275,7 +1351,7 @@ types ArmiesView
 								allow_outside = yes
 
 								addcolumn = 504
-								addrow = 110
+								addrow = 110 # bit larger to account for spacing
 
 								item = {
 									button_hireable_ruler_item = {
@@ -1453,7 +1529,7 @@ types ArmiesView
 								allow_outside = yes
 
 								addcolumn = 504
-								addrow = 110
+								addrow = 110 # bit larger to account for spacing
 
 								item = {
 									button_holyorder_list_item = {
@@ -1614,7 +1690,7 @@ types ArmiesView
 				layoutpolicy_horizontal = expanding
 				icon = {
 					name = "icon_levies"
-					texture = "[Character.GetCulture.GetGraphicalUnitType.GetLeviesBigIllustration]"
+					texture = "[GetIllustration( 'culture_levy_big_illustration' ).GetTexture( GetPlayer.MakeScope )]"
 					size = { 246 136 }
 					modify_texture = {
 						texture = "gfx/interface/component_masks/mask_rough_edges.dds"
@@ -1801,11 +1877,11 @@ types ArmiesView
 				layoutpolicy_horizontal = expanding
 				icon = {
 					name = "icon_knights"
-					texture = "[Character.GetCulture.GetGraphicalUnitType.GetKnightsBigIllustration]"
+					texture = "[GetIllustration( 'culture_knight_big_illustration' ).GetTexture( GetPlayer.MakeScope )]"
 					size = { 246 136 }
 					modify_texture = {
 						texture = "gfx/interface/component_masks/mask_rough_edges.dds"
-				visible = "[MilitaryView.AreKnightsShown]"
+						visible = "[MilitaryView.AreKnightsShown]"
 						alpha = 0.1
 						blend_mode = colordodge
 					}
@@ -2065,6 +2141,7 @@ types ArmiesView
 				tooltip = "CREATE_MAA_TOOLTIP"
 				down = "[MilitaryItem.IsOpen]"
 
+				#AGOT Added
 				enabled = "[GetScriptedGui('agot_can_hire_MAA').IsValid( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
 				tooltip_when_disabled = "AGOT_CANNOT_HIRE_MENATARMS"
 
@@ -2218,6 +2295,7 @@ types ArmiesView
 	type widget_province_army_item = widget
 	{
 
+		# Note: Only compatible with AdministrativeArmy
 		visible = "[HiredTroopItem.IsAdministrativeArmy]"
 		layoutpolicy_horizontal = expanding
 		allow_outside = yes
@@ -2252,6 +2330,7 @@ types ArmiesView
 					size = { 0 34 }
 
 
+					# Banner Status available
 					highlight_icon = {
 						visible = "[And( Not( Title.IsAdministrativeArmyHiredByLocalPlayer ), Not( HiredTroopItem.GetAdministrativeTitle.GetHolder.IsAtWar ) )]"
 						position = { -4 4 }
@@ -2260,6 +2339,7 @@ types ArmiesView
 					}
 
 
+					# Banner Status commanded by you
 					highlight_icon = {
 						visible = "[And( Title.IsAdministrativeArmyHiredByLocalPlayer, Not( HiredTroopItem.GetAdministrativeTitle.GetHolder.IsAtWar ) )]"
 						position = { -4 4 }
@@ -2268,6 +2348,7 @@ types ArmiesView
 					}
 
 
+					# Banner Status unavailable
 					highlight_icon = {
 						visible = "[And( Or( And( HiredTroopItem.IsHired, HiredTroopItem.GetHiredBy.IsAtWar ), And( Not( HiredTroopItem.IsHired ), HiredTroopItem.GetAdministrativeTitle.GetHolder.IsAtWar ) ), Not( And( Title.IsAdministrativeArmyHiredByLocalPlayer, Not( HiredTroopItem.GetAdministrativeTitle.GetHolder.IsAtWar ) ) ) ) ]"
 						position = { -4 4 }
@@ -2276,6 +2357,7 @@ types ArmiesView
 					}
 
 
+					# Name of provincial army
 					text_single = {
 						parentanchor = left|vcenter
 						position = { 2 2 }
@@ -2291,6 +2373,7 @@ types ArmiesView
 					}
 
 
+					# Status icon & background
 					widget = {
 						parentanchor = top|right
 						position = { -10 -8 }
@@ -2299,6 +2382,7 @@ types ArmiesView
 						tooltip = "[Title.GetAdministrativeArmyStatus]"
 
 
+						# Status available
 						highlight_icon = {
 							visible = "[And(And( Not( Title.IsAdministrativeArmyHiredByLocalPlayer ), Not( HiredTroopItem.GetAdministrativeTitle.GetHolder.IsAtWar ) ), Not(And(HiredTroopItem.IsHired, HiredTroopItem.GetHiredBy.IsAtWar)))]"
 							parentanchor = center
@@ -2315,6 +2399,7 @@ types ArmiesView
 						}
 
 
+						# Status Commanded by you
 						highlight_icon = {
 							visible = "[Title.IsAdministrativeArmyHiredByLocalPlayer]"
 							parentanchor = center
@@ -2331,6 +2416,7 @@ types ArmiesView
 						}
 
 
+						# Status unavailable
 						highlight_icon = {
 							visible = "[And( Or( And( HiredTroopItem.IsHired, HiredTroopItem.GetHiredBy.IsAtWar ), And( Not( HiredTroopItem.IsHired ), HiredTroopItem.GetAdministrativeTitle.GetHolder.IsAtWar ) ), Not( And( Title.IsAdministrativeArmyHiredByLocalPlayer, Not( HiredTroopItem.GetAdministrativeTitle.GetHolder.IsAtWar ) ) ) ) ]"
 							parentanchor = center
@@ -2367,34 +2453,38 @@ types ArmiesView
 
 					block "margins"
 					{
-					margin_right = 10
+						margin_right = 10
 					}
 
 
+					## Military Items
 					hbox = {
 						layoutpolicy_horizontal = expanding
 
 
-					overlappingitembox_regiment_types = {
-						datamodel = "[HiredTroopItem.GetRegiments]"
+						## MAA Icons
+						overlappingitembox_regiment_types = {
+							datamodel = "[HiredTroopItem.GetRegiments]"
 
-						layoutpolicy_horizontal = expanding
-						size = { -1 30 }
-					}
+							layoutpolicy_horizontal = expanding
+							size = { -1 30 }
+						}
 
-					expand = {}
+						expand = {}
 
 						divider_light = {
 							layoutpolicy_vertical = expanding
 						}
 
 
-					hbox_soldiers_and_quality_small = {
-						datacontext = "[HiredTroopItem.GetComposition]"
+						## Levies
+						hbox_soldiers_and_quality_small = {
+							datacontext = "[HiredTroopItem.GetComposition]"
+						}
 					}
-				}
 
 
+					## Influence Cost
 					text_single = {
 						visible = "[And( HiredTroopItem.IsAdministrativeArmy, And( GetPlayer.IsIndependentRuler, Not( HiredTroopItem.IsHiredByPlayer ) ) )]"
 
@@ -2406,6 +2496,7 @@ types ArmiesView
 					}
 
 
+					## Action Buttons
 					flowcontainer = {
 						datacontext = "[HiredTroopItem.GetTitle.GetHolder]"
 
@@ -2416,14 +2507,15 @@ types ArmiesView
 						ignoreinvisible = yes
 
 
+						## Action: "Call On Troops"
 						button_round = {
-							name = "hire_button_non_interaction_admin"
+							name = "hire_button_non_interaction_admin" #tutorial uses this
 							visible = "[GetPlayer.IsIndependentRuler]"
 							enabled = "[HiredTroopItem.CanBeHired]"
 							size = { 35 35 }
 
 							button_icon = {
-					parentanchor = center
+								parentanchor = center
 								size = { 22 22 }
 
 
@@ -2434,10 +2526,11 @@ types ArmiesView
 								tooltip = "TITLE_TROOPS_CALL_ON_TROOPS"
 								tooltip_when_disabled = "[HiredTroopItem.GetHireTooltip]"
 								using = tooltip_ne
-				}
-			}
+							}
+						}
 
 
+						## Action: "Reassign"
 						button_round = {
 							name = "reassign_button"
 							visible = "[HiredTroopItem.CanBeReassigned]"
@@ -2463,6 +2556,7 @@ types ArmiesView
 						}
 
 
+						## Action: "Ask Liege for Troops"
 						button_round = {
 							name = "request_admin_troops_from_emperor"
 							visible = "[And( Not( Title.IsAdministrativeArmyHiredByLocalPlayer ), And( Not( Character.IsPlayer ), Character.IsPlayerInteractionShown( 'request_emperor_title_troops_interaction' ) ) )]"
@@ -2483,8 +2577,9 @@ types ArmiesView
 						}
 
 
+						## Action: "Request Troops"
 						button_round = {
-							name = "hire_peer_admin_vassal"
+							name = "hire_peer_admin_vassal" #tutorial uses this
 							visible = "[And( Not( Title.IsAdministrativeArmyHiredByLocalPlayer ), Character.IsPlayerInteractionShown( 'request_ally_title_troops_interaction' ) )]"
 							size = { 35 35 }
 
@@ -2503,6 +2598,7 @@ types ArmiesView
 						}
 
 
+						## Action: "Return Troops"
 						button_round = {
 							name = "return_button"
 							visible = "[HiredTroopItem.IsHiredByPlayer]"
@@ -2522,6 +2618,7 @@ types ArmiesView
 						}
 
 
+						## Action: "Reclaim Troops"
 						button_round = {
 							name = "take_back_button"
 							visible = "[Character.IsPlayerInteractionShown('request_title_troops_back_interaction')]"
@@ -2544,7 +2641,7 @@ types ArmiesView
 				}
 			}
 
-			block "theme_item"
+			block "theme_item" #overidden to remove
 			{
 				widget_theme_item_small = {
 					position = { -8 6 }
@@ -2694,6 +2791,7 @@ types ArmiesView
 
 								widget = {
 
+									###Add Tooltip to show how long this maa will be loaned out.
 									size = { 68 64 }
 									visible = "[Not( ObjectsEqual( Regiment.GetOwningTitle, Regiment.GetControllingTitle ) )]"
 
@@ -2726,33 +2824,33 @@ types ArmiesView
 						layoutpolicy_horizontal = expanding
 						visible = "[MilitaryItem.ShouldShowItem]"
 
-					button_standard = {
-						name = "add_maa"
-						layoutpolicy_horizontal = expanding
+						button_standard = {
+							name = "add_maa"
+							layoutpolicy_horizontal = expanding
 
-						text = "ADD_MEN_AT_ARMS_LABEL"
+							text = "ADD_MEN_AT_ARMS_LABEL"
 
-						onclick = "[MilitaryItem.OnClickTitle( Title.Self )]"
-						down = "[MilitaryItem.IsOpen]"
+							onclick = "[MilitaryItem.OnClickTitle( Title.Self )]"
+							down = "[MilitaryItem.IsOpen]"
 
-						tooltip = "CREATE_MAA_TOOLTIP"
+							tooltip = "CREATE_MAA_TOOLTIP"
 
-						button_plus = {
-							name = "can_be_created"
+							button_plus = {
+								name = "can_be_created"
 								visible = "[MilitaryItem.MaACanBeCreated]"
-							parentanchor = vcenter
-							alwaystransparent = yes
+								parentanchor = vcenter
+								alwaystransparent = yes
 								position = { 5 0 }
-						}
+							}
 
-						warning_icon = {
-							name = "at_cap"
-							visible = "[Not(MilitaryItem.MaACanBeCreated)]"
-							parentanchor = left|vcenter
+							warning_icon = {
+								name = "at_cap"
+								visible = "[Not(MilitaryItem.MaACanBeCreated)]"
+								parentanchor = left|vcenter
 								position = { 5 0 }
-							size = { 29 29 }
+								size = { 29 29 }
+							}
 						}
-					}
 
 						spacer = {
 							size = { 5 0 }
@@ -2869,16 +2967,16 @@ types ArmiesView
 			visible = "[Not(MilitaryView.DoesOtherUncontrolledTitlesExist)]"
 			margin = { 0 10 }
 
-		text_single = {
-			text = "MV_ADMIN_ARMY_NO_UNCONTROLLED_TITLES"
+			text_single = {
+				text = "MV_ADMIN_ARMY_NO_UNCONTROLLED_TITLES"
 				default_format = "#weak"
 				align = center
-		}
+			}
 
 			text_single = {
-			visible = "[Not(GetPlayer.IsIndependentRuler)]"
+				visible = "[Not(GetPlayer.IsIndependentRuler)]"
 
-			text = "MV_ADMIN_ARMY_ASK_EMPEROR"
+				text = "MV_ADMIN_ARMY_ASK_EMPEROR"
 				default_format = "#weak"
 				align = center
 			}
@@ -2921,12 +3019,14 @@ types ArmiesView
 				margin_left = 40
 
 
+				# Banner
 				widget = {
 					allow_outside = yes
 					layoutpolicy_horizontal = expanding
 					size = { 0 34 }
 
 
+					# Status available
 					highlight_icon = {
 						visible = "[And( Character.IsHireableRuler, Character.IsPlayerInteractionValid( 'hire_laamp_mercenaries_interaction' ) )]"
 						position = { -2 1 }
@@ -2935,6 +3035,7 @@ types ArmiesView
 					}
 
 
+					# Status commanded by you
 					highlight_icon = {
 						visible = "[Character.IsHireableRulerEmployedByLocalPlayer]"
 						position = { -2 1 }
@@ -2943,6 +3044,7 @@ types ArmiesView
 					}
 
 
+					# Status unavailable
 					highlight_icon = {
 						visible = "[And( Or( Not( Character.IsHireableRuler ), And( Character.IsHireableRuler, Not(Character.IsPlayerInteractionValid( 'hire_laamp_mercenaries_interaction' ) ) ) ), Not(Character.IsHireableRulerEmployedByLocalPlayer) )]"
 						position = { -2 1 }
@@ -2986,6 +3088,7 @@ types ArmiesView
 								max_width = 350
 
 
+								#using = Font_Size_Medium
 								background = {
 									visible = "[HiredTroopItem.WillHireableRulerCauseDebt]"
 									margin_bottom = -2
@@ -2996,12 +3099,14 @@ types ArmiesView
 					}
 
 
+					# Status icon & background
 					widget = {
 						parentanchor = top|right
 						position = { -10 -8 }
 						size = { 42 52 }
 
 
+						# Status available
 						highlight_icon = {
 							visible = "[And( Character.IsHireableRuler, Character.IsPlayerInteractionValid( 'hire_laamp_mercenaries_interaction' ) )]"
 							parentanchor = center
@@ -3020,6 +3125,7 @@ types ArmiesView
 						}
 
 
+						# Status Commanded by you
 						highlight_icon = {
 							visible = "[Character.IsHireableRulerEmployedByLocalPlayer]"
 							parentanchor = center
@@ -3039,6 +3145,7 @@ types ArmiesView
 						}
 
 
+						# Status unavailable
 						highlight_icon = {
 							visible = "[And( Or( Not( Character.IsHireableRuler ), And( Character.IsHireableRuler, Not(Character.IsPlayerInteractionValid( 'hire_laamp_mercenaries_interaction' ) ) ) ), Not(Character.IsHireableRulerEmployedByLocalPlayer) )]"
 							parentanchor = center
@@ -3060,6 +3167,7 @@ types ArmiesView
 				}
 
 
+				# Regiments type & size
 				hbox = {
 					layoutpolicy_horizontal = expanding
 					margin_right = 10
@@ -3304,16 +3412,16 @@ types MilitaryView
 		}
 
 		vbox = {
-		hbox  = {
-			name = "header"
-			layoutpolicy_horizontal = expanding
+			hbox  = {
+				name = "header"
+				layoutpolicy_horizontal = expanding
 
 				margin = { 0 5 }
 				margin_left = 7
 
-			background = {
-				using = Background_Area
-			}
+				background = {
+					using = Background_Area
+				}
 
 				icon = {
 					name = "event_troops"
@@ -3340,122 +3448,122 @@ types MilitaryView
 						background = {
 							using = Background_Area
 							margin = { 3 0 }
+						}
 					}
 				}
 			}
-		}
 
 			expand = {}
 
-		hbox = {
-			layoutpolicy_horizontal = expanding
+			hbox = {
+				layoutpolicy_horizontal = expanding
 				margin = { 15 0 }
 				margin_right = 10
 				margin_bottom = 13
 
-			vbox = {
-				layoutpolicy_horizontal = expanding
+				vbox = {
+					layoutpolicy_horizontal = expanding
 					layoutpolicy_vertical = expanding
 
 					expand = {}
 
-				hbox = {
-					name = "menatarms"
-					layoutpolicy_horizontal = expanding
-
-					text_single = {
-						text = MV_MEN_AT_ARMS_LABEL
-							align = nobaseline
-					}
-
-					text_single = {
-							visible = "[IsDataModelEmpty(MilitaryViewEventTroop.GetRegiments)]"
-						text = MV_MEN_AT_ARMS_NONE
-							align = nobaseline
-						default_format = "#weak"
-					}
-
-					spacer = {
-							size = { 5 0 }
-					}
-
 					hbox = {
-						name = "regiment_types"
-						datamodel = "[MilitaryViewEventTroop.GetRegiments]"
-						layoutpolicy_vertical = expanding
+						name = "menatarms"
+						layoutpolicy_horizontal = expanding
 
-						item = {
+						text_single = {
+							text = MV_MEN_AT_ARMS_LABEL
+							align = nobaseline
+						}
+
+						text_single = {
+							visible = "[IsDataModelEmpty(MilitaryViewEventTroop.GetRegiments)]"
+							text = MV_MEN_AT_ARMS_NONE
+							align = nobaseline
+							default_format = "#weak"
+						}
+
+						spacer = {
+							size = { 5 0 }
+						}
+
+						hbox = {
+							name = "regiment_types"
+							datamodel = "[MilitaryViewEventTroop.GetRegiments]"
+							layoutpolicy_vertical = expanding
+
+							item = {
 								icon = {
 									size = { 30 30 }
 									texture = "[Regiment.GetMAAType.GetIcon]"
 									tooltipwidget = regiment_container_tooltip
 									using = tooltip_se
+								}
 							}
 						}
+
+						expand = {}
 					}
 
-					expand = {}
-				}
+					text_single = {
+						visible = "[Not(MilitaryViewEventTroop.IsInheritable)]"
 
-				text_single = {
-					visible = "[Not(MilitaryViewEventTroop.IsInheritable)]"
-
-					layoutpolicy_horizontal = expanding
-					text = "MILITARY_VIEW_EVENT_TROOPS_NOT_INHERITABLE"
-				}
-
-				text_single = {
-					visible = "[MilitaryViewEventTroop.IsInheritable]"
-
-					layoutpolicy_horizontal = expanding
-					text = "MILITARY_VIEW_EVENT_TROOPS_INHERITABLE"
-				}
-
-				hbox = {
-					datacontext = "[MilitaryViewEventTroop.GetAssociatedWar]"
-					visible = "[War.IsValid]"
-
-					layoutpolicy_horizontal = expanding
+						layoutpolicy_horizontal = expanding
+						text = "MILITARY_VIEW_EVENT_TROOPS_NOT_INHERITABLE"
+					}
 
 					text_single = {
 						visible = "[MilitaryViewEventTroop.IsInheritable]"
-						text = "MILITARY_VIEW_EVENT_TROOPS_ASSOCIATED_WAR"
-						max_width = 450
-						multiline = yes
+
+						layoutpolicy_horizontal = expanding
+						text = "MILITARY_VIEW_EVENT_TROOPS_INHERITABLE"
 					}
 
-					expand = {}
-				}
-			}
+					hbox = {
+						datacontext = "[MilitaryViewEventTroop.GetAssociatedWar]"
+						visible = "[War.IsValid]"
 
-			vbox = {
+						layoutpolicy_horizontal = expanding
+
+						text_single = {
+							visible = "[MilitaryViewEventTroop.IsInheritable]"
+							text = "MILITARY_VIEW_EVENT_TROOPS_ASSOCIATED_WAR"
+							max_width = 450
+							multiline = yes
+						}
+
+						expand = {}
+					}
+				}
+
+				vbox = {
 					layoutpolicy_vertical = expanding
 
 					margin_right = 5
 
 					expand = {}
 
-				button_standard = {
-					name = "raise"
-					size = { 100 32 }
-					onclick = "[OnRaiseEventTroops(MilitaryViewEventTroop.Self)]"
-					visible = "[MilitaryViewEventTroop.CanBeRaised]"
+					button_standard = {
+						name = "raise"
+						size = { 100 32 }
+						onclick = "[OnRaiseEventTroops(MilitaryViewEventTroop.Self)]"
+						visible = "[MilitaryViewEventTroop.CanBeRaised]"
 						enabled = "[Not(MilitaryView.IsAutomatingArmies)]"
 						tooltip = "[MilitaryView.GetCanRaiseEventTroopTooltip]"
 
-					hbox = {
-						margin = { 5 0 }
+						hbox = {
+							margin = { 5 0 }
 
-						button_army_details = {
-							size = { 28 28 }
-							alwaystransparent = yes
-						}
+							button_army_details = {
+								size = { 28 28 }
+								alwaystransparent = yes
+							}
 
-						text_single = {
-							layoutpolicy_horizontal = expanding
-							align = center|nobaseline
-							text = "MILITARY_VIEW_EVENT_TROOPS_RAISE"
-							default_format = "#clickable"
+							text_single = {
+								layoutpolicy_horizontal = expanding
+								align = center|nobaseline
+								text = "MILITARY_VIEW_EVENT_TROOPS_RAISE"
+								default_format = "#clickable"
 							}
 						}
 					}
@@ -3622,6 +3730,8 @@ types HiredTroops
 			size = { 100% 85% }
 
 
+			#AGOT Modified
+			# tooltip = "HIRED_TROOPS_VIEW_LIST_MC_BUTTON_TOOLTIP"
 			tooltip = "AGOT_HIRE_MERCENARIES_TOOLTIP"
 			tooltip_visible = "[Or(Not(MercenaryCompany.IsHired), MercenaryCompany.IsHiredByLocalPlayer)]"
 
@@ -3656,6 +3766,7 @@ types HiredTroops
 					size = { 0 34 }
 
 
+					# Status available
 					highlight_icon = {
 						visible = "[And( Not( MercenaryCompany.IsHired ), Not( MercenaryCompany.WillGoInBankruptcy( GetPlayer.Self ) ) )]"
 						position = { -2 1 }
@@ -3688,12 +3799,14 @@ types HiredTroops
 					}
 
 
+					# Status icon & background
 					widget = {
 						parentanchor = top|right
 						position = { -10 -8 }
 						size = { 42 52 }
 
 
+						# Status available
 						widget = {
 							visible = "[And( And( Not( MercenaryCompany.IsHired ), Not( MercenaryCompany.WillGoInBankruptcy( GetPlayer.Self ) ) ), Not( MercenaryCompany.WillGoInDebt( GetPlayer.Self ) ) )]"
 							parentanchor = center
@@ -3716,6 +3829,7 @@ types HiredTroops
 						}
 
 
+						# Status commanded by you
 						widget = {
 							visible = "[MercenaryCompany.IsHiredByLocalPlayer]"
 							parentanchor = center
@@ -3738,6 +3852,7 @@ types HiredTroops
 						}
 
 
+						# Status debt
 						widget = {
 							visible = "[And( Not( MercenaryCompany.IsHired ), MercenaryCompany.WillGoInDebt( GetPlayer.Self ) )]"
 							parentanchor = center
@@ -3760,6 +3875,7 @@ types HiredTroops
 						}
 
 
+						# Status unavailable
 						widget = {
 							visible = "[And( Not( MercenaryCompany.IsHired ), MercenaryCompany.WillGoInBankruptcy(GetPlayer.Self) )]"
 							parentanchor = center
@@ -3783,6 +3899,7 @@ types HiredTroops
 						}
 
 
+						# Status unavailable, hired by other
 						widget = {
 							visible = "[And( Not( MercenaryCompany.IsHiredByLocalPlayer ), MercenaryCompany.IsHired )]"
 							parentanchor = center
@@ -3844,6 +3961,7 @@ types HiredTroops
 				}
 
 
+				# Regiments type & size
 				hbox = {
 					layoutpolicy_horizontal = expanding
 					margin_right = 10
@@ -3940,6 +4058,7 @@ types HiredTroops
 					size = { 0 34 }
 
 
+					# Status available
 					highlight_icon = {
 						visible = "[Not( HolyOrder.IsHired )]"
 						position = { -2 1 }
@@ -3948,6 +4067,7 @@ types HiredTroops
 					}
 
 
+					# Status commanded by you
 					highlight_icon = {
 						visible = "[HolyOrder.IsHired]"
 						position = { -2 1 }
@@ -3981,12 +4101,14 @@ types HiredTroops
 					}
 
 
+					# Status icon & background
 					widget = {
 						parentanchor = top|right
 						position = { -10 -8 }
 						size = { 42 52 }
 
 
+						# Status available
 						widget = {
 							visible = "[Not( HolyOrder.IsHired )]"
 							parentanchor = center
@@ -4009,6 +4131,7 @@ types HiredTroops
 						}
 
 
+						# Status commanded by you
 						widget = {
 							visible = "[HolyOrder.IsHired]"
 							parentanchor = center
@@ -4031,6 +4154,7 @@ types HiredTroops
 						}
 
 
+						# Status unavailable
 						widget = {
 							visible = "[And(HolyOrder.IsHired, HolyOrder.IsPledgedToGreatHolyWar)]"
 							parentanchor = center

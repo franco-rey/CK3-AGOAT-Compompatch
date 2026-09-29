@@ -1,0 +1,95 @@
+﻿asoiaf_no_crowns_modifiers = {
+    usage = game
+	selection_behavior = max
+	priority = 3
+	
+	asoiaf_no_crowns = {
+		dna_modifiers = {
+			accessory = {
+				mode = add
+				gene = headgear
+				template = no_headgear
+				value = 0
+            }
+			accessory = {
+				mode = add
+				gene = secondary_headgears
+				template = no_headgear
+				value = 0
+            }
+			accessory = {
+				mode = add
+				gene = additive_headgear
+				template = no_additive
+				value = 0
+            }
+		}
+		weight = {
+			base = 0
+			modifier = { #unless they have a crown equipped
+				add = -5000
+				any_equipped_character_artifact = { artifact_slot_type = helmet }
+			}
+			modifier = {
+				add = 2000
+				OR = {
+					AND = {
+						has_inactive_trait = asoiaf_Hightower_97_trait #Alicent Hightower (daughter of Otto)
+						has_game_rule = asoiaf_new_dnas_reach_rule_on
+					}
+					AND = {
+						has_inactive_trait = asoiaf_Hightower_97_trait
+						NOT = { this = character:Hightower_97 }
+						asoiaf_canon_children_enabled_trigger = yes
+						NOT = { has_game_rule = asoiaf_new_dnas_reach_rule_on }
+					}
+				}
+			}
+			modifier = {
+				add = 2000
+				OR = {
+					AND = {
+						has_inactive_trait = asoiaf_Velaryon_34_trait #Laena Velaryon (daughter of Corlys)
+						has_game_rule = asoiaf_new_dnas_valyrian_rule_on
+					}
+					AND = {
+						has_inactive_trait = asoiaf_Velaryon_34_trait
+						NOT = { this = character:Velaryon_34 }
+						asoiaf_canon_children_enabled_trigger = yes
+						NOT = { has_game_rule = asoiaf_new_dnas_valyrian_rule_on }
+					}
+				}
+			}
+			modifier = {
+				add = 2000
+				OR = {
+					AND = {
+						has_inactive_trait = asoiaf_Targaryen_66_trait #Helaena Targaryen (daughter of Viserys I)
+						has_game_rule = asoiaf_new_dnas_valyrian_rule_on
+					}
+					AND = {
+						has_inactive_trait = asoiaf_Targaryen_66_trait
+						NOT = { this = character:Targaryen_66 }
+						asoiaf_canon_children_enabled_trigger = yes
+						NOT = { has_game_rule = asoiaf_new_dnas_valyrian_rule_on }
+					}
+				}
+			}
+			modifier = {
+				add = 2000
+				OR = {
+					AND = {
+						has_inactive_trait = asoiaf_Lannister_6_trait #Cersei Lannister (daughter of Tywin)
+						has_game_rule = asoiaf_new_dnas_westerlands_rule_on
+					}
+					AND = {
+						has_inactive_trait = asoiaf_Lannister_6_trait
+						NOT = { this = character:Lannister_6 }
+						asoiaf_canon_children_enabled_trigger = yes
+						NOT = { has_game_rule = asoiaf_new_dnas_westerlands_rule_on }
+					}
+				}
+			}
+		}
+	}
+}

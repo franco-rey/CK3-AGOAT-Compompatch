@@ -1,0 +1,6 @@
+﻿agoat_dragonless_hatching_ceremony = {
+	categories = { mde hatching }
+	default = agoat_dragonless_hatching_ceremony_on
+	agoat_dragonless_hatching_ceremony_on = {}
+	agoat_dragonless_hatching_ceremony_off = {}
+}

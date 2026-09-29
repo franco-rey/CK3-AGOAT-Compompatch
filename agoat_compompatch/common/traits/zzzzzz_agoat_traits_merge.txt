@@ -1,0 +1,1096 @@
+﻿@pos_compat_high = 30
+@pos_compat_medium = 15
+@pos_compat_low = 5
+
+@neg_compat_high = -30
+@neg_compat_medium = -15
+@neg_compat_low = -5
+
+squire = {
+	physical = no
+	monthly_prestige = 0.1
+	same_opinion = 1
+	shown_in_ruler_designer = no
+
+
+	name = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					exists = this
+					is_squire_with_trait_xp = yes
+				}
+				desc = trait_squire
+			}
+			triggered_desc = {
+				trigger = {
+					exists = this
+					is_agot_knight_trigger = yes
+					AND = {
+						has_trait = gallowsbait
+						has_trait_xp = {
+							trait = gallowsbait
+							track = bandit
+							value >= 51
+						}
+					}
+				}
+				desc = trait_robber_knight
+			}
+			triggered_desc = {
+				trigger = {
+					exists = this
+					is_agot_knight_trigger = yes
+				}
+				desc = trait_knight
+			}
+			desc = trait_knight
+		}
+	}
+
+	icon = {
+		first_valid = {
+			triggered_desc = { # If no character exists
+				trigger = { NOT = { exists = this } }
+				desc = squire.dds
+			}
+			triggered_desc = {
+				trigger = {
+					is_squire_with_trait_xp = yes
+				}
+				desc = squire.dds
+			}
+			triggered_desc = {
+				trigger = {
+					is_agot_knight_trigger = yes
+				}
+				desc = knight.dds
+			}
+			desc = knight.dds
+		}
+	}
+
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					NOT = { exists = this }
+				}
+				desc = trait_squire_desc
+			}
+			triggered_desc = {
+				trigger = {
+					NOT = { exists = this }
+					is_agot_knight_trigger = yes
+				}
+				desc = trait_knight_desc
+			}
+			triggered_desc = {
+				trigger = {
+					has_character_flag = agot_knighthood_knightless_squire_flag
+				}
+				desc = trait_squire_no_knight_desc
+			}
+			triggered_desc = {
+				trigger = {
+					has_character_flag = agot_favors_being_a_squire_flag
+				}
+				desc = trait_prefers_being_a_squire_desc
+			}
+			triggered_desc = {
+				trigger = {
+					exists = this
+					is_agot_knight_trigger = yes
+					AND = {
+						has_trait = gallowsbait
+						has_trait_xp = {
+							trait = gallowsbait
+							track = bandit
+							value >= 51
+						}
+					}
+				}
+				desc = trait_robber_knight_character_desc
+			}
+			triggered_desc = {
+				trigger = {
+					exists = this
+					is_agot_knight_trigger = yes
+					exists = var:agot_knighted_by
+				}
+				desc = agot_trait_knight_knighted_by_desc
+			}
+			triggered_desc = {
+				trigger = {
+					exists = this
+					is_agot_knight_trigger = yes
+				}
+				desc = trait_knight_character_desc
+			}
+			triggered_desc = {
+				trigger = {
+					exists = this
+					any_owned_story = {
+						story_type = story_agot_squire_ongoing
+					}
+				}
+				desc = trait_squire_character_desc
+			}
+			desc = trait_squire_desc
+		}
+	}
+
+	tracks = {
+		knight = {
+			100 = {
+				attraction_opinion = 10
+				monthly_prestige = 0.15
+				heavy_cavalry_damage_mult = 0.05
+				knight_effectiveness_mult = 0.02
+				culture_modifier = {
+					parameter = knight_trait_more_valued
+					# Cultural, not General
+					same_culture_opinion = 20
+				}
+			}
+		}
+	}
+}
+
+agot_thane = {
+
+	category = fame
+	shown_in_ruler_designer = no
+
+	# A Thane is a warrior sworn before the Old Gods
+	diplomacy = 1
+	martial = 2
+	prowess = 2
+
+	# Northern lords respect a sworn Thane
+	same_faith_opinion = 5
+	vassal_opinion = 5
+
+	# Combat bonuses: Thanes are hardened northern warriors
+	monthly_prestige = 0.1
+
+	# A Thane swore before the Old Gods: converting faith is deeply dishonorable
+	faith_conversion_piety_cost_mult = 2.0
+
+	# Visual
+	shown_in_encyclopedia = yes
+
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					is_female = no
+				}
+				desc = trait_agot_thane_desc_male
+			}
+			triggered_desc = {
+				trigger = {
+					is_female = yes
+				}
+				desc = trait_agot_thane_desc_female
+			}
+		}
+	}
+
+	# This trait is granted through the Thane ceremony, not randomly
+	random_creation_weight = 0
+}
+
+impatient = {
+	category = personality
+	opposites = {
+		patient
+	}
+	opposite_opinion = -20
+	courtly_opinion = -15
+	parochial_opinion = -15
+	flag = can_accelerate_schemes_decision
+	ruler_designer_cost = 25
+	# rd-markers: hidden, replaced by the three
+	# mpd_rd_impatient_X level entries
+	shown_in_ruler_designer = no
+	compatibility = {
+		impatient = @pos_compat_low
+		wrathful = @pos_compat_low
+		brave = @pos_compat_low
+		patient = @neg_compat_medium
+		calm = @neg_compat_low
+		temperate = @neg_compat_low
+		eccentric = @neg_compat_high
+	}
+	track = {
+		0 = {
+			learning = -1
+			monthly_prestige_gain_mult = 0.1
+			hostile_scheme_phase_duration_add = -5
+			character_travel_speed_mult = 0.1
+			character_travel_safety = -5
+			opinion_of_liege = -5
+			ai_war_cooldown = -0.25
+			culture_modifier = {
+				parameter = forest_trait_bonuses
+				forest_max_combat_roll = 0
+				majorroad_forest_max_combat_roll = 0
+				minorroad_forest_max_combat_roll = 0
+				taiga_max_combat_roll = 0
+				majorroad_taiga_max_combat_roll = 0
+				minorroad_taiga_max_combat_roll = 0
+				cloudforest_max_combat_roll = 0
+				majorroad_cloudforest_max_combat_roll = 0
+				minorroad_cloudforest_max_combat_roll = 0
+				taiga_bog_max_combat_roll = 0
+				majorroad_taiga_bog_max_combat_roll = 0
+				minorroad_taiga_bog_max_combat_roll = 0
+			}
+			culture_modifier = {
+				parameter = jungle_trait_bonuses
+				jungle_max_combat_roll = 0
+				majorroad_jungle_max_combat_roll = 0
+				minorroad_jungle_max_combat_roll = 0
+			}
+			culture_modifier = {
+				parameter = impatient_trait_is_looked_down_upon
+				same_culture_opinion = -10
+			}
+			ai_rationality = -10
+			ai_energy = 5
+			ai_boldness = 10
+			ai_vengefulness = -5
+			ai_amenity_target_baseline = 0.1
+			ai_amenity_spending = 0.05
+		}
+		50 = {
+			learning = -1
+			monthly_prestige_gain_mult = 0.1
+			hostile_scheme_phase_duration_add = -5
+			character_travel_speed_mult = 0.15
+			character_travel_safety = -5
+			opinion_of_liege = -5
+			ai_war_cooldown = -0.25
+			culture_modifier = {
+				parameter = forest_trait_bonuses
+				forest_max_combat_roll = 1
+				majorroad_forest_max_combat_roll = 0
+				minorroad_forest_max_combat_roll = 0
+				taiga_max_combat_roll = 1
+				majorroad_taiga_max_combat_roll = 0
+				minorroad_taiga_max_combat_roll = 0
+				cloudforest_max_combat_roll = 0
+				majorroad_cloudforest_max_combat_roll = 0
+				minorroad_cloudforest_max_combat_roll = 0
+				taiga_bog_max_combat_roll = 0
+				majorroad_taiga_bog_max_combat_roll = 0
+				minorroad_taiga_bog_max_combat_roll = 0
+			}
+			culture_modifier = {
+				parameter = jungle_trait_bonuses
+				jungle_max_combat_roll = 1
+				majorroad_jungle_max_combat_roll = 0
+				minorroad_jungle_max_combat_roll = 0
+			}
+			culture_modifier = {
+				parameter = impatient_trait_is_looked_down_upon
+				same_culture_opinion = -10
+			}
+			ai_rationality = -15
+			ai_energy = 5
+			ai_boldness = 5
+			ai_vengefulness = -5
+			ai_amenity_target_baseline = 0.05
+			ai_amenity_spending = 0.05
+		}
+		100 = {
+			learning = -2
+			monthly_prestige_gain_mult = 0.2
+			hostile_scheme_phase_duration_add = -10
+			character_travel_speed_mult = 0.25
+			character_travel_safety = -10
+			opinion_of_liege = -5
+			ai_war_cooldown = -0.5
+			culture_modifier = {
+				parameter = forest_trait_bonuses
+				forest_max_combat_roll = 1
+				majorroad_forest_max_combat_roll = 1
+				minorroad_forest_max_combat_roll = 1
+				taiga_max_combat_roll = 1
+				majorroad_taiga_max_combat_roll = 1
+				minorroad_taiga_max_combat_roll = 1
+				cloudforest_max_combat_roll = 1
+				majorroad_cloudforest_max_combat_roll = 1
+				minorroad_cloudforest_max_combat_roll = 1
+				taiga_bog_max_combat_roll = 1
+				majorroad_taiga_bog_max_combat_roll = 1
+				minorroad_taiga_bog_max_combat_roll = 1
+			}
+			culture_modifier = {
+				parameter = jungle_trait_bonuses
+				jungle_max_combat_roll = 1
+				majorroad_jungle_max_combat_roll = 1
+				minorroad_jungle_max_combat_roll = 1
+			}
+			culture_modifier = {
+				parameter = impatient_trait_is_looked_down_upon
+				same_culture_opinion = -25
+			}
+			ai_rationality = -25
+			ai_energy = 10
+			ai_boldness = 15
+			ai_vengefulness = -10
+			ai_amenity_target_baseline = 0.15
+			ai_amenity_spending = 0.1
+		}
+	}
+
+	name = {
+		first_valid = {
+			triggered_desc = { trigger = { exists = this  has_trait_xp = { trait = impatient value >= 100 } } desc = trait_impatient_3 }
+			triggered_desc = { trigger = { exists = this  has_trait_xp = { trait = impatient value >= 50 } } desc = trait_impatient_2 }
+			triggered_desc = { trigger = { exists = this  has_trait_xp = { trait = impatient value >= 0 } } desc = trait_impatient_1_display }
+			desc = trait_impatient_1
+		}
+	}
+
+	desc = {
+		first_valid = {
+			triggered_desc = { trigger = { NOT = { exists = this } } desc = trait_impatient_1_desc }
+			triggered_desc = { trigger = { has_trait_xp = { trait = impatient value >= 100 } } desc = trait_impatient_3_character_desc }
+			triggered_desc = { trigger = { has_trait_xp = { trait = impatient value >= 50 } } desc = trait_impatient_2_character_desc }
+			desc = trait_impatient_1_character_desc
+		}
+	}
+}
+
+arrogant = {
+	category = personality
+	opposites = {
+		humble
+	}
+	opposite_opinion = -20
+	ruler_designer_cost = 20
+	# rd-markers: hidden, replaced by the three
+	# mpd_rd_arrogant_X level entries
+	shown_in_ruler_designer = no
+	compatibility = {
+		arrogant = @pos_compat_low
+		greedy = @pos_compat_medium
+		ambitious = @pos_compat_medium
+		beauty_good_1 = @pos_compat_low
+		beauty_good_2 = @pos_compat_low
+		beauty_good_3 = @pos_compat_low
+		humble = @neg_compat_medium
+		content = @neg_compat_medium
+		generous = @neg_compat_low
+		beauty_bad_1 = @neg_compat_low
+		beauty_bad_2 = @neg_compat_low
+		beauty_bad_3 = @neg_compat_low
+		inquisitive = @neg_compat_medium
+	}
+	track = {
+		0 = {
+			monthly_prestige = 0
+			owned_scheme_secrecy_add = -5
+			opinion_of_liege = -10
+			opinion_of_vassal = -10
+			culture_modifier = {
+				parameter = mountain_trait_bonuses
+				mountains_advantage = 1
+				majorroad_mountains_advantage = 0
+				minorroad_mountains_advantage = 0
+				desert_mountains_advantage = 1
+				majorroad_desert_mountains_advantage = 0
+				minorroad_desert_mountains_advantage = 0
+				glacier_advantage = 0
+				majorroad_glacier_advantage = 0
+				minorroad_glacier_advantage = 0
+				canyon_advantage = 0
+				majorroad_canyon_advantage = 0
+				minorroad_canyon_advantage = 0
+			}
+			culture_modifier = {
+				parameter = plains_trait_bonuses
+				plains_max_combat_roll = 1
+				majorroad_plains_max_combat_roll = 1
+				minorroad_plains_max_combat_roll = 1
+				plains_min_combat_roll = 0
+				majorroad_plains_min_combat_roll = 0
+				minorroad_plains_min_combat_roll = 0
+			}
+			culture_modifier = {
+				parameter = steppe_trait_bonuses
+				steppe_max_combat_roll = 1
+				majorroad_steppe_max_combat_roll = 1
+				minorroad_steppe_max_combat_roll = 1
+				steppe_min_combat_roll = 0
+				majorroad_steppe_min_combat_roll = 0
+				minorroad_steppe_min_combat_roll = 0
+			}
+			culture_modifier = {
+				parameter = urban_trait_bonuses
+				urban_max_combat_roll = 0
+				majorroad_urban_max_combat_roll = 0
+				minorroad_urban_max_combat_roll = 0
+			}
+			culture_modifier = {
+				parameter = arrogant_trait_more_valued
+				same_culture_opinion = 5
+			}
+			culture_modifier = {
+				parameter = arrogant_trait_looked_down_upon
+				same_culture_opinion = -10
+			}
+			ai_honor = -10
+			ai_greed = 10
+			ai_rationality = -10
+			ai_boldness = 10
+			ai_energy = 5
+			ai_compassion = -10
+			ai_sociability = 10
+			ai_amenity_target_baseline = 1
+		}
+		50 = {
+			monthly_prestige = 1
+			owned_scheme_secrecy_add = -5
+			opinion_of_liege = -10
+			opinion_of_vassal = -10
+			culture_modifier = {
+				parameter = mountain_trait_bonuses
+				mountains_advantage = 1
+				majorroad_mountains_advantage = 1
+				minorroad_mountains_advantage = 1
+				desert_mountains_advantage = 1
+				majorroad_desert_mountains_advantage = 1
+				minorroad_desert_mountains_advantage = 1
+				glacier_advantage = 1
+				majorroad_glacier_advantage = 1
+				minorroad_glacier_advantage = 1
+				canyon_advantage = 1
+				majorroad_canyon_advantage = 1
+				minorroad_canyon_advantage = 1
+			}
+			culture_modifier = {
+				parameter = plains_trait_bonuses
+				plains_max_combat_roll = 1
+				majorroad_plains_max_combat_roll = 1
+				minorroad_plains_max_combat_roll = 1
+				plains_min_combat_roll = -1
+				majorroad_plains_min_combat_roll = -1
+				minorroad_plains_min_combat_roll = -1
+			}
+			culture_modifier = {
+				parameter = steppe_trait_bonuses
+				steppe_max_combat_roll = 1
+				majorroad_steppe_max_combat_roll = 1
+				minorroad_steppe_max_combat_roll = 1
+				steppe_min_combat_roll = -1
+				majorroad_steppe_min_combat_roll = -1
+				minorroad_steppe_min_combat_roll = -1
+			}
+			culture_modifier = {
+				parameter = urban_trait_bonuses
+				urban_max_combat_roll = 1
+				majorroad_urban_max_combat_roll = 1
+				minorroad_urban_max_combat_roll = 1
+			}
+			culture_modifier = {
+				parameter = arrogant_trait_more_valued
+				same_culture_opinion = 5
+			}
+			culture_modifier = {
+				parameter = arrogant_trait_looked_down_upon
+				same_culture_opinion = -10
+			}
+			ai_honor = -5
+			ai_greed = 5
+			ai_rationality = -5
+			ai_boldness = 15
+			ai_energy = 5
+			ai_compassion = -5
+			ai_sociability = 5
+			ai_amenity_target_baseline = 0.5
+		}
+		100 = {
+			monthly_prestige = 1
+			owned_scheme_secrecy_add = -10
+			opinion_of_liege = -10
+			opinion_of_vassal = -10
+			culture_modifier = {
+				parameter = mountain_trait_bonuses
+				mountains_advantage = 2
+				majorroad_mountains_advantage = 1
+				minorroad_mountains_advantage = 1
+				desert_mountains_advantage = 2
+				majorroad_desert_mountains_advantage = 1
+				minorroad_desert_mountains_advantage = 1
+				glacier_advantage = 1
+				majorroad_glacier_advantage = 1
+				minorroad_glacier_advantage = 1
+				canyon_advantage = 1
+				majorroad_canyon_advantage = 1
+				minorroad_canyon_advantage = 1
+			}
+			culture_modifier = {
+				parameter = plains_trait_bonuses
+				plains_max_combat_roll = 1
+				majorroad_plains_max_combat_roll = 1
+				minorroad_plains_max_combat_roll = 1
+				plains_min_combat_roll = -1
+				majorroad_plains_min_combat_roll = -1
+				minorroad_plains_min_combat_roll = -1
+			}
+			culture_modifier = {
+				parameter = steppe_trait_bonuses
+				steppe_max_combat_roll = 1
+				majorroad_steppe_max_combat_roll = 1
+				minorroad_steppe_max_combat_roll = 1
+				steppe_min_combat_roll = -1
+				majorroad_steppe_min_combat_roll = -1
+				minorroad_steppe_min_combat_roll = -1
+			}
+			culture_modifier = {
+				parameter = urban_trait_bonuses
+				urban_max_combat_roll = 1
+				majorroad_urban_max_combat_roll = 1
+				minorroad_urban_max_combat_roll = 1
+			}
+			culture_modifier = {
+				parameter = arrogant_trait_more_valued
+				same_culture_opinion = 10
+			}
+			culture_modifier = {
+				parameter = arrogant_trait_looked_down_upon
+				same_culture_opinion = -25
+			}
+			ai_honor = -15
+			ai_greed = 15
+			ai_rationality = -15
+			ai_boldness = 25
+			ai_energy = 10
+			ai_compassion = -15
+			ai_sociability = 15
+			ai_amenity_target_baseline = 0.5
+		}
+	}
+
+	name = {
+		first_valid = {
+			triggered_desc = { trigger = { exists = this  has_trait_xp = { trait = arrogant value >= 100 } } desc = trait_arrogant_3 }
+			triggered_desc = { trigger = { exists = this  has_trait_xp = { trait = arrogant value >= 50 } } desc = trait_arrogant_2 }
+			triggered_desc = { trigger = { exists = this  has_trait_xp = { trait = arrogant value >= 0 } } desc = trait_arrogant_1_display }
+			desc = trait_arrogant_1
+		}
+	}
+
+	desc = {
+		first_valid = {
+			triggered_desc = { trigger = { NOT = { exists = this } } desc = trait_arrogant_1_desc }
+			triggered_desc = { trigger = { has_trait_xp = { trait = arrogant value >= 100 } } desc = trait_arrogant_3_character_desc }
+			triggered_desc = { trigger = { has_trait_xp = { trait = arrogant value >= 50 } } desc = trait_arrogant_2_character_desc }
+			desc = trait_arrogant_1_character_desc
+		}
+	}
+}
+
+paranoid = {
+	category = personality
+	opposites = {
+		trusting
+	}
+	flag = trait_unlocks_t2_countermeasures
+	ruler_designer_cost = -10
+	dread_baseline_add = 10
+	# rd-markers: hidden, replaced by the three
+	# mpd_rd_paranoid_X level entries
+	shown_in_ruler_designer = no
+	compatibility = {
+		paranoid = @pos_compat_low
+		cynical = @pos_compat_low
+		honest = @pos_compat_low
+		trusting = @neg_compat_high
+		forgiving = @neg_compat_medium
+		deceitful = @neg_compat_high
+		sadistic = @neg_compat_high
+		callous = @neg_compat_high
+		vengeful = @neg_compat_high
+		gregarious = @neg_compat_medium
+		lustful = @neg_compat_medium
+		greedy = @neg_compat_medium
+		ambitious = @neg_compat_medium
+		eccentric = @neg_compat_medium
+		inquisitive = @neg_compat_high
+	}
+	track = {
+		0 = {
+			diplomacy = 0
+			intrigue = 2
+			stress_gain_mult = 0.5
+			dread_gain_mult = 0.1
+			scheme_discovery_chance_mult = 0
+			enemy_personal_scheme_success_chance_add = -12
+			character_travel_speed = -5
+			character_travel_safety = 5
+			opinion_of_vassal = -10
+			culture_modifier = {
+				parameter = forest_trait_bonuses
+				forest_min_combat_roll = 1
+				majorroad_forest_min_combat_roll = 0
+				minorroad_forest_min_combat_roll = 0
+				taiga_min_combat_roll = 1
+				majorroad_taiga_min_combat_roll = 0
+				minorroad_taiga_min_combat_roll = 0
+				cloudforest_min_combat_roll = 0
+				majorroad_cloudforest_min_combat_roll = 0
+				minorroad_cloudforest_min_combat_roll = 0
+				taiga_bog_min_combat_roll = 0
+				majorroad_taiga_bog_min_combat_roll = 0
+				minorroad_taiga_bog_min_combat_roll = 0
+			}
+			culture_modifier = {
+				parameter = jungle_trait_bonuses
+				jungle_min_combat_roll = 1
+				majorroad_jungle_min_combat_roll = 0
+				minorroad_jungle_min_combat_roll = 0
+			}
+			culture_modifier = {
+				parameter = hill_trait_bonuses
+				hills_min_combat_roll = 1
+				majorroad_hills_min_combat_roll = 0
+				minorroad_hills_min_combat_roll = 0
+				highlands_min_combat_roll = 0
+				majorroad_highlands_min_combat_roll = 0
+				minorroad_highlands_min_combat_roll = 0
+			}
+			culture_modifier = {
+				parameter = palace_politics_trait_bonuses
+				monthly_influence = 0.1
+			}
+			ai_honor = -10
+			ai_boldness = -10
+			ai_rationality = -10
+			ai_vengefulness = 10
+			ai_compassion = -5
+			ai_sociability = -10
+			ai_amenity_target_baseline = -0.05
+			enemy_scheme_secrecy_add = -5
+			monthly_influence = 0.1
+		}
+		50 = {
+			diplomacy = -1
+			intrigue = 1
+			stress_gain_mult = 0.5
+			dread_gain_mult = 0.15
+			scheme_discovery_chance_mult = 0.05
+			enemy_personal_scheme_success_chance_add = -13
+			character_travel_speed = -5
+			character_travel_safety = 5
+			opinion_of_vassal = -5
+			culture_modifier = {
+				parameter = forest_trait_bonuses
+				forest_min_combat_roll = 1
+				majorroad_forest_min_combat_roll = 1
+				minorroad_forest_min_combat_roll = 1
+				taiga_min_combat_roll = 1
+				majorroad_taiga_min_combat_roll = 1
+				minorroad_taiga_min_combat_roll = 1
+				cloudforest_min_combat_roll = 1
+				majorroad_cloudforest_min_combat_roll = 1
+				minorroad_cloudforest_min_combat_roll = 1
+				taiga_bog_min_combat_roll = 1
+				majorroad_taiga_bog_min_combat_roll = 1
+				minorroad_taiga_bog_min_combat_roll = 1
+			}
+			culture_modifier = {
+				parameter = jungle_trait_bonuses
+				jungle_min_combat_roll = 1
+				majorroad_jungle_min_combat_roll = 1
+				minorroad_jungle_min_combat_roll = 1
+			}
+			culture_modifier = {
+				parameter = hill_trait_bonuses
+				hills_min_combat_roll = 1
+				majorroad_hills_min_combat_roll = 1
+				minorroad_hills_min_combat_roll = 1
+				highlands_min_combat_roll = 1
+				majorroad_highlands_min_combat_roll = 1
+				minorroad_highlands_min_combat_roll = 1
+			}
+			culture_modifier = {
+				parameter = palace_politics_trait_bonuses
+				monthly_influence = 0.05
+			}
+			ai_honor = -5
+			ai_boldness = -5
+			ai_rationality = -5
+			ai_vengefulness = 5
+			ai_compassion = -5
+			ai_sociability = -15
+			ai_amenity_target_baseline = -0.05
+			enemy_scheme_secrecy_add = -5
+			monthly_influence = 0.05
+		}
+		100 = {
+			diplomacy = -1
+			intrigue = 3
+			stress_gain_mult = 0.5
+			dread_gain_mult = 0.25
+			scheme_discovery_chance_mult = 0.05
+			enemy_personal_scheme_success_chance_add = -25
+			character_travel_speed = -10
+			character_travel_safety = 10
+			opinion_of_vassal = -15
+			culture_modifier = {
+				parameter = forest_trait_bonuses
+				forest_min_combat_roll = 2
+				majorroad_forest_min_combat_roll = 1
+				minorroad_forest_min_combat_roll = 1
+				taiga_min_combat_roll = 2
+				majorroad_taiga_min_combat_roll = 1
+				minorroad_taiga_min_combat_roll = 1
+				cloudforest_min_combat_roll = 1
+				majorroad_cloudforest_min_combat_roll = 1
+				minorroad_cloudforest_min_combat_roll = 1
+				taiga_bog_min_combat_roll = 1
+				majorroad_taiga_bog_min_combat_roll = 1
+				minorroad_taiga_bog_min_combat_roll = 1
+			}
+			culture_modifier = {
+				parameter = jungle_trait_bonuses
+				jungle_min_combat_roll = 2
+				majorroad_jungle_min_combat_roll = 1
+				minorroad_jungle_min_combat_roll = 1
+			}
+			culture_modifier = {
+				parameter = hill_trait_bonuses
+				hills_min_combat_roll = 2
+				majorroad_hills_min_combat_roll = 1
+				minorroad_hills_min_combat_roll = 1
+				highlands_min_combat_roll = 1
+				majorroad_highlands_min_combat_roll = 1
+				minorroad_highlands_min_combat_roll = 1
+			}
+			culture_modifier = {
+				parameter = palace_politics_trait_bonuses
+				monthly_influence = 0.15
+			}
+			ai_honor = -15
+			ai_boldness = -15
+			ai_rationality = -15
+			ai_vengefulness = 15
+			ai_compassion = -10
+			ai_sociability = -25
+			ai_amenity_target_baseline = -0.1
+			enemy_scheme_secrecy_add = -10
+			monthly_influence = 0.15
+		}
+	}
+
+	name = {
+		first_valid = {
+			triggered_desc = { trigger = { exists = this  has_trait_xp = { trait = paranoid value >= 100 } } desc = trait_paranoid_3 }
+			triggered_desc = { trigger = { exists = this  has_trait_xp = { trait = paranoid value >= 50 } } desc = trait_paranoid_2 }
+			triggered_desc = { trigger = { exists = this  has_trait_xp = { trait = paranoid value >= 0 } } desc = trait_paranoid_1_display }
+			desc = trait_paranoid_1
+		}
+	}
+
+	desc = {
+		first_valid = {
+			triggered_desc = { trigger = { NOT = { exists = this } } desc = trait_paranoid_1_desc }
+			triggered_desc = { trigger = { has_trait_xp = { trait = paranoid value >= 100 } } desc = trait_paranoid_3_character_desc }
+			triggered_desc = { trigger = { has_trait_xp = { trait = paranoid value >= 50 } } desc = trait_paranoid_2_character_desc }
+			desc = trait_paranoid_1_character_desc
+		}
+	}
+}
+
+sadistic = {
+	category = personality
+	opposites = {
+		compassionate
+		callous
+	}
+	courtly_opinion = -15
+	flag = can_murder_own_children
+	ruler_designer_cost = 40
+	# rd-markers: hidden, replaced by the three
+	# mpd_rd_sadistic_X level entries
+	shown_in_ruler_designer = no
+	compatibility = {
+		sadistic = @pos_compat_medium
+		torturer = @pos_compat_low
+		callous = @pos_compat_low
+		arbitrary = @pos_compat_low
+		compassionate = @neg_compat_high
+		generous = @neg_compat_high
+		just = @neg_compat_medium
+		forgiving = @neg_compat_medium
+		trusting = @neg_compat_low
+		curious = @neg_compat_low
+	}
+	track = {
+		0 = {
+			intrigue = 1
+			prowess = 2
+			dread_baseline_add = 20
+			general_opinion = -15
+			culture_modifier = {
+				parameter = sadistic_trait_looked_down_upon
+				same_culture_opinion = -10
+			}
+			ai_honor = -40
+			ai_compassion = -50
+		}
+		50 = {
+			intrigue = 1
+			prowess = 1
+			dread_baseline_add = 20
+			general_opinion = -5
+			culture_modifier = {
+				parameter = sadistic_trait_looked_down_upon
+				same_culture_opinion = -10
+			}
+			ai_honor = -35
+			ai_compassion = -50
+		}
+		100 = {
+			intrigue = 2
+			prowess = 3
+			dread_baseline_add = 30
+			general_opinion = -10
+			culture_modifier = {
+				parameter = sadistic_trait_looked_down_upon
+				same_culture_opinion = -25
+			}
+			ai_honor = -75
+			ai_compassion = -100
+		}
+	}
+
+	name = {
+		first_valid = {
+			triggered_desc = { trigger = { exists = this  has_trait_xp = { trait = sadistic value >= 100 } } desc = trait_sadistic_3 }
+			triggered_desc = { trigger = { exists = this  has_trait_xp = { trait = sadistic value >= 50 } } desc = trait_sadistic_2 }
+			triggered_desc = { trigger = { exists = this  has_trait_xp = { trait = sadistic value >= 0 } } desc = trait_sadistic_1_display }
+			desc = trait_sadistic_1
+		}
+	}
+
+	desc = {
+		first_valid = {
+			triggered_desc = { trigger = { NOT = { exists = this } } desc = trait_sadistic_1_desc }
+			triggered_desc = { trigger = { has_trait_xp = { trait = sadistic value >= 100 } } desc = trait_sadistic_3_character_desc }
+			triggered_desc = { trigger = { has_trait_xp = { trait = sadistic value >= 50 } } desc = trait_sadistic_2_character_desc }
+			desc = trait_sadistic_1_character_desc
+		}
+	}
+}
+
+vengeful = {
+	category = personality
+	opposites = {
+		forgiving
+	}
+	flag = extra_scheme_success_chance_vs_rivals
+	flag = can_fabricate_hooks_on_rivals
+	ruler_designer_cost = 30
+	# rd-markers: hidden, replaced by the three
+	# mpd_rd_vengeful_X level entries
+	shown_in_ruler_designer = no
+	compatibility = {
+		forgiving = @neg_compat_high
+		content = @neg_compat_medium
+		compassionate = @neg_compat_low
+	}
+	track = {
+		0 = {
+			diplomacy = -1
+			intrigue = 1
+			prowess = 1
+			dread_gain_mult = 0.1
+			culture_modifier = {
+				parameter = dry_trait_bonuses
+				drylands_advantage = 2
+				majorroad_drylands_advantage = 1
+				minorroad_drylands_advantage = 1
+				desert_advantage = 2
+				majorroad_desert_advantage = 1
+				minorroad_desert_advantage = 1
+			}
+			culture_modifier = {
+				parameter = hill_trait_bonuses
+				hills_max_combat_roll = 2
+				majorroad_hills_max_combat_roll = 1
+				minorroad_hills_max_combat_roll = 1
+				highlands_max_combat_roll = 1
+				majorroad_highlands_max_combat_roll = 1
+				minorroad_highlands_max_combat_roll = 1
+			}
+			culture_modifier = {
+				parameter = plains_trait_bonuses
+				plains_max_combat_roll = 0
+				majorroad_plains_max_combat_roll = 0
+				minorroad_plains_max_combat_roll = 0
+				plains_min_combat_roll = 0
+				majorroad_plains_min_combat_roll = 0
+				minorroad_plains_min_combat_roll = 0
+			}
+			culture_modifier = {
+				parameter = steppe_trait_bonuses
+				steppe_max_combat_roll = 0
+				majorroad_steppe_max_combat_roll = 0
+				minorroad_steppe_max_combat_roll = 0
+				steppe_min_combat_roll = 0
+				majorroad_steppe_min_combat_roll = 0
+				minorroad_steppe_min_combat_roll = 0
+			}
+			ai_honor = -5
+			ai_rationality = -5
+			ai_energy = 5
+			ai_vengefulness = 50
+			ai_compassion = -10
+			culture_modifier = {
+				parameter = vengeful_positive_forgiving_negative
+				same_culture_opinion = 5
+				hostile_scheme_phase_duration_add = -10
+			}
+			culture_modifier = {
+				parameter = vengeful_trait_more_valued
+				same_culture_opinion = 5
+			}
+		}
+		50 = {
+			diplomacy = -1
+			intrigue = 1
+			prowess = 1
+			dread_gain_mult = 0.05
+			culture_modifier = {
+				parameter = dry_trait_bonuses
+				drylands_advantage = 1
+				majorroad_drylands_advantage = 1
+				minorroad_drylands_advantage = 1
+				desert_advantage = 1
+				majorroad_desert_advantage = 1
+				minorroad_desert_advantage = 1
+			}
+			culture_modifier = {
+				parameter = hill_trait_bonuses
+				hills_max_combat_roll = 3
+				majorroad_hills_max_combat_roll = 1
+				minorroad_hills_max_combat_roll = 1
+				highlands_max_combat_roll = 1
+				majorroad_highlands_max_combat_roll = 1
+				minorroad_highlands_max_combat_roll = 1
+			}
+			culture_modifier = {
+				parameter = plains_trait_bonuses
+				plains_max_combat_roll = 1
+				majorroad_plains_max_combat_roll = 1
+				minorroad_plains_max_combat_roll = 1
+				plains_min_combat_roll = 1
+				majorroad_plains_min_combat_roll = 1
+				minorroad_plains_min_combat_roll = 1
+			}
+			culture_modifier = {
+				parameter = steppe_trait_bonuses
+				steppe_max_combat_roll = 1
+				majorroad_steppe_max_combat_roll = 1
+				minorroad_steppe_max_combat_roll = 1
+				steppe_min_combat_roll = 1
+				majorroad_steppe_min_combat_roll = 1
+				minorroad_steppe_min_combat_roll = 1
+			}
+			culture_modifier = {
+				parameter = vengeful_positive_forgiving_negative
+				same_culture_opinion = 5
+				hostile_scheme_phase_duration_add = -10
+			}
+			culture_modifier = {
+				parameter = vengeful_trait_more_valued
+				same_culture_opinion = 5
+			}
+			ai_honor = -5
+			ai_rationality = -5
+			ai_energy = 5
+			ai_vengefulness = 50
+			ai_compassion = -5
+		}
+		100 = {
+			diplomacy = -2
+			intrigue = 2
+			prowess = 2
+			dread_gain_mult = 0.15
+			culture_modifier = {
+				parameter = dry_trait_bonuses
+				drylands_advantage = 3
+				majorroad_drylands_advantage = 1
+				minorroad_drylands_advantage = 1
+				desert_advantage = 3
+				majorroad_desert_advantage = 1
+				minorroad_desert_advantage = 1
+			}
+			culture_modifier = {
+				parameter = hill_trait_bonuses
+				hills_max_combat_roll = 5
+				majorroad_hills_max_combat_roll = 3
+				minorroad_hills_max_combat_roll = 3
+				highlands_max_combat_roll = 3
+				majorroad_highlands_max_combat_roll = 3
+				minorroad_highlands_max_combat_roll = 3
+			}
+			culture_modifier = {
+				parameter = plains_trait_bonuses
+				plains_max_combat_roll = 1
+				majorroad_plains_max_combat_roll = 1
+				minorroad_plains_max_combat_roll = 1
+				plains_min_combat_roll = 1
+				majorroad_plains_min_combat_roll = 1
+				minorroad_plains_min_combat_roll = 1
+			}
+			culture_modifier = {
+				parameter = steppe_trait_bonuses
+				steppe_max_combat_roll = 1
+				majorroad_steppe_max_combat_roll = 1
+				minorroad_steppe_max_combat_roll = 1
+				steppe_min_combat_roll = 1
+				majorroad_steppe_min_combat_roll = 1
+				minorroad_steppe_min_combat_roll = 1
+			}
+			culture_modifier = {
+				parameter = vengeful_positive_forgiving_negative
+				same_culture_opinion = 5
+				hostile_scheme_phase_duration_add = -20
+			}
+			culture_modifier = {
+				parameter = vengeful_trait_more_valued
+				same_culture_opinion = 10
+			}
+			ai_honor = -10
+			ai_rationality = -10
+			ai_energy = 10
+			ai_vengefulness = 100
+			ai_compassion = -15
+		}
+	}
+
+	name = {
+		first_valid = {
+			triggered_desc = { trigger = { exists = this  has_trait_xp = { trait = vengeful value >= 100 } } desc = trait_vengeful_3 }
+			triggered_desc = { trigger = { exists = this  has_trait_xp = { trait = vengeful value >= 50 } } desc = trait_vengeful_2 }
+			triggered_desc = { trigger = { exists = this  has_trait_xp = { trait = vengeful value >= 0 } } desc = trait_vengeful_1_display }
+			desc = trait_vengeful_1
+		}
+	}
+
+	desc = {
+		first_valid = {
+			triggered_desc = { trigger = { NOT = { exists = this } } desc = trait_vengeful_1_desc }
+			triggered_desc = { trigger = { has_trait_xp = { trait = vengeful value >= 100 } } desc = trait_vengeful_3_character_desc }
+			triggered_desc = { trigger = { has_trait_xp = { trait = vengeful value >= 50 } } desc = trait_vengeful_2_character_desc }
+			desc = trait_vengeful_1_character_desc
+		}
+	}
+}

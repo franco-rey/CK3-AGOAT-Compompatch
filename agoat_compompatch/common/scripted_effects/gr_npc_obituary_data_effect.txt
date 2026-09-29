@@ -1,10 +1,30 @@
 ﻿
 
+# Grand Remembrance — NPC Obituary Data Gathering Effect
+# Called ONCE per death during on_death (from the reference-player scope
+# chosen by gr_internal_npc_obituary_processing) while scope:dead_npc
+# is still a valid (alive) scope. Sets all gr_* variables on scope:dead_npc
+# for chronicle page artifact creation.
+#
+# Scope context:
+#   ROOT = the dying NPC (on_death's original ROOT — iterators/scope blocks
+#          never rebind ROOT, only THIS)
+#   scope:dead_npc = the dying NPC (still valid during on_death)
+#   scope:gr_iter_player = the reference player (chronicler/page owner),
+#          chosen once per death in gr_on_actions.txt; ROOT cannot be used
+#          to reach them from here
+#
+# This effect was extracted from gr_npc_obituary.1 to fix the dead-scope
+# bug where variables couldn't be set/read on a character 2 days after death.
 gr_npc_obituary_data_effect = {
 
+		# Generate random seed for text variant selection
 		scope:dead_npc = {
 
 
+			# Random seed for text-variant selection -- one uniform roll (audit M12).
+			# Was stacked percent coin-flips: binomial, so the v5/v6 variant pools
+			# almost never displayed (P(v6) ~ 0.16% on the player path).
 			random_list = {
 				1 = { set_variable = { name = gr_random_seed value = 0 } }
 				1 = { set_variable = { name = gr_random_seed value = 20 } }
@@ -16,6 +36,9 @@ gr_npc_obituary_data_effect = {
 		}
 
 
+		# =============================================
+		# SECTION A: BASIC INFO
+		# =============================================
 		scope:dead_npc = {
 			set_variable = { name = gr_predecessor value = this }
 			set_variable = { name = gr_death_year value = current_year }
@@ -23,6 +46,7 @@ gr_npc_obituary_data_effect = {
 			set_variable = { name = gr_gold value = gold }
 
 
+			# Reign years (if they were a ruler)
 			if = {
 				limit = { is_ruler = yes }
 				set_variable = { name = gr_reign_years value = years_as_ruler }
@@ -32,6 +56,7 @@ gr_npc_obituary_data_effect = {
 			}
 
 
+			# Title tier (guard for unlanded chars)
 			if = {
 				limit = { exists = primary_title }
 				set_variable = { name = gr_tier value = primary_title.tier }
@@ -51,9 +76,11 @@ gr_npc_obituary_data_effect = {
 			if = {
 				limit = { has_variable = gr_culture_origin }
 
+				# Already set from tracking
 			}
 
 
+			# Admin government detection
 			if = {
 				limit = { government_has_flag = government_is_administrative }
 				set_variable = { name = gr_is_admin_govt value = yes }
@@ -61,6 +88,10 @@ gr_npc_obituary_data_effect = {
 		}
 
 
+		# =============================================
+		# SECTION B: TITLE LIST (up to 3)
+		# Guard for unlanded NPCs
+		# =============================================
 		scope:dead_npc = {
 			set_variable = { name = gr_title_count value = 0 }
 			if = {
@@ -91,6 +122,9 @@ gr_npc_obituary_data_effect = {
 		}
 
 
+		# =============================================
+		# SECTION C: DEATH REASON
+		# =============================================
 		scope:dead_npc = {
 			if = {
 				limit = { OR = { death_reason = death_natural_causes death_reason = death_old_age } }
@@ -141,6 +175,9 @@ gr_npc_obituary_data_effect = {
 		}
 
 
+		# =============================================
+		# SECTION C2: PARENTS
+		# =============================================
 		scope:dead_npc = {
 			if = {
 				limit = { exists = father }
@@ -153,6 +190,13 @@ gr_npc_obituary_data_effect = {
 		}
 
 
+		# =============================================
+		# SECTION C2b: HEIR DETECTION (best effort)
+		# CK3 doesn't expose AI heir as a scope during on_death,
+		# so we approximate: prefer eldest adult male child.
+		# Won't be 100% accurate for elective/ultimogeniture
+		# but handles primogeniture/partition (the common case).
+		# =============================================
 		scope:dead_npc = {
 			if = {
 				limit = { any_child = { is_alive = yes } }
@@ -172,22 +216,39 @@ gr_npc_obituary_data_effect = {
 		}
 
 
+		# =============================================
+		# SECTION C3: CHRONICLER & OPINION
+		# For NPCs, use court_chronicler type so the obituary
+		# has a named author (the viewing player). Opinion is
+		# from that player's perspective of the dead NPC.
+		# =============================================
 		scope:dead_npc = {
 			set_variable = { name = gr_chronicler_type value = flag:court_chronicler }
 			set_variable = { name = gr_chronicler value = scope:gr_iter_player }
 		}
 
 
+		# Player's opinion of the dead NPC. opinion:X targets a saved event
+		# scope by its bare name (no "scope:" prefix — gotcha #9), and it
+		# is evaluated relative to the CURRENT scope, so this must run with
+		# scope:gr_iter_player (the player) as the acting scope.
 		scope:gr_iter_player = {
 			save_temporary_scope_as = gr_opinion_holder
 		}
 		scope:dead_npc = {
-			set_variable = { name = gr_opinion value = scope:gr_opinion_holder.opinion:dead_npc }
+			set_variable = { name = gr_opinion value = "scope:gr_opinion_holder.opinion(scope:dead_npc)" }
 		}
 
 
+		# =============================================
+		# SECTION D: COPY TRACKED MEMORIES
+		# Most memory vars are already on scope:dead_npc from
+		# the gr_is_tracked_character tracking system.
+		# Only renames needed here.
+		# =============================================
 		scope:dead_npc = {
 
+			# Battle casualties rename
 			if = {
 				limit = { has_variable = gr_total_casualties }
 				set_variable = { name = gr_casualties value = var:gr_total_casualties }
@@ -197,6 +258,16 @@ gr_npc_obituary_data_effect = {
 			}
 
 
+			# Battle tier (already named correctly)
+			# gr_memory_great_battle, gr_battle_tier, gr_best_battle_strength -- already on dead_npc
+			# gr_memory_led_troops, gr_memory_won_war -- already on dead_npc
+			# gr_memory_varangian + sub-vars -- already on dead_npc
+			# gr_memory_adventure + sub-vars -- already on dead_npc
+			# gr_memory_created_kingdom + sub-vars -- already on dead_npc
+			# gr_memory_created_empire, gr_memory_claimed_hegemony -- already on dead_npc
+			# Activity counts (feast, hunt, tournament, etc.) -- already on dead_npc
+			# Intrigue counts (murder, kidnap, etc.) -- already on dead_npc
+			# Capital development at death
 			if = {
 				limit = {
 					exists = capital_county
@@ -212,6 +283,7 @@ gr_npc_obituary_data_effect = {
 			}
 
 
+			# Became king young
 			if = {
 				limit = { exists = primary_title primary_title.tier >= 3 }
 				set_variable = {
@@ -225,6 +297,9 @@ gr_npc_obituary_data_effect = {
 		}
 
 
+		# =============================================
+		# SECTION E: STATS (snapshot at death)
+		# =============================================
 		scope:dead_npc = {
 			set_variable = { name = gr_stat_diplomacy value = diplomacy }
 			set_variable = { name = gr_stat_martial value = martial }
@@ -234,6 +309,7 @@ gr_npc_obituary_data_effect = {
 			set_variable = { name = gr_stat_prowess value = prowess }
 
 
+			# Determine top stat
 			set_variable = { name = gr_top_stat value = flag:diplomacy }
 			set_variable = { name = gr_top_stat_val value = diplomacy }
 
@@ -260,6 +336,9 @@ gr_npc_obituary_data_effect = {
 		}
 
 
+		# =============================================
+		# SECTION F: PRESTIGE & PIETY LEVELS
+		# =============================================
 		scope:dead_npc = {
 			set_variable = { name = gr_prestige_level value = prestige_level }
 			set_variable = { name = gr_prestige value = prestige }
@@ -270,6 +349,9 @@ gr_npc_obituary_data_effect = {
 		}
 
 
+		# =============================================
+		# SECTION G: PERSONALITY TRAITS (35 total)
+		# =============================================
 		scope:dead_npc = {
 			if = { limit = { has_trait = lustful } set_variable = { name = gr_trait_lustful value = yes } }
 			if = { limit = { has_trait = chaste } set_variable = { name = gr_trait_chaste value = yes } }
@@ -309,32 +391,40 @@ gr_npc_obituary_data_effect = {
 		}
 
 
+		# =============================================
+		# SECTION H: EDUCATION TRAITS
+		# =============================================
 		scope:dead_npc = {
 
+			# Diplomacy education
 			if = { limit = { has_trait = education_diplomacy_1 } set_variable = { name = gr_edu value = flag:diplomacy } set_variable = { name = gr_edu_tier value = 1 } }
 			if = { limit = { has_trait = education_diplomacy_2 } set_variable = { name = gr_edu value = flag:diplomacy } set_variable = { name = gr_edu_tier value = 2 } }
 			if = { limit = { has_trait = education_diplomacy_3 } set_variable = { name = gr_edu value = flag:diplomacy } set_variable = { name = gr_edu_tier value = 3 } }
 			if = { limit = { has_trait = education_diplomacy_4 } set_variable = { name = gr_edu value = flag:diplomacy } set_variable = { name = gr_edu_tier value = 4 } }
 			if = { limit = { has_trait = education_diplomacy_5 } set_variable = { name = gr_edu value = flag:diplomacy } set_variable = { name = gr_edu_tier value = 5 } }
 
+			# Martial education
 			if = { limit = { has_trait = education_martial_1 } set_variable = { name = gr_edu value = flag:martial } set_variable = { name = gr_edu_tier value = 1 } }
 			if = { limit = { has_trait = education_martial_2 } set_variable = { name = gr_edu value = flag:martial } set_variable = { name = gr_edu_tier value = 2 } }
 			if = { limit = { has_trait = education_martial_3 } set_variable = { name = gr_edu value = flag:martial } set_variable = { name = gr_edu_tier value = 3 } }
 			if = { limit = { has_trait = education_martial_4 } set_variable = { name = gr_edu value = flag:martial } set_variable = { name = gr_edu_tier value = 4 } }
 			if = { limit = { has_trait = education_martial_5 } set_variable = { name = gr_edu value = flag:martial } set_variable = { name = gr_edu_tier value = 5 } }
 
+			# Stewardship education
 			if = { limit = { has_trait = education_stewardship_1 } set_variable = { name = gr_edu value = flag:stewardship } set_variable = { name = gr_edu_tier value = 1 } }
 			if = { limit = { has_trait = education_stewardship_2 } set_variable = { name = gr_edu value = flag:stewardship } set_variable = { name = gr_edu_tier value = 2 } }
 			if = { limit = { has_trait = education_stewardship_3 } set_variable = { name = gr_edu value = flag:stewardship } set_variable = { name = gr_edu_tier value = 3 } }
 			if = { limit = { has_trait = education_stewardship_4 } set_variable = { name = gr_edu value = flag:stewardship } set_variable = { name = gr_edu_tier value = 4 } }
 			if = { limit = { has_trait = education_stewardship_5 } set_variable = { name = gr_edu value = flag:stewardship } set_variable = { name = gr_edu_tier value = 5 } }
 
+			# Intrigue education
 			if = { limit = { has_trait = education_intrigue_1 } set_variable = { name = gr_edu value = flag:intrigue } set_variable = { name = gr_edu_tier value = 1 } }
 			if = { limit = { has_trait = education_intrigue_2 } set_variable = { name = gr_edu value = flag:intrigue } set_variable = { name = gr_edu_tier value = 2 } }
 			if = { limit = { has_trait = education_intrigue_3 } set_variable = { name = gr_edu value = flag:intrigue } set_variable = { name = gr_edu_tier value = 3 } }
 			if = { limit = { has_trait = education_intrigue_4 } set_variable = { name = gr_edu value = flag:intrigue } set_variable = { name = gr_edu_tier value = 4 } }
 			if = { limit = { has_trait = education_intrigue_5 } set_variable = { name = gr_edu value = flag:intrigue } set_variable = { name = gr_edu_tier value = 5 } }
 
+			# Learning education
 			if = { limit = { has_trait = education_learning_1 } set_variable = { name = gr_edu value = flag:learning } set_variable = { name = gr_edu_tier value = 1 } }
 			if = { limit = { has_trait = education_learning_2 } set_variable = { name = gr_edu value = flag:learning } set_variable = { name = gr_edu_tier value = 2 } }
 			if = { limit = { has_trait = education_learning_3 } set_variable = { name = gr_edu value = flag:learning } set_variable = { name = gr_edu_tier value = 3 } }
@@ -343,8 +433,12 @@ gr_npc_obituary_data_effect = {
 		}
 
 
+		# =============================================
+		# SECTION I: CONGENITAL TRAITS
+		# =============================================
 		scope:dead_npc = {
 
+			# Intelligence
 			if = { limit = { has_trait = intellect_good_3 } set_variable = { name = gr_intel value = flag:intellect_good_3 } }
 			if = { limit = { has_trait = intellect_good_2 } set_variable = { name = gr_intel value = flag:intellect_good_2 } }
 			if = { limit = { has_trait = intellect_good_1 } set_variable = { name = gr_intel value = flag:intellect_good_1 } }
@@ -352,6 +446,7 @@ gr_npc_obituary_data_effect = {
 			if = { limit = { has_trait = intellect_bad_2 } set_variable = { name = gr_intel value = flag:intellect_bad_2 } }
 			if = { limit = { has_trait = intellect_bad_3 } set_variable = { name = gr_intel value = flag:intellect_bad_3 } }
 
+			# Physique
 			if = { limit = { has_trait = physique_good_3 } set_variable = { name = gr_physique value = flag:physique_good_3 } }
 			if = { limit = { has_trait = physique_good_2 } set_variable = { name = gr_physique value = flag:physique_good_2 } }
 			if = { limit = { has_trait = physique_good_1 } set_variable = { name = gr_physique value = flag:physique_good_1 } }
@@ -359,6 +454,7 @@ gr_npc_obituary_data_effect = {
 			if = { limit = { has_trait = physique_bad_2 } set_variable = { name = gr_physique value = flag:physique_bad_2 } }
 			if = { limit = { has_trait = physique_bad_3 } set_variable = { name = gr_physique value = flag:physique_bad_3 } }
 
+			# Appearance
 			if = { limit = { has_trait = beauty_good_3 } set_variable = { name = gr_beauty value = flag:beauty_good_3 } }
 			if = { limit = { has_trait = beauty_good_2 } set_variable = { name = gr_beauty value = flag:beauty_good_2 } }
 			if = { limit = { has_trait = beauty_good_1 } set_variable = { name = gr_beauty value = flag:beauty_good_1 } }
@@ -366,6 +462,7 @@ gr_npc_obituary_data_effect = {
 			if = { limit = { has_trait = beauty_bad_2 } set_variable = { name = gr_beauty value = flag:beauty_bad_2 } }
 			if = { limit = { has_trait = beauty_bad_3 } set_variable = { name = gr_beauty value = flag:beauty_bad_3 } }
 
+			# Special congenital
 			if = { limit = { has_trait = giant } set_variable = { name = gr_con_giant value = yes } }
 			if = { limit = { has_trait = dwarf } set_variable = { name = gr_con_dwarf value = yes } }
 			if = { limit = { has_trait = albino } set_variable = { name = gr_con_albino value = yes } }
@@ -374,30 +471,41 @@ gr_npc_obituary_data_effect = {
 		}
 
 
+		# =============================================
+		# SECTION J: LIFESTYLE TRAITS
+		# =============================================
 		scope:dead_npc = {
 
+			# Diplomacy
 			if = { limit = { has_trait = diplomat } set_variable = { name = gr_life_diplomat value = yes } }
 			if = { limit = { has_trait = august } set_variable = { name = gr_life_august value = yes } }
 			if = { limit = { has_trait = family_first } set_variable = { name = gr_life_patriarch value = yes } }
 
+			# Martial
 			if = { limit = { has_trait = strategist } set_variable = { name = gr_life_strategist value = yes } }
 			if = { limit = { has_trait = overseer } set_variable = { name = gr_life_overseer value = yes } }
 			if = { limit = { has_trait = gallant } set_variable = { name = gr_life_gallant value = yes } }
 
+			# Stewardship
 			if = { limit = { has_trait = architect } set_variable = { name = gr_life_architect value = yes } }
 			if = { limit = { has_trait = administrator } set_variable = { name = gr_life_administrator value = yes } }
 			if = { limit = { has_trait = avaricious } set_variable = { name = gr_life_avaricious value = yes } }
 
+			# Intrigue
 			if = { limit = { has_trait = schemer } set_variable = { name = gr_life_schemer value = yes } }
 			if = { limit = { has_trait = seducer } set_variable = { name = gr_life_seducer value = yes } }
 			if = { limit = { has_trait = torturer } set_variable = { name = gr_life_torturer value = yes } }
 
+			# Learning
 			if = { limit = { has_trait = scholar } set_variable = { name = gr_life_scholar value = yes } }
 			if = { limit = { has_trait = theologian } set_variable = { name = gr_life_theologian value = yes } }
 			if = { limit = { has_trait = whole_of_body } set_variable = { name = gr_life_wholebody value = yes } }
 		}
 
 
+		# =============================================
+		# SECTION K: FAME / EVENT TRAITS
+		# =============================================
 		scope:dead_npc = {
 			if = { limit = { has_trait = viking } set_variable = { name = gr_fame_viking value = yes } }
 			if = { limit = { has_trait = shieldmaiden } set_variable = { name = gr_fame_shieldmaiden value = yes } }
@@ -417,13 +525,14 @@ gr_npc_obituary_data_effect = {
 				set_variable = { name = gr_fame_nomad_active value = yes }
 			}
 
+			# Fame traits
 			if = { limit = { has_trait = lifestyle_blademaster } set_variable = { name = gr_fame_blademaster value = yes } }
 			if = { limit = { has_trait = lifestyle_mystic } set_variable = { name = gr_fame_mystic value = yes } }
 			if = { limit = { has_trait = lifestyle_reveler } set_variable = { name = gr_fame_reveler value = yes } }
 			if = { limit = { has_trait = lifestyle_hunter } set_variable = { name = gr_fame_hunter value = yes } }
 
-			if = { limit = { has_trait_rank = { trait = lifestyle_physician rank >= 3 } } set_variable = { name = gr_fame_physician_tier value = 3 } }
-			else_if = { limit = { has_trait_rank = { trait = lifestyle_physician rank >= 2 } } set_variable = { name = gr_fame_physician_tier value = 2 } }
+			if = { limit = { has_trait_xp = { trait = lifestyle_physician value >= 100 } } set_variable = { name = gr_fame_physician_tier value = 3 } }
+			else_if = { limit = { has_trait_xp = { trait = lifestyle_physician value >= 50 } } set_variable = { name = gr_fame_physician_tier value = 2 } }
 			else_if = { limit = { has_trait = lifestyle_physician } set_variable = { name = gr_fame_physician_tier value = 1 } }
 			if = { limit = { has_trait = lifestyle_poet } set_variable = { name = gr_fame_poet value = yes } }
 			if = { limit = { has_trait = pilgrim } set_variable = { name = gr_fame_pilgrim value = yes } }
@@ -436,6 +545,9 @@ gr_npc_obituary_data_effect = {
 		}
 
 
+		# =============================================
+		# SECTION L: HEALTH & INFAMY
+		# =============================================
 		scope:dead_npc = {
 			if = { limit = { has_trait = one_eyed } set_variable = { name = gr_health_oneeyed value = yes } }
 			if = { limit = { has_trait = one_legged } set_variable = { name = gr_health_onelegged value = yes } }
@@ -450,12 +562,14 @@ gr_npc_obituary_data_effect = {
 			if = { limit = { has_trait = athletic } set_variable = { name = gr_health_athletic value = yes } }
 			if = { limit = { has_trait = sickly } set_variable = { name = gr_health_sickly value = yes } }
 
+			# Elder ailments (1.19)
 			if = { limit = { has_trait = infirm } set_variable = { name = gr_health_infirm value = yes } }
 			if = { limit = { has_trait = withering_mind } set_variable = { name = gr_health_withering_mind value = yes } }
 			if = { limit = { has_trait = clouded_eyes } set_variable = { name = gr_health_clouded_eyes value = yes } }
 			if = { limit = { has_trait = faltering_heart } set_variable = { name = gr_health_faltering_heart value = yes } }
 			if = { limit = { has_trait = fragile_bones } set_variable = { name = gr_health_fragile_bones value = yes } }
 
+			# Infamy
 			if = { limit = { has_trait = kinslayer_1 } set_variable = { name = gr_infamy_kinslayer value = 1 } }
 			if = { limit = { has_trait = kinslayer_2 } set_variable = { name = gr_infamy_kinslayer value = 2 } }
 			if = { limit = { has_trait = kinslayer_3 } set_variable = { name = gr_infamy_kinslayer value = 3 } }
@@ -465,6 +579,7 @@ gr_npc_obituary_data_effect = {
 			if = { limit = { has_trait = excommunicated } set_variable = { name = gr_infamy_excomm value = yes } }
 			if = { limit = { has_trait = incestuous } set_variable = { name = gr_infamy_incest value = yes } }
 
+			# Coping mechanisms
 			if = { limit = { has_trait = drunkard } set_variable = { name = gr_coping_drunkard value = yes } }
 			if = { limit = { has_trait = hashishiyah } set_variable = { name = gr_coping_hashish value = yes } }
 			if = { limit = { has_trait = comfort_eater } set_variable = { name = gr_coping_eater value = yes } }
@@ -482,6 +597,9 @@ gr_npc_obituary_data_effect = {
 		}
 
 
+		# =============================================
+		# SECTION M: HEIR COUNT
+		# =============================================
 		scope:dead_npc = {
 			set_variable = { name = gr_children_count value = 0 }
 			set_variable = { name = gr_sons_count value = 0 }
@@ -503,6 +621,10 @@ gr_npc_obituary_data_effect = {
 		}
 
 
+		# =============================================
+		# SECTION M2: REALM SUCCESSION DETECTION
+		# Only for landed NPCs
+		# =============================================
 		scope:dead_npc = {
 			if = {
 				limit = {
@@ -526,6 +648,7 @@ gr_npc_obituary_data_effect = {
 				set_variable = { name = gr_realm_split value = flag:high_partition }
 			}
 
+			# Split severity
 			if = {
 				limit = {
 					has_variable = gr_realm_split
@@ -542,6 +665,7 @@ gr_npc_obituary_data_effect = {
 				set_variable = { name = gr_split_severity value = flag:diminished }
 			}
 
+			# Single-heir
 			else_if = {
 				limit = { has_realm_law = single_heir_succession_law }
 				set_variable = { name = gr_realm_single_heir value = flag:primogeniture }
@@ -555,6 +679,7 @@ gr_npc_obituary_data_effect = {
 				set_variable = { name = gr_realm_single_heir value = flag:house_seniority }
 			}
 
+			# Elective
 			if = {
 				limit = { exists = primary_title primary_title = { has_title_law = feudal_elective_succession_law } }
 				set_variable = { name = gr_succession_elective value = flag:feudal }
@@ -562,19 +687,27 @@ gr_npc_obituary_data_effect = {
 		}
 
 
+		# =============================================
+		# SECTION N: LEGACY SCORE CALCULATION
+		# All computed on scope:dead_npc
+		# =============================================
 		scope:dead_npc = {
 			set_variable = { name = gr_score value = 0 }
 
 
+			# Prestige contribution (level * 75)
 			change_variable = { name = gr_score add = { value = prestige_level multiply = 75 } }
 
+			# Piety contribution (level * 75)
 			change_variable = { name = gr_score add = { value = piety_level multiply = 75 } }
 
+			# Title tier bonus (tier * 100) -- only if landed
 			if = {
 				limit = { exists = primary_title }
 				change_variable = { name = gr_score add = { value = primary_title.tier multiply = 100 } }
 			}
 
+			# Stat total (all 5 main stats * 2)
 			change_variable = {
 				name = gr_score
 				add = {
@@ -587,22 +720,26 @@ gr_npc_obituary_data_effect = {
 				}
 			}
 
+			# Education tier bonus (* 25)
 			if = {
 				limit = { has_variable = gr_edu_tier }
 				change_variable = { name = gr_score add = { value = var:gr_edu_tier multiply = 25 } }
 			}
 
+			# Reign length bonus (* 3)
 			if = {
 				limit = { is_ruler = yes }
 				change_variable = { name = gr_score add = { value = years_as_ruler multiply = 3 } }
 			}
 
+			# Gold / 5, cap 200
 			if = {
 				limit = { gold >= 0 }
 				change_variable = { name = gr_score add = { value = gold divide = 5 min = 0 max = 200 } }
 			}
 
 
+			# Lifestyle trait count and bonus
 			set_variable = { name = gr_lifestyle_count value = 0 }
 			if = { limit = { has_variable = gr_life_diplomat } change_variable = { name = gr_lifestyle_count add = 1 } }
 			if = { limit = { has_variable = gr_life_august } change_variable = { name = gr_lifestyle_count add = 1 } }
@@ -622,6 +759,7 @@ gr_npc_obituary_data_effect = {
 			change_variable = { name = gr_score add = { value = var:gr_lifestyle_count multiply = 50 } }
 
 
+			# Congenital bonuses
 			if = { limit = { has_variable = gr_intel }
 				if = { limit = { var:gr_intel = flag:intellect_good_1 } change_variable = { name = gr_score add = 15 } }
 				if = { limit = { var:gr_intel = flag:intellect_good_2 } change_variable = { name = gr_score add = 30 } }
@@ -639,6 +777,7 @@ gr_npc_obituary_data_effect = {
 			}
 
 
+			# Title creation bonuses
 			if = { limit = { has_variable = gr_memory_created_duchy } change_variable = { name = gr_score add = 75 } }
 			if = { limit = { has_variable = gr_memory_created_kingdom } change_variable = { name = gr_score add = 150 } }
 			if = { limit = { has_variable = gr_memory_created_empire } change_variable = { name = gr_score add = 300 } }
@@ -649,32 +788,38 @@ gr_npc_obituary_data_effect = {
 			if = { limit = { has_variable = gr_memory_faction_lost_title } change_variable = { name = gr_score add = -75 } }
 
 
+			# Combat casualties
 			if = {
 				limit = { has_variable = gr_casualties var:gr_casualties >= 1 }
 				change_variable = { name = gr_score add = { value = var:gr_casualties divide = 100 max = 150 } }
 			}
 
+			# Great battle
 			if = { limit = { has_variable = gr_battle_tier var:gr_battle_tier = flag:legendary } change_variable = { name = gr_score add = 100 } }
 			else_if = { limit = { has_variable = gr_battle_tier var:gr_battle_tier = flag:massive } change_variable = { name = gr_score add = 75 } }
 			else_if = { limit = { has_variable = gr_battle_tier var:gr_battle_tier = flag:major } change_variable = { name = gr_score add = 50 } }
 			else_if = { limit = { has_variable = gr_battle_tier var:gr_battle_tier = flag:significant } change_variable = { name = gr_score add = 25 } }
 
 
+			# Holdings and buildings
 			if = { limit = { has_variable = gr_holding_count } change_variable = { name = gr_score add = { value = var:gr_holding_count multiply = 50 } } }
 			if = { limit = { has_variable = gr_building_count } change_variable = { name = gr_score add = { value = var:gr_building_count multiply = 5 max = 150 } } }
 
 
+			# Monthly income tiers
 			if = { limit = { has_variable = gr_monthly_income var:gr_monthly_income >= 60 } change_variable = { name = gr_score add = 100 } }
 			else_if = { limit = { has_variable = gr_monthly_income var:gr_monthly_income >= 30 } change_variable = { name = gr_score add = 60 } }
 			else_if = { limit = { has_variable = gr_monthly_income var:gr_monthly_income >= 15 } change_variable = { name = gr_score add = 30 } }
 			else_if = { limit = { has_variable = gr_monthly_income var:gr_monthly_income >= 5 } change_variable = { name = gr_score add = 10 } }
 
 
+			# Capital dev growth
 			if = { limit = { has_variable = gr_capital_dev_growth var:gr_capital_dev_growth >= 1 }
 				change_variable = { name = gr_score add = { value = var:gr_capital_dev_growth multiply = 20 max = 200 } }
 			}
 
 
+			# Activity scores
 			if = { limit = { has_variable = gr_tour_count } change_variable = { name = gr_score add = { value = var:gr_tour_count multiply = 20 max = 60 } } }
 			if = { limit = { has_variable = gr_wedding_count } change_variable = { name = gr_score add = { value = var:gr_wedding_count multiply = 15 max = 45 } } }
 			if = { limit = { has_variable = gr_debate_count } change_variable = { name = gr_score add = { value = var:gr_debate_count multiply = 20 max = 60 } } }
@@ -687,15 +832,18 @@ gr_npc_obituary_data_effect = {
 			if = { limit = { has_variable = gr_chariot_count } change_variable = { name = gr_score add = { value = var:gr_chariot_count multiply = 20 max = 60 } } }
 
 
+			# Diplomacy score
 			if = { limit = { has_variable = gr_alliance_count } change_variable = { name = gr_score add = { value = var:gr_alliance_count multiply = 20 max = 100 } } }
 			if = { limit = { has_variable = gr_friend_count } change_variable = { name = gr_score add = { value = var:gr_friend_count multiply = 15 max = 75 } } }
 			if = { limit = { has_variable = gr_feast_count } change_variable = { name = gr_score add = { value = var:gr_feast_count multiply = 15 max = 75 } } }
 
 
+			# Martial
 			if = { limit = { has_variable = gr_tournament_count } change_variable = { name = gr_score add = { value = var:gr_tournament_count multiply = 25 max = 75 } } }
 			if = { limit = { has_variable = gr_hunt_count } change_variable = { name = gr_score add = { value = var:gr_hunt_count multiply = 15 max = 75 } } }
 
 
+			# Learning
 			if = { limit = { has_variable = gr_pilgrimage_count } change_variable = { name = gr_score add = { value = var:gr_pilgrimage_count multiply = 40 } } }
 			if = { limit = { has_variable = gr_university_attended } change_variable = { name = gr_score add = { value = var:gr_university_attended multiply = 40 } } }
 			if = { limit = { has_variable = gr_language_count } change_variable = { name = gr_score add = { value = var:gr_language_count multiply = 25 max = 100 } } }
@@ -703,20 +851,30 @@ gr_npc_obituary_data_effect = {
 			if = { limit = { has_variable = gr_university_built } change_variable = { name = gr_score add = { value = var:gr_university_built multiply = 75 } } }
 
 
+			# Intrigue
 			if = { limit = { has_variable = gr_murder_count } change_variable = { name = gr_score add = { value = var:gr_murder_count multiply = 30 max = 125 } } }
 			if = { limit = { has_variable = gr_kidnap_count } change_variable = { name = gr_score add = { value = var:gr_kidnap_count multiply = 25 max = 100 } } }
 			if = { limit = { has_variable = gr_torture_count } change_variable = { name = gr_score add = { value = var:gr_torture_count multiply = 15 max = 75 } } }
 			if = { limit = { has_variable = gr_execution_count } change_variable = { name = gr_score add = { value = var:gr_execution_count multiply = 10 max = 75 } } }
 			if = { limit = { has_variable = gr_hook_count } change_variable = { name = gr_score add = { value = var:gr_hook_count multiply = 10 max = 75 } } }
 
+			# Dread
 			if = { limit = { has_variable = gr_dread var:gr_dread >= 90 } change_variable = { name = gr_score add = 100 } }
 			else_if = { limit = { has_variable = gr_dread var:gr_dread >= 75 } change_variable = { name = gr_score add = 60 } }
 			else_if = { limit = { has_variable = gr_dread var:gr_dread >= 50 } change_variable = { name = gr_score add = 30 } }
 		}
 
 
+		# =============================================
+		# SECTION N.5: SCORE CATEGORY BREAKDOWN
+		# =============================================
+		# (For NPC obits, we compute a simplified category breakdown.
+		#  The foundation/warfare/stewardship/diplomacy/learning/intrigue
+		#  categories and top/second detection are needed for the obituary
+		#  closing section to work properly.)
 		scope:dead_npc = {
 
+			# Foundation
 			set_variable = { name = gr_score_foundation value = 0 }
 			change_variable = { name = gr_score_foundation add = { value = prestige_level multiply = 75 } }
 			change_variable = { name = gr_score_foundation add = { value = piety_level multiply = 75 } }
@@ -728,6 +886,7 @@ gr_npc_obituary_data_effect = {
 			change_variable = { name = gr_score_foundation add = { value = var:gr_lifestyle_count multiply = 50 } }
 
 
+			# Warfare
 			set_variable = { name = gr_score_warfare value = 0 }
 			if = { limit = { has_variable = gr_memory_created_duchy } change_variable = { name = gr_score_warfare add = 75 } }
 			if = { limit = { has_variable = gr_memory_created_kingdom } change_variable = { name = gr_score_warfare add = 150 } }
@@ -746,6 +905,7 @@ gr_npc_obituary_data_effect = {
 			if = { limit = { has_variable = gr_chariot_count } change_variable = { name = gr_score_warfare add = { value = var:gr_chariot_count multiply = 20 max = 60 } } }
 
 
+			# Stewardship
 			set_variable = { name = gr_score_stewardship value = 0 }
 			if = { limit = { has_variable = gr_holding_count } change_variable = { name = gr_score_stewardship add = { value = var:gr_holding_count multiply = 50 } } }
 			if = { limit = { has_variable = gr_building_count } change_variable = { name = gr_score_stewardship add = { value = var:gr_building_count multiply = 5 max = 150 } } }
@@ -758,6 +918,7 @@ gr_npc_obituary_data_effect = {
 			if = { limit = { has_variable = gr_inspection_count } change_variable = { name = gr_score_stewardship add = { value = var:gr_inspection_count multiply = 15 max = 45 } } }
 
 
+			# Diplomacy
 			set_variable = { name = gr_score_diplomacy value = 0 }
 			if = { limit = { has_variable = gr_alliance_count } change_variable = { name = gr_score_diplomacy add = { value = var:gr_alliance_count multiply = 20 max = 100 } } }
 			if = { limit = { has_variable = gr_friend_count } change_variable = { name = gr_score_diplomacy add = { value = var:gr_friend_count multiply = 15 max = 75 } } }
@@ -767,6 +928,7 @@ gr_npc_obituary_data_effect = {
 			if = { limit = { has_variable = gr_coronation_count } change_variable = { name = gr_score_diplomacy add = 25 } }
 
 
+			# Learning
 			set_variable = { name = gr_score_learning value = 0 }
 			if = { limit = { has_variable = gr_pilgrimage_count } change_variable = { name = gr_score_learning add = { value = var:gr_pilgrimage_count multiply = 40 } } }
 			if = { limit = { has_variable = gr_university_attended } change_variable = { name = gr_score_learning add = { value = var:gr_university_attended multiply = 40 } } }
@@ -777,6 +939,7 @@ gr_npc_obituary_data_effect = {
 			if = { limit = { has_variable = gr_university_built } change_variable = { name = gr_score_learning add = { value = var:gr_university_built multiply = 75 } } }
 
 
+			# Intrigue
 			set_variable = { name = gr_score_intrigue value = 0 }
 			if = { limit = { has_variable = gr_murder_count } change_variable = { name = gr_score_intrigue add = { value = var:gr_murder_count multiply = 30 max = 125 } } }
 			if = { limit = { has_variable = gr_kidnap_count } change_variable = { name = gr_score_intrigue add = { value = var:gr_kidnap_count multiply = 25 max = 100 } } }
@@ -789,6 +952,7 @@ gr_npc_obituary_data_effect = {
 			else_if = { limit = { has_variable = gr_dread var:gr_dread >= 50 } change_variable = { name = gr_score_intrigue add = 30 } }
 
 
+			# Top and second category determination
 			set_variable = { name = gr_score_top_val value = var:gr_score_foundation }
 			set_variable = { name = gr_score_top_cat value = flag:foundation }
 			set_variable = { name = gr_score_second_val value = 0 }
@@ -846,6 +1010,7 @@ gr_npc_obituary_data_effect = {
 			}
 
 
+			# Score tier
 			if = { limit = { var:gr_score >= 1200 } set_variable = { name = gr_score_tier value = flag:legendary } }
 			else_if = { limit = { var:gr_score >= 800 } set_variable = { name = gr_score_tier value = flag:magnificent } }
 			else_if = { limit = { var:gr_score >= 500 } set_variable = { name = gr_score_tier value = flag:distinguished } }
@@ -854,6 +1019,10 @@ gr_npc_obituary_data_effect = {
 		}
 
 
+		# =============================================
+		# SECTION Q: CHRONICLE STORAGE
+		# Store obit summary on dead NPC, create page
+		# =============================================
 		scope:dead_npc = {
 			set_variable = { name = gr_obit_score value = var:gr_score }
 			set_variable = { name = gr_obit_score_tier value = var:gr_score_tier }

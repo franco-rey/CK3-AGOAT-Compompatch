@@ -1,0 +1,99 @@
+﻿namespace = rehilt_gilded
+
+
+################################
+# Rehilt Gilded
+################################
+
+# rehilt rusted hilt of Gilded
+rehilt_gilded.0001 = {
+	type = character_event
+	title = rehilt_gilded.0001.t
+
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					exists = scope:gilded_artifact_rehilt
+				}
+				desc = rehilt_gilded.0001_desc
+			}
+			desc = rehilt_gilded.0002_desc
+		}
+	}
+	theme = stewardship
+	
+	override_background = {
+		reference = market
+	}
+
+	left_portrait = {
+		character = root
+		triggered_animation = {
+			trigger = {
+				exists = scope:gilded_artifact_rehilt
+			}
+			animation = marshal_sword
+		}
+		triggered_animation = {
+			trigger = {
+				exists = scope:gilded_artifact_rehilt
+			}
+			animation = marshal_sword
+		}
+		animation = idle
+	}
+
+	artifact = { # To display the artifact in the event-window
+		target = scope:gilded_artifact_rehilt
+		position = lower_center_portrait
+	}	
+
+	
+	immediate = {
+		random_character_artifact = {
+			limit = { has_artifact_modifier = gilded_modifier	}
+			save_scope_as = gilded_artifact_rehilt
+		}
+		if = {
+			limit = {
+				scope:gilded_artifact_rehilt = {
+					has_variable = rehilted
+				}
+			}
+			scope:gilded_artifact_rehilt = { 
+				reforge_artifact = {
+					type = sword
+					visuals = gilded_visuals
+				}
+				remove_variable = rehilted
+			}
+		}
+		else = {
+			scope:gilded_artifact_rehilt = {
+				save_scope_as = gilded_artifact_rehilt
+
+				reforge_artifact = {
+					type = sword
+					visuals = gilded_rehilt_visuals
+				}
+				set_variable = {
+					name = rehilted
+					value = yes
+				}
+			}
+		}
+	} 
+	
+	option = {
+		name = rehilt_gilded.0001.a
+		if = {
+			limit = {
+				scope:gilded_artifact_rehilt = {
+					has_variable = rehilted	
+				}
+			}
+			add_prestige = 300
+		}
+	}
+}

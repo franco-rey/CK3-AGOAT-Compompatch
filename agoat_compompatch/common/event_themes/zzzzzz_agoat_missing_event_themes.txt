@@ -1,0 +1,14 @@
+﻿rivalry = {
+	icon = {
+		reference = "gfx/interface/icons/event_types/type_relation_unfriendly.dds"
+	}
+	header_background = {
+		reference = "gfx/interface/window_event/event_header_blue.dds"
+	}
+	sound = {
+		reference = "event:/SFX/Events/Themes/sfx_event_theme_type_relation_unfriendly"
+	}
+	background = {
+		reference = throne_room
+	}
+}

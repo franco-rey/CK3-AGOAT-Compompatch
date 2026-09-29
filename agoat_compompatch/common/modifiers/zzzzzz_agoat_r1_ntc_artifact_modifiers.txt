@@ -1,0 +1,30 @@
+﻿roland_arryn_crown_modifier = {
+	icon = grandeur_positive
+	monthly_prestige = 0.1
+	martial = 1
+	mountains_construction_gold_cost = -0.02
+	build_speed = 0.02
+	build_gold_cost = -0.02
+	valeman_main_opinion = 5
+	monthly_dynasty_prestige_mult = 0.01
+}
+
+sharra_arryn_crown_modifier = {
+	icon = grandeur_positive
+	monthly_prestige = 0.1
+	diplomacy = 2
+	attraction_opinion = 5
+	knight_effectiveness_mult = 0.1
+	valeman_main_opinion = 5
+	monthly_dynasty_prestige_mult = 0.01
+}
+
+crown_of_the_mountain_and_vale_modifier = {
+	icon = grandeur_positive
+	monthly_prestige = 0.1
+	diplomacy = 1
+	defender_advantage = 2
+	knight_effectiveness_mult = 0.1
+	valeman_main_opinion = 5
+	monthly_dynasty_prestige_mult = 0.01
+}

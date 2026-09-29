@@ -1,0 +1,161 @@
+﻿agot_create_artifact_robertI_crown_effect = {
+
+	# Get the character the artifact is being made for.
+	$OWNER$ = { save_scope_as = owner }
+	$CREATOR$ = { save_scope_as = creator }
+
+	set_artifact_rarity_illustrious = yes
+
+
+	# Create the artifact
+	if = {
+		limit = {
+			has_game_rule = asoiaf_new_clothes_stormlands_rule_on
+		}
+		create_artifact = {
+			name = robertI_crown_name
+			description = asoiaf_robert_I_crown_description #AGOT+ changed
+			type = helmet
+			visuals = asoiaf_robert_I_crown_visuals #AGOT+ changed
+			wealth = scope:wealth
+			quality = scope:quality
+			template = robertI_crown_template
+			modifier = robertI_crown_modifier
+			save_scope_as = newly_created_artifact
+			creator = scope:creator
+			decaying = no
+		}
+	}
+	else = {
+		create_artifact = {
+			name = robertI_crown_name
+			description = robertI_crown_description
+			type = helmet
+			visuals = robertI_crown_visuals
+			wealth = scope:wealth
+			quality = scope:quality
+			template = robertI_crown_template
+			modifier = robertI_crown_modifier
+			save_scope_as = newly_created_artifact
+			creator = scope:creator
+			decaying = no
+		}
+	}
+	scope:newly_created_artifact ?= {
+		set_variable = { name = robertI_crown_artifact value = yes }
+		set_variable = { name = historical_unique_artifact value = yes }
+		if = {
+			limit = {
+				scope:owner = { can_equip_artifact = prev }
+			}
+			equip_artifact_to_owner_replace = yes
+		}
+	}
+}
+
+agot_create_artifact_renly_crown_effect = {
+
+	# Get the character the artifact is being made for.
+	$OWNER$ = { save_scope_as = owner }
+	$CREATOR$ = { save_scope_as = creator }
+
+	set_artifact_rarity_illustrious = yes
+
+
+	# Create the artifact
+	if = {
+		limit = {
+			has_game_rule = asoiaf_new_clothes_stormlands_rule_on
+		}
+		create_artifact = {
+			name = renly_crown_name
+			description = asoiaf_renly_crown_description #AGOT+ replaced
+			type = helmet
+			visuals = asoiaf_renly_crown_visuals #AGOT+ replaced
+			wealth = scope:wealth
+			quality = scope:quality
+			template = renly_crown_template
+			modifier = renly_crown_modifier
+			save_scope_as = newly_created_artifact
+			creator = scope:creator
+			decaying = no
+		}
+	}
+	else = {
+		create_artifact = {
+			name = renly_crown_name
+			description = renly_crown_description
+			type = helmet
+			visuals = renly_crown_visuals
+			wealth = scope:wealth
+			quality = scope:quality
+			template = renly_crown_template
+			modifier = renly_crown_modifier
+			save_scope_as = newly_created_artifact
+			creator = scope:creator
+			decaying = no
+		}
+	}
+
+	scope:newly_created_artifact ?= {
+		set_variable = { name = renly_crown_artifact value = yes }
+		set_variable = { name = historical_unique_artifact value = yes }
+		equip_artifact_to_owner_replace = yes
+	}
+}
+
+agot_create_artifact_joffreyI_crown_effect = {
+
+	# Get the character the artifact is being made for.
+	$OWNER$ = { save_scope_as = owner }
+	$CREATOR$ = { save_scope_as = creator }
+
+	set_artifact_rarity_illustrious = yes
+
+
+	# Create the artifact
+	if = {
+		limit = {
+			has_game_rule = asoiaf_new_clothes_crownlands_rule_on
+		}
+		create_artifact = {
+			name = joffreyI_crown_name
+			description = asoiaf_joffrey_I_crown_description #AGOT+ replaced
+			type = helmet
+			visuals = asoiaf_joffrey_I_crown_visuals #AGOT+ replaced
+			wealth = scope:wealth
+			quality = scope:quality
+			template = joffreyI_crown_template
+			modifier = joffreyI_crown_modifier
+			save_scope_as = newly_created_artifact
+			creator = scope:creator
+			decaying = no
+		}
+	}
+	else = {
+		create_artifact = {
+			name = joffreyI_crown_name
+			description = joffreyI_crown_description
+			type = helmet
+			visuals = joffreyI_crown_visuals
+			wealth = scope:wealth
+			quality = scope:quality
+			template = joffreyI_crown_template
+			modifier = joffreyI_crown_modifier
+			save_scope_as = newly_created_artifact
+			creator = scope:creator
+			decaying = no
+		}
+	}
+
+	scope:newly_created_artifact = {
+		set_variable = { name = joffreyI_crown_artifact value = yes }
+		set_variable = { name = historical_unique_artifact value = yes }
+		equip_artifact_to_owner_replace = yes
+	}
+
+	if = {
+		limit = { exists = house:house_BaratheonKL }
+		house:house_BaratheonKL = { add_house_artifact_claim = scope:newly_created_artifact }
+	}
+}

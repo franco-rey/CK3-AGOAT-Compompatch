@@ -1,0 +1,36 @@
+﻿raid_base_capture_chance = {
+	value = 20
+
+	if = {
+		limit = { exists = root.army_commander }
+		if = {
+			limit = {
+				OR = {
+					is_courtier_of = root.army_commander
+					is_courtier_of = root.army_commander.liege
+					any_former_spouse = { this = root.army_commander }
+					any_former_spouse = { this = root.army_commander.liege }
+				}
+			}
+			add = 20
+		}
+		if = {
+			limit = { root.army_commander = { has_trait = viking } }
+			add = 5
+		}
+		if = {
+			limit = {
+				exists = root.army_commander.dynasty
+				root.army_commander.dynasty = { has_dynasty_perk = hth_fp1_pillage_legacy_2 }
+			}
+			add = 25
+		}
+		if = {
+			limit = {
+				exists = root.army_commander.dynasty
+				root.army_commander.dynasty = { has_dynasty_perk = fp1_pillage_legacy_4 }
+			}
+			add = 25
+		}
+	}
+}

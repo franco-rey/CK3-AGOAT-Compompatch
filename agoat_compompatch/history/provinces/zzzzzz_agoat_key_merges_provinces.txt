@@ -1,0 +1,9 @@
+﻿7448 = {
+	special_building_slot = agot_triarchy_council_01
+}
+7854 = {
+	special_building = agot_ar_kon_barracks_01
+}
+2723 = {
+	special_building = pyke_04
+}

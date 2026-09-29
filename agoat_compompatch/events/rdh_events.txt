@@ -1,0 +1,78 @@
+﻿namespace = revive_dead_house
+
+revive_dead_house.01 = {
+	type = character_event
+	title = revive_dead_house.01.t
+	desc = revive_dead_house.01.desc
+	theme = dynasty
+	left_portrait = {
+		character = root
+		animation = shock
+	}
+	lower_left_portrait = {
+		character = scope:gui_founder
+	}
+
+	option = {
+		name = revive_dead_house.01.a
+
+		# 你好
+		save_scope_value_as = { name = rdh_renown_loss value = rdh_value_renown_loss }
+		dynasty = { add_dynasty_prestige = scope:rdh_renown_loss }
+
+		trigger_event = {
+			id = revive_dead_house.02
+		}
+	}
+
+	option = {
+		name = revive_dead_house.01.b
+		if = {
+			limit = {
+				debug_only = no
+				has_character_flag = found_members_from_dead_house_recently
+			}
+			remove_character_flag = found_members_from_dead_house_recently
+		}
+	}
+}
+
+revive_dead_house.02 = {
+	type = character_event
+	title = revive_dead_house.02.t
+	desc = revive_dead_house.02.desc
+	theme = dynasty
+	
+	immediate = {
+		create_character = {
+			save_scope_as = new_dynasty_member
+			template = rdh_template_dead_dynasty_house_member_character
+			faith = scope:gui_founder.faith
+			culture = scope:gui_founder.culture
+			employer = root
+			dynasty_house = scope:gui_founder.house
+		}
+		
+		# if = {
+		# 	limit = {
+		# 		scope:gui_founder = {
+		# 			has_trait = saint
+		# 		}
+		# 	}
+		# 	scope:new_dynasty_member = { add_trait = saint }
+		# }
+	}
+
+	left_portrait = {
+		character = root
+		animation = happiness
+	}
+	right_portrait = {
+		character = scope:new_dynasty_member
+		animation = personality_honorable
+	}
+
+	option = {
+		name = revive_dead_house.02.a
+	}
+}

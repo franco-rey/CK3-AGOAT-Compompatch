@@ -160,9 +160,12 @@ zzz_great_councils_event.0002 = {
 							}
 						}
 						add_to_list = zzz_great_councils_candidates
-						set_variable = {
-							name = zzz_great_councils_votes
-							value = 0
+						if = {
+							limit = { NOT = { has_variable = zzz_great_councils_votes } }
+							set_variable = {
+								name = zzz_great_councils_votes
+								value = 0
+							}
 						}
 					}
 				}
@@ -471,7 +474,7 @@ zzz_great_councils_event.0003 = {
 									OR = {
 										father = { is_in_list = zzz_great_councils_past_emps }
 										father = { any_parent = { is_in_list = zzz_great_councils_past_emps } }
-										father.father = { any_parent = { is_in_list = zzz_great_councils_past_emps } }
+										father ?= { father ?= { any_parent = { is_in_list = zzz_great_councils_past_emps } } }
 									}
 								}
 								AND = {
@@ -493,7 +496,7 @@ zzz_great_councils_event.0003 = {
 									OR = {
 										mother = { is_in_list = zzz_great_councils_past_emps }
 										mother = { any_parent = { is_in_list = zzz_great_councils_past_emps } }
-										mother.mother = { any_parent = { is_in_list = zzz_great_councils_past_emps } }
+										mother ?= { mother ?= { any_parent = { is_in_list = zzz_great_councils_past_emps } } }
 									}
 								}
 							}
@@ -522,7 +525,7 @@ zzz_great_councils_event.0003 = {
 									OR = {
 										father = { is_in_list = zzz_great_councils_past_emps }
 										father = { any_parent = { is_in_list = zzz_great_councils_past_emps } }
-										father.father = { any_parent = { is_in_list = zzz_great_councils_past_emps } }
+										father ?= { father ?= { any_parent = { is_in_list = zzz_great_councils_past_emps } } }
 									}
 								}
 								AND = {
@@ -544,7 +547,7 @@ zzz_great_councils_event.0003 = {
 									OR = {
 										mother = { is_in_list = zzz_great_councils_past_emps }
 										mother = { any_parent = { is_in_list = zzz_great_councils_past_emps } }
-										mother.mother = { any_parent = { is_in_list = zzz_great_councils_past_emps } }
+										mother ?= { mother ?= { any_parent = { is_in_list = zzz_great_councils_past_emps } } }
 									}
 								}
 							}
@@ -1705,11 +1708,22 @@ zzz_great_councils_event.0003 = {
 		}
 		if = {
 			limit = {
+				NOT = { any_player = { is_in_list = zzz_great_councils_electors } }
+			}
+			add_character_flag = zzz_great_councils_voted
+		}
+		if = {
+			limit = {
 				NOR = {
 					any_player = { is_in_list = zzz_great_councils_electors }
 					any_in_list = {
 						list = zzz_great_councils_electors
 						has_character_flag = zzz_great_councils_four_fired
+					}
+					any_in_list = {
+						list = zzz_great_councils_electors
+						is_alive = yes
+						NOT = { has_character_flag = zzz_great_councils_voted }
 					}
 				}
 			}
@@ -1988,6 +2002,14 @@ zzz_great_councils_event.0004 = {
 				is_alive = yes
 			}
 			remove_character_flag = zzz_great_councils_four_fired
+		}
+		every_in_list = {
+			list = zzz_great_councils_electors
+			limit = {
+				has_character_flag = zzz_great_councils_voted
+				is_alive = yes
+			}
+			remove_character_flag = zzz_great_councils_voted
 		}
 	}
 }

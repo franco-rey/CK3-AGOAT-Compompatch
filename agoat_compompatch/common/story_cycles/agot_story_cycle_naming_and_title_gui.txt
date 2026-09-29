@@ -20,14 +20,7 @@
 		days = 30
 		triggered_effect = {
 			trigger = {
-				OR = {
-					NOT = { exists = var:scoped_royal }
-					NOT = { exists = var:scoped_title }
-					AND = {
-						exists = var:scoped_royal
-						var:scoped_royal = { is_alive = no }
-					}
-				}
+				NOT = { exists = var:scoped_title }
 			}
 			effect = {
 				scope:story = { end_story = yes }

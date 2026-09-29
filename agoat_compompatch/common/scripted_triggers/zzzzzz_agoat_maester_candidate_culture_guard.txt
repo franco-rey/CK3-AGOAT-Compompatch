@@ -1,8 +1,5 @@
-﻿# AGOAT: the yearly Citadel sweep samples special characters that may not have
-# a culture. Reject those before entering the culture scope.
-
-agot_is_maester_candidate = {
-	# Trigger for random adult maester candidates
+﻿agot_is_maester_candidate = {
+	#Trigger for random adult maester candidates
 	exists = culture
 	culture = {
 		has_innovation = innovation_maesters

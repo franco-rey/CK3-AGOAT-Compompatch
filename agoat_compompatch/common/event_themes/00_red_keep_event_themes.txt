@@ -1,0 +1,16 @@
+﻿@generic_event_theme_sound = "event:/SFX/Events/Themes/sfx_event_theme_type_generic"
+
+rk_red_keep = {
+	icon = {
+		reference = "gfx/interface/icons/event_types/Red_Keep_Icon.dds"
+	}
+	header_background = {
+		reference = "gfx/interface/window_event/event_header_blue.dds"
+	}
+	sound = {
+		reference = @generic_event_theme_sound
+	}
+	background = { # Landed Ruler
+		reference = throne_room
+	}
+}

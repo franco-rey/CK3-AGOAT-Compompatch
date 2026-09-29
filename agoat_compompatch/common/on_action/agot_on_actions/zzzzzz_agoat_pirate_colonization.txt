@@ -1,0 +1,38 @@
+﻿agot_pirate_colonization = {
+	effect = {
+		every_county_in_region = {
+			region = historical_pirate_region
+			if = {
+				limit = {
+					holder = { government_has_flag = government_is_wilderness }
+				}
+				random = {
+					chance = 10
+
+					save_scope_as = wilderness_county
+					holder = {
+						trigger_event = {
+							id = agot_pirate_events.9100
+							days = { 1 364 }
+						}
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					holder = { is_ai = yes }
+				}
+				random = {
+					chance = 10
+
+					holder = {
+						trigger_event = {
+							id = agoat_pirate_colonization.9200
+							days = { 1 364 }
+						}
+					}
+				}
+			}
+		}
+	}
+}

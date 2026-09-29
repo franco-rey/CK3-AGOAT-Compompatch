@@ -1,0 +1,5 @@
+﻿l_english:
+ agoat_guard_book_parents_both:0 "[AGOTGetBirthOrder(ROOT.Char)] [ROOT.Char.Custom('GetDaughterSon')|l] of [ROOT.Char.GetFather.GetNameNoTooltip] and [ROOT.Char.GetMother.GetNameNoTooltip]. "
+ agoat_guard_book_parents_father:0 "[AGOTGetBirthOrder(ROOT.Char)] [ROOT.Char.Custom('GetDaughterSon')|l] of [ROOT.Char.GetFather.GetNameNoTooltip]. "
+ agoat_guard_book_parents_mother:0 "[AGOTGetBirthOrder(ROOT.Char)] [ROOT.Char.Custom('GetDaughterSon')|l] of [ROOT.Char.GetMother.GetNameNoTooltip]. "
+ agoat_guard_book_parents_none:0 ""

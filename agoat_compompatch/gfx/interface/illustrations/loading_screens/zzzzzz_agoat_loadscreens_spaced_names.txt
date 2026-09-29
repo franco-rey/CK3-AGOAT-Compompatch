@@ -1,0 +1,6 @@
+﻿"Crows Eye" = { priority = 1 }
+"Dragonstone 2" = { priority = 1 }
+"Field of Fire" = { priority = 1 }
+"Jaimes Charge" = { priority = 1 }
+"Red Keep" = { priority = 1 }
+"Sons of the Dragon" = { priority = 1 }

@@ -1,0 +1,219 @@
+﻿create_artifact_just_rule_effect = {
+	# Get the character the artifact is being made for.
+	$OWNER$ = {	save_scope_as = owner }
+
+	set_artifact_rarity_illustrious = yes
+
+	create_artifact = {
+		name = just_rule_name
+		description = just_rule_description
+		type = sword
+		visuals = just_rule_visuals
+		wealth = scope:wealth
+		quality = scope:quality
+		template = just_rule_sword_template
+		history = {
+			type = created_before_history
+			date = 7900.1.1
+		}
+		modifier = just_rule_modifier
+		save_scope_as = newly_created_artifact
+		decaying = no
+	}
+	scope:newly_created_artifact ?= {
+		equip_artifact_to_owner_replace = yes
+		set_variable = {
+			name = valyrian_steel
+			value = yes
+		}
+		set_variable = {
+			name = historical_unique_artifact
+			value = yes
+		}
+		set_variable = {
+			name = traditional_house_owner
+			value = dynasty:dynn_Blackwood.dynasty_founder.house
+			value = dynasty:dynn_Bracken.dynasty_founder.house
+		}
+		agot_add_artifact_history = {
+			ARTIFACT = this
+			TYPE = inherited
+			DATE = 7897.1.1
+			RECIPIENT = character:Bracken_33
+		}
+		agot_add_artifact_history = {
+			ARTIFACT = this
+			TYPE = inherited
+			DATE = 7905.1.1
+			RECIPIENT = character:Bracken_34
+		}
+		agot_add_artifact_history = {
+			ARTIFACT = this
+			TYPE = conquest
+			DATE = 7933.6.1
+			RECIPIENT = character:Blackwood_38
+		}
+		agot_add_artifact_history = {
+			ARTIFACT = this
+			TYPE = inherited
+			DATE = 7951.1.1
+			RECIPIENT = character:Blackwood_36
+		}
+		agot_add_artifact_history = {
+			ARTIFACT = this
+			TYPE = stolen
+			DATE = 7953.1.1
+			RECIPIENT = character:Bracken_37
+		}
+		agot_add_artifact_history = {
+			ARTIFACT = this
+			TYPE = inherited
+			DATE = 7986.1.1
+			RECIPIENT = character:Bracken_38
+		}
+		agot_add_artifact_history = {
+			ARTIFACT = this
+			TYPE = stolen
+			DATE = 7997.1.1
+			RECIPIENT = character:Blackwood_45
+		}
+		agot_add_artifact_history = {
+			ARTIFACT = this
+			TYPE = inherited
+			DATE = 8006.1.1
+			RECIPIENT = character:Blackwood_48
+		}
+		agot_add_artifact_history = {
+			ARTIFACT = this
+			TYPE = stolen
+			DATE = 8015.1.1
+			RECIPIENT = character:Bracken_40
+		}
+		agot_add_artifact_history = {
+			ARTIFACT = this
+			TYPE = conquest
+			DATE = 8021.1.1
+			RECIPIENT = character:Blackwood_48
+		}
+		agot_add_artifact_history = {
+			ARTIFACT = this
+			TYPE = inherited
+			DATE = 8040.1.1
+			RECIPIENT = character:Blackwood_50
+		}
+		agot_add_artifact_history = {
+			ARTIFACT = this
+			TYPE = conquest
+			DATE = 8049.1.1
+			RECIPIENT = character:Bracken_51
+		}
+		agot_add_artifact_history = {
+			ARTIFACT = this
+			TYPE = stolen
+			DATE = 8060.1.1
+			RECIPIENT = character:Blackwood_53
+		}
+		agot_add_artifact_history = {
+			ARTIFACT = this
+			TYPE = stolen
+			DATE = 8069.1.1
+			RECIPIENT = character:Bracken_53
+		}
+		agot_add_artifact_history = {
+			ARTIFACT = this
+			TYPE = stolen
+			DATE = 8090.1.1
+			RECIPIENT = character:Blackwood_56
+		}
+		agot_add_artifact_history = {
+			ARTIFACT = this
+			TYPE = conquest
+			DATE = 8105.1.1
+			RECIPIENT = character:Bracken_55
+		}
+		agot_add_artifact_history = {
+			ARTIFACT = this
+			TYPE = given
+			DATE = 8112.1.1
+			RECIPIENT = character:Bracken_56
+		}
+		agot_add_artifact_history = {
+			ARTIFACT = this
+			TYPE = conquest
+			DATE = 8129.4.23
+			RECIPIENT = character:Blackwood_63
+		}
+		agot_add_artifact_history = {
+			ARTIFACT = this
+			TYPE = given
+			DATE = 8129.4.24
+			RECIPIENT = character:Blackwood_74
+		}
+		agot_add_artifact_history = {
+			ARTIFACT = this
+			TYPE = inherited
+			DATE = 8180.1.1
+			RECIPIENT = character:Blackwood_78
+		}
+		agot_add_artifact_history = {
+			ARTIFACT = this
+			TYPE = stolen
+			DATE = 8183.1.1
+			RECIPIENT = character:Bracken_77
+		}
+		agot_add_artifact_history = {
+			ARTIFACT = this
+			TYPE = given
+			DATE = 8200.1.1
+			RECIPIENT = character:Bracken_79
+		}
+		agot_add_artifact_history = {
+			ARTIFACT = this
+			TYPE = conquest
+			DATE = 8210.1.1
+			RECIPIENT = character:Blackwood_82
+		}
+		agot_add_artifact_history = {
+			ARTIFACT = this
+			TYPE = conquest
+			DATE = 8225.1.1
+			RECIPIENT = character:Bracken_79
+		}
+		agot_add_artifact_history = {
+			ARTIFACT = this
+			TYPE = conquest
+			DATE = 8235.1.1
+			RECIPIENT = character:Blackwood_83
+		}
+		agot_add_artifact_history = {
+			ARTIFACT = this
+			TYPE = inherited
+			DATE = 8258.1.1
+			RECIPIENT = character:Blackwood_1
+		}
+		agot_add_artifact_history = {
+			ARTIFACT = this
+			TYPE = conquest
+			DATE = 8260.1.1
+			RECIPIENT = character:Bracken_1
+		}
+		agot_add_artifact_history = {
+			ARTIFACT = this
+			TYPE = stolen
+			DATE = 8265.1.1
+			RECIPIENT = character:Blackwood_1
+		}
+		agot_add_artifact_history = {
+			ARTIFACT = this
+			TYPE = stolen
+			DATE = 8271.1.1
+			RECIPIENT = character:Bracken_1
+		}
+		agot_add_artifact_history = {
+			ARTIFACT = this
+			TYPE = inherited
+			DATE = 8281.1.1
+			RECIPIENT = character:Bracken_3
+		}
+	}
+}

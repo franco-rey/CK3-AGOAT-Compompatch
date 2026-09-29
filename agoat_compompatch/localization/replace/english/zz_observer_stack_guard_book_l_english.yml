@@ -1,3 +1,10 @@
 ﻿l_english:
 
   agot_guard_order_book_page_join_swords_of_braavos:0 "[selected_guard.GetNameNoTooltip] entered the service of [guard_book_holder.GetNameNoTooltip] as one of the Swords of Braavos."
+  agot_guard_order_book_page_join_battleguard:0 "[selected_guard.Custom('AgoatGuardBookParents')]Swore the grey cloak of the Battleguard in [selected_guard.GetHerHis] [selected_guard.GetAge][selected_guard.Custom('GetAgeOrdinal')] year under [guard_book_holder.GetNameNoTooltip]."
+  agot_guard_order_book_page_join_rainbow:0 "[selected_guard.Custom('AgoatGuardBookParents')]Swore the many-coloured cloak of the Rainbow Guard in [selected_guard.GetHerHis] [selected_guard.GetAge][selected_guard.Custom('GetAgeOrdinal')] year under [guard_book_holder.GetNameNoTooltip]."
+  agot_guard_order_book_page_join_winged:0 "[selected_guard.Custom('AgoatGuardBookParents')]Named among the Winged Knights in [selected_guard.GetHerHis] [selected_guard.GetAge][selected_guard.Custom('GetAgeOrdinal')] year under [guard_book_holder.GetNameNoTooltip]."
+  agot_guard_order_book_page_join_kingsmen:0 "[selected_guard.Custom('AgoatGuardBookParents')]Swore the red cloak of the Kingsmen in [selected_guard.GetHerHis] [selected_guard.GetAge][selected_guard.Custom('GetAgeOrdinal')] year under [guard_book_holder.GetNameNoTooltip]."
+  agot_guard_order_book_page_join_queensguard:0 "[selected_guard.Custom('AgoatGuardBookParents')]Swore the black cloak of the Queensguard in [selected_guard.GetHerHis] [selected_guard.GetAge][selected_guard.Custom('GetAgeOrdinal')] year under [guard_book_holder.GetNameNoTooltip]."
+  agot_guard_order_book_page_join_greenhand:0 "[selected_guard.Custom('AgoatGuardBookParents')]Named a finger of the Greenhand in [selected_guard.GetHerHis] [selected_guard.GetAge][selected_guard.Custom('GetAgeOrdinal')] year under [guard_book_holder.GetNameNoTooltip]."
+  agot_guard_order_book_page_join_tully_guard:0 "[selected_guard.Custom('AgoatGuardBookParents')]Sworn into the Tully Guard in [selected_guard.GetHerHis] [selected_guard.GetAge][selected_guard.Custom('GetAgeOrdinal')] year under [guard_book_holder.GetNameNoTooltip]."

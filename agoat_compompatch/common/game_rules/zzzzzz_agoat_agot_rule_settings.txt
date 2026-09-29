@@ -1,0 +1,362 @@
+﻿other_epidemic_frequency = {
+	
+	categories = {
+		vanilla difficulty health
+	}
+	
+	#AGOT Modified
+	#default = epidemic_frequency_normal
+	default = epidemic_frequency_very_rare
+
+	epidemic_frequency_normal = {}
+	epidemic_frequency_often = {}
+	epidemic_frequency_very_often = {}
+	epidemic_frequency_doomsday = {}
+	epidemic_frequency_rare = {}
+	epidemic_frequency_very_rare = {}
+	#AGOT Added
+	epidemic_frequency_very_very_rare = {}
+	epidemic_frequency_disabled = {}
+}
+
+adoption = {
+	
+	categories = {
+		vanilla game_modes
+	}
+	
+	#AGOT Modified
+	# default = default_adoption
+	default = no_adoption
+
+	no_adoption = {
+
+	}
+
+	default_adoption = {
+
+	}
+
+	adoption_always_allowed = {
+		flag = blocks_achievements
+	}
+}
+
+hybrid_culture_ai_frequency = {
+	
+	categories = {
+		vanilla ai culture
+	}
+	
+	#AGOT Modified
+	#default = default_hybrid_culture_ai_frequency
+	default = none_hybrid_culture_ai_frequency
+	#dlc = "The Royal Court"
+
+	default_hybrid_culture_ai_frequency = {
+
+	}
+
+	less_common_hybrid_culture_ai_frequency = {
+
+	}
+
+	none_hybrid_culture_ai_frequency = {
+
+	}
+}
+
+divergent_culture_ai_frequency = {
+	
+	categories = {
+		vanilla ai culture
+	}
+	
+	#AGOT Modified
+	# default = default_divergent_culture_ai_frequency
+	default = none_divergent_culture_ai_frequency
+	#dlc = "The Royal Court"
+
+	default_divergent_culture_ai_frequency = {
+
+	}
+
+	less_common_divergent_culture_ai_frequency = {
+
+	}
+
+	none_divergent_culture_ai_frequency = {
+
+	}
+
+	relaxed_divergent_culture_ai_frequency = {
+
+	}
+}
+
+culture_conversion_speed = {
+	
+	categories = {
+		vanilla tweaks historicity culture
+	}
+	
+	#AGOT Modified
+	# default = default_culture_conversion_speed
+	default = significantly_slower_culture_conversion_speed
+
+	default_culture_conversion_speed = {
+	
+	}
+	
+	faster_culture_conversion_speed = {
+		flag = blocks_achievements
+	}
+	
+	significantly_faster_culture_conversion_speed = {
+		flag = blocks_achievements
+	}
+	
+	significantly_slower_culture_conversion_speed = {
+	
+	}
+	
+	slower_culture_conversion_speed = {
+	
+	}
+}
+
+faith_conversion_speed = {
+	
+	categories = {
+		vanilla tweaks historicity faith
+	}
+	
+	#AGOT Modified
+	# default = default_faith_conversion_speed
+	default = significantly_slower_faith_conversion_speed
+
+	default_faith_conversion_speed = {
+	
+	}
+	
+	faster_faith_conversion_speed = {
+		flag = blocks_achievements
+	}
+	
+	significantly_faster_faith_conversion_speed = {
+		flag = blocks_achievements
+	}
+	
+	significantly_slower_faith_conversion_speed = {
+	
+	}
+	
+	slower_faith_conversion_speed = {
+	
+	}
+}
+
+gender_equality = {
+	
+	categories = {
+		vanilla game_modes
+	}
+	
+	default = default_gender_equality
+
+	default_gender_equality = {
+		flag = GG_cannot_change_rule
+	}
+	
+	lenient_gender_equality = {
+		flag = GG_cannot_change_rule
+	}
+
+	full_gender_equality = {
+		flag = blocks_achievements
+		flag = GG_cannot_change_rule
+	}
+
+	inversed_gender_equality = {
+		flag = GG_cannot_change_rule
+	}
+}
+
+domain_limit_tweaks = {
+	
+	categories = {
+		vanilla difficulty tweaks
+	}
+	
+	default = domain_limit_default
+
+	domain_limit_default = {
+	
+	}
+
+	domain_limit_plus_one = {
+		apply_modifier = all:domain_limit_plus_one
+	}
+
+	domain_limit_plus_two = {
+		apply_modifier = all:domain_limit_plus_two
+	}
+
+	domain_limit_plus_three = {
+		apply_modifier = all:domain_limit_plus_three
+	}
+
+	domain_limit_minus_one = {
+		apply_modifier = all:domain_limit_minus_one
+	}
+
+	domain_limit_minus_two = {
+		apply_modifier = all:domain_limit_minus_two
+	}
+
+	domain_limit_minus_three = {
+		apply_modifier = all:domain_limit_minus_three
+	}
+
+	domain_limit_minus_one_player = {
+		apply_modifier = player:domain_limit_minus_one
+	}
+
+	domain_limit_minus_two_player = {
+		apply_modifier = player:domain_limit_minus_two
+	}
+
+	domain_limit_minus_three_player = {
+		apply_modifier = player:domain_limit_minus_three
+	}
+
+	domain_limit_plus_one_player = {
+		apply_modifier = player:domain_limit_plus_one
+		flag = blocks_achievements
+	}
+
+	domain_limit_plus_two_player = {
+		apply_modifier = player:domain_limit_plus_two
+		flag = blocks_achievements
+	}
+
+	domain_limit_plus_three_player = {
+		apply_modifier = player:domain_limit_plus_three
+		flag = blocks_achievements
+	}
+}
+
+conquerors_frequency = {
+	categories = {
+		difficulty
+		ai
+	}
+	default = many_conquerors_frequency
+	default_conquerors_frequency = {
+	}
+	no_conquerors_frequency = {
+	}
+	few_conquerors_frequency = {
+	}
+	very_few_conquerors_frequency = {
+	}
+	many_conquerors_frequency = {
+	}
+	strong_default_conquerors_frequency = {
+
+	}
+	strong_few_conquerors_frequency = {
+
+	}
+	strong_very_few_conquerors_frequency = {
+
+	}
+	strong_many_conquerors_frequency = {
+
+	}
+}
+
+coronation_laws = {
+	categories = { difficulty tweaks }
+	default = coronation_laws_on
+
+	coronation_laws_on = {}
+	coronation_laws_no_imperial_uncrowned = {}
+	coronation_laws_off = {}
+}
+
+easteregg_characters = {
+
+	categories = {
+		historicity
+	}
+
+	default = default_easteregg_characters
+
+	default_easteregg_characters = {
+
+	}
+
+	no_easteregg_characters = {
+
+	}
+}
+
+elderly_health = {
+
+	categories = {
+		difficulty health
+	}
+
+	default = default_elderly_health
+
+	default_elderly_health = {
+
+	}
+
+	infirm_only_elderly_health = {
+
+	}
+
+	off_elderly_health = {
+		flag = blocks_achievements
+	}
+}
+
+natural_disaster_earthquakes = {
+	categories = {
+		difficulty
+	}
+
+	default = natural_disaster_earthquakes_regular
+
+	natural_disaster_earthquakes_regular = {}
+
+	natural_disaster_earthquakes_few = {}
+
+	natural_disaster_earthquakes_disabled = {}
+}
+
+natural_disaster_floods = {
+	categories = {
+		difficulty
+	}
+
+	default = natural_disaster_floods_regular
+
+	natural_disaster_floods_regular = {}
+
+	natural_disaster_floods_few = {}
+
+	natural_disaster_floods_disabled = {}
+}
+
+unrestricted_dynasty_legacies = {
+	categories = { game_modes tweaks }
+
+	default = unrestricted_dynasty_legacies_default
+
+	unrestricted_dynasty_legacies_default = { }
+	unrestricted_dynasty_legacies_player_only = { }
+	unrestricted_dynasty_legacies_all = { }
+}

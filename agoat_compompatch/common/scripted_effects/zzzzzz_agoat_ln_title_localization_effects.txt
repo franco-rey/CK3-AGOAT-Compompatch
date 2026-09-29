@@ -1,11 +1,4 @@
-﻿# AGOAT Compompatch: restore Long Night title dispatch after later submods replace it.
-#
-# AGOT: The Knighting Ceremony defines set_title_localization_effect in a zzz file and therefore
-# replaces Long Night's government-aware definition.  Keep Long Night's narrow special cases first,
-# then preserve the ordinary flag writer for every other mod-provided title key (including the
-# Slaver's Bay Good/Wise/Great Master keys).
-
-set_title_localization_effect = {
+﻿set_title_localization_effect = {
 	if = {
 		limit = {
 			exists = $SCOPE$
@@ -77,6 +70,73 @@ set_title_localization_effect = {
 		}
 		else = {
 			ln_stamp_title_effect = { SCOPE = $SCOPE$ MALE = lord_non_paramount FEMALE = lady_non_paramount }
+		}
+	}
+	else_if = {
+		limit = {
+			$SCOPE$ ?= {
+				OR = {
+					has_government = dragonlord_oligarchy_government
+					liege ?= {
+						has_government = dragonlord_oligarchy_government
+					}
+					top_liege ?= {
+						has_government = dragonlord_oligarchy_government
+					}
+				}
+			}
+		}
+		if = {
+			limit = {
+				$SCOPE$ ?= {
+					top_liege = this
+					primary_title.tier >= tier_empire
+					is_male = yes
+				}
+			}
+			save_scope_value_as = {
+				name = get_title
+				value = flag:DRAGONLORD_FIRST_LORD_MALE
+			}
+		}
+		else_if = {
+			limit = {
+				$SCOPE$ ?= {
+					top_liege = this
+					primary_title.tier >= tier_empire
+					is_female = yes
+				}
+			}
+			save_scope_value_as = {
+				name = get_title
+				value = flag:DRAGONLORD_FIRST_LORD_FEMALE
+			}
+		}
+		else_if = {
+			limit = {
+				$SCOPE$ ?= {
+					is_independent_ruler = no
+					primary_title.tier = tier_kingdom
+					top_liege = { has_government = dragonlord_oligarchy_government }
+				}
+			}
+			save_scope_value_as = {
+				name = get_title
+				value = flag:DRAGONLORD_GOVERNOR
+			}
+		}
+		else_if = {
+			limit = { $SCOPE$ ?= { is_male = yes } }
+			save_scope_value_as = {
+				name = get_title
+				value = flag:DRAGONLORD_ARCHON_MALE
+			}
+		}
+		else = {
+			save_scope_value_as = {
+				name = get_title
+				value = flag:DRAGONLORD_ARCHON_FEMALE
+			}
 		}
 	}
 	else = {

@@ -1,0 +1,1662 @@
+﻿agot_hf_force_house_head = {
+	save_scope_as = new_ruler
+	if = {
+		limit = {
+			exists = scope:new_ruler.house
+			scope:new_ruler ?= {
+				is_landed = yes
+				exists = capital_province
+				exists = primary_title
+				exists = house.house_head
+				exists = house.house_head.capital_province
+				exists = house.house_head.primary_title
+			}
+			NOT = { government_has_flag = government_is_landless_adventurer }
+			NOT = { government_has_flag = government_is_holy_order }
+			NOT = { government_has_flag = government_is_mercenary }
+			NOT = { government_has_flag = government_is_theocracy }
+			NOT = { government_has_flag = government_is_republic }
+			NOT = { government_has_flag = government_is_nw }
+			NOT = { government_has_flag = government_is_uninteractable }
+			OR = {
+				trigger_if = {
+					limit = {
+						exists = scope:previous_holder
+						exists = scope:previous_holder.house
+					}
+					scope:new_ruler.house = scope:previous_holder.house
+				}
+				trigger_if = {
+					limit = { exists = scope:title.var:legitimate_house }
+					scope:title.var:legitimate_house = scope:new_ruler.house
+				}
+				trigger_if = {
+					limit = {
+						exists = scope:new_ruler.capital_province
+						scope:new_ruler.capital_province = { geographical_region = world_westeros_seven_kingdoms }
+						exists = scope:new_ruler.house.house_head.capital_province
+						scope:new_ruler.house.house_head.capital_province = { geographical_region = world_westeros_seven_kingdoms }
+					}
+					OR = {
+						trigger_if = {
+							limit = { scope:new_ruler = { agot_is_independent_ruler = yes } }
+							scope:new_ruler.primary_title.tier > scope:new_ruler.house.house_head.primary_title.tier
+						}
+						trigger_if = {
+							limit = {
+								exists = scope:new_ruler.capital_province
+								scope:new_ruler.capital_province = { geographical_region = world_westeros_the_crownlands }
+								scope:new_ruler.house.house_head.capital_province = { geographical_region = world_westeros_the_crownlands }
+							}
+							scope:new_ruler.primary_title.tier > scope:new_ruler.house.house_head.primary_title.tier
+						}
+						trigger_if = {
+							limit = {
+								exists = scope:new_ruler.capital_province
+								scope:new_ruler.capital_province = { geographical_region = world_westeros_the_westerlands }
+								scope:new_ruler.house.house_head.capital_province = { geographical_region = world_westeros_the_westerlands }
+							}
+							scope:new_ruler.primary_title.tier > scope:new_ruler.house.house_head.primary_title.tier
+						}
+						trigger_if = {
+							limit = {
+								exists = scope:new_ruler.capital_province
+								scope:new_ruler.capital_province = { geographical_region = world_westeros_the_vale }
+								scope:new_ruler.house.house_head.capital_province = { geographical_region = world_westeros_the_vale }
+							}
+							scope:new_ruler.primary_title.tier > scope:new_ruler.house.house_head.primary_title.tier
+						}
+						trigger_if = {
+							limit = {
+								exists = scope:new_ruler.capital_province
+								scope:new_ruler.capital_province = { geographical_region = world_westeros_the_north }
+								scope:new_ruler.house.house_head.capital_province = { geographical_region = world_westeros_the_north }
+							}
+							scope:new_ruler.primary_title.tier > scope:new_ruler.house.house_head.primary_title.tier
+						}
+						trigger_if = {
+							limit = {
+								exists = scope:new_ruler.capital_province
+								scope:new_ruler.capital_province = { geographical_region = world_westeros_the_riverlands }
+								scope:new_ruler.house.house_head.capital_province = { geographical_region = world_westeros_the_riverlands }
+							}
+							scope:new_ruler.primary_title.tier > scope:new_ruler.house.house_head.primary_title.tier
+						}
+						trigger_if = {
+							limit = {
+								exists = scope:new_ruler.capital_province
+								scope:new_ruler.capital_province = { geographical_region = world_westeros_the_reach }
+								scope:new_ruler.house.house_head.capital_province = { geographical_region = world_westeros_the_reach }
+							}
+							scope:new_ruler.primary_title.tier > scope:new_ruler.house.house_head.primary_title.tier
+						}
+						trigger_if = {
+							limit = {
+								exists = scope:new_ruler.capital_province
+								scope:new_ruler.capital_province = { geographical_region = world_westeros_dorne }
+								scope:new_ruler.house.house_head.capital_province = { geographical_region = world_westeros_dorne }
+							}
+							scope:new_ruler.primary_title.tier > scope:new_ruler.house.house_head.primary_title.tier
+						}
+						trigger_if = {
+							limit = {
+								exists = scope:new_ruler.capital_province
+								scope:new_ruler.capital_province = { geographical_region = world_westeros_the_stormlands }
+								scope:new_ruler.house.house_head.capital_province = { geographical_region = world_westeros_the_stormlands }
+							}
+							scope:new_ruler.primary_title.tier > scope:new_ruler.house.house_head.primary_title.tier
+						}
+					}
+				}
+			}
+			NOT = { scope:new_ruler = scope:new_ruler.house.house_head }
+			scope:new_ruler = {
+				NOT = { is_vassal_or_below_of = scope:new_ruler.house.house_head }
+				NOT = { has_trait = bastard }
+				NOT = { has_trait = disinherited }
+				NOT = { scope:new_ruler.house.house_head.primary_title.tier >= scope:new_ruler.primary_title.tier }
+			}
+		}
+		scope:new_ruler = {
+			set_variable = { name = agot_wos_house_head_candidate days = 3 }
+			agot_new_house_head_effect = { NEW_HOUSE_HEAD = scope:new_ruler }
+		}
+	}
+}
+
+agot_hf_revealbastard_final_effect = {
+	scope:bastard_character = {
+
+		#IS A BASTARD!
+		if = {
+			limit = {
+				exists = scope:bastard_character.real_father
+				OR = {
+					NOT = { exists = scope:bastard_character.father }
+					NOT = { scope:bastard_character.father = scope:bastard_character.real_father }
+				}
+			}
+
+			#Set father and house
+			set_father = scope:bastard_character.real_father
+			set_parent_house_effect = yes
+
+
+			#Scenario: Bastard is a Dynast
+			if = {
+				limit = {
+					has_trait = disputed_heritage
+					is_dynast = yes
+				}
+
+				#Same House as Mother's House
+				if = {
+					limit = {
+						scope:bastard_character.house = scope:bastard_character.mother.house
+						has_trait = disputed_heritage
+					}
+
+					#Set Bastard House to Real Father's House if it's an active House
+					if = {
+						limit = {
+							has_trait = disputed_heritage
+							exists = scope:bastard_character.real_father.house
+							scope:bastard_character.real_father.dynasty = {
+								any_dynasty_member = {
+									count >= 1
+								}
+							}
+						}
+						set_house = real_father.house
+						save_scope_as = father_first
+					}
+
+					#Legitimize Bastard as Mother's House if Real Father's House is extinct
+					if = {
+						limit = {
+							has_trait = disputed_heritage
+							OR = {
+								NOT = { exists = scope:bastard_character.real_father.house }
+								scope:bastard_character.real_father.dynasty = {
+									any_dynasty_member = {
+										count = 0
+									}
+								}
+							}
+						}
+						remove_trait = disputed_heritage
+						add_trait = legitimized_bastard
+						save_scope_as = the_legit_bastard
+
+						every_child = {
+							add_to_list = child_of_bastard
+						}
+						every_in_list = {
+							list = child_of_bastard
+							set_house = scope:bastard_character.house
+						}
+					}
+				}
+
+				#Same House as Real Father's House
+				if = {
+					limit = {
+						scope:bastard_character.house = scope:bastard_character.real_father.house
+						has_trait = disputed_heritage
+					}
+
+					#Set Bastard House to Mother's House if it's an active House
+					if = {
+						limit = {
+							has_trait = disputed_heritage
+							exists = scope:bastard_character.mother.house
+							scope:bastard_character.mother.dynasty = {
+								any_dynasty_member = {
+									count >= 1
+								}
+							}
+						}
+						set_house = mother.house
+						save_scope_as = mother_second
+					}
+
+					#Legitimize Bastard as Real Father's House if Real Father's House is extinct
+					if = {
+						limit = {
+							NOT = { exists = scope:father_first }
+							has_trait = disputed_heritage
+							OR = {
+								NOT = { exists = scope:bastard_character.mother.house }
+								scope:bastard_character.mother.dynasty = {
+									any_dynasty_member = {
+										count = 0
+									}
+								}
+							}
+						}
+						remove_trait = disputed_heritage
+						add_trait = legitimized_bastard
+						save_scope_as = the_legit_bastard
+
+						every_child = {
+							add_to_list = child_of_bastard
+						}
+						every_in_list = {
+							list = child_of_bastard
+							set_house = scope:bastard_character.house
+						}
+					}
+
+					#Legitimize Bastard as Mother's House if Mother's House is active
+					if = {
+						limit = {
+							NOT = { exists = scope:mother_second }
+							has_trait = disputed_heritage
+							scope:bastard_character.mother.dynasty = {
+								any_dynasty_member = {
+									count = 0
+								}
+							}
+						}
+
+						set_house = mother.house
+
+						remove_trait = disputed_heritage
+						add_trait = legitimized_bastard
+						save_scope_as = the_legit_bastard
+
+						every_child = {
+							add_to_list = child_of_bastard
+						}
+						every_in_list = {
+							list = child_of_bastard
+							set_house = scope:bastard_character.house
+						}
+					}
+				}
+			}
+
+
+			#Deciding bastard status.
+			if = {
+				limit = {
+					has_trait = disputed_heritage
+				}
+				remove_trait = disputed_heritage
+				real_father = { save_scope_as = real_father }
+				save_scope_as = child
+				add_bastard_trait_based_on_faith_effect = yes
+
+
+				#Add bastard nickname
+				if = {
+					limit = { has_any_nickname = no }
+					agot_hf_bastard_surname_effect = yes
+				}
+
+
+				#Create Cadet - Restricted AGOT Rule
+				if = {
+					limit = { has_game_rule = agot_bastard_cadets_landed_only }
+
+
+					#Playable Character with Children and NOT the last member of the dynasty
+					if = {
+						limit = {
+							is_playable_character = yes
+							has_trait = bastard
+							any_child = { count > 0 }
+							scope:bastard_character.dynasty = {
+								any_dynasty_member = {
+									count > 1
+								}
+							}
+						}
+
+
+						#Male
+						if = {
+							limit = {
+								is_male = yes
+								patrilinear_marriage = yes
+								OR = {
+									scope:bastard_character.house = scope:bastard_character.father.house
+									scope:bastard_character.house = scope:bastard_character.mother.house
+								}
+							}
+							remove_trait = bastard
+							add_trait = bastard_founder
+							create_cadet_branch = {}
+
+							every_child = {
+								add_to_list = child_of_bastard
+							}
+							every_in_list = {
+								list = child_of_bastard
+								set_house = scope:bastard_character.house
+							}
+
+							scope:bastard_character.house = {
+								if = {
+									limit = { house_head = { has_character_flag = has_personal_coa } }
+									set_coa = house_head.var:my_personal_coa.house
+									set_house_name_from_house = scope:bastard_character.house
+								}
+								else = {
+									generate_coa = bastards
+									set_house_name_from_house = scope:bastard_character.house
+								}
+							}
+							trigger_event = agot_coa_events.0001
+							trigger_event = agot_dynastic_stability.1002
+						}
+
+						#Female
+						if = {
+							limit = {
+								is_female = yes
+								matrilinear_marriage = yes
+								OR = {
+									scope:bastard_character.house = scope:bastard_character.father.house
+									scope:bastard_character.house = scope:bastard_character.mother.house
+								}
+							}
+							remove_trait = bastard
+							add_trait = bastard_founder
+							create_cadet_branch = {}
+
+							every_child = {
+								add_to_list = child_of_bastard
+							}
+							every_in_list = {
+								list = child_of_bastard
+								set_house = scope:bastard_character.house
+							}
+							scope:bastard_character.house = {
+								if = {
+									limit = { house_head = { has_character_flag = has_personal_coa } }
+									set_coa = house_head.var:my_personal_coa.house
+									set_house_name_from_house = scope:bastard_character.house
+								}
+								else = {
+									generate_coa = bastards
+									set_house_name_from_house = scope:bastard_character.house
+								}
+							}
+							trigger_event = agot_coa_events.0001
+							trigger_event = agot_dynastic_stability.1002
+						}
+					}
+
+
+					#Playable Character with Children and the last member of the dynasty
+					if = {
+						limit = {
+							is_playable_character = yes
+							has_trait = bastard
+							any_child = { count > 0 }
+							scope:bastard_character.dynasty = {
+								any_dynasty_member = {
+									count = 1
+								}
+							}
+						}
+
+
+						#Male
+						if = {
+							limit = {
+								is_male = yes
+								patrilinear_marriage = yes
+								OR = {
+									scope:bastard_character.house = scope:bastard_character.father.house
+									scope:bastard_character.house = scope:bastard_character.mother.house
+								}
+							}
+							remove_trait = bastard
+							add_trait = legitimized_bastard
+
+							every_child = {
+								add_to_list = child_of_bastard
+							}
+							every_in_list = {
+								list = child_of_bastard
+								set_house = scope:bastard_character.house
+							}
+
+						}
+
+						#Female
+						if = {
+							limit = {
+								is_female = yes
+								matrilinear_marriage = yes
+								OR = {
+									scope:bastard_character.house = scope:bastard_character.father.house
+									scope:bastard_character.house = scope:bastard_character.mother.house
+								}
+							}
+							remove_trait = bastard
+							add_trait = legitimized_bastard
+
+
+							every_child = {
+								add_to_list = child_of_bastard
+							}
+							every_in_list = {
+								list = child_of_bastard
+								set_house = scope:bastard_character.house
+							}
+
+						}
+						save_scope_as = the_legit_bastard
+					}
+
+
+					#Not Playable
+					else_if = {
+						limit = { is_playable_character = no }
+
+						house = { save_scope_as = generated_house }
+						trigger_event = agot_dynastic_stability.1003
+					}
+				}
+
+
+				#Create Cadet - None-Restricted AGOT Rule
+				if = {
+					limit = { has_game_rule = agot_bastard_cadets_everyone }
+
+
+					#Character with Children and NOT the last member of the dynasty
+					if = {
+						limit = {
+							has_trait = bastard
+							any_child = { count > 0 }
+							scope:bastard_character.dynasty = {
+								any_dynasty_member = {
+									count > 1
+								}
+							}
+						}
+
+
+						#Male
+						if = {
+							limit = {
+								is_male = yes
+								patrilinear_marriage = yes
+								OR = {
+									scope:bastard_character.house = scope:bastard_character.father.house
+									scope:bastard_character.house = scope:bastard_character.mother.house
+								}
+							}
+							remove_trait = bastard
+							add_trait = bastard_founder
+							create_cadet_branch = {}
+
+
+							every_child = {
+								add_to_list = child_of_bastard
+							}
+							every_in_list = {
+								list = child_of_bastard
+								set_house = scope:bastard_character.house
+							}
+							scope:bastard_character.house = {
+								if = {
+									limit = { house_head = { has_character_flag = has_personal_coa } }
+									set_coa = house_head.var:my_personal_coa.house
+									set_house_name_from_house = scope:bastard_character.house
+								}
+								else = {
+									generate_coa = bastards
+									set_house_name_from_house = scope:bastard_character.house
+								}
+							}
+							trigger_event = agot_coa_events.0001
+							trigger_event = agot_dynastic_stability.1002
+						}
+
+						#Female
+						if = {
+							limit = {
+								is_female = yes
+								matrilinear_marriage = yes
+								OR = {
+									scope:bastard_character.house = scope:bastard_character.father.house
+									scope:bastard_character.house = scope:bastard_character.mother.house
+								}
+							}
+							remove_trait = bastard
+							add_trait = bastard_founder
+							create_cadet_branch = {}
+
+
+							every_child = {
+								add_to_list = child_of_bastard
+							}
+							every_in_list = {
+								list = child_of_bastard
+								set_house = scope:bastard_character.house
+							}
+							scope:bastard_character.house = {
+								if = {
+									limit = { house_head = { has_character_flag = has_personal_coa } }
+									set_coa = house_head.var:my_personal_coa.house
+									set_house_name_from_house = scope:bastard_character.house
+								}
+								else = {
+									generate_coa = bastards
+									set_house_name_from_house = scope:bastard_character.house
+								}
+							}
+							trigger_event = agot_coa_events.0001
+							trigger_event = agot_dynastic_stability.1002
+						}
+
+						#Playable
+						if = {
+							limit = {
+								is_married = no
+								is_playable_character = yes
+								OR = {
+									scope:bastard_character.house = scope:bastard_character.father.house
+									scope:bastard_character.house = scope:bastard_character.mother.house
+								}
+							}
+							remove_trait = bastard
+							add_trait = bastard_founder
+							create_cadet_branch = {}
+
+							every_child = {
+								add_to_list = child_of_bastard
+							}
+							every_in_list = {
+								list = child_of_bastard
+								set_house = scope:bastard_character.house
+							}
+							scope:bastard_character.house = {
+								if = {
+									limit = { house_head = { has_character_flag = has_personal_coa } }
+									set_coa = house_head.var:my_personal_coa.house
+									set_house_name_from_house = scope:bastard_character.house
+								}
+								else = {
+									generate_coa = bastards
+									set_house_name_from_house = scope:bastard_character.house
+								}
+							}
+							trigger_event = agot_coa_events.0001
+							trigger_event = agot_dynastic_stability.1002
+						}
+
+						#None Playable Male
+						if = {
+							limit = {
+								is_married = no
+								is_playable_character = no
+								is_male = yes
+								OR = {
+									scope:bastard_character.house = scope:bastard_character.father.house
+									scope:bastard_character.house = scope:bastard_character.mother.house
+								}
+							}
+							remove_trait = bastard
+							add_trait = bastard_founder
+							create_cadet_branch = {}
+
+							every_child = {
+								add_to_list = child_of_bastard
+							}
+							every_in_list = {
+								list = child_of_bastard
+								set_house = scope:bastard_character.house
+							}
+							scope:bastard_character.house = {
+								if = {
+									limit = { house_head = { has_character_flag = has_personal_coa } }
+									set_coa = house_head.var:my_personal_coa.house
+									set_house_name_from_house = scope:bastard_character.house
+								}
+								else = {
+									generate_coa = bastards
+									set_house_name_from_house = scope:bastard_character.house
+								}
+							}
+							trigger_event = agot_coa_events.0001
+							trigger_event = agot_dynastic_stability.1002
+						}
+					}
+
+
+					#Character with Children and the last member of the dynasty
+					if = {
+						limit = {
+							has_trait = bastard
+							any_child = { count > 0 }
+							scope:bastard_character.dynasty = {
+								any_dynasty_member = {
+									count = 1
+								}
+							}
+						}
+
+
+						#Male
+						if = {
+							limit = {
+								is_male = yes
+								patrilinear_marriage = yes
+								OR = {
+									scope:bastard_character.house = scope:bastard_character.father.house
+									scope:bastard_character.house = scope:bastard_character.mother.house
+								}
+							}
+							remove_trait = bastard
+							add_trait = legitimized_bastard
+
+							every_child = {
+								add_to_list = child_of_bastard
+							}
+							every_in_list = {
+								list = child_of_bastard
+								set_house = scope:bastard_character.house
+							}
+						}
+
+						#Female
+						if = {
+							limit = {
+								is_female = yes
+								matrilinear_marriage = yes
+								OR = {
+									scope:bastard_character.house = scope:bastard_character.father.house
+									scope:bastard_character.house = scope:bastard_character.mother.house
+								}
+							}
+							remove_trait = bastard
+							add_trait = legitimized_bastard
+
+
+							every_child = {
+								add_to_list = child_of_bastard
+							}
+							every_in_list = {
+								list = child_of_bastard
+								set_house = scope:bastard_character.house
+							}
+
+						}
+
+						#Playable
+						if = {
+							limit = {
+								is_married = no
+								is_playable_character = yes
+								OR = {
+									scope:bastard_character.house = scope:bastard_character.father.house
+									scope:bastard_character.house = scope:bastard_character.mother.house
+								}
+							}
+							remove_trait = bastard
+							add_trait = legitimized_bastard
+
+							every_child = {
+								add_to_list = child_of_bastard
+							}
+							every_in_list = {
+								list = child_of_bastard
+								set_house = scope:bastard_character.house
+							}
+						}
+
+						#None Playable Male
+						if = {
+							limit = {
+								is_married = no
+								is_playable_character = no
+								is_male = yes
+								OR = {
+									scope:bastard_character.house = scope:bastard_character.father.house
+									scope:bastard_character.house = scope:bastard_character.mother.house
+								}
+							}
+							remove_trait = bastard
+							add_trait = legitimized_bastard
+
+							every_child = {
+								add_to_list = child_of_bastard
+							}
+							every_in_list = {
+								list = child_of_bastard
+								set_house = scope:bastard_character.house
+							}
+						}
+
+						#None Playable Female
+						if = {
+							limit = {
+								is_married = no
+								is_playable_character = no
+								is_female = yes
+								OR = {
+									scope:bastard_character.house = scope:bastard_character.father.house
+									scope:bastard_character.house = scope:bastard_character.mother.house
+								}
+							}
+							remove_trait = bastard
+							add_trait = legitimized_bastard
+						}
+						save_scope_as = the_legit_bastard
+					}
+				}
+			}
+
+			#Adultery penalty for parents
+			if = {
+				limit = {
+					exists = root.mother
+					exists = root.real_father
+				}
+				mother = { save_scope_as = my_mother }
+				real_father = { save_scope_as = my_real_father }
+
+				if = {
+					limit = {
+						exists = scope:my_mother.primary_spouse
+					}
+					scope:my_mother.primary_spouse = { save_scope_as = agot_hf_the_husband }
+				}
+				else_if = {
+					limit = { scope:my_real_father = { is_alive = yes } }
+					scope:my_real_father = { save_scope_as = agot_hf_the_husband }
+				}
+				else = { scope:my_mother = { save_scope_as = agot_hf_the_husband } }
+
+				if = {
+					limit = { mother = { is_alive = yes } }
+					mother = {
+
+						#penalties.
+						expose_lover_secret_or_run_consequence_effect = {
+							TARGET = scope:my_real_father
+							EXPOSER = scope:agot_hf_the_husband
+						}
+					}
+				}
+				if = {
+					limit = {
+						real_father = { is_alive = yes }
+						exists = root.real_father
+					}
+					real_father = {
+						expose_lover_secret_or_run_consequence_effect = {
+							TARGET = scope:my_mother
+							EXPOSER = scope:agot_hf_the_husband
+						}
+					}
+				}
+			}
+
+			save_scope_as = agot_hf_is_bastard
+			if = {
+				limit = { is_betrothed = yes }
+				break_betrothal = betrothed
+			}
+		}
+
+
+		#NOT A BASTARD!
+		else = {
+			limit = {
+				exists = scope:bastard_character.real_father
+				scope:bastard_character.father = scope:bastard_character.real_father
+			}
+			remove_trait = disputed_heritage
+			save_scope_as = agot_hf_is_not_bastard
+		}
+
+
+		#SENDING EVENTS
+		#Bastard is from high family - send event to everyone
+		if = {
+			limit = {
+				OR = {
+					scope:bastard_character.real_father ?= {
+						is_independent_ruler = yes
+						is_playable_character = yes
+						highest_held_title_tier >= tier_kingdom
+					}
+					scope:bastard_character.real_mother ?= {
+						is_independent_ruler = yes
+						is_playable_character = yes
+						highest_held_title_tier >= tier_kingdom
+					}
+					scope:bastard_character.real_father.primary_spouse ?= {
+						is_independent_ruler = yes
+						is_playable_character = yes
+						highest_held_title_tier >= tier_kingdom
+					}
+					scope:bastard_character.real_mother.primary_spouse ?= {
+						is_independent_ruler = yes
+						is_playable_character = yes
+						highest_held_title_tier >= tier_kingdom
+					}
+				}
+			}
+			every_ruler = {
+				limit = { highest_held_title_tier >= tier_county }
+				add_to_list = iron_throne_realm
+			}
+		}
+
+		#Bastard is from low family
+		else = {
+			if = {
+				limit = { exists = scope:bastard_character.liege.liege }
+				scope:bastard_character.liege.liege = {
+					every_vassal_or_below = {
+						limit = { highest_held_title_tier >= tier_county }
+						add_to_list = iron_throne_realm
+					}
+				}
+			}
+			else_if = {
+				limit = { exists = scope:bastard_character.liege }
+				scope:bastard_character.liege = {
+					every_vassal_or_below = {
+						limit = { highest_held_title_tier >= tier_county }
+						add_to_list = iron_throne_realm
+					}
+				}
+			}
+			else_if = {
+				limit = { scope:bastard_character = { is_playable_character = yes } }
+				scope:bastard_character = {
+					every_vassal_or_below = {
+						limit = { highest_held_title_tier >= tier_county }
+						add_to_list = iron_throne_realm
+					}
+				}
+			}
+		}
+	}
+	scope:bastard_character = {
+		if = {
+			limit = { NOT = { has_character_flag = already_revealed_my_parentage } }
+			add_character_flag = already_revealed_my_parentage
+		}
+	}
+	set_variable = {
+		name = agot_hf_revealbastard_completed
+		years = 2
+	}
+}
+
+agot_hf_revealbastard_final_siblings_effect = {
+	save_scope_as = the_bastard_sibling
+	scope:the_bastard_sibling = {
+
+		#IS A BASTARD!
+		if = {
+			limit = {
+				exists = scope:the_bastard_sibling.real_father
+				OR = {
+					NOT = { exists = scope:the_bastard_sibling.father }
+					NOT = { scope:the_bastard_sibling.father = scope:the_bastard_sibling.real_father }
+				}
+			}
+
+			#Set father and house
+			set_father = scope:the_bastard_sibling.real_father
+			set_parent_house_effect = yes
+
+
+			#Scenario: Bastard is a Dynast
+			if = {
+				limit = {
+					has_trait = disputed_heritage
+					is_dynast = yes
+				}
+
+				#Same House as Mother's House
+				if = {
+					limit = {
+						scope:the_bastard_sibling.house = scope:the_bastard_sibling.mother.house
+						has_trait = disputed_heritage
+					}
+
+					#Set Bastard House to Real Father's House if it's an active House
+					if = {
+						limit = {
+							has_trait = disputed_heritage
+							exists = scope:the_bastard_sibling.real_father.house
+							scope:the_bastard_sibling.real_father.dynasty = {
+								any_dynasty_member = {
+									count >= 1
+								}
+							}
+						}
+						set_house = real_father.house
+						save_scope_as = father_first
+					}
+
+					#Legitimize Bastard as Mother's House if Real Father's House is extinct
+					if = {
+						limit = {
+							has_trait = disputed_heritage
+							OR = {
+								NOT = { exists = scope:the_bastard_sibling.real_father.house }
+								scope:the_bastard_sibling.real_father.dynasty = {
+									any_dynasty_member = {
+										count = 0
+									}
+								}
+							}
+						}
+						remove_trait = disputed_heritage
+						add_trait = legitimized_bastard
+						save_scope_as = the_legit_bastard
+
+						every_child = {
+							add_to_list = child_of_bastard
+						}
+						every_in_list = {
+							list = child_of_bastard
+							set_house = scope:the_bastard_sibling.house
+						}
+					}
+				}
+
+				#Same House as Real Father's House
+				if = {
+					limit = {
+						scope:the_bastard_sibling.house = scope:the_bastard_sibling.real_father.house
+						has_trait = disputed_heritage
+					}
+
+					#Set Bastard House to Mother's House if it's an active House
+					if = {
+						limit = {
+							has_trait = disputed_heritage
+							exists = scope:the_bastard_sibling.mother.house
+							scope:the_bastard_sibling.mother.dynasty = {
+								any_dynasty_member = {
+									count >= 1
+								}
+							}
+						}
+						set_house = mother.house
+						save_scope_as = mother_second
+					}
+
+					#Legitimize Bastard as Real Father's House if Real Father's House is extinct
+					if = {
+						limit = {
+							NOT = { exists = scope:father_first }
+							has_trait = disputed_heritage
+							OR = {
+								NOT = { exists = scope:the_bastard_sibling.mother.house }
+								scope:the_bastard_sibling.mother.dynasty = {
+									any_dynasty_member = {
+										count = 0
+									}
+								}
+							}
+						}
+						remove_trait = disputed_heritage
+						add_trait = legitimized_bastard
+						save_scope_as = the_legit_bastard
+
+						every_child = {
+							add_to_list = child_of_bastard
+						}
+						every_in_list = {
+							list = child_of_bastard
+							set_house = scope:the_bastard_sibling.house
+						}
+					}
+
+					#Legitimize Bastard as Mother's House if Mother's House is active
+					if = {
+						limit = {
+							NOT = { exists = scope:mother_second }
+							has_trait = disputed_heritage
+							scope:the_bastard_sibling.mother.dynasty = {
+								any_dynasty_member = {
+									count = 0
+								}
+							}
+						}
+
+						set_house = mother.house
+
+						remove_trait = disputed_heritage
+						add_trait = legitimized_bastard
+						save_scope_as = the_legit_bastard
+
+						every_child = {
+							add_to_list = child_of_bastard
+						}
+						every_in_list = {
+							list = child_of_bastard
+							set_house = scope:the_bastard_sibling.house
+						}
+					}
+				}
+			}
+
+
+			#Deciding bastard status.
+			if = {
+				limit = {
+					has_trait = disputed_heritage
+				}
+				remove_trait = disputed_heritage
+				real_father = { save_scope_as = real_father }
+				save_scope_as = child
+				add_bastard_trait_based_on_faith_effect = yes
+
+
+				#Add bastard nickname
+				if = {
+					limit = { has_any_nickname = no }
+					agot_hf_bastard_surname_effect = yes
+				}
+
+
+				#Create Cadet - Restricted AGOT Rule
+				if = {
+					limit = { has_game_rule = agot_bastard_cadets_landed_only }
+
+
+					#Playable Character with Children and NOT the last member of the dynasty
+					if = {
+						limit = {
+							is_playable_character = yes
+							has_trait = bastard
+							any_child = { count > 0 }
+							scope:the_bastard_sibling.dynasty = {
+								any_dynasty_member = {
+									count > 1
+								}
+							}
+						}
+
+
+						#Male
+						if = {
+							limit = {
+								is_male = yes
+								patrilinear_marriage = yes
+								OR = {
+									scope:the_bastard_sibling.house = scope:the_bastard_sibling.father.house
+									scope:the_bastard_sibling.house = scope:the_bastard_sibling.mother.house
+								}
+							}
+							remove_trait = bastard
+							add_trait = bastard_founder
+							create_cadet_branch = {}
+
+							every_child = {
+								add_to_list = child_of_bastard
+							}
+							every_in_list = {
+								list = child_of_bastard
+								set_house = scope:the_bastard_sibling.house
+							}
+
+							scope:the_bastard_sibling.house = {
+								if = {
+									limit = { house_head = { has_character_flag = has_personal_coa } }
+									set_coa = house_head.var:my_personal_coa.house
+									set_house_name_from_house = scope:the_bastard_sibling.house
+								}
+								else = {
+									generate_coa = bastards
+									set_house_name_from_house = scope:the_bastard_sibling.house
+								}
+							}
+							trigger_event = agot_coa_events.0001
+							trigger_event = agot_dynastic_stability.1002
+						}
+
+						#Female
+						if = {
+							limit = {
+								is_female = yes
+								matrilinear_marriage = yes
+								OR = {
+									scope:the_bastard_sibling.house = scope:the_bastard_sibling.father.house
+									scope:the_bastard_sibling.house = scope:the_bastard_sibling.mother.house
+								}
+							}
+							remove_trait = bastard
+							add_trait = bastard_founder
+							create_cadet_branch = {}
+
+							every_child = {
+								add_to_list = child_of_bastard
+							}
+							every_in_list = {
+								list = child_of_bastard
+								set_house = scope:the_bastard_sibling.house
+							}
+							scope:the_bastard_sibling.house = {
+								if = {
+									limit = { house_head = { has_character_flag = has_personal_coa } }
+									set_coa = house_head.var:my_personal_coa.house
+									set_house_name_from_house = scope:the_bastard_sibling.house
+								}
+								else = {
+									generate_coa = bastards
+									set_house_name_from_house = scope:the_bastard_sibling.house
+								}
+							}
+							trigger_event = agot_coa_events.0001
+							trigger_event = agot_dynastic_stability.1002
+						}
+					}
+
+
+					#Playable Character with Children and the last member of the dynasty
+					if = {
+						limit = {
+							is_playable_character = yes
+							has_trait = bastard
+							any_child = { count > 0 }
+							scope:the_bastard_sibling.dynasty = {
+								any_dynasty_member = {
+									count = 1
+								}
+							}
+						}
+
+
+						#Male
+						if = {
+							limit = {
+								is_male = yes
+								patrilinear_marriage = yes
+								OR = {
+									scope:the_bastard_sibling.house = scope:the_bastard_sibling.father.house
+									scope:the_bastard_sibling.house = scope:the_bastard_sibling.mother.house
+								}
+							}
+							remove_trait = bastard
+							add_trait = legitimized_bastard
+
+							every_child = {
+								add_to_list = child_of_bastard
+							}
+							every_in_list = {
+								list = child_of_bastard
+								set_house = scope:the_bastard_sibling.house
+							}
+
+						}
+
+						#Female
+						if = {
+							limit = {
+								is_female = yes
+								matrilinear_marriage = yes
+								OR = {
+									scope:the_bastard_sibling.house = scope:the_bastard_sibling.father.house
+									scope:the_bastard_sibling.house = scope:the_bastard_sibling.mother.house
+								}
+							}
+							remove_trait = bastard
+							add_trait = legitimized_bastard
+
+
+							every_child = {
+								add_to_list = child_of_bastard
+							}
+							every_in_list = {
+								list = child_of_bastard
+								set_house = scope:the_bastard_sibling.house
+							}
+
+						}
+						save_scope_as = the_legit_bastard
+					}
+
+
+					#Not Playable
+					else_if = {
+						limit = { is_playable_character = no }
+
+						house = { save_scope_as = generated_house }
+						trigger_event = agot_dynastic_stability.1003
+					}
+				}
+
+
+				#Create Cadet - None-Restricted AGOT Rule
+				if = {
+					limit = { has_game_rule = agot_bastard_cadets_everyone }
+
+
+					#Character with Children and NOT the last member of the dynasty
+					if = {
+						limit = {
+							has_trait = bastard
+							any_child = { count > 0 }
+							scope:the_bastard_sibling.dynasty = {
+								any_dynasty_member = {
+									count > 1
+								}
+							}
+						}
+
+
+						#Male
+						if = {
+							limit = {
+								is_male = yes
+								patrilinear_marriage = yes
+								OR = {
+									scope:the_bastard_sibling.house = scope:the_bastard_sibling.father.house
+									scope:the_bastard_sibling.house = scope:the_bastard_sibling.mother.house
+								}
+							}
+							remove_trait = bastard
+							add_trait = bastard_founder
+							create_cadet_branch = {}
+
+
+							every_child = {
+								add_to_list = child_of_bastard
+							}
+							every_in_list = {
+								list = child_of_bastard
+								set_house = scope:the_bastard_sibling.house
+							}
+							scope:the_bastard_sibling.house = {
+								if = {
+									limit = { house_head = { has_character_flag = has_personal_coa } }
+									set_coa = house_head.var:my_personal_coa.house
+									set_house_name_from_house = scope:the_bastard_sibling.house
+								}
+								else = {
+									generate_coa = bastards
+									set_house_name_from_house = scope:the_bastard_sibling.house
+								}
+							}
+							trigger_event = agot_coa_events.0001
+							trigger_event = agot_dynastic_stability.1002
+						}
+
+						#Female
+						if = {
+							limit = {
+								is_female = yes
+								matrilinear_marriage = yes
+								OR = {
+									scope:the_bastard_sibling.house = scope:the_bastard_sibling.father.house
+									scope:the_bastard_sibling.house = scope:the_bastard_sibling.mother.house
+								}
+							}
+							remove_trait = bastard
+							add_trait = bastard_founder
+							create_cadet_branch = {}
+
+
+							every_child = {
+								add_to_list = child_of_bastard
+							}
+							every_in_list = {
+								list = child_of_bastard
+								set_house = scope:the_bastard_sibling.house
+							}
+							scope:the_bastard_sibling.house = {
+								if = {
+									limit = { house_head = { has_character_flag = has_personal_coa } }
+									set_coa = house_head.var:my_personal_coa.house
+									set_house_name_from_house = scope:the_bastard_sibling.house
+								}
+								else = {
+									generate_coa = bastards
+									set_house_name_from_house = scope:the_bastard_sibling.house
+								}
+							}
+							trigger_event = agot_coa_events.0001
+							trigger_event = agot_dynastic_stability.1002
+						}
+
+						#Playable
+						if = {
+							limit = {
+								is_married = no
+								is_playable_character = yes
+								OR = {
+									scope:the_bastard_sibling.house = scope:the_bastard_sibling.father.house
+									scope:the_bastard_sibling.house = scope:the_bastard_sibling.mother.house
+								}
+							}
+							remove_trait = bastard
+							add_trait = bastard_founder
+							create_cadet_branch = {}
+
+							every_child = {
+								add_to_list = child_of_bastard
+							}
+							every_in_list = {
+								list = child_of_bastard
+								set_house = scope:the_bastard_sibling.house
+							}
+							scope:the_bastard_sibling.house = {
+								if = {
+									limit = { house_head = { has_character_flag = has_personal_coa } }
+									set_coa = house_head.var:my_personal_coa.house
+									set_house_name_from_house = scope:the_bastard_sibling.house
+								}
+								else = {
+									generate_coa = bastards
+									set_house_name_from_house = scope:the_bastard_sibling.house
+								}
+							}
+							trigger_event = agot_coa_events.0001
+							trigger_event = agot_dynastic_stability.1002
+						}
+
+						#None Playable Male
+						if = {
+							limit = {
+								is_married = no
+								is_playable_character = no
+								is_male = yes
+								OR = {
+									scope:the_bastard_sibling.house = scope:the_bastard_sibling.father.house
+									scope:the_bastard_sibling.house = scope:the_bastard_sibling.mother.house
+								}
+							}
+							remove_trait = bastard
+							add_trait = bastard_founder
+							create_cadet_branch = {}
+
+							every_child = {
+								add_to_list = child_of_bastard
+							}
+							every_in_list = {
+								list = child_of_bastard
+								set_house = scope:the_bastard_sibling.house
+							}
+							scope:the_bastard_sibling.house = {
+								if = {
+									limit = { house_head = { has_character_flag = has_personal_coa } }
+									set_coa = house_head.var:my_personal_coa.house
+									set_house_name_from_house = scope:the_bastard_sibling.house
+								}
+								else = {
+									generate_coa = bastards
+									set_house_name_from_house = scope:the_bastard_sibling.house
+								}
+							}
+							trigger_event = agot_coa_events.0001
+							trigger_event = agot_dynastic_stability.1002
+						}
+					}
+
+
+					#Character with Children and the last member of the dynasty
+					if = {
+						limit = {
+							has_trait = bastard
+							any_child = { count > 0 }
+							scope:the_bastard_sibling.dynasty = {
+								any_dynasty_member = {
+									count = 1
+								}
+							}
+						}
+
+
+						#Male
+						if = {
+							limit = {
+								is_male = yes
+								patrilinear_marriage = yes
+								OR = {
+									scope:the_bastard_sibling.house = scope:the_bastard_sibling.father.house
+									scope:the_bastard_sibling.house = scope:the_bastard_sibling.mother.house
+								}
+							}
+							remove_trait = bastard
+							add_trait = legitimized_bastard
+
+							every_child = {
+								add_to_list = child_of_bastard
+							}
+							every_in_list = {
+								list = child_of_bastard
+								set_house = scope:the_bastard_sibling.house
+							}
+						}
+
+						#Female
+						if = {
+							limit = {
+								is_female = yes
+								matrilinear_marriage = yes
+								OR = {
+									scope:the_bastard_sibling.house = scope:the_bastard_sibling.father.house
+									scope:the_bastard_sibling.house = scope:the_bastard_sibling.mother.house
+								}
+							}
+							remove_trait = bastard
+							add_trait = legitimized_bastard
+
+
+							every_child = {
+								add_to_list = child_of_bastard
+							}
+							every_in_list = {
+								list = child_of_bastard
+								set_house = scope:the_bastard_sibling.house
+							}
+
+						}
+
+						#Playable
+						if = {
+							limit = {
+								is_married = no
+								is_playable_character = yes
+								OR = {
+									scope:the_bastard_sibling.house = scope:the_bastard_sibling.father.house
+									scope:the_bastard_sibling.house = scope:the_bastard_sibling.mother.house
+								}
+							}
+							remove_trait = bastard
+							add_trait = legitimized_bastard
+
+							every_child = {
+								add_to_list = child_of_bastard
+							}
+							every_in_list = {
+								list = child_of_bastard
+								set_house = scope:the_bastard_sibling.house
+							}
+						}
+
+						#None Playable Male
+						if = {
+							limit = {
+								is_married = no
+								is_playable_character = no
+								is_male = yes
+								OR = {
+									scope:the_bastard_sibling.house = scope:the_bastard_sibling.father.house
+									scope:the_bastard_sibling.house = scope:the_bastard_sibling.mother.house
+								}
+							}
+							remove_trait = bastard
+							add_trait = legitimized_bastard
+
+							every_child = {
+								add_to_list = child_of_bastard
+							}
+							every_in_list = {
+								list = child_of_bastard
+								set_house = scope:the_bastard_sibling.house
+							}
+						}
+
+						#None Playable Female
+						if = {
+							limit = {
+								is_married = no
+								is_playable_character = no
+								is_female = yes
+								OR = {
+									scope:the_bastard_sibling.house = scope:the_bastard_sibling.father.house
+									scope:the_bastard_sibling.house = scope:the_bastard_sibling.mother.house
+								}
+							}
+							remove_trait = bastard
+							add_trait = legitimized_bastard
+						}
+						save_scope_as = the_legit_bastard
+					}
+				}
+			}
+
+			#Adultery penalty for parents
+			if = {
+				limit = {
+					exists = root.mother
+					exists = root.real_father
+				}
+				mother = { save_scope_as = my_mother }
+				real_father = { save_scope_as = my_real_father }
+
+				if = {
+					limit = {
+						exists = scope:my_mother.primary_spouse
+					}
+					scope:my_mother.primary_spouse = { save_scope_as = agot_hf_the_husband }
+				}
+				else_if = {
+					limit = { scope:my_real_father = { is_alive = yes } }
+					scope:my_real_father = { save_scope_as = agot_hf_the_husband }
+				}
+				else = { scope:my_mother = { save_scope_as = agot_hf_the_husband } }
+
+				if = {
+					limit = { mother = { is_alive = yes } }
+					mother = {
+
+						#penalties.
+						expose_lover_secret_or_run_consequence_effect = {
+							TARGET = scope:my_real_father
+							EXPOSER = scope:agot_hf_the_husband
+						}
+					}
+				}
+				if = {
+					limit = {
+						real_father = { is_alive = yes }
+						exists = root.real_father
+					}
+					real_father = {
+						expose_lover_secret_or_run_consequence_effect = {
+							TARGET = scope:my_mother
+							EXPOSER = scope:agot_hf_the_husband
+						}
+					}
+				}
+			}
+
+			save_scope_as = agot_hf_is_bastard
+			if = {
+				limit = { is_betrothed = yes }
+				break_betrothal = betrothed
+			}
+		}
+
+
+		#NOT A BASTARD!
+		else = {
+			limit = {
+				exists = scope:the_bastard_sibling.real_father
+				scope:the_bastard_sibling.father = scope:the_bastard_sibling.real_father
+			}
+			remove_trait = disputed_heritage
+			save_scope_as = agot_hf_is_not_bastard
+		}
+
+
+		#SENDING EVENTS
+		#Bastard is from high family - send event to everyone
+		if = {
+			limit = {
+				OR = {
+					scope:the_bastard_sibling.real_father ?= {
+						is_independent_ruler = yes
+						is_playable_character = yes
+						highest_held_title_tier >= tier_kingdom
+					}
+					scope:the_bastard_sibling.real_mother ?= {
+						is_independent_ruler = yes
+						is_playable_character = yes
+						highest_held_title_tier >= tier_kingdom
+					}
+					scope:the_bastard_sibling.real_father.primary_spouse ?= {
+						is_independent_ruler = yes
+						is_playable_character = yes
+						highest_held_title_tier >= tier_kingdom
+					}
+					scope:the_bastard_sibling.real_mother.primary_spouse ?= {
+						is_independent_ruler = yes
+						is_playable_character = yes
+						highest_held_title_tier >= tier_kingdom
+					}
+				}
+			}
+			every_ruler = {
+				limit = { highest_held_title_tier >= tier_county }
+				add_to_list = iron_throne_realm
+			}
+		}
+
+		#Bastard is from low family
+		else = {
+			if = {
+				limit = { exists = scope:the_bastard_sibling.liege.liege }
+				scope:the_bastard_sibling.liege.liege = {
+					every_vassal_or_below = {
+						limit = { highest_held_title_tier >= tier_county }
+						add_to_list = iron_throne_realm
+					}
+				}
+			}
+			else_if = {
+				limit = { exists = scope:the_bastard_sibling.liege }
+				scope:the_bastard_sibling.liege = {
+					every_vassal_or_below = {
+						limit = { highest_held_title_tier >= tier_county }
+						add_to_list = iron_throne_realm
+					}
+				}
+			}
+			else_if = {
+				limit = { scope:the_bastard_sibling = { is_playable_character = yes } }
+				scope:the_bastard_sibling = {
+					every_vassal_or_below = {
+						limit = { highest_held_title_tier >= tier_county }
+						add_to_list = iron_throne_realm
+					}
+				}
+			}
+		}
+	}
+	scope:the_bastard_sibling = {
+		if = {
+			limit = { NOT = { has_character_flag = already_revealed_my_parentage } }
+			add_character_flag = already_revealed_my_parentage
+		}
+	}
+}

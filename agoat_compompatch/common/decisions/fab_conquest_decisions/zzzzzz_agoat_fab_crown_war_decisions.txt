@@ -1,0 +1,39 @@
+﻿fab_crown_vale_war_decision = {
+	picture = {
+		reference = "gfx/interface/illustrations/decisions/fab_conquest_legacy_decision_goal.dds"
+	}
+	decision_group_type = major
+	desc = fab_crown_vale_war_decision_desc
+	selection_tooltip = fab_crown_vale_war_decision_tooltip
+	ai_check_interval = 0
+	is_shown = {
+		fab_crown_may_claim_kingdom_trigger = { KINGDOM = title:e_the_vale }
+	}
+	is_valid = {
+		NOT = { is_at_war_with = title:e_the_vale.holder }
+	}
+	cooldown = { days = 1800 }
+	effect = {
+		fab_crown_declare_kingdom_war_effect = { CB = fab_crown_vale_campaign KINGDOM = title:e_the_vale }
+	}
+}
+
+fab_crown_north_war_decision = {
+	picture = {
+		reference = "gfx/interface/illustrations/decisions/fab_conquest_legacy_decision_goal.dds"
+	}
+	decision_group_type = major
+	desc = fab_crown_north_war_decision_desc
+	selection_tooltip = fab_crown_north_war_decision_tooltip
+	ai_check_interval = 0
+	is_shown = {
+		fab_crown_may_claim_kingdom_trigger = { KINGDOM = title:e_the_north }
+	}
+	is_valid = {
+		NOT = { is_at_war_with = title:e_the_north.holder }
+	}
+	cooldown = { days = 1800 }
+	effect = {
+		fab_crown_declare_kingdom_war_effect = { CB = fab_crown_north_campaign KINGDOM = title:e_the_north }
+	}
+}

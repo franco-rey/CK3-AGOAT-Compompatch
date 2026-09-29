@@ -1,0 +1,328 @@
+﻿at_is_unsellable_artifact_trigger = {
+	OR = {
+		has_variable = banner_house
+		has_variable = banner_dynasty
+		has_variable = 1025_treasure_map
+		#AGOT ADDED
+		has_variable = dragon_egg
+		has_variable = valyrian_steel
+		has_variable = agot_artifact_cannot_gift
+		agot_artifact_can_take = no
+		has_variable = is_tribute_mission_artifact
+		has_variable = bunga_mas_created_by
+		has_variable = artifact_prevent_transfer
+	}
+}
+
+can_be_court_chaplain_trigger = {
+	save_temporary_scope_as = court_chaplain_check
+	can_be_councillor_basics_trigger = yes
+	$COURT_OWNER$ ?= {
+		NOT = { government_has_flag = government_is_nomadic }
+	}
+	NOR = {
+		has_council_position = councillor_spouse
+		AND = {
+			this = liege.diarch
+			liege = { has_diarchy_active_parameter = diarchy_is_vizierate }
+		}
+	}
+	$COURT_OWNER$.faith = { has_allowed_gender_for_clergy = scope:court_chaplain_check }
+	faith = $COURT_OWNER$.faith
+	trigger_if = {
+		limit = {
+			faith = { has_doctrine = doctrine_theocracy_temporal }
+		}
+		OR = {
+			is_ruler = no
+			government_has_flag = government_is_theocracy
+		}
+	}
+	trigger_if = {
+		limit = {
+			exists = var:escaped_imprisonment_from
+		}
+		NOT = { var:escaped_imprisonment_from = $COURT_OWNER$ }
+	}
+	trigger_if = {
+		limit = {
+			$COURT_OWNER$ ?= { NOT = { has_trait = excommunicated } }
+		}
+		NOT = { has_trait = excommunicated }
+	}
+
+	trigger_if = {
+		limit = {
+			$COURT_OWNER$ = {
+				has_title = title:h_the_iron_throne
+				exists = title:k_the_most_devout.holder
+				exists = faith.religious_head
+				faith.religious_head = title:k_the_most_devout.holder
+			}
+		}
+		agot_is_high_septon = yes
+	}
+
+	#AGOT Added
+	NOT = { this = title:d_norvos_high_priesthood.holder }
+
+	agot_guard_positions_can_hold_standard_council_position_trigger = yes
+}
+
+is_diarch_valid_trigger = {
+	agot_guard_positions_can_hold_diarchy_position_trigger = yes
+	#AGOT Added
+	OR = {
+		is_human = yes
+		has_government = ruins_government
+	}
+	NOT = { has_character_flag = nw_ranger_title }
+	NOT = { has_character_flag = fuck_off_its_my_wedding_day }
+	# Basics.
+	is_alive = yes
+	OR = {
+		# We always want adults...
+		is_adult = yes
+		# ... _unless_ this is junior emperor, they're always children.
+		liege ?= { has_diarchy_parameter = diarchy_type_is_junior_emperorship }
+	}
+	# Event blocks.
+	OR = {
+		is_ai = no
+		NOT = { has_character_flag = cannot_be_diarch }
+	}
+	trigger_if = {
+		limit = {
+			exists = liege
+		}
+		# Being in a diarchy yourself will disable you, outside of co-rulerships.
+		trigger_if = {
+			limit = {
+				NOT = {
+					liege = { has_diarchy_active_parameter = diarchy_is_co_rulership }
+				}
+			}
+			# If you're in an entrenched regency for some reason, you can't manage a regency yourself.
+			NOT = { has_diarchy_parameter = diarchy_type_is_entrenched_regency }
+			# You need to be mentally & physically sound, to some degree.
+			regency_for_personal_reasons_trigger = no
+		}
+		# Diarchy-specific checks.
+		## Viziers.
+		trigger_if = {
+			limit = {
+				liege = {
+					has_diarchy_parameter = diarchy_is_vizierate
+					NOT = { government_has_flag = government_is_celestial }
+				}
+			}
+			# Must match their liege's gender preference.
+			diarch_matches_liege_faith_gender_preference_trigger = yes
+			# Viziers aren't big land-owners.
+			## Not in this way, at least.
+			highest_held_title_tier <= tier_barony
+		}
+		# If you have somehow managed to get invited to/start an activity outside of your realm (e.g., you're the spouse in a grand wedding), then yeah, you forfeit your position.
+		## ... unless you're a co-ruler.
+		trigger_if = {
+			limit = {
+				NOT = {
+					liege = { has_diarchy_active_parameter = diarchy_is_co_rulership }
+				}
+			}
+			# We cannot be at war with our liege.
+			NOT = { is_at_war_with = liege }
+			NAND = {
+				# Is it redundant to check twice?
+				## Yes.
+				### Do the machine spirits demand this thoroughness of us?
+				#### Also yes.
+				##### Do not ask why the God-Machine commands it, merely be glad that it commanded it of you.
+				is_travelling = yes
+				exists = current_travel_plan
+				# We check your liege so that you can attend business within the realm easily.
+				## Schemes are their own special lil guys so we take care of them separately.
+				trigger_if = {
+					limit = {
+						exists = scope:owner
+						exists = scope:target
+					}
+					travel_would_cause_regency_trigger = { REALM_HOLDER = scope:owner.liege }
+				}
+				## Else, we're an ordinary, gods-fearing root scope, so use that.
+				trigger_else = {
+					travel_would_cause_regency_trigger = { REALM_HOLDER = liege }
+				}
+			}
+		}
+	}
+	#AGOT Modified
+	# tgp_is_ceremonial_liege_trigger = no
+	trigger_if = {
+		limit = {
+			liege ?= { government_has_flag = government_is_norvos }
+		}
+		trigger_if = {
+			limit = {
+				has_tgp_dlc_trigger = yes
+			}
+			tgp_is_ceremonial_liege_trigger = yes
+		}
+	}
+	trigger_else = {
+		tgp_is_ceremonial_liege_trigger = no
+	}
+}
+
+agot_is_recoverable_weapon = {
+	OR = {
+		has_artifact_modifier = vs_adders_fang_modifier
+		has_artifact_modifier = vs_blackfyre_modifier
+		has_artifact_modifier = vs_brightroar_modifier
+		has_artifact_modifier = vs_cloudbreak_modifier
+		has_artifact_modifier = vs_dancer_modifier
+		has_artifact_modifier = vs_dark_sister_modifier
+		has_artifact_modifier = vs_darktalon_modifier
+		has_artifact_modifier = vs_dawn_modifier
+		has_artifact_modifier = vs_defiance_modifier
+		has_artifact_modifier = vs_disputant_modifier
+		has_artifact_modifier = vs_evergold_modifier
+		has_artifact_modifier = vs_heartsbane_modifier
+		has_artifact_modifier = vs_ice_modifier
+		has_artifact_modifier = vs_iron_will_modifier
+		has_artifact_modifier = vs_lady_forlorn_modifier
+		has_artifact_modifier = vs_lamentation_modifier
+		has_artifact_modifier = vs_longclaw_modifier
+		has_artifact_modifier = vs_longthorn_modifier
+		has_artifact_modifier = vs_longthorn_generic_modifier
+		has_artifact_modifier = vs_longthorn_ruined_modifier
+		has_artifact_modifier = vs_nightfall_modifier
+		has_artifact_modifier = vs_orphan_maker_modifier
+		has_artifact_modifier = vs_pincer_modifier
+		has_artifact_modifier = vs_pride_modifier
+		has_artifact_modifier = vs_red_rain_modifier
+		has_artifact_modifier = vs_remige_modifier
+		has_artifact_modifier = vs_seafoam_modifier
+		has_artifact_modifier = vs_skullcleaver_modifier
+		has_artifact_modifier = vs_stalwart_modifier
+		has_artifact_modifier = vs_supremacy_modifier
+		has_artifact_modifier = vs_swansong_modifier
+		has_artifact_modifier = vs_swordfish_modifier
+		has_artifact_modifier = vs_tranquility_modifier
+		has_artifact_modifier = vs_truth_modifier
+		has_artifact_modifier = vs_vigilance_modifier
+		has_artifact_modifier = vs_widestripe_modifier
+		has_artifact_modifier = vs_widows_wail_modifier
+		has_artifact_modifier = vs_wyrmfang_modifier
+		has_artifact_modifier = vs_ascendant_modifier
+		has_artifact_modifier = vs_blood_moon_modifier
+		has_artifact_modifier = vs_boartusk_modifier
+		has_artifact_modifier = vs_dusk_modifier
+		has_artifact_modifier = vs_elegance_modifier
+		has_artifact_modifier = vs_fortitude_modifier
+		has_artifact_modifier = vs_heartbreaker_modifier
+		has_artifact_modifier = vs_guardian_modifier
+		has_artifact_modifier = vs_resonance_modifier
+		has_artifact_modifier = vs_starcross_modifier
+		has_artifact_modifier = vs_upright_modifier
+		has_artifact_modifier = vs_redhorn_modifier
+		has_artifact_modifier = vs_fools_errand_modifier
+		has_artifact_modifier = vs_guile_modifier
+		has_artifact_modifier = vs_oldroot_modifier
+		has_artifact_modifier = vs_clover_modifier
+		has_artifact_modifier = vs_feastmaker_modifier
+		has_artifact_modifier = vs_freedom_modifier
+		has_artifact_modifier = vs_mourning_modifier
+		has_artifact_modifier = vs_boneclaw_modifier
+		has_artifact_modifier = vs_honest_broker_modifier
+		has_artifact_modifier = vs_venom_modifier
+
+		# I'm a just and merciful god
+		has_artifact_modifier = vs_black_death_modifier
+		has_artifact_modifier = vs_dark_moon_modifier
+		has_artifact_modifier = vs_dragonbane_modifier
+		has_artifact_modifier = vs_glory_modifier
+		has_artifact_modifier = vs_iron_price_modifier
+		has_artifact_modifier = vs_mothers_grief_modifier
+		has_artifact_modifier = vs_skinpeeler_modifier
+		has_artifact_modifier = vs_stormy_nights_modifier
+		has_artifact_modifier = vs_strangers_touch_modifier
+		has_artifact_modifier = vs_talon_modifier
+		has_artifact_modifier = vs_unkindness_modifier
+		has_artifact_modifier = vs_darkflame_modifier
+		has_artifact_modifier = vs_duskmaiden_modifier
+
+		has_artifact_modifier = bobby_hammer_modifier
+		has_artifact_modifier = bobby_hammer_cooler_modifier
+		has_artifact_modifier = emoBoy_sword_modifier
+		has_artifact_modifier = maekar_mace_modifier
+		has_artifact_modifier = bloodraven_longbow_modifier
+		has_artifact_modifier = redbeard_axe_modifier
+
+		# AMSB Added
+		has_artifact_modifier = vs_torment_modifier
+		has_artifact_modifier = vs_dragon_halberd_modifier
+		has_artifact_modifier = vs_abyss_modifier
+		has_artifact_modifier = vs_stormbringer_modifier
+		has_artifact_modifier = vs_frostbite_hammer_modifier
+		has_artifact_modifier = vs_mages_fire_modifier
+		has_artifact_modifier = vs_amsb_harbinger_modifier
+		has_artifact_modifier = vs_amsb_shadowborn_modifier
+		has_artifact_modifier = vs_amsb_ashfall_modifier
+	}
+}
+
+location_has_harsh_winter_trigger = {
+	exists = location
+	location = {
+		OR = {
+			has_province_modifier = winter_harsh_modifier
+			has_province_modifier = winter_cold_modifier
+			has_province_modifier = winter_north_modifier
+		}
+	}
+}
+
+location_has_normal_or_worse_winter_trigger = {
+	exists = location
+	location = {
+		OR = {
+			has_province_modifier = winter_normal_modifier
+			has_province_modifier = winter_harsh_modifier
+			has_province_modifier = winter_cold_modifier
+			has_province_modifier = winter_north_modifier
+			has_province_modifier = winter_normal_modifier_1
+		}
+	}
+}
+
+building_quarries_requirement_terrain = {
+	OR = {
+		#AGOT Modified, terrain type triggers
+		# terrain = mountains
+		# terrain = desert_mountains
+		agot_is_mountains_terrain = yes
+		agot_is_desert_mountains_terrain = yes
+		AND = {
+			#AGOT Modified
+			#terrain = hills
+			agot_is_hills_terrain = yes
+			culture = { has_cultural_parameter = can_build_quarries_in_hills }
+		}		
+		culture = { has_cultural_parameter = can_build_quarries_everywhere }
+
+		#AGOT Added Terrains
+		agot_is_glacier_terrain = yes
+		agot_is_canyon_terrain = yes
+
+		#Tarth
+		this.barony = title:b_castlestar
+		this.barony = title:b_sundown
+		this.barony = title:b_bright_tree
+		this.barony = title:b_spur
+	}
+	#AGOT Added
+	NOT = {
+		geographical_region = world_westeros_the_iron_islands
+	}
+}

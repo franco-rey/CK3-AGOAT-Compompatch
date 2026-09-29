@@ -1,0 +1,93 @@
+﻿### Hiraeth Dynasty Legacies - Fate of Iberia Patch ###
+# DEVELOPMENT LEGACIES
+fp2_urbanism_legacy_2 = { # Merchant Lord
+	legacy = fp2_urbanism_legacy_track
+
+	can_be_picked = { 
+		hth_metropolitan_1_legacy_trigger = yes
+		eligible_for_fp2_dynasty_legacies_trigger = yes
+		OR = {
+			has_game_rule = hth_urbanism_legacy_track_available_all
+			agot_fp2_urbanism_legacy_track_trigger = yes
+		}
+	}
+
+	effect = {
+		custom_description_no_bullet = { text = fp2_urbanism_legacy_2_effect } ## Custom Effect
+		custom_description_no_bullet = { text = hth_law_legacy_1_ai_effect } ## AI
+		custom_description_no_bullet = { text = hth_metropolitan_legacy_1_req_effect } ## Legacy Requirement
+	}
+
+	character_modifier = {
+		stewardship = 1
+		learning = 1
+		ai_greed = 20
+	}
+
+	ai_chance = {
+		value = 11
+		if = {
+			limit = {
+				can_start_new_legacy_track_trigger = no
+			}
+			multiply = 0
+		}
+	}
+}
+
+hth_fp2_urbanism_legacy_2 = { # Architects of Change
+	legacy = fp2_urbanism_legacy_track
+
+	effect = {
+		custom_description_no_bullet = { text = hth_law_legacy_1_ai_effect } ## AI
+		custom_description_no_bullet = { text = hth_metropolitan_legacy_2_req_effect } ## Legacy Requirement
+	}
+	character_modifier = {
+		republic_government_levy_contribution_add = 0.15
+		republic_government_tax_contribution_add = 0.15
+		city_holding_build_speed = -0.1
+		city_holding_build_gold_cost = -0.1
+		city_holding_holding_build_speed = -0.1
+		city_holding_holding_build_gold_cost = -0.1
+		ai_greed = 20
+	}
+	can_be_picked = { 
+		hth_metropolitan_2_legacy_trigger = yes
+	}
+	ai_chance = {
+		value = 100
+	}
+}
+
+hth_fp2_coterie_legacy_1 = { # One House
+	legacy = fp2_coterie_legacy_track
+
+	can_be_picked = { 
+		hth_coterie_1_legacy_trigger = yes 
+		eligible_for_fp2_dynasty_legacies_trigger = yes
+		OR = {
+			has_game_rule = hth_coterie_legacy_track_available_all
+			agot_fp2_coterie_legacy_track_trigger = yes
+		}
+	}
+	effect = {
+		custom_description_no_bullet = { text = hth_coterie_legacy_1_ai_effect } ## AI
+		custom_description_no_bullet = { text = hth_coterie_legacy_1_req_effect } ## Legacy Requirement
+	}
+	character_modifier = {
+		intrigue = 1
+		diplomacy = 1
+		dynasty_house_opinion = 5
+		ai_honor = 10
+		ai_vengefulness = 10
+	}
+	ai_chance = {
+		value = 11
+		if = {
+			limit = {
+				can_start_new_legacy_track_trigger = no
+			}
+			multiply = 0
+		}
+	}
+}

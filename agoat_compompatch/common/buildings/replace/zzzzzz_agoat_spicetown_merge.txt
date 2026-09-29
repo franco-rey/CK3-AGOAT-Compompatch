@@ -1,0 +1,84 @@
+﻿agot_ruins_spicetown_02 = {
+	construction_time = very_slow_construction_time
+
+	type_icon = "icon_structure_spicetown.dds"
+
+	can_construct_potential = {
+		building_requirement_tribal = no
+	}
+
+	can_construct = {
+		has_holding_type = city_holding
+		title:d_driftmark = { holder.dynasty = dynasty:dynn_Velaryon }
+	}
+
+	is_enabled = {
+		agot_generic_is_special_building_enabled = yes
+	}
+
+	asset = {
+		type = pdxmesh
+		name = "agot_now_ports_01_mesh"
+	}
+
+	cost_gold = expensive_building_tier_6_cost
+
+	province_modifier = {
+		monthly_income = copper_mine_building_tax_tier_3
+	}
+
+	county_holder_character_modifier = {
+		embarkation_cost_mult = -0.3
+		naval_movement_speed_mult = 0.75
+		diplomatic_range_mult = 1.0
+	}
+
+	character_modifier = {
+		embarkation_cost_mult = -0.3
+		naval_movement_speed_mult = 0.75
+		diplomatic_range_mult = 1.0
+	}
+
+	effect_desc = agot_sailing_activity_cost_discount_special_desc
+
+	ai_value = {
+		base = 100
+		culture_likely_to_fortify_modifier = yes
+	}
+
+	type = special
+
+	on_complete = {
+		county.holder = {
+			if = { # MDE Modified
+				limit = {
+					OR = {
+						mde_never_map_egg_spawn_trigger = yes
+						global_var:moondancer_egg_map_spawn = 1
+						has_global_variable = moondancer_egg_found
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					mde_guaranteed_map_egg_spawn_trigger = yes
+				}
+				trigger_event = agot_ruins.2001
+			}
+			else = {
+				random_list = {
+					1 = {
+						modifier = {
+							factor = mde_egg_map_spawn_factor
+						}
+						trigger_event = agot_ruins.2001
+					}
+					3 = {} #Nothing happens
+				}
+			}
+		}
+	}
+
+	flag = port_building
+	flag = travel_point_of_interest_economic
+}

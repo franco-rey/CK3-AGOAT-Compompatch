@@ -1,0 +1,241 @@
+﻿namespace = agoat_mde_filler
+
+agoat_mde_filler.0003 = { #children fight
+	hidden = yes
+	cooldown = {
+		years = 10 #doesnt happen to the same kids?
+	}
+	trigger = {
+		trigger_if = {
+			limit = { exists = var:current_rider }
+			var:current_rider = {
+				is_available = yes
+				is_landed = yes
+				#location = capital_province
+				any_character_artifact = {
+					artifact_type = dragon_egg 			
+					count >= 1
+					}
+				any_child = { #missing traits trigger
+					NOT = { has_trait = dragonrider }
+					is_available = yes
+					#location = root.location breaks it?
+					count > 1
+					age >= 3
+					age <= 7
+					NOT = { has_character_flag = mde_new_egg }
+					any_character_artifact = {
+						artifact_type = dragon_egg 			
+						count >= 1
+					}
+					#has_trait = bossy
+				}
+			}
+		}
+		trigger_else = { always = no }
+	}
+	immediate = {
+		var:current_rider = {
+			trigger_event = {
+				id = mde_filler_dragon.0004
+			}
+		}
+	}
+}
+
+agoat_mde_filler.0019 = { #young dragon and young rider
+	hidden = yes
+	cooldown = {
+		years = 50 #doesnt happen again?
+	}
+	trigger = {
+
+		any_in_global_list = {
+			variable = living_dragons
+			count >= 8
+		}
+
+		has_character_flag = owned_dragon
+		exists = var:current_rider 
+		age > 75
+		trigger_if = {
+			limit = { exists = var:current_rider.location.county.holder }
+			AND = {
+				var:current_rider = {
+					location = {
+						county.holder = {
+							AND = {
+								has_royal_court = yes
+								amenity_level = { target = agot_dragonpit_amenities value >= 5 }
+							}
+						}
+					}
+					has_faith = faith:fots_seven
+					is_available = yes
+					OR = {
+						has_trait = paranoid
+						has_trait = lunatic_1
+						has_trait = lunatic_genetic
+						has_trait = cynical
+						has_trait = diligent
+					}
+					NOT = { has_character_flag = mde_wasting_dragon }
+				}
+			}
+		}
+		trigger_else = { always = no }
+	}
+	immediate = {
+		var:current_rider = {
+			trigger_event = {
+				id = mde_filler_dragon.0020
+			}
+		}
+	}
+}
+
+agoat_mde_filler.0025 = { #young dragon and young rider
+	hidden = yes
+	cooldown = {
+		years = 25 #doesnt happen to the same kids?
+	}
+	trigger = {
+		has_character_flag = owned_dragon
+		exists = var:current_rider 
+		NOR = {
+			has_trait = dragon_picky_eater
+			has_trait = dragon_bloodthirsty
+			has_trait = dragon_voracious
+		}
+
+		AND = {
+			var:current_rider = {
+				is_available = yes
+				location = {
+					county.holder = {
+						AND = {
+							has_royal_court = yes
+							amenity_level = { target = agot_dragonpit_amenities value <= 5 }
+						}
+					}
+				}
+				NOT = { has_character_flag = mde_picky_eater }
+			}
+			trigger_if = {
+				limit = { exists = var:current_rider.capital_province }
+				location = var:current_rider.capital_province
+			}
+			trigger_else = { always = no }
+		}
+		trigger_if = {
+			limit = { exists = var:current_rider.capital_province }
+			location = var:current_rider.capital_province
+		}
+		trigger_else = { always = no }
+	}
+	immediate = {
+		var:current_rider = {
+			trigger_event = {
+				id = mde_filler_dragon.0026
+			}
+		}
+	}
+}
+
+agoat_mde_filler.0027 = { #wild beast
+	hidden = yes
+	cooldown = {
+		years = 25 #doesnt happen to the same kids?
+	}
+	trigger = {
+		has_character_flag = owned_dragon
+		NOT = { has_character_flag = in_dragonpit }
+		exists = var:current_rider 
+		OR = {
+			has_trait = dragon_picky_eater
+			has_trait = dragon_bloodthirsty
+			has_trait = dragon_voracious
+		}
+
+		AND = {
+			var:current_rider = {
+				is_available = yes
+				# location = {
+				# 	county.holder = {
+				# 		AND = {
+				# 			has_royal_court = yes
+				# 			amenity_level = { target = agot_dragonpit_amenities value >= 5 }
+				# 		}
+				# 	}
+				# }
+				NOT = { has_character_flag = mde_a_wild_beast }
+			}
+			trigger_if = {
+				limit = { exists = var:current_rider.capital_province }
+				location = var:current_rider.capital_province
+			}
+			trigger_else = { always = no }
+		}
+		trigger_if = {
+			limit = { exists = var:current_rider.capital_province }
+			location = var:current_rider.capital_province
+		}
+		trigger_else = { always = no }
+	}
+	immediate = {
+		var:current_rider = {
+			trigger_event = {
+				id = mde_filler_dragon.0028
+			}
+		}
+	}
+}
+
+agoat_mde_filler.0029 = { #wild beast
+	hidden = yes
+	cooldown = {
+		years = 250 #doesnt happen to the same kids?
+	}
+	trigger = {
+		has_character_flag = owned_dragon
+		exists = var:current_rider 
+		age > 150
+
+		AND = {
+			var:current_rider = {
+				is_available = yes
+				# location = {
+				# 	county.holder = {
+				# 		AND = {
+				# 			has_royal_court = yes
+				# 			amenity_level = { target = agot_dragonpit_amenities value >= 5 }
+				# 		}
+				# 	}
+				# }
+				NOT = { has_character_flag = dragon_too_old_flag }
+			}
+			trigger_if = {
+				limit = { exists = var:current_rider.capital_province }
+				location = var:current_rider.capital_province
+			}
+			trigger_else = { always = no }
+		}
+		trigger_if = {
+			limit = { exists = var:current_rider.capital_province }
+			location = var:current_rider.capital_province
+		}
+		trigger_else = { always = no }
+	}
+	immediate = {
+		if = {
+			var:current_rider = {
+				trigger_event = {
+					id = mde_filler_dragon.0030
+				}
+			}
+		}
+		else = {
+			add_trait = dragon_too_old
+		}
+	}
+}

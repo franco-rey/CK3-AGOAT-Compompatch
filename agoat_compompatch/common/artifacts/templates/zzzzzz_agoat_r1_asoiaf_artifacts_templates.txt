@@ -1,0 +1,31 @@
+﻿asoiaf_krakenfall_template = {
+	can_equip = {
+		always = yes
+	}
+
+
+	# can this character benefit from the full modifiers of the artifact?
+	can_benefit = {
+	}
+
+
+	# if a given character does not pass the "can_benefit" trigger then this modifier will be applied instead.
+	fallback = {
+	}
+
+	unique = yes
+	ai_score = {
+		value = 100
+		if = {
+			limit = {
+				house = house:house_BaratheonKL
+				OR = {
+					any_artifact = { has_variable = asoiaf_is_hearteater } #members of House Baratheon of King's Landing would prefer to wield either of these three over Krakenfall, even if Krakenfall is of higher quality
+					any_artifact = { has_variable = widows_wail_artifact }
+					any_artifact = { has_variable = oathkeeper_artifact }
+				}
+			}
+			add = -100
+		}
+	}
+}

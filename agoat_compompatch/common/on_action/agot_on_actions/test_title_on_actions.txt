@@ -1,5 +1,9 @@
 ﻿
 
+# A title is transferred to a new character
+# root = the new holder
+# scope:title = the title that changes hands
+# scope:previous_holder = previous holder. Might be dead
 on_title_gain = {
 	on_actions = {
 		asoiaf_on_title_inheritance_rhaenyra_kills_siblings
@@ -23,17 +27,22 @@ on_title_gain = {
 		asoiaf_on_title_inheritance_joffrey_I_crown_creation
 
 
+		#asoiaf_on_title_inheritance_robert_usurper_nickname
+		#asoiaf_harlaw_cadet_branch_harridan_hills #TEMPORARILY DISABLED SINCE ITS NOT CLEAR IF THESE ARE ACTUAL CADET BRANCHES IN THE LORE
+		#asoiaf_harlaw_cadet_branch_grey_garden
+		#asoiaf_harlaw_cadet_branch_tower_of_glimmering
+		#asoiaf_harlaw_cadet_branch_harlaw_hall
 	}
 }
 
 asoiaf_on_title_inheritance_rhaenyra_kills_siblings = {
 	trigger = {
 		scope:title = { this = title:h_the_iron_throne }
-		scope:previous_holder = { has_inactive_trait = asoiaf_Targaryen_60_trait }
-		root = { has_inactive_trait = asoiaf_Targaryen_63_trait }
+		scope:previous_holder = { has_inactive_trait = asoiaf_Targaryen_60_trait } #prior ruler is Viserys; won't trigger after taking back the throne from Aegon II
+		root = { has_inactive_trait = asoiaf_Targaryen_63_trait } #inheritor is Rhaenyra
 		root = {
 			father = {
-				any_child = {
+				any_child = { #if a brother exists who could be used to challenge Rhaenyra, trigger this event for her
 					AND = {
 						is_male = yes
 						is_alive = yes
@@ -49,10 +58,10 @@ asoiaf_on_title_inheritance_rhaenyra_kills_siblings = {
 							has_trait = nightswatch
 							has_trait = bastard
 						}
-						NOR = {
-							is_spouse_of = root
+						NOR = { #if Rhaenyra is married to one of her brothers, she's legitimate enough to not need to consider this course
+							is_spouse_of = root #he's currently her husband
 							AND = {
-								is_spouse_of_even_if_dead = root
+								is_spouse_of_even_if_dead = root #he died, but he's got (legitimate) living children with her who can inherit
 								any_child = {
 									AND = {
 										mother = root
@@ -79,9 +88,9 @@ asoiaf_on_title_inheritance_rhaenyra_kills_siblings = {
 			}
 		}
 	}
-	effect = {
+	effect = { #2-part event, one to decide to imprison all brothers (and their children), and one to decide to kill them all
 		root = {
-			trigger_event = { id = asoiaf_maintenance_events.0006 days = 2 }
+			trigger_event = { id = asoiaf_maintenance_events.0006 days = 2 } #a couple days after becoming Queen
 		}
 	}
 }
@@ -89,7 +98,7 @@ asoiaf_on_title_inheritance_rhaenyra_kills_siblings = {
 asoiaf_iron_throne_lord_paramount_contract_fix = {
 	trigger = {
 		has_game_rule = asoiaf_lord_paramount_contract_fix_on
-		scope:title = {
+		scope:title = { #only canon LP titles vassalised to the Iron Throne
 			OR = {
 				this = title:e_the_north
 				this = title:e_the_riverlands
@@ -103,8 +112,8 @@ asoiaf_iron_throne_lord_paramount_contract_fix = {
 				this = title:e_dorne
 			}
 		}
-		liege ?= { has_title = title:h_the_iron_throne }
-		root = { has_government = lp_feudal_government }
+		liege ?= { has_title = title:h_the_iron_throne } #liege exists and is the Iron Throne
+		root = { has_government = lp_feudal_government } #person inheriting is Western Feudal
 	}
 	effect = {
 		if = {
@@ -171,7 +180,7 @@ asoiaf_iron_throne_lord_paramount_contract_fix = {
 }
 
 agot_on_title_inheritance_lannister_baratheon_coa = {
-	trigger = {
+	trigger = { #trigger must be identical to vanilla AGOT's
 		scope:title = {
 			this = title:h_the_iron_throne
 		}
@@ -183,7 +192,7 @@ agot_on_title_inheritance_lannister_baratheon_coa = {
 		}
 	}
 	effect = {
-		add_gold = 1
+		add_gold = 1 #just to have SOMETHING here to overwrite the old effect
 	}
 }
 
@@ -199,9 +208,9 @@ asoiaf_on_title_inheritance_lannister_baratheon_coa = {
 		}
 		root = {
 			dynasty = dynasty:dynn_Baratheon
-			father = { has_inactive_trait = asoiaf_Baratheon_2_trait }
-			mother = { has_inactive_trait = asoiaf_Lannister_6_trait }
-			NOT = { real_father = { has_inactive_trait = asoiaf_Baratheon_2_trait } }
+			father = { has_inactive_trait = asoiaf_Baratheon_2_trait } #Robert
+			mother = { has_inactive_trait = asoiaf_Lannister_6_trait } #Cersei
+			NOT = { real_father = { has_inactive_trait = asoiaf_Baratheon_2_trait } } #real father doesn't need to be Jaime to raise suspicion, it just can't be Robert
 		}
 		NOR = {
 			is_target_in_global_variable_list = {
@@ -222,13 +231,14 @@ asoiaf_on_title_inheritance_lannister_baratheon_coa = {
 		if = {
 			limit = {
 				age < 16
-				root.mother = { is_courtier_of = root }
+				root.mother = { is_courtier_of = root } #if she's not at court, she can't become a regent immediately after the succession
 			}
-			designate_diarch = root.mother
-			set_diarch = root.mother
+			designate_diarch = root.mother #Cersei
+			try_start_diarchy = regency
+			set_diarch = root.mother #Cersei
 			set_diarchy_type = regency
 		}
-		every_child = {
+		every_child = { #the inheritor's children
 			if = {
 				limit = {
 					dynasty = dynasty:dynn_Baratheon
@@ -236,7 +246,7 @@ asoiaf_on_title_inheritance_lannister_baratheon_coa = {
 				set_culture = culture:crownlander
 				set_house = house:house_BaratheonKL
 				trigger_event = { id = agot_coa_events.1 }
-				every_child = {
+				every_child = { #the inheritor's grand-children
 					if = {
 						limit = {
 							dynasty = dynasty:dynn_Baratheon
@@ -252,8 +262,8 @@ asoiaf_on_title_inheritance_lannister_baratheon_coa = {
 			if = {
 				limit = {
 					dynasty = dynasty:dynn_Baratheon
-					father = { has_inactive_trait = asoiaf_Baratheon_2_trait }
-					mother = { has_inactive_trait = asoiaf_Lannister_6_trait }
+					father = { has_inactive_trait = asoiaf_Baratheon_2_trait } #Robert
+					mother = { has_inactive_trait = asoiaf_Lannister_6_trait } #Cersei
 					NOT = {
 						has_trait = bastard
 					}
@@ -262,7 +272,7 @@ asoiaf_on_title_inheritance_lannister_baratheon_coa = {
 				set_house = house:house_BaratheonKL
 				add_trait = disputed_heritage
 				trigger_event = { id = agot_coa_events.1 }
-				every_child = {
+				every_child = { #close family's children
 					if = {
 						limit = {
 							dynasty = dynasty:dynn_Baratheon
@@ -270,7 +280,7 @@ asoiaf_on_title_inheritance_lannister_baratheon_coa = {
 						set_culture = culture:crownlander
 						set_house = house:house_BaratheonKL
 						trigger_event = { id = agot_coa_events.1 }
-						every_child = {
+						every_child = { #close family's grand-children
 							if = {
 								limit = {
 									dynasty = dynasty:dynn_Baratheon
@@ -292,19 +302,19 @@ asoiaf_on_title_inheritance_lannister_baratheon_coa = {
 		dynasty:dynn_Lannister = {
 			every_dynasty_member = {
 				limit = {
-					has_inactive_trait = asoiaf_Lannister_1_trait
+					has_inactive_trait = asoiaf_Lannister_1_trait #Tywin
 					is_alive = yes
 				}
 				save_scope_as = asoiaf_Lannister_1
 			}
 		}
-		if = {
+		if = { #Alliance with Tywin (if he's alive)
 			limit = {
 				exists = scope:asoiaf_Lannister_1
 			}
 			create_alliance = {
 				target = scope:asoiaf_Lannister_1
-				allied_through_owner = ROOT
+				allied_through_owner = ROOT #whoever inherits the Throne that meets the conditions above
 				allied_through_target = scope:asoiaf_Lannister_1
 			}
 			scope:asoiaf_Lannister_1 = {
@@ -322,23 +332,26 @@ asoiaf_on_title_inheritance_frey_rosby_cadet = {
 		NOT = { exists = global_var:asoiaf_frey_rosby_cadet_branch_founded_variable }
 
 
+		#scope:previous_holder = {
+		#	dynasty = dynasty:dynn_Rosby
+		#}
 		scope:title = {
 			OR = {
 				this = title:d_rosby
 				this = title:c_rosby
 			}
 		}
-		root = {
+		root = { #inheritor
 			dynasty = dynasty:dynn_Frey
 			OR = {
-				this = character:Frey_78
+				this = character:Frey_78 #either the children of Bethany Rosby...
 				this = character:Frey_79
 				this = character:Frey_80
 				this = character:Frey_81
 				this = character:Frey_82
 				AND = {
 					father ?= character:Frey_78
-					house ?= character:Frey_78.house
+					house ?= character:Frey_78.house #...or the child of any of Bethany's Frey children
 				}
 				AND = {
 					father ?= character:Frey_79
@@ -360,7 +373,7 @@ asoiaf_on_title_inheritance_frey_rosby_cadet = {
 		}
 	}
 	effect = {
-		set_global_variable = asoiaf_frey_rosby_cadet_branch_founded_variable
+		set_global_variable = asoiaf_frey_rosby_cadet_branch_founded_variable #so it can't happen twice
 		root = {
 			house = { save_scope_as = asoiaf_founders_old_house }
 			set_house = house:house_Frey_Rosby
@@ -369,7 +382,7 @@ asoiaf_on_title_inheritance_frey_rosby_cadet = {
 			dynasty = {
 				every_dynasty_member = {
 					limit = {
-						any_ancestor = {
+						any_ancestor = { #any Frey descendants of Bethany Rosby, not just of the House founder
 							even_if_dead = yes
 							this = character:Rosby_3
 						}
@@ -380,7 +393,7 @@ asoiaf_on_title_inheritance_frey_rosby_cadet = {
 				}
 			}
 		}
-		character:Frey_79 ?= {
+		character:Frey_79 ?= { #Benfrey's new House sigil is identical to his personal CoA, so prune it
 			if = {
 				limit = { has_character_flag = has_personal_coa }
 				agot_prune_personal_coa = yes
@@ -391,23 +404,23 @@ asoiaf_on_title_inheritance_frey_rosby_cadet = {
 
 asoiaf_on_title_inheritance_harrold_hardyng_becomes_arryn = {
 	trigger = {
-		asoiaf_historical_trigger = yes
+		asoiaf_historical_trigger = yes #player is on a historical game mode
 		scope:title = {
 			OR = {
 				this = title:e_the_vale
-				this = title:e_the_vale
+				this = title:e_the_vale #in case Robin becomes independent
 			}
 		}
-		root = character:Hardyng_5
+		root = character:Hardyng_5 #inheritor is Harrold Hardyng (the Young Falcon)
 		scope:previous_holder = {
 			OR = {
-				dynasty = dynasty:dynn_Arryn
-				has_title = title:h_the_iron_throne
+				dynasty = dynasty:dynn_Arryn #inherited from a dead Arryn
+				has_title = title:h_the_iron_throne #appointed by the Iron Throne
 			}
 		}
 	}
 	effect = {
-		character:Hardyng_5 = {
+		character:Hardyng_5 = { #Harrold Hardyng (the Young Falcon)
 			house ?= {
 				character:Hardyng_5 = { set_house = character:Arryn_15.house }
 				every_house_member = {
@@ -420,27 +433,27 @@ asoiaf_on_title_inheritance_harrold_hardyng_becomes_arryn = {
 				}
 			}
 		}
-		character:Hardyng_5.mother = {
+		character:Hardyng_5.mother = { #Harry's Waynwood mother, who was the daughter of an Arryn
 			set_house = character:Arryn_15.house
 		}
 	}
 }
 
-asoiaf_young_griff_victory = {
+asoiaf_young_griff_victory = { #agot_faegon_invasion.0001
 	trigger = {
 		scope:title = {
 			this = title:h_the_iron_throne
 		}
-		root = { has_inactive_trait = asoiaf_Targaryen_11_trait }
+		root = { has_inactive_trait = asoiaf_Targaryen_11_trait } #this is Aegon
 		NOT = { exists = global_var:asoiaf_young_griff_victory_variable }
 	}
 	effect = {
 		hidden_effect = {
-			set_global_variable = asoiaf_young_griff_victory_variable
+			set_global_variable = asoiaf_young_griff_victory_variable #so this can't trigger twice
 			root = {
-				trigger_event = { id = asoiaf_young_griff_landing_events.3 days = 5 }
+				trigger_event = { id = asoiaf_young_griff_landing_events.3 days = 5 } #enough time for the player/AI to have gone through the event chain to declare his parentage; LOOKS LIKE ITS NOT NECESSARY ANYMORE
 			}
-			asoiaf_destroy_crownlands_title_effect = yes
+			asoiaf_destroy_crownlands_title_effect = yes #taking the Iron Throne creates the Crownlands, so destroy it automatically
 		}
 	}
 }
@@ -448,7 +461,7 @@ asoiaf_young_griff_victory = {
 asoiaf_on_title_inheritance_aegon_I_crown_creation = {
 	trigger = {
 		AND = {
-			this = { has_inactive_trait = asoiaf_Targaryen_27_trait }
+			this = { has_inactive_trait = asoiaf_Targaryen_27_trait } #inheritor is Aegon I, but NOT the historical version (that's handled by vanilla AGOT effects)
 			NOT = { this = character:Targaryen_27 }
 			OR = {
 				primary_title.tier = tier_hegemony
@@ -467,7 +480,7 @@ asoiaf_on_title_inheritance_aegon_I_crown_creation = {
 		this = { save_scope_as = asoiaf_Targaryen_27 }
 		scope:asoiaf_Targaryen_27 ?= {
 			agot_create_artifact_aegon_i_crown_effect = { OWNER = this CREATOR = this }
-			trigger_event = { id = asoiaf_equip_crown_events.1 days = 1 }
+			trigger_event = { id = asoiaf_equip_crown_events.1 days = 1 } #equip Aegon I's crown with delay because of overlapping effects
 		}
 	}
 }
@@ -475,7 +488,7 @@ asoiaf_on_title_inheritance_aegon_I_crown_creation = {
 asoiaf_on_title_inheritance_aenys_I_crown_creation = {
 	trigger = {
 		AND = {
-			this = { has_inactive_trait = asoiaf_Targaryen_30_trait }
+			this = { has_inactive_trait = asoiaf_Targaryen_30_trait } #inheritor is Aenys I, but NOT the historical version (that's handled by vanilla AGOT effects)
 			NOT = { this = character:Targaryen_30 }
 			OR = {
 				primary_title.tier = tier_hegemony
@@ -494,7 +507,7 @@ asoiaf_on_title_inheritance_aenys_I_crown_creation = {
 		this = { save_scope_as = asoiaf_Targaryen_30 }
 		scope:asoiaf_Targaryen_30 ?= {
 			agot_create_artifact_aenys_crown_effect = { OWNER = this CREATOR = this }
-			trigger_event = { id = asoiaf_equip_crown_events.2 days = 1 }
+			trigger_event = { id = asoiaf_equip_crown_events.2 days = 1 } #equip Aenys I's crown with delay because of overlapping effects
 		}
 	}
 }
@@ -502,7 +515,7 @@ asoiaf_on_title_inheritance_aenys_I_crown_creation = {
 asoiaf_on_title_inheritance_jaehaerys_I_crown_creation = {
 	trigger = {
 		AND = {
-			this = { has_inactive_trait = asoiaf_Targaryen_35_trait }
+			this = { has_inactive_trait = asoiaf_Targaryen_35_trait } #inheritor is Jaehaerys I, but NOT the historical version (that's handled by vanilla AGOT effects)
 			NOT = { this = character:Targaryen_35 }
 			OR = {
 				primary_title.tier = tier_hegemony
@@ -521,7 +534,7 @@ asoiaf_on_title_inheritance_jaehaerys_I_crown_creation = {
 		this = { save_scope_as = asoiaf_Targaryen_35 }
 		scope:asoiaf_Targaryen_35 ?= {
 			agot_create_artifact_jaehaerys_crown_effect = { OWNER = this CREATOR = this }
-			trigger_event = { id = asoiaf_equip_crown_events.3 days = 1 }
+			trigger_event = { id = asoiaf_equip_crown_events.3 days = 1 } #equip Jaehaerys I's crown with delay because of overlapping effects
 		}
 	}
 }
@@ -529,7 +542,7 @@ asoiaf_on_title_inheritance_jaehaerys_I_crown_creation = {
 asoiaf_on_title_inheritance_aegon_III_crown_creation = {
 	trigger = {
 		AND = {
-			this = { has_inactive_trait = asoiaf_Targaryen_78_trait }
+			this = { has_inactive_trait = asoiaf_Targaryen_78_trait } #inheritor is Aegon III, but NOT the historical version (that's handled by vanilla AGOT effects)
 			NOT = { this = character:Targaryen_78 }
 			OR = {
 				primary_title.tier = tier_hegemony
@@ -548,7 +561,7 @@ asoiaf_on_title_inheritance_aegon_III_crown_creation = {
 		this = { save_scope_as = asoiaf_Targaryen_78 }
 		scope:asoiaf_Targaryen_78 ?= {
 			agot_create_artifact_aegon_iii_crown_effect = { OWNER = this CREATOR = this }
-			trigger_event = { id = asoiaf_equip_crown_events.4 days = 1 }
+			trigger_event = { id = asoiaf_equip_crown_events.4 days = 1 } #equip Aegon III's crown with delay because of overlapping effects
 		}
 	}
 }
@@ -556,7 +569,7 @@ asoiaf_on_title_inheritance_aegon_III_crown_creation = {
 asoiaf_on_title_inheritance_baelor_I_crown_creation = {
 	trigger = {
 		AND = {
-			this = { has_inactive_trait = asoiaf_Targaryen_82_trait }
+			this = { has_inactive_trait = asoiaf_Targaryen_82_trait } #inheritor is Baelor I, but NOT the historical version (that's handled by vanilla AGOT effects)
 			NOT = { this = character:Targaryen_82 }
 			OR = {
 				primary_title.tier = tier_hegemony
@@ -575,7 +588,7 @@ asoiaf_on_title_inheritance_baelor_I_crown_creation = {
 		this = { save_scope_as = asoiaf_Targaryen_82 }
 		scope:asoiaf_Targaryen_82 ?= {
 			agot_create_artifact_baelors_crown_effect = { OWNER = this CREATOR = this }
-			trigger_event = { id = asoiaf_equip_crown_events.5 days = 1 }
+			trigger_event = { id = asoiaf_equip_crown_events.5 days = 1 } #equip Baelor I's crown with delay because of overlapping effects
 		}
 	}
 }
@@ -583,7 +596,7 @@ asoiaf_on_title_inheritance_baelor_I_crown_creation = {
 asoiaf_on_title_inheritance_aegon_IV_crown_creation = {
 	trigger = {
 		AND = {
-			this = { has_inactive_trait = asoiaf_Targaryen_88_trait }
+			this = { has_inactive_trait = asoiaf_Targaryen_88_trait } #inheritor is Aegon IV, but NOT the historical version (that's handled by vanilla AGOT effects)
 			NOT = { this = character:Targaryen_88 }
 			OR = {
 				primary_title.tier = tier_hegemony
@@ -602,7 +615,7 @@ asoiaf_on_title_inheritance_aegon_IV_crown_creation = {
 		this = { save_scope_as = asoiaf_Targaryen_88 }
 		scope:asoiaf_Targaryen_88 ?= {
 			agot_create_artifact_aegon_iv_crown_effect = { OWNER = this CREATOR = this }
-			trigger_event = { id = asoiaf_equip_crown_events.6 days = 1 }
+			trigger_event = { id = asoiaf_equip_crown_events.6 days = 1 } #equip Aegon IV's crown with delay because of overlapping effects
 		}
 	}
 }
@@ -610,7 +623,7 @@ asoiaf_on_title_inheritance_aegon_IV_crown_creation = {
 asoiaf_on_title_inheritance_maekar_I_crown_creation = {
 	trigger = {
 		AND = {
-			this = { has_inactive_trait = asoiaf_Targaryen_110_trait }
+			this = { has_inactive_trait = asoiaf_Targaryen_110_trait } #inheritor is Maekar I, but NOT the historical version (that's handled by vanilla AGOT effects)
 			NOT = { this = character:Targaryen_110 }
 			OR = {
 				primary_title.tier = tier_hegemony
@@ -629,7 +642,7 @@ asoiaf_on_title_inheritance_maekar_I_crown_creation = {
 		this = { save_scope_as = asoiaf_Targaryen_110 }
 		scope:asoiaf_Targaryen_110 ?= {
 			agot_create_artifact_maekars_crown_effect = { OWNER = this CREATOR = this }
-			trigger_event = { id = asoiaf_equip_crown_events.7 days = 1 }
+			trigger_event = { id = asoiaf_equip_crown_events.7 days = 1 } #equip Maekar I's crown with delay because of overlapping effects
 		}
 	}
 }
@@ -638,7 +651,7 @@ asoiaf_on_title_inheritance_aerys_II_crown_creation = {
 	trigger = {
 		AND = {
 			this = {
-				has_inactive_trait = asoiaf_Targaryen_1_trait
+				has_inactive_trait = asoiaf_Targaryen_1_trait #inheritor is Aerys II, but NOT the historical version (that's handled by vanilla AGOT effects)
 			}
 			OR = {
 				primary_title.tier = tier_hegemony
@@ -647,7 +660,7 @@ asoiaf_on_title_inheritance_aerys_II_crown_creation = {
 					agot_is_independent_ruler = yes
 				}
 			}
-			this = { has_inactive_trait = asoiaf_Targaryen_1_trait }
+			this = { has_inactive_trait = asoiaf_Targaryen_1_trait } #Aerys II Targaryen
 			asoiaf_aerys_II_targaryen_crown_trigger = yes
 			NOT = { has_government = nights_watch_government }
 			NOT = { has_government = silent_sisterhood_government }
@@ -658,7 +671,7 @@ asoiaf_on_title_inheritance_aerys_II_crown_creation = {
 		this = { save_scope_as = asoiaf_Targaryen_1 }
 		scope:asoiaf_Targaryen_1 ?= {
 			create_artifact_asoiaf_aerys_II_crown_effect = { OWNER = this }
-			trigger_event = { id = asoiaf_equip_crown_events.8 days = 1 }
+			trigger_event = { id = asoiaf_equip_crown_events.8 days = 1 } #equip Aerys II's crown with delay because of overlapping effects
 		}
 	}
 }
@@ -674,7 +687,7 @@ asoiaf_on_title_inheritance_robert_I_crown_creation = {
 					agot_is_independent_ruler = yes
 				}
 			}
-			this = { has_inactive_trait = asoiaf_Baratheon_2_trait }
+			this = { has_inactive_trait = asoiaf_Baratheon_2_trait } #Robert I Baratheon
 			asoiaf_robert_I_baratheon_crown_trigger = yes
 			NOT = { has_government = nights_watch_government }
 			NOT = { has_government = silent_sisterhood_government }
@@ -685,7 +698,7 @@ asoiaf_on_title_inheritance_robert_I_crown_creation = {
 		this = { save_scope_as = asoiaf_Baratheon_2 }
 		scope:asoiaf_Baratheon_2 ?= {
 			agot_create_artifact_robertI_crown_effect = { OWNER = this CREATOR = this }
-			trigger_event = { id = asoiaf_equip_crown_events.9 days = 1 }
+			trigger_event = { id = asoiaf_equip_crown_events.9 days = 1 } #equip Robert I's crown with delay because of overlapping effects
 		}
 	}
 }
@@ -693,7 +706,7 @@ asoiaf_on_title_inheritance_robert_I_crown_creation = {
 asoiaf_on_title_inheritance_joffrey_I_crown_creation = {
 	trigger = {
 		AND = {
-			this = { has_inactive_trait = asoiaf_Baratheon_5_trait }
+			this = { has_inactive_trait = asoiaf_Baratheon_5_trait } #inheritor is Joffrey I, but NOT the historical version (that's handled by vanilla AGOT effects)
 			NOT = { this = character:Baratheon_5 }
 			OR = {
 				primary_title.tier = tier_hegemony
@@ -712,7 +725,7 @@ asoiaf_on_title_inheritance_joffrey_I_crown_creation = {
 		this = { save_scope_as = asoiaf_Baratheon_5 }
 		scope:asoiaf_Baratheon_5 ?= {
 			agot_create_artifact_joffreyI_crown_effect = { OWNER = this CREATOR = this }
-			trigger_event = { id = asoiaf_equip_crown_events.10 days = 1 }
+			trigger_event = { id = asoiaf_equip_crown_events.10 days = 1 } #equip Joffrey I's crown with delay because of overlapping effects
 		}
 	}
 }
@@ -720,7 +733,7 @@ asoiaf_on_title_inheritance_joffrey_I_crown_creation = {
 asoiaf_on_title_inheritance_renly_crown_creation = {
 	trigger = {
 		AND = {
-			this = { has_inactive_trait = asoiaf_Baratheon_4_trait }
+			this = { has_inactive_trait = asoiaf_Baratheon_4_trait } #inheritor is Renly, but NOT the historical version (that's handled by vanilla AGOT effects)
 			NOT = { this = character:Baratheon_4 }
 			has_game_rule = asoiaf_new_clothes_stormlands_rule_on
 			OR = {
@@ -740,7 +753,7 @@ asoiaf_on_title_inheritance_renly_crown_creation = {
 		this = { save_scope_as = asoiaf_Baratheon_4 }
 		scope:asoiaf_Baratheon_4 ?= {
 			agot_create_artifact_renly_crown_effect = { OWNER = this CREATOR = this }
-			trigger_event = { id = asoiaf_equip_crown_events.11 days = 1 }
+			trigger_event = { id = asoiaf_equip_crown_events.11 days = 1 } #equip Renly's crown with delay because of overlapping effects
 		}
 	}
 }
@@ -763,7 +776,7 @@ asoiaf_on_title_inheritance_robert_I_gluttonous_trait = {
 					agot_is_independent_ruler = yes
 				}
 			}
-			this = { has_inactive_trait = asoiaf_Baratheon_2_trait }
+			this = { has_inactive_trait = asoiaf_Baratheon_2_trait } #Robert I Baratheon
 		}
 	}
 	effect = {
@@ -784,7 +797,7 @@ asoiaf_on_title_inheritance_robert_siblings_claims = {
 			scope:title = {
 				this = title:h_the_iron_throne
 			}
-			this = { has_inactive_trait = asoiaf_Baratheon_2_trait }
+			this = { has_inactive_trait = asoiaf_Baratheon_2_trait } #Robert I Baratheon
 		}
 	}
 	effect = {
@@ -805,15 +818,15 @@ asoiaf_on_title_inheritance_robert_usurper_nickname = {
 	trigger = {
 		AND = {
 			scope:title = { this = title:h_the_iron_throne }
-			root = {
+			root = { #conqueror is either Aegon, Viserys, or Daenerys
 				OR = {
 					var:faegon_main_character = flag:faegon
 					var:faegon_main_character = flag:viserys
 					var:faegon_main_character = flag:dany
 				}
 			}
-			OR = {
-				scope:previous_holder ?= { has_inactive_trait = asoiaf_Baratheon_2_trait }
+			OR = { #either Robert is alive and was the prior holder, or is dead and held the title at the time
+				scope:previous_holder ?= { has_inactive_trait = asoiaf_Baratheon_2_trait } #is Robert I
 				character:Baratheon_2 ?= {
 					is_alive = no
 					has_title = title:h_the_iron_throne
@@ -830,10 +843,10 @@ asoiaf_on_title_inheritance_robert_usurper_nickname = {
 
 asoiaf_harlaw_cadet_branch_harridan_hills = {
 	trigger = {
-		this = character:Harlaw_14
+		this = character:Harlaw_14 #Boremund the Blue
 		has_character_flag = has_personal_coa
 		NOT = {
-			is_target_in_global_variable_list = {
+			is_target_in_global_variable_list = { #House Harlaw of Harridan Hills hasn't been founded yet
 				name = asoiaf_harlaw_hh_unavailable
 				target = flag:asoiaf_harlaw_cadet_hh
 			}
@@ -841,7 +854,7 @@ asoiaf_harlaw_cadet_branch_harridan_hills = {
 	}
 	effect = {
 		house = { save_scope_as = asoiaf_founders_old_house }
-		set_house = house:house_HarlawHH
+		set_house = house:house_HarlawHH #Harlaw of Harridan Hills
 		trigger_event = { id = agot_coa_events.1 }
 		dynasty = {
 			every_dynasty_member = {
@@ -864,10 +877,10 @@ asoiaf_harlaw_cadet_branch_harridan_hills = {
 
 asoiaf_harlaw_cadet_branch_grey_garden = {
 	trigger = {
-		this = character:Harlaw_12
+		this = character:Harlaw_12 #Harras the Knight
 		has_character_flag = has_personal_coa
 		NOT = {
-			is_target_in_global_variable_list = {
+			is_target_in_global_variable_list = { #House Harlaw of Grey Garden hasn't been founded yet
 				name = asoiaf_harlaw_gg_unavailable
 				target = flag:asoiaf_harlaw_cadet_gg
 			}
@@ -875,7 +888,7 @@ asoiaf_harlaw_cadet_branch_grey_garden = {
 	}
 	effect = {
 		house = { save_scope_as = asoiaf_founders_old_house }
-		set_house = house:house_HarlawGG
+		set_house = house:house_HarlawGG #Harlaw of Grey Garden
 		trigger_event = { id = agot_coa_events.1 }
 		dynasty = {
 			every_dynasty_member = {
@@ -898,10 +911,10 @@ asoiaf_harlaw_cadet_branch_grey_garden = {
 
 asoiaf_harlaw_cadet_branch_tower_of_glimmering = {
 	trigger = {
-		this = character:Harlaw_13
+		this = character:Harlaw_13 #Hotho Humpback
 		has_character_flag = has_personal_coa
 		NOT = {
-			is_target_in_global_variable_list = {
+			is_target_in_global_variable_list = { #House Harlaw of the Tower of Glimmering hasn't been founded yet
 				name = asoiaf_harlaw_tg_unavailable
 				target = flag:asoiaf_harlaw_cadet_tg
 			}
@@ -909,7 +922,7 @@ asoiaf_harlaw_cadet_branch_tower_of_glimmering = {
 	}
 	effect = {
 		house = { save_scope_as = asoiaf_founders_old_house }
-		set_house = house:house_HarlawTG
+		set_house = house:house_HarlawTG #Harlaw of the Tower of Glimmering
 		trigger_event = { id = agot_coa_events.1 }
 		dynasty = {
 			every_dynasty_member = {
@@ -932,10 +945,10 @@ asoiaf_harlaw_cadet_branch_tower_of_glimmering = {
 
 asoiaf_harlaw_cadet_branch_harlaw_hall = {
 	trigger = {
-		this = character:Harlaw_2
+		this = character:Harlaw_2 #Sigfryd Silverhair
 		has_character_flag = has_personal_coa
 		NOT = {
-			is_target_in_global_variable_list = {
+			is_target_in_global_variable_list = { #House Harlaw of Harlaw Hall hasn't been founded yet
 				name = asoiaf_harlaw_hhall_unavailable
 				target = flag:asoiaf_harlaw_cadet_hhall
 			}
@@ -978,16 +991,18 @@ asoiaf_young_griff_war_loser = {
 		}
 		scope:new_holder = {
 			OR = {
-				has_inactive_trait = asoiaf_Targaryen_8_trait
-				has_inactive_trait = asoiaf_Targaryen_9_trait
-				has_inactive_trait = asoiaf_Targaryen_11_trait
+				has_inactive_trait = asoiaf_Targaryen_8_trait #Viserys Targaryen (son of Aerys II)
+				has_inactive_trait = asoiaf_Targaryen_9_trait #Daenerys Targaryen (daughter of Aerys II)
+				has_inactive_trait = asoiaf_Targaryen_11_trait #Aegon Targaryen (son of Rhaegar)
 			}
 		}
 
+		#NOT = { exists = global_var:asoiaf_young_griff_war_loser_variable } #commented out since it doesn't matter if it triggers multiple times, it's a good effect to have regardless
 	}
 	effect = {
 		hidden_effect = {
 
+			#set_global_variable = asoiaf_young_griff_war_loser_variable #so this can't trigger twice
 			root = {
 				add_pressed_claim = title:h_the_iron_throne
 				add_pressed_claim = title:e_the_crownlands
@@ -1002,20 +1017,20 @@ asoiaf_young_griff_war_loser = {
 	}
 }
 
-asoiaf_daemon_loses_stepstone_claims = {
+asoiaf_daemon_loses_stepstone_claims = { #clean up Daemon's claims after losing the Stepstones so he doesn't get elected a Pirate Captain afterwards
 	trigger = {
 		scope:title = {
-			OR = {
+			OR = { #so it will trigger if he loses any stage of his war
 				this = title:k_the_stepstones
 				this = title:d_first_stepstones
 				this = title:c_dwarfstone
 			}
 		}
-		root = character:Targaryen_61
+		root = character:Targaryen_61 #Daemon Targaryen (son of Baelon) - historical
 	}
 	effect = {
 		hidden_effect = {
-			root = {
+			root = { #remove claims from every title in the Stepstones
 				remove_claim = title:k_the_stepstones
 				remove_claim = title:d_first_stepstones
 				remove_claim = title:d_skull_tides

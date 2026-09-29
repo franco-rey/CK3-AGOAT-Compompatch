@@ -1,9 +1,4 @@
-﻿# Battlefield Duel+ resolves AI-vs-AI duels from a live combat phase. Its
-# capture and death outcomes immediately remove a participating character from
-# imprisonment/combat or destroy the character while the engine is still
-# iterating that combat. This repeatedly ends in a native access violation.
-# Keep non-destructive AI outcomes; player battlefield duels are unaffected.
-bdp_ai_vs_ai_roll_outcome_effect = {
+﻿bdp_ai_vs_ai_roll_outcome_effect = {
 	bdp_ai_vs_ai_select_outcome_profile_effect = yes
 	clear_saved_scope = bdp_ai_vs_ai_outcome
 	random_list = {

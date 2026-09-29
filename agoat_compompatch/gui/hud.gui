@@ -1,4 +1,7 @@
-﻿widget = {
+﻿######################################################
+#################### BOTTOM #######################
+######################################################
+widget = {
 	size = { 100% 100% }
 	name = "meta_info"
 	visible = "[IsDefaultGUIMode]"
@@ -81,6 +84,7 @@
 	}
 
 
+	## Build version & Beta warning
 	text_single = {
 		name = "build_version_text"
 		visible = "[And( Not(IsGameViewOpen('barbershop')), Not(LiveMode))]"
@@ -132,8 +136,10 @@
 		}
 
 
+		### Raise/Disband armies ###
 		container = {
 
+			# Similar visible check in hud_bottom.gui:287, for the bottom info in non-realms mapmodes
 			visible = "[And( Not(IsGameViewOpen('barbershop')), And( IsMapMode('realms'), And( Not(IsGameViewOpen('struggle')), Not(IsAnySituationViewOpen) ) ) )]"
 			parentanchor = hcenter|bottom
 
@@ -264,6 +270,10 @@
 }
 
 
+######################################################
+#################### TOP RIGHT #######################
+######################################################
+#Top right: resources and alerts, outliner, and panel tabs
 widget = {
 	name = "ingame_topbar"
 	visible = "[InGameTopbar.ShouldBeVisible]"
@@ -272,6 +282,7 @@ widget = {
 	using = Animation_ShowHide_Quick
 
 
+	### Ruler Objectives
 	container = {
 		visible = "[And( GetPlayersRulerObjectiveDecision.IsValid, Not( IsGameViewOpen( 'hud_ruler_objective' )) )]"
 		datacontext = "[GetPlayersRulerObjectiveDecision]"
@@ -311,6 +322,7 @@ widget = {
 	}
 
 
+	### Outliner Button
 	container = {
 		visible = "[And(Not( GreaterThan_CFixedPoint( GetPlayer.MakeScope.Var('hide_ui_outliner').GetValue, '(CFixedPoint)0' ) ), And( Not( IsGameViewOpen('barbershop') ), And( Not( IsPauseMenuShown ), And(Not(IsRightWindowOpen), IsDefaultGUIMode))))]"
 		parentanchor = top|right
@@ -350,6 +362,7 @@ widget = {
 	}
 
 
+	### Main Tabs
 	widget = {
 		name = "main_tabs"
 		visible = "[And(And(And( Not( IsPauseMenuShown ), And(Or(Not(IsObserver), GetPlayer.IsValid), IsDefaultGUIMode)), Not(IsGameViewOpen('struggle'))), Not( GreaterThan_CFixedPoint( GetPlayer.MakeScope.Var('hide_ui_main_tabs').GetValue, '(CFixedPoint)0' ) ))]"
@@ -410,7 +423,7 @@ widget = {
 				}
 
 				hbox = {
-					name = "tab_government_administration"
+					name = "tab_government_administration" #tutorial uses this
 
 					widget_hud_main_tab = {
 						datacontext = "[GetPlayer.GetTopLiege]"
@@ -589,7 +602,7 @@ widget = {
 				}
 
 				widget_hud_main_tab = {
-					name = "tab_intrigue"
+					name = "tab_intrigue" #tutorial uses this
 
 					blockoverride "maintab_button"
 					{
@@ -604,7 +617,7 @@ widget = {
 				}
 
 				widget_hud_main_tab = {
-					name = "tab_factions"
+					name = "tab_factions" #tutorial uses this
 					visible = "[Or( Or( GetPlayer.IsInAFaction, GetPlayer.IsLandedRuler ), GetPlayer.HasLiege)]"
 
 					blockoverride "maintab_button"
@@ -635,7 +648,7 @@ widget = {
 
 			vbox = {
 				widget_hud_main_tab = {
-					name = "tab_decisions"
+					name = "tab_decisions" #tutorial uses this
 					visible = "[Not(GetPlayer.GetGovernment.IsType( 'landless_adventurer_government' ))]"
 
 					blockoverride "maintab_button"
@@ -650,7 +663,7 @@ widget = {
 				}
 
 				widget_hud_main_tab = {
-					name = "tab_activities"
+					name = "tab_activities"  #tutorial uses this
 
 					blockoverride "maintab_button"
 					{
@@ -688,6 +701,7 @@ widget = {
 						texture = "gfx/interface/skinned/hud_maintab/maintab_situations.dds"
 
 
+						# Looping glow when you have a new story
 						using = Animation_Glow_Pulse
 
 						glow = {
@@ -698,6 +712,7 @@ widget = {
 						}
 
 
+						# Pulse when you get a new story
 						state = {
 							name = "new_situation_start"
 							next = "new_situation_a"
@@ -768,6 +783,7 @@ widget = {
 						onclick = "[Character.OpenRoyalCourtView( 'throne' )]"
 
 
+						# Looping glow when you have unhandled court events or first get your royal court
 						using = Animation_Glow_Pulse
 
 						glow = {
@@ -778,6 +794,7 @@ widget = {
 						}
 
 
+						# Pulse when you get a new pending court event
 						state = {
 							name = "pending_court_event_start"
 							next = "pending_court_event_a"
@@ -934,6 +951,7 @@ widget = {
 		}
 
 
+		# Invisible button to ensure that these shortcuts don't get hidden
 		button = {
 			size = { 0 0 }
 			onclick = "[ToggleGameViewData( 'character', GetPlayer.GetID )]"
@@ -3440,12 +3458,14 @@ widget = {
 			expand = {}
 
 
+			### Alerts
 			notifications_alerts = {
 				visible = "[And( Not(IsGameViewOpen('barbershop')), Not( IsPauseMenuShown ) )]"
 				using = Animation_ShowHide_Quick
 			}
 
 
+			### Suggestions / Current Situation
 			widget = {
 				size = { 80 80 }
 				widgetid = "suggestions_placer"
@@ -3457,6 +3477,7 @@ widget = {
 			}
 
 
+			#### Top Right Bar
 			resources_top_right_bar = {
 				name = "top_bar"
 				visible = "[And(Not( IsPauseMenuShown ), Not( GreaterThan_CFixedPoint( GetPlayer.MakeScope.Var('hide_ui_top_bar').GetValue, '(CFixedPoint)0' ) ))]"
@@ -3468,6 +3489,7 @@ widget = {
 }
 
 
+### Time Controls
 icon = {
 	name = "timeline_widget"
 	visible = "[And(And( Not(IsGameViewOpen('barbershop')), And( And( Not( IsPauseMenuShown ), TimelineWidget.ShouldBeVisible ), Not(GetVariableSystem.Exists('royal_court_screenshot_window')))), Not( GreaterThan_CFixedPoint( GetPlayer.MakeScope.Var('hide_ui_timeline').GetValue, '(CFixedPoint)0' ) ))]"
@@ -3530,13 +3552,14 @@ icon = {
 		hotkeys_HUD = {}
 
 
+		# hotkeys that should'be available in the lobby
 		container = {
 			button_normal = {
 				name = "ledger_shortcut"
 				onclick = "[ToggleGameView('ledger')]"
 				onclick = "[GetVariableSystem.Clear( 'extra_buttons_expand' )]"
 				shortcut = "ledger_window"
-			}
+			}		
 			button_normal = {
 				onclick = "[OnGoToPlayerCapital]"
 				onclick = "[ToggleGameViewData('holding_view', GetPlayer.GetCapitalLocation)]"
@@ -3550,6 +3573,7 @@ icon = {
 		}
 
 
+		### Extra Buttons
 		flowcontainer = {
 			name = "extra_buttons_menu"
 			visible = "[And( Not( IsPauseMenuShown ), GetVariableSystem.Exists( 'extra_buttons_expand' ))]"
@@ -3711,6 +3735,7 @@ icon = {
 				allow_outside = yes
 
 
+				## Date
 				button_standard_hover = {
 					name = "play_pause_button_tutorial_uses_this"
 
@@ -4145,6 +4170,7 @@ icon = {
 			}
 
 
+			# Just the hotkeys for increase/decrease speed
 			container = {
 				name = "speed_hotkeys"
 
@@ -4179,6 +4205,7 @@ icon = {
 }
 
 
+### Bottom edge
 widget = {
 	name = "bottom_bar"
 	visible = "[And( Not( IsPauseMenuShown ), IsDefaultGUIMode )]"
@@ -4188,8 +4215,6 @@ widget = {
 
 	using = Animation_ShowHide_Quick
 
-	# Render the dragon and dynamic family portraits before the lower HUD.
-	# Otherwise spouse/heir canvases can cover the interface with black silhouettes.
 	bottom_left_dragon_portrait = {
 		parentanchor = bottom|left
 	}
@@ -4243,6 +4268,7 @@ widget = {
 	}
 
 
+	### TGP WIDGET BACKGROUND
 	widget = {
 		visible = "[And(And( Not( IsGameViewOpen( 'barbershop' ) ), And( GetPlayer.IsValid, Not( GetVariableSystem.Exists( 'hide_bottom_left_HUD' ) ) ) ), Not( GreaterThan_CFixedPoint( GetPlayer.MakeScope.Var('hide_ui_bottom_left_bar').GetValue, '(CFixedPoint)0' ) ))]"
 		parentanchor = bottom|left
@@ -4251,6 +4277,7 @@ widget = {
 		size = { 548 116 }
 
 
+		# BACKGROUND MERIT + DYNASTIC CYCLE + MOVEMENTS
 		icon = {
 			visible = "[And(InGameBottomBar.ShouldShowDynasticCycle, Character.ShouldShowMerit)]"
 			size = { 548 116 }
@@ -4258,6 +4285,7 @@ widget = {
 		}
 
 
+		# BACKGROUND MERIT + DYNASTIC CYCLE
 		icon = {
 			visible = "[And(GetSituation('dynastic_cycle').GetTopParticipantGroupByKey('other_rulers').IsCharacterParticipant( Character.Self ), Character.ShouldShowMerit)]"
 			parentanchor = left
@@ -4266,6 +4294,7 @@ widget = {
 		}
 
 
+		# BACKGROUND ONLY MERIT WIDGET
 		icon = {
 			visible = "[And(Not( InGameBottomBar.ShouldShowDynasticCycle ), Character.ShouldShowMerit )]"
 			parentanchor = left
@@ -4274,6 +4303,7 @@ widget = {
 		}
 
 
+		# BACKGROUND ONLY MOVEMENT
 		icon = {
 			visible = "[And(InGameBottomBar.ShouldShowDynasticCycle, Not(Character.ShouldShowMerit))]"
 			parentanchor = left
@@ -4289,6 +4319,7 @@ widget = {
 		ignoreinvisible = yes
 	}
 
+	### TGP WIDGET
 	flowcontainer = {
 		visible = "[And(And( Not( IsGameViewOpen( 'barbershop' ) ), And( GetPlayer.IsValid, Not( GetVariableSystem.Exists( 'hide_bottom_left_HUD' ) ) ) ), Not( GreaterThan_CFixedPoint( GetPlayer.MakeScope.Var('hide_ui_bottom_left_bar').GetValue, '(CFixedPoint)0' ) ))]"
 		direction = horizontal
@@ -4355,17 +4386,22 @@ widget = {
 	}
 
 
+	## Bottom left tabs
 	left_edge_tabs = {
 		parentanchor = bottom|left
 		position = { -3 -110 }
 	}
 
 
+	### Legitimacy, Lifestyle, etc
 	bottom_left_button_row = {
 		parentanchor = bottom|left
 	}
 
 
+	######################################################
+	######### MAPMODES AND WARS AND INSPIRATIONS #########
+	######################################################
 	map_modes_debug = {
 		visible = "[And( InDebugMode, And( Not( GetVariableSystem.Exists( 'mapmodes_expand' ) ), And(IsDefaultGUIMode, Not(IsRightWindowOpen))))]"
 		visible_at_creation = no
@@ -4377,7 +4413,7 @@ widget = {
 		scale = 0.9
 	}
 
-	widget = {
+	widget = { # Inspiration Details
 		visible = "[And( InGameBottomBar.HasSelectedInspiration, And( IsDefaultGUIMode, Not( IsRightWindowOpen ) ) )]"
 		visible_at_creation = no
 		datacontext = "[InGameBottomBar.GetSelectedInspiration]"
@@ -4554,6 +4590,8 @@ widget = {
 	}
 
 
+	### Ongoing longer term objects and map modes
+	# eg: Wars, Schemes, Inspirations
 	flowcontainer = {
 		visible = "[And(And(IsDefaultGUIMode, Not(IsRightWindowOpen)), Not( GreaterThan_CFixedPoint( GetPlayer.MakeScope.Var('hide_ui_bottom_right_temporary_statuses').GetValue, '(CFixedPoint)0' ) ))]"
 
@@ -4577,6 +4615,7 @@ widget = {
 		}
 
 
+		# In progress systems
 		flowcontainer = {
 			name = "in_progress_systems"
 			ignoreinvisible = yes
@@ -4584,6 +4623,7 @@ widget = {
 			visible = "[Not(IsGameViewOpen('barbershop'))]"
 
 
+			### Wars ###
 			flowcontainer = {
 				name = "wars"
 				parentanchor = vcenter
@@ -4667,6 +4707,7 @@ widget = {
 			}
 
 
+			### Schemes ###
 			flowcontainer = {
 				name = "player_schemes"
 				datamodel = "[InGameBottomBar.GetSchemes]"
@@ -4687,6 +4728,7 @@ widget = {
 						size = { 90 112 }
 
 
+						### Scheme exposed animation
 						icon = {
 							visible = "[Scheme.IsExposed]"
 							parentanchor = center
@@ -4735,6 +4777,7 @@ widget = {
 						}
 
 
+						# Glow pulse animation when you have an opportunity
 						icon = {
 							visible = "[GreaterThan_int32( Scheme.GetAgentCharges, '(int32)0' )]"
 							parentanchor = center
@@ -4800,6 +4843,7 @@ widget = {
 						}
 
 
+						# Pogressbar & frame
 						highlight_icon = {
 							name = "progress_frame"
 							texture = "gfx/interface/window_scheme/scheme_hud_bg_progress_frame.dds"
@@ -4824,10 +4868,12 @@ widget = {
 						}
 
 
+						# Target
 						container = {
 							parentanchor = center
 
 
+							# Character Target
 							container = {
 								datacontext = "[Scheme.GetTargetCharacter]"
 								visible = "[Character.IsValid]"
@@ -4838,6 +4884,7 @@ widget = {
 							}
 
 
+							# Title Target
 							container = {
 								datacontext = "[Scheme.GetTargetTitle]"
 								visible = "[Title.IsValid]"
@@ -4851,6 +4898,7 @@ widget = {
 							}
 
 
+							# Faith Target
 							container = {
 								datacontext = "[Scheme.GetTargetFaith]"
 								visible = "[Faith.IsValid]"
@@ -4865,6 +4913,7 @@ widget = {
 							}
 
 
+							# Culture Target
 							container = {
 								datacontext = "[Scheme.GetTargetCulture]"
 								visible = "[Culture.IsValid]"
@@ -4878,6 +4927,7 @@ widget = {
 						}
 
 
+						# Scheme type icon & bg
 						widget = {
 							parentanchor = bottom|hcenter
 							position = { 0 -16 }
@@ -4898,6 +4948,7 @@ widget = {
 						}
 
 
+						# Scheme success chance
 						hbox = {
 							parentanchor = center
 							position = { 0 14 }
@@ -4918,7 +4969,7 @@ widget = {
 								name = "success"
 								text = "SCHEME_WIDGET_SUCCESS_CHANCE"
 								align = nobaseline
-								fontsize = 13
+								fontsize = 13 	# Smallest allowed fontsize
 							}
 
 							icon = {
@@ -4932,6 +4983,7 @@ widget = {
 						}
 
 
+						# Opportunities
 						widget = {
 							visible = "[GreaterThan_int32( Scheme.GetAgentCharges, '(int32)0' )]"
 							parentanchor = top|right
@@ -4968,6 +5020,7 @@ widget = {
 						}
 
 
+						### Countermeasure icon
 						widget = {
 							visible = "[And(Scheme.GetSchemeCountermeasureProtectingTarget.IsValid, Scheme.GetSchemeType.IsHostile)]"
 							datacontext = "[Scheme.GetSchemeCountermeasureProtectingTarget]"
@@ -4988,6 +5041,7 @@ widget = {
 							}
 
 
+							# The frame
 							icon = {
 								parentanchor = center
 								size = { 30 30 }
@@ -5010,6 +5064,7 @@ widget = {
 			}
 
 
+			### Travelling or Activities
 			widget = {
 				name = "involved_activity"
 
@@ -5040,6 +5095,7 @@ widget = {
 			}
 
 
+			### Travelling with no Activity
 			button_hud_travel_primary = {
 				name = "activity_travel_button"
 				datacontext = "[Character.GetTravelPlan]"
@@ -5048,6 +5104,7 @@ widget = {
 			}
 
 
+			### Inspirations ###
 			flowcontainer = {
 				name = "player_inspirations"
 				parentanchor = vcenter
@@ -5101,6 +5158,7 @@ widget = {
 			}
 
 
+			### Task Contacts ###
 			flowcontainer = {
 				name = "task_contracts"
 				datamodel = "[GetPlayer.GetAcceptedTaskContracts]"
@@ -5113,6 +5171,7 @@ widget = {
 			}
 
 
+			### DIARCHY
 			button = {
 				name = "open_diarchy_tutorial_uses_this"
 				parentanchor = vcenter
@@ -5153,6 +5212,7 @@ widget = {
 				}
 
 
+				### diarchy level
 				widget = {
 					parentanchor = top|hcenter
 					size = { 36 36 }
@@ -5160,6 +5220,7 @@ widget = {
 					allow_outside = yes
 
 
+					### glow
 					icon = {
 						name = "highlight_current_level"
 						parentanchor = center
@@ -5227,6 +5288,7 @@ widget = {
 					}
 
 
+					### Current marker background
 					icon = {
 						parentanchor = center
 						size = { 100% 100% }
@@ -5235,6 +5297,7 @@ widget = {
 					}
 
 
+					### Current marker text
 					text_single = {
 						parentanchor = center
 
@@ -5248,6 +5311,7 @@ widget = {
 			}
 
 
+			### Situations & Struggles ###
 			flowcontainer = {
 				name = "hud_situations_tutorial_uses_this"
 				parentanchor = vcenter
@@ -5323,6 +5387,7 @@ widget = {
 			}
 
 
+			### Epidemics in/near your realm ###
 			button_epidemics = {
 				name = "epidemics_hud"
 				visible_at_creation = no
@@ -5332,6 +5397,7 @@ widget = {
 		}
 
 
+		## Map Modes
 		map_modes = {
 			visible = "[Not(IsGameViewOpen('barbershop'))]"
 			filter_mouse = all
@@ -5348,18 +5414,24 @@ widget = {
 }
 
 
+######################################################
+############# MESSAGES AND NOTIFICATIONS #############
+######################################################
+### Message Feed
 notifications_message_feed = {
 	position = { -10 -135 }
 	layer = bottom
 }
 
 
+### Toasts
 notifications_toasts = {
 	parentanchor = top|hcenter
 	layer = middle
 }
 
 
+### Suggestions / Current Situation
 notifications_suggestions = {
 	layer = hud_layer
 
@@ -5369,6 +5441,9 @@ notifications_suggestions = {
 }
 
 
+######################################################
+################ TYPES AND TEMPLATES #################
+######################################################
 types HUD
 {
 
@@ -5633,6 +5708,12 @@ types HUD
 	}
 
 
+	####
+	#
+	# NOTE: If you add a button in here, you must update InGameBottomBar.GetHudOptionalItemsCount and use a code defined function for visibility
+	#       Otherwise, the background (which is placed behind the player portrait) will not extend properly
+	#
+	####
 	type bottom_left_button_row = flowcontainer {
 		name = "bottom_left_bar"
 		visible = "[And(And( Not(IsGameViewOpen('barbershop')), And( Not( IsPauseMenuShown ), And(And(IsDefaultGUIMode, GetPlayer.IsValid), Not(GetVariableSystem.Exists( 'hide_bottom_left_HUD'))))), Not( GreaterThan_CFixedPoint( GetPlayer.MakeScope.Var('hide_ui_bottom_left_bar').GetValue, '(CFixedPoint)0' ) ))]"
@@ -5742,136 +5823,136 @@ types HUD
 				}
 			}
 
-			button_normal = {
-				name = "legitimacy_button"
-				datacontext = "[Character.GetLegitimacyType]"
-				datacontext = "[Character.GetLegitimacyLevel]"
-				visible = "[InGameBottomBar.ShouldShowLegitimacyInHUD]"
+		button_normal = {
+			name = "legitimacy_button"
+			datacontext = "[Character.GetLegitimacyType]"
+			datacontext = "[Character.GetLegitimacyLevel]"
+			visible = "[InGameBottomBar.ShouldShowLegitimacyInHUD]"
 				parentanchor = center
-				size = { 48 48 }
+			size = { 48 48 }
 
-				using = tooltip_ne
+			using = tooltip_ne
 
-				tooltipwidget = {
-					legitimacy_hud_tooltip = {
-						datacontext = "[InGameBottomBar.GetLegitimacyBar]"
-					}
+			tooltipwidget = {
+				legitimacy_hud_tooltip = {
+					datacontext = "[InGameBottomBar.GetLegitimacyBar]"
+				}
+			}
+
+			icon = {
+				texture = "gfx/interface/icons/activity_phases/button_activity_base.dds"
+				size = { 100% 100% }
+			}
+
+			icon = {
+				name = "progress_frame"
+				texture = "gfx/interface/progressbars/action_progress_frame.dds"
+				size = { 100% 100% }
+			}
+
+			icon = {
+				parentanchor = vcenter
+				position = { 6 0 }
+				size = { 36 36 }
+
+				texture = "[Character.GetLegitimacyType.GetLevelsIcon]"
+				framesize = { 70 70 }
+				frame = "[IntToFrameIndex( LegitimacyLevel.GetIndex )]"
+
+				modify_texture = {
+					name = "lvl_increase"
+					texture = "gfx/interface/colors/gold.dds"
+					blend_mode = colordodge
+					alpha = 0
 				}
 
-				icon = {
-					texture = "gfx/interface/icons/activity_phases/button_activity_base.dds"
-					size = { 100% 100% }
+				modify_texture = {
+					name = "lvl_decrease"
+					texture = "gfx/interface/colors/red.dds"
+					blend_mode = colordodge
+					alpha = 0
 				}
 
-				icon = {
-					name = "progress_frame"
-					texture = "gfx/interface/progressbars/action_progress_frame.dds"
-					size = { 100% 100% }
-				}
-
-				icon = {
-					parentanchor = vcenter
-					position = { 6 0 }
-					size = { 36 36 }
-
-					texture = "[Character.GetLegitimacyType.GetLevelsIcon]"
-					framesize = { 70 70 }
-					frame = "[IntToFrameIndex( LegitimacyLevel.GetIndex )]"
+				state = {
+					name = "legitimacy_level_increase"
+					next = "legitimacy_level_increase_2"
 
 					modify_texture = {
 						name = "lvl_increase"
-						texture = "gfx/interface/colors/gold.dds"
-						blend_mode = colordodge
 						alpha = 0
-					}
-
-					modify_texture = {
-						name = "lvl_decrease"
-						texture = "gfx/interface/colors/red.dds"
-						blend_mode = colordodge
-						alpha = 0
-					}
-
-					state = {
-						name = "legitimacy_level_increase"
-						next = "legitimacy_level_increase_2"
-
-						modify_texture = {
-							name = "lvl_increase"
-							alpha = 0
-						}
-					}
-
-					state = {
-						name = "legitimacy_level_increase_2"
-						next = "legitimacy_level_increase_3"
-						duration = 0.4
-						bezier = { 0.5 0 1 0.5 }
-
-						modify_texture = {
-							name = "lvl_increase"
-							alpha = 0.7
-						}
-					}
-
-					state = {
-						name = "legitimacy_level_increase_3"
-						duration = 0.5
-						bezier = { 0 0.5 0.5 1 }
-
-						modify_texture = {
-							name = "lvl_increase"
-							alpha = 0
-						}
-					}
-
-					state = {
-						name = "legitimacy_level_decrease"
-						next = "legitimacy_level_decrease_2"
-
-						modify_texture = {
-							name = "lvl_decrease"
-							alpha = 0
-						}
-					}
-
-					state = {
-						name = "legitimacy_level_decrease_2"
-						next = "legitimacy_level_decrease_3"
-						duration = 0.4
-						bezier = { 0.5 0 1 0.5 }
-
-						modify_texture = {
-							name = "lvl_decrease"
-							alpha = 0.7
-						}
-					}
-
-					state = {
-						name = "legitimacy_level_decrease_3"
-						duration = 0.5
-						bezier = { 0 0.5 0.5 1 }
-
-						modify_texture = {
-							name = "lvl_decrease"
-							alpha = 0
-						}
 					}
 				}
 
-				progresspie = {
-					name = "progress"
-					size = { 42 42 }
-
-					texture = "gfx/interface/progressbars/action_progress_thin_blue.dds"
-					framesize = { 128 128 }
-					frame = 2
-					value = "[InGameBottomBar.GetLegitimacyProgress]"
-					parentanchor = center
+				state = {
+					name = "legitimacy_level_increase_2"
+					next = "legitimacy_level_increase_3"
+					duration = 0.4
+					bezier = { 0.5 0 1 0.5 }
 
 					modify_texture = {
-						texture = "gfx/interface/colors/blue.dds"
-						blend_mode = normal
+						name = "lvl_increase"
+						alpha = 0.7
+					}
+				}
+
+				state = {
+					name = "legitimacy_level_increase_3"
+					duration = 0.5
+					bezier = { 0 0.5 0.5 1 }
+
+					modify_texture = {
+						name = "lvl_increase"
+						alpha = 0
+					}
+				}
+
+				state = {
+					name = "legitimacy_level_decrease"
+					next = "legitimacy_level_decrease_2"
+
+					modify_texture = {
+						name = "lvl_decrease"
+						alpha = 0
+					}
+				}
+
+				state = {
+					name = "legitimacy_level_decrease_2"
+					next = "legitimacy_level_decrease_3"
+					duration = 0.4
+					bezier = { 0.5 0 1 0.5 }
+
+					modify_texture = {
+						name = "lvl_decrease"
+						alpha = 0.7
+					}
+				}
+
+				state = {
+					name = "legitimacy_level_decrease_3"
+					duration = 0.5
+					bezier = { 0 0.5 0.5 1 }
+
+					modify_texture = {
+						name = "lvl_decrease"
+						alpha = 0
+					}
+				}
+			}
+
+			progresspie = {
+				name = "progress"
+				size = { 42 42 }
+
+				texture = "gfx/interface/progressbars/action_progress_thin_blue.dds"
+				framesize = { 128 128 }
+				frame = 2
+				value = "[InGameBottomBar.GetLegitimacyProgress]"
+				parentanchor = center
+
+				modify_texture = {
+					texture = "gfx/interface/colors/blue.dds"
+					blend_mode = normal
 					}
 				}
 			}
@@ -6407,6 +6488,9 @@ types HUD
 						align = nobaseline
 
 
+						# animation_attention = {
+						# 	visible = "[GreaterThan_int32( GetPlayer.GetTotalPerkPoints, '(int32)0' )]"
+						# }
 					}
 				}
 
@@ -6467,6 +6551,7 @@ types HUD
 			}
 
 
+			# Radiance (enabled)
 			button_normal = {
 				datacontext = "[Character.GetRadianceBreakdown]"
 				visible = "[InGameBottomBar.ShouldShowRadianceInHUD]"
@@ -6502,7 +6587,7 @@ types HUD
 			}
 
 			button_round = {
-				name = "hud_camp_button"
+				name = "hud_camp_button" #tutorial uses this
 				widgetid = "hud_camp_button"
 				datacontext = "[Character.GetDomicile]"
 				visible = "[InGameBottomBar.ShouldShowDomicileInHUD]"
@@ -6542,8 +6627,9 @@ types HUD
 			}
 
 
+			# Bloc
 			button_normal = {
-				name = "confederation_button"
+				name = "confederation_button" #tutorial uses this
 				datacontext = "[GetPlayer.GetConfederation]"
 				visible = "[InGameBottomBar.ShouldShowBlocInHUD]"
 				parentanchor = left
@@ -6573,7 +6659,7 @@ types HUD
 			}
 
 			button_normal = {
-				name = "house_power_hud_button"
+				name = "house_power_hud_button" #tutorial uses this
 				datacontext = "[Character.GetHouse]"
 				datacontext = "[DynastyHouse.GetHouseAspiration]"
 
@@ -6695,6 +6781,7 @@ types HUD
 			}
 
 
+			# Faith
 			button_hud_character_bar = {
 				name = "faith_button"
 				datacontext = "[GetPlayer.GetFaith]"
@@ -6724,8 +6811,9 @@ types HUD
 			}
 
 
+			# Confederation
 			button_hud_character_bar = {
-				name = "confederation_button"
+				name = "confederation_button" #tutorial uses this
 				datacontext = "[GetPlayer.GetConfederation]"
 				visible = "[And(Confederation.IsValid, Not(Confederation.GetType.IsHouseBasedConfederation))]"
 				parentanchor = left
@@ -6777,6 +6865,7 @@ types HUD
 			}
 
 
+			# Dynasty House
 			button_hud_character_bar = {
 				name = "house_button"
 				datacontext = "[GetPlayer.GetHouse]"
@@ -6811,26 +6900,26 @@ types HUD
 
 
 	type bottom_left_portrait = container {
-        datacontext = "[GetPlayer]"
-        visible = "[And(And( Not(IsGameViewOpen('barbershop')) , And(GetPlayer.IsValid, Not(GetVariableSystem.Exists( 'hide_bottom_left_HUD')))), Not( GreaterThan_CFixedPoint( GetPlayer.MakeScope.Var('hide_ui_character_model').GetValue, '(CFixedPoint)0' ) ))]"
-        visible_at_creation = no
+		datacontext = "[GetPlayer]"
+		visible = "[And(And( Not(IsGameViewOpen('barbershop')) , And(GetPlayer.IsValid, Not(GetVariableSystem.Exists( 'hide_bottom_left_HUD')))), Not( GreaterThan_CFixedPoint( GetPlayer.MakeScope.Var('hide_ui_character_model').GetValue, '(CFixedPoint)0' ) ))]"
+		visible_at_creation = no
 
-        state = {
-            name = _show
-            using = Animation_Curve_Default
-            duration = 0.15
+		state = {
+			name = _show
+			using = Animation_Curve_Default
+			duration = 0.15
             position = { -100 0 }
 			scale = 1.0
-            alpha = 1
-        }
+			alpha = 1
+		}
 
-        state = {
-            name = _hide
-            using = Animation_Curve_Default
-            duration = 0.15
+		state = {
+			name = _hide
+			using = Animation_Curve_Default
+			duration = 0.15
             position = { 0 0 }
-            alpha = 0
-        }
+			alpha = 0
+		}
 
         widget = {
             datacontext = "[GetPlayer.GetPlayerHeir]"
@@ -6880,27 +6969,27 @@ types HUD
             }
         }
 
-        portrait_hud = {
+		portrait_hud = {
             scale = 1.0
-            parentanchor = center
+			parentanchor = center
             position = { -150 0 }
 			size = { 400 450 }
-        }
+		}
 
-        icon = {
-            texture = "gfx/interface/hud/bottom_left_portrait_fade.dds"
-            parentanchor = bottom|left
-            color = { 0.12 0.12 0.12 1 }
+		icon = {
+			texture = "gfx/interface/hud/bottom_left_portrait_fade.dds"
+			parentanchor = bottom|left
+			color = { 0.12 0.12 0.12 1 }
             size = { 650 200 }
-        }
+		}
 
-        icon = {
-            texture = "gfx/interface/hud/bottom_left_portrait_fade.dds"
-            parentanchor = bottom|left
-            color = { 0.15 0.15 0.15 0.3 }
+		icon = {
+			texture = "gfx/interface/hud/bottom_left_portrait_fade.dds"
+			parentanchor = bottom|left
+			color = { 0.15 0.15 0.15 0.3 }
             size = { 650 200 }
-        }
-    }
+		}
+	}
 
 	type Animation_HUD_daily_tick = widget {
 		using = Animation_ShowHide_Quick
@@ -7040,6 +7129,7 @@ types HUD
 		block "bar_color"
 		{
 
+			# texture = "gfx/interface/colors/red.dds"
 		}
 
 		modify_texture = {
@@ -7091,6 +7181,7 @@ types HUD
 			block "bar_color_flow"
 			{
 
+				# texture = "gfx/interface/colors/yellow.dds"
 				alpha = 0.3
 			}
 			blend_mode = colordodge
@@ -7373,6 +7464,7 @@ types HUD
 		}
 
 
+		##Show animation
 		state = {
 			name = _show
 			next = banner_default
@@ -7640,6 +7732,7 @@ types HUD
 		}
 
 
+		# Current phase
 		widget = {
 			size = { 100% 100% }
 			datacontext = "[Situation.GetTopCurrentPhase]"
@@ -7695,6 +7788,7 @@ types HUD
 		using = tooltip_ne
 
 
+		# Current phase
 		widget = {
 			size = { 100% 100% }
 			parentanchor = center
@@ -7716,6 +7810,7 @@ types HUD
 			}
 
 
+			# Bigger icon that is centered in background when you don't have the banner with movement power
 			button_icon = {
 				visible = "[Not(InGameBottomBar.ShouldShowMovementPower)]"
 				parentanchor = center
@@ -7849,6 +7944,7 @@ types HUD
 		}
 
 
+		# Animations
 		struggle_phase_based_widget = {
 			datacontext = "[Struggle.GetCurrentPhase]"
 			visible = "[Struggle.HasPossibleEndingDecision]"
@@ -7915,6 +8011,7 @@ types HUD
 		}
 
 
+		# Leading phase
 		struggle_phase_based_widget = {
 			datacontext = "[Struggle.GetCurrentLeadingPhase]"
 
@@ -8025,6 +8122,7 @@ types HUD
 		}
 
 
+		# Tie
 		icon = {
 			visible = "[Not(Struggle.GetCurrentLeadingPhase.IsValid)]"
 			size = { 100% 100% }
@@ -8032,6 +8130,7 @@ types HUD
 		}
 
 
+		# Current phase
 		struggle_phase_based_widget = {
 			datacontext = "[Struggle.GetCurrentPhase]"
 			blockoverride "point_based_widget_content" {
@@ -8146,6 +8245,7 @@ types HUD
 		block "texture" {}
 
 
+		##Pulse glow
 		glow = {
 			name = "glow_defined"
 			glow_radius = 3
@@ -8170,6 +8270,7 @@ types HUD
 		}
 
 
+		#white fill
 		state = {
 			name = struggle_pulse_icon
 			next = struggle_pulse_icon_stop
@@ -8212,6 +8313,7 @@ types HUD
 			texture = "gfx/interface/icons/struggle_banners/icon_background_dark.dds"
 
 
+			#white fill
 			state = {
 				name = struggle_pulse_icon
 				next = struggle_pulse_icon_stop
@@ -8249,6 +8351,7 @@ types HUD
 			texture = "gfx/interface/icons/icon_time.dds"
 
 
+			#white fill
 			state = {
 				name = struggle_pulse_icon
 				next = struggle_pulse_icon_stop
@@ -8291,6 +8394,7 @@ types HUD
 		}
 
 
+		##Show animation
 		state = {
 			name = _show
 			next = banner_default
@@ -8350,6 +8454,7 @@ types HUD
 		using = tooltip_ne
 
 
+		##Show animation
 		state = {
 			name = _show
 			next = banner_default
@@ -8559,6 +8664,7 @@ types HUD
 
 	type hotkeys_HUD = widget {
 
+		# Mapmodes
 		button_normal = {
 			onclick = "[SetMapMode('players')]"
 			shortcut = "map_mode_8"
@@ -8706,6 +8812,7 @@ types HUD
 		}
 
 
+		# 0 size button for shortcut to work
 		button_normal = {
 			name = "find_character_shortcut"
 			onclick = "[ToggleGameView( 'character_finder' )]"
@@ -8714,6 +8821,7 @@ types HUD
 		}
 
 
+		# 0 size button for shortcut to work
 		button_normal = {
 			name = "encyclopedia_shortcut"
 			onclick = "[ToggleEncyclopedia]"
@@ -8886,51 +8994,51 @@ types HUD
 											layoutpolicy_horizontal = expanding
 											vbox = {
 												visible = "[And( GetScriptedGui('naval_combat_finance_active_gui').IsShown( GuiScope.AddScope( 'agoat_player', GetPlayer.MakeScope ).End ), Not( GetPlayer.ShouldReplaceGoldCostByTreasury ) )]"
+											layoutpolicy_horizontal = expanding
+											margin_top = 5
+											spacing = 5
+
+											divider_light = {
 												layoutpolicy_horizontal = expanding
-												margin_top = 5
-												spacing = 5
+											}
 
-												divider_light = {
-													layoutpolicy_horizontal = expanding
-												}
-
-												hbox = {
-													layoutpolicy_horizontal = expanding
-
-													text_single = {
-														layoutpolicy_horizontal = expanding
-														text = "NAVAL_COMBAT_TOPBAR_FLEET_UPKEEP"
-													}
-
-													hbox = {
-														spacing = 3
-
-														icon = {
-															size = { 20 20 }
-															texture = "gfx/interface/icons/icon_gold.dds"
-														}
-
-														text_single = {
-															raw_text = "-[GetPlayer.MakeScope.ScriptValue('naval_combat_monthly_maintenance_value')|2]"
-															default_format = "#N"
-														}
-													}
-												}
-
-												hbox = {
-													layoutpolicy_horizontal = expanding
-
-													text_single = {
-														layoutpolicy_horizontal = expanding
-														text = "NAVAL_COMBAT_TOPBAR_ADJUSTED_BALANCE"
-														default_format = "#T"
-													}
+											hbox = {
+												layoutpolicy_horizontal = expanding
 
 												text_single = {
-													text = "[Subtract_CFixedPoint(InGameTopbar.GetGoldBalance, GetPlayer.MakeScope.ScriptValue('naval_combat_monthly_maintenance_value'))|+=2]"
-													default_format = "#high"
+													layoutpolicy_horizontal = expanding
+													text = "NAVAL_COMBAT_TOPBAR_FLEET_UPKEEP"
 												}
+
+												hbox = {
+													spacing = 3
+
+													icon = {
+														size = { 20 20 }
+														texture = "gfx/interface/icons/icon_gold.dds"
+													}
+
+													text_single = {
+														raw_text = "-[GetPlayer.MakeScope.ScriptValue('naval_combat_monthly_maintenance_value')|2]"
+														default_format = "#N"
+													}
 												}
+											}
+
+											hbox = {
+												layoutpolicy_horizontal = expanding
+
+												text_single = {
+													layoutpolicy_horizontal = expanding
+													text = "NAVAL_COMBAT_TOPBAR_ADJUSTED_BALANCE"
+													default_format = "#T"
+												}
+
+											text_single = {
+												text = "[Subtract_CFixedPoint(InGameTopbar.GetGoldBalance, GetPlayer.MakeScope.ScriptValue('naval_combat_monthly_maintenance_value'))|+=2]"
+												default_format = "#high"
+												}
+											}
 											}
 										}
 									}
@@ -9849,6 +9957,8 @@ types HUD
 						}
 
 
+						### Stiches for the Nomadic UI skin placed as a separate texture to be able to place it perfectly aligned with texture change and tiling.
+						### Placed on top of the divider that is there normally.
 						widget = {
 							name = "nomadic_stiches_divider"
 							visible = "[IsNomad( GetPlayer )]"
@@ -10611,6 +10721,7 @@ types HUD
 				}
 
 
+				### LEGITIMACY BREAKDOWN
 				hbox = {
 					datacontext = "[Character.GetMonthlyLegitimacyTooltip]"
 					visible = "[Not( EqualTo_CFixedPoint( Character.GetLegitimacy, '(CFixedPoint)0' ))]"
@@ -10684,6 +10795,7 @@ types HUD
 								scale = 0.75
 
 
+								# Hide last one, it is the maximum not an actual level
 								visible = "[LessThan_int32( PdxGuiWidget.GetIndexInDataModel, GetDataModelSize( LegitimacyType.GetLevels ) )]"
 
 								blockoverride "marker_addon" {
@@ -10850,6 +10962,7 @@ types HUD
 			blockoverride "merit_widget_tooltip"
 			{
 
+				# use our own hitbox for the tooltip
 			}
 		}
 
@@ -11044,12 +11157,14 @@ types HUD
 		}
 
 
+		# WIDGET BACKGROUND TEXTURE
 		icon = {
 			texture = "gfx/interface/hud/tgp_widget_merit_background.dds"
 			size = { 100% 100% }
 		}
 
 
+		# MERIT ICON
 		icon = {
 			parentanchor = top|hcenter
 			position = { 0 17 }
@@ -11140,6 +11255,7 @@ types HUD
 		}
 
 
+		# PROGRESS BAR
 		widget = {
 			parentanchor = top|hcenter
 			position = { 0 9 }
@@ -11171,6 +11287,7 @@ types HUD
 		}
 
 
+		# RANK
 		text_single = {
 			visible = "[GreaterThan_int32( Character.GetMeritLevel, '(int32)0' )]"
 			parentanchor = bottom|hcenter
@@ -11182,6 +11299,7 @@ types HUD
 		}
 
 
+		# IF YOU HAVE NO RANK
 		text_single = {
 			visible = "[EqualTo_int32( Character.GetMeritLevel, '(int32)0' )]"
 			parentanchor = bottom|hcenter
@@ -11309,10 +11427,12 @@ types HUD
 				spacing = 16
 
 
+				### MERIT EFFECTS
 				vbox = {
 					layoutpolicy_horizontal = expanding
 
 
+					### modifier effects
 					cooltip_paragraph = {
 						visible = "[Not( StringIsEmpty( GetMeritLevelEffects( Character.GetMeritLevel ) ) )]"
 						max_width = 500
@@ -11320,6 +11440,7 @@ types HUD
 					}
 
 
+					### Merit affecting Movement Power
 					cooltip_paragraph = {
 						visible = "[Character.ShouldShowMovementPower]"
 						max_width = 500
@@ -11327,6 +11448,7 @@ types HUD
 					}
 
 
+					### Merit enabling appointment
 					cooltip_paragraph = {
 						max_width = 500
 						name = "merit_appointment"
@@ -11343,6 +11465,7 @@ types HUD
 				}
 
 
+				### MERIT COMPLEX PROGRESS BAR
 				widget = {
 					layoutpolicy_horizontal = expanding
 					size = { 500 50 }
@@ -11463,6 +11586,7 @@ types HUD
 						layoutpolicy_horizontal = expanding
 
 
+						### MERIT TOTAL
 						text_single = {
 							layoutpolicy_horizontal = expanding
 
@@ -11471,6 +11595,7 @@ types HUD
 						}
 
 
+						### MERIT CAP
 						text_single = {
 							visible = "[PlayerValueItem.HasNonStandardLevel( Character.Self )]"
 							layoutpolicy_horizontal = expanding
@@ -11487,6 +11612,7 @@ types HUD
 						layoutpolicy_horizontal = expanding
 
 
+						### MERIT BREAKDOWN WITH TOOLTIP
 						text_single = {
 							datacontext = "[PlayerValueItem.GetBalanceGained]"
 
@@ -11505,6 +11631,7 @@ types HUD
 				}
 
 
+				### MERIT EXAMINATIONS
 				vbox = {
 					layoutpolicy_horizontal = expanding
 					spacing = 5

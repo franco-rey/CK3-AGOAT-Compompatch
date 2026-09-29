@@ -12,6 +12,7 @@
 			AND = { has_character_modifier = training_for_kingsmen var:agot_guard_positions_training_owner = { has_character_flag = has_kingsmen } }
 			AND = { has_character_modifier = training_for_queensguard var:agot_guard_positions_training_owner = { has_character_flag = has_queensguard } }
 			AND = { has_character_modifier = training_for_greenhand var:agot_guard_positions_training_owner = { agot_guard_positions_has_greenhand_trigger = yes } }
+			AND = { has_character_modifier = training_for_tully_guard var:agot_guard_positions_training_owner = { agot_guard_positions_has_tully_guard_trigger = yes } }
 		}
 	}
 }

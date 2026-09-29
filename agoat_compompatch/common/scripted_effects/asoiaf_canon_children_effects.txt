@@ -224,7 +224,6 @@ asoiaf_canon_children_Stark_87_birth_effect = {
 			set_global_variable = asoiaf_canon_children_Stark_87_born_variable
 			make_trait_inactive = asoiaf_Stark_87_trait
 			add_character_modifier = asoiaf_Stark_87_modifier
-			copy_inheritable_appearance_from = character:Stark_asoiaf_87
 			add_character_flag = has_scripted_appearance
 			add_character_flag = canon_status_canon
 			make_trait_inactive = dark_brown_hair

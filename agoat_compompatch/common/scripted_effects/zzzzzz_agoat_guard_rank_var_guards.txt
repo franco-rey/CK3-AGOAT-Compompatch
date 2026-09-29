@@ -2,6 +2,8 @@
 	save_scope_as = academy_rank_candidate
 	var:agot_guard_positions_training_owner ?= { save_scope_as = academy_rank_owner }
 	agot_guard_positions_clamp_training_merit_effect = yes
+	# Some historical and compatibility enrollment paths reach rank maintenance
+	# before ordinary admission has created these values.
 	if = {
 		limit = { NOT = { has_variable = agot_guard_positions_training_merit } }
 		set_variable = { name = agot_guard_positions_training_merit value = 0 }
@@ -10,16 +12,22 @@
 		limit = { NOT = { has_variable = agot_guard_positions_training_rank } }
 		set_variable = { name = agot_guard_positions_training_rank value = 0 }
 	}
+	# Migrate the former four-icon rank implementation into one genuine CK3
+	# trait path. The merit variable remains the activity score and is mirrored
+	# exactly into the tracked trait's XP.
 	if = {
 		limit = { is_adult = yes has_character_modifier = agot_guard_positions_training_rank_ready }
 		add_character_flag = agot_guard_positions_passed_final_trials
 		set_variable = { name = agot_guard_positions_training_merit value = 100 }
 	}
+	# This literal legacy-trait check must run before the old trait is removed.
+	# Using the new graduate trigger here would miss old saves which do not yet
+	# possess the tracked student trait.
 	if = { limit = { has_trait = agot_guard_academy_graduate } add_character_flag = agot_guard_positions_passed_final_trials }
-	remove_trait = agot_guard_academy_novice
-	remove_trait = agot_guard_academy_squire
-	remove_trait = agot_guard_academy_senior_cadet
-	remove_trait = agot_guard_academy_graduate
+	if = { limit = { has_trait = agot_guard_academy_novice } remove_trait = agot_guard_academy_novice }
+	if = { limit = { has_trait = agot_guard_academy_squire } remove_trait = agot_guard_academy_squire }
+	if = { limit = { has_trait = agot_guard_academy_senior_cadet } remove_trait = agot_guard_academy_senior_cadet }
+	if = { limit = { has_trait = agot_guard_academy_graduate } remove_trait = agot_guard_academy_graduate }
 	if = { limit = { has_character_modifier = agot_guard_positions_training_rank_novice } remove_character_modifier = agot_guard_positions_training_rank_novice }
 	if = { limit = { has_character_modifier = agot_guard_positions_training_rank_squire } remove_character_modifier = agot_guard_positions_training_rank_squire }
 	if = { limit = { has_character_modifier = agot_guard_positions_training_rank_proven } remove_character_modifier = agot_guard_positions_training_rank_proven }
@@ -30,12 +38,12 @@
 		agot_guard_positions_set_academy_stage_effect = { STAGE = 3 }
 	}
 	else_if = {
-		limit = { OR = { trigger_if = { limit = { has_variable = agot_guard_positions_training_merit } var:agot_guard_positions_training_merit >= 60 } trigger_else = { always = no } age >= 18 } }
+		limit = { age >= 16 }
 		if = { limit = { trigger_if = { limit = { has_variable = agot_guard_positions_training_rank } var:agot_guard_positions_training_rank < 2 } trigger_else = { always = no } has_variable = agot_guard_positions_training_owner agot_guard_positions_academy_stage_has_space_trigger = { OWNER = scope:academy_rank_owner CANDIDATE = scope:academy_rank_candidate STAGE = 2 } } if = { limit = { NOT = { has_character_flag = agot_guard_academy_silent_result } } trigger_event = agot_guard_positions.3503 } }
 		agot_guard_positions_set_academy_stage_effect = { STAGE = 2 }
 	}
 	else_if = {
-		limit = { OR = { trigger_if = { limit = { has_variable = agot_guard_positions_training_merit } var:agot_guard_positions_training_merit >= 25 } trigger_else = { always = no } age >= 9 } }
+		limit = { age >= 6 }
 		if = { limit = { trigger_if = { limit = { has_variable = agot_guard_positions_training_rank } var:agot_guard_positions_training_rank < 1 } trigger_else = { always = no } has_variable = agot_guard_positions_training_owner agot_guard_positions_academy_stage_has_space_trigger = { OWNER = scope:academy_rank_owner CANDIDATE = scope:academy_rank_candidate STAGE = 1 } } if = { limit = { NOT = { has_character_flag = agot_guard_academy_silent_result } } trigger_event = agot_guard_positions.3503 } }
 		agot_guard_positions_set_academy_stage_effect = { STAGE = 1 }
 	}
@@ -43,22 +51,26 @@
 		agot_guard_positions_set_academy_stage_effect = { STAGE = 0 }
 	}
 	hidden_effect = {
-		remove_trait = agot_guard_academy_student
-		remove_trait = agot_guard_academy_student_kingsguard
-		remove_trait = agot_guard_academy_student_battleguard
-		remove_trait = agot_guard_academy_student_winged_knights
-		remove_trait = agot_guard_academy_student_swords_of_braavos
-		remove_trait = agot_guard_academy_student_rainbow_guard
-		remove_trait = agot_guard_academy_student_kingsmen
-		remove_trait = agot_guard_academy_student_queensguard
-		remove_trait = agot_guard_academy_student_greenhand
-		if = { limit = { has_character_modifier = training_for_kingsguard } add_trait = agot_guard_academy_student_kingsguard add_trait_xp = { trait = agot_guard_academy_student_kingsguard track = academy_kingsguard value = agot_guard_positions_academy_path_xp_value } }
-		else_if = { limit = { has_character_modifier = training_for_battleguard } add_trait = agot_guard_academy_student_battleguard add_trait_xp = { trait = agot_guard_academy_student_battleguard track = academy_battleguard value = agot_guard_positions_academy_path_xp_value } }
-		else_if = { limit = { has_character_modifier = training_for_winged_knights } add_trait = agot_guard_academy_student_winged_knights add_trait_xp = { trait = agot_guard_academy_student_winged_knights track = academy_winged_knights value = agot_guard_positions_academy_path_xp_value } }
-		else_if = { limit = { has_character_modifier = training_for_swords_of_braavos } add_trait = agot_guard_academy_student_swords_of_braavos add_trait_xp = { trait = agot_guard_academy_student_swords_of_braavos track = academy_swords_of_braavos value = agot_guard_positions_academy_path_xp_value } }
-		else_if = { limit = { has_character_modifier = training_for_rainbow_guard } add_trait = agot_guard_academy_student_rainbow_guard add_trait_xp = { trait = agot_guard_academy_student_rainbow_guard track = academy_rainbow_guard value = agot_guard_positions_academy_path_xp_value } }
-		else_if = { limit = { has_character_modifier = training_for_kingsmen } add_trait = agot_guard_academy_student_kingsmen add_trait_xp = { trait = agot_guard_academy_student_kingsmen track = academy_kingsmen value = agot_guard_positions_academy_path_xp_value } }
-		else_if = { limit = { has_character_modifier = training_for_queensguard } add_trait = agot_guard_academy_student_queensguard add_trait_xp = { trait = agot_guard_academy_student_queensguard track = academy_queensguard value = agot_guard_positions_academy_path_xp_value } }
-		else_if = { limit = { has_character_modifier = training_for_greenhand } add_trait = agot_guard_academy_student_greenhand add_trait_xp = { trait = agot_guard_academy_student_greenhand track = academy_greenhand value = agot_guard_positions_academy_path_xp_value } }
+		# Keep the correct trait; only remove legacy or mismatched school traits.
+		if = { limit = { has_trait = agot_guard_academy_student } remove_trait = agot_guard_academy_student }
+		if = { limit = { has_trait = agot_guard_academy_student_kingsguard OR = { NOT = { has_character_modifier = training_for_kingsguard }  } } remove_trait = agot_guard_academy_student_kingsguard }
+		if = { limit = { has_trait = agot_guard_academy_student_battleguard OR = { NOT = { has_character_modifier = training_for_battleguard } has_character_modifier = training_for_kingsguard } } remove_trait = agot_guard_academy_student_battleguard }
+		if = { limit = { has_trait = agot_guard_academy_student_winged_knights OR = { NOT = { has_character_modifier = training_for_winged_knights } has_character_modifier = training_for_kingsguard has_character_modifier = training_for_battleguard } } remove_trait = agot_guard_academy_student_winged_knights }
+		if = { limit = { has_trait = agot_guard_academy_student_swords_of_braavos OR = { NOT = { has_character_modifier = training_for_swords_of_braavos } has_character_modifier = training_for_kingsguard has_character_modifier = training_for_battleguard has_character_modifier = training_for_winged_knights } } remove_trait = agot_guard_academy_student_swords_of_braavos }
+		if = { limit = { has_trait = agot_guard_academy_student_rainbow_guard OR = { NOT = { has_character_modifier = training_for_rainbow_guard } has_character_modifier = training_for_kingsguard has_character_modifier = training_for_battleguard has_character_modifier = training_for_winged_knights has_character_modifier = training_for_swords_of_braavos } } remove_trait = agot_guard_academy_student_rainbow_guard }
+		if = { limit = { has_trait = agot_guard_academy_student_kingsmen OR = { NOT = { has_character_modifier = training_for_kingsmen } has_character_modifier = training_for_kingsguard has_character_modifier = training_for_battleguard has_character_modifier = training_for_winged_knights has_character_modifier = training_for_swords_of_braavos has_character_modifier = training_for_rainbow_guard } } remove_trait = agot_guard_academy_student_kingsmen }
+		if = { limit = { has_trait = agot_guard_academy_student_queensguard OR = { NOT = { has_character_modifier = training_for_queensguard } has_character_modifier = training_for_kingsguard has_character_modifier = training_for_battleguard has_character_modifier = training_for_winged_knights has_character_modifier = training_for_swords_of_braavos has_character_modifier = training_for_rainbow_guard has_character_modifier = training_for_kingsmen } } remove_trait = agot_guard_academy_student_queensguard }
+		if = { limit = { has_trait = agot_guard_academy_student_greenhand OR = { NOT = { has_character_modifier = training_for_greenhand } has_character_modifier = training_for_kingsguard has_character_modifier = training_for_battleguard has_character_modifier = training_for_winged_knights has_character_modifier = training_for_swords_of_braavos has_character_modifier = training_for_rainbow_guard has_character_modifier = training_for_kingsmen has_character_modifier = training_for_queensguard } } remove_trait = agot_guard_academy_student_greenhand }
+		if = { limit = { has_trait = agot_guard_academy_student_tully_guard OR = { NOT = { has_character_modifier = training_for_tully_guard } has_character_modifier = training_for_kingsguard has_character_modifier = training_for_battleguard has_character_modifier = training_for_winged_knights has_character_modifier = training_for_swords_of_braavos has_character_modifier = training_for_rainbow_guard has_character_modifier = training_for_kingsmen has_character_modifier = training_for_queensguard has_character_modifier = training_for_greenhand } } remove_trait = agot_guard_academy_student_tully_guard }
+		if = { limit = { has_character_modifier = training_for_kingsguard } agot_guard_positions_sync_academy_trait_xp_effect = { TRAIT = agot_guard_academy_student_kingsguard TRACK = academy_kingsguard } }
+		else_if = { limit = { has_character_modifier = training_for_battleguard } agot_guard_positions_sync_academy_trait_xp_effect = { TRAIT = agot_guard_academy_student_battleguard TRACK = academy_battleguard } }
+		else_if = { limit = { has_character_modifier = training_for_winged_knights } agot_guard_positions_sync_academy_trait_xp_effect = { TRAIT = agot_guard_academy_student_winged_knights TRACK = academy_winged_knights } }
+		else_if = { limit = { has_character_modifier = training_for_swords_of_braavos } agot_guard_positions_sync_academy_trait_xp_effect = { TRAIT = agot_guard_academy_student_swords_of_braavos TRACK = academy_swords_of_braavos } }
+		else_if = { limit = { has_character_modifier = training_for_rainbow_guard } agot_guard_positions_sync_academy_trait_xp_effect = { TRAIT = agot_guard_academy_student_rainbow_guard TRACK = academy_rainbow_guard } }
+		else_if = { limit = { has_character_modifier = training_for_kingsmen } agot_guard_positions_sync_academy_trait_xp_effect = { TRAIT = agot_guard_academy_student_kingsmen TRACK = academy_kingsmen } }
+		else_if = { limit = { has_character_modifier = training_for_queensguard } agot_guard_positions_sync_academy_trait_xp_effect = { TRAIT = agot_guard_academy_student_queensguard TRACK = academy_queensguard } }
+		else_if = { limit = { has_character_modifier = training_for_greenhand } agot_guard_positions_sync_academy_trait_xp_effect = { TRAIT = agot_guard_academy_student_greenhand TRACK = academy_greenhand } }
+		else_if = { limit = { has_character_modifier = training_for_tully_guard } agot_guard_positions_sync_academy_trait_xp_effect = { TRAIT = agot_guard_academy_student_tully_guard TRACK = academy_tully_guard } }
+		agot_guard_positions_sync_academy_marriage_vow_effect = yes
 	}
 }

@@ -1,0 +1,3 @@
+﻿culture_has_east_asian_heritage_pillar_trigger = {
+	always = no
+}

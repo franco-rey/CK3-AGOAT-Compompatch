@@ -1,9 +1,4 @@
-﻿# Several component HUDs continue evaluating hidden child widgets in observer mode.
-# Their original character-scoped scripted GUIs therefore receive GetPlayer's
-# invalid character scope every frame.  Rootless wrappers can safely return false
-# when no player exists, while retaining the original single-player behaviour.
-
-right_clear_notifications = {
+﻿right_clear_notifications = {
 	scope = none
 
 	is_shown = {

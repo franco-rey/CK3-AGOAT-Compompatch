@@ -4001,6 +4001,18 @@
 		}
 		desc = MARRIAGE_SPOUSE_COUNCILLOR_BOOST_CHILD
 	}
+	modifier = {
+		has_incompatible_blood_trigger = { MOTHER = scope:secondary_actor FATHER = scope:secondary_recipient }
+		scope:actor = { is_ai = no }
+		add = -60
+		desc = AGOT_INCOMPATIBLE_BIOLOGY
+	}
+	modifier = {
+		has_incompatible_blood_trigger = { MOTHER = scope:secondary_actor FATHER = scope:secondary_recipient }
+		scope:actor = { is_ai = yes }
+		add = -200
+		desc = AGOT_INCOMPATIBLE_BIOLOGY
+	}
 
 
 

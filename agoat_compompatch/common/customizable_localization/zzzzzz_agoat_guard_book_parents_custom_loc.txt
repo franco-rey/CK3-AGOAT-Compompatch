@@ -1,0 +1,30 @@
+﻿AgoatGuardBookParents = {
+	type = character
+
+	text = {
+		trigger = {
+			exists = father
+			exists = mother
+		}
+		localization_key = agoat_guard_book_parents_both
+	}
+
+	text = {
+		trigger = {
+			exists = father
+		}
+		localization_key = agoat_guard_book_parents_father
+	}
+
+	text = {
+		trigger = {
+			exists = mother
+		}
+		localization_key = agoat_guard_book_parents_mother
+	}
+
+	text = {
+		localization_key = agoat_guard_book_parents_none
+		fallback = yes
+	}
+}

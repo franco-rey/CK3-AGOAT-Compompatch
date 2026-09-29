@@ -1,0 +1,204 @@
+﻿set_court_physician_effect = {
+	$PHYSICIAN$ = {
+		hidden_effect = {
+			if = {
+				limit = { 
+					NOT = { liege = $EMPLOYER$ }
+				}
+				$EMPLOYER$ = { add_courtier = $PHYSICIAN$ }
+			}
+		}
+	}
+	$EMPLOYER$ = {
+		#Replace existing court physician if one exists
+		if = {
+			limit = {
+				employs_court_position = court_physician_court_position
+				any_court_position_holder = {
+					type = court_physician_court_position
+					count > 0
+				}
+			}
+			every_court_position_holder = {
+				type = court_physician_court_position
+				save_temporary_scope_as = old_physician
+
+				$EMPLOYER$ = {
+					replace_court_position = {
+						recipient = $PHYSICIAN$
+						holder = scope:old_physician
+						court_position = court_physician_court_position
+					}
+					reverse_add_opinion = {
+						target = scope:old_physician
+						modifier = disappointed_opinion
+						opinion = -15
+					}
+					reverse_add_opinion = {
+						target = $PHYSICIAN$
+						modifier = hired_me_opinion
+					}
+				}
+			}
+		}
+		#Else just straight up appoint
+		#AGOT Modified
+		# else = {
+		else_if = {
+			limit = {
+				can_employ_court_position_type = court_physician_court_position
+			}
+			appoint_court_position = {
+				recipient = $PHYSICIAN$
+				court_position = court_physician_court_position
+			}
+			reverse_add_opinion = {
+				target = $PHYSICIAN$
+				modifier = hired_me_opinion
+			}
+		}
+
+		if = {
+			limit = {
+				can_employ_court_position_type = maester_court_position
+			}
+
+			if = {
+				limit = {
+					employs_court_position = court_physician_court_position
+					any_court_position_holder = {
+						type = maester_court_position
+						count > 0
+					}
+				}
+				every_court_position_holder = {
+					type = maester_court_position
+					save_temporary_scope_as = old_maester
+
+					$EMPLOYER$ = {
+						replace_court_position = {
+							recipient = $PHYSICIAN$
+							holder = scope:old_maester
+							court_position = maester_court_position
+						}
+						reverse_add_opinion = {
+							target = scope:old_maester
+							modifier = disappointed_opinion
+							opinion = -15
+						}
+						reverse_add_opinion = {
+							target = $PHYSICIAN$
+							modifier = hired_me_opinion
+						}
+					}
+				}
+			}
+			#Else just straight up appoint
+			else = {
+				appoint_court_position = {
+					recipient = $PHYSICIAN$
+					court_position = maester_court_position
+				}
+				reverse_add_opinion = {
+					target = $PHYSICIAN$
+					modifier = hired_me_opinion
+				}
+			}
+		}
+		else = {
+			if = {
+				limit = {
+					employs_court_position = court_physician_court_position
+					any_court_position_holder = {
+						type = court_physician_court_position
+						count > 0
+					}
+				}
+				every_court_position_holder = {
+					type = court_physician_court_position
+					save_temporary_scope_as = old_physician
+
+					$EMPLOYER$ = {
+						replace_court_position = {
+							recipient = $PHYSICIAN$
+							holder = scope:old_physician
+							court_position = court_physician_court_position
+						}
+						reverse_add_opinion = {
+							target = scope:old_physician
+							modifier = disappointed_opinion
+							opinion = -15
+						}
+						reverse_add_opinion = {
+							target = $PHYSICIAN$
+							modifier = hired_me_opinion
+						}
+					}
+				}
+			}
+			#Else just straight up appoint
+			else_if = {
+				limit = {
+					can_employ_court_position_type = court_physician_court_position
+				}
+				appoint_court_position = {
+					recipient = $PHYSICIAN$
+					court_position = court_physician_court_position
+				}
+				reverse_add_opinion = {
+					target = $PHYSICIAN$
+					modifier = hired_me_opinion
+				}
+			}
+		}
+		#AGOT End
+	
+		#Trigger treatments if needed
+		hidden_effect = {
+			if = {
+				limit = {
+					has_treatable_disease_trigger = yes
+					has_recent_treatment_trigger = no
+
+					#AGOT Added
+					current_date_is_start_date_trigger = no
+				}
+				save_scope_as = sick_character
+				trigger_event = {
+					id = health.3101
+					days = { physician_treatment_delay_ruler_min physician_treatment_delay_ruler_max }
+				}
+			}
+			else_if = {
+				limit = {
+					has_recent_wound_treatment_trigger = no
+					has_wounds_trigger = yes
+				}
+				save_scope_as = sick_character
+				trigger_event = {
+					id = health.4001
+					days = { physician_treatment_delay_ruler_min physician_treatment_delay_ruler_max }
+				}
+			}
+			every_courtier_or_guest = {
+				if = {
+					limit = {
+						has_treatable_disease_trigger = yes
+						has_recent_treatment_trigger = no
+					}
+					set_worst_disease_effect = yes
+					save_scope_as = sick_character
+					decide_who_picks_disease_treatment_effect = yes #Sends health.3101 to them or 3102 to liege (you)
+				}
+				else_if = {
+					limit = {
+						has_recent_wound_treatment_trigger = no
+						has_wounds_trigger = yes
+					}
+					save_scope_as = sick_character
+					decide_who_picks_wound_treatment_effect = yes
+				}
+			}
+		}
+	}
+}

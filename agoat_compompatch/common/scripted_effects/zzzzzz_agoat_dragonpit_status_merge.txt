@@ -1,67 +1,314 @@
-﻿agot_change_dragonpit_status = {
+﻿agot_send_to_dragonpit_effect = {
+	$DRAGON$ = {
+		add_character_flag = in_dragonpit
+		remove_character_modifier = agot_dragon_in_dragonpit
+		remove_character_modifier = dragonlord_dragon_in_topless_towers
+		remove_character_modifier = dplevels_dragon_in_huge_dragonpit
+		remove_character_modifier = dplevels_dragon_in_heated_dragonpit
+		remove_character_modifier = dplevels_dragon_in_volcanic_dragonpit
+		if = {
+			limit = {
+				exists = scope:dragonlord_selected_topless_towers
+			}
+			add_character_modifier = dragonlord_dragon_in_topless_towers
+		}
+		else_if = {
+			limit = {
+				NOT = { exists = scope:dragonlord_selected_conventional_dragonpit }
+				$DRAGONPIT_COUNTY$ = {
+					dragonlord_is_topless_towers_dragonpit_county = yes
+				}
+			}
+			add_character_modifier = dragonlord_dragon_in_topless_towers
+		}
+		else_if = {
+			limit = {
+				$DRAGONPIT_COUNTY$ = {
+					any_county_province = {
+						OR = {
+							has_building = generic_dragon_pit_02
+							has_building = kl_dragon_pit_02
+							has_building = kl_dragon_pit_ruins_02
+						}
+					}
+				}
+			}
+			add_character_modifier = dplevels_dragon_in_huge_dragonpit
+		}
+		else_if = {
+			limit = {
+				$DRAGONPIT_COUNTY$ = {
+					any_county_province = {
+						OR = {
+							has_building = generic_dragon_pit_03
+							has_building = kl_dragon_pit_03
+							has_building = kl_dragon_pit_ruins_03
+						}
+					}
+				}
+			}
+			add_character_modifier = dplevels_dragon_in_heated_dragonpit
+		}
+		else_if = {
+			limit = {
+				$DRAGONPIT_COUNTY$ = {
+					any_county_province = {
+						OR = {
+							has_building = generic_dragon_pit_04
+							has_building = kl_dragon_pit_04
+							has_building = kl_dragon_pit_ruins_04
+						}
+					}
+				}
+			}
+			add_character_modifier = dplevels_dragon_in_volcanic_dragonpit
+		}
+		else = {
+			add_character_modifier = agot_dragon_in_dragonpit
+		}
+		set_variable = {
+			name = pitted_dragon_location
+			value = $DRAGONPIT_COUNTY$
+		}
+	}
+	$DRAGONPIT_HOLDER$ = {
+		if = {
+			limit = {
+				$DRAGONPIT_COUNTY$ = { has_county_modifier = agot_roaming_dragon }
+				any_courtier = {
+					count <= 0
+					has_trait = dragon
+					AND = {
+						NOT = { has_character_flag = in_dragonpit }
+						has_character_flag = owned_dragon
+					}
+				}
+			}
+			$DRAGONPIT_COUNTY$ = { remove_county_modifier = agot_roaming_dragon }
+		}
+	}
+	$DRAGONPIT_COUNTY$ = {
+		add_to_variable_list = {
+			name = dragons_in_pit
+			target = $DRAGON$
+		}
+	}
+}
+
+agot_send_to_dragonpit_no_event = {
+	$DRAGONPIT_COUNTY$ = {
+		add_to_variable_list = {
+			name = dragons_in_pit
+			target = $DRAGON$
+		}
+	}
+	$DRAGON$ = {
+		add_character_flag = in_dragonpit
+		remove_character_modifier = agot_dragon_in_dragonpit
+		remove_character_modifier = dragonlord_dragon_in_topless_towers
+		remove_character_modifier = dplevels_dragon_in_huge_dragonpit
+		remove_character_modifier = dplevels_dragon_in_heated_dragonpit
+		remove_character_modifier = dplevels_dragon_in_volcanic_dragonpit
+		if = {
+			limit = {
+				$DRAGONPIT_COUNTY$ = {
+					dragonlord_is_topless_towers_dragonpit_county = yes
+				}
+			}
+			add_character_modifier = dragonlord_dragon_in_topless_towers
+		}
+		else_if = {
+			limit = {
+				$DRAGONPIT_COUNTY$ = {
+					any_county_province = {
+						OR = {
+							has_building = generic_dragon_pit_02
+							has_building = kl_dragon_pit_02
+							has_building = kl_dragon_pit_ruins_02
+						}
+					}
+				}
+			}
+			add_character_modifier = dplevels_dragon_in_huge_dragonpit
+		}
+		else_if = {
+			limit = {
+				$DRAGONPIT_COUNTY$ = {
+					any_county_province = {
+						OR = {
+							has_building = generic_dragon_pit_03
+							has_building = kl_dragon_pit_03
+							has_building = kl_dragon_pit_ruins_03
+						}
+					}
+				}
+			}
+			add_character_modifier = dplevels_dragon_in_heated_dragonpit
+		}
+		else_if = {
+			limit = {
+				$DRAGONPIT_COUNTY$ = {
+					any_county_province = {
+						OR = {
+							has_building = generic_dragon_pit_04
+							has_building = kl_dragon_pit_04
+							has_building = kl_dragon_pit_ruins_04
+						}
+					}
+				}
+			}
+			add_character_modifier = dplevels_dragon_in_volcanic_dragonpit
+		}
+		else = {
+			add_character_modifier = agot_dragon_in_dragonpit
+		}
+		set_variable = {
+			name = pitted_dragon_location
+			value = $DRAGONPIT_COUNTY$
+		}
+		remove_variable = travelling_from_pit
+	}
+}
+
+agot_remove_from_dragonpit_effect = {
+	$DRAGON$ = {
+		remove_character_flag = in_dragonpit
+		remove_character_modifier = agot_dragon_in_dragonpit
+		remove_character_modifier = dragonlord_dragon_in_topless_towers
+		remove_character_modifier = dplevels_dragon_in_huge_dragonpit
+		remove_character_modifier = dplevels_dragon_in_heated_dragonpit
+		remove_character_modifier = dplevels_dragon_in_volcanic_dragonpit
+		remove_variable = pitted_dragon_location
+		if = {
+			limit = { has_character_flag = dragon_put_in_different_pit }
+			remove_character_flag = dragon_put_in_different_pit
+		}
+		save_scope_as = removed_dragon
+	}
+	$DRAGONPIT_COUNTY$ = {
+		remove_list_variable = {
+			name = dragons_in_pit
+			target = $DRAGON$
+		}
+		save_scope_as = dragon_pit_location
+	}
+	$DRAGONPIT_HOLDER$ = {
+		if = {
+			limit = {
+				$DRAGON$.age >= dragon_poses_a_danger_age
+				NOT = {
+					$DRAGONPIT_COUNTY$ = {
+						has_county_modifier = agot_roaming_dragon
+					}
+				}
+			}
+			trigger_event = agot_dragon_pits.1100
+		}
+	}
+}
+
+agot_remove_from_dragonpit_no_event = {
+	$DRAGONPIT_COUNTY$ = {
+		remove_list_variable = {
+			name = dragons_in_pit
+			target = $DRAGON$
+		}
+		save_scope_as = dragon_pit_location
+	}
+	$DRAGON$ = {
+		remove_character_flag = in_dragonpit
+		remove_character_modifier = agot_dragon_in_dragonpit
+		remove_character_modifier = dragonlord_dragon_in_topless_towers
+		remove_character_modifier = dplevels_dragon_in_huge_dragonpit
+		remove_character_modifier = dplevels_dragon_in_heated_dragonpit
+		remove_character_modifier = dplevels_dragon_in_volcanic_dragonpit
+		remove_variable = pitted_dragon_location
+		if = {
+			limit = { has_character_flag = dragon_put_in_different_pit }
+			remove_character_flag = dragon_put_in_different_pit
+		}
+		save_scope_as = removed_dragon
+	}
+}
+
+agot_remove_from_dragonpit_skip_county_effects = {
+	$DRAGON$ = {
+		remove_character_flag = in_dragonpit
+		remove_character_modifier = agot_dragon_in_dragonpit
+		remove_character_modifier = dragonlord_dragon_in_topless_towers
+		remove_character_modifier = dplevels_dragon_in_huge_dragonpit
+		remove_character_modifier = dplevels_dragon_in_heated_dragonpit
+		remove_character_modifier = dplevels_dragon_in_volcanic_dragonpit
+		var:pitted_dragon_location = {
+			remove_list_variable = {
+				name = dragons_in_pit
+				target = $DRAGON$
+			}
+		}
+		remove_variable = pitted_dragon_location
+		if = {
+			limit = { has_character_flag = dragon_put_in_different_pit }
+			remove_character_flag = dragon_put_in_different_pit
+		}
+	}
+}
+
+agot_change_dragonpit_status = {
 	save_scope_as = dragon
 	scope:owner = {
 		if = {
-			limit = {
-				agot_has_multiple_active_dragonpits = yes
-			}
+			limit = { agot_has_multiple_active_dragonpits = yes }
 			trigger_event = agot_choose_dragonpit_event.0001
 		}
 		else = {
-			random_held_county = {
-				limit = {
-					OR = {
-						any_county_province = {
-							has_holding_type = castle_holding
-							has_building_or_higher = generic_dragon_pit_01
-						}
-						any_county_province = {
-							OR = {
-								has_building_or_higher = dragonpit_01
-								has_building_or_higher = dragonpit_ruins_03
-								has_building_or_higher = agot_dragonmont_01
-							}
-						}
-						any_county_province = {
-							OR = {
-								has_building = valyria_volcano_01
-								has_building = valyria_volcano_02
-								has_building = valyria_volcano_03
-								has_building = valyria_volcano_04
-								has_building = valyria_volcano_05
-								has_building = zanpur_volcano_01
-								has_building = yovesh_volcano_01
-								has_building = last_dragon_tower_01
-								has_building_or_higher = procrazion_01
-								has_building = valyria_dead_volcano_01
-								has_building = valyria_dead_volcano_02
-							}
-						}
+			if = {
+				limit = { dragonlord_has_topless_towers_dragonpit = yes }
+				save_scope_as = dragonlord_selected_topless_towers
+				save_scope_as = dragon_pit_keeper
+				if = {
+					limit = {
+						exists = domicile
+						exists = domicile.domicile_location.county
+						domicile = { has_domicile_building_or_higher = estate_main_01 }
 					}
-					has_variable = has_dragonkeeper_order
+					domicile.domicile_location.county = { save_scope_as = dragon_pit_location }
 				}
-				save_scope_as = dragon_pit_location
+				else = {
+					house.house_head = {
+						domicile.domicile_location.county = { save_scope_as = dragon_pit_location }
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					is_landless_adventurer = yes
+				}
+				save_scope_as = dragon_pit_keeper
+				primary_title = {
+					save_scope_as = dragon_pit_location
+				}
+			}
+			else = {
+				random_held_county = {
+					limit = {
+						dragonlord_title_is_conventional_active_dragonpit = yes
+					}
+					save_scope_as = dragonlord_selected_conventional_dragonpit
+					save_scope_as = dragon_pit_location
+					holder = { save_scope_as = dragon_pit_keeper }
+				}
 			}
 			scope:dragon = {
 				if = {
-					limit = {
-						has_character_flag = in_dragonpit
-					}
-					agot_remove_from_dragonpit_effect = { DRAGON = root DRAGONPIT_HOLDER = scope:owner DRAGONPIT_COUNTY = scope:dragon_pit_location }
+					limit = { has_character_flag = in_dragonpit }
+					agot_remove_from_dragonpit_effect = { DRAGON = root DRAGONPIT_HOLDER = scope:dragon_pit_keeper DRAGONPIT_COUNTY = scope:dragon_pit_location }
 				}
 				else_if = {
-					limit = {
-						has_character_flag = owned_dragon
-					}
-					agot_send_to_dragonpit_effect = { DRAGON = root DRAGONPIT_HOLDER = scope:owner DRAGONPIT_COUNTY = scope:dragon_pit_location }
+					limit = { has_character_flag = owned_dragon }
+					agot_send_to_dragonpit_effect = { DRAGON = root DRAGONPIT_HOLDER = scope:dragon_pit_keeper DRAGONPIT_COUNTY = scope:dragon_pit_location }
 				}
-				else_if = {
-					limit = {
-						NOT = {
-							has_character_flag = owned_dragon
-						}
-					}
-					agot_force_wild_dragon_into_dragonpit_effect = { DRAGON = root DRAGONPIT_HOLDER = scope:owner DRAGONPIT_COUNTY = scope:dragon_pit_location }
+				else = {
+					agot_force_wild_dragon_into_dragonpit_effect = { DRAGON = root DRAGONPIT_HOLDER = scope:dragon_pit_keeper DRAGONPIT_COUNTY = scope:dragon_pit_location }
 				}
 			}
 		}
@@ -70,61 +317,346 @@
 
 agot_change_dragonpit_status_ai = {
 	$OWNER$ = {
-		random_held_county = {
-			limit = {
-				OR = {
-					any_county_province = {
-						has_holding_type = castle_holding
-						has_building_or_higher = generic_dragon_pit_01
-					}
-					any_county_province = {
-						OR = {
-							has_building_or_higher = dragonpit_01
-							has_building_or_higher = dragonpit_ruins_03
-							has_building_or_higher = agot_dragonmont_01
-						}
-					}
-					any_county_province = {
-						OR = {
-							has_building = valyria_volcano_01
-							has_building = valyria_volcano_02
-							has_building = valyria_volcano_03
-							has_building = valyria_volcano_04
-							has_building = valyria_volcano_05
-							has_building = zanpur_volcano_01
-							has_building = yovesh_volcano_01
-							has_building = last_dragon_tower_01
-							has_building_or_higher = procrazion_01
-							has_building = valyria_dead_volcano_01
-							has_building = valyria_dead_volcano_02
-						}
-					}
+		if = {
+			limit = { dragonlord_has_topless_towers_dragonpit = yes }
+			save_scope_as = dragon_pit_keeper
+			if = {
+				limit = {
+					exists = domicile
+					exists = domicile.domicile_location.county
+					domicile = { has_domicile_building_or_higher = estate_main_01 }
 				}
-				has_variable = has_dragonkeeper_order
+				domicile.domicile_location.county = { save_scope_as = dragon_pit_location }
 			}
-			save_scope_as = dragon_pit_location
+			else = {
+				house.house_head = {
+					domicile.domicile_location.county = { save_scope_as = dragon_pit_location }
+				}
+			}
+		}
+		else = {
+			random_held_county = {
+				limit = { dragonlord_title_is_conventional_active_dragonpit = yes }
+				save_scope_as = dragon_pit_location
+				holder = { save_scope_as = dragon_pit_keeper }
+			}
 		}
 	}
 	$DRAGON_REC$ = {
 		if = {
-			limit = {
-				has_character_flag = in_dragonpit
-			}
-			agot_remove_from_dragonpit_effect = { DRAGON = $DRAGON_REC$ DRAGONPIT_HOLDER = $OWNER$ DRAGONPIT_COUNTY = scope:dragon_pit_location }
+			limit = { has_character_flag = in_dragonpit }
+			agot_remove_from_dragonpit_effect = { DRAGON = $DRAGON_REC$ DRAGONPIT_HOLDER = scope:dragon_pit_keeper DRAGONPIT_COUNTY = scope:dragon_pit_location }
 		}
 		else_if = {
-			limit = {
-				has_character_flag = owned_dragon
-			}
-			agot_send_to_dragonpit_effect = { DRAGON = $DRAGON_REC$ DRAGONPIT_HOLDER = $OWNER$ DRAGONPIT_COUNTY = scope:dragon_pit_location }
+			limit = { has_character_flag = owned_dragon }
+			agot_send_to_dragonpit_effect = { DRAGON = $DRAGON_REC$ DRAGONPIT_HOLDER = scope:dragon_pit_keeper DRAGONPIT_COUNTY = scope:dragon_pit_location }
 		}
-		else_if = {
+		else = {
+			agot_force_wild_dragon_into_dragonpit_effect = { DRAGON = $DRAGON_REC$ DRAGONPIT_HOLDER = scope:dragon_pit_keeper DRAGONPIT_COUNTY = scope:dragon_pit_location }
+		}
+	}
+}
+
+agot_send_to_dragonpit_war = {
+	$DRAGON$ = {
+		add_character_flag = in_dragonpit
+		remove_character_modifier = agot_dragon_in_dragonpit
+		remove_character_modifier = dragonlord_dragon_in_topless_towers
+		remove_character_modifier = dplevels_dragon_in_huge_dragonpit
+		remove_character_modifier = dplevels_dragon_in_heated_dragonpit
+		remove_character_modifier = dplevels_dragon_in_volcanic_dragonpit
+		if = {
 			limit = {
-				NOT = {
-					has_character_flag = owned_dragon
+				var:return_pitted_dragon_location = {
+					dragonlord_is_topless_towers_dragonpit_county = yes
 				}
 			}
-			agot_force_wild_dragon_into_dragonpit_effect = { DRAGON = $DRAGON_REC$ DRAGONPIT_HOLDER = $OWNER$ DRAGONPIT_COUNTY = scope:dragon_pit_location }
+			add_character_modifier = dragonlord_dragon_in_topless_towers
+		}
+		else_if = {
+			limit = {
+				var:return_pitted_dragon_location = {
+					any_county_province = {
+						OR = {
+							has_building = generic_dragon_pit_02
+							has_building = kl_dragon_pit_02
+							has_building = kl_dragon_pit_ruins_02
+						}
+					}
+				}
+			}
+			add_character_modifier = dplevels_dragon_in_huge_dragonpit
+		}
+		else_if = {
+			limit = {
+				var:return_pitted_dragon_location = {
+					any_county_province = {
+						OR = {
+							has_building = generic_dragon_pit_03
+							has_building = kl_dragon_pit_03
+							has_building = kl_dragon_pit_ruins_03
+						}
+					}
+				}
+			}
+			add_character_modifier = dplevels_dragon_in_heated_dragonpit
+		}
+		else_if = {
+			limit = {
+				var:return_pitted_dragon_location = {
+					any_county_province = {
+						OR = {
+							has_building = generic_dragon_pit_04
+							has_building = kl_dragon_pit_04
+							has_building = kl_dragon_pit_ruins_04
+						}
+					}
+				}
+			}
+			add_character_modifier = dplevels_dragon_in_volcanic_dragonpit
+		}
+		else = {
+			add_character_modifier = agot_dragon_in_dragonpit
+		}
+		set_variable = {
+			name = pitted_dragon_location
+			value = var:return_pitted_dragon_location
+		}
+		remove_variable = return_pitted_dragon_location
+		var:pitted_dragon_location = {
+			add_to_variable_list = {
+				name = dragons_in_pit
+				target = $DRAGON$
+			}
+		}
+	}
+}
+
+agot_remove_from_dragonpit_war = {
+	$DRAGON$ = {
+		remove_character_flag = in_dragonpit
+		remove_character_modifier = agot_dragon_in_dragonpit
+		remove_character_modifier = dragonlord_dragon_in_topless_towers
+		remove_character_modifier = dplevels_dragon_in_huge_dragonpit
+		remove_character_modifier = dplevels_dragon_in_heated_dragonpit
+		remove_character_modifier = dplevels_dragon_in_volcanic_dragonpit
+		set_variable = {
+			name = return_pitted_dragon_location
+			value = var:pitted_dragon_location
+		}
+		remove_variable = pitted_dragon_location
+		if = {
+			limit = { has_character_flag = dragon_put_in_different_pit }
+			remove_character_flag = dragon_put_in_different_pit
+		}
+		var:return_pitted_dragon_location = {
+			remove_list_variable = {
+				name = dragons_in_pit
+				target = $DRAGON$
+			}
+		}
+	}
+}
+
+agot_apply_dragon_aging_effect = {
+	$DRAGON$ = {
+		save_scope_as = dragon
+		if = {
+			limit = {
+				age < 11
+				NOT = { has_trait = dragon_destined }
+			}
+			add_prowess_skill = 3
+			change_dragon_size = {
+				VALUE = 3
+			}
+		}
+		else_if = {
+			limit = {
+				age < 15
+				NOT = { has_trait = dragon_destined }
+			}
+			add_prowess_skill = 2
+			change_dragon_size = {
+				VALUE = 2
+			}
+		}
+		else = {
+			if = {
+				limit = { has_character_flag = in_dragonpit }
+				if = {
+					limit = { has_character_modifier = dragonlord_dragon_in_topless_towers }
+					random_list = {
+						10 = {}
+						70 = {
+							add_prowess_skill = 1
+							change_dragon_size = {
+								VALUE = 1
+							}
+						}
+						20 = {
+							add_prowess_skill = 2
+							change_dragon_size = {
+								VALUE = 2
+							}
+						}
+					}
+				}
+				else_if = {
+					limit = {
+						OR = {
+							var:pitted_dragon_location ?= { lv_has_mid_tier_dragon_pit_county = yes }
+							var:pitted_dragon_location.title_province ?= {
+								OR = {
+									has_building = generic_dragon_pit_04
+									has_building = kl_dragon_pit_04
+									has_building = kl_dragon_pit_ruins_04
+								}
+							}
+						}
+					}
+					random_list = {
+						5 = {}
+						55 = {
+							add_prowess_skill = 1
+							change_dragon_size = {
+								VALUE = 1
+							}
+						}
+						15 = {
+							add_prowess_skill = 2
+							change_dragon_size = {
+								VALUE = 2
+							}
+						}
+					}
+				}
+				else_if = {
+					limit = {
+						var:pitted_dragon_location.title_province ?= {
+							OR = {
+								has_building = generic_dragon_pit_03
+								has_building = kl_dragon_pit_03
+								has_building = kl_dragon_pit_ruins_03
+							}
+						}
+					}
+					random_list = {
+						8 = {}
+						72 = {
+							add_prowess_skill = 1
+							change_dragon_size = {
+								VALUE = 1
+							}
+						}
+						20 = {
+							add_prowess_skill = 2
+							change_dragon_size = {
+								VALUE = 2
+							}
+						}
+					}
+				}
+				else_if = {
+					limit = {
+						var:pitted_dragon_location.title_province ?= {
+							OR = {
+								has_building = generic_dragon_pit_02
+								has_building = kl_dragon_pit_02
+								has_building = kl_dragon_pit_ruins_02
+							}
+						}
+					}
+					random_list = {
+						10 = {}
+						70 = {
+							add_prowess_skill = 1
+							change_dragon_size = {
+								VALUE = 1
+							}
+						}
+						20 = {
+							add_prowess_skill = 2
+							change_dragon_size = {
+								VALUE = 2
+							}
+						}
+					}
+				}
+				else = {
+					random_list = {
+						30 = {}
+						60 = {
+							add_prowess_skill = 1
+							change_dragon_size = {
+								VALUE = 1
+							}
+						}
+						10 = {
+							add_prowess_skill = 2
+							change_dragon_size = {
+								VALUE = 2
+							}
+						}
+					}
+				}
+				if = {
+					limit = {
+						exists = var:current_rider
+						var:current_rider = {
+							has_trait_xp = {
+								trait = dragonrider
+								track = dragon_bond
+								value > 0
+							}
+						}
+						exists = var:pitted_dragon_location
+						trigger_if = {
+							limit = { var:current_rider = { is_landed = yes } }
+							NOT = { var:pitted_dragon_location = var:current_rider.capital_county }
+						}
+						trigger_else = {
+							trigger_if = {
+								limit = {
+									exists = var:current_rider.liege_or_court_owner
+									exists = var:current_rider.liege_or_court_owner.capital_county
+								}
+								NOT = { var:pitted_dragon_location = var:current_rider.liege_or_court_owner.capital_county }
+							}
+						}
+					}
+					var:current_rider ?= {
+						save_scope_as = rider
+						send_interface_toast = {
+							title = dragon_bond_weakening_toast
+							left_icon = scope:rider
+							right_icon = scope:dragon
+							add_trait_xp = {
+								trait = dragonrider
+								track = dragon_bond
+								value = -5
+							}
+						}
+					}
+				}
+			}
+			else = {
+				random_list = {
+					10 = {}
+					70 = {
+						add_prowess_skill = 1
+						change_dragon_size = {
+							VALUE = 1
+						}
+					}
+					20 = {
+						add_prowess_skill = 2
+						change_dragon_size = {
+							VALUE = 2
+						}
+					}
+				}
+			}
 		}
 	}
 }

@@ -1,0 +1,19 @@
+﻿namespace = agoat_nw_ranging
+
+agoat_nw_ranging.0001 = {
+	type = character_event
+	hidden = yes
+
+	trigger = {
+		is_landed = no
+		any_held_title = { has_variable = ln_is_a_ranger_title }
+	}
+
+	immediate = {
+		if = {
+			limit = { NOT = { has_government = ln_ranger_government } }
+			change_government = ln_ranger_government
+		}
+		ln_pitch_the_camp_effect = yes
+	}
+}

@@ -1,0 +1,26 @@
+﻿asoiaf_clear_lifestyle_traits_effect = {
+	if = {
+		limit = {
+			has_trait = lifestyle_hunter
+		}
+		remove_trait = lifestyle_hunter
+	}
+	if = {
+		limit = {
+			has_trait = lifestyle_blademaster
+		}
+		remove_trait = lifestyle_blademaster
+	}
+	if = {
+		limit = {
+			has_trait = lifestyle_mystic
+		}
+		remove_trait = lifestyle_mystic
+	}
+	if = {
+		limit = {
+			has_trait = lifestyle_reveler
+		}
+		remove_trait = lifestyle_reveler
+	}
+}

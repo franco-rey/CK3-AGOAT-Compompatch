@@ -1,0 +1,1749 @@
+﻿agot_create_personal_coa = {
+	save_scope_as = actor
+	add_character_flag = has_personal_coa
+	if = {
+		limit = {
+			scope:actor = {
+				is_playable_character = yes
+			}
+		}
+		create_character = {
+			name = "Dummy"
+			gender = male
+			employer = scope:actor
+			trait = agot_dummy_trait
+			random_traits = no
+			faith = scope:actor.faith
+			culture = scope:actor.culture
+			dynasty = generate
+			save_scope_as = recipient
+		}
+	}
+	else_if = {
+		limit = {
+			scope:actor = {
+				is_playable_character = no
+			}
+		}
+		title:c_ruins.holder = {
+			save_scope_as = ruins
+		}
+		create_character = {
+			name = "Dummy"
+			gender = male
+			employer = scope:ruins
+			trait = agot_dummy_trait
+			random_traits = no
+			faith = scope:actor.faith
+			culture = scope:actor.culture
+			dynasty = generate
+			save_scope_as = recipient
+		}
+	}
+	scope:recipient = {
+		house = {
+			set_house_name = coa_new_name
+			set_variable = hide_in_ledger
+		}
+		dynasty ?= {
+			switch = {
+				trigger = scope:actor.prestige_level
+				0 = {
+					add_dynasty_prestige_level = {
+						subtract = dynasty_prestige_level
+						add = 1
+					}
+				}
+				1 = {
+					add_dynasty_prestige_level = {
+						subtract = dynasty_prestige_level
+						add = 3
+					}
+				}
+				2 = {
+					add_dynasty_prestige_level = {
+						subtract = dynasty_prestige_level
+						add = 5
+					}
+				}
+				3 = {
+					add_dynasty_prestige_level = {
+						subtract = dynasty_prestige_level
+						add = 7
+					}
+				}
+				4 = {
+					add_dynasty_prestige_level = {
+						subtract = dynasty_prestige_level
+						add = 9
+					}
+				}
+				5 = {
+					add_dynasty_prestige_level = {
+						subtract = dynasty_prestige_level
+						add = 10
+					}
+				}
+			}
+		}
+		set_variable = {
+			name = my_coa_belongs_to
+			value = scope:actor
+		}
+	}
+
+	if = {
+		limit = {
+			OR = {
+				scope:pcoa_plain ?= yes
+				scope:pcoa_nickname ?= yes
+				scope:pcoa_ancestral_quartering ?= yes
+				scope:pcoa_religious ?= yes
+				scope:pcoa_fourth_child ?= yes
+				scope:pcoa_random ?= yes
+				scope:pcoa_historical ?= yes
+			}
+		}
+		switch = {
+			trigger = yes
+			scope:pcoa_plain = {
+				if = {
+					limit = {
+						scope:actor = { is_lowborn = no }
+					}
+					scope:recipient.house = { set_coa = scope:actor.house }
+				}
+				else = {
+					scope:recipient.house = { generate_coa = yes }
+				}
+			}
+			scope:pcoa_nickname = {
+				agot_select_personal_coa_based_on_nickname_system = yes
+			}
+			scope:pcoa_ancestral_quartering = {
+				agot_generate_ancestral_quartering_coa = yes
+			}
+			scope:pcoa_religious = {
+				agot_select_special_rhllor_personal_coa = yes
+			}
+			scope:pcoa_fourth_child = {
+				agot_select_personal_coa_based_on_birth_number = yes
+			}
+			scope:pcoa_random = {
+				scope:recipient.house = { generate_coa = yes }
+			}
+			scope:pcoa_historical = {
+				scope:actor = {
+					trigger_event = acs_personal_coat_of_arms_events.0001
+				}
+			}
+		}
+	}
+	else = {
+		if = {
+			limit = {
+				scope:actor = {
+					exists = house
+					has_nickname_for_personal_coa_trigger = yes #Using this because black/white/red nickname triggers are including nicknames that has no personal coa attached to.
+				}
+			}
+			agot_select_personal_coa_based_on_nickname_system = yes
+		}
+		else_if = {
+			limit = {
+				scope:actor = {
+					valid_character_for_rhllor_personal_coa_trigger = yes
+				}
+			}
+			if = {
+				limit = { has_specific_rhllor_personal_coa_trigger = yes }
+				agot_select_special_rhllor_personal_coa = yes
+			}
+			else_if = {
+				limit = { has_no_house_rhllor_personal_coa_trigger = yes }
+				agot_select_no_house_rhllor_personal_coa = yes
+				house = {
+					remove_variable = rhllor_coa_holder
+					set_variable = {
+						name = rhllor_coa_holder
+						value = scope:actor
+					}
+				}
+			}
+			else = {
+				agot_select_rhllor_personal_coa = yes
+				house = {
+					remove_variable = rhllor_coa_holder
+					set_variable = {
+						name = rhllor_coa_holder
+						value = scope:actor
+					}
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				scope:actor = {
+					can_recieve_fourth_child_personal_coa_trigger = {
+						ACTOR = this
+					}
+				}
+			}
+			agot_select_personal_coa_based_on_birth_number = yes
+		}
+		else_if = {
+			limit = { scope:actor = { has_character_flag = selecting_faction_coa } }
+			if = {
+				limit = {
+					scope:actor = {
+						OR = {
+							AND = {
+								has_character_flag = is_Targaryen_63
+								is_married = yes
+								exists = dynasty:dynn_Velaryon.dynasty_founder.house
+								scope:actor.primary_spouse.house = dynasty:dynn_Velaryon.dynasty_founder.house
+							}
+							has_character_flag = is_Targaryen_65
+						}
+					}
+				}
+				if = {
+					limit = {
+						has_character_flag = is_Targaryen_63
+						is_married = yes
+						exists = dynasty:dynn_Velaryon.dynasty_founder.house
+						scope:actor.primary_spouse.house = dynasty:dynn_Velaryon.dynasty_founder.house
+					}
+					scope:recipient.house = { set_coa = rhaenrya_personal_coa }
+				}
+				else_if = {
+					limit = {
+						has_character_flag = is_Targaryen_65
+					}
+					scope:recipient.house = { set_coa = aegon_ii_personal_arms }
+				}
+			}
+			else = {
+				random_list = {
+					99 = {
+						trigger = {
+							scope:actor = {
+								has_trait = dragonrider
+								any_relation = {
+									type = agot_dragon
+									is_alive = yes
+									can_have_dragon_color_coa = yes
+								}
+							}
+						}
+						scope:recipient = { assign_dragon_color_for_coa = yes }
+						scope:actor = { agot_select_faction_coa = yes }
+						scope:recipient.house = { generate_coa = agot_faction_coa }
+					}
+					1 = {
+						scope:actor = { agot_select_faction_coa = yes }
+						scope:recipient.house = { generate_coa = agot_faction_coa }
+					}
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				scope:actor = {
+					is_lowborn = yes
+				}
+			}
+			scope:recipient.house = { generate_coa = yes }
+		}
+		else = {
+			scope:recipient.house = { set_coa = scope:actor.house }
+		}
+	}
+
+	scope:actor = {
+		set_variable = {
+			name = my_personal_coa
+			value = scope:recipient
+		}
+		set_relation_agot_personal_coa_slave = scope:recipient
+		if = {
+			limit = {
+				scope:actor = {
+					is_ai = yes
+				}
+			}
+			scope:recipient = { save_scope_as = exiled_dummy } # Send away the COA Dummy Immediately since the AI won't be editing their own COAs
+			trigger_event = agot_events_personal_coat_of_arms.0001
+		}
+		else = {
+			scope:recipient = { save_scope_as = exiled_dummy } # Send away the COA Dummy a few days after
+			trigger_event = { id = agot_events_personal_coat_of_arms.0001 days = 1 }
+		}
+	}
+}
+
+agot_select_personal_coa_based_on_nickname_system = {
+	switch = {
+		trigger = house
+		dynasty:dynn_Lannister.dynasty_founder.house = {
+			scope:actor = {
+				switch = {
+					trigger = has_nickname
+					nick_agot_the_black_lion = { scope:recipient.house = { set_coa = dynn_Lannister_black_lion_personal_coa } }
+					nick_agot_the_white_lion = { scope:recipient.house = { set_coa = dynn_Lannister_white_lion_personal_coa } }
+					nick_agot_the_red_lion = { scope:recipient.house = { set_coa = dynn_Lannister_red_lion_personal_coa } }
+				}
+			}
+		}
+		dynasty:dynn_Stark.dynasty_founder.house = {
+			scope:actor = {
+				switch = {
+					trigger = has_nickname
+					nick_agot_the_black_wolf = { acs_set_dynn_Stark_black_wolf_coa = yes }
+					nick_agot_the_white_wolf = { acs_set_dynn_Stark_white_wolf_coa = yes }
+					nick_agot_the_red_wolf = { acs_set_dynn_Stark_red_wolf_coa = yes }
+				}
+			}
+		}
+		dynasty:dynn_Targaryen.dynasty_founder.house = {
+			scope:actor = {
+				switch = {
+					trigger = has_nickname
+					nick_agot_the_white_dragon = { acs_set_dynn_Targaryen_white_dragon_coa = yes }
+				}
+			}
+		}
+		dynasty:dynn_Baratheon.dynasty_founder.house = {
+			scope:actor = {
+				switch = {
+					trigger = has_nickname
+					nick_agot_the_white_stag = { scope:recipient.house = { set_coa = dynn_Baratheon_white_stag_personal_coa } }
+					nick_agot_the_red_stag = { scope:recipient.house = { set_coa = dynn_Baratheon_red_stag_personal_coa  } }
+				}
+			}
+		}
+		dynasty:dynn_Tyrell.dynasty_founder.house = {
+			scope:actor = {
+				switch = {
+					trigger = has_nickname
+					nick_agot_the_black_rose = { scope:recipient.house = { set_coa = dynn_Tyrell_black_rose_personal_coa } }
+					nick_agot_the_white_rose = { scope:recipient.house = { set_coa = dynn_Tyrell_white_rose_personal_coa  } }
+					nick_agot_the_red_rose = { scope:recipient.house = { set_coa = dynn_Tyrell_red_rose_personal_coa  } }
+				}
+			}
+		}
+		dynasty:dynn_Greyjoy.dynasty_founder.house = {
+			scope:actor = {
+				switch = {
+					trigger = has_nickname
+					nick_agot_the_white_squid = { scope:recipient.house = { set_coa = dynn_Greyjoy_white_squid_personal_coa } }
+					nick_agot_the_red_squid = { scope:recipient.house = { set_coa = dynn_Greyjoy_red_squid_personal_coa  } }
+				}
+			}
+		}
+		dynasty:dynn_Tully.dynasty_founder.house = {
+			scope:actor = {
+				switch = {
+					trigger = has_nickname
+					nick_agot_the_white_fish = { scope:recipient.house = { set_coa = dynn_Tully_white_fish_personal_coa } }
+					nick_agot_the_red_fish = { scope:recipient.house = { set_coa = dynn_Tully_red_fish_personal_coa  } }
+					nick_agot_the_black_fish = { scope:recipient.house = { set_coa = bryden_blackfish_tully_personal_coa  } }
+				}
+			}
+		}
+		dynasty:dynn_Arryn.dynasty_founder.house = {
+			scope:actor = {
+				switch = {
+					trigger = has_nickname
+					nick_agot_the_black_falcon = { acs_set_dynn_Arryn_black_falcon_coa = yes }
+					nick_agot_the_red_falcon = { acs_set_dynn_Arryn_red_falcon_coa = yes }
+				}
+			}
+		}
+	}
+}
+
+agot_select_rhllor_personal_coa = {
+	switch = {
+		trigger = house
+		dynasty:dynn_Stark.dynasty_founder.house = {
+			acs_set_Stark_rhllor_coa = yes
+		}
+		dynasty:dynn_Bolton.dynasty_founder.house = {
+			acs_set_Bolton_rhllor_coa = yes
+		}
+		dynasty:dynn_Glover.dynasty_founder.house = {
+			scope:recipient.house = { set_coa = Glover_rhllor_personal_coa }
+		}
+		dynasty:dynn_Ryswell.dynasty_founder.house = {
+			scope:recipient.house = { set_coa = Ryswell_rhllor_personal_coa }
+		}
+		house:house_Karstark = {
+			acs_set_Karstark_rhllor_coa = yes
+		}
+		dynasty:dynn_Tully.dynasty_founder.house = {
+			scope:recipient.house = { set_coa = Tully_rhllor_personal_coa }
+		}
+		dynasty:dynn_Blackwood.dynasty_founder.house = {
+			scope:recipient.house = { set_coa = Blackwood_rhllor_personal_coa }
+		}
+		dynasty:dynn_Bracken.dynasty_founder.house = {
+			acs_set_Bracken_rhllor_coa = yes
+		}
+		dynasty:dynn_Frey.dynasty_founder.house = {
+			scope:recipient.house = { set_coa = Frey_rhllor_personal_coa }
+		}
+		dynasty:dynn_Arryn.dynasty_founder.house = {
+			acs_set_Arryn_rhllor_coa = yes
+		}
+		dynasty:dynn_Redfort.dynasty_founder.house = {
+			scope:recipient.house = { set_coa = Redfort_rhllor_personal_coa }
+		}
+		dynasty:dynn_Corbray.dynasty_founder.house = {
+			scope:recipient.house = { set_coa = Corbray_rhllor_personal_coa }
+		}
+		dynasty:dynn_Royce.dynasty_founder.house = {
+			scope:recipient.house = { set_coa = Royce_rhllor_personal_coa }
+		}
+		dynasty:dynn_Greyjoy.dynasty_founder.house = {
+			scope:recipient.house = { set_coa = Greyjoy_rhllor_personal_coa }
+		}
+		dynasty:dynn_Harlaw.dynasty_founder.house = {
+			scope:recipient.house = { set_coa = Harlaw_rhllor_personal_coa }
+		}
+		dynasty:dynn_Drumm.dynasty_founder.house = {
+			scope:recipient.house = { set_coa = Drumm_rhllor_personal_coa }
+		}
+		dynasty:dynn_Saltcliffe.dynasty_founder.house = {
+			scope:recipient.house = { set_coa = Saltcliffe_rhllor_personal_coa }
+		}
+		dynasty:dynn_Targaryen.dynasty_founder.house = {
+			acs_set_Targaryen_rhllor_coa = yes
+		}
+		house:house_Blackfyre = {
+			acs_set_Blackfyre_rhllor_coa = yes
+		}
+		dynasty:dynn_Velaryon.dynasty_founder.house = {
+			acs_set_Velaryon_rhllor_coa = yes
+		}
+		dynasty:dynn_Celtigar.dynasty_founder.house = {
+			scope:recipient.house = { set_coa = Celtigar_rhllor_personal_coa }
+		}
+		dynasty:dynn_Baratheon.dynasty_founder.house = {
+			scope:recipient.house = { set_coa = Baratheon_rhllor_personal_coa }
+		}
+		dynasty:dynn_Dondarrion.dynasty_founder.house = {
+			scope:recipient.house = { set_coa = Dondarrion_rhllor_personal_coa }
+		}
+		dynasty:dynn_Estermont.dynasty_founder.house = {
+			scope:recipient.house = { set_coa = Estermont_rhllor_personal_coa }
+		}
+		dynasty:dynn_Selmy.dynasty_founder.house = {
+			scope:recipient.house = { set_coa = Selmy_rhllor_personal_coa }
+		}
+		dynasty:dynn_Lannister.dynasty_founder.house = {
+			scope:recipient.house = { set_coa = Lannister_rhllor_personal_coa }
+		}
+		dynasty:dynn_Reyne.dynasty_founder.house = {
+			scope:recipient.house = { set_coa = Reyne_rhllor_personal_coa }
+		}
+		dynasty:dynn_Brax.dynasty_founder.house = {
+			scope:recipient.house = { set_coa = Brax_rhllor_personal_coa }
+		}
+		dynasty:dynn_Tyrell.dynasty_founder.house = {
+			scope:recipient.house = { set_coa = Tyrell_rhllor_personal_coa }
+		}
+		dynasty:dynn_Hightower.dynasty_founder.house = {
+			acs_set_Hightower_rhllor_coa = yes
+		}
+		dynasty:dynn_Florent.dynasty_founder.house = {
+			scope:recipient.house = { set_coa = Florent_rhllor_personal_coa }
+		}
+		dynasty:dynn_Rowan.dynasty_founder.house = {
+			scope:recipient.house = { set_coa = Rowan_rhllor_personal_coa }
+		}
+		house:house_Martell = {
+			acs_set_Martell_rhllor_coa = yes
+		}
+		dynasty:dynn_Dayne.dynasty_founder.house = {
+			acs_set_Dayne_rhllor_coa = yes
+		}
+		dynasty:dynn_Toland.dynasty_founder.house = {
+			scope:recipient.house = { set_coa = Toland_rhllor_personal_coa }
+		}
+		dynasty:dynn_Yronwood.dynasty_founder.house = {
+			scope:recipient.house = { set_coa = Yronwood_rhllor_personal_coa }
+		}
+	}
+}
+
+agot_generate_ancestral_quartering_coa = {
+	scope:recipient = {
+		dynasty ?= { set_coa = scope:actor.house }
+	}
+	create_character = {
+		location = scope:actor.location
+		faith = scope:actor.faith
+		culture = scope:actor.culture
+		gender = male
+		dynasty = none
+		save_scope_as = new_dummy
+		after_creation = {
+			set_house = scope:recipient.house
+			house = {
+				set_house_head = scope:new_dummy
+			}
+			scope:recipient = {
+				create_dynamic_title = {
+					tier = duchy
+					name = placeholder
+				}
+				create_title_and_vassal_change = {
+					type = created
+					save_scope_as = change
+					add_claim_on_loss = no
+				}
+				scope:new_title = {
+					set_capital_county = title:c_ruins
+					set_landless_title = yes
+					set_destroy_on_gain_same_tier = yes
+					set_no_automatic_claims = yes
+					set_can_be_named_after_dynasty = no
+					change_title_holder = {
+						holder = scope:recipient
+						change = scope:change
+					}
+				}
+				resolve_title_and_vassal_change = scope:change
+				title:c_ruins = {
+					scope:actor = {
+						if = { #Mom
+							limit = {
+								mother ?= {
+									NOT = { dynasty ?= root.dynasty }
+									is_lowborn = no
+								}
+							}
+							prev = { set_coa = root.mother.house }
+						}
+						else_if = { #Dad
+							limit = {
+								father ?= {
+									NOT = { dynasty ?= root.dynasty }
+									is_lowborn = no
+								}
+							}
+							prev = { set_coa = root.father.house }
+						}
+						else_if = { #Father's Father
+							limit = {
+								exists = father
+								father.father ?= {
+									NOT = { dynasty ?= root.dynasty }
+									is_lowborn = no
+								}
+							}
+							prev = { set_coa = root.father.father.house }
+						}
+						else_if = { #Father's Mother
+							limit = {
+								exists = father
+								father.mother ?= {
+									NOT = { dynasty ?= root.dynasty }
+									is_lowborn = no
+								}
+							}
+							prev = { set_coa = root.father.mother.house }
+						}
+						else_if = { #Mother's Father
+							limit = {
+								exists = mother
+								mother.father ?= {
+									NOT = { dynasty ?= root.dynasty }
+									is_lowborn = no
+								}
+							}
+							prev = { set_coa = root.mother.father.house }
+						}
+						else_if = { #Mother's Mother
+							limit = {
+								exists = mother
+								mother.mother ?= {
+									NOT = { dynasty ?= root.dynasty }
+									is_lowborn = no
+								}
+							}
+							prev = { set_coa = root.mother.mother.house }
+						}
+						else_if = { #Spouse
+							limit = {
+								primary_spouse ?= {
+									NOT = { dynasty ?= root.dynasty }
+									is_lowborn = no
+								}
+							}
+							prev = { set_coa = root.primary_spouse.house }
+						}
+					}
+				}
+				create_cadet_branch = {}
+				destroy_title = scope:new_title
+				title:c_ruins = {
+					set_coa = ruins_coa
+				}
+				house = {
+					set_variable = hide_in_ledger
+				}
+				scope:new_dummy = {
+					dynasty ?= { set_variable = hide_in_ledger }
+					death = {
+						death_reason = death_vanished
+					}
+				}
+			}
+		}
+	}
+}
+
+agot_create_personal_coa_for_historical_ai = {
+	$ACTOR$ = {
+		save_scope_as = actor
+		add_character_flag = has_personal_coa
+		title:c_ruins.holder = {
+			save_scope_as = ruins
+		}
+		create_character = {
+			name = "Dummy"
+			gender = male
+			employer = scope:ruins # AI Doesn't need to edit their COA, so send the dummy away immediately.
+			trait = agot_dummy_trait
+			faith = scope:actor.faith
+			culture = scope:actor.culture
+			dynasty = generate
+			save_scope_as = recipient
+		}
+		scope:recipient = {
+			scope:recipient.house = {
+				set_house_name = coa_new_name
+				set_coa = $COA_KEY$
+				set_variable = hide_in_ledger
+			}
+			set_variable = {
+				name = my_coa_belongs_to
+				value = scope:actor
+			}
+			# Bootstrap the version-switch dispatcher: tag this coa dummy with the coa key it holds
+			# so acs_dynamically_set_pcoas can re-apply the correct version on a later sigil switch.
+			set_variable = {
+				name = this_pcoa_is
+				value = flag:$COA_KEY$
+			}
+		}
+		scope:actor = {
+			set_variable = {
+				name = my_personal_coa
+				value = scope:recipient
+			}
+			set_relation_agot_personal_coa_slave = scope:recipient
+			scope:recipient = { save_scope_as = exiled_dummy } # Send away the COA Dummy Immediately since the AI won't be editing their own COAs
+			trigger_event = agot_events_personal_coat_of_arms.0001
+		}
+	}
+}
+
+agot_select_personal_coa_based_on_birth_number = {
+	scope:recipient = {
+		dynasty ?= { set_coa = scope:actor.house }
+	}
+	create_character = {
+		location = scope:actor.location
+		faith = scope:actor.faith
+		culture = scope:actor.culture
+		gender = male
+		dynasty = none
+		save_scope_as = new_dummy
+		after_creation = {
+			set_house = scope:recipient.house
+			house = {
+				set_house_head = scope:new_dummy
+			}
+			scope:recipient = {
+				create_dynamic_title = {
+					tier = duchy
+					name = placeholder
+				}
+				create_title_and_vassal_change = {
+					type = created
+					save_scope_as = change
+					add_claim_on_loss = no
+				}
+				scope:new_title = {
+					set_capital_county = title:c_ruins
+					set_landless_title = yes
+					set_destroy_on_gain_same_tier = yes
+					set_no_automatic_claims = yes
+					set_can_be_named_after_dynasty = no
+					change_title_holder = {
+						holder = scope:recipient
+						change = scope:change
+					}
+				}
+				resolve_title_and_vassal_change = scope:change
+				title:c_ruins = {
+					set_coa = scope:actor.house
+				}
+				create_cadet_branch = {}
+				destroy_title = scope:new_title
+				title:c_ruins = {
+					set_coa = ruins_coa
+				}
+				house = {
+					set_variable = hide_in_ledger
+				}
+				scope:new_dummy = {
+					dynasty ?= { set_variable = hide_in_ledger }
+					death = {
+						death_reason = death_vanished
+					}
+				}
+			}
+		}
+	}
+}
+
+agot_select_special_rhllor_personal_coa = {
+	switch = {
+		trigger = this
+		character:Stark_7 = {
+			acs_set_Jonsnow_rhllor_coa = yes
+		}
+		character:Targaryen_96 = {
+			acs_set_Bloodraven_rhllor_coa = yes
+		}
+		character:Targaryen_95 = {
+			acs_set_Bittersteel_rhllor_coa = yes
+		}
+	}
+}
+
+acs_update_pcoas = {
+    every_dynasty_member = {
+        limit = {
+            is_special_title_acs = no
+        }
+        every_held_title = {
+            limit = {
+                agot_is_valid_dyn_coa_title = yes
+            }
+            if = {
+                limit = {
+                    holder = {
+                        #has_character_flag = has_personal_coa
+                        has_character_flag = landed_coa_personalized
+                    }
+                }
+                set_coa = holder.var:my_personal_coa.house
+            }
+            else = { set_coa = holder.house }
+        }
+    }
+}
+
+acs_refresh_coas_effect = {
+    every_ruler = {
+        limit = {
+            OR = {
+                has_government = lp_feudal_government
+                has_government = feudal_government
+            }
+        }
+        every_held_title = {
+            limit = {
+                agot_is_valid_dyn_coa_title = yes
+            }
+            if = {
+                limit = {
+                    holder = {
+                        #has_character_flag = has_personal_coa
+                        has_character_flag = landed_coa_personalized
+                    }
+                }
+                set_coa = holder.var:my_personal_coa.house
+            }
+            else = { set_coa = holder.house }
+        }
+    }
+}
+
+acs_switch_vanilla_targaryen_sigil_effect = {
+   set_global_variable = {
+        name = targ_sigil_value
+        value = 5
+    }
+	
+    dynasty:dynn_Targaryen.dynasty_founder.house = { 
+        set_coa = vanilla_dynn_Targaryen
+    }
+    house:house_Blackfyre = {
+        set_coa = vanilla_house_Blackfyre
+    }
+    house:house_Brightflame = {
+        set_coa = vanilla_house_Brightflame
+    }
+    dynasty:dynn_Targaryen = { 
+        set_coa = vanilla_dynn_Targaryen
+        acs_update_pcoas = yes
+    }
+}
+
+acs_switch_vanilla_stark_sigil_effect = {
+    set_global_variable = {
+        name = stark_sigil_value
+        value = 5 
+    }
+	
+    dynasty:dynn_Stark.dynasty_founder.house = {
+        set_coa = vanilla_dynn_Stark
+    }
+    house:house_Greystark = {
+        set_coa = vanilla_house_Greystark
+    }
+    house:house_Cassel = {
+        set_coa = vanilla_house_Cassel
+    }
+    house:house_Whitestark = {
+        set_coa = vanilla_house_Whitestark
+    }
+    house:house_Barrowstark = {
+        set_coa = vanilla_house_Barrowstark
+    }
+    dynasty:dynn_Stark = {
+        set_coa = vanilla_dynn_Stark
+        acs_update_pcoas = yes
+    }
+    
+}
+
+acs_switch_vanilla_karstark_sigil_effect = {
+    set_global_variable = {
+        name = karstark_sigil_value
+        value = 5
+    }
+    house:house_Karstark = {
+        set_coa = vanilla_house_Karstark
+    }
+    dynasty:dynn_Stark = {
+        acs_update_pcoas = yes
+    }
+}
+
+acs_switch_old_velaryon_sigil_effect = {
+    set_global_variable = {
+        name = velaryon_sigil_value
+        value = 5 
+    }
+	
+    dynasty:dynn_Velaryon.dynasty_founder.house = { 
+        set_coa = vanilla_dynn_Velaryon
+    }
+    house:house_Longwaters = {
+        set_coa = vanilla_house_Longwaters
+    }
+    dynasty:dynn_Velaryon = { 
+        set_coa = vanilla_dynn_Velaryon
+        acs_update_pcoas = yes
+    }
+    
+}
+
+acs_switch_old_arryn_sigil_effect = {
+    set_global_variable = {
+        name = arryn_sigil_value
+        value = 5 
+    }
+	
+    dynasty:dynn_Arryn.dynasty_founder.house = { 
+        set_coa = vanilla_dynn_Arryn
+    }
+    house:house_ArrynGT = {
+        set_coa = vanilla_house_ArrynGT
+    }
+    house:house_ArrynHP = {
+        set_coa = vanilla_house_ArrynHP
+    }
+    house:house_ArrynDH = {
+        set_coa = vanilla_house_ArrynDH
+    }
+    house:house_ArrynCW = {
+        set_coa = vanilla_house_ArrynCW
+    }
+    dynasty:dynn_Arryn = { 
+        set_coa = vanilla_dynn_Arryn
+        acs_update_pcoas = yes
+    } 
+}
+
+acs_switch_vanilla_dayne_sigil_effect = {
+    set_global_variable = {
+        name = dayne_sigil_value
+        value = 5 
+    }
+	
+    dynasty:dynn_Dayne.dynasty_founder.house = {
+        set_coa = vanilla_dynn_Dayne
+    }
+    house:house_DayneHH = {
+        set_coa = vanilla_house_DayneHH
+    }
+    house:house_Aster = {
+        set_coa = vanilla_house_Aster
+    }
+    dynasty:dynn_Dayne = {
+        set_coa = vanilla_dynn_Dayne
+        acs_update_pcoas = yes
+    }
+}
+
+acs_switch_vanilla_martell_sigil_effect = {
+    set_global_variable = {
+        name = martell_sigil_value
+        value = 5
+    }
+
+    dynasty:dynn_Martell.dynasty_founder.house = {
+        set_coa = vanilla_dynn_Martell
+    }
+    dynasty:dynn_Nymeros.dynasty_founder.house = {
+        set_coa = vanilla_dynn_Nymeros
+    }
+    house:house_Martell = {
+        set_coa = vanilla_house_Martell
+    }
+    dynasty:dynn_Martell = {
+        set_coa = vanilla_dynn_Martell
+        acs_update_pcoas = yes
+    }
+    dynasty:dynn_Nymeros = {
+        set_coa = vanilla_dynn_Nymeros
+        acs_update_pcoas = yes
+    }
+}
+
+acs_switch_vanilla_bolton_sigil_effect = {
+    set_global_variable = {
+        name = bolton_sigil_value
+        value = 5
+    }
+
+    dynasty:dynn_Bolton.dynasty_founder.house = {
+        set_coa = vanilla_dynn_Bolton
+    }
+    dynasty:dynn_Bolton = {
+        set_coa = vanilla_dynn_Bolton
+        acs_update_pcoas = yes
+    }
+}
+
+acs_switch_vanilla_bracken_sigil_effect = {
+    set_global_variable = {
+        name = bracken_sigil_value
+        value = 5
+    }
+
+    dynasty:dynn_Bracken.dynasty_founder.house = {
+        set_coa = vanilla_dynn_Bracken
+    }
+    house:house_Bittersteel = {
+        set_coa = vanilla_Bittersteel_personal_coa
+    }
+    dynasty:dynn_Bracken = {
+        set_coa = vanilla_dynn_Bracken
+        acs_update_pcoas = yes
+    }
+    acs_dynamically_set_pcoas = yes
+}
+
+acs_switch_vanilla_hightower_sigil_effect = {
+    set_global_variable = {
+        name = hightower_sigil_value
+        value = 5
+    }
+
+    dynasty:dynn_Hightower.dynasty_founder.house = {
+        set_coa = vanilla_dynn_Hightower
+    }
+    dynasty:dynn_Hightower = {
+        set_coa = vanilla_dynn_Hightower
+        acs_update_pcoas = yes
+    }
+}
+
+acs_set_bloodraven_coa = {
+	agoat_acs_ensure_sigil_globals_effect = yes
+    scope:recipient = {
+        set_variable ={
+            name = this_pcoa_is
+            value = flag:bloodraven_personal_coa
+        }
+    }
+    switch = {
+        trigger = global_var:targ_sigil_value
+        1 = {
+            scope:recipient.house = { set_coa = bloodraven_personal_coa  }
+        }
+        5 = {
+            scope:recipient.house = { set_coa = vanilla_bloodraven_personal_coa  }
+        }
+        2 = {
+            scope:recipient.house = { set_coa = acs_old_old_bloodraven_personal_coa  }
+        }
+        3 = {
+            scope:recipient.house = { set_coa = acs_bloodraven_personal_coa  }
+        }
+        4 = {
+            scope:recipient.house = { set_coa = grrm_bloodraven_personal_coa  }
+        }
+    }
+}
+
+acs_set_maekar_targaryen_coa = {
+	agoat_acs_ensure_sigil_globals_effect = yes
+    scope:recipient = {
+        set_variable ={
+            name = this_pcoa_is
+            value = flag:maekar_targaryen_personal_arms
+        }
+    }
+    switch = {
+        trigger = global_var:targ_sigil_value
+        1 = {
+            scope:recipient.house = { set_coa = maekar_targaryen_personal_arms  }
+        }
+        5 = {
+            scope:recipient.house = { set_coa = vanilla_maekar_targaryen_personal_arms  }
+        }
+        2 = {
+            scope:recipient.house = { set_coa = maekar_targaryen_personal_arms_old  }
+        }
+        3 = {
+            scope:recipient.house = { set_coa = maekar_targaryen_personal_arms_show  }
+        }
+        4 = {
+            scope:recipient.house = { set_coa = maekar_targaryen_personal_arms_grrm  }
+        }
+    }
+}
+
+acs_set_valarr_targaryen_coa = {
+	agoat_acs_ensure_sigil_globals_effect = yes
+    scope:recipient = {
+        set_variable ={
+            name = this_pcoa_is
+            value = flag:valarr_targaryen_personal_coa
+        }
+    }
+    switch = {
+        trigger = global_var:targ_sigil_value
+        1 = {
+            scope:recipient.house = { set_coa = valarr_targaryen_personal_coa  }
+        }
+        5 = {
+            scope:recipient.house = { set_coa = vanilla_valarr_targaryen_personal_coa  }
+        }
+        2 = {
+            scope:recipient.house = { set_coa = acs_old_valarr_targaryen_personal_coa  }
+        }
+        3 = {
+            scope:recipient.house = { set_coa = acs_valarr_targaryen_personal_coa  }
+        }
+        4 = {
+            scope:recipient.house = { set_coa = grrm_valarr_targaryen_personal_coa  }
+        }
+    }
+}
+
+acs_set_daeron_targaryen_coa = {
+	agoat_acs_ensure_sigil_globals_effect = yes
+    scope:recipient = {
+        set_variable ={
+            name = this_pcoa_is
+            value = flag:daeron_targaryen_personal_arms
+        }
+    }
+    switch = {
+        trigger = global_var:targ_sigil_value
+        1 = {
+            scope:recipient.house = { set_coa = daeron_targaryen_personal_arms  }
+        }
+        5 = {
+            scope:recipient.house = { set_coa = vanilla_daeron_targaryen_personal_arms  }
+        }
+        2 = {
+            scope:recipient.house = { set_coa = acs_old_daeron_targaryen_personal_arms  }
+        }
+        3 = {
+            scope:recipient.house = { set_coa = acs_daeron_targaryen_personal_arms  }
+        }
+        4 = {
+            scope:recipient.house = { set_coa = grrm_daeron_targaryen_personal_arms  }
+        }
+    }
+}
+
+acs_set_aegon_ii_coa = {
+	agoat_acs_ensure_sigil_globals_effect = yes
+    scope:recipient = {
+        set_variable ={
+            name = this_pcoa_is
+            value = flag:aegon_ii_personal_arms
+        }
+    }
+    switch = {
+        trigger = global_var:targ_sigil_value
+        1 = {
+            scope:recipient.house = { set_coa = aegon_ii_personal_arms  }
+        }
+        5 = {
+            scope:recipient.house = { set_coa = vanilla_aegon_ii_personal_arms  }
+        }
+        2 = {
+            scope:recipient.house = { set_coa = acs_old_aegon_ii_personal_arms  }
+        }
+        3 = {
+            scope:recipient.house = { set_coa = acs_aegon_ii_personal_arms  }
+        }
+        4 = {
+            scope:recipient.house = { set_coa = grrm_aegon_ii_personal_arms  }
+        }
+    }
+}
+
+acs_set_brightflame_coa = {
+	agoat_acs_ensure_sigil_globals_effect = yes
+    scope:recipient = {
+        set_variable ={
+            name = this_pcoa_is
+            value = flag:aerion_targaryen_personal_arms
+        }
+    }
+    switch = {
+        trigger = global_var:targ_sigil_value
+        1 = {
+            scope:recipient.house = { set_coa = aerion_targaryen_personal_arms  }
+        }
+        5 = {
+            scope:recipient.house = { set_coa = vanilla_house_Brightflame  }
+        }
+        2 = {
+            scope:recipient.house = { set_coa = old_house_Brightflame  }
+        }
+        3 = {
+            scope:recipient.house = { set_coa = acs_house_Brightflame  }
+        }
+        4 = {
+            scope:recipient.house = { set_coa = grrm_house_Brightflame  }
+        }
+    }
+}
+
+acs_set_dynn_Stark_black_wolf_coa = {
+    scope:recipient = {
+        set_variable = { name = this_pcoa_is value = flag:dynn_Stark_black_wolf_personal_coa }
+    }
+    switch = {
+        trigger = global_var:stark_sigil_value
+        1 = { scope:recipient.house = { set_coa = dynn_Stark_black_wolf_personal_coa } }
+        5 = { scope:recipient.house = { set_coa = vanilla_dynn_Stark_black_wolf_personal_coa } }
+        2 = { scope:recipient.house = { set_coa = old_dynn_Stark_black_wolf_personal_coa } }
+        3 = { scope:recipient.house = { set_coa = show_dynn_Stark_black_wolf_personal_coa } }
+    }
+}
+
+acs_set_dynn_Stark_white_wolf_coa = {
+    scope:recipient = {
+        set_variable = { name = this_pcoa_is value = flag:dynn_Stark_white_wolf_personal_coa }
+    }
+    switch = {
+        trigger = global_var:stark_sigil_value
+        1 = { scope:recipient.house = { set_coa = dynn_Stark_white_wolf_personal_coa } }
+        5 = { scope:recipient.house = { set_coa = vanilla_dynn_Stark_white_wolf_personal_coa } }
+        2 = { scope:recipient.house = { set_coa = old_dynn_Stark_white_wolf_personal_coa } }
+        3 = { scope:recipient.house = { set_coa = show_dynn_Stark_white_wolf_personal_coa } }
+    }
+}
+
+acs_set_dynn_Stark_red_wolf_coa = {
+    scope:recipient = {
+        set_variable = { name = this_pcoa_is value = flag:dynn_Stark_red_wolf_personal_coa }
+    }
+    switch = {
+        trigger = global_var:stark_sigil_value
+        1 = { scope:recipient.house = { set_coa = dynn_Stark_red_wolf_personal_coa } }
+        5 = { scope:recipient.house = { set_coa = vanilla_dynn_Stark_red_wolf_personal_coa } }
+        2 = { scope:recipient.house = { set_coa = old_dynn_Stark_red_wolf_personal_coa } }
+        3 = { scope:recipient.house = { set_coa = show_dynn_Stark_red_wolf_personal_coa } }
+    }
+}
+
+acs_set_dynn_Targaryen_white_dragon_coa = {
+    scope:recipient = {
+        set_variable = { name = this_pcoa_is value = flag:dynn_Targaryen_white_dragon_personal_coa }
+    }
+    switch = {
+        trigger = global_var:targ_sigil_value
+        1 = { scope:recipient.house = { set_coa = dynn_Targaryen_white_dragon_personal_coa } }
+        5 = { scope:recipient.house = { set_coa = vanilla_dynn_Targaryen_white_dragon_personal_coa } }
+        2 = { scope:recipient.house = { set_coa = old_dynn_Targaryen_white_dragon_personal_coa } }
+        3 = { scope:recipient.house = { set_coa = show_dynn_Targaryen_white_dragon_personal_coa } }
+        4 = { scope:recipient.house = { set_coa = grrm_dynn_Targaryen_white_dragon_personal_coa } }
+    }
+}
+
+acs_set_dynn_Arryn_black_falcon_coa = {
+    scope:recipient = {
+        set_variable = { name = this_pcoa_is value = flag:dynn_Arryn_black_falcon_personal_coa }
+    }
+    switch = {
+        trigger = global_var:arryn_sigil_value
+        1 = { scope:recipient.house = { set_coa = dynn_Arryn_black_falcon_personal_coa } }
+        5 = { scope:recipient.house = { set_coa = vanilla_dynn_Arryn_black_falcon_personal_coa } }
+        2 = { scope:recipient.house = { set_coa = agotp_dynn_Arryn_black_falcon_personal_coa } }
+        3 = { scope:recipient.house = { set_coa = show_dynn_Arryn_black_falcon_personal_coa } }
+    }
+}
+
+acs_set_dynn_Arryn_red_falcon_coa = {
+    scope:recipient = {
+        set_variable = { name = this_pcoa_is value = flag:dynn_Arryn_red_falcon_personal_coa }
+    }
+    switch = {
+        trigger = global_var:arryn_sigil_value
+        1 = { scope:recipient.house = { set_coa = dynn_Arryn_red_falcon_personal_coa } }
+        5 = { scope:recipient.house = { set_coa = vanilla_dynn_Arryn_red_falcon_personal_coa } }
+        2 = { scope:recipient.house = { set_coa = agotp_dynn_Arryn_red_falcon_personal_coa } }
+        3 = { scope:recipient.house = { set_coa = show_dynn_Arryn_red_falcon_personal_coa } }
+    }
+}
+
+acs_set_Targaryen_rhllor_coa = {
+    scope:recipient = {
+        set_variable = { name = this_pcoa_is value = flag:Targaryen_rhllor_personal_coa }
+    }
+    switch = {
+        trigger = global_var:targ_sigil_value
+        1 = { scope:recipient.house = { set_coa = Targaryen_rhllor_personal_coa } }
+        5 = { scope:recipient.house = { set_coa = vanilla_Targaryen_rhllor_personal_coa } }
+        2 = { scope:recipient.house = { set_coa = old_Targaryen_rhllor_personal_coa } }
+        3 = { scope:recipient.house = { set_coa = show_Targaryen_rhllor_personal_coa } }
+        4 = { scope:recipient.house = { set_coa = grrm_Targaryen_rhllor_personal_coa } }
+    }
+}
+
+acs_set_Blackfyre_rhllor_coa = {
+    scope:recipient = {
+        set_variable = { name = this_pcoa_is value = flag:Blackfyre_rhllor_personal_coa }
+    }
+    switch = {
+        trigger = global_var:targ_sigil_value
+        1 = { scope:recipient.house = { set_coa = Blackfyre_rhllor_personal_coa } }
+        5 = { scope:recipient.house = { set_coa = vanilla_Blackfyre_rhllor_personal_coa } }
+        2 = { scope:recipient.house = { set_coa = old_Blackfyre_rhllor_personal_coa } }
+        3 = { scope:recipient.house = { set_coa = show_Blackfyre_rhllor_personal_coa } }
+        4 = { scope:recipient.house = { set_coa = grrm_Blackfyre_rhllor_personal_coa } }
+    }
+}
+
+acs_set_Stark_rhllor_coa = {
+    scope:recipient = {
+        set_variable = { name = this_pcoa_is value = flag:Stark_rhllor_personal_coa }
+    }
+    switch = {
+        trigger = global_var:stark_sigil_value
+        1 = { scope:recipient.house = { set_coa = Stark_rhllor_personal_coa } }
+        5 = { scope:recipient.house = { set_coa = vanilla_Stark_rhllor_personal_coa } }
+        2 = { scope:recipient.house = { set_coa = old_Stark_rhllor_personal_coa } }
+        3 = { scope:recipient.house = { set_coa = show_Stark_rhllor_personal_coa } }
+    }
+}
+
+acs_set_Jonsnow_rhllor_coa = {
+    scope:recipient = {
+        set_variable = { name = this_pcoa_is value = flag:Jonsnow_rhllor_personal_coa }
+    }
+    switch = {
+        trigger = global_var:stark_sigil_value
+        1 = { scope:recipient.house = { set_coa = Jonsnow_rhllor_personal_coa } }
+        5 = { scope:recipient.house = { set_coa = vanilla_Jonsnow_rhllor_personal_coa } }
+        2 = { scope:recipient.house = { set_coa = old_Jonsnow_rhllor_personal_coa } }
+        3 = { scope:recipient.house = { set_coa = show_Jonsnow_rhllor_personal_coa } }
+    }
+}
+
+acs_set_Bloodraven_rhllor_coa = {
+    scope:recipient = {
+        set_variable = { name = this_pcoa_is value = flag:Bloodraven_rhllor_personal_coa }
+    }
+    switch = {
+        trigger = global_var:targ_sigil_value
+        1 = { scope:recipient.house = { set_coa = Bloodraven_rhllor_personal_coa } }
+        5 = { scope:recipient.house = { set_coa = vanilla_Bloodraven_rhllor_personal_coa } }
+        2 = { scope:recipient.house = { set_coa = old_Bloodraven_rhllor_personal_coa } }
+        3 = { scope:recipient.house = { set_coa = show_Bloodraven_rhllor_personal_coa } }
+        4 = { scope:recipient.house = { set_coa = grrm_Bloodraven_rhllor_personal_coa } }
+    }
+}
+
+acs_set_Velaryon_rhllor_coa = {
+    scope:recipient = {
+        set_variable = { name = this_pcoa_is value = flag:Velaryon_rhllor_personal_coa }
+    }
+    switch = {
+        trigger = global_var:velaryon_sigil_value
+        1 = { scope:recipient.house = { set_coa = Velaryon_rhllor_personal_coa } }
+        5 = { scope:recipient.house = { set_coa = vanilla_Velaryon_rhllor_personal_coa } }
+        2 = { scope:recipient.house = { set_coa = agotp_Velaryon_rhllor_personal_coa } }
+    }
+}
+
+acs_set_Karstark_rhllor_coa = {
+    scope:recipient = {
+        set_variable = { name = this_pcoa_is value = flag:Karstark_rhllor_personal_coa }
+    }
+    switch = {
+        trigger = global_var:karstark_sigil_value
+        1 = { scope:recipient.house = { set_coa = Karstark_rhllor_personal_coa } }
+        5 = { scope:recipient.house = { set_coa = vanilla_Karstark_rhllor_personal_coa } }
+        3 = { scope:recipient.house = { set_coa = show_Karstark_rhllor_personal_coa } }
+    }
+}
+
+acs_set_Martell_rhllor_coa = {
+    scope:recipient = {
+        set_variable = { name = this_pcoa_is value = flag:Martell_rhllor_personal_coa }
+    }
+    switch = {
+        trigger = global_var:martell_sigil_value
+        1 = { scope:recipient.house = { set_coa = Martell_rhllor_personal_coa } }
+        5 = { scope:recipient.house = { set_coa = vanilla_Martell_rhllor_personal_coa } }
+        3 = { scope:recipient.house = { set_coa = show_Martell_rhllor_personal_coa } }
+    }
+}
+
+acs_set_Arryn_rhllor_coa = {
+    scope:recipient = {
+        set_variable = { name = this_pcoa_is value = flag:Arryn_rhllor_personal_coa }
+    }
+    switch = {
+        trigger = global_var:arryn_sigil_value
+        1 = { scope:recipient.house = { set_coa = Arryn_rhllor_personal_coa } }
+        5 = { scope:recipient.house = { set_coa = vanilla_Arryn_rhllor_personal_coa } }
+        2 = { scope:recipient.house = { set_coa = agotp_Arryn_rhllor_personal_coa } }
+        3 = { scope:recipient.house = { set_coa = show_Arryn_rhllor_personal_coa } }
+    }
+}
+
+acs_set_Dayne_rhllor_coa = {
+    scope:recipient = {
+        set_variable = { name = this_pcoa_is value = flag:Dayne_rhllor_personal_coa }
+    }
+    switch = {
+        trigger = global_var:dayne_sigil_value
+        1 = { scope:recipient.house = { set_coa = Dayne_rhllor_personal_coa } }
+        5 = { scope:recipient.house = { set_coa = vanilla_Dayne_rhllor_personal_coa } }
+        2 = { scope:recipient.house = { set_coa = agotp_Dayne_rhllor_personal_coa } }
+        3 = { scope:recipient.house = { set_coa = show_Dayne_rhllor_personal_coa } }
+    }
+}
+
+acs_set_dorkstar_coa = {
+	agoat_acs_ensure_sigil_globals_effect = yes
+    scope:recipient = {
+        set_variable = { name = this_pcoa_is value = flag:dorkstar_personal_coa }
+    }
+    switch = {
+        trigger = global_var:dayne_sigil_value
+        1 = { scope:recipient.house = { set_coa = dorkstar_personal_coa } }
+        5 = { scope:recipient.house = { set_coa = vanilla_dorkstar_personal_coa } }
+        2 = { scope:recipient.house = { set_coa = agotp_dorkstar_personal_coa } }
+        3 = { scope:recipient.house = { set_coa = show_dorkstar_personal_coa } }
+    }
+}
+
+acs_set_daemon_targaryen_coa = {
+	agoat_acs_ensure_sigil_globals_effect = yes
+    scope:recipient = {
+        set_variable = { name = this_pcoa_is value = flag:daemon_targaryen_personal_coa }
+    }
+    switch = {
+        trigger = global_var:targ_sigil_value
+        1 = { scope:recipient.house = { set_coa = daemon_targaryen_personal_coa } }
+        5 = { scope:recipient.house = { set_coa = vanilla_daemon_targaryen_personal_coa } }
+        2 = { scope:recipient.house = { set_coa = old_daemon_targaryen_personal_coa } }
+        3 = { scope:recipient.house = { set_coa = show_daemon_targaryen_personal_coa } }
+        4 = { scope:recipient.house = { set_coa = grrm_daemon_targaryen_personal_coa } }
+    }
+}
+
+acs_set_Hightower_rhllor_coa = {
+    scope:recipient = {
+        set_variable = { name = this_pcoa_is value = flag:Hightower_rhllor_personal_coa }
+    }
+    switch = {
+        trigger = global_var:hightower_sigil_value
+        1 = { scope:recipient.house = { set_coa = Hightower_rhllor_personal_coa } }
+        5 = { scope:recipient.house = { set_coa = vanilla_Hightower_rhllor_personal_coa } }
+        2 = { scope:recipient.house = { set_coa = agotp_Hightower_rhllor_personal_coa } }
+    }
+}
+
+acs_set_Bolton_rhllor_coa = {
+    scope:recipient = {
+        set_variable = { name = this_pcoa_is value = flag:Bolton_rhllor_personal_coa }
+    }
+    switch = {
+        trigger = global_var:bolton_sigil_value
+        1 = { scope:recipient.house = { set_coa = Bolton_rhllor_personal_coa } }
+        5 = { scope:recipient.house = { set_coa = vanilla_Bolton_rhllor_personal_coa } }
+        3 = { scope:recipient.house = { set_coa = show_Bolton_rhllor_personal_coa } }
+    }
+}
+
+acs_set_Bracken_rhllor_coa = {
+    scope:recipient = {
+        set_variable = { name = this_pcoa_is value = flag:Bracken_rhllor_personal_coa }
+    }
+    switch = {
+        trigger = global_var:bracken_sigil_value
+        1 = { scope:recipient.house = { set_coa = Bracken_rhllor_personal_coa } }
+        5 = { scope:recipient.house = { set_coa = vanilla_Bracken_rhllor_personal_coa } }
+        3 = { scope:recipient.house = { set_coa = show_Bracken_rhllor_personal_coa } }
+    }
+}
+
+acs_set_Bittersteel_coa = {
+    scope:recipient = {
+        set_variable = { name = this_pcoa_is value = flag:Bittersteel_personal_coa }
+    }
+    switch = {
+        trigger = global_var:bracken_sigil_value
+        1 = { scope:recipient.house = { set_coa = Bittersteel_personal_coa } }
+        5 = { scope:recipient.house = { set_coa = vanilla_Bittersteel_personal_coa } }
+        3 = { scope:recipient.house = { set_coa = show_Bittersteel_personal_coa } }
+    }
+}
+
+acs_set_Bittersteel_rhllor_coa = {
+    scope:recipient = {
+        set_variable = { name = this_pcoa_is value = flag:Bittersteel_rhllor_personal_coa }
+    }
+    switch = {
+        trigger = global_var:bracken_sigil_value
+        1 = { scope:recipient.house = { set_coa = Bittersteel_rhllor_personal_coa } }
+        5 = { scope:recipient.house = { set_coa = vanilla_Bittersteel_rhllor_personal_coa } }
+        3 = { scope:recipient.house = { set_coa = show_Bittersteel_rhllor_personal_coa } }
+    }
+}
+
+acs_set_daemon_iii_blackfyre_coa = {
+	agoat_acs_ensure_sigil_globals_effect = yes
+    scope:recipient = {
+        set_variable = { name = this_pcoa_is value = flag:daemon_iii_blackfyre_personal_arms }
+    }
+    switch = {
+        trigger = global_var:targ_sigil_value
+        1 = { scope:recipient.house = { set_coa = daemon_iii_blackfyre_personal_arms } }
+        5 = { scope:recipient.house = { set_coa = vanilla_daemon_iii_blackfyre_personal_arms } }
+        2 = { scope:recipient.house = { set_coa = acs_old_daemon_iii_blackfyre_personal_arms } }
+        3 = { scope:recipient.house = { set_coa = acs_daemon_iii_blackfyre_personal_arms } }
+        4 = { scope:recipient.house = { set_coa = grrm_daemon_iii_blackfyre_personal_arms } }
+    }
+}
+
+acs_set_rhaenyra_coa = {
+	agoat_acs_ensure_sigil_globals_effect = yes
+    scope:recipient = {
+        set_variable ={
+            name = this_pcoa_is
+            value = flag:rhaenyra_personal_coa
+        }
+    }
+    switch = {
+        trigger = global_var:targ_sigil_value
+        1 = {
+            switch = {
+                trigger = global_var:arryn_sigil_value
+                1 = {
+                    switch = {
+                        trigger = global_var:velaryon_sigil_value
+                        1 = { scope:recipient.house = { set_coa = rhaenrya_personal_coa } }
+                        2 = { scope:recipient.house = { set_coa = agoat_rhaenyra_pcoa_t1a1v2 } }
+                        5 = { scope:recipient.house = { set_coa = agoat_rhaenyra_pcoa_t1a1v5 } }
+                    }
+                }
+                2 = {
+                    switch = {
+                        trigger = global_var:velaryon_sigil_value
+                        1 = { scope:recipient.house = { set_coa = agoat_rhaenyra_pcoa_t1a2v1 } }
+                        2 = { scope:recipient.house = { set_coa = agoat_rhaenyra_pcoa_t1a2v2 } }
+                        5 = { scope:recipient.house = { set_coa = agoat_rhaenyra_pcoa_t1a2v5 } }
+                    }
+                }
+                3 = {
+                    switch = {
+                        trigger = global_var:velaryon_sigil_value
+                        1 = { scope:recipient.house = { set_coa = agoat_rhaenyra_pcoa_t1a3v1 } }
+                        2 = { scope:recipient.house = { set_coa = agoat_rhaenyra_pcoa_t1a3v2 } }
+                        5 = { scope:recipient.house = { set_coa = agoat_rhaenyra_pcoa_t1a3v5 } }
+                    }
+                }
+                5 = {
+                    switch = {
+                        trigger = global_var:velaryon_sigil_value
+                        1 = { scope:recipient.house = { set_coa = agoat_rhaenyra_pcoa_t1a5v1 } }
+                        2 = { scope:recipient.house = { set_coa = agoat_rhaenyra_pcoa_t1a5v2 } }
+                        5 = { scope:recipient.house = { set_coa = agoat_rhaenyra_pcoa_t1a5v5 } }
+                    }
+                }
+            }
+        }
+        2 = {
+            switch = {
+                trigger = global_var:arryn_sigil_value
+                1 = {
+                    switch = {
+                        trigger = global_var:velaryon_sigil_value
+                        1 = { scope:recipient.house = { set_coa = agoat_rhaenyra_pcoa_t2a1v1 } }
+                        2 = { scope:recipient.house = { set_coa = agoat_rhaenyra_pcoa_t2a1v2 } }
+                        5 = { scope:recipient.house = { set_coa = agoat_rhaenyra_pcoa_t2a1v5 } }
+                    }
+                }
+                2 = {
+                    switch = {
+                        trigger = global_var:velaryon_sigil_value
+                        1 = { scope:recipient.house = { set_coa = agoat_rhaenyra_pcoa_t2a2v1 } }
+                        2 = { scope:recipient.house = { set_coa = rhaenyra_personal_coa_t2a2v2 } }
+                        5 = { scope:recipient.house = { set_coa = rhaenyra_personal_coa_t2a2v1 } }
+                    }
+                }
+                3 = {
+                    switch = {
+                        trigger = global_var:velaryon_sigil_value
+                        1 = { scope:recipient.house = { set_coa = agoat_rhaenyra_pcoa_t2a3v1 } }
+                        2 = { scope:recipient.house = { set_coa = rhaenyra_personal_coa_t2a3v2 } }
+                        5 = { scope:recipient.house = { set_coa = rhaenyra_personal_coa_t2a3v1 } }
+                    }
+                }
+                5 = {
+                    switch = {
+                        trigger = global_var:velaryon_sigil_value
+                        1 = { scope:recipient.house = { set_coa = agoat_rhaenyra_pcoa_t2a5v1 } }
+                        2 = { scope:recipient.house = { set_coa = rhaenyra_personal_coa_t2a1v2 } }
+                        5 = { scope:recipient.house = { set_coa = rhaenyra_personal_coa_t2a1v1 } }
+                    }
+                }
+            }
+        }
+        3 = {
+            switch = {
+                trigger = global_var:arryn_sigil_value
+                1 = {
+                    switch = {
+                        trigger = global_var:velaryon_sigil_value
+                        1 = { scope:recipient.house = { set_coa = agoat_rhaenyra_pcoa_t3a1v1 } }
+                        2 = { scope:recipient.house = { set_coa = agoat_rhaenyra_pcoa_t3a1v2 } }
+                        5 = { scope:recipient.house = { set_coa = agoat_rhaenyra_pcoa_t3a1v5 } }
+                    }
+                }
+                2 = {
+                    switch = {
+                        trigger = global_var:velaryon_sigil_value
+                        1 = { scope:recipient.house = { set_coa = agoat_rhaenyra_pcoa_t3a2v1 } }
+                        2 = { scope:recipient.house = { set_coa = rhaenyra_personal_coa_t3a2v2 } }
+                        5 = { scope:recipient.house = { set_coa = rhaenyra_personal_coa_t3a2v1 } }
+                    }
+                }
+                3 = {
+                    switch = {
+                        trigger = global_var:velaryon_sigil_value
+                        1 = { scope:recipient.house = { set_coa = agoat_rhaenyra_pcoa_t3a3v1 } }
+                        2 = { scope:recipient.house = { set_coa = rhaenyra_personal_coa_t3a3v2 } }
+                        5 = { scope:recipient.house = { set_coa = rhaenyra_personal_coa_t3a3v1 } }
+                    }
+                }
+                5 = {
+                    switch = {
+                        trigger = global_var:velaryon_sigil_value
+                        1 = { scope:recipient.house = { set_coa = agoat_rhaenyra_pcoa_t3a5v1 } }
+                        2 = { scope:recipient.house = { set_coa = rhaenyra_personal_coa_t3a1v2 } }
+                        5 = { scope:recipient.house = { set_coa = rhaenyra_personal_coa_t3a1v1 } }
+                    }
+                }
+            }
+        }
+        4 = {
+            switch = {
+                trigger = global_var:arryn_sigil_value
+                1 = {
+                    switch = {
+                        trigger = global_var:velaryon_sigil_value
+                        1 = { scope:recipient.house = { set_coa = agoat_rhaenyra_pcoa_t4a1v1 } }
+                        2 = { scope:recipient.house = { set_coa = agoat_rhaenyra_pcoa_t4a1v2 } }
+                        5 = { scope:recipient.house = { set_coa = agoat_rhaenyra_pcoa_t4a1v5 } }
+                    }
+                }
+                2 = {
+                    switch = {
+                        trigger = global_var:velaryon_sigil_value
+                        1 = { scope:recipient.house = { set_coa = agoat_rhaenyra_pcoa_t4a2v1 } }
+                        2 = { scope:recipient.house = { set_coa = rhaenyra_personal_coa_t4a2v2 } }
+                        5 = { scope:recipient.house = { set_coa = rhaenyra_personal_coa_t4a2v1 } }
+                    }
+                }
+                3 = {
+                    switch = {
+                        trigger = global_var:velaryon_sigil_value
+                        1 = { scope:recipient.house = { set_coa = agoat_rhaenyra_pcoa_t4a3v1 } }
+                        2 = { scope:recipient.house = { set_coa = rhaenyra_personal_coa_t4a3v2 } }
+                        5 = { scope:recipient.house = { set_coa = rhaenyra_personal_coa_t4a3v1 } }
+                    }
+                }
+                5 = {
+                    switch = {
+                        trigger = global_var:velaryon_sigil_value
+                        1 = { scope:recipient.house = { set_coa = agoat_rhaenyra_pcoa_t4a5v1 } }
+                        2 = { scope:recipient.house = { set_coa = rhaenyra_personal_coa_t4a1v2 } }
+                        5 = { scope:recipient.house = { set_coa = rhaenyra_personal_coa_t4a1v1 } }
+                    }
+                }
+            }
+        }
+        5 = {
+            switch = {
+                trigger = global_var:arryn_sigil_value
+                1 = {
+                    switch = {
+                        trigger = global_var:velaryon_sigil_value
+                        1 = { scope:recipient.house = { set_coa = agoat_rhaenyra_pcoa_t5a1v1 } }
+                        2 = { scope:recipient.house = { set_coa = agoat_rhaenyra_pcoa_t5a1v2 } }
+                        5 = { scope:recipient.house = { set_coa = agoat_rhaenyra_pcoa_t5a1v5 } }
+                    }
+                }
+                2 = {
+                    switch = {
+                        trigger = global_var:velaryon_sigil_value
+                        1 = { scope:recipient.house = { set_coa = agoat_rhaenyra_pcoa_t5a2v1 } }
+                        2 = { scope:recipient.house = { set_coa = rhaenyra_personal_coa_t1a2v2 } }
+                        5 = { scope:recipient.house = { set_coa = rhaenyra_personal_coa_t1a2v1 } }
+                    }
+                }
+                3 = {
+                    switch = {
+                        trigger = global_var:velaryon_sigil_value
+                        1 = { scope:recipient.house = { set_coa = agoat_rhaenyra_pcoa_t5a3v1 } }
+                        2 = { scope:recipient.house = { set_coa = rhaenyra_personal_coa_t1a3v2 } }
+                        5 = { scope:recipient.house = { set_coa = rhaenyra_personal_coa_t1a3v1 } }
+                    }
+                }
+                5 = {
+                    switch = {
+                        trigger = global_var:velaryon_sigil_value
+                        1 = { scope:recipient.house = { set_coa = agoat_rhaenyra_pcoa_t5a5v1 } }
+                        2 = { scope:recipient.house = { set_coa = rhaenyra_personal_coa_t1a1v2 } }
+                        5 = { scope:recipient.house = { set_coa = rhaenyra_personal_coa_t1a1v1 } }
+                    }
+                }
+            }
+        }
+    }
+}
+
+acs_dynamically_set_pcoas = {
+    # Re-apply the correct version of every tracked personal coa. this_pcoa_is is bootstrapped
+    # for historical-AI pcoas by agot_create_personal_coa_for_historical_ai (value = flag:$COA_KEY$)
+    # and for dynamic nickname/rhllor pcoas by the acs_set_* effects the selection effects call.
+    # An if/else_if chain (not a switch) so unhandled coa keys simply fall through with no error.
+    every_living_character = {
+        limit = {
+            has_variable = this_pcoa_is
+        }
+        save_scope_as = recipient
+        if = { limit = { var:this_pcoa_is = flag:maekar_targaryen_personal_arms } acs_set_maekar_targaryen_coa = yes }
+        else_if = { limit = { var:this_pcoa_is = flag:bloodraven_personal_coa } acs_set_bloodraven_coa = yes }
+        else_if = { limit = { var:this_pcoa_is = flag:rhaenyra_personal_coa } acs_set_rhaenyra_coa = yes }
+        else_if = { limit = { var:this_pcoa_is = flag:rhaenrya_personal_coa } acs_set_rhaenyra_coa = yes }
+        else_if = { limit = { var:this_pcoa_is = flag:daeron_targaryen_personal_arms } acs_set_daeron_targaryen_coa = yes }
+        else_if = { limit = { var:this_pcoa_is = flag:valarr_targaryen_personal_coa } acs_set_valarr_targaryen_coa = yes }
+        else_if = { limit = { var:this_pcoa_is = flag:aegon_ii_personal_arms } acs_set_aegon_ii_coa = yes }
+        else_if = { limit = { var:this_pcoa_is = flag:aerion_targaryen_personal_arms } acs_set_brightflame_coa = yes }
+        else_if = { limit = { var:this_pcoa_is = flag:daemon_iii_blackfyre_personal_arms } acs_set_daemon_iii_blackfyre_coa = yes }
+        # ---- dynn (nickname) ----
+        else_if = { limit = { var:this_pcoa_is = flag:dynn_Stark_black_wolf_personal_coa } acs_set_dynn_Stark_black_wolf_coa = yes }
+        else_if = { limit = { var:this_pcoa_is = flag:dynn_Stark_white_wolf_personal_coa } acs_set_dynn_Stark_white_wolf_coa = yes }
+        else_if = { limit = { var:this_pcoa_is = flag:dynn_Stark_red_wolf_personal_coa } acs_set_dynn_Stark_red_wolf_coa = yes }
+        else_if = { limit = { var:this_pcoa_is = flag:dynn_Targaryen_white_dragon_personal_coa } acs_set_dynn_Targaryen_white_dragon_coa = yes }
+        else_if = { limit = { var:this_pcoa_is = flag:dynn_Arryn_black_falcon_personal_coa } acs_set_dynn_Arryn_black_falcon_coa = yes }
+        else_if = { limit = { var:this_pcoa_is = flag:dynn_Arryn_red_falcon_personal_coa } acs_set_dynn_Arryn_red_falcon_coa = yes }
+        # ---- rhllor ----
+        else_if = { limit = { var:this_pcoa_is = flag:Targaryen_rhllor_personal_coa } acs_set_Targaryen_rhllor_coa = yes }
+        else_if = { limit = { var:this_pcoa_is = flag:Blackfyre_rhllor_personal_coa } acs_set_Blackfyre_rhllor_coa = yes }
+        else_if = { limit = { var:this_pcoa_is = flag:Stark_rhllor_personal_coa } acs_set_Stark_rhllor_coa = yes }
+        else_if = { limit = { var:this_pcoa_is = flag:Jonsnow_rhllor_personal_coa } acs_set_Jonsnow_rhllor_coa = yes }
+        else_if = { limit = { var:this_pcoa_is = flag:Bloodraven_rhllor_personal_coa } acs_set_Bloodraven_rhllor_coa = yes }
+        else_if = { limit = { var:this_pcoa_is = flag:Velaryon_rhllor_personal_coa } acs_set_Velaryon_rhllor_coa = yes }
+        else_if = { limit = { var:this_pcoa_is = flag:Karstark_rhllor_personal_coa } acs_set_Karstark_rhllor_coa = yes }
+        else_if = { limit = { var:this_pcoa_is = flag:Martell_rhllor_personal_coa } acs_set_Martell_rhllor_coa = yes }
+        else_if = { limit = { var:this_pcoa_is = flag:Arryn_rhllor_personal_coa } acs_set_Arryn_rhllor_coa = yes }
+        else_if = { limit = { var:this_pcoa_is = flag:Dayne_rhllor_personal_coa } acs_set_Dayne_rhllor_coa = yes }
+        else_if = { limit = { var:this_pcoa_is = flag:Hightower_rhllor_personal_coa } acs_set_Hightower_rhllor_coa = yes }
+        else_if = { limit = { var:this_pcoa_is = flag:Bolton_rhllor_personal_coa } acs_set_Bolton_rhllor_coa = yes }
+        else_if = { limit = { var:this_pcoa_is = flag:Bracken_rhllor_personal_coa } acs_set_Bracken_rhllor_coa = yes }
+        else_if = { limit = { var:this_pcoa_is = flag:Bittersteel_rhllor_personal_coa } acs_set_Bittersteel_rhllor_coa = yes }
+        else_if = { limit = { var:this_pcoa_is = flag:Bittersteel_personal_coa } acs_set_Bittersteel_coa = yes }
+
+        else_if = { limit = { var:this_pcoa_is = flag:dorkstar_personal_coa } acs_set_dorkstar_coa = yes }
+        else_if = { limit = { var:this_pcoa_is = flag:daemon_targaryen_personal_coa } acs_set_daemon_targaryen_coa = yes }
+    }
+}
+
+agoat_acs_ensure_sigil_globals_effect = {
+	if = {
+		limit = { NOT = { has_global_variable = targ_sigil_value } }
+		set_global_variable = { name = targ_sigil_value value = 1 }
+	}
+	if = {
+		limit = { NOT = { has_global_variable = stark_sigil_value } }
+		set_global_variable = { name = stark_sigil_value value = 1 }
+	}
+	if = {
+		limit = { NOT = { has_global_variable = karstark_sigil_value } }
+		set_global_variable = { name = karstark_sigil_value value = 1 }
+	}
+	if = {
+		limit = { NOT = { has_global_variable = velaryon_sigil_value } }
+		set_global_variable = { name = velaryon_sigil_value value = 1 }
+	}
+	if = {
+		limit = { NOT = { has_global_variable = dayne_sigil_value } }
+		set_global_variable = { name = dayne_sigil_value value = 1 }
+	}
+	if = {
+		limit = { NOT = { has_global_variable = arryn_sigil_value } }
+		set_global_variable = { name = arryn_sigil_value value = 1 }
+	}
+	if = {
+		limit = { NOT = { has_global_variable = hightower_sigil_value } }
+		set_global_variable = { name = hightower_sigil_value value = 1 }
+	}
+	if = {
+		limit = { NOT = { has_global_variable = martell_sigil_value } }
+		set_global_variable = { name = martell_sigil_value value = 1 }
+	}
+	if = {
+		limit = { NOT = { has_global_variable = bolton_sigil_value } }
+		set_global_variable = { name = bolton_sigil_value value = 1 }
+	}
+	if = {
+		limit = { NOT = { has_global_variable = bracken_sigil_value } }
+		set_global_variable = { name = bracken_sigil_value value = 1 }
+	}
+}

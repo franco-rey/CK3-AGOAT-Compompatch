@@ -8,6 +8,7 @@
 
 
 					has_dynasty_perk = fp1_adventure_legacy_1
+					has_dynasty_perk = hth_fp1_adventure_legacy_1
 
 
 					OR = {

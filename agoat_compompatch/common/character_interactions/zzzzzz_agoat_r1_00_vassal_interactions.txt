@@ -1,0 +1,245 @@
+﻿create_claimant_faction_against_interaction = {
+	icon = vassal_claim_liege_title_interaction
+	category = interaction_category_vassal
+	interface_priority = 270
+	use_diplomatic_range = no
+	needs_recipient_to_open = no
+
+	desc = create_claimant_faction_against_interaction_desc
+
+	special_interaction = create_claimant_faction_against_interaction
+	interface = create_claimant_faction_against
+
+	is_shown = {
+		scope:actor = {
+			NOT = { scope:secondary_actor ?= this }
+			scope:secondary_actor ?= liege
+			custom_description = {
+				text = "faction_can_join_create_in_another_faction"
+				is_a_faction_member = no
+			}
+			highest_held_title_tier > tier_barony
+		}
+
+
+		NOT = {
+			scope:actor = { government_has_flag = government_is_nw }
+			scope:secondary_actor = { government_has_flag = government_is_nw }
+		}
+	}
+
+	is_valid_showing_failures_only = {
+		NOT = {
+			scope:actor = { has_truce = scope:secondary_actor }
+		}
+		scope:secondary_actor = {
+			trigger_if = {
+				limit = {
+					NOT = {
+						any_held_title = {
+							any_claimant = {}
+						}
+					}
+				}
+				custom_description = {
+					text = "basic_claimant_found"
+					always = no
+				}
+			}
+			trigger_else = {
+				custom_description = {
+					text = "basic_capable_claimant_found"
+					any_held_title = {
+						any_claimant = {
+							NOT = { has_trait = incapable }
+						}
+					}
+				}
+			}
+			trigger_if = {
+				limit = {
+					exists = scope:landed_title
+				}
+				custom_description = {
+					text = "claimant_faction_already_exists"
+					subject = scope:landed_title
+					object = scope:recipient
+					NOT = {
+						any_targeting_faction = {
+							faction_type = claimant_faction
+							special_character = scope:recipient
+							special_title = scope:landed_title
+						}
+					}
+				}
+			}
+		}
+		scope:actor = {
+			can_join_or_create_faction_against = {
+				who = scope:secondary_actor
+				faction = claimant_faction
+				check_in_a_faction = no # already checked in is_shown. Via the faction interface we'd see this twice if it fails (TIT-11380)
+			}
+		}
+		trigger_if = {
+			limit = {
+				exists = scope:recipient
+			}
+			scope:recipient = {
+				NOT = { is_at_war_with = scope:actor }
+				NOT = { has_trait = incapable }
+			}
+		}
+		scope:secondary_actor = { NOT = { has_strong_hook = scope:actor } }
+
+
+		# Admin vassals can only start and join a claimant faction if the target is independent
+		trigger_if = {
+			limit = {
+				scope:actor = { government_allows = administrative }
+			}
+			trigger_if = {
+				limit = {
+					scope:secondary_actor = { government_allows = administrative }
+				}
+				scope:secondary_actor = { is_independent_ruler = yes }
+			}
+		}
+
+
+		# Under Byzantine law, a ruler must be unblemished
+		trigger_if = {
+			limit = {
+				scope:landed_title.holder.culture ?= { has_cultural_parameter = physical_disfigurement_blocks_inheritance }
+			}
+			scope:recipient ?= {
+				custom_description = {
+					text = "byzantine_claimant_is_disfigured"
+					object = scope:recipient
+					valid_for_byz_succession_trigger = yes
+				}
+			}
+		}
+
+		# Ceremonial Liege
+		trigger_if = {
+			limit = {
+				exists = scope:landed_title
+				scope:actor.top_liege.primary_title.var:administrative_ui_special_title ?= scope:landed_title
+			}
+			scope:recipient = {
+				tgp_is_in_ceremonial_house_trigger = yes
+				trigger_if = {
+					limit = {
+						scope:landed_title = {
+							holder.faith = { has_doctrine = doctrine_gender_male_dominated }
+							any_claimant = { is_male = yes }
+						}
+					}
+					is_male = yes
+				}
+				trigger_else_if = {
+					limit = {
+						scope:landed_title = {
+							holder.faith = { has_doctrine = doctrine_gender_female_dominated }
+							any_claimant = { is_female = yes }
+						}
+					}
+					is_female = yes
+				}
+				trigger_else = { always = yes }
+			}
+		}
+
+		# TGP - Use Coup against Kampaku instead
+		trigger_if = {
+			limit = {
+				scope:recipient ?= { tgp_realm_has_ceremonial_liege_trigger = yes }
+			}
+			custom_tooltip = {
+				text = cannot_create_claimant_faction_against_kampaku_tooltip
+				scope:recipient ?= {
+
+					# TGP - Use Coup against Kampaku instead
+					tgp_is_ceremonial_regent_trigger = no
+				}
+			}
+		}
+
+
+	}
+
+	can_send = {
+
+
+		exists = scope:recipient
+		exists = scope:landed_title
+		scope:actor = {
+			is_a_faction_member = no
+			NOT = { has_character_flag = agot_claimant_faction_creation_in_progress }
+			can_create_faction = {
+				type = claimant_faction
+				target = scope:secondary_actor
+			}
+		}
+	}
+
+	on_send = {
+		scope:actor = {
+			add_character_flag = {
+				flag = agot_claimant_faction_creation_in_progress
+				days = 1
+			}
+			set_variable = {
+				name = claiming_title
+				value = scope:landed_title
+			}
+
+			if = {
+				limit = {
+					can_create_faction = {
+						type = claimant_faction
+						target = scope:secondary_actor
+					}
+				}
+
+				create_faction = {
+					type = claimant_faction
+					target = scope:secondary_actor
+				}
+				if = {
+					limit = {
+						joined_faction ?= {
+							faction_is_type = claimant_faction
+							faction_target = scope:secondary_actor
+						}
+				}
+				joined_faction = {
+					set_special_character = scope:recipient
+					set_special_title = scope:landed_title
+				}
+				scope:recipient = {
+					add_to_variable_list = {
+						name = claimant_factions
+						target = scope:actor.joined_faction
+					}
+				}
+
+				if = {
+					limit = { this != scope:recipient }
+					save_scope_as = faction_invite_from
+					joined_faction = { save_scope_as = faction }
+					scope:secondary_actor = { save_scope_as = faction_target }
+					scope:recipient = {
+						trigger_event = faction_invitation.0001
+					}
+				}
+			}
+			}
+
+			remove_variable = claiming_title
+		}
+	}
+
+	auto_accept = yes
+}

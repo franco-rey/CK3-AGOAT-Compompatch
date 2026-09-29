@@ -244,7 +244,10 @@ set_provinces_on_actions = {
 			}
 
 			title:b_ironrath.title_province = {
-				remove_building = agot_ironwood_01
+				if = {
+					limit = { has_building = agot_ironwood_01 }
+					remove_building = agot_ironwood_01
+				}
 				if = {
 					limit = { NOT = { has_special_building = yes } }
 					add_special_building_slot = ironwrath_01
