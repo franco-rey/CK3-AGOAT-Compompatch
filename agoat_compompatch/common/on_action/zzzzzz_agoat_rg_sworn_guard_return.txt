@@ -1,0 +1,22 @@
+﻿agot_guard_positions_return_sworn_guard_to_owner = {
+	effect = {
+		add_character_flag = blocked_from_leaving
+		if = {
+			limit = {
+				is_landed = no
+				NOT = { has_character_flag = agoat_guard_returned_to_owner }
+				NOR = {
+					has_trait = nightswatch
+					has_trait = silent_sister
+					scope:new_employer ?= { has_trait = nightswatch }
+					scope:new_employer ?= { has_trait = silent_sister }
+				}
+			}
+			add_character_flag = {
+				flag = agoat_guard_returned_to_owner
+				days = 1
+			}
+			scope:old_employer = { add_courtier ?= root }
+		}
+	}
+}

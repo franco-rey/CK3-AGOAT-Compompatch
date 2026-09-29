@@ -3195,12 +3195,15 @@ court_smith_court_position = {
 			}
 		}
 		if = {
-			limit = {
-				has_variable = fund_inspiration_6508_architect_improvement
-			}
-			add = {
-				value = 5
-				desc = court_position_architect_study_experience
+			limit = { is_alive = yes }
+			if = {
+				limit = {
+					has_variable = fund_inspiration_6508_architect_improvement
+				}
+				add = {
+					value = 5
+					desc = court_position_architect_study_experience
+				}
 			}
 		}
 		add = court_position_aptitude_low_penalty_value
