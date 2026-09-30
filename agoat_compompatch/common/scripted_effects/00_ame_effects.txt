@@ -2,6 +2,15 @@
 # Joining a company (called from ame_service.0001) and returning home (called from the
 # ame_service_ongoing return roll and ame_recall_from_service_interaction).
 
+# Runs on the current scope; the recall interaction calls it on the recipient.
+ame_grant_veteran_tour_effect = {
+	if = {
+		limit = { var:ame_years_of_service >= 2 }
+		add_trait_force_tooltip = ame_mercenary_veteran
+		add_trait_xp = { trait = ame_mercenary_veteran value = ame_veteran_tour_xp_value }
+	}
+}
+
 # Sends root home. Assumes root = the serving/returning character throughout.
 ame_return_home_effect = {
 	if = {
@@ -72,12 +81,7 @@ ame_return_home_effect = {
 			move_to_pool = yes
 		}
 
-		# ame_years_of_service hits 2 after the first yearly pulse; the return roll only calls this at >= 3.
-		# The destroy path can still fire after one pulse - same gate applies in the recall interaction.
-		if = {
-			limit = { var:ame_years_of_service >= 2 }
-			add_trait_force_tooltip = ame_mercenary_veteran
-		}
+		ame_grant_veteran_tour_effect = yes
 
 		if = {
 			limit = {
@@ -235,7 +239,7 @@ ame_revive_company_effect = {
 	}
 }
 
-# CHARACTER = char to check. COMPANY = title id last seen in. Grants ame_mercenary_veteran after two
+# CHARACTER = char to check. COMPANY = title id last seen in. Grants ame_mercenary_veteran (XP 0) after two
 # yearly ticks (fixed Jan 1) in the SAME company. Tenure = timed flag, not a counter; years must stay integer.
 ame_veteran_backfill_check_effect = {
 	$CHARACTER$ = {

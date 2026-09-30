@@ -1,0 +1,29 @@
+﻿agot_assign_capital_duchy_admins = {
+	$NEW_RULER$ = { save_scope_as = new_ruler }
+	$CAPITAL_COUNTY$ = { save_scope_as = free_city_capital_county }
+	while = {
+		limit = {
+			scope:new_ruler.domain_size > scope:new_ruler.domain_limit
+			scope:free_city_capital_county.duchy = {
+				any_in_de_jure_hierarchy = {
+					tier = tier_county
+					holder = scope:new_ruler
+					NOT = {
+						this = scope:free_city_capital_county
+					}
+				}
+			}
+		}
+		scope:free_city_capital_county.duchy = {
+			random_in_de_jure_hierarchy = {
+				limit = {
+					tier = tier_county
+					holder = scope:new_ruler
+					NOT = { this = scope:free_city_capital_county }
+				}
+				save_scope_as = county_to_assign
+				agot_assign_administrator = yes
+			}
+		}
+	}
+}

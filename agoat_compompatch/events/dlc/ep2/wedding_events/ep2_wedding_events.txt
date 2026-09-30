@@ -1214,8 +1214,12 @@ ep2_wedding.0950 = {
 		if = {
 			limit = {
 				character:Targaryen_3 ?= {
-					has_variable = second_betrothal
-					NOT = { has_variable = second_wife_yes }
+					trigger_if = {
+						limit = { is_alive = yes }
+						has_variable = second_betrothal
+						NOT = { has_variable = second_wife_yes }
+					}
+					trigger_else = { always = no }
 				}
 			}
 			scope:spouse_1 = {
