@@ -309,6 +309,17 @@ has_natural_death_second_chance = {
 can_be_activity_guest = {
 	ln_is_one_of_them_trigger = no
 	is_available_allow_travelling = yes
+	NOT = {
+		location ?= {
+			county ?= {
+				OR = {
+					this = title:c_ruins
+					this = title:c_unknown
+					this = title:c_wilderness
+				}
+			}
+		}
+	}
 	OR = {
 		is_travelling = no
 		# If travelling then it must be already to this activity after it has been created

@@ -1,0 +1,30 @@
+﻿agoat_house_head_membership_repair = {
+	trigger = {
+		house ?= {
+			house_head ?= {
+				NOT = { house ?= root.house }
+			}
+		}
+	}
+	effect = {
+		house = {
+			save_temporary_scope_as = agoat_house_to_repair
+			ordered_house_member = {
+				limit = {
+					is_alive = yes
+					house ?= scope:agoat_house_to_repair
+				}
+				order_by = {
+					value = highest_held_title_tier
+					multiply = 1000
+					add = age
+				}
+				save_temporary_scope_as = agoat_new_house_head
+			}
+			if = {
+				limit = { exists = scope:agoat_new_house_head }
+				set_house_head = scope:agoat_new_house_head
+			}
+		}
+	}
+}

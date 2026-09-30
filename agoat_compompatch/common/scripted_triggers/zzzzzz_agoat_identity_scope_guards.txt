@@ -19,13 +19,13 @@
 			faith = { has_doctrine = doctrine_gender_female_dominated }
 		}
 	}
-	age < 22
-	age >= 9
+	age < 22 #There really is no age limit for squire's but for now we'll pick an age and keep them under it.
+	age >= 9 #9 years old is the usual age most highborn boys start squiring.
 	custom_tooltip = {
 		text = is_squire_or_prev_squire
-		OR = {
+		OR = { #They cannot have the squire trait, OR they are a knightless squire
 			NOT = {
-				has_trait_xp = {
+				has_trait_xp = { #They cannot be a squire already
 					trait = squire
 					track = knight
 					value < 100
@@ -34,7 +34,7 @@
 			has_past_experience_with_squirehood = yes
 		}
 	}
-	agot_has_traits_preventing_knighthood_trigger = no
+	agot_has_traits_preventing_knighthood_trigger = no #You can't have any traits that disqualify you from being made a knight
 	is_imprisoned = no
 	num_of_relation_agot_knight = 0
 }
@@ -42,20 +42,27 @@
 accou_is_valid_invite_recipient_agot_trigger = {
 	exists = culture
 	$ACTOR$ = { exists = culture }
+	## AGOT Added, either both have to be wildlings, or neither can be
 	NOR = {
+		# Actor is not wildling, but recip is
 		AND = {
 			$ACTOR$.culture = { agot_is_wildling_culture = no }
 			culture = { agot_is_wildling_culture = yes }
 		}
+		# Actor is wildling, but recip is not
 		AND = {
 			$ACTOR$.culture = { agot_is_wildling_culture = yes }
 			culture = { agot_is_wildling_culture = no }
 		}
+		# Night's Watch
 		$ACTOR$ = { has_trait = nightswatch }
 		has_trait = nightswatch
+		# Maesters
 		$ACTOR$ = { has_trait = maester }
 		has_trait = maester
+		# Kingsguard
 		has_trait = kingsguard
+		# Silent Sisterhood
 		has_trait = silent_sister
 	}
 	$ACTOR$ = { is_human = yes }
@@ -66,12 +73,12 @@ relation_with_character_is_incestuous_in_my_or_lieges_faith_trigger = {
 	OR = {
 		AND = {
 			exists = faith
-			faith = {
+			faith = { #My faith doesn't approve
 				save_temporary_scope_as = check_faith
 			}
 			relation_with_character_is_incestuous_in_faith_trigger = { CHARACTER = $CHARACTER$ FAITH = scope:check_faith }
 		}
-		AND = {
+		AND = { #Liege's faith doesn't approve
 			exists = liege.faith
 			liege ?= {
 				faith = {
@@ -89,9 +96,9 @@ should_have_same_faith_succession_trigger = {
 		has_cultural_parameter = same_faith_inheritance_only
 	}
 	NOR = {
-		government_has_flag = government_is_theocracy
-		government_has_flag = government_is_holy_order
-		government_has_flag = government_is_mercenary
+		government_has_flag = government_is_theocracy # Handled separately
+		government_has_flag = government_is_holy_order # Handled separately
+		government_has_flag = government_is_mercenary # Irrelevant
 	}
 }
 
@@ -113,5 +120,8 @@ agot_guard_positions_is_globally_eligible_guard_candidate_trigger = {
 	NOT = { has_trait = agot_guard_academy_instructor }
 	NOT = { agot_guard_positions_is_any_guard_member_trigger = yes }
 	NOT = { has_character_flag = kingsguard_position_rejected }
+	# The lowest floor across orders (Greenhand/Swords of Braavos accept 12);
+	# agot_guard_positions_can_show_as_potential_guard_trigger applies the
+	# stricter 15 floor for every other order at read time.
 	prowess >= 12
 }

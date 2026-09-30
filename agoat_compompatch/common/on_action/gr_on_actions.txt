@@ -43,6 +43,20 @@ on_game_start_after_lobby = {
 gr_internal_rice_revalidate = { effect = { } }
 
 
+# ================================================
+# NPC Obituary Processing
+# Fires on every death; guards itself to only process
+# qualifying NPC dynasty members or close family.
+#
+# IMPORTANT: All data gathering, page creation, and dynasty list
+# management happens HERE during on_death while scope:dead_npc is
+# still a valid (alive) scope. The delayed event (gr_npc_obituary.1)
+# only sends the toast notification.
+#
+# Previous bug: data gathering was deferred to a 2-day delayed event.
+# By then the NPC was a dead character (weak scope), so has_variable
+# and var:X failed — producing empty chronicle pages.
+# ================================================
 gr_internal_npc_obituary_processing = {
 	effect = {
 		if = {
@@ -335,6 +349,7 @@ gr_internal_npc_obituary_processing = {
 					}
 
 					scope:gr_iter_player = {
+						save_scope_as = owner
 
 						# Find and destroy the player's old chronicle artifact
 						random_character_artifact = {
@@ -418,12 +433,14 @@ gr_internal_npc_obituary_processing = {
 								set_variable = { name = gr_is_chronicle value = yes }
 							}
 						}
+						clear_saved_scope = owner
 					}
 				}
 
 				# CREATE new chronicle
 				else = {
 					scope:gr_iter_player = {
+						save_scope_as = owner
 						create_artifact = {
 							name = gr_chronicle_artifact_name
 							description = gr_chronicle_artifact_desc_common
@@ -438,6 +455,7 @@ gr_internal_npc_obituary_processing = {
 						scope:new_chronicle = {
 							set_variable = { name = gr_is_chronicle value = yes }
 						}
+						clear_saved_scope = owner
 					}
 
 					scope:dead_npc.dynasty = {
@@ -888,6 +906,93 @@ gr_internal_obituary_processing = {
 				if = {
 					limit = { root = { government_has_flag = government_is_administrative } }
 					set_variable = { name = gr_is_admin_govt value = yes }
+				}
+				if = { limit = { root = { has_variable = gr_agot_war_reyne } }
+					set_variable = { name = gr_agot_war_reyne value = root.var:gr_agot_war_reyne } }
+				if = { limit = { root = { has_variable = gr_agot_war_blackfyre } }
+					set_variable = { name = gr_agot_war_blackfyre value = root.var:gr_agot_war_blackfyre } }
+				if = { limit = { root = { has_variable = gr_agot_war_ninepenny } }
+					set_variable = { name = gr_agot_war_ninepenny value = root.var:gr_agot_war_ninepenny } }
+				if = { limit = { root = { has_variable = gr_agot_war_faegon } }
+					set_variable = { name = gr_agot_war_faegon value = root.var:gr_agot_war_faegon } }
+				if = { limit = { root = { has_variable = gr_agot_war_daemon } }
+					set_variable = { name = gr_agot_war_daemon value = root.var:gr_agot_war_daemon } }
+				if = { limit = { root = { has_variable = gr_agot_war_duskendale } }
+					set_variable = { name = gr_agot_war_duskendale value = root.var:gr_agot_war_duskendale } }
+				if = { limit = { root = { has_variable = gr_agot_war_dragon } }
+					set_variable = { name = gr_agot_war_dragon value = root.var:gr_agot_war_dragon } }
+				if = { limit = { root = { has_variable = gr_agot_war_dragon_tier } }
+					set_variable = { name = gr_agot_war_dragon_tier value = root.var:gr_agot_war_dragon_tier } }
+				if = { limit = { root = { has_variable = gr_agot_war_ranging } }
+					set_variable = { name = gr_agot_war_ranging value = root.var:gr_agot_war_ranging } }
+				if = { limit = { root = { has_variable = gr_agot_war_wall_reclaim } }
+					set_variable = { name = gr_agot_war_wall_reclaim value = root.var:gr_agot_war_wall_reclaim } }
+				if = { limit = { root = { has_variable = gr_agot_war_rebellion } }
+					set_variable = { name = gr_agot_war_rebellion value = root.var:gr_agot_war_rebellion } }
+				if = { limit = { root = { has_variable = gr_agot_war_succession } }
+					set_variable = { name = gr_agot_war_succession value = root.var:gr_agot_war_succession } }
+				if = { limit = { root = { has_variable = gr_agot_war_independence } }
+					set_variable = { name = gr_agot_war_independence value = root.var:gr_agot_war_independence } }
+				if = { limit = { root = { has_variable = gr_agot_war_pirate } }
+					set_variable = { name = gr_agot_war_pirate value = root.var:gr_agot_war_pirate } }
+				if = { limit = { root = { has_variable = gr_agot_war_slavery } }
+					set_variable = { name = gr_agot_war_slavery value = root.var:gr_agot_war_slavery } }
+				if = { limit = { root = { has_variable = gr_agot_war_eradicate } }
+					set_variable = { name = gr_agot_war_eradicate value = root.var:gr_agot_war_eradicate } }
+				if = {
+					limit = {
+						root = {
+							trigger_if = {
+								limit = { has_variable = gr_agot_govt_old has_variable = gr_agot_govt_new }
+								OR = {
+									AND = { var:gr_agot_govt_old = flag:feudal var:gr_agot_govt_new = flag:lp_feudal }
+									AND = { var:gr_agot_govt_old = flag:lp_feudal var:gr_agot_govt_new = flag:feudal }
+									var:gr_agot_govt_new = flag:republic
+									AND = { var:gr_agot_govt_old = flag:pirate NOT = { var:gr_agot_govt_new = flag:pirate } }
+									AND = { NOT = { var:gr_agot_govt_old = flag:pirate } var:gr_agot_govt_new = flag:pirate }
+								}
+							}
+							trigger_else = { always = no }
+						}
+					}
+					set_variable = { name = gr_agot_govt_old value = root.var:gr_agot_govt_old }
+					set_variable = { name = gr_agot_govt_new value = root.var:gr_agot_govt_new } }
+				if = { limit = { root = { has_character_flag = final_default } }
+					set_variable = { name = gr_agot_bank_defaulted value = yes } }
+				if = {
+					limit = {
+						root = {
+							has_variable = IB_Shares
+							var:IB_Shares > 0
+						}
+					}
+					set_variable = { name = gr_agot_bank_ib_shareholder value = yes }
+				}
+				if = {
+					limit = {
+						OR = {
+							root = { has_variable = bank1_Shares var:bank1_Shares > 0 }
+							root = { has_variable = bank2_Shares var:bank2_Shares > 0 }
+							root = { has_variable = bank3_Shares var:bank3_Shares > 0 }
+						}
+					}
+					set_variable = { name = gr_agot_bank_founder value = yes }
+				}
+				if = { limit = { root = { has_character_flag = has_a_loan_flag } }
+					set_variable = { name = gr_agot_bank_died_in_debt value = yes } }
+				if = {
+					limit = { root = { has_title = title:h_the_iron_throne } }
+					set_variable = { name = gr_agot_iron_throne value = yes }
+					set_variable = { name = gr_agot_sub_kingdom_count value = 0 }
+					title:h_the_iron_throne = {
+						every_direct_de_jure_vassal_title = {
+							limit = {
+								tier = tier_empire
+								holder ?= { top_liege = root }
+							}
+							scope:heir = { change_variable = { name = gr_agot_sub_kingdom_count add = 1 } }
+						}
+					}
 				}
 
 
@@ -2306,6 +2411,7 @@ gr_internal_obituary_processing = {
 				if = { limit = { root = { has_trait = lifestyle_mystic } } set_variable = { name = gr_fame_mystic value = yes } }
 				if = { limit = { root = { has_trait = lifestyle_reveler } } set_variable = { name = gr_fame_reveler value = yes } }
 				if = { limit = { root = { has_trait = lifestyle_hunter } } set_variable = { name = gr_fame_hunter value = yes } }
+				# Physician tiers: 1=novice, 2=skilled, 3=renowned
 				if = { limit = { root = { has_trait_xp = { trait = lifestyle_physician value >= 100 } } } set_variable = { name = gr_fame_physician_tier value = 3 } }
 				else_if = { limit = { root = { has_trait_xp = { trait = lifestyle_physician value >= 50 } } } set_variable = { name = gr_fame_physician_tier value = 2 } }
 				else_if = { limit = { root = { has_trait = lifestyle_physician } } set_variable = { name = gr_fame_physician_tier value = 1 } }
@@ -2319,6 +2425,9 @@ gr_internal_obituary_processing = {
 				if = { limit = { root = { has_trait = lifestyle_surveyor } } set_variable = { name = gr_fame_surveyor value = yes } }
 
 
+				# =============================================
+				# SECTION L: HEALTH & INFAMY
+				# =============================================
 				if = { limit = { root = { has_trait = one_eyed } } set_variable = { name = gr_health_oneeyed value = yes } }
 				if = { limit = { root = { has_trait = one_legged } } set_variable = { name = gr_health_onelegged value = yes } }
 				if = { limit = { root = { has_trait = disfigured } } set_variable = { name = gr_health_disfigured value = yes } }
@@ -2363,6 +2472,7 @@ gr_internal_obituary_processing = {
 				if = { limit = { root = { has_trait = reclusive } } set_variable = { name = gr_coping_recluse value = yes } }
 
 
+				# Dynasty traits
 				if = { limit = { root = { has_trait = bastard } } set_variable = { name = gr_dynasty_bastard value = yes } }
 				if = { limit = { root = { has_trait = legitimized_bastard } } set_variable = { name = gr_dynasty_legit_bastard value = yes } }
 				if = { limit = { root = { has_trait = disinherited } } set_variable = { name = gr_dynasty_disinherited value = yes } }

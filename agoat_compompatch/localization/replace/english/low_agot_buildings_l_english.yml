@@ -1,0 +1,324 @@
+﻿l_english:
+
+ # Crownlands Special Buildings
+ building_type_agot_duskendale_02:0 "The Dusk Port"
+ building_type_agot_duskendale_02_desc:0 "Once a prosperous and independent port, Duskendale has faded into obscurity since the rise of King’s Landing. Its harbor, once bustling with trade, now sees only a trickle of ships, and its former wealth has been outshone by the capital’s grandeur."
+ building_agot_duskendale_02:0 "$building_type_agot_duskendale_02$"
+ building_agot_duskendale_02_desc:0 "$building_type_agot_duskendale_02_desc$"
+ building_agot_duskendale_03:0 "The Gilded Maw"
+ building_agot_duskendale_03_desc:0 "Once a forgotten harbor, Duskendale has risen to become the undisputed jewel of the Narrow Sea. Its rulers, now the most prominent house in the Crownlands, have challenged King’s Landing’s dominance, turning their port into the richest, most powerful city in the Crownlands."
+
+ building_type_agot_dorrill_01:0 "Dorrill"
+ building_type_agot_dorrill_01_desc:0 "The Horn Inn is the famous roadside tavern at Sow’s Horn. Known for its roaring fireplace, hearty stews, and sturdy ale, the inn is a haven for weary travelers, where messengers, knights, and merchants swap stories of the road. Its common room buzzes with rumors from royal decrees to smuggler’s tales, making it the unofficial crossroads of Crownlands gossip."
+ building_agot_dorrill_01:0 "The Horn Inn"
+ building_agot_dorrill_01_desc:0 "The Horn Inn is the famous roadside tavern at Sow’s Horn. Known for its roaring fireplace, hearty stews, and sturdy ale, the inn is a haven for weary travelers, where messengers, knights, and merchants swap stories of the road. Its common room buzzes with rumors from royal decrees to smuggler’s tales, making it the unofficial crossroads of Crownlands gossip."
+
+ building_type_agot_dyre_den_01:0 "Dyre Den"
+ building_type_agot_dyre_den_01_desc:0 "Dyre Den is a rugged and infamous stronghold located on Crackclaw Point, a wild, wooded peninsula in the Crownlands. It is the ancient seat of House Brune, a family known for their fierce independence, distrust of outsiders, and deep ties to the First Men. Unlike the grand castles or bustling towns of the Crownlands, Dyre Den is carved into the cliffs and forests of Crackclaw Point, making it nearly impregnable and shrouded in mystery"
+ building_agot_dyre_den_01:0 "Brune’s Defiance"
+ building_agot_dyre_den_01_desc:0 "Dyre Den is a rugged and infamous stronghold located on Crackclaw Point, a wild, wooded peninsula in the Crownlands. It is the ancient seat of House Brune, a family known for their fierce independence, distrust of outsiders, and deep ties to the First Men. Unlike the grand castles or bustling towns of the Crownlands, Dyre Den is carved into the cliffs and forests of Crackclaw Point, making it nearly impregnable and shrouded in mystery"
+
+ building_type_agot_antlers_01:0 "Antlers"
+ building_type_agot_antlers_01_desc:0 "A modest but vital holdfast on the kingsroad, Antlers is the seat of House Buckwell, known for its fertile lands and strong horses. Serving as a waystation for travelers and armies, Antlers plays a crucial role in maintaining the flow of men and supplies between King’s Landing and the Riverlands. The Buckwells’ loyalty and hospitality have made it a trusted stop for those journeying along the kingsroad, and its golden stag sigil reflects the family’s deep connection to the land and its traditions."
+ building_agot_antlers_01:0 "The Stag’s Rest"
+ building_agot_antlers_01_desc:0 "A modest but vital holdfast on the kingsroad, Antlers is the seat of House Buckwell, known for its fertile lands and strong horses. Serving as a waystation for travelers and armies, Antlers plays a crucial role in maintaining the flow of men and supplies between King’s Landing and the Riverlands. The Buckwells’ loyalty and hospitality have made it a trusted stop for those journeying along the kingsroad, and its golden stag sigil reflects the family’s deep connection to the land and its traditions."
+
+ building_type_agot_stokeworth_01:0 "Stokeworth"
+ building_type_agot_stokeworth_01_desc:0 "The sturdy stronghold of House Stokeworth, located just outside King’s Landing, is renowned for its granaries, barracks, and role in training the Gold Cloaks. As a key defensive point for the capital, Stokeworth’s loyalty and discipline have been proven time and again, from the Dance of the Dragons to the War of the Five Kings. Its proximity to the capital and well-stocked resources make it indispensable to the Iron Throne’s security."
+ building_agot_stokeworth_01:0 "The King’s Shield"
+ building_agot_stokeworth_01_desc:0 "The sturdy stronghold of House Stokeworth, located just outside King’s Landing, is renowned for its granaries, barracks, and role in training the Gold Cloaks. As a key defensive point for the capital, Stokeworth’s loyalty and discipline have been proven time and again, from the Dance of the Dragons to the War of the Five Kings. Its proximity to the capital and well-stocked resources make it indispensable to the Iron Throne’s security."
+
+ building_type_agot_rosby_01:0 "Rosby"
+ building_type_agot_rosby_01_desc:0 "A loyal and fertile holdfast on the kingsroad north of King’s Landing, Rosby is the seat of House Rosby, whose bountiful fields and orchards feed the capital’s armies and courts. Known for its legendary rose gardens and steadfast allegiance to the Iron Throne, Rosby’s strategic location makes it a critical supply hub for the Crownlands, ensuring the kingsroad remains open and well-provisioned."
+ building_agot_rosby_01:0 "The Rose’s Throne"
+ building_agot_rosby_01_desc:0 "A loyal and fertile holdfast on the kingsroad north of King’s Landing, Rosby is the seat of House Rosby, whose bountiful fields and orchards feed the capital’s armies and courts. Known for its legendary rose gardens and steadfast allegiance to the Iron Throne, Rosby’s strategic location makes it a critical supply hub for the Crownlands, ensuring the kingsroad remains open and well-provisioned."
+
+ # Reach Special Buildings
+ building_type_agot_horn_hill_01:0 "Tarly’s Spear"
+ building_type_agot_horn_hill_01_desc:0 "Horn Hill, the palatial seat of House Tarly, rises among the Red Mountains’ foothills. Its martial culture and legendary warriors make it a bastion of discipline and strength in the Reach’s southern marches."
+ building_agot_horn_hill_01:0 "$building_type_agot_horn_hill_01$"
+ building_agot_horn_hill_01_desc:0 "$building_type_agot_horn_hill_01_desc$"
+
+ building_type_agot_bandallon_01:0 "Blackbar’s Cliff"
+ building_type_agot_bandallon_01_desc:0 "Bandallon, the ancient seat of House Blackbar, sits atop limestone cliffs in the Reach’s southwest. Its ornate halls and market town of Blackwell reflect its First Men heritage and enduring importance."
+ building_agot_bandallon_01:0 "$building_type_agot_bandallon_01$"
+ building_agot_bandallon_01_desc:0 "$building_type_agot_bandallon_01_desc$"
+
+ building_type_agot_blackcrown_01:0 "Bulwer’s Skull"
+ building_type_agot_blackcrown_01_desc:0 "Blackcrown, the forbidding seat of House Bulwer, looms over Whispering Sound with a skull of a bull sigil. Its motto and ancient lineage make it a proud but modest guardian of the western Reach’s coast."
+ building_agot_blackcrown_01:0 "$building_type_agot_blackcrown_01$"
+ building_agot_blackcrown_01_desc:0 "$building_type_agot_blackcrown_01_desc$"
+
+ building_type_agot_three_towers_01:0 "The Black Rose Bastion"
+ building_type_agot_three_towers_01_desc:0 "Three Towers, the cliffside seat of House Costayne, commands Whispering Sound with its three spires. Its Hightower allegiance and coastal perch make it a key player in the southern Reach’s politics and trade."
+ building_agot_three_towers_01:0 "$building_type_agot_three_towers_01$"
+ building_agot_three_towers_01_desc:0 "$building_type_agot_three_towers_01_desc$"
+
+ building_type_agot_sunflower_hall_01:0 "Golden Shore"
+ building_type_agot_sunflower_hall_01_desc:0 "Sunflower Hall, the elegant seat of House Cuy, overlooks the Torentine’s mouth with a grand sept and bustling port. Its floral sigil and Andal heritage make it a jewel of the southern Reach’s coast."
+ building_agot_sunflower_hall_01:0 "$building_type_agot_sunflower_hall_01$"
+ building_agot_sunflower_hall_01_desc:0 "$building_type_agot_sunflower_hall_01_desc$"
+
+ building_type_agot_cuy_01:0 "Sunhouse Haven"
+ building_type_agot_cuy_01_desc:0 "Cuy, the thriving market town outside Sunhouse, bustles with farmers and merchants trading the Reach’s bounty. Its coastal location and river access make it a key trade hub on the southern shore."
+ building_agot_cuy_01:0 "$building_type_agot_cuy_01$"
+ building_agot_cuy_01_desc:0 "$building_type_agot_cuy_01_desc$"
+
+ building_type_agot_uplands_01:0 "Honeywine Vale"
+ building_type_agot_uplands_01_desc:0 "The Uplands, seat of House Mullendore, is a pastoral haven in the Reach’s rolling hills, east of Oldtown. Its fertile valleys and river-fed orchards make it a quiet but vital agricultural heartland."
+ building_agot_uplands_01:0 "$building_type_agot_uplands_01$"
+ building_agot_uplands_01_desc:0 "$building_type_agot_uplands_01_desc$"
+
+ # Riverlands Special Buildings
+ building_agot_raventree_hall_02:0 "Great Weirwood Crown"
+ building_agot_raventree_hall_02_desc:0 "Raventree Hall, the ancient seat of House Blackwood, now stands as the grand capital of the Riverlands, its weirwood heart and black stone towers expanded to reflect its newfound authority. Its halls, steeped in the old gods’ mysteries, command the loyalty of the Riverlands as a symbol of the Blackwoods’ enduring legacy and martial strength."
+
+ building_the_twins_02:0 "The Kings Crossing"
+ building_the_twins_02_desc:0 "The Twins, the mighty seat of House Frey, now stands as the grand capital of the Riverlands, its great towers and bridges expanded and its halls transformed to reflect its newfound authority as the heart of the realm. Its strategic location at the crossing of the Green Fork makes it a symbol of unity and power for the Riverlands."
+
+ building_agot_stone_hedge_02:0 "The Hedge Capital"
+ building_agot_stone_hedge_02_desc:0 "Stone Hedge, the ancestral seat of House Bracken, now stands as the grand capital of the Riverlands, its ancient walls rebuilt and its halls expanded to reflect its newfound authority. Overlooking the Blue Fork, the castle’s imposing towers and fortified courtyards serve as a testament to the Brackens’ long-standing claim to rule, blending martial strength with the legacy of their past ambitions."
+
+ building_type_agot_darry_01:0 "The Twin Towers"
+ building_type_agot_darry_01_desc:0 "Darry is a fortress of twin towers on the Red Fork, once a powerful Riverlands house before Harrenhal’s rise. Its bridge is haunted by the ghosts of war, and its sword is said to glow blue for the right heir, but only the worthy may wield it."
+ building_agot_darry_01:0 "$building_type_agot_darry_01$"
+ building_agot_darry_01_desc:0 "$building_type_agot_darry_01_desc$"
+
+ building_type_agot_hags_mire_01:0 "The Drowned Men’s Grave"
+ building_type_agot_hags_mire_01_desc:0 "Hags Mire is a cursed swamp where witches’ spirits and drowned warriors still wander. Its black waters hide quicksand and peat fires, and its bone-littered clearings are said to sing with the voices of the dead."
+ building_agot_hags_mire_01:0 "$building_type_agot_hags_mire_01$"
+ building_agot_hags_mire_01_desc:0 "$building_type_agot_hags_mire_01_desc$"
+
+ building_type_agot_willow_wood_01:0 "Willow Wood"
+ building_type_agot_willow_wood_01_desc:0 "Willow Wood is an ancient, enchanted forest between the Trident and the Red Fork, home to weirwoods that glow silver under moonlight. The First Men worshipped here, and its hidden paths are said to lead to the old gods’ realm."
+ building_agot_willow_wood_01:0 "$building_type_agot_willow_wood_01$"
+ building_agot_willow_wood_01_desc:0 "$building_type_agot_willow_wood_01_desc$"
+
+ building_type_agot_maidenpool_02:0 "The Drowned Maiden’s Harbor"
+ building_type_agot_maidenpool_02_desc:0 "Maidenpool is a port city on the Blackwater Rush, named for the legendary maiden who drowned herself rather than marry a cruel king. Its harbor bustles with trade, and its Maiden’s Tower is said to weep silver tears when a great tragedy is near."
+ building_agot_maidenpool_02:0 "$building_type_agot_maidenpool_02$"
+ building_agot_maidenpool_02_desc:0 "$building_type_agot_maidenpool_02_desc$"
+
+ building_type_agot_acorn_hall_01:0 "Acorn Hall"
+ building_type_agot_acorn_hall_01_desc:0 "Acorn Hall is the seat of House Smallwood, built around an ancient weirwood oak older than Winterfell’s godswood. Its fertile lands and storied halls make it a symbol of First Men resilience, and its acorn-lined courtyards are said to whisper prophecies to those who listen."
+ building_agot_acorn_hall_01:0 "$building_type_agot_acorn_hall_01$"
+ building_agot_acorn_hall_01_desc:0 "$building_type_agot_acorn_hall_01_desc$"
+
+ building_type_agot_pinkmaiden_01:0 "The Pink Fortress"
+ building_type_agot_pinkmaiden_01_desc:0 "Pinkmaiden is a rose-hued keep in the Red Fork, named for its pink stone walls and the wild pink roses that bloom along its battlements. Its gardens said to be haunted by the spirits of star-crossed lovers."
+ building_agot_pinkmaiden_01:0 "$building_type_agot_pinkmaiden_01$"
+ building_agot_pinkmaiden_01_desc:0 "$building_type_agot_pinkmaiden_01_desc$"
+
+ # Westerlands Special Buildings
+ building_type_agot_hornvale_02:0 "Brax’s Bulwark"
+ building_type_agot_hornvale_02_desc:0 "Hornvale is the seat of House Brax, a powerful vassal of the Lannisters, perched in the eastern hills near the Red Fork’s headwaters. Known for its purple unicorn sigil and fertile valleys, it is a hub of agriculture, mining, and martial strength, guarding the eastern reaches of the Westerlands with unyielding loyalty."
+ building_agot_hornvale_02:0 "$building_type_agot_hornvale_02$"
+ building_agot_hornvale_02_desc:0 "$building_type_agot_hornvale_02_desc$"
+
+ building_type_agot_sarsfield_01:0 "The Arrow’s Mark"
+ building_type_agot_sarsfield_01_desc:0 "Sarsfield, ruled by House Sarsfield, lies along the River Road between Casterly Rock and the Golden Tooth. Famous for its elite archers, the house’s green arrow sigil adorns banners that have defended the Westerlands for generations, earning them the Lannisters’ enduring trust."
+ building_agot_sarsfield_01:0 "$building_type_agot_sarsfield_01$"
+ building_agot_sarsfield_01_desc:0 "$building_type_agot_sarsfield_01_desc$"
+
+ building_type_agot_nunns_deep_01:0 "The Golden Gorge"
+ building_type_agot_nunns_deep_01_desc:0 "Nunn’s Deep is a gold mine and seat of House Nunn, nestled in the rugged, mineral-rich hills of the western Westerlands. Its wealth has long bolstered the Lannisters’ coffers, though its location near the Tumblestone’s headwaters keeps it humble compared to grander castles."
+ building_agot_nunns_deep_01:0 "$building_type_agot_nunns_deep_01$"
+ building_agot_nunns_deep_01_desc:0 "$building_type_agot_nunns_deep_01_desc$"
+
+ building_type_agot_kayce_01:0 "Sunset’s Gateway"
+ building_type_agot_kayce_01_desc:0 "Kayce is a bustling market town and castle on a peninsula in the western Westerlands, ruled by House Kenning. Its coastal position makes it a vital trade hub, connecting the Westerlands to the Sunset Sea, while its sunburst sigil shines as a beacon of Lannister loyalty and commerce."
+ building_agot_kayce_01:0 "$building_type_agot_kayce_01$"
+ building_agot_kayce_01_desc:0 "$building_type_agot_kayce_01_desc$"
+
+ building_type_agot_the_crag_01:0 "Westerling’s Watch"
+ building_type_agot_the_crag_01_desc:0 "The Crag, seat of House Westerling, clings to the northwestern coast, overlooking the Sunset Sea. Once a proud naval power, its fleet and rugged cliffs now stand as a testament to the Westerlings’ faded glory and their unyielding devotion to the Lannisters, despite their struggles."
+ building_agot_the_crag_01:0 "$building_type_agot_the_crag_01$"
+ building_agot_the_crag_01_desc:0 "$building_type_agot_the_crag_01_desc$"
+
+ # Stormlands Special Buildings
+ building_type_agot_parchments_01:0 "Parchments"
+ building_type_agot_parchments_01_desc:0 "$building_agot_parchments_01_desc$"
+ building_agot_parchments_01:0 "The Storm’s Quill"
+ building_agot_parchments_01_desc:0 "Parchments, the stark seat of House Penrose, stands on the rugged shores of Shipbreaker Bay in the northern Stormlands. Its pale stone halls, numerous yards, and strong towers overlook the treacherous waters, a fitting reflection of the house’s resilience and loyalty to House Baratheon. The Penroses’ history of service, including marriages into Targaryen royalty, lends their modest but sturdy castle an outsized influence in the realm’s affairs."
+
+ building_type_agot_marchers_rest_01:0 "Harvest Hall"
+ building_type_agot_marchers_rest_01_desc:0 "$building_agot_marchers_rest_01_desc$"
+ building_agot_marchers_rest_01:0 "Marcher's Rest"
+ building_agot_marchers_rest_01_desc:0 "Harvest Hall is the fertile and prosperous stronghold of House Selmy, nestled in the golden fields of the western Stormlands, near the border with the Reach. Known for its bountiful harvests, warm hospitality, and strategic location, the castle is a beacon of plenty and resilience, serving as the Stormlands’ breadbasket and gateway to the Reach. Its rolling fields and well-stocked granaries embody the hardworking spirit of its lords and smallfolk."
+
+ building_type_agot_felwood_01:0 "Felwood"
+ building_type_agot_felwood_01_desc:0 "$building_agot_felwood_01_desc$"
+ building_agot_felwood_01:0 "The Blackwood Keep"
+ building_agot_felwood_01_desc:0 "Felwood is a shadowed forest of ancient trees and forgotten ruins, where the wind carries whispers through the gnarled branches. It lies at the edge of the Kingswood, guarding the northern marches of the Stormlands. Few dare to tread its depths, for those who do rarely return unchanged."
+
+ building_type_agot_grandview_01:0 "Grandview"
+ building_type_agot_grandview_01_desc:0 "$building_agot_grandview_01_desc$"
+ building_agot_grandview_01:0 "The Ridge’s Crown"
+ building_agot_grandview_01_desc:0 "Grandview is the proud and commanding stronghold of House Grandison, perched atop a windswept ridge overlooking the kingsroad and Wendwater River. Known for its panoramic vistas, chivalric traditions, and strategic importance, the castle is a beacon of vigilance and martial pride, serving as the Stormlands’ watchtower and gateway to the Crownlands. Its high towers and grand hall embody the ambition and honor of its lords."
+ building_agot_grandview_02:0 "The Stormlands' Crown"
+ building_agot_grandview_02_desc:0 "Once a proud fortress, it has risen as the Stormlands’ new heart, a city of splendor and power where chivalric traditions and imperial ambition now reign. Its stunning vistas and strategic might make it the gateway to the Crownlands and a beacon of Stormlander strength, embodying the glory and honor of its lords."
+
+ building_type_agot_rain_house_01:0 "Rain House"
+ building_type_agot_rain_house_01_desc:0 "$building_agot_rain_house_01_desc$"
+ building_agot_rain_house_01:0 "The Hidden Hall"
+ building_agot_rain_house_01_desc:0 "Rain House is the secluded, forest-cloaked stronghold of House Wylde, hidden deep within the ancient and misty Rainwood. Surrounded by towering weirwoods and perpetual rain, the castle is a place of silence, secrets, and old gods, where the forest itself seems to watch and listen. A refuge for hunters and guardians of the Rainwood’s mysteries, Rain House embodies the wild, untamed spirit of the Stormlands’ eastern forests."
+
+ building_type_agot_mistwood_01:0 "Mistwood"
+ building_type_agot_mistwood_01_desc:0 "$building_agot_mistwood_01_desc$"
+ building_agot_mistwood_01:0 "The Drowned Keep"
+ building_agot_mistwood_01_desc:0 "Mistwood is the haunting, waterlogged stronghold of House Mertyns, hidden deep within the flooded heart of the Rainwood. Built on stilts above a drowned forest, the castle is shrouded in mist and legend, where the ghosts of the old gods and the Drowned Ones whisper through the black waters. A place of secrets and ambushes, Mistwood is both a refuge and a trap, guarded by those who know its hidden paths and ancient magic."
+
+ building_type_agot_amberly_01:0 "Amberly"
+ building_type_agot_amberly_01_desc:0 "$building_agot_amberly_01_desc$"
+ building_agot_amberly_01:0 "The Waterfall’s Guard"
+ building_agot_amberly_01_desc:0 "Amberly is the mystical and resource-rich stronghold of House Rogers, nestled deep within the Rainwood’s misty heart. Known for its golden amber deposits, cascading waterfall. The castle is a hidden jewel of wealth and magic, where the forest’s secrets and the river’s treasures make it both enchanting and formidable. Its strategic location and legendary archers ensure its role as a guardian of the Rainwood’s mysteries."
+
+ building_type_agot_haystack_hall_01:0 "Haystack Hall"
+ building_type_agot_haystack_hall_01_desc:0 "$building_agot_haystack_hall_01_desc$"
+ building_agot_haystack_hall_01:0 "The Breadbasket of the Stormlands"
+ building_agot_haystack_hall_01_desc:0 "Haystack Hall is the unassuming but vital stronghold of House Errol, nestled in the fertile heart of the northern Stormlands. Known for its golden fields, swift horses, and strategic location along the kingsroad, the hall is a hub of logistics. Though modest in appearance, its role in feeding armies and gathering intelligence makes it indispensable to the region’s defense."
+
+ building_type_agot_crows_nest_01:0 "Crow's Nest"
+ building_type_agot_crows_nest_01_desc:0 "$building_agot_crows_nest_01_desc$"
+ building_agot_crows_nest_01:0 "Crow's Nest"
+ building_agot_crows_nest_01_desc:0 "Crow’s Nest is the mystical, mist-shrouded stronghold of House Morrigen, hidden deep within the ancient Rainwood of the Stormlands. A place of weirwood groves, forgotten prophecies. The castle is steeped in the old gods’ magic and guarded by the secrets of the forest. The Morrigen lords act as keepers of the Rainwood’s mysteries, blending into the shadows as seamlessly as the ravens that give their home its name."
+
+ building_type_agot_greenstone_01:0 "Greenstone"
+ building_type_agot_greenstone_01_desc:0 "$building_agot_greenstone_01_desc$"
+ building_agot_greenstone_01:0 "The Emerald Isle"
+ building_agot_greenstone_01_desc:0 "Greenstone is the ancestral seat of House Estermont, a gleaming castle of green marble perched on the island of Estermont in the Narrow Sea, just off the eastern coast of the Stormlands. Known for its lush vineyards, fertile orchards, and legendary quarries, the island is a jewel of wealth and beauty"
+
+ # North Special Buildings
+ building_agot_dreadfort_02:0 "The Dread Throne"
+ building_agot_dreadfort_02_desc:0 "The Dreadfort, once a forbidding stronghold, now stands as the grand capital of the North, its ancient walls rebuilt and its halls transformed to reflect the Boltons’ newfound authority as Lord Paramounts. Its towers and dungeons, long whispered of in fear, now serve as a testament to Bolton power and the North’s unyielding might."
+
+ building_type_agot_castle_cerwyn_01:0 "The Last River's Hearth"
+ building_type_agot_castle_cerwyn_01_desc:0 "Castle Cerwyn is a sturdy, unassuming fortress in the fertile southwest, where the rolling hills meet the Last River. The seat of House Cerwyn, it stands as a loyal bastion of Stark power, its grey stone walls reflecting the ancient weirwood in its godswood. Known for its abundant grain and livestock, the castle is a vital economic center and a refuge for Stark loyalists in times of war."
+ building_agot_castle_cerwyn_01:0 "$building_type_agot_castle_cerwyn_01$"
+ building_agot_castle_cerwyn_01_desc:0 "$building_type_agot_castle_cerwyn_01_desc$"
+
+ building_type_agot_goldgrass_01:0 "Breadbasket of the Wolfswood"
+ building_type_agot_goldgrass_01_desc:0 "Tucked deep within the Wolfswood, Goldgrass is a verdant village and granary where the golden grain of the North grows thickest. Its fertile fields and rolling hills make it the breadbasket of the Wolfswood, supplying grain, honey, and wool to Stark loyalists and travelers alike."
+ building_agot_goldgrass_01:0 "$building_type_agot_goldgrass_01$"
+ building_agot_goldgrass_01_desc:0 "$building_type_agot_goldgrass_01_desc$"
+
+ building_type_agot_barrowton_01:0 "The Barrow King’s Town"
+ building_type_agot_barrowton_01_desc:0 "Nestled in the somber Barrowlands, this stone-built town thrives as a center of trade and ironwork, its bustling market square a lifeline for northern farmers and craftsmen. The Dustins, proud descendants of King Barron the Barrow King, rule from their hall in the heart of the barrows, where the echoes of the past are as thick as the northern mist."
+ building_agot_barrowton_01:0 "$building_type_agot_barrowton_01$"
+ building_agot_barrowton_01_desc:0 "$building_type_agot_barrowton_01_desc$"
+
+ building_type_agot_flints_finger_01:0 "Flint's Keep"
+ building_type_agot_flints_finger_01_desc:0 "Flint’s Keep is a modest but resilient fortress perched on a wind-lashed peninsula in the southwestern North, where the Ironborn once ruled before House Stark reclaimed the land. Built atop ancient Ironborn ruins, the castle now stands as a symbol of Stark loyalty and northern grit, overlooking the treacherous waters of the Blazewater Bay. Its sturdy grey stone walls and watchtowers serve as a guard post against raiders."
+ building_agot_flints_finger_01:0 "$building_type_agot_flints_finger_01$"
+ building_agot_flints_finger_01_desc:0 "$building_type_agot_flints_finger_01_desc$"
+
+ building_type_agot_holdwater_01:0 "The Last Sheep"
+ building_type_agot_holdwater_01_desc:0 "Nestled in the remote hills of the western North, near the foothills of the Northern Mountains, this small but sturdy keep is a symbol of northern grit, where the woolly flocks and loyal shepherds thrive despite the harsh climate and wild surroundings."
+ building_agot_holdwater_01:0 "$building_type_agot_holdwater_01$"
+ building_agot_holdwater_01_desc:0 "$building_type_agot_holdwater_01_desc$"
+
+ building_type_agot_weeps_well_01:0 "The Weeping River"
+ building_type_agot_weeps_well_01_desc:0 ""The Weeping River knows the truth." A common saying among northerners, implying that the river sees all and remembers every betrayal. While not a major trade route, the Weeping River is used by local fishermen and trappers."
+ building_agot_weeps_well_01:0 "$building_type_agot_weeps_well_01$"
+ building_agot_weeps_well_01_desc:0 "$building_type_agot_weeps_well_01_desc$"
+
+ building_type_agot_ridgewater_01:0 "The Stony Shore"
+ building_type_agot_ridgewater_01_desc:0 "The Stony Shore is a rocky coastline along the eastern edge of the North, known for its beauty, stone beaches, and seafood markets. It is a gathering place for northern sailors, fishermen, and traders."
+ building_agot_ridgewater_01:0 "$building_type_agot_ridgewater_01$"
+ building_agot_ridgewater_01_desc:0 "$building_type_agot_ridgewater_01_desc$"
+
+ # Dorne Special Buildings
+ building_type_agot_Spottswood_01:0 "Spottswood"
+ building_type_agot_Spottswood_01_desc:0 "$building_agot_Spottswood_01_desc$"
+ building_agot_Spottswood_01:0 "The Forgotten Fortress"
+ building_agot_Spottswood_01_desc:0 "A lesser-known castle in eastern Dorne, Spottswood is often overshadowed by its more famous neighbors but remains a strategic point for controlling the eastern coast and trade routes"
+
+ building_type_agot_Ghost_Hills_01:0 "Ghost Hills"
+ building_type_agot_Ghost_Hills_01_desc:0 "$building_agot_Ghost_Hills_01_desc$"
+ building_agot_Ghost_Hills_01:0 "The Haunted Heights"
+ building_agot_Ghost_Hills_01_desc:0 "Located on the cliffs of the Sea of Dorne. Ghost Hills is known for its eerie reputation, with legends of ghosts and curses. It was a gathering point for Dornish forces during the Fourth Dornish War"
+
+ building_type_agot_Lemonwood_01:0 "Lemonwood"
+ building_type_agot_Lemonwood_01_desc:0 "$building_agot_Lemonwood_01_desc$"
+ building_agot_Lemonwood_01:0 "The Citrus Stronghold"
+ building_agot_Lemonwood_01_desc:0 "A castle near Planky Town, Lemonwood is famous for its vast lemon orchards, the only place in Westeros where citrus fruits grow. Its strategic location at the mouth of the Greenblood River makes it a guardian of trade and a symbol of Dornish agricultural wealth"
+
+ building_type_agot_Salt_Shore_01:0 "Salt Shore"
+ building_type_agot_Salt_Shore_01_desc:0 "$building_agot_Salt_Shore_01_desc$"
+ building_agot_Salt_Shore_01:0 "The Cockatrice’s Port"
+ building_agot_Salt_Shore_01_desc:0 "The southernmost castle in Westeros, Salt Shore is the seat of House Gargalen, a house with deep Rhoynish roots. The port is a vital hub for trade, connecting Dorne to the Summer Sea and beyond, with docks bustling with ships from the Reach, Oldtown, and the Free Cities. "
+
+ building_type_agot_Vaith_01:0 "Vaith"
+ building_type_agot_Vaith_01_desc:0 "$building_agot_Vaith_01_desc$"
+ building_agot_Vaith_01:0 "The Leopard’s Lair"
+ building_agot_Vaith_01_desc:0 "A castle in the red sands of western Dorne, seat of House Vaith. Famous for its evasive tactics, survival in harsh terrain, and the legend of Vaith the Leopard, its cunning founder."
+
+ building_type_agot_The_Tor_01:0 "The Tor"
+ building_type_agot_The_Tor_01_desc:0 "$building_agot_The_Tor_01_desc$"
+ building_agot_The_Tor_01:0 "The Quill’s Keep"
+ building_agot_The_Tor_01_desc:0 "A coastal fortress on the Sea of Dorne, seat of House Jordayne. Renowned for diplomatic cunning, literary traditions, and its role as a maritime hub. Prince Doran Martell once squired here."
+
+ building_type_agot_Bottleneck_01:0 "Prince's Pass"
+ building_type_agot_Bottleneck_01_desc:0 "$building_agot_Bottleneck_01_desc$"
+ building_agot_Bottleneck_01:0 "Prince's Pass"
+ building_agot_Bottleneck_01_desc:0 "A critical mountain pass through the Red Mountains, guarded by Skyreach and Kingsgrave. Infamous for ambushes, battles, and its role in Dornish resistance against invaders like Aegon the Conqueror."
+
+ building_type_agot_High_Hermitage_01:0 "High Hermitage"
+ building_type_agot_High_Hermitage_01_desc:0 "$building_agot_High_Hermitage_01_desc$"
+ building_agot_High_Hermitage_01:0 "The Starfall’s Shadow"
+ building_agot_High_Hermitage_01_desc:0 "A fortress carved into the Red Mountains, seat of the cadet branch of House Dayne. Known for its mystical aura, ancient secrets, and the infamous "Darkstar," Ser Gerold Dayne."
+
+ building_type_agot_Wyl_01:0 "Wyl"
+ building_type_agot_Wyl_01_desc:0 "$building_agot_Wyl_01_desc$"
+ building_agot_Wyl_01:0 "Wyl"
+ building_agot_Wyl_01_desc:0 "Wyl is a fortress located at the mouth of the River Wyl, overlooking the Sea of Dorne. Its position east of the Boneway makes it a key defensive point, controlling access to northern Dorne and the Boneway pass. The castle is the northernmost stronghold in Dorne, situated southwest of Storm’s End, and is a constant thorn in the side of the marcher lords"
+
+ building_type_agot_Kingsgrave_01:0 "Kingsgrave"
+ building_type_agot_Kingsgrave_01_desc:0 "$building_agot_Kingsgrave_01_desc$"
+ building_agot_Kingsgrave_01:0 "The Skull’s Crown"
+ building_agot_Kingsgrave_01_desc:0 "A fortress in the Prince’s Pass, seat of House Manwoody. Named for the crowned skull sigil, it marks the spot where a King of the Reach was slain. Guards the western approach to Dorne"
+
+ building_type_agot_Blackmont_01:0 "Blackmont"
+ building_type_agot_Blackmont_01_desc:0 "$building_agot_Blackmont_01_desc$"
+ building_agot_Blackmont_01:0 "The Carrion Keep"
+ building_agot_Blackmont_01_desc:0 "A mountain fortress in the Red Mountains, seat of House Blackmont. Known for its dark legends, including a founder who fed his enemies to vultures, and its role as a bulwark against invasions from the Reach."
+
+ # Vale Special Buildings
+ building_agot_runestone_02:0 "The Bronze Capital"
+ building_agot_runestone_02_desc:0 "Runestone, the ancestral seat of House Royce, now stands as the grand capital of the Vale, its ancient walls rebuilt and its halls expanded to reflect its newfound authority. Overlooking the Narrow Sea and the Mountains of the Moon, the castle’s imposing towers and fortified courtyards serve as a testament to the Royces’ long-standing claim to rule, blending martial strength with the legacy of their past ambitions as the Bronze Kings of old."
+
+ building_type_agot_snakewood_01:0 "The Serpent’s Thicket"
+ building_type_agot_snakewood_01_desc:0 "Hidden deep within the Snakewood forest, a dense and tangled wilderness on the Fingers, Snakewood is the seat of House Lynderly, a family as mysterious as the woods they rule. The forest itself is a labyrinth of ancient trees, their twisted branches forming a canopy so thick that sunlight barely touches the forest floor."
+ building_agot_snakewood_01:0 "$building_type_agot_snakewood_01$"
+ building_agot_snakewood_01_desc:0 "$building_type_agot_snakewood_01_desc$"
+
+ building_type_agot_coldwater_castle_01:0 "The Frostfang"
+ building_type_agot_coldwater_castle_01_desc:0 "Nestled in the northern shadows of the Fingers, where the cold winds of the Bite howl down from the north, Coldwater Burn is the seat of House Coldwater, a family known for their unshakable loyalty and martial skill. The castle’s name comes from the icy streams that rush through its valley, their waters black and swift with the snowmelt of the Mountains of the Moon."
+ building_agot_coldwater_castle_01:0 "$building_type_agot_coldwater_castle_01$"
+ building_agot_coldwater_castle_01_desc:0 "$building_type_agot_coldwater_castle_01_desc$"
+
+ building_type_agot_hearts_home_01:0 "The Refugium of the Vale"
+ building_type_agot_hearts_home_01_desc:0 "Deep in the mist-shrouded valleys of the Mountains of the Moon, Heart’s Home is the ancestral seat of House Corbray, a family whose history is as rich as the forests around them. The castle’s name is no accident, it is a place of warmth and refuge, where the Corbray sigil of a silver sword and black bat watches over the valleys and crags of their domain."
+ building_agot_hearts_home_01:0 "$building_type_agot_hearts_home_01$"
+ building_agot_hearts_home_01_desc:0 "$building_type_agot_hearts_home_01_desc$"
+
+ building_type_agot_longbow_hall_01:0 "The Bowmen’s Keep"
+ building_type_agot_longbow_hall_01_desc:0 "Tucked into the rugged foothills between the Mountains of the Moon and the eastern Vale, Longbow Hall is the seat of House Hunter, a family whose name is synonymous with the bow. This humble but proud castle is a gathering place for archers and scouts, its tall towers and open training yards always echoing with the twang of bowstrings."
+ building_agot_longbow_hall_01:0 "$building_type_agot_longbow_hall_01$"
+ building_agot_longbow_hall_01_desc:0 "$building_type_agot_longbow_hall_01_desc$"
+
+ building_type_agot_old_anchor_01:0 "The Last Safe Harbor"
+ building_type_agot_old_anchor_01_desc:0 "Perched on the eastern coast of the Vale, where a river spills into the sparkling waters of the Narrow Sea, Old Anchor stands as a sturdy sentinel over the Vale’s maritime frontier. Its name reflects its position as a haven for ships and sailors, offering safe anchorage in the often treacherous seas of the Narrow Sea."
+ building_agot_old_anchor_01:0 "$building_type_agot_old_anchor_01$"
+ building_agot_old_anchor_01_desc:0 "$building_type_agot_old_anchor_01_desc$"
+
+ # Iron Islands Special Buildings
+ building_type_agot_pebbleton_01:0 "Pebbleton"
+ building_type_agot_pebbleton_01_desc:0 "Pebbleton is a major fishing and trading port on the eastern coast of Great Wyk, ruled by House Merlyn. It serves as a vital economic hub for the Iron Islands, with its harbor and thriving fisheries supporting the region’s naval and trade activities."
+ building_agot_pebbleton_01:0 "$building_type_agot_pebbleton_01$"
+ building_agot_pebbleton_01_desc:0 "$building_type_agot_pebbleton_01_desc$"
+
+ building_type_agot_iron_holt_01:0 "The Ironwood of Pyke"
+ building_type_agot_iron_holt_01_desc:0 "Iron Holt is a port on Pyke, named for the mythical Iron Wood, a forest of black iron trees said to have once covered the islands. As a rival to Lordsport, it stands as a symbol of the Iron Islands’ ancient strength and the enduring mystery of their iron-rich land."
+ building_agot_iron_holt_01:0 "$building_type_agot_iron_holt_01$"
+ building_agot_iron_holt_01_desc:0 "$building_type_agot_iron_holt_01_desc$"

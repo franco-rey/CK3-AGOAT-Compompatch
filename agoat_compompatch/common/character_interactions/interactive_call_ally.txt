@@ -213,7 +213,7 @@
 				}
 			}
 		}
-		scope:target = {
+		scope:target ?= {
 			is_war_leader = scope:actor
 			custom_description = {
 				text = join_war_interaction_already_in_target_war

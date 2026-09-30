@@ -1,0 +1,223 @@
+﻿# AGOT: The Long Night & Azor Ahai -- a SHADOW of ONE AGOT handler, and nothing else.
+#
+# SOURCE: AGOT common/on_action/agot_on_actions/agot_title_on_actions.txt, agot_on_title_gain_nightswatch,
+# copied verbatim on 10 Aug 2026 except for the two blocks marked "THE LONG NIGHT+" inside the last if.
+#
+# WHY A SHADOW AND NOT A PATCH. A named on_action merges its SUB-LISTS (on_actions = {}, events = {}) but its
+# `trigger` and `effect` are single blocks -- one wins whole. There is no way to add one clause to somebody
+# else's effect from outside it, so exempting our ranging companies from AGOT's forced government change
+# means owning the handler.
+#
+# ── 1.0.12: THIS FILE LIVES IN A SUBDIRECTORY NOW, AND THAT IS THE WHOLE POINT ─────────────────────────
+# It shipped in 1.0.10 at common/on_action/zz_ln_agot_nw_title_gain_shadow.txt, on the assumption that a
+# zz_ prefix plus a later load order would win. IT DID NOT WIN, AND HAD NEVER WON. The 18 Aug error.log:
+#
+#   [E][jomini_onaction.cpp:161]: There is more than one 'effect' defined using most recent:
+#       file: common/on_action/agot_on_actions/agot_title_on_actions.txt line: 1626
+#   [E][jomini_onaction.cpp:153]: There is more than one '_pTrigger' defined:
+#       file: common/on_action/agot_on_actions/agot_title_on_actions.txt line: 1617
+#
+# AGOT's copy, both times. This file's own instruction, written when it shipped, was: "logs/
+# database_conflicts.log will name the winner ... if that line is absent, AGOT won and this file is inert."
+# It is absent. So every ranger appointment since 1.0.10 has been running AGOT's unexempted handler.
+#
+# WHY IT LOST, AND WHY MOVING IT FIXES IT. The engine does not resolve on_action `effect` collisions by mod
+# load order at all -- it resolves them by PARSE ORDER inside common/on_action/. The rule that fits every
+# collision in that log, ours and AGOT's own: top-level files are parsed first in path order, THEN
+# subdirectories, and the last `effect` parsed wins. zz_ln_... sorts last among top-level files, but every
+# top-level file is parsed before anything in agot_on_actions/, so AGOT took it regardless of the prefix.
+# In a subdirectory the comparison is directory-to-directory, and zz_ln_shadows/ sorts after
+# agot_on_actions/ under both case-sensitive and case-insensitive ordering.
+#
+# CONFIRMED 22 AUG 2026, against AGOT 0.5.1, in a live boot -- the test this comment used to ask for:
+#
+#   There is more than one '_pTrigger' defined:
+#       file: common/on_action/zz_ln_shadows/zz_ln_agot_nw_title_gain_shadow.txt
+#   There is more than one 'effect' defined using most recent:
+#       file: common/on_action/zz_ln_shadows/zz_ln_agot_nw_title_gain_shadow.txt
+#
+# OUR file, both lines, where 1.0.10's top-level copy was named as the LOSER on both. The subdirectory
+# theory holds and this shadow is the one the engine runs. Every ranger appointment since 1.0.12 has been
+# going through the exempted handler.
+#
+# ALSO RE-DIFFED 22 AUG against AGOT 0.5.1: block-for-block identical apart from our added clauses and
+# their comments, zero AGOT-side drift to fold in. 31 Aug: a SECOND clause was added to the same limit --
+# is_ruler = yes -- off the multiplayer log. Both are in the final if; nothing else in the file is ours.
+#
+# WHAT IT COSTS. If AGOT changes this handler, our copy silently keeps the old behaviour. That is the real
+# price and it is worth paying here, because the alternative is every ranger appointment for the rest of the
+# game throwing "Trying to set illegal government" and relying on a backstop to undo AGOT's work afterwards.
+# If a future AGOT release exempts landless NW rulers generally, DELETE THIS FILE -- do not merge it.
+# shadowcheck.py is the thing that catches this file going stale; see the 1.0.12 work order.
+#
+# WHAT IT DOES NOT TOUCH. The depose branch, the trait grants, the courtier sweep, the maintenance events:
+# all verbatim. Their safety checks are still theirs.
+
+agot_on_title_gain_nightswatch = {
+	trigger = {
+		OR = {
+			government_has_flag = government_is_nw
+			any_liege_or_above = {
+				government_has_flag = government_is_nw
+			}
+		}
+		NOT = { has_government = republic_government }
+	}
+	effect = {
+		agot_debug_log_effect = { MSG = agot_debug_msg_on_title_gain_nightswatch }
+
+		if = {
+			limit = {
+				agot_valid_potential_nw_member = no
+			}
+			agot_remove_nightswatch_traits_effect = yes
+			if = {
+				limit = { exists = scope:agoat_nw_title_receiver }
+				clear_saved_scope = agoat_nw_title_receiver
+			}
+			if = {
+				limit = {
+					NOT = { primary_heir ?= { agot_valid_potential_nw_member = yes } }
+				}
+				if = {
+					limit = {
+						liege ?= { agot_valid_potential_nw_member = yes }
+					}
+					liege = { save_temporary_scope_as = agoat_nw_title_receiver }
+				}
+				else_if = {
+					limit = {
+						any_liege_or_above = {
+							has_title = title:k_the_wall
+							agot_valid_potential_nw_member = yes
+							government_has_flag = government_is_nw
+						}
+					}
+					random_liege_or_above = {
+						limit = {
+							has_title = title:k_the_wall
+							agot_valid_potential_nw_member = yes
+							government_has_flag = government_is_nw
+						}
+						save_temporary_scope_as = agoat_nw_title_receiver
+					}
+				}
+			}
+			if = {
+				limit = { exists = scope:agoat_nw_title_receiver }
+				create_title_and_vassal_change = {
+					type = revoked
+					save_scope_as = change
+					add_claim_on_loss = no
+				}
+				every_held_title = {
+					limit = {
+						OR = {
+							is_landless_type_title = no
+							has_variable = ln_is_a_ranger_title
+							this = title:d_nw_landless_first_ranger
+						}
+						trigger_if = {
+							limit = { tier = tier_barony }
+							NOT = { title_province.county.holder ?= root }
+						}
+					}
+					change_title_holder_include_vassals = {
+						holder = scope:agoat_nw_title_receiver
+						change = scope:change
+					}
+				}
+				resolve_title_and_vassal_change = scope:change
+			}
+			else = {
+				depose = yes
+			}
+		}
+		else_if = {
+			limit = {
+				NOR = {
+					has_trait = nightswatch
+					has_trait = nightswatch_temp
+				}
+			}
+			agot_add_to_nightswatch_effect = yes
+		}
+
+		if = {
+			limit = {
+				has_trait = nightswatch
+				has_trait_xp = {
+					trait = nightswatch
+					value < 100
+				}
+				age > 15
+			}
+			trigger_event = agot_nightswatch_maintenance.0101
+		}
+
+		every_courtier = {
+			if = {
+				limit = {
+					NOT = { has_trait = nightswatch }
+					OR = {
+						is_close_family_of = prev
+						agot_reasonable_potential_nw_member = no
+					}
+				}
+				every_traveling_family_member = {
+					limit = { NOT = { is_in_pool_at = title:d_winterfell.holder.capital_province } }
+					move_to_pool_at = title:d_winterfell.holder.capital_province
+				}
+			}
+			else_if = {
+				limit = {
+					is_human = yes
+					NOT = {
+						has_trait = nightswatch
+					}
+				}
+				agot_add_to_nightswatch_effect = yes
+			}
+
+			if = {
+				limit = {
+					has_trait = nightswatch
+					has_trait_xp = {
+						trait = nightswatch
+						value < 100
+					}
+					age > 15
+				}
+				trigger_event = agot_nightswatch_maintenance.0101
+			}
+		}
+
+		if = {
+			limit = {
+				NOT = { government_has_flag = government_is_nw }
+				NOT = { this = title:d_nw_landless_first_ranger.holder }
+				# ── THE LONG NIGHT+: FIRST EDIT (10 Aug 2026) ─────────────────────────────────────────
+				# AGOT already exempts its own ranger title here, for exactly our reason: a landless
+				# ranging captain cannot legally hold nights_watch_government, which wants a castle
+				# holding. Their design has one such title; ours has eight, and they are not on the list,
+				# so every appointment threw "Trying to set illegal government" and then fell through to
+				# our own backstop a few lines later. Read off the variable rather than naming eight
+				# titles, so companies added later are covered the day they are added.
+				NOT = { any_held_title = { has_variable = ln_is_a_ranger_title } }
+
+				# ── THE LONG NIGHT+: SECOND EDIT (31 Aug 2026) ─────────────────────────────────────────
+				# The depose branch at the top of this effect can un-land root before we get here, and a
+				# character with no title has no government to change. AGOT's original has no guard, so
+				# every deposal through this handler threw
+				#
+				#   change_government effect [ Character needs to be a ruler to change government ]
+				#
+				# four times in one tick in the 30 Aug session. Same class as the mutate_into_other_effect
+				# guard from the 7 Aug crash log: the call did nothing and errored once per character.
+				# Nobody who is still a ruler is affected.
+				is_ruler = yes
+			}
+			change_government = nights_watch_government
+		}
+	}
+}

@@ -1,0 +1,267 @@
+﻿tournament_versus_create_contestant_fallback_effect = {
+	scope:activity = {
+		random_attending_character = {
+			culture = { save_scope_as = attending_culture }
+			faith = { save_scope_as = attending_faith }
+		}
+		scope:attending_culture = {
+			random_culture_county = {
+				faith = { save_scope_as = attending_faith }
+				random_direct_de_jure_vassal_title = { save_scope_as = attending_barony }
+			}
+		}
+		if = {
+			limit = { has_current_phase = tournament_phase_joust }
+			create_character = {
+				template = tournament_horse_character
+				location = scope:activity.activity_location
+				faith = scope:attending_faith
+				culture = scope:attending_culture
+				dynasty = none
+				save_scope_as = backup_contestant
+			}
+			scope:backup_contestant = {
+				if = {
+					limit = { NOT = { has_trait = tourney_participant } }
+					add_trait = tourney_participant
+				}
+				if = {
+					limit = {
+						NOR = {
+							has_trait_xp = {
+								trait = tourney_participant
+								track = foot
+								value >= 30
+							}
+							has_trait_xp = {
+								trait = tourney_participant
+								track = bow
+								value >= 30
+							}
+							has_trait_xp = {
+								trait = tourney_participant
+								track = horse
+								value >= 30
+							}
+							has_trait_xp = {
+								trait = tourney_participant
+								track = wit
+								value >= 30
+							}
+						}
+					}
+					add_trait_xp = {
+						trait = tourney_participant
+						track = bow
+						value = 30
+					}
+				}
+				add_to_activity = scope:activity
+			}
+		}
+		else_if = {
+			limit = { has_current_phase = tournament_phase_board_game }
+			create_character = {
+				template = tournament_board_game_character
+				location = scope:activity.activity_location
+				faith = scope:attending_faith
+				culture = scope:attending_culture
+				dynasty = none
+				save_scope_as = backup_contestant
+			}
+			scope:backup_contestant = {
+				if = {
+					limit = { NOT = { has_trait = tourney_participant } }
+					add_trait = tourney_participant
+				}
+				if = {
+					limit = {
+						NOR = {
+							has_trait_xp = {
+								trait = tourney_participant
+								track = foot
+								value >= 30
+							}
+							has_trait_xp = {
+								trait = tourney_participant
+								track = bow
+								value >= 30
+							}
+							has_trait_xp = {
+								trait = tourney_participant
+								track = horse
+								value >= 30
+							}
+							has_trait_xp = {
+								trait = tourney_participant
+								track = wit
+								value >= 30
+							}
+						}
+					}
+					add_trait_xp = {
+						trait = tourney_participant
+						track = bow
+						value = 30
+					}
+				}
+				add_to_activity = scope:activity
+			}
+		}
+		else_if = {
+			limit = { has_current_phase = tournament_phase_wrestling }
+			create_character = {
+				template = tournament_pugilism_character
+				location = scope:activity.activity_location
+				faith = scope:attending_faith
+				culture = scope:attending_culture
+				dynasty = none
+				save_scope_as = backup_contestant
+			}
+			scope:backup_contestant = {
+				if = {
+					limit = { NOT = { has_trait = tourney_participant } }
+					add_trait = tourney_participant
+				}
+				if = {
+					limit = {
+						NOR = {
+							has_trait_xp = {
+								trait = tourney_participant
+								track = foot
+								value >= 30
+							}
+							has_trait_xp = {
+								trait = tourney_participant
+								track = bow
+								value >= 30
+							}
+							has_trait_xp = {
+								trait = tourney_participant
+								track = horse
+								value >= 30
+							}
+							has_trait_xp = {
+								trait = tourney_participant
+								track = wit
+								value >= 30
+							}
+						}
+					}
+					add_trait_xp = {
+						trait = tourney_participant
+						track = bow
+						value = 30
+					}
+				}
+				add_to_activity = scope:activity
+			}
+		}
+		else = {
+			create_character = {
+				template = tournament_foot_character
+				location = scope:activity.activity_location
+				faith = scope:attending_faith
+				culture = scope:attending_culture
+				dynasty = none
+				save_scope_as = backup_contestant
+			}
+			scope:backup_contestant = {
+				if = {
+					limit = { NOT = { has_trait = tourney_participant } }
+					add_trait = tourney_participant
+				}
+				if = {
+					limit = {
+						NOR = {
+							has_trait_xp = {
+								trait = tourney_participant
+								track = foot
+								value >= 30
+							}
+							has_trait_xp = {
+								trait = tourney_participant
+								track = bow
+								value >= 30
+							}
+							has_trait_xp = {
+								trait = tourney_participant
+								track = horse
+								value >= 30
+							}
+							has_trait_xp = {
+								trait = tourney_participant
+								track = wit
+								value >= 30
+							}
+						}
+					}
+					add_trait_xp = {
+						trait = tourney_participant
+						track = bow
+						value = 30
+					}
+				}
+				add_to_activity = scope:activity
+			}
+		}
+	}
+}
+
+tournament_mysterious_stranger_effect = {
+	random_attending_character = {
+		culture = { save_scope_as = attending_culture }
+		faith = { save_scope_as = attending_faith }
+	}
+	scope:attending_culture = {
+		random_culture_county = {
+			faith = { save_scope_as = attending_faith }
+			random_direct_de_jure_vassal_title = { save_scope_as = attending_barony }
+		}
+	}
+	create_character = {
+		template = tournament_$SKILL$_character
+		location = scope:activity.activity_location
+		faith = scope:attending_faith
+		culture = scope:attending_culture
+		dynasty = none
+		save_scope_as = mysterious_stranger
+	}
+	scope:mysterious_stranger = {
+		if = {
+			limit = { exists = scope:attending_barony }
+			set_variable = {
+				name = mysterious_stranger_origin
+				value = scope:attending_barony
+			}
+		}
+		set_variable = {
+			name = contest_aptitude
+			value = contest_$SKILL$_aptitude_value
+		}
+	}
+	if = {
+		limit = {
+			exists = scope:activity
+			scope:mysterious_stranger = { can_join_activity = scope:activity }
+		}
+		scope:mysterious_stranger = { add_to_activity = scope:activity }
+		add_activity_log_entry = {
+		key = contest_mysterious_stranger_log
+		tags = { contestant }
+		score = 25
+		character = scope:mysterious_stranger
+
+		# Effect
+		show_as_tooltip = {
+			scope:mysterious_stranger = { add_to_activity = scope:activity }
+		}
+	}
+		add_to_guest_subset = {
+			name = qualified
+			target = scope:mysterious_stranger
+			phase = tournament_phase_$CONTEST$
+		}
+		set_variable = mysterious_stranger_appeared
+	}
+}

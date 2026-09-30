@@ -1,0 +1,83 @@
+﻿agot_merchant_destroy_artifacts_effect = {
+	# Destroy 2 existing artifacts, then continue destroying
+	# until their number is at most 12
+	set_local_variable = { name = count value = 0 }
+	while = {
+		limit = {
+			any_character_artifact = { agot_artifact_can_be_destroyed_trigger = yes }
+			OR = {
+				local_var:count < 2
+				any_character_artifact = {
+					agot_artifact_can_be_destroyed_trigger = yes
+					count > 12
+				}
+			}
+		}
+
+		# Select a random artifact to destroy
+		random_character_artifact = {
+			limit = { agot_artifact_can_be_destroyed_trigger = yes }
+			weight = {
+				base = 1
+				# More reluctant to destroy higher rarity artifacts
+				modifier = {
+					add = {
+						value = 5
+						subtract = artifact_rarity
+					}
+				}
+				# More eager to destroy certain artifact types
+				modifier = {
+					OR = {
+						artifact_type = animal_hide
+						artifact_type = animal_hide_big
+						artifact_type = miscellaneous
+					}
+					add = 1
+				}
+				# More relucant to destroy unique artifacts
+				modifier = {
+					is_unique = yes
+					factor = 0.5
+				}
+				# More eager to destroy lower durability artifacts
+				modifier = {
+					factor = {
+						value = 1
+						divide = at_artifact_durability_multiplier
+					}
+				}
+			}
+			save_scope_as = destroyed_artifact
+		}
+
+		if = {
+			limit = {
+				exists = scope:destroyed_artifact
+			}
+
+			# Redeem its price
+			save_scope_value_as = {
+				name = artifact_price
+				value = scope:destroyed_artifact.at_artifact_base_price_value
+			}
+			add_gold = scope:artifact_price
+
+			# Trigger on_action
+			scope:destroyed_artifact = {
+				trigger_event = {
+					on_action = agot_on_artifact_destroyed_by_merchant
+				}
+			}
+
+			# Actually destroy the artifact
+			destroy_artifact = scope:destroyed_artifact
+
+			change_local_variable = { name = count add = 1 }
+		}
+
+	}
+	remove_local_variable = count
+
+	agot_get_market_artifacts_effect = yes
+}

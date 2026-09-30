@@ -1,12 +1,17 @@
 ﻿namespace = gr_obituary
 
 
+# gr_obituary.1 removed in v15.4.3 - on_action now triggers gr_obituary.10 directly
+# ================================================
+# FULL REMEMBRANCE - The Chronicle
+# ================================================
 gr_obituary.10 = {
 	type = character_event
 	title = gr_remembrance_title
 
 	immediate = {
 
+		# AGOT SUBMOD: Override chronicler_type to flag:maester if chronicler has maester trait
 		if = {
 			limit = {
 				has_variable = gr_chronicler
@@ -16,15 +21,20 @@ gr_obituary.10 = {
 		}
 
 
+		# Save heir (ROOT) as explicit scope for localization
 		save_scope_as = heir_scope
 
 
+		# Store heir as variable for localization (proven Var().Char pattern)
 		set_variable = { name = gr_heir_char value = root }
 
 
+		# Store faith for deity button localization
 		set_variable = { name = gr_heir_faith value = root.faith }
 
 
+		# Realm consolidation detection: heir ended up at higher tier
+		# than dead ruler (partition created a title on succession)
 		set_variable = { name = gr_heir_tier value = root.primary_title.tier }
 		if = {
 			limit = {
@@ -38,6 +48,7 @@ gr_obituary.10 = {
 		remove_variable = gr_heir_tier
 
 
+		# Save scopes for portrait rendering
 		if = {
 			limit = { has_variable = gr_predecessor }
 			var:gr_predecessor = { save_scope_as = portrait_predecessor }
@@ -48,6 +59,13 @@ gr_obituary.10 = {
 		}
 
 
+		# Random seed for text-variant selection -- one uniform roll (audit M12).
+		#
+		# Only rolled if absent. Base gr_on_actions.txt Section A rolls it during
+		# on_death, before Section Q copies scope:heir's vars onto the chronicle
+		# page artifact. Re-rolling here would overwrite the value the page
+		# recorded, and replay would show different text than the death popup.
+		# The fallback roll covers saves where a death predates that fix.
 		if = {
 			limit = { NOT = { has_variable = gr_random_seed } }
 			random_list = {
@@ -60,17 +78,24 @@ gr_obituary.10 = {
 			}
 		}
 
+		# Safety defaults for variables that may not be set
 		if = { limit = { NOT = { has_variable = gr_dread } } set_variable = { name = gr_dread value = 0 } }
 		if = { limit = { NOT = { has_variable = gr_gold } } set_variable = { name = gr_gold value = 0 } }
 		if = { limit = { NOT = { has_variable = gr_tier } } set_variable = { name = gr_tier value = 0 } }
 
 
+		# ================================================
+		# AGOT SUBMOD: Detect dead char's traits and copy war vars onto heir (ROOT)
+		# Only runs for real deaths (var:gr_predecessor != root).
+		# Debug tests set AGOT vars directly on root before triggering gr_obituary.10.
+		# ================================================
 		if = {
 			limit = {
 				has_variable = gr_predecessor
 				NOT = { var:gr_predecessor ?= root }
 			}
 
+			# --- Dragon traits ---
 			if = { limit = { var:gr_predecessor = { has_trait = dragonrider } }
 				set_variable = { name = gr_agot_dragonrider value = yes } }
 			if = { limit = { var:gr_predecessor = { has_trait = dragonless_dragonrider } }
@@ -80,6 +105,7 @@ gr_obituary.10 = {
 			if = { limit = { var:gr_predecessor = { has_trait = dragonslayer } }
 				set_variable = { name = gr_agot_dragonslayer value = yes } }
 
+			# --- Sworn service ---
 			if = { limit = { var:gr_predecessor = { has_trait = kingsguard } }
 				set_variable = { name = gr_agot_kingsguard value = yes } }
 			if = { limit = { var:gr_predecessor = { has_trait = nightswatch } }
@@ -94,6 +120,7 @@ gr_obituary.10 = {
 			if = { limit = { var:gr_predecessor = { has_trait = deserter } }
 				set_variable = { name = gr_agot_deserter value = yes } }
 
+			# --- Knighthood ---
 			if = { limit = { var:gr_predecessor = { has_trait = knight } }
 				set_variable = { name = gr_agot_knight value = yes } }
 			if = { limit = { var:gr_predecessor = { has_trait = squire } }
@@ -101,6 +128,7 @@ gr_obituary.10 = {
 			if = { limit = { var:gr_predecessor = { has_trait = stripped_knight } }
 				set_variable = { name = gr_agot_stripped_knight value = yes } }
 
+			# --- Citadel ---
 			if = { limit = { var:gr_predecessor = { has_trait = archmaester } }
 				set_variable = { name = gr_agot_maester value = flag:archmaester } }
 			else_if = { limit = { var:gr_predecessor = { has_trait = disgraced_maester } }
@@ -109,6 +137,8 @@ gr_obituary.10 = {
 				set_variable = { name = gr_agot_maester value = flag:maester } }
 
 
+			# --- Religious roles ---
+			# high_septon trait removed upstream; most_devout_member now covers the top tier
 			if = { limit = { var:gr_predecessor = { has_trait = most_devout_member } }
 				set_variable = { name = gr_agot_religious_role value = flag:most_devout } }
 			else_if = { limit = { var:gr_predecessor = { has_trait = septon } }
@@ -122,6 +152,7 @@ gr_obituary.10 = {
 			else_if = { limit = { var:gr_predecessor = { has_trait = silent_sister } }
 				set_variable = { name = gr_agot_religious_role value = flag:silent_sister } }
 
+			# --- Conditions ---
 			if = { limit = { var:gr_predecessor = { has_trait = greyscale } }
 				set_variable = { name = gr_agot_greyscale value = yes } }
 			if = { limit = { var:gr_predecessor = { has_trait = burned } }
@@ -133,11 +164,13 @@ gr_obituary.10 = {
 			if = { limit = { var:gr_predecessor = { has_trait = mute } }
 				set_variable = { name = gr_agot_mute value = yes } }
 
+			# --- Mystical ---
 			if = { limit = { var:gr_predecessor = { has_trait = dragon_dreams } }
 				set_variable = { name = gr_agot_dragon_dreams value = yes } }
 			if = { limit = { var:gr_predecessor = { has_trait = greensight } }
 				set_variable = { name = gr_agot_greensight value = yes } }
 
+			# --- Personality ---
 			if = { limit = { var:gr_predecessor = { has_trait = authoritative } }
 				set_variable = { name = gr_agot_authoritative value = yes } }
 			if = { limit = { var:gr_predecessor = { has_trait = rude } }
@@ -147,6 +180,7 @@ gr_obituary.10 = {
 			if = { limit = { var:gr_predecessor = { has_trait = uncouth } }
 				set_variable = { name = gr_agot_uncouth value = yes } }
 
+			# --- Social / reputation ---
 			if = { limit = { var:gr_predecessor = { has_trait = paramour } }
 				set_variable = { name = gr_agot_paramour value = yes } }
 			if = { limit = { var:gr_predecessor = { has_trait = spider } }
@@ -158,6 +192,7 @@ gr_obituary.10 = {
 			if = { limit = { var:gr_predecessor = { has_trait = fire_obsessed } }
 				set_variable = { name = gr_agot_fire_obsessed value = yes } }
 
+			# --- Faith detection ---
 			if = { limit = { var:gr_predecessor = { faith = { religion = religion:the_seven_religion } } }
 				set_variable = { name = gr_agot_faith value = flag:seven } }
 			else_if = { limit = { var:gr_predecessor = { faith = { religion = religion:the_pact_religion } } }
@@ -203,6 +238,7 @@ gr_obituary.10 = {
 			else_if = { limit = { var:gr_predecessor = { faith = { religion = religion:the_churches_religion } } }
 				set_variable = { name = gr_agot_faith value = flag:eldritch_faith } }
 
+			# --- Heritage detection ---
 			if = { limit = { var:gr_predecessor = { culture = { has_cultural_pillar = heritage_andal } } }
 				set_variable = { name = gr_agot_heritage value = flag:andal } }
 			else_if = { limit = { var:gr_predecessor = { culture = { has_cultural_pillar = heritage_first_man } } }
@@ -248,43 +284,7 @@ gr_obituary.10 = {
 			else_if = { limit = { var:gr_predecessor = { culture = { has_cultural_pillar = heritage_mennight } } }
 				set_variable = { name = gr_agot_heritage value = flag:mennight } }
 
-			if = { limit = { var:gr_predecessor = { has_variable = gr_agot_war_reyne } }
-				set_variable = { name = gr_agot_war_reyne value = var:gr_predecessor.var:gr_agot_war_reyne } }
-			if = { limit = { var:gr_predecessor = { has_variable = gr_agot_war_blackfyre } }
-				set_variable = { name = gr_agot_war_blackfyre value = var:gr_predecessor.var:gr_agot_war_blackfyre } }
-			if = { limit = { var:gr_predecessor = { has_variable = gr_agot_war_ninepenny } }
-				set_variable = { name = gr_agot_war_ninepenny value = var:gr_predecessor.var:gr_agot_war_ninepenny } }
-			if = { limit = { var:gr_predecessor = { has_variable = gr_agot_war_faegon } }
-				set_variable = { name = gr_agot_war_faegon value = var:gr_predecessor.var:gr_agot_war_faegon } }
-			if = { limit = { var:gr_predecessor = { has_variable = gr_agot_war_daemon } }
-				set_variable = { name = gr_agot_war_daemon value = var:gr_predecessor.var:gr_agot_war_daemon } }
-			if = { limit = { var:gr_predecessor = { has_variable = gr_agot_war_duskendale } }
-				set_variable = { name = gr_agot_war_duskendale value = var:gr_predecessor.var:gr_agot_war_duskendale } }
-			if = { limit = { var:gr_predecessor = { has_variable = gr_agot_war_dragon } }
-				set_variable = { name = gr_agot_war_dragon value = var:gr_predecessor.var:gr_agot_war_dragon } }
-			if = { limit = { var:gr_predecessor = { has_variable = gr_agot_war_dragon_tier } }
-				set_variable = { name = gr_agot_war_dragon_tier value = var:gr_predecessor.var:gr_agot_war_dragon_tier } }
-			if = { limit = { var:gr_predecessor = { has_variable = gr_agot_war_ranging } }
-				set_variable = { name = gr_agot_war_ranging value = var:gr_predecessor.var:gr_agot_war_ranging } }
-			if = { limit = { var:gr_predecessor = { has_variable = gr_agot_war_wall_reclaim } }
-				set_variable = { name = gr_agot_war_wall_reclaim value = var:gr_predecessor.var:gr_agot_war_wall_reclaim } }
-			if = { limit = { var:gr_predecessor = { has_variable = gr_agot_war_rebellion } }
-				set_variable = { name = gr_agot_war_rebellion value = var:gr_predecessor.var:gr_agot_war_rebellion } }
-			if = { limit = { var:gr_predecessor = { has_variable = gr_agot_war_succession } }
-				set_variable = { name = gr_agot_war_succession value = var:gr_predecessor.var:gr_agot_war_succession } }
-			if = { limit = { var:gr_predecessor = { has_variable = gr_agot_war_independence } }
-				set_variable = { name = gr_agot_war_independence value = var:gr_predecessor.var:gr_agot_war_independence } }
-			if = { limit = { var:gr_predecessor = { has_variable = gr_agot_war_pirate } }
-				set_variable = { name = gr_agot_war_pirate value = var:gr_predecessor.var:gr_agot_war_pirate } }
-			if = { limit = { var:gr_predecessor = { has_variable = gr_agot_war_slavery } }
-				set_variable = { name = gr_agot_war_slavery value = var:gr_predecessor.var:gr_agot_war_slavery } }
-			if = { limit = { var:gr_predecessor = { has_variable = gr_agot_war_eradicate } }
-				set_variable = { name = gr_agot_war_eradicate value = var:gr_predecessor.var:gr_agot_war_eradicate } }
-
-			if = { limit = { var:gr_predecessor = { has_variable = gr_agot_govt_old } }
-				set_variable = { name = gr_agot_govt_old value = var:gr_predecessor.var:gr_agot_govt_old }
-				set_variable = { name = gr_agot_govt_new value = var:gr_predecessor.var:gr_agot_govt_new } }
-
+			# --- Additional physical conditions ---
 			if = { limit = { var:gr_predecessor = { has_trait = half_blind } }
 				set_variable = { name = gr_agot_half_blind value = yes } }
 			if = { limit = { var:gr_predecessor = { has_trait = the_mark } }
@@ -293,56 +293,25 @@ gr_obituary.10 = {
 				set_variable = { name = gr_agot_shivers value = yes } }
 			if = { limit = { var:gr_predecessor = { has_trait = scurvy } }
 				set_variable = { name = gr_agot_scurvy value = yes } }
-
-			if = { limit = { var:gr_predecessor = { has_character_flag = final_default } }
-				set_variable = { name = gr_agot_bank_defaulted value = yes } }
-			if = {
-				limit = {
-					var:gr_predecessor = {
-						has_variable = IB_Shares
-						var:IB_Shares > 0
-					}
-				}
-				set_variable = { name = gr_agot_bank_ib_shareholder value = yes }
-			}
-			if = {
-				limit = {
-					OR = {
-						var:gr_predecessor = { has_variable = bank1_Shares var:bank1_Shares > 0 }
-						var:gr_predecessor = { has_variable = bank2_Shares var:bank2_Shares > 0 }
-						var:gr_predecessor = { has_variable = bank3_Shares var:bank3_Shares > 0 }
-					}
-				}
-				set_variable = { name = gr_agot_bank_founder value = yes }
-			}
-			if = { limit = { var:gr_predecessor = { has_character_flag = has_a_loan_flag } }
-				set_variable = { name = gr_agot_bank_died_in_debt value = yes } }
-
-			if = {
-				limit = { var:gr_predecessor = { has_title = title:h_the_iron_throne } }
-				set_variable = { name = gr_agot_iron_throne value = yes }
-				set_variable = { name = gr_agot_sub_kingdom_count value = 0 }
-				var:gr_predecessor = {
-					every_held_title = {
-						limit = {
-							tier = kingdom
-							NOT = { this = title:h_the_iron_throne }
-						}
-						root = { change_variable = { name = gr_agot_sub_kingdom_count add = 1 } }
-					}
-				}
-			}
 		}
 
 
+		# Populate the *_disp/*_era calendar variables that AGOT's replace loc
+		# reads (regen_submod_year_loc.py). The book replay gets these via the
+		# watermark effect; the DEATH POPUP renders the same replaced loc and
+		# must convert too, or every year in it renders blank.
 		gr_submod_book_years_effect = yes
 	}
 
 	desc = {
 
 
+		# ================================================
+		# 1. OPENING - Tier-based epitaph (with multi-title support)
+		# ================================================
 		first_valid = {
 
+			# Iron Throne - full royal style, sub-kingdom count in words
 			triggered_desc = {
 				trigger = { has_variable = gr_agot_iron_throne var:gr_agot_sub_kingdom_count >= 7 }
 				desc = gr_agot_opening_iron_throne_seven
@@ -376,61 +345,73 @@ gr_obituary.10 = {
 				desc = gr_agot_opening_iron_throne_seven
 			}
 
+			# Emperor with 3 titles
 			triggered_desc = {
 				trigger = { var:gr_tier = 5 var:gr_title_count >= 3 }
 				desc = gr_opening_emperor_3t
 			}
 
+			# Emperor with 2 titles
 			triggered_desc = {
 				trigger = { var:gr_tier = 5 var:gr_title_count = 2 }
 				desc = gr_opening_emperor_2t
 			}
 
+			# Emperor with 1 title
 			triggered_desc = {
 				trigger = { var:gr_tier = 5 }
 				desc = gr_opening_emperor
 			}
 
+			# King with 3 titles
 			triggered_desc = {
 				trigger = { var:gr_tier = 4 var:gr_title_count >= 3 }
 				desc = gr_opening_king_3t
 			}
 
+			# King with 2 titles
 			triggered_desc = {
 				trigger = { var:gr_tier = 4 var:gr_title_count = 2 }
 				desc = gr_opening_king_2t
 			}
 
+			# King with 1 title
 			triggered_desc = {
 				trigger = { var:gr_tier = 4 }
 				desc = gr_opening_king
 			}
 
+			# Duke with 3 titles
 			triggered_desc = {
 				trigger = { var:gr_tier = 3 var:gr_title_count >= 3 }
 				desc = gr_opening_duke_3t
 			}
 
+			# Duke with 2 titles
 			triggered_desc = {
 				trigger = { var:gr_tier = 3 var:gr_title_count = 2 }
 				desc = gr_opening_duke_2t
 			}
 
+			# Duke with 1 title
 			triggered_desc = {
 				trigger = { var:gr_tier = 3 }
 				desc = gr_opening_duke
 			}
 
+			# Count with 3 titles
 			triggered_desc = {
 				trigger = { var:gr_tier = 2 var:gr_title_count >= 3 }
 				desc = gr_opening_count_3t
 			}
 
+			# Count with 2 titles
 			triggered_desc = {
 				trigger = { var:gr_tier = 2 var:gr_title_count = 2 }
 				desc = gr_opening_count_2t
 			}
 
+			# Count with 1 title
 			triggered_desc = {
 				trigger = { var:gr_tier = 2 }
 				desc = gr_opening_count
@@ -439,6 +420,10 @@ gr_obituary.10 = {
 		}
 
 
+		# ================================================
+		# 1b. ADVENTURER ORIGIN (settled adventurers, no specific conquest)
+		# Only shows if adventurer trait but no Varangian or Adventure conquest
+		# ================================================
 		triggered_desc = {
 			trigger = {
 				has_variable = gr_fame_vetadventurer
@@ -469,9 +454,18 @@ gr_obituary.10 = {
 		}
 
 
+		# ================================================
+		# 1c. PREAMBLE - Death, Age, Parents, Chronicler Address
+		# ================================================
+		# Death and age
+		# AGOT SUBMOD: faith-aware death lines fire first (faith+cause for big five,
+		# faith-only fallback for all faiths), then vanilla cause-only lines as final fallback.
 		first_valid = {
 
 
+			# ------------------------------------------------
+			# THE SEVEN - faith + cause
+			# ------------------------------------------------
 			triggered_desc = {
 				trigger = { has_variable = gr_agot_faith var:gr_agot_faith = flag:seven var:gr_death_reason = flag:old_age }
 				desc = gr_agot_death_seven_old_age
@@ -502,6 +496,9 @@ gr_obituary.10 = {
 			}
 
 
+			# ------------------------------------------------
+			# OLD GODS - faith + cause
+			# ------------------------------------------------
 			triggered_desc = {
 				trigger = { has_variable = gr_agot_faith var:gr_agot_faith = flag:old_gods var:gr_death_reason = flag:old_age }
 				desc = gr_agot_death_old_gods_old_age
@@ -532,6 +529,9 @@ gr_obituary.10 = {
 			}
 
 
+			# ------------------------------------------------
+			# DROWNED GOD - faith + cause
+			# ------------------------------------------------
 			triggered_desc = {
 				trigger = { has_variable = gr_agot_faith var:gr_agot_faith = flag:drowned var:gr_death_reason = flag:old_age }
 				desc = gr_agot_death_drowned_old_age
@@ -562,6 +562,9 @@ gr_obituary.10 = {
 			}
 
 
+			# ------------------------------------------------
+			# R'HLLOR - faith + cause
+			# ------------------------------------------------
 			triggered_desc = {
 				trigger = { has_variable = gr_agot_faith var:gr_agot_faith = flag:rhllor var:gr_death_reason = flag:old_age }
 				desc = gr_agot_death_rhllor_old_age
@@ -592,6 +595,9 @@ gr_obituary.10 = {
 			}
 
 
+			# ------------------------------------------------
+			# VALYRIAN FAITH - faith + cause
+			# ------------------------------------------------
 			triggered_desc = {
 				trigger = { has_variable = gr_agot_faith var:gr_agot_faith = flag:valyrian_faith var:gr_death_reason = flag:old_age }
 				desc = gr_agot_death_valyrian_old_age
@@ -622,6 +628,9 @@ gr_obituary.10 = {
 			}
 
 
+			# ------------------------------------------------
+			# REMAINING FAITHS - faith-only fallbacks
+			# ------------------------------------------------
 			triggered_desc = {
 				trigger = { has_variable = gr_agot_faith var:gr_agot_faith = flag:dothraki_faith }
 				desc = gr_agot_death_dothraki
@@ -692,6 +701,9 @@ gr_obituary.10 = {
 			}
 
 
+			# ------------------------------------------------
+			# VANILLA FALLBACKS - cause only, no faith match
+			# ------------------------------------------------
 			triggered_desc = {
 				trigger = { var:gr_death_reason = flag:old_age }
 				desc = gr_preamble_death_old_age
@@ -723,8 +735,10 @@ gr_obituary.10 = {
 			desc = gr_preamble_death_unknown
 		}
 
+		# Parents (with starter ruler detection for vague reign length)
 		first_valid = {
 
+			# Starter ruler - vague reign length
 			triggered_desc = {
 				trigger = { has_variable = gr_is_starter has_variable = gr_father has_variable = gr_mother }
 				desc = gr_preamble_parents_both_starter
@@ -742,6 +756,7 @@ gr_obituary.10 = {
 				desc = gr_preamble_parents_unknown_starter
 			}
 
+			# Normal rulers - exact reign length
 			triggered_desc = {
 				trigger = { has_variable = gr_father has_variable = gr_mother }
 				desc = gr_preamble_parents_both
@@ -757,6 +772,7 @@ gr_obituary.10 = {
 			desc = gr_preamble_parents_unknown
 		}
 
+		# Chronicler address
 		first_valid = {
 			triggered_desc = {
 				trigger = { var:gr_opinion >= 25 }
@@ -770,6 +786,10 @@ gr_obituary.10 = {
 		}
 
 
+		# ================================================
+		# 1d. FAITH & HERITAGE BRIEF (preamble mention)
+		# ================================================
+		# Faith brief - one neutral sentence appended after chronicler address
 		first_valid = {
 			triggered_desc = {
 				trigger = { has_variable = gr_agot_faith var:gr_agot_faith = flag:seven }
@@ -861,6 +881,7 @@ gr_obituary.10 = {
 			}
 		}
 
+		# Heritage brief - one neutral sentence appended after faith brief
 		first_valid = {
 			triggered_desc = {
 				trigger = { has_variable = gr_agot_heritage var:gr_agot_heritage = flag:andal }
@@ -953,6 +974,9 @@ gr_obituary.10 = {
 		}
 
 
+		# ================================================
+		# 2. VARANGIAN ADVENTURE (Norse-specific, single)
+		# ================================================
 		triggered_desc = {
 			trigger = {
 				has_variable = gr_memory_varangian
@@ -980,6 +1004,9 @@ gr_obituary.10 = {
 		}
 
 
+		# ================================================
+		# 2b. VARANGIAN ADVENTURE (multiple)
+		# ================================================
 		triggered_desc = {
 			trigger = {
 				has_variable = gr_memory_varangian
@@ -1007,6 +1034,9 @@ gr_obituary.10 = {
 		}
 
 
+		# ================================================
+		# 2c. GENERIC ADVENTURE — empire tier (single)
+		# ================================================
 		triggered_desc = {
 			trigger = {
 				has_variable = gr_memory_adventure
@@ -1037,6 +1067,9 @@ gr_obituary.10 = {
 		}
 
 
+		# ================================================
+		# 2c. GENERIC ADVENTURE — kingdom tier (single)
+		# ================================================
 		triggered_desc = {
 			trigger = {
 				has_variable = gr_memory_adventure
@@ -1067,6 +1100,9 @@ gr_obituary.10 = {
 		}
 
 
+		# ================================================
+		# 2c. GENERIC ADVENTURE — duchy/county tier (single)
+		# ================================================
 		triggered_desc = {
 			trigger = {
 				has_variable = gr_memory_adventure
@@ -1106,6 +1142,9 @@ gr_obituary.10 = {
 		}
 
 
+		# ================================================
+		# 2d. GENERIC ADVENTURE (multiple)
+		# ================================================
 		triggered_desc = {
 			trigger = {
 				has_variable = gr_memory_adventure
@@ -1133,6 +1172,11 @@ gr_obituary.10 = {
 		}
 
 
+		# ================================================
+		# 2e. DUCHY/ESTATE CREATION (only if no kingdom was created)
+		# Admin governments use "estate" terminology
+		# ================================================
+		# Admin government — estate
 		triggered_desc = {
 			trigger = {
 				has_variable = gr_memory_created_duchy
@@ -1162,6 +1206,7 @@ gr_obituary.10 = {
 			desc = gr_estate_creation_neg
 		}
 
+		# Non-admin — duchy
 		triggered_desc = {
 			trigger = {
 				has_variable = gr_memory_created_duchy
@@ -1192,6 +1237,9 @@ gr_obituary.10 = {
 		}
 
 
+		# ================================================
+		# 3. KINGDOM CREATION (kingdoms only)
+		# ================================================
 		triggered_desc = {
 			trigger = {
 				has_variable = gr_memory_created_kingdom
@@ -1219,6 +1267,9 @@ gr_obituary.10 = {
 		}
 
 
+		# ================================================
+		# 3b. CUSTOM EMPIRE FORGED
+		# ================================================
 		triggered_desc = {
 			trigger = {
 				has_variable = gr_memory_created_empire
@@ -1246,6 +1297,9 @@ gr_obituary.10 = {
 		}
 
 
+		# ================================================
+		# 3c. HISTORICAL EMPIRE FORMED
+		# ================================================
 		triggered_desc = {
 			trigger = {
 				has_variable = gr_memory_created_empire
@@ -1273,6 +1327,9 @@ gr_obituary.10 = {
 		}
 
 
+		# ================================================
+		# 3d. ROMAN EMPIRE RESTORED
+		# ================================================
 		triggered_desc = {
 			trigger = {
 				has_variable = gr_memory_created_empire
@@ -1300,6 +1357,9 @@ gr_obituary.10 = {
 		}
 
 
+		# ================================================
+		# 3e. HEGEMONY CLAIMED
+		# ================================================
 		triggered_desc = {
 			trigger = {
 				has_variable = gr_memory_claimed_hegemony
@@ -1327,6 +1387,9 @@ gr_obituary.10 = {
 		}
 
 
+		# ================================================
+		# 3f. EMPIRE USURPED
+		# ================================================
 		triggered_desc = {
 			trigger = {
 				has_variable = gr_memory_usurped_empire
@@ -1351,6 +1414,9 @@ gr_obituary.10 = {
 		}
 
 
+		# ================================================
+		# 3g. HEGEMONY USURPED
+		# ================================================
 		triggered_desc = {
 			trigger = {
 				has_variable = gr_memory_usurped_hegemony
@@ -1375,6 +1441,11 @@ gr_obituary.10 = {
 		}
 
 
+		# ================================================
+		# 4. CONQUEST (non-Varangian)
+		# Skip if adventure conquest already documented (avoids
+		# redundant minor conquest after major adventure narrative)
+		# ================================================
 		triggered_desc = {
 			trigger = {
 				has_variable = gr_memory_conquered_realm
@@ -1405,6 +1476,10 @@ gr_obituary.10 = {
 		}
 
 
+		# ================================================
+		# 4a. FACTION DEMANDS
+		# ================================================
+		# Title GAINED via faction demand (player was the claimant)
 		triggered_desc = {
 			trigger = {
 				has_variable = gr_memory_faction_gained_title
@@ -1421,6 +1496,7 @@ gr_obituary.10 = {
 		}
 
 
+		# Title LOST via faction demand (player was the deposed liege)
 		triggered_desc = {
 			trigger = {
 				has_variable = gr_memory_faction_lost_title
@@ -1437,6 +1513,10 @@ gr_obituary.10 = {
 		}
 
 
+		# ================================================
+		# 4b. SPECIAL ACHIEVEMENTS
+		# ================================================
+		# Dissolution of the Papacy
 		triggered_desc = {
 			trigger = {
 				has_variable = gr_fame_papacy_destroyed
@@ -1460,6 +1540,7 @@ gr_obituary.10 = {
 			desc = gr_papacy_neg
 		}
 
+		# Re-Establish the Theodosian Borders (Augustus)
 		triggered_desc = {
 			trigger = {
 				has_variable = gr_fame_augustus
@@ -1484,6 +1565,12 @@ gr_obituary.10 = {
 		}
 
 
+		# ================================================
+		# 4b. FOUNDATIONAL ACTS (Government, Faith, Culture, Capital)
+		# These are the realm-defining decisions of a reign.
+		# ================================================
+		# --- GOVERNMENT CHANGE ---
+		# Tribal to Feudal (positive)
 		triggered_desc = {
 			trigger = {
 				has_variable = gr_memory_govt_change
@@ -1503,6 +1590,7 @@ gr_obituary.10 = {
 			desc = gr_govt_tribal_to_feudal_neg
 		}
 
+		# Tribal to Clan
 		triggered_desc = {
 			trigger = {
 				has_variable = gr_memory_govt_change
@@ -1522,6 +1610,7 @@ gr_obituary.10 = {
 			desc = gr_govt_tribal_to_clan_neg
 		}
 
+		# Feudal to Administrative
 		triggered_desc = {
 			trigger = {
 				has_variable = gr_memory_govt_change
@@ -1541,6 +1630,7 @@ gr_obituary.10 = {
 			desc = gr_govt_feudal_to_admin_neg
 		}
 
+		# Clan to Feudal
 		triggered_desc = {
 			trigger = {
 				has_variable = gr_memory_govt_change
@@ -1560,6 +1650,7 @@ gr_obituary.10 = {
 			desc = gr_govt_clan_to_feudal_neg
 		}
 
+		# Clan to Administrative
 		triggered_desc = {
 			trigger = {
 				has_variable = gr_memory_govt_change
@@ -1579,6 +1670,7 @@ gr_obituary.10 = {
 			desc = gr_govt_clan_to_admin_neg
 		}
 
+		# Nomad to anything (settling)
 		triggered_desc = {
 			trigger = {
 				has_variable = gr_memory_govt_change
@@ -1596,6 +1688,7 @@ gr_obituary.10 = {
 			desc = gr_govt_nomad_settled_neg
 		}
 
+		# Generic fallback (any other government change)
 		triggered_desc = {
 			trigger = {
 				has_variable = gr_memory_govt_change
@@ -1629,6 +1722,7 @@ gr_obituary.10 = {
 			desc = gr_govt_generic_neg
 		}
 
+		# AGOT: Lord Paramount transitions
 		triggered_desc = {
 			trigger = {
 				has_variable = gr_agot_govt_old
@@ -1666,6 +1760,7 @@ gr_obituary.10 = {
 			desc = gr_agot_govt_lp_to_feudal_neg
 		}
 
+		# AGOT: Other meaningful transitions (republic, pirate)
 		triggered_desc = {
 			trigger = {
 				has_variable = gr_agot_govt_old
@@ -1691,6 +1786,7 @@ gr_obituary.10 = {
 		}
 
 
+		# --- FAITH CREATED (Reform) ---
 		triggered_desc = {
 			trigger = {
 				has_variable = gr_memory_faith_created
@@ -1718,6 +1814,7 @@ gr_obituary.10 = {
 		}
 
 
+		# --- FAITH CREATED (Divergent/Heresy) ---
 		triggered_desc = {
 			trigger = {
 				has_variable = gr_memory_faith_created
@@ -1745,6 +1842,7 @@ gr_obituary.10 = {
 		}
 
 
+		# --- FAITH CONVERSION (only if didn't also CREATE a faith) ---
 		triggered_desc = {
 			trigger = {
 				has_variable = gr_memory_faith_convert
@@ -1772,6 +1870,7 @@ gr_obituary.10 = {
 		}
 
 
+		# --- CULTURE CREATED (Hybrid) ---
 		triggered_desc = {
 			trigger = {
 				has_variable = gr_culture_old
@@ -1794,6 +1893,7 @@ gr_obituary.10 = {
 		}
 
 
+		# --- CULTURE CREATED (Divergent) ---
 		triggered_desc = {
 			trigger = {
 				has_variable = gr_culture_old
@@ -1813,6 +1913,7 @@ gr_obituary.10 = {
 		}
 
 
+		# --- CAPITAL MOVED ---
 		triggered_desc = {
 			trigger = {
 				has_variable = gr_memory_capital_moved
@@ -1829,6 +1930,7 @@ gr_obituary.10 = {
 		}
 
 
+		# ---- CROWN & REALM PARAGRAPH BREAK ----
 		triggered_desc = {
 			trigger = {
 				OR = {
@@ -1855,6 +1957,10 @@ gr_obituary.10 = {
 		}
 
 
+		# ================================================
+		# 4c. HOLDINGS & BUILDINGS
+		# ================================================
+		# Holdings (new settlements) - listed by name
 		first_valid = {
 			triggered_desc = {
 				trigger = { has_variable = gr_holding_count var:gr_holding_count >= 6 var:gr_opinion >= 0 }
@@ -1906,6 +2012,7 @@ gr_obituary.10 = {
 			}
 		}
 
+		# Buildings (upgrades within holdings)
 		first_valid = {
 			triggered_desc = {
 				trigger = { has_variable = gr_building_count var:gr_building_count >= 20 var:gr_opinion >= 0 }
@@ -1933,6 +2040,7 @@ gr_obituary.10 = {
 			}
 		}
 
+		# Capital development growth
 		first_valid = {
 			triggered_desc = {
 				trigger = { has_variable = gr_capital_dev_growth var:gr_capital_dev_growth >= 10 var:gr_opinion >= 0 }
@@ -1960,6 +2068,7 @@ gr_obituary.10 = {
 			}
 		}
 
+		# Realm tour
 		first_valid = {
 			triggered_desc = {
 				trigger = { has_variable = gr_tour_count var:gr_tour_count >= 3 var:gr_opinion >= 0 }
@@ -1979,6 +2088,7 @@ gr_obituary.10 = {
 			}
 		}
 
+		# Monthly income
 		first_valid = {
 			triggered_desc = {
 				trigger = { has_variable = gr_monthly_income var:gr_monthly_income >= 60 var:gr_opinion >= 0 }
@@ -2015,6 +2125,9 @@ gr_obituary.10 = {
 		}
 
 
+		# ================================================
+		# 4d. DIPLOMACY (Alliances, Friends, Weddings, Festivals, Coronation)
+		# ================================================
 		first_valid = {
 			triggered_desc = {
 				trigger = { has_variable = gr_ally_1 has_variable = gr_alliance_count var:gr_alliance_count >= 5 var:gr_opinion >= 0 }
@@ -2068,6 +2181,7 @@ gr_obituary.10 = {
 			}
 		}
 
+		# Grand Weddings
 		triggered_desc = {
 			trigger = { has_variable = gr_wedding_count var:gr_opinion >= 0 }
 			desc = gr_wedding_pos
@@ -2077,6 +2191,7 @@ gr_obituary.10 = {
 			desc = gr_wedding_neg
 		}
 
+		# Festivals
 		first_valid = {
 			triggered_desc = {
 				trigger = { has_variable = gr_festival_count var:gr_festival_count >= 3 var:gr_opinion >= 0 }
@@ -2096,6 +2211,7 @@ gr_obituary.10 = {
 			}
 		}
 
+		# Coronation
 		triggered_desc = {
 			trigger = { has_variable = gr_coronation_count var:gr_opinion >= 0 }
 			desc = gr_coronation_pos
@@ -2105,6 +2221,7 @@ gr_obituary.10 = {
 			desc = gr_coronation_neg
 		}
 
+		# Tournaments
 		first_valid = {
 			triggered_desc = {
 				trigger = { has_variable = gr_tournament_count var:gr_tournament_count >= 3 var:gr_opinion >= 0 }
@@ -2125,6 +2242,9 @@ gr_obituary.10 = {
 		}
 
 
+		# ================================================
+		# 4e. INTRIGUE (Murders, Kidnappings, Grand Rites)
+		# ================================================
 		first_valid = {
 			triggered_desc = {
 				trigger = { has_variable = gr_murder_count var:gr_murder_count >= 4 var:gr_opinion >= 0 }
@@ -2170,6 +2290,7 @@ gr_obituary.10 = {
 			}
 		}
 
+		# Executions
 	first_valid = {
 		triggered_desc = {
 			trigger = { has_variable = gr_execution_count var:gr_execution_count >= 6 var:gr_opinion >= 0 }
@@ -2197,6 +2318,7 @@ gr_obituary.10 = {
 		}
 	}
 
+	# Torture
 	first_valid = {
 		triggered_desc = {
 			trigger = { has_variable = gr_torture_count var:gr_torture_count >= 5 var:gr_opinion >= 0 }
@@ -2224,6 +2346,7 @@ gr_obituary.10 = {
 		}
 	}
 
+	# Grand Rites (witch rituals)
 		triggered_desc = {
 			trigger = { has_variable = gr_ritual_count var:gr_ritual_count >= 3 var:gr_opinion >= 0 }
 			desc = gr_ritual_many_pos
@@ -2241,6 +2364,7 @@ gr_obituary.10 = {
 			desc = gr_ritual_neg
 		}
 
+		# Hooks used (blackmail/leverage)
 		first_valid = {
 			triggered_desc = {
 				trigger = { has_variable = gr_hook_count var:gr_hook_count >= 5 var:gr_opinion >= 0 }
@@ -2269,6 +2393,9 @@ gr_obituary.10 = {
 		}
 
 
+		# ================================================
+		# 4f. LANGUAGES LEARNED
+		# ================================================
 		first_valid = {
 			triggered_desc = {
 				trigger = { has_variable = gr_language_count var:gr_language_count >= 4 var:gr_opinion >= 0 }
@@ -2297,6 +2424,10 @@ gr_obituary.10 = {
 		}
 
 
+		# ================================================
+		# 4g. ACTIVITIES (Debate, Expedition, Blót, Chariot, Inspection, Hike)
+		# ================================================
+		# Debates
 		first_valid = {
 			triggered_desc = {
 				trigger = { has_variable = gr_debate_count var:gr_debate_count >= 3 var:gr_opinion >= 0 }
@@ -2316,6 +2447,7 @@ gr_obituary.10 = {
 			}
 		}
 
+		# Monument Expeditions
 		first_valid = {
 			triggered_desc = {
 				trigger = { has_variable = gr_expedition_count var:gr_expedition_count >= 3 var:gr_opinion >= 0 }
@@ -2335,6 +2467,7 @@ gr_obituary.10 = {
 			}
 		}
 
+		# Blóts
 		first_valid = {
 			triggered_desc = {
 				trigger = { has_variable = gr_blot_count var:gr_blot_count >= 3 var:gr_opinion >= 0 }
@@ -2354,6 +2487,7 @@ gr_obituary.10 = {
 			}
 		}
 
+		# Chariot Races
 		first_valid = {
 			triggered_desc = {
 				trigger = { has_variable = gr_chariot_count var:gr_chariot_count >= 3 var:gr_opinion >= 0 }
@@ -2373,6 +2507,7 @@ gr_obituary.10 = {
 			}
 		}
 
+		# Inspections
 		first_valid = {
 			triggered_desc = {
 				trigger = { has_variable = gr_inspection_count var:gr_inspection_count >= 3 var:gr_opinion >= 0 }
@@ -2392,6 +2527,7 @@ gr_obituary.10 = {
 			}
 		}
 
+		# Hikes (wanderer flavor)
 		first_valid = {
 			triggered_desc = {
 				trigger = { has_variable = gr_hike_count var:gr_hike_count >= 3 var:gr_opinion >= 0 }
@@ -2412,6 +2548,7 @@ gr_obituary.10 = {
 		}
 
 
+		# Feasts
 		first_valid = {
 			triggered_desc = {
 				trigger = { has_variable = gr_feast_count var:gr_feast_count >= 3 var:gr_opinion >= 0 }
@@ -2431,6 +2568,7 @@ gr_obituary.10 = {
 			}
 		}
 
+		# Hunts
 		first_valid = {
 			triggered_desc = {
 				trigger = { has_variable = gr_hunt_count var:gr_hunt_count >= 3 var:gr_opinion >= 0 }
@@ -2450,6 +2588,7 @@ gr_obituary.10 = {
 			}
 		}
 
+		# Pilgrimages
 		first_valid = {
 			triggered_desc = {
 				trigger = { has_variable = gr_pilgrimage_count var:gr_pilgrimage_count >= 3 var:gr_opinion >= 0 }
@@ -2469,6 +2608,7 @@ gr_obituary.10 = {
 			}
 		}
 
+		# University
 		triggered_desc = {
 			trigger = { has_variable = gr_university_built var:gr_university_built >= 1 var:gr_opinion >= 0 }
 			desc = gr_university_pos
@@ -2479,6 +2619,7 @@ gr_obituary.10 = {
 		}
 
 
+		# ---- DEEDS & GOVERNANCE PARAGRAPH BREAK ----
 		triggered_desc = {
 			trigger = {
 				OR = {
@@ -2513,6 +2654,9 @@ gr_obituary.10 = {
 		}
 
 
+		# ================================================
+		# 5. BATTLES
+		# ================================================
 		triggered_desc = {
 			trigger = {
 				has_variable = gr_memory_led_troops
@@ -2615,6 +2759,12 @@ gr_obituary.10 = {
 		}
 
 
+		# ================================================
+		# 6. CHARACTER PORTRAIT - The Five Sentences
+		# ================================================
+		# ---- SENTENCE 1: IDENTITY (Education + Fame + Top Stat) ----
+		# Compound entries first (education + fame combos), then fallbacks
+		# --- Nomadic philosophy (active nomad vs settled) ---
 			triggered_desc = {
 				trigger = {
 					has_variable = gr_fame_nomad
@@ -2648,6 +2798,7 @@ gr_obituary.10 = {
 				desc = gr_s1_nomad_settled_neg
 			}
 
+			# --- Confucian education (overrides normal education) ---
 		first_valid = {
 			triggered_desc = {
 				trigger = {
@@ -2670,6 +2821,7 @@ gr_obituary.10 = {
 				desc = gr_s1_confucian_basic
 			}
 
+			# --- Governor (overrides normal education) ---
 			triggered_desc = {
 				trigger = {
 					has_variable = gr_fame_governor
@@ -2691,6 +2843,7 @@ gr_obituary.10 = {
 				desc = gr_s1_governor_basic
 			}
 
+			# --- Martial education + Berserker/Viking/Adventurer ---
 			triggered_desc = {
 				trigger = {
 					has_variable = gr_edu
@@ -2717,6 +2870,7 @@ gr_obituary.10 = {
 				desc = gr_s1_martial_high_viking
 			}
 
+			# --- Martial education standalone ---
 			triggered_desc = {
 				trigger = {
 					has_variable = gr_edu
@@ -2741,6 +2895,7 @@ gr_obituary.10 = {
 				desc = gr_s1_martial_basic
 			}
 
+			# --- Diplomacy education ---
 			triggered_desc = {
 				trigger = {
 					has_variable = gr_edu
@@ -2765,6 +2920,7 @@ gr_obituary.10 = {
 				desc = gr_s1_diplo_basic
 			}
 
+			# --- Stewardship education ---
 			triggered_desc = {
 				trigger = {
 					has_variable = gr_edu
@@ -2789,6 +2945,7 @@ gr_obituary.10 = {
 				desc = gr_s1_stew_basic
 			}
 
+			# --- Intrigue education ---
 			triggered_desc = {
 				trigger = {
 					has_variable = gr_edu
@@ -2813,6 +2970,7 @@ gr_obituary.10 = {
 				desc = gr_s1_intr_basic
 			}
 
+			# --- Learning education ---
 			triggered_desc = {
 				trigger = {
 					has_variable = gr_edu
@@ -2837,6 +2995,7 @@ gr_obituary.10 = {
 				desc = gr_s1_learn_basic
 			}
 
+			# --- Fame-only fallback (no education detected) ---
 			triggered_desc = {
 				trigger = { has_variable = gr_fame_viking }
 				desc = gr_s1_fame_viking
@@ -2854,6 +3013,7 @@ gr_obituary.10 = {
 				desc = gr_s1_fame_crusaderking
 			}
 
+			# --- Prestige-based fallback ---
 			triggered_desc = {
 				trigger = { var:gr_prestige_level >= 5 }
 				desc = gr_s1_prestige_high
@@ -2863,10 +3023,12 @@ gr_obituary.10 = {
 				desc = gr_s1_prestige_mid
 			}
 
+			# --- Ultimate fallback ---
 			desc = gr_s1_fallback
 		}
 
 
+		# ---- FAME ADDENDUM (shows alongside education when edu won S1) ----
 		triggered_desc = {
 			trigger = {
 				has_variable = gr_fame_berserker
@@ -2910,11 +3072,16 @@ gr_obituary.10 = {
 		}
 
 
+		# ---- SENTENCE 2: NATURE (Personality combos) ----
+		# ---- EDUCATION/CHARACTER PARAGRAPH BREAK ----
 		desc = gr_s1_para_break
 
 
+		# Opinion-biased opening with random variant selection
+		# Flattened: each triggered_desc combines opinion + seed in one trigger
 		first_valid = {
 
+			# --- Love (opinion >= 25) ---
 			triggered_desc = {
 				trigger = { var:gr_opinion >= 25 var:gr_random_seed >= 80 }
 				desc = gr_s2_open_love_5
@@ -2936,6 +3103,7 @@ gr_obituary.10 = {
 				desc = gr_s2_open_love_1
 			}
 
+			# --- Respect (opinion >= 0) ---
 			triggered_desc = {
 				trigger = { var:gr_opinion >= 0 var:gr_random_seed >= 80 }
 				desc = gr_s2_open_respect_5
@@ -2957,6 +3125,7 @@ gr_obituary.10 = {
 				desc = gr_s2_open_respect_1
 			}
 
+			# --- Neutral (opinion >= -25) ---
 			triggered_desc = {
 				trigger = { var:gr_opinion >= -25 var:gr_random_seed >= 80 }
 				desc = gr_s2_open_neutral_5
@@ -2978,6 +3147,7 @@ gr_obituary.10 = {
 				desc = gr_s2_open_neutral_1
 			}
 
+			# --- Hostile (fallback) ---
 			triggered_desc = {
 				trigger = { var:gr_random_seed >= 80 }
 				desc = gr_s2_open_hostile_5
@@ -2998,6 +3168,8 @@ gr_obituary.10 = {
 		}
 
 
+		# Personality fragments (same as v14.9 system)
+		# GROUP 1: Appetites
 		triggered_desc = {
 			trigger = { has_variable = gr_trait_lustful var:gr_opinion >= 0 }
 			desc = gr_frag_lustful_pos
@@ -3036,6 +3208,7 @@ gr_obituary.10 = {
 		}
 
 
+		# GROUP 2: Temperament
 		triggered_desc = {
 			trigger = { has_variable = gr_trait_wrathful var:gr_opinion >= 0 }
 			desc = gr_frag_wrathful_pos
@@ -3074,6 +3247,7 @@ gr_obituary.10 = {
 		}
 
 
+		# GROUP 3: Social
 		triggered_desc = {
 			trigger = { has_variable = gr_trait_shy }
 			desc = gr_frag_shy
@@ -3116,6 +3290,7 @@ gr_obituary.10 = {
 		}
 
 
+		# GROUP 4: Moral & Spiritual
 		triggered_desc = {
 			trigger = { has_variable = gr_trait_just }
 			desc = gr_frag_just
@@ -3170,6 +3345,7 @@ gr_obituary.10 = {
 		}
 
 
+		# GROUP 5: Drive
 		triggered_desc = {
 			trigger = { has_variable = gr_trait_ambitious }
 			desc = gr_frag_ambitious
@@ -3192,6 +3368,7 @@ gr_obituary.10 = {
 		}
 
 
+		# Personality close
 		first_valid = {
 			triggered_desc = {
 				trigger = { var:gr_random_seed >= 80 }
@@ -3213,6 +3390,8 @@ gr_obituary.10 = {
 		}
 
 
+		# ---- SENTENCE 3: ABILITY (Congenital + Lifestyle) ----
+		# Congenital intelligence
 		first_valid = {
 			triggered_desc = {
 				trigger = { has_variable = gr_intel var:gr_intel = flag:intellect_good_3 var:gr_opinion >= 0 }
@@ -3266,6 +3445,7 @@ gr_obituary.10 = {
 		}
 
 
+		# Congenital physique
 		first_valid = {
 			triggered_desc = {
 				trigger = { has_variable = gr_physique OR = { var:gr_physique = flag:physique_good_3 var:gr_physique = flag:physique_good_3 } var:gr_opinion >= 0 }
@@ -3319,6 +3499,7 @@ gr_obituary.10 = {
 		}
 
 
+		# Lifestyle traits earned (pick most notable)
 		first_valid = {
 			triggered_desc = {
 				trigger = { has_variable = gr_life_scholar var:gr_opinion >= 0 }
@@ -3444,6 +3625,7 @@ gr_obituary.10 = {
 		}
 
 
+		# Special congenital / physical marks
 		triggered_desc = {
 			trigger = { has_variable = gr_con_giant var:gr_opinion >= 0 }
 			desc = gr_s3_giant
@@ -3550,6 +3732,8 @@ gr_obituary.10 = {
 		}
 
 
+		# ---- SENTENCE 4: REPUTATION (Prestige + Piety + Dread + Infamy) ----
+		# Prestige
 		first_valid = {
 			triggered_desc = {
 				trigger = { var:gr_prestige_level >= 6 var:gr_opinion >= 0 }
@@ -3583,6 +3767,7 @@ gr_obituary.10 = {
 		}
 
 
+		# Piety
 		first_valid = {
 			triggered_desc = {
 				trigger = { var:gr_piety_level >= 5 var:gr_opinion >= 0 }
@@ -3616,6 +3801,7 @@ gr_obituary.10 = {
 		}
 
 
+		# Dread
 		first_valid = {
 			triggered_desc = {
 				trigger = { var:gr_dread >= 75 var:gr_opinion >= 0 }
@@ -3641,6 +3827,7 @@ gr_obituary.10 = {
 		}
 
 
+		# Infamy marks
 		triggered_desc = {
 			trigger = { has_variable = gr_infamy_kinslayer var:gr_opinion >= 0 }
 			desc = gr_s4_kinslayer
@@ -3691,6 +3878,7 @@ gr_obituary.10 = {
 		}
 
 
+		# Coping mechanisms
 		triggered_desc = {
 			trigger = { has_variable = gr_coping_drunkard var:gr_opinion >= 0 }
 			desc = gr_s4_drunkard
@@ -3759,6 +3947,10 @@ gr_obituary.10 = {
 		desc = gr_s4_close
 
 
+		# ================================================
+		# 7b. FAME TRAITS (lifestyle achievements)
+		# ================================================
+		# Blademaster
 		triggered_desc = {
 			trigger = { has_variable = gr_fame_blademaster var:gr_opinion >= 25 }
 			desc = gr_fame_blademaster_pos
@@ -3772,6 +3964,7 @@ gr_obituary.10 = {
 			desc = gr_fame_blademaster_neg
 		}
 
+		# Hunter
 		triggered_desc = {
 			trigger = { has_variable = gr_fame_hunter var:gr_opinion >= 25 }
 			desc = gr_fame_hunter_pos
@@ -3785,6 +3978,7 @@ gr_obituary.10 = {
 			desc = gr_fame_hunter_neg
 		}
 
+		# Reveler
 		triggered_desc = {
 			trigger = { has_variable = gr_fame_reveler var:gr_opinion >= 25 }
 			desc = gr_fame_reveler_pos
@@ -3798,6 +3992,7 @@ gr_obituary.10 = {
 			desc = gr_fame_reveler_neg
 		}
 
+		# Mystic (Wise Man/Woman)
 		triggered_desc = {
 			trigger = { has_variable = gr_fame_mystic var:gr_opinion >= 25 }
 			desc = gr_fame_mystic_pos
@@ -3811,6 +4006,7 @@ gr_obituary.10 = {
 			desc = gr_fame_mystic_neg
 		}
 
+		# Physician (tier-aware: 3=renowned, 2=skilled, 1=novice)
 		triggered_desc = {
 			trigger = { has_variable = gr_fame_physician_tier var:gr_fame_physician_tier >= 3 var:gr_opinion >= 0 }
 			desc = gr_fame_physician_pos
@@ -3836,6 +4032,7 @@ gr_obituary.10 = {
 			desc = gr_fame_physician_novice_neg
 		}
 
+		# Poet
 		triggered_desc = {
 			trigger = { has_variable = gr_fame_poet var:gr_opinion >= 25 }
 			desc = gr_fame_poet_pos
@@ -3849,6 +4046,7 @@ gr_obituary.10 = {
 			desc = gr_fame_poet_neg
 		}
 
+		# Herbalist
 		triggered_desc = {
 			trigger = { has_variable = gr_fame_herbalist var:gr_opinion >= 25 }
 			desc = gr_fame_herbalist_pos
@@ -3862,6 +4060,7 @@ gr_obituary.10 = {
 			desc = gr_fame_herbalist_neg
 		}
 
+		# Pilgrim
 		triggered_desc = {
 			trigger = { has_variable = gr_fame_pilgrim var:gr_opinion >= 25 }
 			desc = gr_fame_pilgrim_pos
@@ -3875,6 +4074,7 @@ gr_obituary.10 = {
 			desc = gr_fame_pilgrim_neg
 		}
 
+		# Traveler
 		triggered_desc = {
 			trigger = { has_variable = gr_fame_traveler var:gr_opinion >= 25 }
 			desc = gr_fame_traveler_pos
@@ -3888,6 +4088,7 @@ gr_obituary.10 = {
 			desc = gr_fame_traveler_neg
 		}
 
+		# Wayfarer
 		triggered_desc = {
 			trigger = { has_variable = gr_fame_wayfarer var:gr_opinion >= 25 }
 			desc = gr_fame_wayfarer_pos
@@ -3901,6 +4102,7 @@ gr_obituary.10 = {
 			desc = gr_fame_wayfarer_neg
 		}
 
+		# Voyager
 		triggered_desc = {
 			trigger = { has_variable = gr_fame_voyager var:gr_opinion >= 25 }
 			desc = gr_fame_voyager_pos
@@ -3914,6 +4116,7 @@ gr_obituary.10 = {
 			desc = gr_fame_voyager_neg
 		}
 
+		# Surveyor
 		triggered_desc = {
 			trigger = { has_variable = gr_fame_surveyor var:gr_opinion >= 25 }
 			desc = gr_fame_surveyor_pos
@@ -3928,6 +4131,9 @@ gr_obituary.10 = {
 		}
 
 
+		# AGOT: DRAGON SECTION
+		# Fires if any dragon-related variable is set
+		# ================================================
 		first_valid = {
 			triggered_desc = {
 				trigger = {
@@ -4016,6 +4222,7 @@ gr_obituary.10 = {
 			}
 		}
 
+		# Dragonrider
 		first_valid = {
 			triggered_desc = {
 				trigger = { has_variable = gr_agot_dragonrider var:gr_chronicler_type = flag:maester }
@@ -4083,6 +4290,7 @@ gr_obituary.10 = {
 			}
 		}
 
+		# Dragonless (lost dragon while living)
 		first_valid = {
 			triggered_desc = {
 				trigger = { has_variable = gr_agot_dragonless var:gr_chronicler_type = flag:maester }
@@ -4126,6 +4334,7 @@ gr_obituary.10 = {
 			}
 		}
 
+		# Dragonwidowed (dragon died)
 		first_valid = {
 			triggered_desc = {
 				trigger = { has_variable = gr_agot_dragonwidowed var:gr_chronicler_type = flag:maester }
@@ -4169,6 +4378,7 @@ gr_obituary.10 = {
 			}
 		}
 
+		# Dragonslayer
 		first_valid = {
 			triggered_desc = {
 				trigger = { has_variable = gr_agot_dragonslayer var:gr_chronicler_type = flag:maester }
@@ -4212,6 +4422,7 @@ gr_obituary.10 = {
 			}
 		}
 
+		# Dragon section closer
 		triggered_desc = {
 			trigger = {
 				OR = {
@@ -4225,6 +4436,10 @@ gr_obituary.10 = {
 		}
 
 
+		# ================================================
+		# AGOT: WAR SECTION
+		# Fires if any war variable was set during the reign
+		# ================================================
 		first_valid = {
 			triggered_desc = {
 				trigger = {
@@ -4297,6 +4512,7 @@ gr_obituary.10 = {
 		}
 
 
+		# --- Reyne Rebellion ---
 		first_valid = {
 			triggered_desc = {
 				trigger = { has_variable = gr_agot_war_reyne var:gr_agot_war_reyne = flag:won_att var:gr_chronicler_type = flag:maester }
@@ -4333,6 +4549,7 @@ gr_obituary.10 = {
 		}
 
 
+		# --- Blackfyre Rebellion ---
 		first_valid = {
 			triggered_desc = {
 				trigger = { has_variable = gr_agot_war_blackfyre var:gr_agot_war_blackfyre = flag:won_att var:gr_chronicler_type = flag:maester }
@@ -4369,6 +4586,7 @@ gr_obituary.10 = {
 		}
 
 
+		# --- Ninepenny Kings ---
 		first_valid = {
 			triggered_desc = {
 				trigger = { has_variable = gr_agot_war_ninepenny var:gr_agot_war_ninepenny = flag:won_att var:gr_chronicler_type = flag:maester }
@@ -4401,6 +4619,7 @@ gr_obituary.10 = {
 		}
 
 
+		# --- Faegon's Invasion ---
 		first_valid = {
 			triggered_desc = {
 				trigger = { has_variable = gr_agot_war_faegon var:gr_agot_war_faegon = flag:won_att var:gr_chronicler_type = flag:maester }
@@ -4437,6 +4656,7 @@ gr_obituary.10 = {
 		}
 
 
+		# --- Daemon's Stepstones Campaign ---
 		first_valid = {
 			triggered_desc = {
 				trigger = { has_variable = gr_agot_war_daemon var:gr_agot_war_daemon = flag:won_att var:gr_chronicler_type = flag:maester }
@@ -4469,6 +4689,7 @@ gr_obituary.10 = {
 		}
 
 
+		# --- Defiance of Duskendale ---
 		first_valid = {
 			triggered_desc = {
 				trigger = { has_variable = gr_agot_war_duskendale var:gr_agot_war_duskendale = flag:won_att var:gr_chronicler_type = flag:maester }
@@ -4505,6 +4726,7 @@ gr_obituary.10 = {
 		}
 
 
+		# --- Dragon War ---
 		first_valid = {
 			triggered_desc = {
 				trigger = { has_variable = gr_agot_war_dragon var:gr_chronicler_type = flag:maester }
@@ -4545,6 +4767,7 @@ gr_obituary.10 = {
 		}
 
 
+		# --- Night's Watch Ranging ---
 		first_valid = {
 			triggered_desc = {
 				trigger = { has_variable = gr_agot_war_ranging var:gr_agot_war_ranging = flag:won_att var:gr_chronicler_type = flag:maester }
@@ -4565,6 +4788,7 @@ gr_obituary.10 = {
 		}
 
 
+		# --- Reclaim the Wall ---
 		first_valid = {
 			triggered_desc = {
 				trigger = { has_variable = gr_agot_war_wall_reclaim var:gr_agot_war_wall_reclaim = flag:won_att var:gr_opinion >= 25 }
@@ -4581,6 +4805,7 @@ gr_obituary.10 = {
 		}
 
 
+		# --- Generic Rebellion War ---
 		first_valid = {
 			triggered_desc = {
 				trigger = { has_variable = gr_agot_war_rebellion var:gr_agot_war_rebellion = flag:won_att var:gr_opinion >= 25 }
@@ -4609,6 +4834,7 @@ gr_obituary.10 = {
 		}
 
 
+		# --- Generic Succession War ---
 		first_valid = {
 			triggered_desc = {
 				trigger = { has_variable = gr_agot_war_succession var:gr_agot_war_succession = flag:won_att var:gr_opinion >= 25 }
@@ -4637,6 +4863,7 @@ gr_obituary.10 = {
 		}
 
 
+		# --- Generic Independence War ---
 		first_valid = {
 			triggered_desc = {
 				trigger = { has_variable = gr_agot_war_independence var:gr_agot_war_independence = flag:won_att var:gr_opinion >= 25 }
@@ -4665,6 +4892,7 @@ gr_obituary.10 = {
 		}
 
 
+		# --- Pirate War ---
 		first_valid = {
 			triggered_desc = {
 				trigger = { has_variable = gr_agot_war_pirate var:gr_agot_war_pirate = flag:won_att var:gr_opinion >= 25 }
@@ -4693,6 +4921,7 @@ gr_obituary.10 = {
 		}
 
 
+		# --- Slavery War ---
 		first_valid = {
 			triggered_desc = {
 				trigger = { has_variable = gr_agot_war_slavery var:gr_agot_war_slavery = flag:won_att var:gr_opinion >= 25 }
@@ -4725,6 +4954,7 @@ gr_obituary.10 = {
 		}
 
 
+		# --- Eradicate House ---
 		first_valid = {
 			triggered_desc = {
 				trigger = { has_variable = gr_agot_war_eradicate var:gr_agot_war_eradicate = flag:won_att var:gr_opinion >= 25 }
@@ -4741,6 +4971,7 @@ gr_obituary.10 = {
 		}
 
 
+		# War section closer
 		triggered_desc = {
 			trigger = {
 				OR = {
@@ -4765,6 +4996,10 @@ gr_obituary.10 = {
 		}
 
 
+		# ================================================
+		# AGOT: SWORN SERVICE SECTION
+		# Kingsguard and Night's Watch
+		# ================================================
 		first_valid = {
 			triggered_desc = {
 				trigger = {
@@ -4871,6 +5106,7 @@ gr_obituary.10 = {
 			}
 		}
 
+		# Kingsguard
 		first_valid = {
 			triggered_desc = {
 				trigger = { has_variable = gr_agot_kingsguard var:gr_chronicler_type = flag:maester }
@@ -4938,6 +5174,7 @@ gr_obituary.10 = {
 			}
 		}
 
+		# Night's Watch - lifestyle variants then base
 		first_valid = {
 			triggered_desc = {
 				trigger = { has_variable = gr_agot_nightswatch var:gr_chronicler_type = flag:maester var:gr_agot_nw_lifestyle = flag:ranger }
@@ -5133,6 +5370,7 @@ gr_obituary.10 = {
 			}
 		}
 
+		# Deserter
 		first_valid = {
 			triggered_desc = {
 				trigger = { has_variable = gr_agot_deserter var:gr_chronicler_type = flag:maester }
@@ -5176,6 +5414,7 @@ gr_obituary.10 = {
 			}
 		}
 
+		# Sworn service section closer
 		triggered_desc = {
 			trigger = {
 				OR = {
@@ -5187,6 +5426,9 @@ gr_obituary.10 = {
 		}
 
 
+		# ================================================
+		# AGOT: KNIGHTHOOD SECTION
+		# ================================================
 		triggered_desc = {
 			trigger = {
 				OR = {
@@ -5334,6 +5576,7 @@ gr_obituary.10 = {
 			desc = gr_agot_knight_close
 		}
 
+		# Knightings given (fires independently of whether char was a knight)
 		first_valid = {
 			triggered_desc = {
 				trigger = {
@@ -5371,6 +5614,9 @@ gr_obituary.10 = {
 		}
 
 
+		# ================================================
+		# AGOT: THE CITADEL SECTION
+		# ================================================
 		first_valid = {
 			triggered_desc = {
 				trigger = { has_variable = gr_agot_maester var:gr_agot_maester = flag:archmaester var:gr_chronicler_type = flag:maester }
@@ -5499,6 +5745,9 @@ gr_obituary.10 = {
 		}
 
 
+		# ================================================
+		# AGOT: RELIGIOUS ROLES SECTION
+		# ================================================
 		triggered_desc = {
 			trigger = { has_variable = gr_agot_religious_role }
 			desc = gr_agot_religious_intro
@@ -5745,6 +5994,7 @@ gr_obituary.10 = {
 				desc = gr_agot_silent_sister_neg_3
 			}
 
+			# Generic septon fallback
 			triggered_desc = {
 				trigger = { has_variable = gr_agot_religious_role var:gr_chronicler_type = flag:maester }
 				desc = gr_agot_septon_maester
@@ -5792,6 +6042,11 @@ gr_obituary.10 = {
 		}
 
 
+		# ================================================
+		# AGOT: CONDITIONS SECTION
+		# Flowing paragraph - intro fires if any condition set,
+		# each condition adds its sentence, closer ends the paragraph
+		# ================================================
 		first_valid = {
 			triggered_desc = {
 				trigger = {
@@ -5968,6 +6223,7 @@ gr_obituary.10 = {
 			}
 		}
 
+		# Individual condition sentences - all fire independently if set
 		first_valid = {
 			triggered_desc = {
 				trigger = { has_variable = gr_agot_greyscale var:gr_chronicler_type = flag:maester }
@@ -6179,6 +6435,7 @@ gr_obituary.10 = {
 			}
 		}
 
+		# Conditions closer
 		triggered_desc = {
 			trigger = {
 				OR = {
@@ -6365,6 +6622,10 @@ gr_obituary.10 = {
 		}
 
 
+		# ================================================
+		# AGOT: BANKING SECTION
+		# ================================================
+		# Defaulted - worst outcome, mention first and alone
 		first_valid = {
 			triggered_desc = {
 				trigger = { has_variable = gr_agot_bank_defaulted var:gr_chronicler_type = flag:maester }
@@ -6380,6 +6641,7 @@ gr_obituary.10 = {
 			}
 		}
 
+		# Iron Bank shareholder
 		first_valid = {
 			triggered_desc = {
 				trigger = { has_variable = gr_agot_bank_ib_shareholder var:gr_chronicler_type = flag:maester }
@@ -6395,6 +6657,7 @@ gr_obituary.10 = {
 			}
 		}
 
+		# Founded own bank
 		first_valid = {
 			triggered_desc = {
 				trigger = { has_variable = gr_agot_bank_founder var:gr_chronicler_type = flag:maester }
@@ -6410,6 +6673,7 @@ gr_obituary.10 = {
 			}
 		}
 
+		# Died in debt (only fires if not a defaulter, to avoid double-mention)
 		first_valid = {
 			triggered_desc = {
 				trigger = {
@@ -6437,6 +6701,9 @@ gr_obituary.10 = {
 		}
 
 
+		# ================================================
+		# AGOT: MYSTICAL SECTION
+		# ================================================
 		triggered_desc = {
 			trigger = {
 				OR = {
@@ -6541,6 +6808,9 @@ gr_obituary.10 = {
 		}
 
 
+		# ================================================
+		# AGOT: SOCIAL / REPUTATION SECTION
+		# ================================================
 		triggered_desc = {
 			trigger = {
 				OR = {
@@ -6845,8 +7115,13 @@ gr_obituary.10 = {
 		}
 
 
+		# ================================================
+		# 9. FAITH & HERITAGE EXPANDED SECTION
+		# ================================================
+		# FAITH EXPANDED - pos/neutral/neg by opinion
 		first_valid = {
 
+			# ---- Faith of the Seven ----
 			triggered_desc = {
 				trigger = { has_variable = gr_agot_faith var:gr_agot_faith = flag:seven var:gr_opinion >= 25 }
 				desc = gr_agot_faith_seven_pos
@@ -6860,6 +7135,7 @@ gr_obituary.10 = {
 				desc = gr_agot_faith_seven_neg
 			}
 
+			# ---- Old Gods ----
 			triggered_desc = {
 				trigger = { has_variable = gr_agot_faith var:gr_agot_faith = flag:old_gods var:gr_opinion >= 25 }
 				desc = gr_agot_faith_old_gods_pos
@@ -6873,6 +7149,7 @@ gr_obituary.10 = {
 				desc = gr_agot_faith_old_gods_neg
 			}
 
+			# ---- Drowned God ----
 			triggered_desc = {
 				trigger = { has_variable = gr_agot_faith var:gr_agot_faith = flag:drowned var:gr_opinion >= 25 }
 				desc = gr_agot_faith_drowned_pos
@@ -6886,6 +7163,7 @@ gr_obituary.10 = {
 				desc = gr_agot_faith_drowned_neg
 			}
 
+			# ---- R'hllor ----
 			triggered_desc = {
 				trigger = { has_variable = gr_agot_faith var:gr_agot_faith = flag:rhllor var:gr_opinion >= 25 }
 				desc = gr_agot_faith_rhllor_pos
@@ -6899,6 +7177,7 @@ gr_obituary.10 = {
 				desc = gr_agot_faith_rhllor_neg
 			}
 
+			# ---- Valyrian Flame-Faith ----
 			triggered_desc = {
 				trigger = { has_variable = gr_agot_faith var:gr_agot_faith = flag:valyrian_faith var:gr_opinion >= 25 }
 				desc = gr_agot_faith_valyrian_faith_pos
@@ -6912,6 +7191,7 @@ gr_obituary.10 = {
 				desc = gr_agot_faith_valyrian_faith_neg
 			}
 
+			# ---- Dothraki / Great Stallion ----
 			triggered_desc = {
 				trigger = { has_variable = gr_agot_faith var:gr_agot_faith = flag:dothraki_faith var:gr_opinion >= 25 }
 				desc = gr_agot_faith_dothraki_faith_pos
@@ -6925,6 +7205,7 @@ gr_obituary.10 = {
 				desc = gr_agot_faith_dothraki_faith_neg
 			}
 
+			# ---- The Harpy ----
 			triggered_desc = {
 				trigger = { has_variable = gr_agot_faith var:gr_agot_faith = flag:harpy var:gr_opinion >= 25 }
 				desc = gr_agot_faith_harpy_pos
@@ -6938,6 +7219,7 @@ gr_obituary.10 = {
 				desc = gr_agot_faith_harpy_neg
 			}
 
+			# ---- Free Cities Cults ----
 			triggered_desc = {
 				trigger = { has_variable = gr_agot_faith var:gr_agot_faith = flag:free_cities_faith var:gr_opinion >= 25 }
 				desc = gr_agot_faith_free_cities_faith_pos
@@ -6951,6 +7233,7 @@ gr_obituary.10 = {
 				desc = gr_agot_faith_free_cities_faith_neg
 			}
 
+			# ---- Mother Rhoyne ----
 			triggered_desc = {
 				trigger = { has_variable = gr_agot_faith var:gr_agot_faith = flag:rhoynish_faith var:gr_opinion >= 25 }
 				desc = gr_agot_faith_rhoynish_faith_pos
@@ -6964,6 +7247,7 @@ gr_obituary.10 = {
 				desc = gr_agot_faith_rhoynish_faith_neg
 			}
 
+			# ---- Cold Gods ----
 			triggered_desc = {
 				trigger = { has_variable = gr_agot_faith var:gr_agot_faith = flag:cold_gods var:gr_opinion >= 25 }
 				desc = gr_agot_faith_cold_gods_pos
@@ -6977,6 +7261,7 @@ gr_obituary.10 = {
 				desc = gr_agot_faith_cold_gods_neg
 			}
 
+			# ---- Yi Ti Celestial Courts ----
 			triggered_desc = {
 				trigger = { has_variable = gr_agot_faith var:gr_agot_faith = flag:yiti_faith var:gr_opinion >= 25 }
 				desc = gr_agot_faith_yiti_faith_pos
@@ -6990,6 +7275,7 @@ gr_obituary.10 = {
 				desc = gr_agot_faith_yiti_faith_neg
 			}
 
+			# ---- Sarnori Faith ----
 			triggered_desc = {
 				trigger = { has_variable = gr_agot_faith var:gr_agot_faith = flag:sarnori_faith var:gr_opinion >= 25 }
 				desc = gr_agot_faith_sarnori_faith_pos
@@ -7003,6 +7289,7 @@ gr_obituary.10 = {
 				desc = gr_agot_faith_sarnori_faith_neg
 			}
 
+			# ---- Essos Cult Orders ----
 			triggered_desc = {
 				trigger = { has_variable = gr_agot_faith var:gr_agot_faith = flag:essos_orders var:gr_opinion >= 25 }
 				desc = gr_agot_faith_essos_orders_pos
@@ -7016,6 +7303,7 @@ gr_obituary.10 = {
 				desc = gr_agot_faith_essos_orders_neg
 			}
 
+			# ---- Moon Singers ----
 			triggered_desc = {
 				trigger = { has_variable = gr_agot_faith var:gr_agot_faith = flag:moon_singers var:gr_opinion >= 25 }
 				desc = gr_agot_faith_moon_singers_pos
@@ -7029,6 +7317,7 @@ gr_obituary.10 = {
 				desc = gr_agot_faith_moon_singers_neg
 			}
 
+			# ---- Summer Islands Faith ----
 			triggered_desc = {
 				trigger = { has_variable = gr_agot_faith var:gr_agot_faith = flag:summer_faith var:gr_opinion >= 25 }
 				desc = gr_agot_faith_summer_faith_pos
@@ -7042,6 +7331,7 @@ gr_obituary.10 = {
 				desc = gr_agot_faith_summer_faith_neg
 			}
 
+			# ---- Qartheen Faith ----
 			triggered_desc = {
 				trigger = { has_variable = gr_agot_faith var:gr_agot_faith = flag:qartheen_faith var:gr_opinion >= 25 }
 				desc = gr_agot_faith_qartheen_faith_pos
@@ -7055,6 +7345,7 @@ gr_obituary.10 = {
 				desc = gr_agot_faith_qartheen_faith_neg
 			}
 
+			# ---- Shepherd Faith ----
 			triggered_desc = {
 				trigger = { has_variable = gr_agot_faith var:gr_agot_faith = flag:shepherd_faith var:gr_opinion >= 25 }
 				desc = gr_agot_faith_shepherd_faith_pos
@@ -7068,6 +7359,7 @@ gr_obituary.10 = {
 				desc = gr_agot_faith_shepherd_faith_neg
 			}
 
+			# ---- Basilisk Isles Faith ----
 			triggered_desc = {
 				trigger = { has_variable = gr_agot_faith var:gr_agot_faith = flag:basilisk_faith var:gr_opinion >= 25 }
 				desc = gr_agot_faith_basilisk_faith_pos
@@ -7081,6 +7373,7 @@ gr_obituary.10 = {
 				desc = gr_agot_faith_basilisk_faith_neg
 			}
 
+			# ---- Butterfly God of Naath ----
 			triggered_desc = {
 				trigger = { has_variable = gr_agot_faith var:gr_agot_faith = flag:naathi_faith var:gr_opinion >= 25 }
 				desc = gr_agot_faith_naathi_faith_pos
@@ -7094,6 +7387,7 @@ gr_obituary.10 = {
 				desc = gr_agot_faith_naathi_faith_neg
 			}
 
+			# ---- Ancient First Gods ----
 			triggered_desc = {
 				trigger = { has_variable = gr_agot_faith var:gr_agot_faith = flag:ancient_faith var:gr_opinion >= 25 }
 				desc = gr_agot_faith_ancient_faith_pos
@@ -7107,6 +7401,7 @@ gr_obituary.10 = {
 				desc = gr_agot_faith_ancient_faith_neg
 			}
 
+			# ---- Ibbenese Faith ----
 			triggered_desc = {
 				trigger = { has_variable = gr_agot_faith var:gr_agot_faith = flag:ibbenese_faith var:gr_opinion >= 25 }
 				desc = gr_agot_faith_ibbenese_faith_pos
@@ -7120,6 +7415,7 @@ gr_obituary.10 = {
 				desc = gr_agot_faith_ibbenese_faith_neg
 			}
 
+			# ---- Eldritch Deep Gods ----
 			triggered_desc = {
 				trigger = { has_variable = gr_agot_faith var:gr_agot_faith = flag:eldritch_faith var:gr_opinion >= 25 }
 				desc = gr_agot_faith_eldritch_faith_pos
@@ -7138,8 +7434,10 @@ gr_obituary.10 = {
 			desc = gr_agot_faith_section_close
 		}
 
+		# HERITAGE EXPANDED - pos/neutral/neg by opinion
 		first_valid = {
 
+			# ---- Andal ----
 			triggered_desc = {
 				trigger = { has_variable = gr_agot_heritage var:gr_agot_heritage = flag:andal var:gr_opinion >= 25 }
 				desc = gr_agot_heritage_andal_pos
@@ -7153,6 +7451,7 @@ gr_obituary.10 = {
 				desc = gr_agot_heritage_andal_neg
 			}
 
+			# ---- First Men ----
 			triggered_desc = {
 				trigger = { has_variable = gr_agot_heritage var:gr_agot_heritage = flag:first_men var:gr_opinion >= 25 }
 				desc = gr_agot_heritage_first_men_pos
@@ -7166,6 +7465,7 @@ gr_obituary.10 = {
 				desc = gr_agot_heritage_first_men_neg
 			}
 
+			# ---- Ironborn ----
 			triggered_desc = {
 				trigger = { has_variable = gr_agot_heritage var:gr_agot_heritage = flag:ironborn var:gr_opinion >= 25 }
 				desc = gr_agot_heritage_ironborn_pos
@@ -7179,6 +7479,7 @@ gr_obituary.10 = {
 				desc = gr_agot_heritage_ironborn_neg
 			}
 
+			# ---- Rhoynar ----
 			triggered_desc = {
 				trigger = { has_variable = gr_agot_heritage var:gr_agot_heritage = flag:rhoynar var:gr_opinion >= 25 }
 				desc = gr_agot_heritage_rhoynar_pos
@@ -7192,6 +7493,7 @@ gr_obituary.10 = {
 				desc = gr_agot_heritage_rhoynar_neg
 			}
 
+			# ---- Free Cities ----
 			triggered_desc = {
 				trigger = { has_variable = gr_agot_heritage var:gr_agot_heritage = flag:free_cities_cult var:gr_opinion >= 25 }
 				desc = gr_agot_heritage_free_cities_cult_pos
@@ -7205,6 +7507,7 @@ gr_obituary.10 = {
 				desc = gr_agot_heritage_free_cities_cult_neg
 			}
 
+			# ---- Valyrian ----
 			triggered_desc = {
 				trigger = { has_variable = gr_agot_heritage var:gr_agot_heritage = flag:valyrian_cult var:gr_opinion >= 25 }
 				desc = gr_agot_heritage_valyrian_cult_pos
@@ -7218,6 +7521,7 @@ gr_obituary.10 = {
 				desc = gr_agot_heritage_valyrian_cult_neg
 			}
 
+			# ---- Grasslands (Dothraki / Lhazareen) ----
 			triggered_desc = {
 				trigger = { has_variable = gr_agot_heritage var:gr_agot_heritage = flag:grasslands var:gr_opinion >= 25 }
 				desc = gr_agot_heritage_grasslands_pos
@@ -7231,6 +7535,7 @@ gr_obituary.10 = {
 				desc = gr_agot_heritage_grasslands_neg
 			}
 
+			# ---- Ghiscari ----
 			triggered_desc = {
 				trigger = { has_variable = gr_agot_heritage var:gr_agot_heritage = flag:ghiscari var:gr_opinion >= 25 }
 				desc = gr_agot_heritage_ghiscari_pos
@@ -7244,6 +7549,7 @@ gr_obituary.10 = {
 				desc = gr_agot_heritage_ghiscari_neg
 			}
 
+			# ---- Yi Ti ----
 			triggered_desc = {
 				trigger = { has_variable = gr_agot_heritage var:gr_agot_heritage = flag:yitish var:gr_opinion >= 25 }
 				desc = gr_agot_heritage_yitish_pos
@@ -7257,6 +7563,7 @@ gr_obituary.10 = {
 				desc = gr_agot_heritage_yitish_neg
 			}
 
+			# ---- Jade Islands ----
 			triggered_desc = {
 				trigger = { has_variable = gr_agot_heritage var:gr_agot_heritage = flag:jade_islands var:gr_opinion >= 25 }
 				desc = gr_agot_heritage_jade_islands_pos
@@ -7270,6 +7577,7 @@ gr_obituary.10 = {
 				desc = gr_agot_heritage_jade_islands_neg
 			}
 
+			# ---- Free Folk / Wildling ----
 			triggered_desc = {
 				trigger = { has_variable = gr_agot_heritage var:gr_agot_heritage = flag:wildling var:gr_opinion >= 25 }
 				desc = gr_agot_heritage_wildling_pos
@@ -7283,6 +7591,7 @@ gr_obituary.10 = {
 				desc = gr_agot_heritage_wildling_neg
 			}
 
+			# ---- Sarnori ----
 			triggered_desc = {
 				trigger = { has_variable = gr_agot_heritage var:gr_agot_heritage = flag:sarnori_cult var:gr_opinion >= 25 }
 				desc = gr_agot_heritage_sarnori_cult_pos
@@ -7296,6 +7605,7 @@ gr_obituary.10 = {
 				desc = gr_agot_heritage_sarnori_cult_neg
 			}
 
+			# ---- Summer Islander ----
 			triggered_desc = {
 				trigger = { has_variable = gr_agot_heritage var:gr_agot_heritage = flag:summer_cult var:gr_opinion >= 25 }
 				desc = gr_agot_heritage_summer_cult_pos
@@ -7309,6 +7619,7 @@ gr_obituary.10 = {
 				desc = gr_agot_heritage_summer_cult_neg
 			}
 
+			# ---- Ibbenese ----
 			triggered_desc = {
 				trigger = { has_variable = gr_agot_heritage var:gr_agot_heritage = flag:ibbenese_cult var:gr_opinion >= 25 }
 				desc = gr_agot_heritage_ibbenese_cult_pos
@@ -7322,6 +7633,7 @@ gr_obituary.10 = {
 				desc = gr_agot_heritage_ibbenese_cult_neg
 			}
 
+			# ---- Shadowlander ----
 			triggered_desc = {
 				trigger = { has_variable = gr_agot_heritage var:gr_agot_heritage = flag:shadowlander var:gr_opinion >= 25 }
 				desc = gr_agot_heritage_shadowlander_pos
@@ -7335,6 +7647,7 @@ gr_obituary.10 = {
 				desc = gr_agot_heritage_shadowlander_neg
 			}
 
+			# ---- Elder Races ----
 			triggered_desc = {
 				trigger = { has_variable = gr_agot_heritage var:gr_agot_heritage = flag:elder_races var:gr_opinion >= 25 }
 				desc = gr_agot_heritage_elder_races_pos
@@ -7348,6 +7661,7 @@ gr_obituary.10 = {
 				desc = gr_agot_heritage_elder_races_neg
 			}
 
+			# ---- Hyrkoonan ----
 			triggered_desc = {
 				trigger = { has_variable = gr_agot_heritage var:gr_agot_heritage = flag:hyrkoonan var:gr_opinion >= 25 }
 				desc = gr_agot_heritage_hyrkoonan_pos
@@ -7361,6 +7675,7 @@ gr_obituary.10 = {
 				desc = gr_agot_heritage_hyrkoonan_neg
 			}
 
+			# ---- Moraqi ----
 			triggered_desc = {
 				trigger = { has_variable = gr_agot_heritage var:gr_agot_heritage = flag:moraqi var:gr_opinion >= 25 }
 				desc = gr_agot_heritage_moraqi_pos
@@ -7374,6 +7689,7 @@ gr_obituary.10 = {
 				desc = gr_agot_heritage_moraqi_neg
 			}
 
+			# ---- Jogos Nhai ----
 			triggered_desc = {
 				trigger = { has_variable = gr_agot_heritage var:gr_agot_heritage = flag:nghai var:gr_opinion >= 25 }
 				desc = gr_agot_heritage_nghai_pos
@@ -7387,6 +7703,7 @@ gr_obituary.10 = {
 				desc = gr_agot_heritage_nghai_neg
 			}
 
+			# ---- Qaathi / Qartheen ----
 			triggered_desc = {
 				trigger = { has_variable = gr_agot_heritage var:gr_agot_heritage = flag:qaathi var:gr_opinion >= 25 }
 				desc = gr_agot_heritage_qaathi_pos
@@ -7400,6 +7717,7 @@ gr_obituary.10 = {
 				desc = gr_agot_heritage_qaathi_neg
 			}
 
+			# ---- Sothoryosi ----
 			triggered_desc = {
 				trigger = { has_variable = gr_agot_heritage var:gr_agot_heritage = flag:sothoryi var:gr_opinion >= 25 }
 				desc = gr_agot_heritage_sothoryi_pos
@@ -7413,6 +7731,7 @@ gr_obituary.10 = {
 				desc = gr_agot_heritage_sothoryi_neg
 			}
 
+			# ---- Men of the Night Lands ----
 			triggered_desc = {
 				trigger = { has_variable = gr_agot_heritage var:gr_agot_heritage = flag:mennight var:gr_opinion >= 25 }
 				desc = gr_agot_heritage_mennight_pos
@@ -7432,6 +7751,10 @@ gr_obituary.10 = {
 		}
 
 
+		# ================================================
+		# ================================================
+		# 8. TREASURY
+		# ================================================
 		triggered_desc = {
 			trigger = { var:gr_gold >= 500 var:gr_opinion >= 0 }
 			desc = gr_treasury_rich
@@ -7466,9 +7789,14 @@ gr_obituary.10 = {
 		}
 
 
+		# ================================================
+		# 9. HEIRS (moved here, just above verdict)
+		# ================================================
 		first_valid = {
 
 
+			# === MIXED: sons + daughters ===
+			# 1 son + daughters
 			triggered_desc = {
 				trigger = { var:gr_sons_count = 1 var:gr_daughters_count = 1 }
 				desc = gr_heirs_1s_1d
@@ -7490,6 +7818,7 @@ gr_obituary.10 = {
 				desc = gr_heirs_1s_manyd
 			}
 
+			# 2 sons + daughters
 			triggered_desc = {
 				trigger = { var:gr_sons_count = 2 var:gr_daughters_count = 1 }
 				desc = gr_heirs_2s_1d
@@ -7507,6 +7836,7 @@ gr_obituary.10 = {
 				desc = gr_heirs_2s_manyd
 			}
 
+			# 3+ sons + daughters
 			triggered_desc = {
 				trigger = { var:gr_sons_count = 3 var:gr_daughters_count >= 1 }
 				desc = gr_heirs_3s_d
@@ -7516,6 +7846,7 @@ gr_obituary.10 = {
 				desc = gr_heirs_manys_d
 			}
 
+			# === SONS ONLY ===
 			triggered_desc = {
 				trigger = { var:gr_sons_count = 2 var:gr_daughters_count = 0 }
 				desc = gr_heirs_2sons
@@ -7533,11 +7864,13 @@ gr_obituary.10 = {
 				desc = gr_heirs_manysons
 			}
 
+			# === ONE SON ONLY ===
 			triggered_desc = {
 				trigger = { var:gr_sons_count = 1 var:gr_daughters_count = 0 }
 				desc = gr_heirs_one_son
 			}
 
+			# === DAUGHTERS ONLY ===
 			triggered_desc = {
 				trigger = { var:gr_sons_count = 0 var:gr_daughters_count = 1 }
 				desc = gr_heirs_1daughter
@@ -7555,6 +7888,7 @@ gr_obituary.10 = {
 				desc = gr_heirs_manydaughters
 			}
 
+			# === NO DIRECT CHILDREN ===
 			triggered_desc = {
 				trigger = { var:gr_children_count = 0 has_variable = gr_heir_is_bloodline }
 				desc = gr_heirs_none_bloodline
@@ -7566,8 +7900,15 @@ gr_obituary.10 = {
 		}
 
 
+		# ================================================
+		# 9b. REALM SPLIT / CONSOLIDATION / SINGLE-HEIR
+		# Partition types check gr_split_severity:
+		#   fracture = 2+ same-tier titles, realm truly splits
+		#   diminished = only lower-tier titles lost, realm intact
+		# ================================================
 		first_valid = {
 
+			# Confederate Partition - FRACTURE (same-tier titles split, realm shatters)
 			triggered_desc = {
 				trigger = { has_variable = gr_realm_split var:gr_realm_split = flag:confederate has_variable = gr_split_severity var:gr_split_severity = flag:fracture var:gr_opinion >= 0 }
 				desc = gr_realm_split_confederate_fracture_pos
@@ -7577,6 +7918,7 @@ gr_obituary.10 = {
 				desc = gr_realm_split_confederate_fracture_neg
 			}
 
+			# Confederate Partition - DIMINISHED (lower titles lost, realm intact)
 			triggered_desc = {
 				trigger = { has_variable = gr_realm_split var:gr_realm_split = flag:confederate has_variable = gr_split_severity var:gr_split_severity = flag:diminished var:gr_opinion >= 0 }
 				desc = gr_realm_split_confederate_diminished_pos
@@ -7586,6 +7928,7 @@ gr_obituary.10 = {
 				desc = gr_realm_split_confederate_diminished_neg
 			}
 
+			# Regular Partition - FRACTURE
 			triggered_desc = {
 				trigger = { has_variable = gr_realm_split var:gr_realm_split = flag:partition has_variable = gr_split_severity var:gr_split_severity = flag:fracture var:gr_opinion >= 0 }
 				desc = gr_realm_split_partition_fracture_pos
@@ -7595,6 +7938,7 @@ gr_obituary.10 = {
 				desc = gr_realm_split_partition_fracture_neg
 			}
 
+			# Regular Partition - DIMINISHED
 			triggered_desc = {
 				trigger = { has_variable = gr_realm_split var:gr_realm_split = flag:partition has_variable = gr_split_severity var:gr_split_severity = flag:diminished var:gr_opinion >= 0 }
 				desc = gr_realm_split_partition_diminished_pos
@@ -7604,6 +7948,7 @@ gr_obituary.10 = {
 				desc = gr_realm_split_partition_diminished_neg
 			}
 
+			# High Partition - FRACTURE
 			triggered_desc = {
 				trigger = { has_variable = gr_realm_split var:gr_realm_split = flag:high_partition has_variable = gr_split_severity var:gr_split_severity = flag:fracture var:gr_opinion >= 0 }
 				desc = gr_realm_split_high_fracture_pos
@@ -7613,6 +7958,7 @@ gr_obituary.10 = {
 				desc = gr_realm_split_high_fracture_neg
 			}
 
+			# High Partition - DIMINISHED
 			triggered_desc = {
 				trigger = { has_variable = gr_realm_split var:gr_realm_split = flag:high_partition has_variable = gr_split_severity var:gr_split_severity = flag:diminished var:gr_opinion >= 0 }
 				desc = gr_realm_split_high_diminished_pos
@@ -7622,6 +7968,7 @@ gr_obituary.10 = {
 				desc = gr_realm_split_high_diminished_neg
 			}
 
+			# Single-heir: Primogeniture
 			triggered_desc = {
 				trigger = { has_variable = gr_realm_single_heir var:gr_realm_single_heir = flag:primogeniture var:gr_opinion >= 0 }
 				desc = gr_single_heir_primo_pos
@@ -7631,6 +7978,7 @@ gr_obituary.10 = {
 				desc = gr_single_heir_primo_neg
 			}
 
+			# Single-heir: Ultimogeniture
 			triggered_desc = {
 				trigger = { has_variable = gr_realm_single_heir var:gr_realm_single_heir = flag:ultimogeniture var:gr_opinion >= 0 }
 				desc = gr_single_heir_ultimo_pos
@@ -7640,6 +7988,7 @@ gr_obituary.10 = {
 				desc = gr_single_heir_ultimo_neg
 			}
 
+			# Single-heir: House Seniority
 			triggered_desc = {
 				trigger = { has_variable = gr_realm_single_heir var:gr_realm_single_heir = flag:house_seniority var:gr_opinion >= 0 }
 				desc = gr_single_heir_seniority_pos
@@ -7649,6 +7998,7 @@ gr_obituary.10 = {
 				desc = gr_single_heir_seniority_neg
 			}
 
+			# Realm consolidation (heir gained higher tier)
 			triggered_desc = {
 				trigger = { has_variable = gr_realm_consolidated var:gr_opinion >= 0 }
 				desc = gr_realm_consolidated_pos
@@ -7661,8 +8011,12 @@ gr_obituary.10 = {
 		}
 
 
+		# ================================================
+		# 9c. ELECTIVE SUCCESSION (title-level, cultural)
+		# ================================================
 		first_valid = {
 
+			# Tanistry Elective (Irish/Goidelic/Brythonic)
 			triggered_desc = {
 				trigger = { has_variable = gr_succession_elective var:gr_succession_elective = flag:tanistry var:gr_opinion >= 0 }
 				desc = gr_elective_tanistry_pos
@@ -7672,6 +8026,7 @@ gr_obituary.10 = {
 				desc = gr_elective_tanistry_neg
 			}
 
+			# Scandinavian Elective (Norse/Ting-Meet)
 			triggered_desc = {
 				trigger = { has_variable = gr_succession_elective var:gr_succession_elective = flag:scandinavian var:gr_opinion >= 0 }
 				desc = gr_elective_scandinavian_pos
@@ -7681,6 +8036,7 @@ gr_obituary.10 = {
 				desc = gr_elective_scandinavian_neg
 			}
 
+			# Feudal Elective
 			triggered_desc = {
 				trigger = { has_variable = gr_succession_elective var:gr_succession_elective = flag:feudal var:gr_opinion >= 0 }
 				desc = gr_elective_feudal_pos
@@ -7690,6 +8046,7 @@ gr_obituary.10 = {
 				desc = gr_elective_feudal_neg
 			}
 
+			# Saxon Elective
 			triggered_desc = {
 				trigger = { has_variable = gr_succession_elective var:gr_succession_elective = flag:saxon var:gr_opinion >= 0 }
 				desc = gr_elective_saxon_pos
@@ -7699,6 +8056,7 @@ gr_obituary.10 = {
 				desc = gr_elective_saxon_neg
 			}
 
+			# Princely Elective (HRE)
 			triggered_desc = {
 				trigger = { has_variable = gr_succession_elective var:gr_succession_elective = flag:princely var:gr_opinion >= 0 }
 				desc = gr_elective_princely_pos
@@ -7711,6 +8069,9 @@ gr_obituary.10 = {
 		}
 
 
+		# ================================================
+		# 10. LEGACY SCORE
+		# ================================================
 		first_valid = {
 			triggered_desc = {
 				trigger = { var:gr_score_tier = flag:legendary var:gr_opinion >= 0 }
@@ -7752,6 +8113,10 @@ gr_obituary.10 = {
 		}
 
 
+		# ================================================
+		# 10b. SCORE NARRATIVE (top category + second category + breakdown)
+		# ================================================
+		# Top category narrative
 		first_valid = {
 			triggered_desc = {
 				trigger = { var:gr_score_top_cat = flag:foundation var:gr_opinion >= 0 }
@@ -7804,6 +8169,7 @@ gr_obituary.10 = {
 		}
 
 
+		# Second category mention (only if meaningful contribution >= 50)
 		first_valid = {
 			triggered_desc = {
 				trigger = { var:gr_score_second_cat = flag:foundation var:gr_score_second_val >= 50 }
@@ -7833,6 +8199,10 @@ gr_obituary.10 = {
 		}
 
 
+		# ================================================
+		# 10c. CLOSING WITH SIGNATURE
+		# ================================================
+		# Numeric breakdown (end of chronicle, before motto and signature)
 		desc = gr_score_breakdown
 
 		triggered_desc = {
@@ -7890,6 +8260,10 @@ gr_obituary.10 = {
 	orphan = no
 
 
+	# ================================================
+	# OPTION 1: Proclaim the Dynasty (Always Available)
+	# Grants renown reward + dynasty prestige modifier
+	# ================================================
 	option = {
 		name = gr_option_proclaim
 
@@ -7898,20 +8272,32 @@ gr_obituary.10 = {
 		}
 
 
+		# Dynasty prestige modifier for 15 years
 		add_character_modifier = {
 			modifier = gr_dynasty_legacy_proclaimed
 			years = 15
 		}
 
 
+		# ================================================
+		# CHRONICLE: Create or upgrade dynasty chronicle
+		# Only happens on Legendary score with a chronicler
+		# ================================================
 		if = {
 			limit = {
 				var:gr_score_tier = flag:legendary
 				has_variable = gr_chronicler
 				exists = dynasty
 			}
+			save_scope_as = owner
+			set_variable = {
+				name = book_artifact_author
+				value = var:gr_chronicler
+				days = 1
+			}
 
 
+			# UPGRADE existing chronicle
 			if = {
 				limit = { dynasty = { has_variable = gr_has_chronicle } }
 
@@ -7920,6 +8306,7 @@ gr_obituary.10 = {
 				}
 
 
+				# Find and destroy old chronicle artifact
 				random_character_artifact = {
 					limit = { has_variable = gr_is_chronicle }
 					save_scope_as = old_chronicle
@@ -7930,6 +8317,8 @@ gr_obituary.10 = {
 				}
 
 
+				# Create upgraded artifact based on chronicle count
+				# ILLUSTRIOUS (10+ chronicles)
 				if = {
 					limit = { dynasty = { var:gr_chronicles_recorded >= 10 } }
 					dynasty = { set_variable = { name = gr_chronicle_tier value = 4 } }
@@ -7947,6 +8336,7 @@ gr_obituary.10 = {
 					}
 				}
 
+				# FAMED (6+ chronicles)
 				else_if = {
 					limit = { dynasty = { var:gr_chronicles_recorded >= 6 } }
 					dynasty = { set_variable = { name = gr_chronicle_tier value = 3 } }
@@ -7964,6 +8354,7 @@ gr_obituary.10 = {
 					}
 				}
 
+				# MASTERWORK (3+ chronicles)
 				else_if = {
 					limit = { dynasty = { var:gr_chronicles_recorded >= 3 } }
 					dynasty = { set_variable = { name = gr_chronicle_tier value = 2 } }
@@ -7981,6 +8372,7 @@ gr_obituary.10 = {
 					}
 				}
 
+				# STILL COMMON (under 3 chronicles)
 				else = {
 					create_artifact = {
 						name = gr_chronicle_artifact_name
@@ -7996,6 +8388,7 @@ gr_obituary.10 = {
 				}
 
 
+				# Tag new artifact
 				if = {
 					limit = { exists = scope:new_chronicle }
 					scope:new_chronicle = {
@@ -8005,6 +8398,7 @@ gr_obituary.10 = {
 				}
 			}
 
+			# CREATE new chronicle
 			else = {
 				create_artifact = {
 					name = gr_chronicle_artifact_name
@@ -8032,6 +8426,9 @@ gr_obituary.10 = {
 		}
 
 
+		# ================================================
+		# TOOLTIP: Chronicle progress information
+		# ================================================
 		if = {
 			limit = {
 				var:gr_score_tier = flag:legendary
@@ -8055,6 +8452,10 @@ gr_obituary.10 = {
 	}
 
 
+	# ================================================
+	# OPTION 3: "My Time Has Come" (Ambitious/Arrogant)
+	# Dismiss predecessor, seize the spotlight
+	# ================================================
 	option = {
 		name = gr_option_forgotten
 
@@ -8066,21 +8467,25 @@ gr_obituary.10 = {
 		}
 
 
+		# Immediate prestige
 		add_prestige = 2500
 
 
+		# Monthly prestige +0.5 for 10 years
 		add_character_modifier = {
 			modifier = gr_my_time_has_come
 			years = 10
 		}
 
 
+		# Dynasty opinion -10 for 15 years
 		add_character_modifier = {
 			modifier = gr_dishonored_remembrance
 			years = 15
 		}
 
 
+		# Chronicler opinion -50 (permanent until death)
 		if = {
 			limit = { has_variable = gr_chronicler }
 			var:gr_chronicler = {
@@ -8093,6 +8498,10 @@ gr_obituary.10 = {
 	}
 
 
+	# ================================================
+	# OPTION 4: "Glory to the Divine" (Zealous/Humble)
+	# Honor the gods above mortal achievement
+	# ================================================
 	option = {
 		name = gr_option_divine
 
@@ -8104,21 +8513,25 @@ gr_obituary.10 = {
 		}
 
 
+		# Immediate piety
 		add_piety = 1500
 
 
+		# Monthly piety +1.0 for 10 years
 		add_character_modifier = {
 			modifier = gr_glory_to_the_divine
 			years = 10
 		}
 
 
+		# Clergy opinion +15 and same faith opinion +10 for 15 years
 		add_character_modifier = {
 			modifier = gr_divine_remembrance
 			years = 15
 		}
 
 
+		# Chronicler opinion -25 (permanent until death)
 		if = {
 			limit = { has_variable = gr_chronicler }
 			var:gr_chronicler = {
@@ -8130,6 +8543,7 @@ gr_obituary.10 = {
 		}
 
 
+		# Court priest opinion +50 for 15 years
 		if = {
 			limit = { exists = cp:councillor_court_chaplain }
 			cp:councillor_court_chaplain = {
@@ -8143,6 +8557,10 @@ gr_obituary.10 = {
 	}
 
 
+	# ================================================
+	# OPTION 5: "The People's Remembrance" (Generous/Gregarious)
+	# Honor ruler and common folk alike
+	# ================================================
 	option = {
 		name = gr_option_honor_all
 
@@ -8154,16 +8572,19 @@ gr_obituary.10 = {
 		}
 
 
+		# Immediate prestige + piety
 		add_prestige = 500
 		add_piety = 500
 
 
+		# Monthly prestige +0.25 and piety +0.5 for 10 years
 		add_character_modifier = {
 			modifier = gr_peoples_remembrance
 			years = 10
 		}
 
 
+		# General opinion +20 for 15 years
 		add_character_modifier = {
 			modifier = gr_remembered_with_honor
 			years = 15
@@ -8171,8 +8592,15 @@ gr_obituary.10 = {
 	}
 
 
+	# ================================================
+	# AFTER: Clean up all transferred obituary variables
+	# from the heir (ROOT). Without this, variables from
+	# the dead ruler's obituary persist on the heir and
+	# contaminate the HEIR's own obituary when they die.
+	# ================================================
 	after = {
 
+		# Memory flags (achievement tracking)
 		if = { limit = { has_variable = gr_memory_great_battle } remove_variable = gr_memory_great_battle }
 		if = { limit = { has_variable = gr_battle_tier } remove_variable = gr_battle_tier }
 		if = { limit = { has_variable = gr_best_battle_strength } remove_variable = gr_best_battle_strength }
@@ -8212,6 +8640,7 @@ gr_obituary.10 = {
 		if = { limit = { has_variable = gr_conquest_target_title } remove_variable = gr_conquest_target_title }
 		if = { limit = { has_variable = gr_conquest_type } remove_variable = gr_conquest_type }
 
+		# Faction demand
 		if = { limit = { has_variable = gr_memory_faction_gained_title } remove_variable = gr_memory_faction_gained_title }
 		if = { limit = { has_variable = gr_faction_gained_title } remove_variable = gr_faction_gained_title }
 		if = { limit = { has_variable = gr_faction_gained_from } remove_variable = gr_faction_gained_from }
@@ -8220,6 +8649,7 @@ gr_obituary.10 = {
 		if = { limit = { has_variable = gr_faction_lost_to } remove_variable = gr_faction_lost_to }
 
 
+		# Obituary processing variables
 		if = { limit = { has_variable = gr_predecessor } remove_variable = gr_predecessor }
 		if = { limit = { has_variable = gr_chronicler } remove_variable = gr_chronicler }
 		if = { limit = { has_variable = gr_chronicler_type } remove_variable = gr_chronicler_type }
@@ -8245,6 +8675,7 @@ gr_obituary.10 = {
 		if = { limit = { has_variable = gr_is_starter } remove_variable = gr_is_starter }
 		if = { limit = { has_variable = gr_opinion } remove_variable = gr_opinion }
 
+		# Note: gr_regnal_number was removed - never implemented
 		if = { limit = { has_variable = gr_top_stat } remove_variable = gr_top_stat }
 		if = { limit = { has_variable = gr_casualties } remove_variable = gr_casualties }
 		if = { limit = { has_variable = gr_holding_count } remove_variable = gr_holding_count }
@@ -8294,6 +8725,7 @@ gr_obituary.10 = {
 		if = { limit = { has_variable = gr_renown_reward } remove_variable = gr_renown_reward }
 
 
+		# Fame traits
 		if = { limit = { has_variable = gr_fame_vetadventurer } remove_variable = gr_fame_vetadventurer }
 		if = { limit = { has_variable = gr_fame_blademaster } remove_variable = gr_fame_blademaster }
 		if = { limit = { has_variable = gr_fame_hunter } remove_variable = gr_fame_hunter }
@@ -8320,6 +8752,7 @@ gr_obituary.10 = {
 		if = { limit = { has_variable = gr_fame_pilgrim } remove_variable = gr_fame_pilgrim }
 
 
+		# Health/infamy/coping
 		if = { limit = { has_variable = gr_health_oneeyed } remove_variable = gr_health_oneeyed }
 		if = { limit = { has_variable = gr_health_onelegged } remove_variable = gr_health_onelegged }
 		if = { limit = { has_variable = gr_health_disfigured } remove_variable = gr_health_disfigured }
@@ -8348,6 +8781,7 @@ gr_obituary.10 = {
 		if = { limit = { has_variable = gr_coping_confider } remove_variable = gr_coping_confider }
 
 
+		# Stats and scores
 		if = { limit = { has_variable = gr_stat_diplomacy } remove_variable = gr_stat_diplomacy }
 		if = { limit = { has_variable = gr_stat_martial } remove_variable = gr_stat_martial }
 		if = { limit = { has_variable = gr_stat_stewardship } remove_variable = gr_stat_stewardship }
@@ -8385,6 +8819,7 @@ gr_obituary.10 = {
 		if = { limit = { has_variable = gr_heir_char } remove_variable = gr_heir_char }
 		if = { limit = { has_variable = gr_heir_faith } remove_variable = gr_heir_faith }
 
+		# v18: Foundational acts
 		if = { limit = { has_variable = gr_memory_govt_change } remove_variable = gr_memory_govt_change }
 		if = { limit = { has_variable = gr_govt_old } remove_variable = gr_govt_old }
 		if = { limit = { has_variable = gr_govt_new } remove_variable = gr_govt_new }
@@ -8400,6 +8835,7 @@ gr_obituary.10 = {
 		if = { limit = { has_variable = gr_memory_capital_moved } remove_variable = gr_memory_capital_moved }
 		if = { limit = { has_variable = gr_new_capital } remove_variable = gr_new_capital }
 
+		# AGOT SUBMOD: Clean up all gr_agot_ variables
 		if = { limit = { has_variable = gr_agot_dragonrider } remove_variable = gr_agot_dragonrider }
 		if = { limit = { has_variable = gr_agot_dragonless } remove_variable = gr_agot_dragonless }
 		if = { limit = { has_variable = gr_agot_dragonwidowed } remove_variable = gr_agot_dragonwidowed }
@@ -8438,6 +8874,7 @@ gr_obituary.10 = {
 		if = { limit = { has_variable = gr_agot_faith } remove_variable = gr_agot_faith }
 		if = { limit = { has_variable = gr_agot_heritage } remove_variable = gr_agot_heritage }
 
+		# AGOT SUBMOD Phase 7: Clean up war variables
 		if = { limit = { has_variable = gr_agot_war_reyne } remove_variable = gr_agot_war_reyne }
 		if = { limit = { has_variable = gr_agot_war_blackfyre } remove_variable = gr_agot_war_blackfyre }
 		if = { limit = { has_variable = gr_agot_war_ninepenny } remove_variable = gr_agot_war_ninepenny }
@@ -8462,9 +8899,15 @@ gr_obituary.10 = {
 		if = { limit = { has_variable = gr_agot_sub_kingdom_count } remove_variable = gr_agot_sub_kingdom_count }
 
 
+		# Superset prune (audit M15/M18): base gr_dead_ruler_prune_effect removes
+		# every base tracking var; the manual base removes above stay for
+		# readability but drift no longer matters. Runs on ROOT (the heir).
 		gr_dead_ruler_prune_effect = yes
 
 
+		# AGOT submod cleanup: the immediate block copies gr_agot_* predecessor
+		# -> heir, so the heir carries them. This override (in
+		# zz_gr_agot_submod_hooks.txt) removes every gr_agot_* var off the heir.
 		gr_submod_prune_vars_effect = yes
 	}
 }

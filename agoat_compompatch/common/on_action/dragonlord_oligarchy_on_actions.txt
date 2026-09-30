@@ -268,6 +268,7 @@ dragonlord_oligarchy_enforce_family_primary_title = {
 yearly_playable_pulse = {
 	on_actions = {
 		dragonlord_oligarchy_yearly_fourteen_dragonlords
+		agoat_house_head_membership_repair
 	}
 }
 

@@ -6,6 +6,9 @@
 			capital_county ?= { target_is_de_jure_liege_or_above = title:$TITLE$ }
 		}
 		trigger_else = { always = no }
+		# Unlanded courtiers have neither a primary title nor a capital of their
+		# own. Follow their court liege and top liege so regional guard schools
+		# correctly recognise people such as Manderly courtiers at White Harbor.
 		liege ?= {
 			OR = {
 				primary_title ?= { target_is_de_jure_liege_or_above = title:$TITLE$ }

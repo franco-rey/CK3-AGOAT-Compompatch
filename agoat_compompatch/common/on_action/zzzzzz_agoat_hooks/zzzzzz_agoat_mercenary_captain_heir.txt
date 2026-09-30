@@ -1,0 +1,48 @@
+﻿agoat_mercenary_captain_heir_on_death = {
+	trigger = {
+		primary_title ?= { is_mercenary_company = yes }
+		has_realm_law = mercenary_company_succession_law
+		NOT = { exists = primary_heir }
+		NOT = {
+			any_courtier = {
+				is_capable_adult = yes
+				is_imprisoned = no
+				sex_same_as = root
+				trigger_if = {
+					limit = { exists = root.culture }
+					culture ?= { has_same_culture_heritage = root.culture }
+				}
+				has_trait = education_martial
+				NOR = {
+					has_trait = maester
+					has_trait = kingsguard
+					has_trait = nightswatch
+					agot_has_religious_order_trait = yes
+					agot_has_clergy_trait = yes
+				}
+			}
+		}
+	}
+	effect = {
+		if = {
+			limit = {
+				exists = culture
+				exists = faith
+			}
+			create_character = {
+				template = mercenary
+				employer = root
+				gender = root
+				culture = root.culture
+				faith = root.faith
+			}
+		}
+		else = {
+			create_character = {
+				template = mercenary
+				employer = root
+				gender = root
+			}
+		}
+	}
+}
